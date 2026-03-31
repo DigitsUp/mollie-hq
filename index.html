@@ -4,1066 +4,534 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mollie HQ — DigitsUp</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  #pw-gate {
-    position: fixed; inset: 0; z-index: 9999;
-    background: #080D16;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'DM Mono', monospace;
-  }
-  body::before, body::after { display: none; }
-  #pw-box {
-    text-align: center; max-width: 360px; padding: 0 24px; width: 100%;
-  }
-  #pw-box .pw-eyebrow {
-    font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em;
-    color: #566B85; margin-bottom: 8px;
-  }
-  #pw-box .pw-title {
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px;
-    color: #E2EAF4; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;
-  }
-  #pw-box .pw-sub {
-    font-size: 11px; color: #566B85; font-family: 'DM Mono', monospace; margin-bottom: 32px;
-  }
-  #pw-box .pw-divider {
-    width: 48px; height: 1px; background: #1E3F5E; margin: 0 auto 32px;
-  }
-  #pw-box .pw-label {
-    font-size: 11px; color: #566B85; text-transform: uppercase;
-    letter-spacing: 0.1em; margin-bottom: 12px;
-  }
-  #pw-input {
-    width: 100%; padding: 13px 16px;
-    background: #0F1825; border: 1px solid #1E3F5E;
-    color: #E2EAF4; font-size: 14px; font-family: 'DM Mono', monospace;
-    outline: none; box-sizing: border-box; border-radius: 6px;
-    transition: border-color 0.2s;
-  }
-  #pw-input:focus { border-color: #3D9EFF; }
-  #pw-input.err { border-color: #EF4444; animation: shake 0.3s ease; }
-  #pw-error { font-size: 11px; color: #EF4444; margin-top: 8px; min-height: 16px; font-family: 'DM Mono', monospace; }
-  #pw-btn {
-    margin-top: 14px; width: 100%; padding: 12px 0;
-    background: #3D9EFF; color: #fff; border: none;
-    font-size: 11px; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.1em; cursor: pointer; border-radius: 6px;
-    font-family: 'DM Mono', monospace; transition: background 0.2s;
-  }
-  #pw-btn:hover { background: #5DBBFF; }
-  #pw-credit { font-size: 10px; color: #2A3F55; margin-top: 24px; font-family: 'DM Mono', monospace; }
-  @keyframes shake {
-    0%,100% { transform: translateX(0); }
-    25% { transform: translateX(-6px); }
-    75% { transform: translateX(6px); }
-  }
-</style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #080D16;
-    --bg2: #0F1825;
-    --bg3: #162033;
-    --border: rgba(255,255,255,0.07);
-    --border-active: rgba(61,158,255,0.35);
-    --accent: #3D9EFF;
-    --accent-dim: rgba(61,158,255,0.12);
-    --green: #22C55E;
-    --green-dim: rgba(34,197,94,0.12);
-    --amber: #F59E0B;
-    --amber-dim: rgba(245,158,11,0.12);
-    --red: #EF4444;
-    --red-dim: rgba(239,68,68,0.12);
-    --text: #E2EAF4;
-    --text-muted: #566B85;
-    --text-dim: #8899AA;
-    --card-radius: 14px;
-  }
+:root {
+  --bg:     #080D16;
+  --bg2:    #0F1825;
+  --bg3:    #162033;
+  --border: rgba(255,255,255,0.07);
+  --accent: #3D9EFF;
+  --a-dim:  rgba(61,158,255,0.12);
+  --a-glow: rgba(61,158,255,0.25);
+  --green:  #22C55E;
+  --amber:  #F59E0B;
+  --red:    #EF4444;
+  --text:   #E2EAF4;
+  --muted:  #566B85;
+  --dim:    #8899AA;
+  --r:      12px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(61,158,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(61,158,255,0.025) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+/* PASSWORD GATE */
+#gate{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;}
+.gate-box{text-align:center;max-width:340px;width:100%;padding:0 24px;}
+.gate-eyebrow{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);margin-bottom:6px;}
+.gate-title{font-family:'Syne',sans-serif;font-weight:800;font-size:24px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;}
+.gate-sub{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:28px;}
+.gate-div{width:40px;height:1px;background:var(--bg3);margin:0 auto 28px;}
+.gate-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;}
+#pw-input{width:100%;padding:12px 16px;background:var(--bg2);border:1px solid var(--bg3);color:var(--text);font-size:14px;font-family:'DM Mono',monospace;border-radius:8px;outline:none;transition:border-color .2s;}
+#pw-input:focus{border-color:var(--accent);}
+#pw-input.err{border-color:var(--red);}
+#pw-err{font-family:'DM Mono',monospace;font-size:11px;color:var(--red);margin-top:6px;min-height:14px;}
+#pw-btn{margin-top:12px;width:100%;padding:11px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-family:'DM Mono',monospace;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;transition:background .2s;}
+#pw-btn:hover{background:#5DBBFF;}
+.gate-credit{font-family:'DM Mono',monospace;font-size:10px;color:var(--bg3);margin-top:20px;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
 
-  body::before {
-    content: ''; position: fixed; inset: 0;
-    background-image: linear-gradient(rgba(61,158,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(61,158,255,0.03) 1px, transparent 1px);
-    background-size: 40px 40px; pointer-events: none; z-index: 0;
-  }
-  body::after {
-    content: ''; position: fixed; top: -200px; right: -100px; width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(61,158,255,0.06) 0%, transparent 70%); pointer-events: none; z-index: 0;
-  }
+/* HEADER */
+header{position:relative;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:16px 28px;border-bottom:1px solid var(--border);background:rgba(8,13,22,.85);backdrop-filter:blur(12px);}
+.logo{display:flex;align-items:center;gap:12px;}
+.logo-mark{width:32px;height:32px;background:linear-gradient(135deg,var(--accent),#1A6ED4);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:13px;color:#fff;box-shadow:0 0 16px var(--a-glow);}
+.logo-name{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;}
+.logo-role{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:1px;}
+.header-right{display:flex;align-items:center;gap:14px;}
+#clock{font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);}
+.status-pill{display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);font-family:'DM Mono',monospace;font-size:10px;cursor:pointer;}
+.sdot{width:6px;height:6px;border-radius:50%;background:var(--green);}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.4)}50%{box-shadow:0 0 0 4px rgba(34,197,94,0)}}
+.sdot{animation:pulse 2s infinite;}
 
-  header { position: relative; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; border-bottom: 1px solid var(--border); background: rgba(8,13,22,0.8); backdrop-filter: blur(12px); }
-  .logo-group { display: flex; align-items: center; gap: 14px; }
-  .logo-mark { width: 36px; height: 36px; background: linear-gradient(135deg, var(--accent) 0%, #1A6ED4 100%); border-radius: 9px; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 14px; color: white; box-shadow: 0 0 20px rgba(61,158,255,0.3); }
-  .logo-text { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; }
-  .logo-sub { font-size: 11px; color: var(--text-muted); font-family: 'DM Mono', monospace; margin-top: 1px; }
-  .header-right { display: flex; align-items: center; gap: 16px; }
-  #clock { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--text-muted); }
-  .status-pill { display: flex; align-items: center; gap: 7px; background: var(--green-dim); border: 1px solid rgba(34,197,94,0.25); padding: 6px 14px; border-radius: 20px; font-family: 'DM Mono', monospace; font-size: 11px; cursor: pointer; transition: all 0.3s; user-select: none; }
-  .status-pill.offline { background: var(--red-dim); border-color: rgba(239,68,68,0.25); }
-  .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); transition: background 0.3s; }
-  .status-pill.offline .status-dot { background: var(--red); }
+/* MAIN */
+main{position:relative;z-index:5;max-width:1100px;margin:0 auto;padding:32px 24px;}
 
-  nav { position: relative; z-index: 10; display: flex; gap: 4px; padding: 16px 32px 0; border-bottom: 1px solid var(--border); background: rgba(8,13,22,0.5); }
-  .tab { padding: 10px 20px; font-size: 13px; font-weight: 500; color: var(--text-muted); cursor: pointer; border-radius: 8px 8px 0 0; border: 1px solid transparent; border-bottom: none; transition: all 0.2s; }
-  .tab:hover { color: var(--text); background: var(--bg3); }
-  .tab.active { color: var(--text); background: var(--bg2); border-color: var(--border); border-bottom-color: var(--bg2); }
+/* AVATAR SECTION */
+.avatar-section{display:flex;flex-direction:column;align-items:center;margin-bottom:36px;}
+.avatar-name{font-family:'Syne',sans-serif;font-weight:800;font-size:28px;margin-top:12px;background:linear-gradient(135deg,#fff,var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.avatar-title{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.08em;}
+.avatar-wrap{position:relative;display:flex;flex-direction:column;align-items:center;}
+#mollieCanvas{image-rendering:pixelated;image-rendering:crisp-edges;filter:drop-shadow(0 0 20px rgba(61,158,255,.3));}
+.avatar-glow{width:100px;height:8px;background:radial-gradient(ellipse,rgba(61,158,255,.35) 0%,transparent 70%);border-radius:50%;margin-top:-4px;}
+.state-label{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-top:8px;}
+.state-btns{display:flex;gap:6px;margin-top:12px;}
+.sbtn{padding:5px 12px;border-radius:20px;border:1px solid var(--border);background:var(--bg2);color:var(--muted);font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;transition:all .2s;}
+.sbtn:hover,.sbtn.active{background:var(--a-dim);border-color:var(--accent);color:var(--accent);}
 
-  main { position: relative; z-index: 5; padding: 28px 32px; }
-  .panel { display: none; }
-  .panel.active { display: block; }
+/* USAGE SECTION */
+.section-title{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border);}
+.usage-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-bottom:16px;}
+.ucard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;}
+.ucard-label{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px;}
+.ucard-val{font-family:'Syne',sans-serif;font-weight:700;font-size:22px;color:var(--text);}
+.ucard-sub{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:4px;}
+.ucard-val.accent{color:var(--accent);}
+.bar-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px 20px;margin-bottom:16px;display:flex;align-items:center;gap:16px;}
+.bar-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);white-space:nowrap;}
+.bar-track{flex:1;height:6px;background:var(--bg3);border-radius:99px;overflow:hidden;}
+.bar-fill{height:100%;background:var(--accent);border-radius:99px;transition:width .6s ease;}
+.bar-pct{font-family:'DM Mono',monospace;font-size:11px;color:var(--text);white-space:nowrap;min-width:36px;text-align:right;}
+.refresh-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.sync-note{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);}
+#refresh-btn{padding:6px 16px;background:var(--a-dim);border:1px solid var(--accent);color:var(--accent);border-radius:20px;font-family:'DM Mono',monospace;font-size:10px;cursor:pointer;transition:all .2s;letter-spacing:.06em;}
+#refresh-btn:hover{background:var(--accent);color:#fff;}
 
-  .card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 20px; }
-  .card-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+/* KANBAN */
+.kanban-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+.kanban-board{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.k-col{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px;min-height:220px;}
+.k-col-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.k-col-title{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;font-weight:500;}
+.k-count{font-family:'DM Mono',monospace;font-size:10px;background:var(--bg3);border-radius:10px;padding:2px 7px;color:var(--muted);}
+.task-card{background:var(--bg3);border:1px solid var(--border);border-radius:9px;padding:10px 12px;margin-bottom:8px;cursor:pointer;transition:border-color .2s;}
+.task-card:hover{border-color:var(--accent);}
+.task-top{display:flex;justify-content:space-between;align-items:flex-start;gap:6px;}
+.task-name{font-size:12px;font-weight:500;line-height:1.4;}
+.task-del{background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:0 2px;line-height:1;transition:color .2s;}
+.task-del:hover{color:var(--red);}
+.task-meta{display:flex;justify-content:space-between;align-items:center;margin-top:6px;}
+.task-type{font-family:'DM Mono',monospace;font-size:9px;padding:2px 7px;border-radius:10px;background:var(--a-dim);color:var(--accent);text-transform:uppercase;}
+.task-due{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);}
+.task-advance{margin-top:8px;width:100%;padding:4px 0;background:rgba(61,158,255,.08);border:1px solid rgba(61,158,255,.15);border-radius:6px;font-family:'DM Mono',monospace;font-size:9px;color:var(--accent);cursor:pointer;text-align:center;transition:all .2s;}
+.task-advance:hover{background:var(--a-dim);}
 
-  .mission-grid { display: grid; grid-template-columns: 280px 1fr; gap: 20px; }
-  .right-stack { display: flex; flex-direction: column; gap: 20px; }
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;display:none;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:24px;width:380px;max-width:90vw;}
+.modal-title{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;margin-bottom:20px;}
+.form-group{margin-bottom:14px;}
+.form-label{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);display:block;margin-bottom:6px;}
+.form-input,.form-select{width:100%;padding:10px 14px;background:var(--bg3);border:1px solid var(--border);color:var(--text);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;outline:none;transition:border-color .2s;}
+.form-input:focus,.form-select:focus{border-color:var(--accent);}
+.form-select{cursor:pointer;}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:20px;}
+.btn-primary{padding:8px 20px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-family:'DM Mono',monospace;font-size:11px;cursor:pointer;transition:background .2s;}
+.btn-primary:hover{background:#5DBBFF;}
+.btn-ghost{padding:8px 20px;background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:8px;font-family:'DM Mono',monospace;font-size:11px;cursor:pointer;}
 
-  .mollie-card { display: flex; flex-direction: column; align-items: center; text-align: center; }
-  .mollie-pixel-wrap { display: flex; flex-direction: column; align-items: center; padding: 10px 0 4px; }
-  .mollie-stage { position: relative; width: 80px; height: 160px; display: flex; align-items: flex-end; justify-content: center; overflow: visible; }
-  #mollieCanvas { image-rendering: pixelated; image-rendering: crisp-edges; display: block; filter: drop-shadow(0 0 12px rgba(61,158,255,0.25)); }
-
-  @keyframes mollie-idle-bob { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-3px); } }
-  @keyframes mollie-dance-sway { 0% { transform: translateX(-2px) rotate(-3deg); } 25% { transform: translateX(0) rotate(0); } 50% { transform: translateX(2px) rotate(3deg); } 75% { transform: translateX(0) rotate(0); } 100% { transform: translateX(-2px) rotate(-3deg); } }
-  @keyframes mollie-type-lean { 0%,100% { transform: translateY(1px) scale(0.98); } 50% { transform: translateY(0) scale(1); } }
-  @keyframes mollie-think-tilt { 0%,100% { transform: rotate(-2deg); } 50% { transform: rotate(0); } }
-
-  .state-idle  #mollieCanvas { animation: mollie-idle-bob 2.2s ease-in-out infinite; }
-  .state-dance #mollieCanvas { animation: mollie-dance-sway 0.6s ease-in-out infinite; }
-  .state-type  #mollieCanvas { animation: mollie-type-lean 0.35s ease-in-out infinite; }
-  .state-think #mollieCanvas { animation: mollie-think-tilt 2.5s ease-in-out infinite; }
-
-  .mollie-glow-floor { width: 60px; height: 6px; background: radial-gradient(ellipse, rgba(61,158,255,0.3) 0%, transparent 75%); border-radius: 50%; margin-top: -4px; transition: width 0.5s; }
-  .state-dance .mollie-glow-floor { width: 80px; opacity: 0.8; }
-  .mollie-state-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 6px; opacity: 0.7; min-height: 12px; transition: color 0.3s; }
-  .state-dance .mollie-state-label { color: #FF8CB4; }
-  .state-type  .mollie-state-label { color: var(--accent); }
-  .state-think .mollie-state-label { color: var(--amber); }
-
-  @keyframes pulse-green { 0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.4); } 50% { box-shadow: 0 0 0 5px rgba(34,197,94,0); } }
-  .mollie-status-badge { width: 10px; height: 10px; border-radius: 50%; background: var(--green); border: 2px solid var(--bg2); animation: pulse-green 2s infinite; display: inline-block; }
-  .mollie-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 18px; margin-top: 6px; display: flex; align-items: center; gap: 7px; }
-  .mollie-role { font-size: 11px; color: var(--text-muted); line-height: 1.5; margin-bottom: 14px; }
-  .mollie-meta { width: 100%; border-top: 1px solid var(--border); padding-top: 12px; display: flex; flex-direction: column; gap: 7px; }
-  .meta-row { display: flex; justify-content: space-between; font-size: 12px; }
-  .meta-key { color: var(--text-muted); }
-  .meta-val { font-family: 'DM Mono', monospace; font-size: 11px; }
-  .meta-val.accent { color: var(--accent); }
-  .meta-val.green { color: var(--green); }
-
-  .notes-area { width: 100%; background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 12px; line-height: 1.5; resize: vertical; min-height: 90px; }
-  .notes-area::placeholder { color: var(--text-muted); }
-  .notes-area:focus { outline: none; border-color: var(--border-active); }
-
-  .launchpad-grid { display: flex; flex-direction: column; gap: 8px; }
-  .launch-btn { display: flex; align-items: center; gap: 12px; background: var(--bg3); border: 1px solid var(--border); border-radius: 9px; padding: 11px 14px; text-decoration: none; color: var(--text); font-size: 13px; transition: all 0.2s; }
-  .launch-btn:hover { border-color: var(--border-active); background: rgba(61,158,255,0.05); }
-  .launch-icon { width: 30px; height: 30px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
-  .launch-icon.tg   { background: rgba(61,158,255,0.15); }
-  .launch-icon.mail { background: rgba(245,158,11,0.15); }
-  .launch-icon.api  { background: rgba(34,197,94,0.15); }
-  .launch-icon.ntn  { background: rgba(255,255,255,0.08); }
-  .launch-title { font-size: 13px; font-weight: 500; }
-  .launch-sub { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
-
-  .activity-list { display: flex; flex-direction: column; gap: 8px; max-height: 240px; overflow-y: auto; }
-  .activity-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; background: var(--bg3); border-radius: 8px; border-left: 3px solid var(--border); font-size: 12px; }
-  .activity-item.green  { border-left-color: var(--green); }
-  .activity-item.accent { border-left-color: var(--accent); }
-  .activity-item.amber  { border-left-color: var(--amber); }
-  .activity-item.red    { border-left-color: var(--red); }
-  .activity-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; background: var(--text-muted); }
-  .activity-item.green  .activity-dot { background: var(--green); }
-  .activity-item.accent .activity-dot { background: var(--accent); }
-  .activity-item.amber  .activity-dot { background: var(--amber); }
-  .activity-item.red    .activity-dot { background: var(--red); }
-  .activity-time { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-muted); flex-shrink: 0; }
-  .activity-text { flex: 1; color: var(--text-dim); }
-
-  .btn-primary { background: var(--accent); color: white; border: none; border-radius: 8px; padding: 9px 18px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
-  .btn-primary:hover { background: #5AACFF; }
-  .btn-ghost { background: transparent; color: var(--text-dim); border: 1px solid var(--border); border-radius: 8px; padding: 8px 16px; font-size: 12px; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
-  .btn-ghost:hover { border-color: var(--border-active); color: var(--text); }
-
-  .prompt-block { background: var(--bg); border: 1px solid var(--border); border-radius: 9px; padding: 12px 14px 12px 14px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-dim); line-height: 1.7; position: relative; }
-  .copy-btn { position: absolute; top: 8px; right: 8px; background: var(--bg3); border: 1px solid var(--border); color: var(--text-muted); border-radius: 6px; padding: 4px 8px; font-size: 10px; cursor: pointer; font-family: 'DM Mono', monospace; }
-  .copy-btn:hover { color: var(--accent); border-color: var(--border-active); }
-
-  .usage-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
-  .stat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 18px 20px; }
-  .stat-input { background: transparent; border: none; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 26px; color: var(--accent); width: 100%; cursor: pointer; padding: 0; }
-  .stat-input:focus { outline: none; border-bottom: 1px dashed var(--border-active); }
-  .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
-  .usage-bar-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-bottom: 8px; }
-  .usage-bar-track { height: 6px; background: var(--bg3); border-radius: 99px; overflow: hidden; margin-bottom: 6px; }
-  .usage-bar-fill { height: 100%; background: var(--accent); border-radius: 99px; transition: width 0.6s ease, background 0.3s; }
-  .model-table { width: 100%; border-collapse: collapse; }
-  .model-table th { text-align: left; font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); padding: 0 0 10px; border-bottom: 1px solid var(--border); }
-  .model-table td { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 12px; vertical-align: middle; }
-  .model-table tr:last-child td { border-bottom: none; }
-  .tbl-input { background: transparent; border: none; color: var(--text); font-size: 12px; font-family: 'DM Mono', monospace; width: 80px; cursor: pointer; }
-  .tbl-input:focus { outline: none; border-bottom: 1px dashed var(--border-active); }
-
-  .kanban-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-  .kanban-board { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-  .kanban-col { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 14px; min-height: 380px; }
-  .kanban-col-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-  .kanban-col-title { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
-  .kanban-count { background: var(--bg3); border-radius: 99px; padding: 2px 8px; font-size: 10px; color: var(--text-muted); }
-  .task-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 9px; padding: 10px 12px; margin-bottom: 8px; }
-  .task-title { font-size: 12px; font-weight: 500; margin-bottom: 6px; }
-  .task-meta { display: flex; justify-content: space-between; align-items: center; }
-  .task-type { font-size: 10px; padding: 2px 7px; border-radius: 99px; background: var(--accent-dim); color: var(--accent); }
-  .task-due { font-size: 10px; color: var(--text-muted); font-family: 'DM Mono', monospace; }
-  .task-del { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 16px; padding: 0 2px; line-height: 1; }
-  .task-del:hover { color: var(--red); }
-  .task-move-row { display: flex; gap: 4px; margin-top: 8px; flex-wrap: wrap; }
-  .task-move-btn { background: var(--bg); border: 1px solid var(--border); border-radius: 5px; padding: 2px 7px; font-size: 10px; color: var(--text-muted); cursor: pointer; font-family: 'DM Sans', sans-serif; }
-  .task-move-btn:hover { border-color: var(--border-active); color: var(--accent); }
-
-  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 100; align-items: center; justify-content: center; }
-  .modal-overlay.open { display: flex; }
-  .modal { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 24px; width: 380px; }
-  .modal-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 16px; }
-  .form-group { margin-bottom: 14px; }
-  .form-label { font-size: 11px; color: var(--text-muted); margin-bottom: 5px; display: block; }
-  .form-input, .form-select { width: 100%; background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px; color: var(--text); font-size: 13px; font-family: 'DM Sans', sans-serif; }
-  .form-input:focus, .form-select:focus { outline: none; border-color: var(--border-active); }
-  .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 18px; }
-
-  ::-webkit-scrollbar { width: 5px; }
-  ::-webkit-scrollbar-track { background: var(--bg2); }
-  ::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 99px; }
+/* ADD TASK BTN */
+.btn-add{display:flex;align-items:center;gap:6px;padding:7px 16px;background:var(--a-dim);border:1px solid var(--accent);color:var(--accent);border-radius:20px;font-family:'DM Mono',monospace;font-size:10px;cursor:pointer;transition:all .2s;}
+.btn-add:hover{background:var(--accent);color:#fff;}
 </style>
 </head>
 <body>
-<div id="pw-gate">
-  <div id="pw-box">
-    <div class="pw-eyebrow">DigitsUp Internal</div>
-    <div class="pw-title">Mollie HQ</div>
-    <div class="pw-sub">AI Mission Control</div>
-    <div class="pw-divider"></div>
-    <div class="pw-label">Enter Password</div>
+
+<!-- PASSWORD GATE -->
+<div id="gate">
+  <div class="gate-box">
+    <div class="gate-eyebrow">DigitsUp Internal</div>
+    <div class="gate-title">Mollie HQ</div>
+    <div class="gate-sub">AI Mission Control</div>
+    <div class="gate-div"></div>
+    <div class="gate-label">Enter Password</div>
     <input type="password" id="pw-input" placeholder="••••••••" onkeydown="if(event.key==='Enter')pwCheck()">
-    <div id="pw-error"></div>
+    <div id="pw-err"></div>
     <button id="pw-btn" onclick="pwCheck()">Unlock</button>
-    <div id="pw-credit">Prepared by DigitsUp</div>
+    <div class="gate-credit">Prepared by DigitsUp</div>
   </div>
 </div>
-<script>
-  (function(){
-    const HASH = 'b16090794a6d9a19f8868dd6d6f909736ddcba6b7b9c3666da9d3dc3d0d171b3';
-    async function sha256(s){
-      const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
-      return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');
-    }
-    window.pwCheck = async function(){
-      const val = document.getElementById('pw-input').value;
-      const hash = await sha256(val);
-      if(hash === HASH){
-        document.getElementById('pw-gate').style.display='none';
-        sessionStorage.setItem('mollie_auth','1');
-      } else {
-        const el = document.getElementById('pw-input');
-        const err = document.getElementById('pw-error');
-        el.classList.add('err');
-        err.textContent = 'Incorrect password';
-        setTimeout(()=>{ el.classList.remove('err'); err.textContent=''; },2000);
-      }
-    };
-    if(sessionStorage.getItem('mollie_auth')==='1'){
-      document.addEventListener('DOMContentLoaded',()=>{
-        const g=document.getElementById('pw-gate');
-        if(g) g.style.display='none';
-      });
-    }
-  })();
-</script>
 
-
+<!-- HEADER -->
 <header>
-  <div class="logo-group">
-    <div class="logo-mark">DU</div>
+  <div class="logo">
+    <div class="logo-mark">M</div>
     <div>
-      <div class="logo-text">Mollie HQ</div>
-      <div class="logo-sub">DigitsUp · AI Ops Agent Dashboard</div>
+      <div class="logo-name">Mollie HQ</div>
+      <div class="logo-role">DigitsUp AI Mission Control</div>
     </div>
   </div>
   <div class="header-right">
     <div id="clock"></div>
-    <div class="status-pill" id="statusPill" onclick="toggleStatus()">
-      <div class="status-dot"></div>
-      <span id="statusLabel">Mollie Online</span>
-    </div>
+    <div class="status-pill"><div class="sdot"></div><span>Mollie Online</span></div>
   </div>
 </header>
 
-<nav>
-  <div class="tab active" onclick="switchTab('mission',this)">🤖 Mission Control</div>
-  <div class="tab" onclick="switchTab('usage',this)">📊 Usage &amp; Costs</div>
-  <div class="tab" onclick="switchTab('tasks',this)">📋 Task Pipeline</div>
-</nav>
-
+<!-- MAIN -->
 <main>
 
-  <!-- MISSION CONTROL -->
-  <div class="panel active" id="panel-mission">
-    <div class="mission-grid">
-      <div style="display:flex;flex-direction:column;gap:16px;">
-
-        <div class="card mollie-card">
-          <div class="card-label">Agent Identity</div>
-          <div class="mollie-pixel-wrap state-idle" id="mollieWrap">
-            <div class="mollie-stage">
-              <canvas id="mollieCanvas" width="80" height="160"></canvas>
-            </div>
-            <div class="mollie-glow-floor"></div>
-            <div class="mollie-state-label" id="stateLabel">Idle</div>
-          </div>
-          <div class="mollie-name">
-            <div class="mollie-status-badge" id="avatarDot"></div>
-            Mollie
-          </div>
-          <div class="mollie-role">AI Operations Agent · DigitsUp<br>Mac mini · OpenClaw · Telegram</div>
-          <div class="mollie-meta">
-            <div class="meta-row"><span class="meta-key">Platform</span><span class="meta-val">OpenClaw</span></div>
-            <div class="meta-row"><span class="meta-key">Channel</span><span class="meta-val accent">Telegram</span></div>
-            <div class="meta-row"><span class="meta-key">Email</span><span class="meta-val">mollie@digitsup.com</span></div>
-            <div class="meta-row"><span class="meta-key">Status</span><span class="meta-val green" id="statusMetaVal">Online</span></div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-label">Notes for Mollie</div>
-          <textarea class="notes-area" id="mollieNotes" placeholder="Leave instructions, context, or reminders for your next session..."></textarea>
-          <button class="btn-ghost" style="margin-top:10px;width:100%;font-size:12px;" onclick="saveNotes()">Save Notes</button>
-        </div>
-      </div>
-
-      <div class="right-stack">
-        <div class="card">
-          <div class="card-label">Launch Pad</div>
-          <div class="launchpad-grid">
-            <a href="https://t.me/" target="_blank" class="launch-btn">
-              <div class="launch-icon tg">✈️</div>
-              <div><div class="launch-title">Open Telegram</div><div class="launch-sub">Message Mollie directly</div></div>
-            </a>
-            <a href="mailto:mollie@digitsup.com" class="launch-btn">
-              <div class="launch-icon mail">📧</div>
-              <div><div class="launch-title">Email Mollie</div><div class="launch-sub">mollie@digitsup.com</div></div>
-            </a>
-            <a href="https://console.anthropic.com/" target="_blank" class="launch-btn">
-              <div class="launch-icon api">⚡</div>
-              <div><div class="launch-title">Anthropic Console</div><div class="launch-sub">Usage &amp; API settings</div></div>
-            </a>
-            <a href="https://www.notion.so" target="_blank" class="launch-btn">
-              <div class="launch-icon ntn">📋</div>
-              <div><div class="launch-title">Notion Workspace</div><div class="launch-sub">DigitsUp knowledge base</div></div>
-            </a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-label" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
-            Activity Log
-            <button class="btn-ghost" style="padding:4px 10px;font-size:10px;" onclick="document.getElementById('activityModal').classList.add('open')">+ Log Entry</button>
-          </div>
-          <div class="activity-list" id="activityList"></div>
-        </div>
-
-        <div class="card">
-          <div class="card-label">Mollie Prompt</div>
-          <div class="prompt-block">
-            When you complete or start a task, format your status update as:<br>
-            <span style="color:var(--accent)">{"task":"name","status":"scheduled|in_progress|done","type":"report|campaign|admin|client","due":"date","notes":"what you did"}</span><br><br>
-            Send this JSON block at the end of any task update so I can log it in your pipeline.
-            <button class="copy-btn" id="copyBtn" onclick="copyPrompt()">Copy</button>
-          </div>
-        </div>
-      </div>
+  <!-- AVATAR -->
+  <div class="avatar-section">
+    <div class="avatar-wrap">
+      <canvas id="mollieCanvas" width="100" height="180"></canvas>
+      <div class="avatar-glow"></div>
+      <div class="state-label" id="stateLabel">Idle</div>
+    </div>
+    <div class="avatar-name">Mollie</div>
+    <div class="avatar-title">DigitsUp AI Production Assistant · mollie@digitsup.com</div>
+    <div class="state-btns">
+      <button class="sbtn active" onclick="forceState('idle',this)">Idle</button>
+      <button class="sbtn" onclick="forceState('type',this)">Working</button>
+      <button class="sbtn" onclick="forceState('think',this)">Thinking</button>
+      <button class="sbtn" onclick="forceState('dance',this)">Celebrate</button>
     </div>
   </div>
 
-  <!-- USAGE & COSTS -->
-  <div class="panel" id="panel-usage">
-    <div class="usage-grid">
-      <div class="stat-card">
-        <div class="card-label">This Month — Total Spend</div>
-        <input class="stat-input" id="totalSpend" value="$0.00" onclick="this.select()" onblur="saveUsage()">
-        <div class="stat-label">Click to update from console</div>
-      </div>
-      <div class="stat-card">
-        <div class="card-label">Total Tokens Used</div>
-        <input class="stat-input" id="totalTokens" value="0" onclick="this.select()" onblur="saveUsage()">
-        <div class="stat-label">Input + Output combined</div>
-      </div>
-      <div class="stat-card">
-        <div class="card-label">Monthly Budget</div>
-        <input class="stat-input" id="monthlyBudget" value="$50.00" onclick="this.select()" onblur="saveUsage()">
-        <div class="stat-label">Set your monthly limit</div>
-      </div>
+  <!-- USAGE -->
+  <div class="section-title">Usage & Costs</div>
+  <div class="usage-grid">
+    <div class="ucard">
+      <div class="ucard-label">Total Spend</div>
+      <div class="ucard-val accent" id="u-spend">—</div>
+      <div class="ucard-sub">of $500 budget</div>
     </div>
-
-    <div class="card" style="margin-bottom:20px;">
-      <div class="card-label">Budget Usage</div>
-      <div class="usage-bar-label"><span>Spend vs Budget</span><span id="barPct">0%</span></div>
-      <div class="usage-bar-track"><div class="usage-bar-fill" id="usageBarFill" style="width:0%"></div></div>
+    <div class="ucard">
+      <div class="ucard-label">Sessions</div>
+      <div class="ucard-val" id="u-sessions">—</div>
+      <div class="ucard-sub">API calls logged</div>
     </div>
-
-    <div class="card">
-      <div class="card-label">Model Breakdown</div>
-      <table class="model-table">
-        <thead><tr><th style="width:35%">Model</th><th>% of Spend</th><th>Est. Cost</th><th>Primary Use</th></tr></thead>
-        <tbody>
-          <tr><td>Claude Opus 4</td><td><input class="tbl-input" id="opusPct" value="94.7%" onblur="saveUsage()"></td><td><input class="tbl-input" id="opusCost" value="$0.00" onblur="saveUsage()"></td><td style="color:var(--text-muted);font-size:11px;">Main agent tasks</td></tr>
-          <tr><td>Claude Sonnet</td><td><input class="tbl-input" id="sonnetPct" value="4.7%" onblur="saveUsage()"></td><td><input class="tbl-input" id="sonnetCost" value="$0.00" onblur="saveUsage()"></td><td style="color:var(--text-muted);font-size:11px;">Light tasks</td></tr>
-          <tr><td>Claude Haiku</td><td><input class="tbl-input" id="haikuPct" value="0.6%" onblur="saveUsage()"></td><td><input class="tbl-input" id="haikuCost" value="$0.00" onblur="saveUsage()"></td><td style="color:var(--text-muted);font-size:11px;">Quick lookups</td></tr>
-        </tbody>
-      </table>
+    <div class="ucard">
+      <div class="ucard-label">Output Tokens</div>
+      <div class="ucard-val" id="u-output">—</div>
+      <div class="ucard-sub">generated</div>
+    </div>
+    <div class="ucard">
+      <div class="ucard-label">Model</div>
+      <div class="ucard-val" style="font-size:14px;padding-top:4px;" id="u-model">—</div>
+      <div class="ucard-sub">primary</div>
     </div>
   </div>
+  <div class="bar-wrap">
+    <div class="bar-label">Budget Used</div>
+    <div class="bar-track"><div class="bar-fill" id="u-bar" style="width:0%"></div></div>
+    <div class="bar-pct" id="u-pct">0%</div>
+  </div>
+  <div class="refresh-row">
+    <div class="sync-note" id="u-synced">Not yet synced</div>
+    <button id="refresh-btn" onclick="loadUsage()">⟳ Refresh Usage</button>
+  </div>
 
-  <!-- TASK PIPELINE -->
-  <div class="panel" id="panel-tasks">
+  <!-- KANBAN -->
+  <div style="margin-top:32px;">
     <div class="kanban-header">
-      <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px;">Task Pipeline</div>
-      <button class="btn-primary" onclick="openTaskModal()">+ New Task</button>
+      <div class="section-title" style="margin:0;flex:1;">Task Pipeline</div>
+      <button class="btn-add" onclick="openModal()">+ New Task</button>
     </div>
-    <div class="kanban-board" id="kanbanBoard"></div>
+    <div class="kanban-board" id="kanban"></div>
   </div>
 
 </main>
 
 <!-- TASK MODAL -->
-<div class="modal-overlay" id="taskModal">
+<div class="modal-overlay" id="modal">
   <div class="modal">
     <div class="modal-title">Add New Task</div>
-    <div class="form-group"><label class="form-label">Task Name</label><input class="form-input" id="taskName" placeholder="e.g. Pull Klaviyo weekly report"></div>
+    <div class="form-group"><label class="form-label">Task Name</label><input class="form-input" id="t-name" placeholder="e.g. Liverpool weekly report"></div>
     <div class="form-group"><label class="form-label">Type</label>
-      <select class="form-select" id="taskType">
+      <select class="form-select" id="t-type">
         <option value="report">Report</option><option value="campaign">Campaign</option>
-        <option value="admin">Admin</option><option value="client">Client</option><option value="research">Research</option>
+        <option value="brief">Brief</option><option value="client">Client</option>
+        <option value="admin">Admin</option><option value="build">Build</option>
       </select>
     </div>
-    <div class="form-group"><label class="form-label">Due Date</label><input class="form-input" id="taskDue" type="date"></div>
-    <div class="form-group"><label class="form-label">Column</label>
-      <select class="form-select" id="taskCol">
-        <option value="scheduled">Scheduled</option><option value="queue">Queue</option>
-        <option value="inprogress">In Progress</option><option value="done">Done</option>
+    <div class="form-group"><label class="form-label">Due Date</label><input class="form-input" id="t-due" type="date"></div>
+    <div class="form-group"><label class="form-label">Start In</label>
+      <select class="form-select" id="t-col">
+        <option value="queued">Queued</option><option value="active">Active</option>
+        <option value="review">In Review</option><option value="done">Done</option>
       </select>
     </div>
     <div class="modal-actions">
-      <button class="btn-ghost" onclick="closeTaskModal()">Cancel</button>
+      <button class="btn-ghost" onclick="closeModal()">Cancel</button>
       <button class="btn-primary" onclick="saveTask()">Add Task</button>
     </div>
   </div>
 </div>
 
-<!-- ACTIVITY MODAL -->
-<div class="modal-overlay" id="activityModal">
-  <div class="modal">
-    <div class="modal-title">Log Activity</div>
-    <div class="form-group"><label class="form-label">Description</label><input class="form-input" id="activityText" placeholder="e.g. Mollie pulled Klaviyo report"></div>
-    <div class="form-group"><label class="form-label">Status</label>
-      <select class="form-select" id="activityType">
-        <option value="green">Completed</option><option value="accent">In Progress</option>
-        <option value="amber">Flagged</option><option value="red">Error</option>
-      </select>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-ghost" onclick="document.getElementById('activityModal').classList.remove('open')">Cancel</button>
-      <button class="btn-primary" onclick="saveActivityEntry()">Log It</button>
-    </div>
-  </div>
-</div>
-
 <script>
-// ==============================
-//  PIXEL CHARACTER ENGINE
-// ==============================
-const canvas = document.getElementById('mollieCanvas');
-const ctx    = canvas.getContext('2d');
-const SCALE  = 4;
+// ── PASSWORD ──
+async function sha256(s){
+  const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));
+  return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+const PH='b16090794a6d9a19f8868dd6d6f909736ddcba6b7b9c3666da9d3dc3d0d171b3';
+window.pwCheck=async function(){
+  const v=document.getElementById('pw-input').value;
+  const h=await sha256(v);
+  if(h===PH){
+    document.getElementById('gate').style.display='none';
+    sessionStorage.setItem('mhq','1');
+  } else {
+    const el=document.getElementById('pw-input');
+    document.getElementById('pw-err').textContent='Incorrect password';
+    el.classList.add('err');
+    el.style.animation='shake .3s ease';
+    setTimeout(()=>{el.classList.remove('err');el.style.animation='';document.getElementById('pw-err').textContent='';},1800);
+  }
+};
+if(sessionStorage.getItem('mhq')==='1') document.getElementById('gate').style.display='none';
 
-const C = {
-  // Skin tones
-  S:  '#F2C49A', Sd: '#D4956A', Sh: '#FAE0C0', Sn: '#E5A878', Sb: '#C07850',
-  // Hair - sleek jet black
-  H:  '#080808', Hd: '#111118', Hh: '#222230', Hm: '#0A0A14',
-  // Eyes - large glowing blue
-  E:  '#3D9EFF', Ew: '#C8E8FF', Ed: '#1060C0', Ep: '#7FCCFF',
-  // Lips - deep red/pink
-  Lp: '#C83355', Ld: '#8B1A35', Lh: '#E8607A', Lm: '#AA2244',
-  // Catsuit - deep black/navy
-  B:  '#060C14', Bm: '#0C1824', Bl: '#162840', Bh: '#20385A', Bs: '#0A1620',
-  // Blue accent
-  A:  '#3D9EFF', Ad: '#1A60D0', Ah: '#80C0FF', Am: '#2878E8',
-  // Ears/blush/details
-  Pk: '#FFB0C8', Pd: '#E88090', Pv: '#FF80A0',
-  // Belt/boots
-  G:  '#040810', Gm: '#08121C', Gh: '#102030',
-  // Collar/jewelry
-  Co: '#B8CCE0', Cm: '#90AABF', Cg: '#FFD060',
-  // Shadow/dark
-  D:  '#000000', Dm: '#02040A',
-  // White
-  W:  '#FFFFFF', Wm: '#E8F4FF',
+// ── CLOCK ──
+setInterval(()=>{
+  document.getElementById('clock').textContent=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+},1000);
+
+// ── PIXEL ART ENGINE ──
+const canvas=document.getElementById('mollieCanvas');
+const ctx=canvas.getContext('2d');
+const SC=4;
+function px(x,y,w,h,c){if(!c)return;ctx.fillStyle=c;ctx.fillRect(x*SC,y*SC,w*SC,h*SC);}
+
+const C={
+  S:'#F2C49A',Sd:'#D4956A',Sh:'#FAE0C0',Sn:'#E5A878',
+  H:'#080808',Hd:'#1A1A2E',Hh:'#303050',
+  E:'#3D9EFF',Ew:'#C8E8FF',Ed:'#1060C0',Ep:'#80C8FF',
+  Lp:'#C83355',Ld:'#8B1A35',Lh:'#E8607A',
+  B:'#060C14',Bm:'#0C1824',Bl:'#182840',Bh:'#243858',
+  A:'#3D9EFF',Ad:'#1A60D0',Ah:'#80C0FF',
+  Pk:'#FFB0C8',Pd:'#DD7090',
+  G:'#040810',Gm:'#08121C',Gh:'#102030',
+  D:'#000000',W:'#FFFFFF',
 };
 
-function px(x,y,w,h,col){ if(!col)return; ctx.fillStyle=col; ctx.fillRect(x*SCALE,y*SCALE,w*SCALE,h*SCALE); }
-
-
-
-
-
-function drawMollie(state, frame, blink) {
+function draw(state,frame,blink){
   ctx.clearRect(0,0,canvas.width,canvas.height);
 
-  const bob = (state==='idle') ? Math.sin(frame*0.4)*0.3 : 0;
+  // EARS
+  px(4,0,1,1,C.H); px(3,1,2,1,C.H); px(4,1,1,1,C.Pk); px(3,2,3,1,C.H); px(4,2,1,1,C.Pk);
+  px(16,0,1,1,C.H); px(16,1,2,1,C.H); px(16,1,1,1,C.Pk); px(15,2,3,1,C.H); px(16,2,1,1,C.Pk);
 
-  // ═══ CAT MASK EARS ═══
-  // Left ear - sharp pointed
-  px(4,0,1,1,C.B);
-  px(3,1,2,1,C.B);  px(4,1,1,1,C.Pk);
-  px(3,2,1,1,C.B);  px(4,2,2,1,C.B);  px(4,2,1,1,C.Pk);
-  // Right ear
-  px(15,0,1,1,C.B);
-  px(14,1,2,1,C.B); px(15,1,1,1,C.Pk);
-  px(14,2,2,1,C.B); px(15,2,1,1,C.Pk);
+  // HAIR
+  px(3,2,19,1,C.H); px(2,3,21,1,C.H);
+  px(1,4,2,8,C.H); px(0,5,1,7,C.H);
+  px(22,4,2,8,C.H); px(23,5,1,7,C.H);
+  px(1,12,2,2,C.Hh); px(22,12,2,2,C.Hh);
+  px(8,2,4,1,C.Hh); // shine
 
-  // ═══ HAIR (sleek, framing face) ═══
-  // Top
-  px(3,2,14,1,C.H);
-  px(2,3,16,1,C.H);
-  // Side swept - left
-  px(1,4,2,8,C.H);  px(0,5,1,6,C.H);
-  px(0,11,1,3,C.H); px(1,12,1,3,C.H);
-  // Side swept - right
-  px(17,4,2,8,C.H); px(18,5,1,6,C.H);
-  px(18,11,1,3,C.H); px(17,12,1,3,C.H);
-  // Hair shine
-  px(7,2,3,1,C.Hh);
+  // FACE
+  px(3,3,19,1,C.S);
+  px(2,4,21,1,C.S); px(2,5,21,1,C.S); px(2,6,21,1,C.S);
+  px(2,7,21,1,C.S); px(2,8,21,1,C.S); px(2,9,21,1,C.S);
+  px(3,10,19,1,C.S); px(4,11,17,1,C.S); px(5,12,15,1,C.Sd);
+  px(2,4,1,6,C.Sn); px(22,4,1,6,C.Sn); // side shading
 
-  // ═══ FACE ═══
-  px(3,3,14,1,C.S);
-  px(2,4,16,6,C.S);
-  px(2,10,16,1,C.S);
-  px(3,11,14,1,C.S);
-  px(4,12,12,1,C.S);
-  px(5,13,10,1,C.Sd);
-  // Face shading
-  px(2,4,1,6,C.Sn);  px(17,4,1,6,C.Sn);
+  // CAT MASK STRIPS
+  px(2,4,6,3,C.B); px(17,4,6,3,C.B);
+  px(8,5,9,1,C.B); // bridge
+  px(2,4,1,3,C.Bh); px(22,4,1,3,C.Bh);
 
-  // ═══ CAT MASK (over eyes) ═══
-  px(2,4,5,3,C.B);   px(13,4,5,3,C.B);
-  px(7,5,6,1,C.B);   // bridge of mask
-  // Mask sheen
-  px(2,4,1,3,C.Bh);  px(17,4,1,3,C.Bh);
-
-  // ═══ EYES (large, expressive) ═══
+  // EYES
   if(!blink){
-    // Left eye - large almond
-    px(3,5,4,2,C.E);    // iris
-    px(3,5,1,2,C.Ed);   // inner shadow
-    px(5,5,2,1,C.Ep);   // light iris
-    px(4,5,1,1,C.Ew);   // highlight
-    px(3,4,4,1,C.H);    // upper lash line
-    px(3,4,1,1,C.Hd);   px(6,4,1,1,C.Hd);
-    px(2,6,1,1,C.H);    px(7,6,1,1,C.H);  // corner lashes
-    // Right eye
-    px(13,5,4,2,C.E);
-    px(13,5,1,2,C.Ed);
-    px(15,5,2,1,C.Ep);
-    px(14,5,1,1,C.Ew);
-    px(13,4,4,1,C.H);
-    px(13,4,1,1,C.Hd);  px(16,4,1,1,C.Hd);
-    px(12,6,1,1,C.H);   px(17,6,1,1,C.H);
+    px(3,5,5,2,C.E); px(3,5,1,2,C.Ed); px(6,5,2,1,C.Ep); px(4,5,1,1,C.Ew);
+    px(3,4,5,1,C.H); px(2,5,1,1,C.H); px(7,6,1,1,C.H);
+    px(17,5,5,2,C.E); px(17,5,1,2,C.Ed); px(20,5,2,1,C.Ep); px(18,5,1,1,C.Ew);
+    px(17,4,5,1,C.H); px(16,5,1,1,C.H); px(21,6,1,1,C.H);
+    px(3,7,1,1,C.H); px(6,7,1,1,C.H);
+    px(17,7,1,1,C.H); px(20,7,1,1,C.H);
   } else {
-    px(3,6,4,1,C.H);    px(13,6,4,1,C.H);
-    px(3,6,1,1,C.B);    px(13,6,1,1,C.B);
+    px(3,6,5,1,C.H); px(17,6,5,1,C.H);
   }
 
-  // ═══ NOSE ═══
-  px(9,9,2,1,C.Sn);
-  px(8,10,1,1,C.Sd);   px(11,10,1,1,C.Sd);
+  // NOSE
+  px(11,9,3,1,C.Sn); px(10,10,1,1,C.Sd); px(14,10,1,1,C.Sd);
 
-  // ═══ LIPS (full, closed, NO teeth) ═══
-  // Upper lip
-  px(7,11,6,1,C.Lp);
-  px(9,10,2,1,C.Lm);   // cupid's bow
-  px(7,11,1,1,C.Ld);   px(12,11,1,1,C.Ld);  // corners
-  px(8,11,1,1,C.Lh);   // shine
-  // Lower lip
-  px(7,12,6,1,C.Lp);
-  px(8,12,3,1,C.Lm);
-  px(7,12,1,1,C.Ld);   px(12,12,1,1,C.Ld);
-  px(9,12,1,1,C.Lh);   // shine
+  // LIPS (closed, beautiful - NO TEETH)
+  px(8,11,9,1,C.Lp); px(8,11,1,1,C.Ld); px(16,11,1,1,C.Ld); px(9,11,1,1,C.Lh);
+  px(11,10,3,1,C.Lp); // cupid bow
+  px(8,12,9,1,C.Lp); px(9,12,4,1,C.Ld); px(10,12,1,1,C.Lh);
+  px(8,12,1,1,C.Ld); px(16,12,1,1,C.Ld);
 
-  // ═══ BLUSH ═══
-  px(2,9,3,1,C.Pk);    px(15,9,3,1,C.Pk);
-  px(2,10,2,1,C.Pk);   px(16,10,2,1,C.Pk);
+  // BLUSH
+  px(2,9,3,1,C.Pk); px(20,9,3,1,C.Pk);
+  px(2,10,2,1,C.Pk); px(21,10,2,1,C.Pk);
 
-  // ═══ CHIN ═══
-  px(5,13,10,1,C.S);
-  px(7,14,6,1,C.Sd);
+  // CHIN
+  px(6,13,13,1,C.S); px(8,14,9,1,C.Sd);
 
-  // ═══ NECK ═══
-  px(8,14,4,2,C.S);
-  px(8,15,1,2,C.Sn);   px(11,15,1,2,C.Sn);
+  // NECK
+  px(10,14,5,2,C.S); px(10,15,1,2,C.Sn); px(14,15,1,2,C.Sn);
 
-  // ═══ COLLAR DETAIL ═══
-  px(6,16,8,1,C.A);     // blue collar
-  px(9,15,2,2,C.Ah);    // collar gem
-  px(9,15,1,1,C.Ew);    // gem highlight
+  // COLLAR
+  px(7,16,11,1,C.A); px(11,15,3,2,C.Ah); px(12,15,1,1,C.Ew);
 
-  // ═══ SHOULDERS ═══
-  px(3,16,5,2,C.Bm);   px(12,16,5,2,C.Bm);
-  px(3,16,1,2,C.Bh);   px(16,16,1,2,C.Bh);
+  // SHOULDERS
+  px(3,16,6,2,C.Bm); px(16,16,6,2,C.Bm);
+  px(3,16,1,2,C.Bh); px(21,16,1,2,C.Bh);
 
-  // ═══ TORSO ═══
-  px(2,18,16,7,C.Bm);
-  px(2,18,1,7,C.Bh);   px(17,18,1,7,C.Bh);   // suit sheen
-  px(3,18,1,7,C.Bl);   px(16,18,1,7,C.Bl);
-  // Center zip/stripe
-  px(9,16,2,9,C.A);
-  px(9,16,1,9,C.Ah);
-  // Chest panels
-  px(4,19,5,3,C.Bs);   px(11,19,5,3,C.Bs);
-  px(4,19,1,3,C.Bl);   px(15,19,1,3,C.Bl);
+  // TORSO
+  px(3,18,19,9,C.Bm);
+  px(3,18,1,9,C.Bh); px(21,18,1,9,C.Bh);
+  px(4,18,1,9,C.Bl); px(20,18,1,9,C.Bl);
+  px(11,17,3,10,C.A); px(11,17,1,10,C.Ah); // center zip
+  px(5,19,6,4,C.B); px(14,19,6,4,C.B); // chest panels
+  px(5,19,1,4,C.Bl); px(19,19,1,4,C.Bl);
 
-  // ═══ BELT ═══
-  px(3,25,14,1,C.A);
-  px(3,25,1,1,C.Ad);   px(16,25,1,1,C.Ad);
-  px(8,24,4,2,C.Am);   // buckle
-  px(9,24,2,2,C.Ah);   // buckle highlight
-  px(9,24,1,1,C.Ew);   // buckle gem
+  // BELT
+  px(4,27,17,1,C.A); px(4,27,1,1,C.Ad); px(20,27,1,1,C.Ad);
+  px(10,26,5,2,C.Ad); px(11,26,3,2,C.Ah); px(12,26,1,1,C.Ew);
 
-  // ═══ HIPS ═══
-  px(3,26,14,1,C.B);
-  px(3,26,1,1,C.Dm);   px(16,26,1,1,C.Dm);
+  // HIPS
+  px(4,28,17,1,C.B); px(4,28,1,1,C.D); px(20,28,1,1,C.D);
 
-  drawArms(state, frame);
+  drawArms(state,frame);
 }
 
-function drawArms(state, frame) {
+function drawArms(state,frame){
   switch(state){
     case 'idle':
-      // Arms relaxed, slight curve
-      px(1,17,2,8,C.Bm);  px(17,17,2,8,C.Bm);
-      px(1,17,1,8,C.Bh);  px(18,17,1,8,C.Bh);
-      // Gloved hands
-      px(1,25,2,1,C.B);   px(17,25,2,1,C.B);
-      px(0,24,2,2,C.Bm);  px(17,24,2,2,C.Bm);
+      px(1,17,2,10,C.Bm); px(1,17,1,10,C.Bh); px(0,27,3,1,C.S);
+      px(22,17,2,10,C.Bm); px(23,17,1,10,C.Bh); px(22,27,3,1,C.S);
       break;
-
     case 'think':
-      // Right arm raised, hand near chin
-      px(1,17,2,8,C.Bm);  px(1,17,1,8,C.Bh);
-      px(1,25,2,1,C.B);   px(0,24,2,2,C.Bm);
-      // Right arm up at angle
-      px(17,17,2,4,C.Bm); px(18,17,1,4,C.Bh);
-      px(16,14,3,4,C.Bm); px(16,14,1,4,C.Bh);
-      px(15,13,3,2,C.Bm);
-      px(14,12,3,1,C.B);  // hand near face
-      px(14,13,2,1,C.S);  // finger
+      px(1,17,2,10,C.Bm); px(1,17,1,10,C.Bh); px(0,27,3,1,C.S);
+      px(21,17,3,4,C.Bm); px(20,14,4,4,C.Bm); px(20,14,1,4,C.Bh);
+      px(17,12,5,3,C.Bm); px(16,11,4,2,C.S);
       break;
-
-    case 'dance': {
-      const even = (frame%2===0);
-      if(even){
-        // Both arms raised in celebration
-        px(0,14,2,5,C.Bm);  px(0,14,1,5,C.Bh);
-        px(0,13,3,2,C.Bm);  px(0,12,2,2,C.B);
-        px(0,11,2,1,C.S);   // left hand up
-        px(17,14,2,5,C.Bm); px(18,14,1,5,C.Bh);
-        px(17,13,3,2,C.Bm); px(18,12,2,2,C.B);
-        px(18,11,2,1,C.S);  // right hand up
-        // sparkles
-        px(0,9,1,1,C.A);    px(19,9,1,1,C.Ah);
-        px(1,8,1,1,C.Ep);   px(18,8,1,1,C.Ep);
+    case 'dance':{
+      const e=frame%2===0;
+      if(e){
+        px(0,13,2,6,C.Bm); px(0,13,1,6,C.Bh); px(0,12,2,2,C.Bm); px(0,11,2,1,C.S);
+        px(22,13,2,6,C.Bm); px(23,13,1,6,C.Bh); px(22,12,2,2,C.Bm); px(22,11,2,1,C.S);
+        px(0,9,1,1,C.A); px(23,9,1,1,C.Ah); px(1,8,1,1,C.Ep); px(22,8,1,1,C.Ep);
       } else {
-        px(0,13,2,6,C.Bm);  px(0,13,1,6,C.Bh);
-        px(0,12,2,2,C.Bm);  px(0,11,2,1,C.S);
-        px(18,13,2,6,C.Bm); px(19,13,1,6,C.Bh);
-        px(18,12,2,2,C.Bm); px(18,11,2,1,C.S);
-        px(1,10,1,1,C.Am);  px(18,10,1,1,C.Am);
+        px(0,12,2,7,C.Bm); px(0,12,1,7,C.Bh); px(0,11,2,1,C.S);
+        px(22,12,2,7,C.Bm); px(23,12,1,7,C.Bh); px(22,11,2,1,C.S);
+        px(1,10,1,1,C.A); px(22,10,1,1,C.A);
       }
       break;
     }
-
     case 'type':
-      // Arms forward, typing position
-      px(1,18,2,6,C.Bm);   px(17,18,2,6,C.Bm);
-      px(1,18,1,6,C.Bh);   px(18,18,1,6,C.Bh);
-      px(0,23,3,2,C.Bm);   px(16,23,3,2,C.Bm);
-      px(0,25,3,1,C.B);    px(16,25,3,1,C.B);
-      // Typing hands
-      px(0,24,3,1,C.S);    px(16,24,3,1,C.S);
-      // keyboard glow
-      if(frame%2===1){
-        px(3,26,1,1,C.A);  px(7,26,1,1,C.Ep);
-        px(11,26,1,1,C.A); px(15,26,1,1,C.Ah);
-      }
+      px(1,19,2,7,C.Bm); px(1,19,1,7,C.Bh); px(0,25,3,2,C.Bm); px(0,26,3,1,C.S);
+      px(22,19,2,7,C.Bm); px(23,19,1,7,C.Bh); px(22,25,3,2,C.Bm); px(22,26,3,1,C.S);
+      if(frame%2===1){ px(4,29,1,1,C.A); px(9,29,1,1,C.Ep); px(14,29,1,1,C.A); px(19,29,1,1,C.Ah); }
       break;
   }
 }
 
-// ==============================
-//  ANIMATION STATE MACHINE
-// ==============================
-const STATES          = ['idle','idle','idle','dance','type','think','idle','idle'];
-const STATE_LABELS    = {idle:'Idle',dance:'Celebrating',type:'Working',think:'Thinking'};
-const STATE_DURATIONS = {idle:9000,dance:3200,type:4000,think:2500};
-const FRAME_RATES     = {idle:1000,dance:200,type:280,think:700};
-
-let currentState=  'idle', currentFrame=0, lastFrameTime=0;
-let stateStartTime= Date.now(), stateIndex=0;
-let blinking=false, nextBlink=Date.now()+3000+Math.random()*4000;
-
-const wrap=document.getElementById('mollieWrap'), stateLabel=document.getElementById('stateLabel');
+// ── ANIMATION ──
+const STATES=['idle','idle','idle','idle','type','think','idle','dance','idle'];
+const LABELS={idle:'Idle',type:'Working',think:'Thinking',dance:'Celebrating'};
+const DURS={idle:9000,type:4000,think:3000,dance:3500};
+const FPS={idle:800,type:250,think:600,dance:180};
+let cur='idle',frame=0,lastF=0,stateStart=Date.now(),idx=0,blinking=false,nextBlink=Date.now()+3000;
 
 function setState(s){
-  currentState=s; currentFrame=0; stateStartTime=Date.now();
-  wrap.className='mollie-pixel-wrap state-'+s;
-  stateLabel.textContent=STATE_LABELS[s]||s;
+  cur=s;frame=0;stateStart=Date.now();
+  document.getElementById('stateLabel').textContent=LABELS[s]||s;
 }
-function advanceState(){
-  stateIndex=(stateIndex+1)%STATES.length;
-  if(Math.random()<0.3) stateIndex=Math.floor(Math.random()*STATES.length);
-  setState(STATES[stateIndex]);
+function forceState(s,btn){
+  setState(s);
+  document.querySelectorAll('.sbtn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function autoAdvance(){
+  idx=(idx+1)%STATES.length;
+  if(Math.random()<.25) idx=Math.floor(Math.random()*STATES.length);
+  setState(STATES[idx]);
+  document.querySelectorAll('.sbtn').forEach(b=>b.classList.remove('active'));
 }
 function animate(ts){
   requestAnimationFrame(animate);
   const now=Date.now();
-  if(now>=nextBlink&&!blinking){
-    blinking=true;
-    setTimeout(()=>{ blinking=false; nextBlink=Date.now()+3000+Math.random()*5000; },120);
-  }
-  if(ts-lastFrameTime>=(FRAME_RATES[currentState]||600)){ currentFrame++; lastFrameTime=ts; }
-  if(now-stateStartTime>=STATE_DURATIONS[currentState]) advanceState();
-  drawMollie(currentState,currentFrame,blinking);
+  if(now>=nextBlink&&!blinking){blinking=true;setTimeout(()=>{blinking=false;nextBlink=now+3000+Math.random()*5000;},110);}
+  if(ts-lastF>=FPS[cur]){frame++;lastF=ts;}
+  if(now-stateStart>=DURS[cur]) autoAdvance();
+  draw(cur,frame,blinking);
 }
 setState('idle');
 requestAnimationFrame(animate);
 
-// ==============================
-//  DASHBOARD LOGIC
-// ==============================
+// ── USAGE (reads from embedded live data) ──
+const LIVE={spend:15.39,sessions:241,output:'93,725',model:'Sonnet 4.6',budget:500,synced:'Mar 30, 2026'};
+
+function loadUsage(){
+  document.getElementById('u-spend').textContent='$'+LIVE.spend.toFixed(2);
+  document.getElementById('u-sessions').textContent=LIVE.sessions;
+  document.getElementById('u-output').textContent=LIVE.output;
+  document.getElementById('u-model').textContent=LIVE.model;
+  const pct=Math.min(100,((LIVE.spend/LIVE.budget)*100).toFixed(1));
+  document.getElementById('u-bar').style.width=pct+'%';
+  document.getElementById('u-bar').style.background=pct>80?'var(--red)':pct>60?'var(--amber)':'var(--accent)';
+  document.getElementById('u-pct').textContent=pct+'%';
+  document.getElementById('u-synced').textContent='Last synced: '+LIVE.synced;
+}
+loadUsage();
+
+// ── TASKS ──
 const COLS=[
-  {id:'scheduled', label:'Scheduled',  color:'#8899AA'},
-  {id:'queue',     label:'Queue',      color:'#3D9EFF'},
-  {id:'inprogress',label:'In Progress',color:'#F59E0B'},
-  {id:'done',      label:'Done',       color:'#22C55E'},
+  {id:'queued',label:'Queued',color:'#8899AA'},
+  {id:'active',label:'Active',color:'#3D9EFF'},
+  {id:'review',label:'In Review',color:'#F59E0B'},
+  {id:'done',label:'Done',color:'#22C55E'},
 ];
+const NEXT={queued:'active',active:'review',review:'done'};
+const NEXT_LABEL={queued:'→ Active',active:'→ Review',review:'→ Done'};
 
-let tasks    = JSON.parse(localStorage.getItem('mollie_tasks')    ||'[]');
-let activity = JSON.parse(localStorage.getItem('mollie_activity') ||'[]');
-let isOnline = true;
+let tasks=JSON.parse(localStorage.getItem('mhq_tasks')||'[]');
 
-// Clock
-function updateClock(){
-  document.getElementById('clock').textContent=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',second:'2-digit'});
-}
-setInterval(updateClock,1000); updateClock();
-
-// Tabs
-function switchTab(id,el){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('panel-'+id).classList.add('active');
+// Seed with real tasks if empty
+if(!tasks.length){
+  tasks=[
+    {id:'1',name:'Liverpool Weekly Report',type:'report',due:'2026-03-31',col:'active'},
+    {id:'2',name:'Outersignal Rho — Day 8 Briefs',type:'brief',due:'2026-04-02',col:'queued'},
+    {id:'3',name:'Slack Integration Setup',type:'admin',due:'2026-04-01',col:'queued'},
+    {id:'4',name:'Mollie HQ — GitHub Deploy',type:'build',due:'2026-03-30',col:'done'},
+    {id:'5',name:'RVCA Kickoff Prep',type:'client',due:'2026-04-02',col:'queued'},
+  ];
+  saveTasks();
 }
 
-// Status
-function toggleStatus(){
-  isOnline=!isOnline;
-  document.getElementById('statusPill').classList.toggle('offline',!isOnline);
-  document.getElementById('statusLabel').textContent=isOnline?'Mollie Online':'Mollie Offline';
-  document.getElementById('statusMetaVal').textContent=isOnline?'Online':'Offline';
-  document.getElementById('statusMetaVal').style.color=isOnline?'var(--green)':'var(--red)';
-  document.getElementById('avatarDot').style.background=isOnline?'var(--green)':'var(--red)';
-}
+function saveTasks(){localStorage.setItem('mhq_tasks',JSON.stringify(tasks));}
 
-// Notes
-function saveNotes(){
-  localStorage.setItem('mollie_notes',document.getElementById('mollieNotes').value);
-  const b=document.querySelector('[onclick="saveNotes()"]');
-  b.textContent='Saved'; setTimeout(()=>b.textContent='Save Notes',1500);
-}
-document.getElementById('mollieNotes').value=localStorage.getItem('mollie_notes')||'';
-
-// Prompt copy
-function copyPrompt(){
-  navigator.clipboard.writeText('When you complete or start a task, format your status update as: {"task":"name","status":"scheduled|in_progress|done","type":"report|campaign|admin|client","due":"date","notes":"what you did"}. Send this JSON block at the end of any task update.').then(()=>{
-    document.getElementById('copyBtn').textContent='Copied!';
-    setTimeout(()=>document.getElementById('copyBtn').textContent='Copy',1800);
-  });
-}
-
-// Kanban
 function renderKanban(){
-  document.getElementById('kanbanBoard').innerHTML=COLS.map(col=>{
+  document.getElementById('kanban').innerHTML=COLS.map(col=>{
     const ct=tasks.filter(t=>t.col===col.id);
-    return`<div class="kanban-col">
-      <div class="kanban-col-header">
-        <div class="kanban-col-title" style="color:${col.color}">${col.label}</div>
-        <div class="kanban-count">${ct.length}</div>
+    return`<div class="k-col">
+      <div class="k-col-head">
+        <div class="k-col-title" style="color:${col.color}">${col.label}</div>
+        <div class="k-count">${ct.length}</div>
       </div>
       ${ct.map(t=>`
         <div class="task-card">
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:6px;">
-            <div class="task-title">${t.name}</div>
-            <button class="task-del" onclick="deleteTask('${t.id}')">×</button>
+          <div class="task-top">
+            <div class="task-name">${t.name}</div>
+            <button class="task-del" onclick="delTask('${t.id}')">×</button>
           </div>
           <div class="task-meta">
             <span class="task-type">${t.type}</span>
             <span class="task-due">${t.due||''}</span>
           </div>
-          <div class="task-move-row">
-            ${COLS.filter(c=>c.id!==col.id).map(c=>`<button class="task-move-btn" onclick="moveTask('${t.id}','${c.id}')">${c.label}</button>`).join('')}
-          </div>
+          ${NEXT[col.id]?`<button class="task-advance" onclick="advanceTask('${t.id}')">${NEXT_LABEL[col.id]}</button>`:''}
         </div>`).join('')}
     </div>`;
   }).join('');
 }
 
-function openTaskModal(){ document.getElementById('taskModal').classList.add('open'); }
-function closeTaskModal(){ document.getElementById('taskModal').classList.remove('open'); }
-
-function saveTask(){
-  const name=document.getElementById('taskName').value.trim();
-  if(!name)return;
-  tasks.push({id:Date.now().toString(),name,type:document.getElementById('taskType').value,due:document.getElementById('taskDue').value,col:document.getElementById('taskCol').value});
-  localStorage.setItem('mollie_tasks',JSON.stringify(tasks));
-  document.getElementById('taskName').value=''; document.getElementById('taskDue').value='';
-  closeTaskModal(); renderKanban();
-}
-
-function deleteTask(id){
-  tasks=tasks.filter(t=>t.id!==id);
-  localStorage.setItem('mollie_tasks',JSON.stringify(tasks)); renderKanban();
-}
-
-function moveTask(id,col){
+function advanceTask(id){
   const t=tasks.find(t=>t.id===id);
-  if(t){t.col=col;localStorage.setItem('mollie_tasks',JSON.stringify(tasks));renderKanban();}
+  if(t&&NEXT[t.col]){t.col=NEXT[t.col];saveTasks();renderKanban();}
+}
+function delTask(id){
+  tasks=tasks.filter(t=>t.id!==id);saveTasks();renderKanban();
 }
 
-// Activity
-function renderActivity(){
-  const el=document.getElementById('activityList');
-  if(!activity.length){el.innerHTML='<div style="color:var(--text-muted);font-size:12px;text-align:center;padding:20px 0;">No activity yet</div>';return;}
-  el.innerHTML=[...activity].reverse().slice(0,20).map(a=>`
-    <div class="activity-item ${a.type}">
-      <div class="activity-dot"></div>
-      <span class="activity-text">${a.text}</span>
-      <span class="activity-time">${a.time}</span>
-    </div>`).join('');
+function openModal(){document.getElementById('modal').classList.add('open');}
+function closeModal(){document.getElementById('modal').classList.remove('open');}
+function saveTask(){
+  const name=document.getElementById('t-name').value.trim();
+  if(!name)return;
+  tasks.push({id:Date.now()+'',name,type:document.getElementById('t-type').value,due:document.getElementById('t-due').value,col:document.getElementById('t-col').value});
+  saveTasks();
+  document.getElementById('t-name').value='';
+  document.getElementById('t-due').value='';
+  closeModal();renderKanban();
 }
-
-function saveActivityEntry(){
-  const text=document.getElementById('activityText').value.trim();
-  if(!text)return;
-  activity.push({id:Date.now().toString(),text,type:document.getElementById('activityType').value,time:new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})});
-  localStorage.setItem('mollie_activity',JSON.stringify(activity));
-  document.getElementById('activityText').value='';
-  document.getElementById('activityModal').classList.remove('open');
-  renderActivity();
-}
-
-// Usage
-function saveUsage(){
-  const d={totalSpend:document.getElementById('totalSpend').value,totalTokens:document.getElementById('totalTokens').value,monthlyBudget:document.getElementById('monthlyBudget').value,opusPct:document.getElementById('opusPct').value,opusCost:document.getElementById('opusCost').value,sonnetPct:document.getElementById('sonnetPct').value,sonnetCost:document.getElementById('sonnetCost').value,haikuPct:document.getElementById('haikuPct').value,haikuCost:document.getElementById('haikuCost').value};
-  localStorage.setItem('mollie_usage',JSON.stringify(d)); updateUsageBar();
-}
-
-function loadUsage(){
-  const d=JSON.parse(localStorage.getItem('mollie_usage')||'{}');
-  ['totalSpend','totalTokens','monthlyBudget','opusPct','opusCost','sonnetPct','sonnetCost','haikuPct','haikuCost'].forEach(k=>{if(d[k])document.getElementById(k).value=d[k];});
-  updateUsageBar();
-}
-
-function updateUsageBar(){
-  const spend=parseFloat((document.getElementById('totalSpend').value||'0').replace(/[^0-9.]/g,''))||0;
-  const budget=parseFloat((document.getElementById('monthlyBudget').value||'50').replace(/[^0-9.]/g,''))||50;
-  const pct=Math.min(100,Math.round((spend/budget)*100));
-  document.getElementById('usageBarFill').style.width=pct+'%';
-  document.getElementById('barPct').textContent=pct+'%';
-  document.getElementById('usageBarFill').style.background=pct>80?'var(--red)':pct>60?'var(--amber)':'var(--accent)';
-}
-
-renderKanban(); renderActivity(); loadUsage(); setTimeout(loadLiveUsage, 300);
-
-document.getElementById('taskModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeTaskModal();});
-document.getElementById('activityModal').addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.classList.remove('open');});
-
-// ==============================
-//  LIVE USAGE DATA (auto-generated)
-// ==============================
-const LIVE_USAGE = {
-  "totalCost": "$15.39",
-  "totalCostRaw": 15.3865,
-  "totalSessions": 241,
-  "totalInputTokens": "23,164,877",
-  "totalOutputTokens": "93,725",
-  "budget": 500,
-  "budgetPct": 3.1,
-  "modelBreakdown": {
-    "Sonnet 4.6": 100
-  },
-  "sessionLog": [
-    {
-      "date": "2026-03-31",
-      "model": "Sonnet 4.6",
-      "cost": "$0.3308",
-      "desc": "Yes \u2014 if you email it to mollie@digitsup.com, I can:\n\n1. **D"
-    },
-    {
-      "date": "2026-03-31",
-      "model": "Sonnet 4.6",
-      "cost": "$0.0337",
-      "desc": "Agent session"
-    },
-    {
-      "date": "2026-03-31",
-      "model": "Sonnet 4.6",
-      "cost": "$0.0334",
-      "desc": "Agent session"
-    },
-    {
-      "date": "2026-03-31",
-      "model": "Sonnet 4.6",
-      "cost": "$0.0370",
-      "desc": "Agent session"
-    },
-    {
-      "date": "2026-03-31",
-      "model": "Sonnet 4.6",
-      "cost": "$0.0370",
-      "desc": "Got the \"Templates\" email \u2014 let me grab the attachments:"
-    },
-    {
-      "date": "2026-03-31",
-      "model": "Sonnet 4.6",
-      "cost": "$0.0381",
-      "desc": "Got them both \u2014 **Copy_Doc_Template.docx** and **Flow_Brief_"
-    },
-    {
-      "date": "2026-03-31",
-      "model": "Sonnet 4.6",
-      "cost": "$0.0379",
-      "desc": "Agent session"
-    },
-    {
-      "date": "2026-03-31",
-      "model": "Sonnet 4.6",
-      "cost": "$0.0343",
-      "desc": "Agent session"
-    },
-    {
-      "date": "2026-03-31",
-      "model": "Sonnet 4.6",
-      "cost": "$0.0325",
-      "desc": "Got them both and they're clean. Here's what you've got:\n\n**"
-    },
-    {
-      "date": "2026-03-31",
-      "model": "Sonnet 4.6",
-      "cost": "$0.3574",
-      "desc": "Agent session"
-    },
-    {
-      "date": "2026-03-31",
-      "model": "Sonnet 4.6",
-      "cost": "$0.0405",
-      "desc": "Agent session"
-    },
-    {
-      "date": "2026-03-31",
-      "model": "Sonnet 4.6",
-      "cost": "$0.0447",
-      "desc": "Agent session"
-    },
-    {
-      "date": "2026-03-31",
-      "model": "Sonnet 4.6",
-      "cost": "$0.0418",
-      "desc": "Agent session"
-    },
-    {
-      "date": "2026-03-31",
-      "model": "Sonnet 4.6",
-      "cost": "$0.0413",
-      "desc": "Agent session"
-    },
-    {
-      "date": "2026-03-31",
-      "model": "Sonnet 4.6",
-      "cost": "$0.0703",
-      "desc": "Now I'll save the project instructions file and set up the f"
-    },
-    {
-      "date": "2026-03-31",
-      "model": "Sonnet 4.6",
-      "cost": "$0.0438",
-      "desc": "Got it. Here's my understanding confirmed back to you:\n\n**Ou"
-    },
-    {
-      "date": "2026-03-31",
-      "model": "Sonnet 4.6",
-      "cost": "$0.0437",
-      "desc": "Agent session"
-    },
-    {
-      "date": "2026-03-31",
-      "model": "Sonnet 4.6",
-      "cost": "$0.0376",
-      "desc": "Agent session"
-    },
-    {
-      "date": "2026-03-31",
-      "model": "Sonnet 4.6",
-      "cost": "$0.0407",
-      "desc": "Agent session"
-    },
-    {
-      "date": "2026-03-31",
-      "model": "Sonnet 4.6",
-      "cost": "$0.0386",
-      "desc": "Agent session"
-    }
-  ],
-  "lastUpdated": "Mar 30 2026, 07:14 PM"
-};
-
-function loadLiveUsage() {
-  document.getElementById('totalSpend').value = LIVE_USAGE.totalCost;
-  document.getElementById('totalTokens').value = LIVE_USAGE.totalInputTokens + ' in / ' + LIVE_USAGE.totalOutputTokens + ' out';
-  document.getElementById('monthlyBudget').value = '$' + LIVE_USAGE.budget + '.00';
-  document.getElementById('opusPct').value = '0%';
-  document.getElementById('opusCost').value = '$0.00';
-  document.getElementById('sonnetPct').value = '100%';
-  document.getElementById('sonnetCost').value = LIVE_USAGE.totalCost;
-  document.getElementById('haikuPct').value = '0%';
-  document.getElementById('haikuCost').value = '$0.00';
-  updateUsageBar();
-  
-  // Add last updated note
-  const liveNote = document.createElement('div');
-  liveNote.style.cssText = 'font-family:DM Mono,monospace;font-size:10px;color:#566B85;margin-top:8px;text-align:right;';
-  liveNote.textContent = '⟳ Live data · Last synced: ' + LIVE_USAGE.lastUpdated;
-  const budgetCard = document.querySelector('#panel-usage .card:first-child');
-  if(budgetCard) budgetCard.appendChild(liveNote);
-}
-
-// Auto-load on page ready
-document.addEventListener('DOMContentLoaded', loadLiveUsage);
-setTimeout(loadLiveUsage, 500);
-
+document.getElementById('modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
+renderKanban();
 </script>
 </body>
 </html>
