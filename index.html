@@ -411,9 +411,9 @@ main{padding:18px 24px;max-width:1440px;}
     <div class="pw-sub">AI Mission Control</div>
     <div class="pw-div"></div>
     <div class="pw-label">Enter Password</div>
-    <input type="password" id="pw-input" placeholder="••••••••" onkeydown="if(event.key==='Enter')pwUnlock()">
+    <input type="password" id="pw-input" placeholder="••••••••">
     <div id="pw-err"></div>
-    <button id="pw-btn" onclick="pwUnlock()">Unlock</button>
+    <button id="pw-btn">Unlock</button>
     <div class="pw-credit">Prepared by DigitsUp</div>
   </div>
 </div>
@@ -685,23 +685,18 @@ main{padding:18px 24px;max-width:1440px;}
 
 // ── PASSWORD GATE ──
 function pwUnlock(){
-  const v=document.getElementById('pw-input').value;
+  var v=document.getElementById('pw-input').value;
   if(v==='Digi420'){
     document.getElementById('pw-gate').style.display='none';
     sessionStorage.setItem('mhq_auth','1');
-    requestAnimationFrame(anim);
+    setTimeout(function(){ requestAnimationFrame(anim); }, 100);
   } else {
     document.getElementById('pw-err').textContent='Incorrect password';
-    document.getElementById('pw-input').style.borderColor='var(--red)';
-    setTimeout(()=>{document.getElementById('pw-err').textContent='';document.getElementById('pw-input').style.borderColor='';},2000);
+    setTimeout(function(){document.getElementById('pw-err').textContent='';},2000);
   }
 }
-if(sessionStorage.getItem('mhq_auth')==='1'){
-  document.addEventListener('DOMContentLoaded',()=>{
-    const g=document.getElementById('pw-gate');
-    if(g) g.style.display='none';
-  });
-}
+document.getElementById('pw-btn').addEventListener('click', pwUnlock);
+document.getElementById('pw-input').addEventListener('keydown', function(e){ if(e.key==='Enter') pwUnlock(); });
 
 // ── UTILS ──
 // Version bump — clears stale localStorage
@@ -1169,9 +1164,7 @@ updatePulse();updateTrust();
   }
   setState('idle');
   // anim started by unlock or on DOMContentLoaded if already authed
-  if(sessionStorage.getItem('mhq_auth')==='1'){
-    requestAnimationFrame(anim);
-  }
+  // anim starts after unlock
 
   // Wire smoke/hype/tip buttons to animation states
   const origSmoke = window.smokeScreen;
