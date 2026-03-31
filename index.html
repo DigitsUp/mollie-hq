@@ -503,79 +503,108 @@ function px(x,y,w,h,col){ if(!col)return; ctx.fillStyle=col; ctx.fillRect(x*SCAL
 function drawMollie(state, frame, blink) {
   ctx.clearRect(0,0,canvas.width,canvas.height);
 
-  // CAT EARS
-  px(2,0,1,1,C.H);
-  px(1,1,1,1,C.H); px(2,1,1,1,C.P);  px(3,1,1,1,C.H);
-  px(1,2,1,1,C.H); px(2,2,2,1,C.P);  px(4,2,1,1,C.H);
-  px(13,0,1,1,C.H);
-  px(11,1,1,1,C.H); px(12,1,1,1,C.H); px(13,1,1,1,C.P); px(14,1,1,1,C.H);
-  px(11,2,1,1,C.H); px(12,2,2,1,C.P); px(14,2,1,1,C.H);
+  // ── CAT EARS (pointed, elegant) ──
+  px(3,0,1,1,C.H); px(12,0,1,1,C.H);
+  px(2,1,2,1,C.H); px(11,1,2,1,C.H);
+  px(3,1,1,1,C.P); px(12,1,1,1,C.P);  // pink inner
+  px(2,2,3,1,C.H); px(10,2,3,1,C.H);
+  px(3,2,1,1,C.P); px(11,2,1,1,C.P);
 
-  // HEAD + HAIR
+  // ── HAIR (sleek black, flowing) ──
   px(1,3,14,1,C.H);
-  px(2,3,12,1,C.Hp); // purple highlight band
-  px(1,4,1,4,C.Hh); px(0,5,1,2,C.Hh);   // left wisp
-  px(14,4,1,4,C.Hh); px(15,5,1,2,C.Hh); // right wisp
+  px(0,4,2,5,C.H); px(14,4,2,5,C.H);  // side sweep
+  px(1,9,2,2,C.H); px(13,9,2,2,C.H);  // flowing ends
 
-  // FACE
-  px(2,4,12,1,C.S); px(2,5,12,1,C.S); px(2,6,12,1,C.S);
+  // ── FACE (smooth, no gaps) ──
+  px(2,3,12,1,C.S);
+  px(1,4,14,1,C.S);
+  px(1,5,14,1,C.S);
+  px(1,6,14,1,C.S);
+  px(1,7,14,1,C.S);
+  px(1,8,14,1,C.S);
+  px(2,9,12,1,C.S);
+  px(3,10,10,1,C.S);
+  px(3,11,10,1,C.S);
+  px(4,12,8,1,C.S);
 
-  // Cat mask band
-  px(1,7,1,1,C.H); px(2,7,12,1,C.H); px(14,7,1,1,C.H);
+  // ── MASK (sleek cat-eye mask) ──
+  px(1,5,3,1,C.H); px(12,5,3,1,C.H); // outer mask
+  px(1,6,2,1,C.H); px(13,6,2,1,C.H);
 
-  // Eyes
+  // ── EYES (large, glowing blue) ──
   if(!blink){
-    px(3,7,2,2,C.E); px(11,7,2,2,C.E);
-    px(4,7,1,1,C.Ew); px(12,7,1,1,C.Ew);
-    px(2,6,1,1,C.H); px(13,6,1,1,C.H); // lash flick
+    // Left eye
+    px(2,5,3,2,C.E);
+    px(2,5,1,1,C.H); px(4,5,1,1,C.H); // corners
+    px(2,6,1,1,C.H); px(4,6,1,1,C.H);
+    px(3,5,1,1,C.Ew); // highlight
+    // Right eye
+    px(11,5,3,2,C.E);
+    px(11,5,1,1,C.H); px(13,5,1,1,C.H);
+    px(11,6,1,1,C.H); px(13,6,1,1,C.H);
+    px(12,5,1,1,C.Ew); // highlight
+    // Lashes
+    px(1,4,2,1,C.H); px(13,4,2,1,C.H);
+    px(1,5,1,1,C.H); px(14,5,1,1,C.H);
   } else {
-    px(3,8,2,1,C.H); px(11,8,2,1,C.H);
+    px(2,6,3,1,C.H); px(11,6,3,1,C.H); // closed eyes
+    px(2,6,1,1,C.S); px(11,6,1,1,C.S);
   }
 
-  px(2,9,12,1,C.S);
-  // Whisker dots
-  px(1,9,1,1,C.Pk); px(2,9,1,1,C.Pk); px(13,9,1,1,C.Pk); px(14,9,1,1,C.Pk);
-  // Nose
-  px(7,9,2,1,C.P);
+  // ── NOSE (small, delicate) ──
+  px(7,8,2,1,C.Pk);
 
-  px(2,10,12,1,C.S);
-  // Red lips
-  px(5,10,6,1,C.Rm); px(7,10,1,1,C.W);
-  px(5,11,1,1,C.Rl); px(6,11,4,1,C.Rm); px(10,11,1,1,C.Rl);
-  // Blush
-  px(2,11,3,1,C.S); px(11,11,3,1,C.S);
-  px(2,11,2,1,C.Pk); px(12,11,2,1,C.Pk);
+  // ── LIPS (full, closed smile - NO TEETH) ──
+  px(5,10,6,1,C.Rm);   // upper lip
+  px(5,11,6,1,C.Rm);   // lower lip - filled, no gap, no teeth
+  px(5,10,1,1,C.Rl); px(10,10,1,1,C.Rl); // corners
+  px(5,11,1,1,C.Rl); px(10,11,1,1,C.Rl);
+  // cupid's bow
+  px(7,9,1,1,C.Rm); px(8,9,1,1,C.Rm);
+  // lip shine
+  px(6,10,1,1,C.Pk);
 
-  // Chin
-  px(2,12,12,1,C.S); px(1,12,1,1,C.H); px(14,12,1,1,C.H);
-  px(2,13,12,1,C.H); // jaw line
+  // ── BLUSH ──
+  px(2,9,2,1,C.Pk); px(12,9,2,1,C.Pk);
 
-  // NECK + COLLAR
-  px(5,13,1,2,C.H); px(10,13,1,2,C.H); px(6,13,4,2,C.S);
-  px(5,14,6,1,C.Co);
+  // ── CHIN ──
+  px(4,12,8,1,C.S); px(5,13,6,1,C.Sd);
 
-  // TORSO
-  px(1,13,4,2,C.Bm); px(1,13,1,2,C.H);
-  px(11,13,4,2,C.Bm); px(14,13,1,2,C.H);
-  px(1,15,1,6,C.H); px(13,15,1,6,C.H);
-  px(2,15,11,6,C.Bm);
-  px(2,15,1,6,C.Bl); px(11,15,1,6,C.Bl); // highlights
-  px(7,13,2,8,C.A); // accent stripe
+  // ── NECK ──
+  px(6,13,4,2,C.S);
+  px(6,14,1,2,C.Sh); px(9,14,1,2,C.Sh);
 
-  // BELT
-  px(3,21,10,1,C.A); px(7,21,2,1,C.W);
-  px(3,21,1,1,C.H); px(12,21,1,1,C.H);
+  // ── COLLAR (blue accent) ──
+  px(4,15,8,1,C.A);
+  px(7,14,2,2,C.A); // pendant
 
-  // HIPS
-  px(3,22,10,1,C.B); px(3,22,1,1,C.H); px(12,22,1,1,C.H);
+  // ── TORSO (sleek catsuit) ──
+  px(1,15,2,8,C.H);  px(13,15,2,8,C.H); // sides
+  px(3,15,10,8,C.B); // body
+  px(3,15,1,8,C.Bm); px(12,15,1,8,C.Bm); // highlights
+  // Blue accent stripe center
+  px(7,15,2,7,C.A);
+  // Suit sheen
+  px(4,16,1,6,C.Bl); px(11,16,1,6,C.Bl);
 
-  // LEGS
-  px(3,23,1,3,C.H); px(6,23,1,3,C.H); px(4,23,2,3,C.Bm);
-  px(9,23,1,3,C.H); px(12,23,1,3,C.H); px(10,23,2,3,C.Bm);
+  // ── BELT ──
+  px(3,22,10,1,C.A);
+  px(7,22,2,1,C.Ew); // buckle
 
-  // BOOTS
-  px(3,25,4,1,C.G); px(2,26,5,1,C.G); px(2,26,1,1,C.H); px(7,26,1,1,C.H);
-  px(9,25,4,1,C.G); px(9,26,5,1,C.G); px(9,26,1,1,C.H); px(14,26,1,1,C.H);
+  // ── HIPS ──
+  px(2,23,12,1,C.B); px(2,23,1,1,C.H); px(13,23,1,1,C.H);
+
+  // ── LEGS ──
+  px(3,24,3,3,C.Bm); px(10,24,3,3,C.Bm);
+  px(3,24,1,3,C.H); px(12,24,1,3,C.H);
+
+  // ── BOOTS (sleek, pointed) ──
+  px(2,27,4,1,C.G); px(10,27,4,1,C.G);
+  px(1,28,5,1,C.G); px(9,28,5,1,C.G);
+  px(1,28,1,1,C.H); px(5,28,1,1,C.H);
+  px(9,28,1,1,C.H); px(13,28,1,1,C.H);
+  // Boot shine
+  px(2,27,1,2,C.Gm); px(10,27,1,2,C.Gm);
 
   drawArms(state, frame);
 }
