@@ -284,6 +284,8 @@ setInterval(()=>{
 const canvas=document.getElementById('mollieCanvas');
 const ctx=canvas.getContext('2d');
 const SC=6;
+canvas.width=96;
+canvas.height=156;
 function px(x,y,w,h,c){if(!c)return;ctx.fillStyle=c;ctx.fillRect(x*SC,y*SC,w*SC,h*SC);}
 
 const C={
@@ -469,11 +471,25 @@ function renderKanban(){
 function advanceTask(id){
   const t=tasks.find(t=>t.id===id);
   if(t&&NEXT[t.col]){t.col=NEXT[t.col];saveTasks();renderKanban();
-loadUsage();}
+
+// Ensure usage loads after DOM is fully ready
+window.addEventListener('load', function() {
+  loadUsage();
+  // Force canvas redraw
+  setState('idle');
+  requestAnimationFrame(animate);
+});}
 }
 function delTask(id){
   tasks=tasks.filter(t=>t.id!==id);saveTasks();renderKanban();
-loadUsage();
+
+// Ensure usage loads after DOM is fully ready
+window.addEventListener('load', function() {
+  loadUsage();
+  // Force canvas redraw
+  setState('idle');
+  requestAnimationFrame(animate);
+});
 }
 
 function openModal(){document.getElementById('modal').classList.add('open');}
@@ -486,11 +502,25 @@ function saveTask(){
   document.getElementById('t-name').value='';
   document.getElementById('t-due').value='';
   closeModal();renderKanban();
-loadUsage();
+
+// Ensure usage loads after DOM is fully ready
+window.addEventListener('load', function() {
+  loadUsage();
+  // Force canvas redraw
+  setState('idle');
+  requestAnimationFrame(animate);
+});
 }
 document.getElementById('modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
 renderKanban();
-loadUsage();
+
+// Ensure usage loads after DOM is fully ready
+window.addEventListener('load', function() {
+  loadUsage();
+  // Force canvas redraw
+  setState('idle');
+  requestAnimationFrame(animate);
+});
 </script>
 </body>
 </html>
