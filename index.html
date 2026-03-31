@@ -287,14 +287,22 @@ const SC=4;
 function px(x,y,w,h,c){if(!c)return;ctx.fillStyle=c;ctx.fillRect(x*SC,y*SC,w*SC,h*SC);}
 
 const C={
+  // Skin
   S:'#F2C49A',Sd:'#D4956A',Sh:'#FAE0C0',Sn:'#E5A878',
-  H:'#080808',Hd:'#1A1A2E',Hh:'#303050',
-  E:'#3D9EFF',Ew:'#C8E8FF',Ed:'#1060C0',Ep:'#80C8FF',
-  Lp:'#C83355',Ld:'#8B1A35',Lh:'#E8607A',
-  B:'#060C14',Bm:'#0C1824',Bl:'#182840',Bh:'#243858',
-  A:'#3D9EFF',Ad:'#1A60D0',Ah:'#80C0FF',
-  Pk:'#FFB0C8',Pd:'#DD7090',
-  G:'#040810',Gm:'#08121C',Gh:'#102030',
+  // Hair
+  H:'#111111',Hd:'#1A1A28',Hh:'#282838',
+  // Eyes - DigitsUp blue #2f91c3
+  E:'#2f91c3',Ew:'#B8DFF0',Ed:'#1A6090',Ep:'#5BBAE0',
+  // Lips - soft pink, not red
+  Lp:'#D4607A',Ld:'#A03050',Lh:'#F090A8',
+  // Suit
+  B:'#0A0F18',Bm:'#111C2A',Bl:'#1C2E42',Bh:'#28405A',
+  // Accent - DigitsUp blue
+  A:'#2f91c3',Ad:'#1A6090',Ah:'#6BBCE0',
+  // Blush - very subtle
+  Pk:'#F0C8D0',Pd:'#D89AAA',
+  // Boots/belt
+  G:'#060A10',Gm:'#0A1218',Gh:'#101E2C',
   D:'#000000',W:'#FFFFFF',
 };
 
@@ -326,24 +334,37 @@ function draw(state,frame,blink){
 
   // EYES
   if(!blink){
-    px(3,5,5,2,C.E); px(3,5,1,2,C.Ed); px(6,5,2,1,C.Ep); px(4,5,1,1,C.Ew);
-    px(3,4,5,1,C.H); px(2,5,1,1,C.H); px(7,6,1,1,C.H);
-    px(17,5,5,2,C.E); px(17,5,1,2,C.Ed); px(20,5,2,1,C.Ep); px(18,5,1,1,C.Ew);
-    px(17,4,5,1,C.H); px(16,5,1,1,C.H); px(21,6,1,1,C.H);
-    px(3,7,1,1,C.H); px(6,7,1,1,C.H);
-    px(17,7,1,1,C.H); px(20,7,1,1,C.H);
+    // Left eye - clean blue almond
+    px(3,5,5,2,C.E);       // base iris
+    px(3,5,1,1,C.Ed);      // dark inner corner
+    px(7,5,1,1,C.Ed);      // dark outer corner
+    px(5,5,1,1,C.Ew);      // main highlight
+    px(4,5,1,1,C.Ep);      // mid iris
+    px(3,4,5,1,C.H);       // upper lash
+    px(2,5,1,1,C.H);       px(8,5,1,1,C.H);  // corner shadows
+    // Right eye - clean blue almond
+    px(17,5,5,2,C.E);
+    px(17,5,1,1,C.Ed);
+    px(21,5,1,1,C.Ed);
+    px(19,5,1,1,C.Ew);
+    px(18,5,1,1,C.Ep);
+    px(17,4,5,1,C.H);
+    px(16,5,1,1,C.H);     px(22,5,1,1,C.H);
   } else {
     px(3,6,5,1,C.H); px(17,6,5,1,C.H);
+    px(4,6,3,1,C.Ed); px(18,6,3,1,C.Ed);
   }
 
   // NOSE
   px(11,9,3,1,C.Sn); px(10,10,1,1,C.Sd); px(14,10,1,1,C.Sd);
 
-  // LIPS (closed, beautiful - NO TEETH)
-  px(8,11,9,1,C.Lp); px(8,11,1,1,C.Ld); px(16,11,1,1,C.Ld); px(9,11,1,1,C.Lh);
-  px(11,10,3,1,C.Lp); // cupid bow
-  px(8,12,9,1,C.Lp); px(9,12,4,1,C.Ld); px(10,12,1,1,C.Lh);
-  px(8,12,1,1,C.Ld); px(16,12,1,1,C.Ld);
+  // LIPS - soft, closed smile
+  px(9,11,7,1,C.Lp);        // upper lip
+  px(9,11,1,1,C.Ld);  px(15,11,1,1,C.Ld);  // corners
+  px(10,11,2,1,C.Lh);       // shine
+  px(10,12,5,1,C.Lp);       // lower lip
+  px(10,12,2,1,C.Ld);       // shadow
+  px(11,12,1,1,C.Lh);       // lower shine
 
   // BLUSH
   px(2,9,3,1,C.Pk); px(20,9,3,1,C.Pk);
