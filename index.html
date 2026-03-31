@@ -124,7 +124,7 @@
 
   .mollie-card { display: flex; flex-direction: column; align-items: center; text-align: center; }
   .mollie-pixel-wrap { display: flex; flex-direction: column; align-items: center; padding: 10px 0 4px; }
-  .mollie-stage { position: relative; width: 90px; height: 140px; display: flex; align-items: flex-end; justify-content: center; overflow: visible; }
+  .mollie-stage { position: relative; width: 80px; height: 160px; display: flex; align-items: flex-end; justify-content: center; overflow: visible; }
   #mollieCanvas { image-rendering: pixelated; image-rendering: crisp-edges; display: block; filter: drop-shadow(0 0 12px rgba(61,158,255,0.25)); }
 
   @keyframes mollie-idle-bob { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-3px); } }
@@ -319,7 +319,7 @@
           <div class="card-label">Agent Identity</div>
           <div class="mollie-pixel-wrap state-idle" id="mollieWrap">
             <div class="mollie-stage">
-              <canvas id="mollieCanvas" width="80" height="130"></canvas>
+              <canvas id="mollieCanvas" width="80" height="160"></canvas>
             </div>
             <div class="mollie-glow-floor"></div>
             <div class="mollie-state-label" id="stateLabel">Idle</div>
@@ -487,31 +487,31 @@
 // ==============================
 const canvas = document.getElementById('mollieCanvas');
 const ctx    = canvas.getContext('2d');
-const SCALE  = 5;
+const SCALE  = 4;
 
 const C = {
-  // Skin
-  S:  '#F5C4A0', Sd: '#D9A07A', Sh: '#FFDDBB', Sn: '#E8A878',
-  // Hair - sleek black
-  H:  '#0D0D0D', Hd: '#1A1A2E', Hh: '#252540',
-  // Eyes - glowing blue
-  E:  '#3D9EFF', Ew: '#AADDFF', Ed: '#1A6ED4',
-  // Lips
-  Lp: '#CC4466', Ld: '#993355', Lh: '#EE7799',
-  // Suit - dark navy
-  B:  '#08111E', Bm: '#0F1E35', Bl: '#1A3050', Bh: '#254570',
-  // Accent blue
-  A:  '#3D9EFF', Ad: '#1A6ED4', Ah: '#7BBFFF',
-  // Ears/blush
-  Pk: '#FFB3C6', Pd: '#E8809A',
-  // Whites
-  W:  '#FFFFFF', Wm: '#E8F0F8',
-  // Dark/shadow
-  D:  '#000000', Dm: '#060A10',
+  // Skin tones
+  S:  '#F2C49A', Sd: '#D4956A', Sh: '#FAE0C0', Sn: '#E5A878', Sb: '#C07850',
+  // Hair - sleek jet black
+  H:  '#080808', Hd: '#111118', Hh: '#222230', Hm: '#0A0A14',
+  // Eyes - large glowing blue
+  E:  '#3D9EFF', Ew: '#C8E8FF', Ed: '#1060C0', Ep: '#7FCCFF',
+  // Lips - deep red/pink
+  Lp: '#C83355', Ld: '#8B1A35', Lh: '#E8607A', Lm: '#AA2244',
+  // Catsuit - deep black/navy
+  B:  '#060C14', Bm: '#0C1824', Bl: '#162840', Bh: '#20385A', Bs: '#0A1620',
+  // Blue accent
+  A:  '#3D9EFF', Ad: '#1A60D0', Ah: '#80C0FF', Am: '#2878E8',
+  // Ears/blush/details
+  Pk: '#FFB0C8', Pd: '#E88090', Pv: '#FF80A0',
   // Belt/boots
-  G:  '#050D18', Gm: '#0A1828', Gh: '#152840',
-  // Collar
-  Co: '#C8D8E8', Cm: '#A0B8CC',
+  G:  '#040810', Gm: '#08121C', Gh: '#102030',
+  // Collar/jewelry
+  Co: '#B8CCE0', Cm: '#90AABF', Cg: '#FFD060',
+  // Shadow/dark
+  D:  '#000000', Dm: '#02040A',
+  // White
+  W:  '#FFFFFF', Wm: '#E8F4FF',
 };
 
 function px(x,y,w,h,col){ if(!col)return; ctx.fillStyle=col; ctx.fillRect(x*SCALE,y*SCALE,w*SCALE,h*SCALE); }
@@ -523,111 +523,128 @@ function px(x,y,w,h,col){ if(!col)return; ctx.fillStyle=col; ctx.fillRect(x*SCAL
 function drawMollie(state, frame, blink) {
   ctx.clearRect(0,0,canvas.width,canvas.height);
 
-  // ── CAT EARS ──
-  px(3,0,1,2,C.H);  px(4,0,1,1,C.H);   // left ear outer
-  px(4,1,1,1,C.Pk); px(3,1,1,1,C.H);   // left ear inner
-  px(11,0,2,2,C.H);                      // right ear outer
-  px(11,1,1,1,C.Pk);                     // right ear inner
+  const bob = (state==='idle') ? Math.sin(frame*0.4)*0.3 : 0;
 
-  // ── HAIR ──
-  px(2,2,11,1,C.H);
-  px(1,3,13,1,C.H);
-  px(0,4,2,3,C.H); px(13,4,2,3,C.H);   // side hair
-  px(0,7,1,2,C.H); px(14,7,1,2,C.H);   // hair sweep down
+  // ═══ CAT MASK EARS ═══
+  // Left ear - sharp pointed
+  px(4,0,1,1,C.B);
+  px(3,1,2,1,C.B);  px(4,1,1,1,C.Pk);
+  px(3,2,1,1,C.B);  px(4,2,2,1,C.B);  px(4,2,1,1,C.Pk);
+  // Right ear
+  px(15,0,1,1,C.B);
+  px(14,1,2,1,C.B); px(15,1,1,1,C.Pk);
+  px(14,2,2,1,C.B); px(15,2,1,1,C.Pk);
 
-  // ── FACE ──
-  px(2,3,11,1,C.S);
-  px(1,4,13,1,C.S);
-  px(1,5,13,1,C.S);
-  px(1,6,13,1,C.S);
-  px(1,7,13,1,C.S);
-  px(2,8,11,1,C.S);
-  px(3,9,9,1,C.S);
-  px(3,10,9,1,C.S);
-  px(4,11,7,1,C.Sd);
+  // ═══ HAIR (sleek, framing face) ═══
+  // Top
+  px(3,2,14,1,C.H);
+  px(2,3,16,1,C.H);
+  // Side swept - left
+  px(1,4,2,8,C.H);  px(0,5,1,6,C.H);
+  px(0,11,1,3,C.H); px(1,12,1,3,C.H);
+  // Side swept - right
+  px(17,4,2,8,C.H); px(18,5,1,6,C.H);
+  px(18,11,1,3,C.H); px(17,12,1,3,C.H);
+  // Hair shine
+  px(7,2,3,1,C.Hh);
 
-  // ── EYEBROWS (bold) ──
-  px(2,4,3,1,C.H); px(10,4,3,1,C.H);
+  // ═══ FACE ═══
+  px(3,3,14,1,C.S);
+  px(2,4,16,6,C.S);
+  px(2,10,16,1,C.S);
+  px(3,11,14,1,C.S);
+  px(4,12,12,1,C.S);
+  px(5,13,10,1,C.Sd);
+  // Face shading
+  px(2,4,1,6,C.Sn);  px(17,4,1,6,C.Sn);
 
-  // ── EYES ──
+  // ═══ CAT MASK (over eyes) ═══
+  px(2,4,5,3,C.B);   px(13,4,5,3,C.B);
+  px(7,5,6,1,C.B);   // bridge of mask
+  // Mask sheen
+  px(2,4,1,3,C.Bh);  px(17,4,1,3,C.Bh);
+
+  // ═══ EYES (large, expressive) ═══
   if(!blink){
-    // Left eye - large almond shape
-    px(2,5,4,2,C.Ed);   // shadow
-    px(2,5,4,1,C.E);    // iris
-    px(3,5,2,2,C.E);    // iris fill
+    // Left eye - large almond
+    px(3,5,4,2,C.E);    // iris
+    px(3,5,1,2,C.Ed);   // inner shadow
+    px(5,5,2,1,C.Ep);   // light iris
     px(4,5,1,1,C.Ew);   // highlight
-    px(2,6,1,1,C.H); px(5,6,1,1,C.H); // corners
+    px(3,4,4,1,C.H);    // upper lash line
+    px(3,4,1,1,C.Hd);   px(6,4,1,1,C.Hd);
+    px(2,6,1,1,C.H);    px(7,6,1,1,C.H);  // corner lashes
     // Right eye
-    px(9,5,4,2,C.Ed);
-    px(9,5,4,1,C.E);
-    px(10,5,2,2,C.E);
-    px(10,5,1,1,C.Ew);
-    px(9,6,1,1,C.H); px(12,6,1,1,C.H);
-    // Lower lashes
-    px(2,7,1,1,C.H); px(4,7,1,1,C.H);
-    px(9,7,1,1,C.H); px(11,7,1,1,C.H);
+    px(13,5,4,2,C.E);
+    px(13,5,1,2,C.Ed);
+    px(15,5,2,1,C.Ep);
+    px(14,5,1,1,C.Ew);
+    px(13,4,4,1,C.H);
+    px(13,4,1,1,C.Hd);  px(16,4,1,1,C.Hd);
+    px(12,6,1,1,C.H);   px(17,6,1,1,C.H);
   } else {
-    px(2,6,4,1,C.H); px(9,6,4,1,C.H);
+    px(3,6,4,1,C.H);    px(13,6,4,1,C.H);
+    px(3,6,1,1,C.B);    px(13,6,1,1,C.B);
   }
 
-  // ── NOSE ──
-  px(7,8,1,1,C.Sn); px(8,8,1,1,C.Sn);
-  px(6,9,1,1,C.Sd); px(9,9,1,1,C.Sd);
+  // ═══ NOSE ═══
+  px(9,9,2,1,C.Sn);
+  px(8,10,1,1,C.Sd);   px(11,10,1,1,C.Sd);
 
-  // ── MOUTH (closed, gentle smile) ──
-  px(5,10,5,1,C.Lp);
-  px(5,10,1,1,C.Ld); px(9,10,1,1,C.Ld);
-  px(6,10,1,1,C.Lh);  // shine
+  // ═══ LIPS (full, closed, NO teeth) ═══
+  // Upper lip
+  px(7,11,6,1,C.Lp);
+  px(9,10,2,1,C.Lm);   // cupid's bow
+  px(7,11,1,1,C.Ld);   px(12,11,1,1,C.Ld);  // corners
+  px(8,11,1,1,C.Lh);   // shine
+  // Lower lip
+  px(7,12,6,1,C.Lp);
+  px(8,12,3,1,C.Lm);
+  px(7,12,1,1,C.Ld);   px(12,12,1,1,C.Ld);
+  px(9,12,1,1,C.Lh);   // shine
 
-  // ── BLUSH ──
-  px(1,8,2,1,C.Pk); px(12,8,2,1,C.Pk);
+  // ═══ BLUSH ═══
+  px(2,9,3,1,C.Pk);    px(15,9,3,1,C.Pk);
+  px(2,10,2,1,C.Pk);   px(16,10,2,1,C.Pk);
 
-  // ── CHIN ──
-  px(4,11,7,1,C.S);
-  px(5,12,5,1,C.Sd);
+  // ═══ CHIN ═══
+  px(5,13,10,1,C.S);
+  px(7,14,6,1,C.Sd);
 
-  // ── NECK ──
-  px(6,12,3,2,C.S);
-  px(6,13,1,1,C.Sn); px(8,13,1,1,C.Sn);
+  // ═══ NECK ═══
+  px(8,14,4,2,C.S);
+  px(8,15,1,2,C.Sn);   px(11,15,1,2,C.Sn);
 
-  // ── SUIT COLLAR / CHEST ──
-  px(3,13,3,1,C.Bl); px(9,13,3,1,C.Bl);
-  px(4,14,7,1,C.Bm);
-  px(3,14,1,2,C.Bl); px(11,14,1,2,C.Bl);
+  // ═══ COLLAR DETAIL ═══
+  px(6,16,8,1,C.A);     // blue collar
+  px(9,15,2,2,C.Ah);    // collar gem
+  px(9,15,1,1,C.Ew);    // gem highlight
 
-  // ── TORSO ──
-  px(1,14,2,8,C.B);  px(12,14,2,8,C.B);
-  px(3,14,9,8,C.Bm);
-  px(3,14,1,8,C.Bl); px(11,14,1,8,C.Bl); // sheen
-  // Center accent stripe
-  px(7,14,1,7,C.A);
-  px(6,14,1,3,C.Ad); px(8,14,1,3,C.Ad);
-  // Chest detail
-  px(4,15,3,1,C.Bl); px(8,15,3,1,C.Bl);
+  // ═══ SHOULDERS ═══
+  px(3,16,5,2,C.Bm);   px(12,16,5,2,C.Bm);
+  px(3,16,1,2,C.Bh);   px(16,16,1,2,C.Bh);
 
-  // ── BELT ──
-  px(2,22,11,1,C.A);
-  px(6,22,3,1,C.Ah); // buckle highlight
-  px(7,21,1,2,C.Ah); // buckle center
+  // ═══ TORSO ═══
+  px(2,18,16,7,C.Bm);
+  px(2,18,1,7,C.Bh);   px(17,18,1,7,C.Bh);   // suit sheen
+  px(3,18,1,7,C.Bl);   px(16,18,1,7,C.Bl);
+  // Center zip/stripe
+  px(9,16,2,9,C.A);
+  px(9,16,1,9,C.Ah);
+  // Chest panels
+  px(4,19,5,3,C.Bs);   px(11,19,5,3,C.Bs);
+  px(4,19,1,3,C.Bl);   px(15,19,1,3,C.Bl);
 
-  // ── HIPS ──
-  px(2,23,11,1,C.Bm);
-  px(2,23,1,1,C.B); px(12,23,1,1,C.B);
+  // ═══ BELT ═══
+  px(3,25,14,1,C.A);
+  px(3,25,1,1,C.Ad);   px(16,25,1,1,C.Ad);
+  px(8,24,4,2,C.Am);   // buckle
+  px(9,24,2,2,C.Ah);   // buckle highlight
+  px(9,24,1,1,C.Ew);   // buckle gem
 
-  // ── LEGS ──
-  px(2,24,4,3,C.Bm); px(9,24,4,3,C.Bm);
-  px(2,24,1,3,C.B);  px(12,24,1,3,C.B);
-  px(5,24,1,3,C.B);  px(8,24,1,3,C.B);
-  // Leg sheen
-  px(3,24,1,3,C.Bl); px(10,24,1,3,C.Bl);
-
-  // ── BOOTS ──
-  px(1,27,5,1,C.Gm); px(9,27,5,1,C.Gm);
-  px(1,28,5,1,C.G);  px(9,28,5,1,C.G);
-  px(0,28,1,1,C.D);  px(5,28,1,1,C.D);
-  px(8,28,1,1,C.D);  px(13,28,1,1,C.D);
-  // Boot highlight
-  px(2,27,1,2,C.Gh); px(10,27,1,2,C.Gh);
+  // ═══ HIPS ═══
+  px(3,26,14,1,C.B);
+  px(3,26,1,1,C.Dm);   px(16,26,1,1,C.Dm);
 
   drawArms(state, frame);
 }
@@ -635,48 +652,61 @@ function drawMollie(state, frame, blink) {
 function drawArms(state, frame) {
   switch(state){
     case 'idle':
-      // Arms relaxed at sides
-      px(0,14,2,7,C.B);  px(13,14,2,7,C.B);
-      px(0,14,1,7,C.Bl); px(14,14,1,7,C.Bl);
-      // Hands
-      px(0,21,2,1,C.S);  px(13,21,2,1,C.S);
+      // Arms relaxed, slight curve
+      px(1,17,2,8,C.Bm);  px(17,17,2,8,C.Bm);
+      px(1,17,1,8,C.Bh);  px(18,17,1,8,C.Bh);
+      // Gloved hands
+      px(1,25,2,1,C.B);   px(17,25,2,1,C.B);
+      px(0,24,2,2,C.Bm);  px(17,24,2,2,C.Bm);
       break;
 
     case 'think':
-      // Left arm down, right arm raised to chin
-      px(0,14,2,7,C.B);  px(0,14,1,7,C.Bl);
-      px(0,21,2,1,C.S);
-      // Right arm up
-      px(12,14,3,2,C.Bm);
-      px(12,12,3,3,C.Bm); px(14,12,1,3,C.Bl);
-      px(11,11,4,2,C.Bm);
-      px(11,10,3,1,C.S);  // hand at chin
+      // Right arm raised, hand near chin
+      px(1,17,2,8,C.Bm);  px(1,17,1,8,C.Bh);
+      px(1,25,2,1,C.B);   px(0,24,2,2,C.Bm);
+      // Right arm up at angle
+      px(17,17,2,4,C.Bm); px(18,17,1,4,C.Bh);
+      px(16,14,3,4,C.Bm); px(16,14,1,4,C.Bh);
+      px(15,13,3,2,C.Bm);
+      px(14,12,3,1,C.B);  // hand near face
+      px(14,13,2,1,C.S);  // finger
       break;
 
     case 'dance': {
       const even = (frame%2===0);
       if(even){
-        // Arms up celebrating
-        px(0,12,2,4,C.Bm);  px(13,12,2,4,C.Bm);
-        px(0,12,1,4,C.Bl);  px(14,12,1,4,C.Bl);
-        px(0,11,2,1,C.B);   px(13,11,2,1,C.B);
-        px(0,10,2,1,C.S);   px(13,10,2,1,C.S);  // hands up
+        // Both arms raised in celebration
+        px(0,14,2,5,C.Bm);  px(0,14,1,5,C.Bh);
+        px(0,13,3,2,C.Bm);  px(0,12,2,2,C.B);
+        px(0,11,2,1,C.S);   // left hand up
+        px(17,14,2,5,C.Bm); px(18,14,1,5,C.Bh);
+        px(17,13,3,2,C.Bm); px(18,12,2,2,C.B);
+        px(18,11,2,1,C.S);  // right hand up
+        // sparkles
+        px(0,9,1,1,C.A);    px(19,9,1,1,C.Ah);
+        px(1,8,1,1,C.Ep);   px(18,8,1,1,C.Ep);
       } else {
-        px(0,11,2,5,C.Bm);  px(13,11,2,5,C.Bm);
-        px(0,11,1,5,C.Bl);  px(14,11,1,5,C.Bl);
-        px(15,10,1,1,C.S);  px(0,10,1,1,C.S);
+        px(0,13,2,6,C.Bm);  px(0,13,1,6,C.Bh);
+        px(0,12,2,2,C.Bm);  px(0,11,2,1,C.S);
+        px(18,13,2,6,C.Bm); px(19,13,1,6,C.Bh);
+        px(18,12,2,2,C.Bm); px(18,11,2,1,C.S);
+        px(1,10,1,1,C.Am);  px(18,10,1,1,C.Am);
       }
       break;
     }
 
     case 'type':
-      // Arms forward, typing
-      px(0,16,3,4,C.Bm);  px(12,16,3,4,C.Bm);
-      px(0,16,1,4,C.Bl);  px(14,16,1,4,C.Bl);
-      px(0,20,3,1,C.S);   px(12,20,3,1,C.S);  // hands
-      // Typing sparkles
+      // Arms forward, typing position
+      px(1,18,2,6,C.Bm);   px(17,18,2,6,C.Bm);
+      px(1,18,1,6,C.Bh);   px(18,18,1,6,C.Bh);
+      px(0,23,3,2,C.Bm);   px(16,23,3,2,C.Bm);
+      px(0,25,3,1,C.B);    px(16,25,3,1,C.B);
+      // Typing hands
+      px(0,24,3,1,C.S);    px(16,24,3,1,C.S);
+      // keyboard glow
       if(frame%2===1){
-        px(3,22,1,1,C.A);  px(6,22,1,1,C.Ah); px(9,22,1,1,C.A);
+        px(3,26,1,1,C.A);  px(7,26,1,1,C.Ep);
+        px(11,26,1,1,C.A); px(15,26,1,1,C.Ah);
       }
       break;
   }
