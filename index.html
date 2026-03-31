@@ -287,13 +287,13 @@ const SC=6;
 function px(x,y,w,h,c){if(!c)return;ctx.fillStyle=c;ctx.fillRect(x*SC,y*SC,w*SC,h*SC);}
 
 const C={
-  S:'#E8A87A',Sd:'#C07848',Sh:'#F0C09A',  // skin
-  H:'#1A0808',                              // hair/dark
-  Go:'#F5C020',Gd:'#C89010',Gh:'#FFE878',Gi:'#FFFAAA', // halo gold
-  Cl:'#2f91c3',Cd:'#1A6090',Ch:'#5BBAE0',  // cloak blue
-  R:'#E8C040',Rd:'#C09820',Rh:'#F8E080',Ri:'#FFFAD0',  // robe gold
-  E:'#2f91c3',Ed:'#1A6090',Ew:'#D0EEFF',   // eyes
-  Lp:'#C06060',                             // lips
+  S:'#E8A87A',Sd:'#C07848',Sh:'#F0C09A',
+  H:'#1A0808',
+  Go:'#F5C020',Gd:'#C89010',Gh:'#FFE878',Gi:'#FFFAAA',
+  Cl:'#2f91c3',Cd:'#1A6090',Ch:'#5BBAE0',
+  R:'#E8C040',Rd:'#C09820',Rh:'#F8E080',Ri:'#FFFAD0',
+  E:'#2f91c3',Ed:'#1A6090',Ew:'#D0EEFF',
+  Lp:'#C06060',
   D:'#000000',W:'#FFFFFF',
 };
 
@@ -468,10 +468,12 @@ function renderKanban(){
 
 function advanceTask(id){
   const t=tasks.find(t=>t.id===id);
-  if(t&&NEXT[t.col]){t.col=NEXT[t.col];saveTasks();renderKanban();}
+  if(t&&NEXT[t.col]){t.col=NEXT[t.col];saveTasks();renderKanban();
+loadUsage();}
 }
 function delTask(id){
   tasks=tasks.filter(t=>t.id!==id);saveTasks();renderKanban();
+loadUsage();
 }
 
 function openModal(){document.getElementById('modal').classList.add('open');}
@@ -484,9 +486,11 @@ function saveTask(){
   document.getElementById('t-name').value='';
   document.getElementById('t-due').value='';
   closeModal();renderKanban();
+loadUsage();
 }
 document.getElementById('modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
 renderKanban();
+loadUsage();
 </script>
 </body>
 </html>
