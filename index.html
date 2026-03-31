@@ -689,7 +689,7 @@ function pwUnlock(){
   if(v==='Digi420'){
     document.getElementById('pw-gate').style.display='none';
     sessionStorage.setItem('mhq_auth','1');
-    setTimeout(function(){ requestAnimationFrame(anim); }, 100);
+    startAvatar();
   } else {
     document.getElementById('pw-err').textContent='Incorrect password';
     setTimeout(function(){document.getElementById('pw-err').textContent='';},2000);
@@ -719,6 +719,8 @@ function switchTab(name,el){
   document.getElementById('panel-'+name).classList.add('active');
   el.classList.add('active');
   if(name==='mission'){updatePulse();updateTrust();}
+  if(name==='tasks'){renderKanban();}
+  if(name==='usage'){renderUsage();}
 }
 
 // ── STATUS ──
