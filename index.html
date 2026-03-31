@@ -828,10 +828,174 @@ function updateUsageBar(){
   document.getElementById('usageBarFill').style.background=pct>80?'var(--red)':pct>60?'var(--amber)':'var(--accent)';
 }
 
-renderKanban(); renderActivity(); loadUsage();
+renderKanban(); renderActivity(); loadUsage(); setTimeout(loadLiveUsage, 300);
 
 document.getElementById('taskModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeTaskModal();});
 document.getElementById('activityModal').addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.classList.remove('open');});
+
+// ==============================
+//  LIVE USAGE DATA (auto-generated)
+// ==============================
+const LIVE_USAGE = {
+  "totalCost": "$15.39",
+  "totalCostRaw": 15.3865,
+  "totalSessions": 241,
+  "totalInputTokens": "23,164,877",
+  "totalOutputTokens": "93,725",
+  "budget": 500,
+  "budgetPct": 3.1,
+  "modelBreakdown": {
+    "Sonnet 4.6": 100
+  },
+  "sessionLog": [
+    {
+      "date": "2026-03-31",
+      "model": "Sonnet 4.6",
+      "cost": "$0.3308",
+      "desc": "Yes \u2014 if you email it to mollie@digitsup.com, I can:\n\n1. **D"
+    },
+    {
+      "date": "2026-03-31",
+      "model": "Sonnet 4.6",
+      "cost": "$0.0337",
+      "desc": "Agent session"
+    },
+    {
+      "date": "2026-03-31",
+      "model": "Sonnet 4.6",
+      "cost": "$0.0334",
+      "desc": "Agent session"
+    },
+    {
+      "date": "2026-03-31",
+      "model": "Sonnet 4.6",
+      "cost": "$0.0370",
+      "desc": "Agent session"
+    },
+    {
+      "date": "2026-03-31",
+      "model": "Sonnet 4.6",
+      "cost": "$0.0370",
+      "desc": "Got the \"Templates\" email \u2014 let me grab the attachments:"
+    },
+    {
+      "date": "2026-03-31",
+      "model": "Sonnet 4.6",
+      "cost": "$0.0381",
+      "desc": "Got them both \u2014 **Copy_Doc_Template.docx** and **Flow_Brief_"
+    },
+    {
+      "date": "2026-03-31",
+      "model": "Sonnet 4.6",
+      "cost": "$0.0379",
+      "desc": "Agent session"
+    },
+    {
+      "date": "2026-03-31",
+      "model": "Sonnet 4.6",
+      "cost": "$0.0343",
+      "desc": "Agent session"
+    },
+    {
+      "date": "2026-03-31",
+      "model": "Sonnet 4.6",
+      "cost": "$0.0325",
+      "desc": "Got them both and they're clean. Here's what you've got:\n\n**"
+    },
+    {
+      "date": "2026-03-31",
+      "model": "Sonnet 4.6",
+      "cost": "$0.3574",
+      "desc": "Agent session"
+    },
+    {
+      "date": "2026-03-31",
+      "model": "Sonnet 4.6",
+      "cost": "$0.0405",
+      "desc": "Agent session"
+    },
+    {
+      "date": "2026-03-31",
+      "model": "Sonnet 4.6",
+      "cost": "$0.0447",
+      "desc": "Agent session"
+    },
+    {
+      "date": "2026-03-31",
+      "model": "Sonnet 4.6",
+      "cost": "$0.0418",
+      "desc": "Agent session"
+    },
+    {
+      "date": "2026-03-31",
+      "model": "Sonnet 4.6",
+      "cost": "$0.0413",
+      "desc": "Agent session"
+    },
+    {
+      "date": "2026-03-31",
+      "model": "Sonnet 4.6",
+      "cost": "$0.0703",
+      "desc": "Now I'll save the project instructions file and set up the f"
+    },
+    {
+      "date": "2026-03-31",
+      "model": "Sonnet 4.6",
+      "cost": "$0.0438",
+      "desc": "Got it. Here's my understanding confirmed back to you:\n\n**Ou"
+    },
+    {
+      "date": "2026-03-31",
+      "model": "Sonnet 4.6",
+      "cost": "$0.0437",
+      "desc": "Agent session"
+    },
+    {
+      "date": "2026-03-31",
+      "model": "Sonnet 4.6",
+      "cost": "$0.0376",
+      "desc": "Agent session"
+    },
+    {
+      "date": "2026-03-31",
+      "model": "Sonnet 4.6",
+      "cost": "$0.0407",
+      "desc": "Agent session"
+    },
+    {
+      "date": "2026-03-31",
+      "model": "Sonnet 4.6",
+      "cost": "$0.0386",
+      "desc": "Agent session"
+    }
+  ],
+  "lastUpdated": "Mar 30 2026, 07:14 PM"
+};
+
+function loadLiveUsage() {
+  document.getElementById('totalSpend').value = LIVE_USAGE.totalCost;
+  document.getElementById('totalTokens').value = LIVE_USAGE.totalInputTokens + ' in / ' + LIVE_USAGE.totalOutputTokens + ' out';
+  document.getElementById('monthlyBudget').value = '$' + LIVE_USAGE.budget + '.00';
+  document.getElementById('opusPct').value = '0%';
+  document.getElementById('opusCost').value = '$0.00';
+  document.getElementById('sonnetPct').value = '100%';
+  document.getElementById('sonnetCost').value = LIVE_USAGE.totalCost;
+  document.getElementById('haikuPct').value = '0%';
+  document.getElementById('haikuCost').value = '$0.00';
+  updateUsageBar();
+  
+  // Add last updated note
+  const liveNote = document.createElement('div');
+  liveNote.style.cssText = 'font-family:DM Mono,monospace;font-size:10px;color:#566B85;margin-top:8px;text-align:right;';
+  liveNote.textContent = '⟳ Live data · Last synced: ' + LIVE_USAGE.lastUpdated;
+  const budgetCard = document.querySelector('#panel-usage .card:first-child');
+  if(budgetCard) budgetCard.appendChild(liveNote);
+}
+
+// Auto-load on page ready
+document.addEventListener('DOMContentLoaded', loadLiveUsage);
+setTimeout(loadLiveUsage, 500);
+
 </script>
 </body>
 </html>
