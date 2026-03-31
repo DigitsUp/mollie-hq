@@ -1174,6 +1174,7 @@ function startAvatar(){
   const origHype = window.hypeWalk;
   window.smokeScreen = function(){if(origSmoke)origSmoke();setState('think');};
   window.hypeWalk = function(){if(origHype)origHype();setState('dance');setTimeout(()=>setState('idle'),3500);};
+  requestAnimationFrame(anim);
 } // end startAvatar
 
 
