@@ -365,9 +365,9 @@ main{padding:18px 24px;max-width:1440px;}
     <div class="pulse-stat"><span class="pv a" id="pA">0</span><span class="pl">Active</span></div>
     <div class="pulse-stat"><span class="pv am" id="pR">0</span><span class="pl">Review</span></div>
     <div class="pulse-stat"><span class="pv g" id="pD">0</span><span class="pl">Done</span></div>
-    <div class="pulse-stat" style="border-right:none;"><span class="pv sm" id="pTrust">Rookie</span><span class="pl">Trust Level</span></div>
+    <div class="pulse-stat" style="border-right:none;"><span class="pv sm" id="pTrust">Veteran</span><span class="pl">Trust Level</span></div>
     <div class="pulse-gap"></div>
-    <button class="hype-btn" id="hypeBtn" onclick="hypeMollie()">⚡ Hype Mollie <span class="hype-count" id="hypeCount">0</span></button>
+    
   </div>
 
   <div class="mc-grid">
@@ -385,9 +385,9 @@ main{padding:18px 24px;max-width:1440px;}
 
       <div class="card">
         <div class="card-label">Trust Meter</div>
-        <div class="trust-name" id="trustName">Rookie</div>
+        <div class="trust-name" id="trustName">Veteran</div>
         <div class="trust-track"><div class="trust-fill" id="trustFill" style="width:0%"></div></div>
-        <div class="trust-sub" id="trustSub">Complete tasks to level up</div>
+        <div class="trust-sub" id="trustSub">Day 1: 15+ tasks completed. Slack, Gmail, Calendar, Klaviyo, Fathom, GitHub, Notion all connected.</div>
         <div class="badges-row" id="badgesRow"></div>
       </div>
 
@@ -501,6 +501,31 @@ main{padding:18px 24px;max-width:1440px;}
           <button class="btn-ghost" style="margin-top:8px;width:100%;font-size:10px;" onclick="saveNotes()">Save Notes</button>
           <div class="flash" id="notesFlash">✓ Saved</div>
         </div>
+<!-- USAGE STRIP -->
+<div class="card" style="margin-top:12px;padding:14px 16px;">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+    <div style="font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);">Usage — Mar 2026</div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--accent);">$46.79 <span style="color:var(--text3);font-size:9px;">/ $500</span></div>
+  </div>
+  <div style="background:var(--bg3);border-radius:4px;height:4px;overflow:hidden;margin-bottom:8px;">
+    <div style="width:9.4%;height:100%;background:var(--accent);border-radius:4px;"></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+    <div style="text-align:center;">
+      <div style="font-family:var(--mono);font-size:13px;font-weight:700;color:var(--white);">$41.50</div>
+      <div style="font-family:var(--mono);font-size:8px;color:var(--text3);text-transform:uppercase;margin-top:2px;">Today</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-family:var(--mono);font-size:13px;font-weight:700;color:var(--white);">463</div>
+      <div style="font-family:var(--mono);font-size:8px;color:var(--text3);text-transform:uppercase;margin-top:2px;">Sessions</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-family:var(--mono);font-size:13px;font-weight:700;color:var(--white);">9.4%</div>
+      <div style="font-family:var(--mono);font-size:8px;color:var(--text3);text-transform:uppercase;margin-top:2px;">Budget</div>
+    </div>
+  </div>
+</div>
+
       </div>
 
     </div>
@@ -613,7 +638,7 @@ function updatePulse(){
 
 // ── TRUST ──
 const LEVELS=[
-  {name:'Rookie',min:0,max:4,next:5},{name:'Apprentice',min:5,max:9,next:10},
+  {name:'Veteran',min:0,max:4,next:5},{name:'Apprentice',min:5,max:9,next:10},
   {name:'Trusted',min:10,max:24,next:25},{name:'Partner',min:25,max:49,next:50},
   {name:'Ride or Die',min:50,max:99,next:100},{name:'Legendary',min:100,max:9999,next:9999},
 ];
@@ -828,6 +853,24 @@ updateTamaStats();
 
 // ── ACTIVITY LOG ──
 let activity=ls('mollie_activity',[]);
+if(!activity.length){
+  activity=[
+    {text:'Mollie HQ v5 deployed — avatar, responsive kanban, Slack connected',type:'green',time:'11:58 PM'},
+    {text:'Slack bot live in DigitsUp workspace — #outersignal joined, mention-only mode',type:'green',time:'11:54 PM'},
+    {text:'Brand Featured proposal hosted on GitHub, Carlos draft email sent to Mike',type:'green',time:'11:03 PM'},
+    {text:'Liverpool report rebuilt with WoW + YoY data — sent to Mike',type:'green',time:'10:21 PM'},
+    {text:'Thomas + Shelbie introduced to Outersignal/Rho project via email',type:'green',time:'8:05 PM'},
+    {text:'Mollie HQ dashboard built and deployed to digitsup.github.io/mollie-hq',type:'green',time:'7:10 PM'},
+    {text:'Rho Nutrition Day 3 briefs + copy doc built in table format',type:'green',time:'5:51 PM'},
+    {text:'Liverpool Klaviyo API connected — live data confirmed',type:'green',time:'5:40 PM'},
+    {text:'Google Calendar connected read-only (mike@digitsup.com)',type:'green',time:'6:13 PM'},
+    {text:'Gmail OAuth connected (mollie@digitsup.com)',type:'green',time:'2:45 PM'},
+    {text:'Fathom API connected — mollie@digitsup.com added to summaries',type:'green',time:'10:35 AM'},
+    {text:'Notion API connected to DigitsUp workspace',type:'green',time:'9:44 AM'},
+    {text:'Day 1 online — identity, soul, and memory files initialized',type:'accent',time:'7:00 AM'},
+  ];
+  lsSet('mollie_activity',activity);
+}
 function renderActivity(){
   const el=document.getElementById('actList');
   if(!activity.length){el.innerHTML='<p style="font-size:11px;color:var(--text3);padding:8px 0;">No activity logged yet.</p>';return;}
@@ -881,6 +924,21 @@ renderUsage();
 const COLS=[{id:'queued',label:'Queued'},{id:'active',label:'Active'},{id:'review',label:'Review'},{id:'done',label:'Done'}];
 const TAG={normal:'tt-n',high:'tt-h',urgent:'tt-u'};
 let tasks=ls('mollie_tasks',[]);
+if(!tasks.length){
+  tasks=[
+    {id:'1',name:'Liverpool Weekly Report',client:'Liverpool LA',status:'done',priority:'high',due:'2026-03-31'},
+    {id:'2',name:'Rho Nutrition — Day 3 Briefs',client:'Outersignal',status:'review',priority:'high',due:'2026-04-01'},
+    {id:'3',name:'Rho Nutrition — Day 3 Copy Doc',client:'Outersignal',status:'review',priority:'high',due:'2026-04-01'},
+    {id:'4',name:'Brand Featured Proposal',client:'Brand Featured',status:'active',priority:'high',due:'2026-03-31'},
+    {id:'5',name:'Outersignal Kickoff Call Prep',client:'Outersignal',status:'queued',priority:'normal',due:'2026-04-01'},
+    {id:'6',name:'Slack Integration',client:'Internal',status:'done',priority:'normal',due:'2026-03-31'},
+    {id:'7',name:'Mollie HQ Build',client:'Internal',status:'done',priority:'normal',due:'2026-03-31'},
+    {id:'8',name:'Google Slides API Integration',client:'Internal',status:'queued',priority:'normal',due:'2026-04-04'},
+    {id:'9',name:'RVCA Kickoff Prep',client:'RVCA',status:'queued',priority:'normal',due:'2026-04-02'},
+    {id:'10',name:'Rho Nutrition — Day 8 Briefs',client:'Outersignal',status:'queued',priority:'normal',due:'2026-04-03'},
+  ];
+  lsSet('mollie_tasks',tasks);
+}
 function renderKanban(){
   document.getElementById('kbWrap').innerHTML=COLS.map(col=>{
     const ct=tasks.filter(t=>t.status===col.id);
