@@ -1501,6 +1501,79 @@ body:has(#pg-field:valid) #mc{display:block!important;}
 
 <div class="section-divider"></div>
 
+
+<!-- MIGRATION TIMELINE SECTION -->
+<section id="migration" class="light">
+  <div class="container">
+    <div class="section-tag" style="color:var(--teal);">Migration</div>
+    <h2 style="font-family:var(--serif);font-size:clamp(28px,3.5vw,44px);font-weight:700;color:var(--ink);margin-bottom:12px;" class="reveal reveal-delay-1">Klaviyo Migration Plan</h2>
+    <p class="pkg-intro reveal reveal-delay-2" style="max-width:640px;">A clear sequence of what happens when, and where your development team will need to step in. DigitsUp manages the platform setup end-to-end — the items marked as dev-required are the only tasks that require your team.</p>
+
+    <div style="display:flex;flex-direction:column;gap:16px;margin-top:32px;">
+
+      <div style="background:#fff;border:1px solid #e8e8e4;border-radius:12px;padding:24px 28px;display:grid;grid-template-columns:48px 1fr;gap:20px;align-items:start;">
+        <div style="width:48px;height:48px;background:#EAF3DE;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:14px;font-weight:700;color:#27500A;flex-shrink:0;">01</div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;">Klaviyo Account Creation &amp; Domain Authentication</div>
+          <div style="font-size:13px;color:#666;line-height:1.7;">We create the Klaviyo account and authenticate the sending domain (SPF, DKIM, DMARC). Your development team will need to add DNS records to the domain. DNS propagation typically takes 24–48 hours after records are added.</div>
+          <div style="margin-top:10px;display:inline-block;font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 10px;border-radius:20px;background:#EAF3DE;color:#27500A;">Dev Required — DNS Records</div>
+        </div>
+      </div>
+
+      <div style="background:#fff;border:1px solid #e8e8e4;border-radius:12px;padding:24px 28px;display:grid;grid-template-columns:48px 1fr;gap:20px;align-items:start;">
+        <div style="width:48px;height:48px;background:#E6F1FB;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:14px;font-weight:700;color:#0C447C;flex-shrink:0;">02</div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;">SMS Setup &amp; Compliance (A2P 10DLC)</div>
+          <div style="font-size:13px;color:#666;line-height:1.7;">We enable Klaviyo SMS and complete A2P 10DLC registration for US messaging compliance. No development work is required. Carrier approval typically takes 1–2 weeks — this runs in parallel with other setup steps.</div>
+          <div style="margin-top:10px;display:inline-block;font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 10px;border-radius:20px;background:#F1EFE8;color:#444441;">DigitsUp Managed</div>
+        </div>
+      </div>
+
+      <div style="background:#fff;border:1px solid #e8e8e4;border-radius:12px;padding:24px 28px;display:grid;grid-template-columns:48px 1fr;gap:20px;align-items:start;">
+        <div style="width:48px;height:48px;background:#EAF3DE;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:14px;font-weight:700;color:#27500A;flex-shrink:0;">03</div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;">Migrate Forms &amp; Assets from Existing Klaviyo Account</div>
+          <div style="font-size:13px;color:#666;line-height:1.7;">We migrate existing lead capture forms and related assets into the new Klaviyo account, preserving fields, tagging, and list routing so leads continue flowing into the correct welcome and segmentation flows.</div>
+          <div style="margin-top:10px;display:inline-block;font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 10px;border-radius:20px;background:#F1EFE8;color:#444441;">DigitsUp Managed</div>
+        </div>
+      </div>
+
+      <div style="background:#fff;border:1px solid #e8e8e4;border-radius:12px;padding:24px 28px;display:grid;grid-template-columns:48px 1fr;gap:20px;align-items:start;">
+        <div style="width:48px;height:48px;background:#EAF3DE;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:14px;font-weight:700;color:#27500A;flex-shrink:0;">04</div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;">Klaviyo Lead Form Setup — Site Popup</div>
+          <div style="font-size:13px;color:#666;line-height:1.7;">We rebuild the lead capture popup inside Klaviyo and replace the current popup on brandfeatured.com. This replaces the existing MailerLite popup — all other MailerLite forms tied to the pipeline remain untouched.</div>
+          <div style="margin-top:10px;display:inline-block;font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 10px;border-radius:20px;background:#EAF3DE;color:#27500A;">Dev Required — Swap Site Popup</div>
+        </div>
+      </div>
+
+      <div style="background:#fff;border:1px solid #e8e8e4;border-radius:12px;padding:24px 28px;display:grid;grid-template-columns:48px 1fr;gap:20px;align-items:start;">
+        <div style="width:48px;height:48px;background:#F1EFE8;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:14px;font-weight:700;color:#444441;flex-shrink:0;">05</div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;">ThriveCart → Klaviyo Integration</div>
+          <div style="font-size:13px;color:#666;line-height:1.7;">We connect ThriveCart to Klaviyo through the native integration so purchase events flow automatically (Placed Order, Ordered Product, Cancelled Order, Refunded Order). No custom development required.</div>
+          <div style="margin-top:10px;display:inline-block;font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 10px;border-radius:20px;background:#F1EFE8;color:#444441;">DigitsUp Managed</div>
+        </div>
+      </div>
+
+      <div style="background:#fff;border:1px solid #e8e8e4;border-radius:12px;padding:24px 28px;display:grid;grid-template-columns:48px 1fr;gap:20px;align-items:start;">
+        <div style="width:48px;height:48px;background:#EAF3DE;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:14px;font-weight:700;color:#27500A;flex-shrink:0;">06</div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;">Behavioral Tracking on brandfeatured.com</div>
+          <div style="font-size:13px;color:#666;line-height:1.7;">We implement Klaviyo JS tracking on brandfeatured.com to enable site abandonment and browse abandonment flows (Active on Site, Viewed Item, Started Checkout). We will confirm within Week 1 whether ThriveCart covers this natively or if a custom JS implementation is needed.</div>
+          <div style="margin-top:10px;display:inline-block;font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 10px;border-radius:20px;background:#EAF3DE;color:#27500A;">Dev Likely Required — JS Tracking</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:24px;background:#EAF3DE;border:1px solid #97C459;border-radius:12px;padding:20px 24px;">
+      <div style="font-size:13px;font-weight:700;color:#27500A;margin-bottom:8px;">Migration Fee — Waived</div>
+      <div style="font-size:13px;color:#3B6D11;line-height:1.7;">Our standard Klaviyo migration fee is <span style="text-decoration:line-through;opacity:0.5;">$5,500</span>. We are waiving it entirely. We are confident in our ability to execute this correctly and quickly, and we would rather prove it than charge for it upfront.</div>
+    </div>
+
+  </div>
+</section>
 <section id="nextsteps" class="dark">
   <div class="container">
     <div class="ns-center">
