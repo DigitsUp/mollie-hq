@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mollie HQ — DigitsUp</title>
+<style>
+  #pw-gate {
+    position: fixed; inset: 0; z-index: 9999;
+    background: #080D16;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Mono', monospace;
+  }
+  body::before, body::after { display: none; }
+  #pw-box {
+    text-align: center; max-width: 360px; padding: 0 24px; width: 100%;
+  }
+  #pw-box .pw-eyebrow {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em;
+    color: #566B85; margin-bottom: 8px;
+  }
+  #pw-box .pw-title {
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px;
+    color: #E2EAF4; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;
+  }
+  #pw-box .pw-sub {
+    font-size: 11px; color: #566B85; font-family: 'DM Mono', monospace; margin-bottom: 32px;
+  }
+  #pw-box .pw-divider {
+    width: 48px; height: 1px; background: #1E3F5E; margin: 0 auto 32px;
+  }
+  #pw-box .pw-label {
+    font-size: 11px; color: #566B85; text-transform: uppercase;
+    letter-spacing: 0.1em; margin-bottom: 12px;
+  }
+  #pw-input {
+    width: 100%; padding: 13px 16px;
+    background: #0F1825; border: 1px solid #1E3F5E;
+    color: #E2EAF4; font-size: 14px; font-family: 'DM Mono', monospace;
+    outline: none; box-sizing: border-box; border-radius: 6px;
+    transition: border-color 0.2s;
+  }
+  #pw-input:focus { border-color: #3D9EFF; }
+  #pw-input.err { border-color: #EF4444; animation: shake 0.3s ease; }
+  #pw-error { font-size: 11px; color: #EF4444; margin-top: 8px; min-height: 16px; font-family: 'DM Mono', monospace; }
+  #pw-btn {
+    margin-top: 14px; width: 100%; padding: 12px 0;
+    background: #3D9EFF; color: #fff; border: none;
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; cursor: pointer; border-radius: 6px;
+    font-family: 'DM Mono', monospace; transition: background 0.2s;
+  }
+  #pw-btn:hover { background: #5DBBFF; }
+  #pw-credit { font-size: 10px; color: #2A3F55; margin-top: 24px; font-family: 'DM Mono', monospace; }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080D16;
+    --bg2: #0F1825;
+    --bg3: #162033;
+    --border: rgba(255,255,255,0.07);
+    --border-active: rgba(61,158,255,0.35);
+    --accent: #3D9EFF;
+    --accent-dim: rgba(61,158,255,0.12);
+    --green: #22C55E;
+    --green-dim: rgba(34,197,94,0.12);
+    --amber: #F59E0B;
+    --amber-dim: rgba(245,158,11,0.12);
+    --red: #EF4444;
+    --red-dim: rgba(239,68,68,0.12);
+    --text: #E2EAF4;
+    --text-muted: #566B85;
+    --text-dim: #8899AA;
+    --card-radius: 14px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image: linear-gradient(rgba(61,158,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(61,158,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px; pointer-events: none; z-index: 0;
+  }
+  body::after {
+    content: ''; position: fixed; top: -200px; right: -100px; width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(61,158,255,0.06) 0%, transparent 70%); pointer-events: none; z-index: 0;
+  }
+
+  header { position: relative; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; border-bottom: 1px solid var(--border); background: rgba(8,13,22,0.8); backdrop-filter: blur(12px); }
+  .logo-group { display: flex; align-items: center; gap: 14px; }
+  .logo-mark { width: 36px; height: 36px; background: linear-gradient(135deg, var(--accent) 0%, #1A6ED4 100%); border-radius: 9px; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 14px; color: white; box-shadow: 0 0 20px rgba(61,158,255,0.3); }
+  .logo-text { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; }
+  .logo-sub { font-size: 11px; color: var(--text-muted); font-family: 'DM Mono', monospace; margin-top: 1px; }
+  .header-right { display: flex; align-items: center; gap: 16px; }
+  #clock { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--text-muted); }
+  .status-pill { display: flex; align-items: center; gap: 7px; background: var(--green-dim); border: 1px solid rgba(34,197,94,0.25); padding: 6px 14px; border-radius: 20px; font-family: 'DM Mono', monospace; font-size: 11px; cursor: pointer; transition: all 0.3s; user-select: none; }
+  .status-pill.offline { background: var(--red-dim); border-color: rgba(239,68,68,0.25); }
+  .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); transition: background 0.3s; }
+  .status-pill.offline .status-dot { background: var(--red); }
+
+  nav { position: relative; z-index: 10; display: flex; gap: 4px; padding: 16px 32px 0; border-bottom: 1px solid var(--border); background: rgba(8,13,22,0.5); }
+  .tab { padding: 10px 20px; font-size: 13px; font-weight: 500; color: var(--text-muted); cursor: pointer; border-radius: 8px 8px 0 0; border: 1px solid transparent; border-bottom: none; transition: all 0.2s; }
+  .tab:hover { color: var(--text); background: var(--bg3); }
+  .tab.active { color: var(--text); background: var(--bg2); border-color: var(--border); border-bottom-color: var(--bg2); }
+
+  main { position: relative; z-index: 5; padding: 28px 32px; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  .card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 20px; }
+  .card-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+
+  .mission-grid { display: grid; grid-template-columns: 280px 1fr; gap: 20px; }
+  .right-stack { display: flex; flex-direction: column; gap: 20px; }
+
+  .mollie-card { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .mollie-pixel-wrap { display: flex; flex-direction: column; align-items: center; padding: 10px 0 4px; }
+  .mollie-stage { position: relative; width: 90px; height: 140px; display: flex; align-items: flex-end; justify-content: center; overflow: visible; }
+  #mollieCanvas { image-rendering: pixelated; image-rendering: crisp-edges; display: block; filter: drop-shadow(0 0 12px rgba(61,158,255,0.25)); }
+
+  @keyframes mollie-idle-bob { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-3px); } }
+  @keyframes mollie-dance-sway { 0% { transform: translateX(-2px) rotate(-3deg); } 25% { transform: translateX(0) rotate(0); } 50% { transform: translateX(2px) rotate(3deg); } 75% { transform: translateX(0) rotate(0); } 100% { transform: translateX(-2px) rotate(-3deg); } }
+  @keyframes mollie-type-lean { 0%,100% { transform: translateY(1px) scale(0.98); } 50% { transform: translateY(0) scale(1); } }
+  @keyframes mollie-think-tilt { 0%,100% { transform: rotate(-2deg); } 50% { transform: rotate(0); } }
+
+  .state-idle  #mollieCanvas { animation: mollie-idle-bob 2.2s ease-in-out infinite; }
+  .state-dance #mollieCanvas { animation: mollie-dance-sway 0.6s ease-in-out infinite; }
+  .state-type  #mollieCanvas { animation: mollie-type-lean 0.35s ease-in-out infinite; }
+  .state-think #mollieCanvas { animation: mollie-think-tilt 2.5s ease-in-out infinite; }
+
+  .mollie-glow-floor { width: 60px; height: 6px; background: radial-gradient(ellipse, rgba(61,158,255,0.3) 0%, transparent 75%); border-radius: 50%; margin-top: -4px; transition: width 0.5s; }
+  .state-dance .mollie-glow-floor { width: 80px; opacity: 0.8; }
+  .mollie-state-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 6px; opacity: 0.7; min-height: 12px; transition: color 0.3s; }
+  .state-dance .mollie-state-label { color: #FF8CB4; }
+  .state-type  .mollie-state-label { color: var(--accent); }
+  .state-think .mollie-state-label { color: var(--amber); }
+
+  @keyframes pulse-green { 0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.4); } 50% { box-shadow: 0 0 0 5px rgba(34,197,94,0); } }
+  .mollie-status-badge { width: 10px; height: 10px; border-radius: 50%; background: var(--green); border: 2px solid var(--bg2); animation: pulse-green 2s infinite; display: inline-block; }
+  .mollie-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 18px; margin-top: 6px; display: flex; align-items: center; gap: 7px; }
+  .mollie-role { font-size: 11px; color: var(--text-muted); line-height: 1.5; margin-bottom: 14px; }
+  .mollie-meta { width: 100%; border-top: 1px solid var(--border); padding-top: 12px; display: flex; flex-direction: column; gap: 7px; }
+  .meta-row { display: flex; justify-content: space-between; font-size: 12px; }
+  .meta-key { color: var(--text-muted); }
+  .meta-val { font-family: 'DM Mono', monospace; font-size: 11px; }
+  .meta-val.accent { color: var(--accent); }
+  .meta-val.green { color: var(--green); }
+
+  .notes-area { width: 100%; background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 12px; line-height: 1.5; resize: vertical; min-height: 90px; }
+  .notes-area::placeholder { color: var(--text-muted); }
+  .notes-area:focus { outline: none; border-color: var(--border-active); }
+
+  .launchpad-grid { display: flex; flex-direction: column; gap: 8px; }
+  .launch-btn { display: flex; align-items: center; gap: 12px; background: var(--bg3); border: 1px solid var(--border); border-radius: 9px; padding: 11px 14px; text-decoration: none; color: var(--text); font-size: 13px; transition: all 0.2s; }
+  .launch-btn:hover { border-color: var(--border-active); background: rgba(61,158,255,0.05); }
+  .launch-icon { width: 30px; height: 30px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+  .launch-icon.tg   { background: rgba(61,158,255,0.15); }
+  .launch-icon.mail { background: rgba(245,158,11,0.15); }
+  .launch-icon.api  { background: rgba(34,197,94,0.15); }
+  .launch-icon.ntn  { background: rgba(255,255,255,0.08); }
+  .launch-title { font-size: 13px; font-weight: 500; }
+  .launch-sub { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+
+  .activity-list { display: flex; flex-direction: column; gap: 8px; max-height: 240px; overflow-y: auto; }
+  .activity-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; background: var(--bg3); border-radius: 8px; border-left: 3px solid var(--border); font-size: 12px; }
+  .activity-item.green  { border-left-color: var(--green); }
+  .activity-item.accent { border-left-color: var(--accent); }
+  .activity-item.amber  { border-left-color: var(--amber); }
+  .activity-item.red    { border-left-color: var(--red); }
+  .activity-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; background: var(--text-muted); }
+  .activity-item.green  .activity-dot { background: var(--green); }
+  .activity-item.accent .activity-dot { background: var(--accent); }
+  .activity-item.amber  .activity-dot { background: var(--amber); }
+  .activity-item.red    .activity-dot { background: var(--red); }
+  .activity-time { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-muted); flex-shrink: 0; }
+  .activity-text { flex: 1; color: var(--text-dim); }
+
+  .btn-primary { background: var(--accent); color: white; border: none; border-radius: 8px; padding: 9px 18px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+  .btn-primary:hover { background: #5AACFF; }
+  .btn-ghost { background: transparent; color: var(--text-dim); border: 1px solid var(--border); border-radius: 8px; padding: 8px 16px; font-size: 12px; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+  .btn-ghost:hover { border-color: var(--border-active); color: var(--text); }
+
+  .prompt-block { background: var(--bg); border: 1px solid var(--border); border-radius: 9px; padding: 12px 14px 12px 14px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-dim); line-height: 1.7; position: relative; }
+  .copy-btn { position: absolute; top: 8px; right: 8px; background: var(--bg3); border: 1px solid var(--border); color: var(--text-muted); border-radius: 6px; padding: 4px 8px; font-size: 10px; cursor: pointer; font-family: 'DM Mono', monospace; }
+  .copy-btn:hover { color: var(--accent); border-color: var(--border-active); }
+
+  .usage-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .stat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 18px 20px; }
+  .stat-input { background: transparent; border: none; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 26px; color: var(--accent); width: 100%; cursor: pointer; padding: 0; }
+  .stat-input:focus { outline: none; border-bottom: 1px dashed var(--border-active); }
+  .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+  .usage-bar-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-bottom: 8px; }
+  .usage-bar-track { height: 6px; background: var(--bg3); border-radius: 99px; overflow: hidden; margin-bottom: 6px; }
+  .usage-bar-fill { height: 100%; background: var(--accent); border-radius: 99px; transition: width 0.6s ease, background 0.3s; }
+  .model-table { width: 100%; border-collapse: collapse; }
+  .model-table th { text-align: left; font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); padding: 0 0 10px; border-bottom: 1px solid var(--border); }
+  .model-table td { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 12px; vertical-align: middle; }
+  .model-table tr:last-child td { border-bottom: none; }
+  .tbl-input { background: transparent; border: none; color: var(--text); font-size: 12px; font-family: 'DM Mono', monospace; width: 80px; cursor: pointer; }
+  .tbl-input:focus { outline: none; border-bottom: 1px dashed var(--border-active); }
+
+  .kanban-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+  .kanban-board { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .kanban-col { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 14px; min-height: 380px; }
+  .kanban-col-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .kanban-col-title { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .kanban-count { background: var(--bg3); border-radius: 99px; padding: 2px 8px; font-size: 10px; color: var(--text-muted); }
+  .task-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 9px; padding: 10px 12px; margin-bottom: 8px; }
+  .task-title { font-size: 12px; font-weight: 500; margin-bottom: 6px; }
+  .task-meta { display: flex; justify-content: space-between; align-items: center; }
+  .task-type { font-size: 10px; padding: 2px 7px; border-radius: 99px; background: var(--accent-dim); color: var(--accent); }
+  .task-due { font-size: 10px; color: var(--text-muted); font-family: 'DM Mono', monospace; }
+  .task-del { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 16px; padding: 0 2px; line-height: 1; }
+  .task-del:hover { color: var(--red); }
+  .task-move-row { display: flex; gap: 4px; margin-top: 8px; flex-wrap: wrap; }
+  .task-move-btn { background: var(--bg); border: 1px solid var(--border); border-radius: 5px; padding: 2px 7px; font-size: 10px; color: var(--text-muted); cursor: pointer; font-family: 'DM Sans', sans-serif; }
+  .task-move-btn:hover { border-color: var(--border-active); color: var(--accent); }
+
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 100; align-items: center; justify-content: center; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 24px; width: 380px; }
+  .modal-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 16px; }
+  .form-group { margin-bottom: 14px; }
+  .form-label { font-size: 11px; color: var(--text-muted); margin-bottom: 5px; display: block; }
+  .form-input, .form-select { width: 100%; background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px; color: var(--text); font-size: 13px; font-family: 'DM Sans', sans-serif; }
+  .form-input:focus, .form-select:focus { outline: none; border-color: var(--border-active); }
+  .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 18px; }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg2); }
+  ::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 99px; }
+</style>
+</head>
+<body>
+<div id="pw-gate">
+  <div id="pw-box">
+    <div class="pw-eyebrow">DigitsUp Internal</div>
+    <div class="pw-title">Mollie HQ</div>
+    <div class="pw-sub">AI Mission Control</div>
+    <div class="pw-divider"></div>
+    <div class="pw-label">Enter Password</div>
+    <input type="password" id="pw-input" placeholder="••••••••" onkeydown="if(event.key==='Enter')pwCheck()">
+    <div id="pw-error"></div>
+    <button id="pw-btn" onclick="pwCheck()">Unlock</button>
+    <div id="pw-credit">Prepared by DigitsUp</div>
+  </div>
+</div>
+<script>
+  (function(){
+    const HASH = 'b16090794a6d9a19f8868dd6d6f909736ddcba6b7b9c3666da9d3dc3d0d171b3';
+    async function sha256(s){
+      const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+      return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');
+    }
+    window.pwCheck = async function(){
+      const val = document.getElementById('pw-input').value;
+      const hash = await sha256(val);
+      if(hash === HASH){
+        document.getElementById('pw-gate').style.display='none';
+        sessionStorage.setItem('mollie_auth','1');
+      } else {
+        const el = document.getElementById('pw-input');
+        const err = document.getElementById('pw-error');
+        el.classList.add('err');
+        err.textContent = 'Incorrect password';
+        setTimeout(()=>{ el.classList.remove('err'); err.textContent=''; },2000);
+      }
+    };
+    if(sessionStorage.getItem('mollie_auth')==='1'){
+      document.addEventListener('DOMContentLoaded',()=>{
+        const g=document.getElementById('pw-gate');
+        if(g) g.style.display='none';
+      });
+    }
+  })();
+</script>
+
+
+<header>
+  <div class="logo-group">
+    <div class="logo-mark">DU</div>
+    <div>
+      <div class="logo-text">Mollie HQ</div>
+      <div class="logo-sub">DigitsUp · AI Ops Agent Dashboard</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div id="clock"></div>
+    <div class="status-pill" id="statusPill" onclick="toggleStatus()">
+      <div class="status-dot"></div>
+      <span id="statusLabel">Mollie Online</span>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="tab active" onclick="switchTab('mission',this)">🤖 Mission Control</div>
+  <div class="tab" onclick="switchTab('usage',this)">📊 Usage &amp; Costs</div>
+  <div class="tab" onclick="switchTab('tasks',this)">📋 Task Pipeline</div>
+</nav>
+
+<main>
+
+  <!-- MISSION CONTROL -->
+  <div class="panel active" id="panel-mission">
+    <div class="mission-grid">
+      <div style="display:flex;flex-direction:column;gap:16px;">
+
+        <div class="card mollie-card">
+          <div class="card-label">Agent Identity</div>
+          <div class="mollie-pixel-wrap state-idle" id="mollieWrap">
+            <div class="mollie-stage">
+              <canvas id="mollieCanvas" width="80" height="130"></canvas>
+            </div>
+            <div class="mollie-glow-floor"></div>
+            <div class="mollie-state-label" id="stateLabel">Idle</div>
+          </div>
+          <div class="mollie-name">
+            <div class="mollie-status-badge" id="avatarDot"></div>
+            Mollie
+          </div>
+          <div class="mollie-role">AI Operations Agent · DigitsUp<br>Mac mini · OpenClaw · Telegram</div>
+          <div class="mollie-meta">
+            <div class="meta-row"><span class="meta-key">Platform</span><span class="meta-val">OpenClaw</span></div>
+            <div class="meta-row"><span class="meta-key">Channel</span><span class="meta-val accent">Telegram</span></div>
+            <div class="meta-row"><span class="meta-key">Email</span><span class="meta-val">mollie@digitsup.com</span></div>
+            <div class="meta-row"><span class="meta-key">Status</span><span class="meta-val green" id="statusMetaVal">Online</span></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-label">Notes for Mollie</div>
+          <textarea class="notes-area" id="mollieNotes" placeholder="Leave instructions, context, or reminders for your next session..."></textarea>
+          <button class="btn-ghost" style="margin-top:10px;width:100%;font-size:12px;" onclick="saveNotes()">Save Notes</button>
+        </div>
+      </div>
+
+      <div class="right-stack">
+        <div class="card">
+          <div class="card-label">Launch Pad</div>
+          <div class="launchpad-grid">
+            <a href="https://t.me/" target="_blank" class="launch-btn">
+              <div class="launch-icon tg">✈️</div>
+              <div><div class="launch-title">Open Telegram</div><div class="launch-sub">Message Mollie directly</div></div>
+            </a>
+            <a href="mailto:mollie@digitsup.com" class="launch-btn">
+              <div class="launch-icon mail">📧</div>
+              <div><div class="launch-title">Email Mollie</div><div class="launch-sub">mollie@digitsup.com</div></div>
+            </a>
+            <a href="https://console.anthropic.com/" target="_blank" class="launch-btn">
+              <div class="launch-icon api">⚡</div>
+              <div><div class="launch-title">Anthropic Console</div><div class="launch-sub">Usage &amp; API settings</div></div>
+            </a>
+            <a href="https://www.notion.so" target="_blank" class="launch-btn">
+              <div class="launch-icon ntn">📋</div>
+              <div><div class="launch-title">Notion Workspace</div><div class="launch-sub">DigitsUp knowledge base</div></div>
+            </a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-label" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+            Activity Log
+            <button class="btn-ghost" style="padding:4px 10px;font-size:10px;" onclick="document.getElementById('activityModal').classList.add('open')">+ Log Entry</button>
+          </div>
+          <div class="activity-list" id="activityList"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-label">Mollie Prompt</div>
+          <div class="prompt-block">
+            When you complete or start a task, format your status update as:<br>
+            <span style="color:var(--accent)">{"task":"name","status":"scheduled|in_progress|done","type":"report|campaign|admin|client","due":"date","notes":"what you did"}</span><br><br>
+            Send this JSON block at the end of any task update so I can log it in your pipeline.
+            <button class="copy-btn" id="copyBtn" onclick="copyPrompt()">Copy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- USAGE & COSTS -->
+  <div class="panel" id="panel-usage">
+    <div class="usage-grid">
+      <div class="stat-card">
+        <div class="card-label">This Month — Total Spend</div>
+        <input class="stat-input" id="totalSpend" value="$0.00" onclick="this.select()" onblur="saveUsage()">
+        <div class="stat-label">Click to update from console</div>
+      </div>
+      <div class="stat-card">
+        <div class="card-label">Total Tokens Used</div>
+        <input class="stat-input" id="totalTokens" value="0" onclick="this.select()" onblur="saveUsage()">
+        <div class="stat-label">Input + Output combined</div>
+      </div>
+      <div class="stat-card">
+        <div class="card-label">Monthly Budget</div>
+        <input class="stat-input" id="monthlyBudget" value="$50.00" onclick="this.select()" onblur="saveUsage()">
+        <div class="stat-label">Set your monthly limit</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:20px;">
+      <div class="card-label">Budget Usage</div>
+      <div class="usage-bar-label"><span>Spend vs Budget</span><span id="barPct">0%</span></div>
+      <div class="usage-bar-track"><div class="usage-bar-fill" id="usageBarFill" style="width:0%"></div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Model Breakdown</div>
+      <table class="model-table">
+        <thead><tr><th style="width:35%">Model</th><th>% of Spend</th><th>Est. Cost</th><th>Primary Use</th></tr></thead>
+        <tbody>
+          <tr><td>Claude Opus 4</td><td><input class="tbl-input" id="opusPct" value="94.7%" onblur="saveUsage()"></td><td><input class="tbl-input" id="opusCost" value="$0.00" onblur="saveUsage()"></td><td style="color:var(--text-muted);font-size:11px;">Main agent tasks</td></tr>
+          <tr><td>Claude Sonnet</td><td><input class="tbl-input" id="sonnetPct" value="4.7%" onblur="saveUsage()"></td><td><input class="tbl-input" id="sonnetCost" value="$0.00" onblur="saveUsage()"></td><td style="color:var(--text-muted);font-size:11px;">Light tasks</td></tr>
+          <tr><td>Claude Haiku</td><td><input class="tbl-input" id="haikuPct" value="0.6%" onblur="saveUsage()"></td><td><input class="tbl-input" id="haikuCost" value="$0.00" onblur="saveUsage()"></td><td style="color:var(--text-muted);font-size:11px;">Quick lookups</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TASK PIPELINE -->
+  <div class="panel" id="panel-tasks">
+    <div class="kanban-header">
+      <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px;">Task Pipeline</div>
+      <button class="btn-primary" onclick="openTaskModal()">+ New Task</button>
+    </div>
+    <div class="kanban-board" id="kanbanBoard"></div>
+  </div>
+
+</main>
+
+<!-- TASK MODAL -->
+<div class="modal-overlay" id="taskModal">
+  <div class="modal">
+    <div class="modal-title">Add New Task</div>
+    <div class="form-group"><label class="form-label">Task Name</label><input class="form-input" id="taskName" placeholder="e.g. Pull Klaviyo weekly report"></div>
+    <div class="form-group"><label class="form-label">Type</label>
+      <select class="form-select" id="taskType">
+        <option value="report">Report</option><option value="campaign">Campaign</option>
+        <option value="admin">Admin</option><option value="client">Client</option><option value="research">Research</option>
+      </select>
+    </div>
+    <div class="form-group"><label class="form-label">Due Date</label><input class="form-input" id="taskDue" type="date"></div>
+    <div class="form-group"><label class="form-label">Column</label>
+      <select class="form-select" id="taskCol">
+        <option value="scheduled">Scheduled</option><option value="queue">Queue</option>
+        <option value="inprogress">In Progress</option><option value="done">Done</option>
+      </select>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-ghost" onclick="closeTaskModal()">Cancel</button>
+      <button class="btn-primary" onclick="saveTask()">Add Task</button>
+    </div>
+  </div>
+</div>
+
+<!-- ACTIVITY MODAL -->
+<div class="modal-overlay" id="activityModal">
+  <div class="modal">
+    <div class="modal-title">Log Activity</div>
+    <div class="form-group"><label class="form-label">Description</label><input class="form-input" id="activityText" placeholder="e.g. Mollie pulled Klaviyo report"></div>
+    <div class="form-group"><label class="form-label">Status</label>
+      <select class="form-select" id="activityType">
+        <option value="green">Completed</option><option value="accent">In Progress</option>
+        <option value="amber">Flagged</option><option value="red">Error</option>
+      </select>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-ghost" onclick="document.getElementById('activityModal').classList.remove('open')">Cancel</button>
+      <button class="btn-primary" onclick="saveActivityEntry()">Log It</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ==============================
+//  PIXEL CHARACTER ENGINE
+// ==============================
+const canvas = document.getElementById('mollieCanvas');
+const ctx    = canvas.getContext('2d');
+const SCALE  = 5;
+
+const C = {
+  H:  '#18102A', S:  '#F5C4A0', Sd: '#D9956A', Sh: '#E8A878',
+  E:  '#5DBBFF', Ew: '#CCE8FF', P:  '#FF8FBD', B:  '#0A1622',
+  Bm: '#142538', Bl: '#1E3F5E', A:  '#3D9EFF', G:  '#07101C',
+  Gm: '#0C1A2A', Co: '#B8D5F0', W:  '#FFFFFF', Pk: '#D68080',
+  Rl: '#CC3344', Rm: '#EE4455', Gl: '#FFD700', Mka:'#3DAEFF',
+  Hh: '#2A1540', Hp: '#6B3FA0',
+};
+
+function px(x,y,w,h,col){ if(!col)return; ctx.fillStyle=col; ctx.fillRect(x*SCALE,y*SCALE,w*SCALE,h*SCALE); }
+
+function drawMollie(state, frame, blink) {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  // CAT EARS
+  px(2,0,1,1,C.H);
+  px(1,1,1,1,C.H); px(2,1,1,1,C.P);  px(3,1,1,1,C.H);
+  px(1,2,1,1,C.H); px(2,2,2,1,C.P);  px(4,2,1,1,C.H);
+  px(13,0,1,1,C.H);
+  px(11,1,1,1,C.H); px(12,1,1,1,C.H); px(13,1,1,1,C.P); px(14,1,1,1,C.H);
+  px(11,2,1,1,C.H); px(12,2,2,1,C.P); px(14,2,1,1,C.H);
+
+  // HEAD + HAIR
+  px(1,3,14,1,C.H);
+  px(2,3,12,1,C.Hp); // purple highlight band
+  px(1,4,1,4,C.Hh); px(0,5,1,2,C.Hh);   // left wisp
+  px(14,4,1,4,C.Hh); px(15,5,1,2,C.Hh); // right wisp
+
+  // FACE
+  px(2,4,12,1,C.S); px(2,5,12,1,C.S); px(2,6,12,1,C.S);
+
+  // Cat mask band
+  px(1,7,1,1,C.H); px(2,7,12,1,C.H); px(14,7,1,1,C.H);
+
+  // Eyes
+  if(!blink){
+    px(3,7,2,2,C.E); px(11,7,2,2,C.E);
+    px(4,7,1,1,C.Ew); px(12,7,1,1,C.Ew);
+    px(2,6,1,1,C.H); px(13,6,1,1,C.H); // lash flick
+  } else {
+    px(3,8,2,1,C.H); px(11,8,2,1,C.H);
+  }
+
+  px(2,9,12,1,C.S);
+  // Whisker dots
+  px(1,9,1,1,C.Pk); px(2,9,1,1,C.Pk); px(13,9,1,1,C.Pk); px(14,9,1,1,C.Pk);
+  // Nose
+  px(7,9,2,1,C.P);
+
+  px(2,10,12,1,C.S);
+  // Red lips
+  px(5,10,6,1,C.Rm); px(7,10,1,1,C.W);
+  px(5,11,1,1,C.Rl); px(6,11,4,1,C.Rm); px(10,11,1,1,C.Rl);
+  // Blush
+  px(2,11,3,1,C.S); px(11,11,3,1,C.S);
+  px(2,11,2,1,C.Pk); px(12,11,2,1,C.Pk);
+
+  // Chin
+  px(2,12,12,1,C.S); px(1,12,1,1,C.H); px(14,12,1,1,C.H);
+  px(2,13,12,1,C.H); // jaw line
+
+  // NECK + COLLAR
+  px(5,13,1,2,C.H); px(10,13,1,2,C.H); px(6,13,4,2,C.S);
+  px(5,14,6,1,C.Co);
+
+  // TORSO
+  px(1,13,4,2,C.Bm); px(1,13,1,2,C.H);
+  px(11,13,4,2,C.Bm); px(14,13,1,2,C.H);
+  px(1,15,1,6,C.H); px(13,15,1,6,C.H);
+  px(2,15,11,6,C.Bm);
+  px(2,15,1,6,C.Bl); px(11,15,1,6,C.Bl); // highlights
+  px(7,13,2,8,C.A); // accent stripe
+
+  // BELT
+  px(3,21,10,1,C.A); px(7,21,2,1,C.W);
+  px(3,21,1,1,C.H); px(12,21,1,1,C.H);
+
+  // HIPS
+  px(3,22,10,1,C.B); px(3,22,1,1,C.H); px(12,22,1,1,C.H);
+
+  // LEGS
+  px(3,23,1,3,C.H); px(6,23,1,3,C.H); px(4,23,2,3,C.Bm);
+  px(9,23,1,3,C.H); px(12,23,1,3,C.H); px(10,23,2,3,C.Bm);
+
+  // BOOTS
+  px(3,25,4,1,C.G); px(2,26,5,1,C.G); px(2,26,1,1,C.H); px(7,26,1,1,C.H);
+  px(9,25,4,1,C.G); px(9,26,5,1,C.G); px(9,26,1,1,C.H); px(14,26,1,1,C.H);
+
+  drawArms(state, frame);
+}
+
+function drawArms(state, frame) {
+  switch(state){
+    case 'idle':
+    case 'think':
+      px(1,13,1,6,C.H); px(2,13,2,6,C.Bm); px(3,13,1,6,C.B); px(2,19,2,1,C.S);
+      if(state==='think'){
+        px(11,13,2,2,C.Bm); px(11,11,1,4,C.Bm); px(12,10,3,2,C.Bm);
+        px(12,9,3,1,C.H); px(12,10,1,2,C.H); px(14,10,1,2,C.H); px(12,9,3,1,C.S);
+      } else {
+        px(12,13,2,6,C.Bm); px(14,13,1,6,C.H); px(12,19,2,1,C.S);
+      }
+      break;
+    case 'dance': {
+      const even = (frame%2===0);
+      if(even){
+        px(0,14,1,3,C.H); px(0,13,1,4,C.Bm); px(0,14,1,3,C.Bl);
+        px(0,17,4,1,C.H); px(0,15,1,1,C.S);
+        px(12,14,4,3,C.Bm); px(12,14,1,3,C.Gl);
+        px(12,13,4,1,C.H); px(12,17,4,1,C.H); px(15,15,1,1,C.S);
+      } else {
+        px(1,12,1,1,C.H); px(0,13,2,4,C.Bm); px(0,15,1,1,C.S);
+        px(11,12,1,1,C.H); px(12,13,4,4,C.Bm); px(15,15,1,1,C.S);
+      }
+      break;
+    }
+    case 'type':
+      px(1,15,1,5,C.H); px(2,15,2,4,C.Bm); px(2,15,1,4,C.Bl);
+      px(2,19,3,1,C.Bm); px(3,20,3,1,C.Bm); px(2,19,1,1,C.H); px(5,20,1,1,C.H); px(3,21,2,1,C.S);
+      px(14,15,1,5,C.H); px(11,15,2,4,C.Bm); px(12,15,1,4,C.Bl);
+      px(10,19,3,1,C.Bm); px(9,20,3,1,C.Bm); px(14,19,1,1,C.H); px(9,20,1,1,C.H); px(10,21,2,1,C.S);
+      if(frame%2===1){ px(4,22,1,1,C.A); px(7,22,1,1,C.Mka); px(10,22,1,1,C.A); }
+      break;
+  }
+}
+
+// ==============================
+//  ANIMATION STATE MACHINE
+// ==============================
+const STATES          = ['idle','idle','idle','dance','type','think','idle','idle'];
+const STATE_LABELS    = {idle:'Idle',dance:'Celebrating',type:'Working',think:'Thinking'};
+const STATE_DURATIONS = {idle:9000,dance:3200,type:4000,think:2500};
+const FRAME_RATES     = {idle:1000,dance:200,type:280,think:700};
+
+let currentState=  'idle', currentFrame=0, lastFrameTime=0;
+let stateStartTime= Date.now(), stateIndex=0;
+let blinking=false, nextBlink=Date.now()+3000+Math.random()*4000;
+
+const wrap=document.getElementById('mollieWrap'), stateLabel=document.getElementById('stateLabel');
+
+function setState(s){
+  currentState=s; currentFrame=0; stateStartTime=Date.now();
+  wrap.className='mollie-pixel-wrap state-'+s;
+  stateLabel.textContent=STATE_LABELS[s]||s;
+}
+function advanceState(){
+  stateIndex=(stateIndex+1)%STATES.length;
+  if(Math.random()<0.3) stateIndex=Math.floor(Math.random()*STATES.length);
+  setState(STATES[stateIndex]);
+}
+function animate(ts){
+  requestAnimationFrame(animate);
+  const now=Date.now();
+  if(now>=nextBlink&&!blinking){
+    blinking=true;
+    setTimeout(()=>{ blinking=false; nextBlink=Date.now()+3000+Math.random()*5000; },120);
+  }
+  if(ts-lastFrameTime>=(FRAME_RATES[currentState]||600)){ currentFrame++; lastFrameTime=ts; }
+  if(now-stateStartTime>=STATE_DURATIONS[currentState]) advanceState();
+  drawMollie(currentState,currentFrame,blinking);
+}
+setState('idle');
+requestAnimationFrame(animate);
+
+// ==============================
+//  DASHBOARD LOGIC
+// ==============================
+const COLS=[
+  {id:'scheduled', label:'Scheduled',  color:'#8899AA'},
+  {id:'queue',     label:'Queue',      color:'#3D9EFF'},
+  {id:'inprogress',label:'In Progress',color:'#F59E0B'},
+  {id:'done',      label:'Done',       color:'#22C55E'},
+];
+
+let tasks    = JSON.parse(localStorage.getItem('mollie_tasks')    ||'[]');
+let activity = JSON.parse(localStorage.getItem('mollie_activity') ||'[]');
+let isOnline = true;
+
+// Clock
+function updateClock(){
+  document.getElementById('clock').textContent=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+}
+setInterval(updateClock,1000); updateClock();
+
+// Tabs
+function switchTab(id,el){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('panel-'+id).classList.add('active');
+}
+
+// Status
+function toggleStatus(){
+  isOnline=!isOnline;
+  document.getElementById('statusPill').classList.toggle('offline',!isOnline);
+  document.getElementById('statusLabel').textContent=isOnline?'Mollie Online':'Mollie Offline';
+  document.getElementById('statusMetaVal').textContent=isOnline?'Online':'Offline';
+  document.getElementById('statusMetaVal').style.color=isOnline?'var(--green)':'var(--red)';
+  document.getElementById('avatarDot').style.background=isOnline?'var(--green)':'var(--red)';
+}
+
+// Notes
+function saveNotes(){
+  localStorage.setItem('mollie_notes',document.getElementById('mollieNotes').value);
+  const b=document.querySelector('[onclick="saveNotes()"]');
+  b.textContent='Saved'; setTimeout(()=>b.textContent='Save Notes',1500);
+}
+document.getElementById('mollieNotes').value=localStorage.getItem('mollie_notes')||'';
+
+// Prompt copy
+function copyPrompt(){
+  navigator.clipboard.writeText('When you complete or start a task, format your status update as: {"task":"name","status":"scheduled|in_progress|done","type":"report|campaign|admin|client","due":"date","notes":"what you did"}. Send this JSON block at the end of any task update.').then(()=>{
+    document.getElementById('copyBtn').textContent='Copied!';
+    setTimeout(()=>document.getElementById('copyBtn').textContent='Copy',1800);
+  });
+}
+
+// Kanban
+function renderKanban(){
+  document.getElementById('kanbanBoard').innerHTML=COLS.map(col=>{
+    const ct=tasks.filter(t=>t.col===col.id);
+    return`<div class="kanban-col">
+      <div class="kanban-col-header">
+        <div class="kanban-col-title" style="color:${col.color}">${col.label}</div>
+        <div class="kanban-count">${ct.length}</div>
+      </div>
+      ${ct.map(t=>`
+        <div class="task-card">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:6px;">
+            <div class="task-title">${t.name}</div>
+            <button class="task-del" onclick="deleteTask('${t.id}')">×</button>
+          </div>
+          <div class="task-meta">
+            <span class="task-type">${t.type}</span>
+            <span class="task-due">${t.due||''}</span>
+          </div>
+          <div class="task-move-row">
+            ${COLS.filter(c=>c.id!==col.id).map(c=>`<button class="task-move-btn" onclick="moveTask('${t.id}','${c.id}')">${c.label}</button>`).join('')}
+          </div>
+        </div>`).join('')}
+    </div>`;
+  }).join('');
+}
+
+function openTaskModal(){ document.getElementById('taskModal').classList.add('open'); }
+function closeTaskModal(){ document.getElementById('taskModal').classList.remove('open'); }
+
+function saveTask(){
+  const name=document.getElementById('taskName').value.trim();
+  if(!name)return;
+  tasks.push({id:Date.now().toString(),name,type:document.getElementById('taskType').value,due:document.getElementById('taskDue').value,col:document.getElementById('taskCol').value});
+  localStorage.setItem('mollie_tasks',JSON.stringify(tasks));
+  document.getElementById('taskName').value=''; document.getElementById('taskDue').value='';
+  closeTaskModal(); renderKanban();
+}
+
+function deleteTask(id){
+  tasks=tasks.filter(t=>t.id!==id);
+  localStorage.setItem('mollie_tasks',JSON.stringify(tasks)); renderKanban();
+}
+
+function moveTask(id,col){
+  const t=tasks.find(t=>t.id===id);
+  if(t){t.col=col;localStorage.setItem('mollie_tasks',JSON.stringify(tasks));renderKanban();}
+}
+
+// Activity
+function renderActivity(){
+  const el=document.getElementById('activityList');
+  if(!activity.length){el.innerHTML='<div style="color:var(--text-muted);font-size:12px;text-align:center;padding:20px 0;">No activity yet</div>';return;}
+  el.innerHTML=[...activity].reverse().slice(0,20).map(a=>`
+    <div class="activity-item ${a.type}">
+      <div class="activity-dot"></div>
+      <span class="activity-text">${a.text}</span>
+      <span class="activity-time">${a.time}</span>
+    </div>`).join('');
+}
+
+function saveActivityEntry(){
+  const text=document.getElementById('activityText').value.trim();
+  if(!text)return;
+  activity.push({id:Date.now().toString(),text,type:document.getElementById('activityType').value,time:new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})});
+  localStorage.setItem('mollie_activity',JSON.stringify(activity));
+  document.getElementById('activityText').value='';
+  document.getElementById('activityModal').classList.remove('open');
+  renderActivity();
+}
+
+// Usage
+function saveUsage(){
+  const d={totalSpend:document.getElementById('totalSpend').value,totalTokens:document.getElementById('totalTokens').value,monthlyBudget:document.getElementById('monthlyBudget').value,opusPct:document.getElementById('opusPct').value,opusCost:document.getElementById('opusCost').value,sonnetPct:document.getElementById('sonnetPct').value,sonnetCost:document.getElementById('sonnetCost').value,haikuPct:document.getElementById('haikuPct').value,haikuCost:document.getElementById('haikuCost').value};
+  localStorage.setItem('mollie_usage',JSON.stringify(d)); updateUsageBar();
+}
+
+function loadUsage(){
+  const d=JSON.parse(localStorage.getItem('mollie_usage')||'{}');
+  ['totalSpend','totalTokens','monthlyBudget','opusPct','opusCost','sonnetPct','sonnetCost','haikuPct','haikuCost'].forEach(k=>{if(d[k])document.getElementById(k).value=d[k];});
+  updateUsageBar();
+}
+
+function updateUsageBar(){
+  const spend=parseFloat((document.getElementById('totalSpend').value||'0').replace(/[^0-9.]/g,''))||0;
+  const budget=parseFloat((document.getElementById('monthlyBudget').value||'50').replace(/[^0-9.]/g,''))||50;
+  const pct=Math.min(100,Math.round((spend/budget)*100));
+  document.getElementById('usageBarFill').style.width=pct+'%';
+  document.getElementById('barPct').textContent=pct+'%';
+  document.getElementById('usageBarFill').style.background=pct>80?'var(--red)':pct>60?'var(--amber)':'var(--accent)';
+}
+
+renderKanban(); renderActivity(); loadUsage();
+
+document.getElementById('taskModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeTaskModal();});
+document.getElementById('activityModal').addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.classList.remove('open');});
+</script>
+</body>
+</html>
