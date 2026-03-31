@@ -349,6 +349,58 @@ main{padding:18px 24px;max-width:1440px;}
 #pw-btn{margin-top:10px;width:100%;padding:10px;background:var(--accent);color:#fff;border:none;border-radius:6px;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;}
 #pw-btn:hover{opacity:.9;}
 .pw-credit{font-family:var(--mono);font-size:9px;color:var(--b2);margin-top:20px;}
+
+/* ══════════════════════════════
+   MOBILE RESPONSIVE
+   ══════════════════════════════ */
+@media (max-width: 768px) {
+  /* Header */
+  header { padding: 10px 16px; }
+  .h-title { font-size: 12px; }
+
+  /* Nav tabs — horizontal scroll */
+  nav { padding: 0 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; }
+  .tab { padding: 10px 14px; font-size: 9px; }
+
+  /* Main grid — stack vertically */
+  .mc-grid { grid-template-columns: 1fr !important; gap: 12px; }
+
+  /* Avatar section — centered, smaller */
+  #mollieCanvas { width: 80px !important; height: 120px !important; }
+  .avatar-zone { align-items: center; }
+
+  /* Two col grids — stack */
+  .two-col { grid-template-columns: 1fr !important; }
+  .avatar-row { grid-template-columns: 1fr !important; }
+
+  /* Stats row — 2 columns on mobile */
+  .three-col { grid-template-columns: 1fr 1fr !important; }
+
+  /* Padding */
+  .panel { padding: 14px 16px; }
+  .card { padding: 12px 14px; }
+
+  /* Kanban — single column list */
+  .kanban-board { grid-template-columns: 1fr !important; }
+  .k-col { min-height: unset !important; }
+
+  /* Usage strip — 3 cols fine on mobile */
+
+  /* Buttons — full width on mobile */
+  .btn-row { flex-direction: column; }
+
+  /* Hide trivia on mobile to save space */
+  .trivia-card { display: none; }
+
+  /* Modal — full screen on mobile */
+  .modal-inner { width: 95vw !important; max-width: unset !important; }
+}
+
+@media (max-width: 400px) {
+  .logo-chip { display: none; }
+  .h-title { font-size: 11px; }
+}
+
 </style>
 </head>
 <body>
