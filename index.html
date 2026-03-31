@@ -586,22 +586,22 @@ main{padding:18px 24px;max-width:1440px;}
 <div class="card" style="margin-top:12px;padding:14px 16px;">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
     <div style="font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);">Usage — Mar 2026</div>
-    <div style="font-family:var(--mono);font-size:10px;color:var(--accent);">$58.17 <span style="color:var(--text3);font-size:9px;">/ $500</span></div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--accent);">$65.32 <span style="color:var(--text3);font-size:9px;">/ $500</span></div>
   </div>
   <div style="background:var(--bg3);border-radius:4px;height:4px;overflow:hidden;margin-bottom:8px;">
-    <div style="width:11.6%;height:100%;background:var(--accent);border-radius:4px;"></div>
+    <div style="width:13.1%;height:100%;background:var(--accent);border-radius:4px;"></div>
   </div>
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
     <div style="text-align:center;">
-      <div style="font-family:var(--mono);font-size:13px;font-weight:700;color:var(--white);">$52.88</div>
+      <div style="font-family:var(--mono);font-size:13px;font-weight:700;color:var(--white);">$60.26</div>
       <div style="font-family:var(--mono);font-size:8px;color:var(--text3);text-transform:uppercase;margin-top:2px;">Today</div>
     </div>
     <div style="text-align:center;">
-      <div style="font-family:var(--mono);font-size:13px;font-weight:700;color:var(--white);">549</div>
+      <div style="font-family:var(--mono);font-size:13px;font-weight:700;color:var(--white);">547</div>
       <div style="font-family:var(--mono);font-size:8px;color:var(--text3);text-transform:uppercase;margin-top:2px;">Sessions</div>
     </div>
     <div style="text-align:center;">
-      <div style="font-family:var(--mono);font-size:13px;font-weight:700;color:var(--white);">11.6%</div>
+      <div style="font-family:var(--mono);font-size:13px;font-weight:700;color:var(--white);">13.1%</div>
       <div style="font-family:var(--mono);font-size:8px;color:var(--text3);text-transform:uppercase;margin-top:2px;">Budget</div>
     </div>
   </div>
@@ -700,7 +700,7 @@ document.getElementById('pw-input').addEventListener('keydown', function(e){ if(
 
 // ── UTILS ──
 // Version bump — clears stale localStorage
-const HQ_VERSION = '1.3';
+const HQ_VERSION = '1.4';
 if(localStorage.getItem('mhq_version') !== HQ_VERSION){
   ['mollie_tasks','mollie_activity'].forEach(k=>localStorage.removeItem(k));
   localStorage.setItem('mhq_version', HQ_VERSION);
@@ -960,6 +960,8 @@ updateTamaStats();
 let activity=ls('mollie_activity',[]);
 if(!activity.length||!activity[0].time){
   activity=[
+    {text:'Liverpool report v2 in progress — 6-section rebuild with live Klaviyo data',type:'accent',time:'7:51 AM'},
+    {text:'HQ usage updated — $65.32 total, 13.1% of budget',type:'green',time:'7:51 AM'},
     {text:'Mollie HQ v5 deployed — avatar, responsive kanban, Slack connected',type:'green',time:'11:58 PM'},
     {text:'Slack bot live in DigitsUp workspace — #outersignal joined, mention-only mode',type:'green',time:'11:54 PM'},
     {text:'Brand Featured proposal hosted on GitHub, Carlos draft email sent to Mike',type:'green',time:'11:03 PM'},
