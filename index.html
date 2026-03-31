@@ -265,6 +265,7 @@ window.pwCheck=async function(){
   if(h===PH){
     document.getElementById('gate').style.display='none';
     sessionStorage.setItem('mhq','1');
+    startAnimation();
   } else {
     const el=document.getElementById('pw-input');
     document.getElementById('pw-err').textContent='Incorrect password';
@@ -273,7 +274,10 @@ window.pwCheck=async function(){
     setTimeout(()=>{el.classList.remove('err');el.style.animation='';document.getElementById('pw-err').textContent='';},1800);
   }
 };
-if(sessionStorage.getItem('mhq')==='1') document.getElementById('gate').style.display='none';
+if(sessionStorage.getItem('mhq')==='1'){
+  document.getElementById('gate').style.display='none';
+  window.addEventListener('load', startAnimation);
+}
 
 // ── CLOCK ──
 setInterval(()=>{
@@ -400,7 +404,10 @@ function animate(ts){
   draw(cur,frame,blinking);
 }
 setState('idle');
-requestAnimationFrame(animate);
+// animation started after unlock
+function startAnimation(){
+  requestAnimationFrame(animate);
+}
 
 // ── USAGE (reads from embedded live data) ──
 const LIVE={spend:15.39,sessions:241,output:'93,725',model:'Sonnet 4.6',budget:500,synced:'Mar 30, 2026'};
