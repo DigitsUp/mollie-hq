@@ -637,7 +637,7 @@ function pwUnlock(){
   if(v==='Digi420'){
     document.getElementById('pw-gate').style.display='none';
     sessionStorage.setItem('mhq_auth','1');
-    requestAnimationFrame(anim);
+    if(window._mollieAnimReady) requestAnimationFrame(anim);
   } else {
     document.getElementById('pw-err').textContent='Incorrect password';
     document.getElementById('pw-input').style.borderColor='var(--red)';
@@ -652,6 +652,12 @@ if(sessionStorage.getItem('mhq_auth')==='1'){
 }
 
 // ── UTILS ──
+// Version bump — clears stale localStorage
+const HQ_VERSION = '1.1';
+if(localStorage.getItem('mhq_version') !== HQ_VERSION){
+  ['mollie_tasks','mollie_activity'].forEach(k=>localStorage.removeItem(k));
+  localStorage.setItem('mhq_version', HQ_VERSION);
+}
 function ls(k,fb){try{const v=localStorage.getItem(k);return v?JSON.parse(v):fb;}catch(e){return fb;}}
 function lsSet(k,v){localStorage.setItem(k,JSON.stringify(v));}
 function ts(){const d=new Date();return d.toLocaleDateString('en-US',{month:'short',day:'numeric'})+' '+d.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});}
@@ -903,7 +909,7 @@ updateTamaStats();
 
 // ── ACTIVITY LOG ──
 let activity=ls('mollie_activity',[]);
-if(!activity.length){
+if(!activity.length||!activity[0].time){
   activity=[
     {text:'Mollie HQ v5 deployed — avatar, responsive kanban, Slack connected',type:'green',time:'11:58 PM'},
     {text:'Slack bot live in DigitsUp workspace — #outersignal joined, mention-only mode',type:'green',time:'11:54 PM'},
@@ -974,7 +980,7 @@ renderUsage();
 const COLS=[{id:'queued',label:'Queued'},{id:'active',label:'Active'},{id:'review',label:'Review'},{id:'done',label:'Done'}];
 const TAG={normal:'tt-n',high:'tt-h',urgent:'tt-u'};
 let tasks=ls('mollie_tasks',[]);
-if(!tasks.length){
+if(!tasks.length||!tasks[0].client){
   tasks=[
     {id:'1',name:'Liverpool Weekly Report',client:'Liverpool LA',status:'done',priority:'high',due:'2026-03-31'},
     {id:'2',name:'Rho Nutrition — Day 3 Briefs',client:'Outersignal',status:'review',priority:'high',due:'2026-04-01'},
@@ -1111,7 +1117,11 @@ updatePulse();updateTrust();
     drawMollie(cst,cfr,blinking);
   }
   setState('idle');
-  if(sessionStorage.getItem('mhq_auth')==='1') requestAnimationFrame(anim);
+  // anim started by unlock or on DOMContentLoaded if already authed
+  window._mollieAnimReady = true;
+  if(sessionStorage.getItem('mhq_auth')==='1'){
+    requestAnimationFrame(anim);
+  }
 
   // Wire smoke/hype/tip buttons to animation states
   const origSmoke = window.smokeScreen;
