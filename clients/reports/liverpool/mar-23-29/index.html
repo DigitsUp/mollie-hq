@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Liverpool LA — Weekly Performance Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#0D0D0D;--bg2:#141414;--bg3:#1C1C1C;
+  --border:#2A2A2A;--accent:#3D9EFF;
+  --text:#F0EDE8;--muted:#888880;--dim:#555550;
+  --green:#4CAF7D;--red:#E05555;--amber:#E09050;
+}
+body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* GATE */
+#gate{position:fixed;inset:0;z-index:999;background:var(--bg);display:flex;align-items:center;justify-content:center;}
+.gate-inner{text-align:center;max-width:360px;width:100%;padding:0 24px;}
+.gate-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);margin-bottom:8px;}
+.gate-brand{font-size:20px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;}
+.gate-date{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:32px;}
+.gate-div{width:48px;height:1px;background:var(--border);margin:0 auto 32px;}
+.gate-label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;margin-bottom:12px;}
+#pwi{width:100%;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);color:var(--text);font-size:14px;font-family:'IBM Plex Mono',monospace;outline:none;}
+#pwi:focus{border-color:var(--accent);}
+#pwe{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);margin-top:8px;min-height:16px;}
+#pwb{margin-top:16px;width:100%;padding:10px;background:#000;color:#fff;border:none;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;}
+#pwb:hover{background:var(--accent);}
+.gate-credit{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);margin-top:24px;}
+
+.page{max-width:900px;margin:0 auto;padding:40px 24px;}
+
+/* HEADER */
+.report-header{border-bottom:1px solid var(--border);padding-bottom:24px;margin-bottom:32px;}
+.report-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);margin-bottom:6px;}
+.report-title{font-size:28px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;}
+.report-date{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);}
+.report-badges{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap;}
+.badge{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 10px;border-radius:20px;}
+.badge-blue{background:rgba(61,158,255,.12);color:#3D9EFF;}
+.badge-gray{background:var(--bg3);color:var(--muted);}
+.badge-green{background:rgba(76,175,125,.12);color:#4CAF7D;}
+
+/* SECTION */
+.section{margin-bottom:40px;}
+.section-title{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:var(--muted);margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+
+/* STAT CARDS */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:16px;}
+.stat-card{background:var(--bg2);border:1px solid var(--border);padding:14px 16px;}
+.stat-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px;}
+.stat-val{font-size:22px;font-weight:700;margin-bottom:6px;}
+.stat-val.accent{color:var(--accent);}
+.changes{display:flex;flex-direction:column;gap:3px;}
+.ch{font-family:'IBM Plex Mono',monospace;font-size:10px;}
+.ch.up{color:var(--green);}
+.ch.dn{color:var(--red);}
+.ch.nt{color:var(--muted);}
+
+/* METRICS TABLE */
+.mt{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:20px;}
+.mt th{padding:8px 12px;font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--bg3);}
+.mt th:first-child{text-align:left;}
+.mt th:not(:first-child){text-align:right;}
+.mt td{padding:9px 12px;border-bottom:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:11px;}
+.mt td:first-child{text-align:left;font-family:'Montserrat',sans-serif;font-weight:500;font-size:12px;}
+.mt td:not(:first-child){text-align:right;}
+.mt tr:last-child td{border-bottom:none;}
+.mt .wow{font-size:10px;}
+.mt .yoy{font-size:10px;}
+.up{color:var(--green);}
+.dn{color:var(--red);}
+
+/* DATA TABLE */
+.dt{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:16px;}
+.dt th{text-align:left;padding:8px 12px;font-weight:500;font-size:9px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--bg2);}
+.dt td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.dt tr:last-child td{border-bottom:none;}
+.dt tr:hover td{background:rgba(255,255,255,.02);}
+.td-n{font-weight:600;}
+.td-m{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);}
+.td-r{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;color:var(--accent);}
+
+/* COMMENTARY */
+.comm{background:var(--bg2);border:1px solid var(--border);padding:18px 20px;margin-bottom:12px;}
+.comm-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;}
+.comm-title.g{color:var(--green);}
+.comm-title.r{color:var(--red);}
+.comm-title.b{color:var(--accent);}
+.comm ul{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.comm li{font-size:13px;line-height:1.6;padding-left:16px;position:relative;}
+.comm li::before{position:absolute;left:0;}
+.comm.improved li::before{content:'▲';color:var(--green);font-size:9px;}
+.comm.declined li::before{content:'▼';color:var(--red);font-size:9px;}
+.comm.actions li::before{content:'→';color:var(--accent);}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding-top:20px;margin-top:40px;display:flex;justify-content:space-between;align-items:center;}
+.footer-brand{font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.1em;}
+.footer-note{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);}
+
+.sub-title{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:20px 0 10px;}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="gate-inner">
+    <div class="gate-eyebrow">Weekly Performance Report</div>
+    <div class="gate-brand">Liverpool Los Angeles</div>
+    <div class="gate-date">Mar 23 – 29, 2026</div>
+    <div class="gate-div"></div>
+    <div class="gate-label">Enter Password</div>
+    <input type="password" id="pwi" placeholder="••••••••">
+    <div id="pwe"></div>
+    <button id="pwb">Unlock Report</button>
+    <div class="gate-credit">Prepared by DigitsUp</div>
+  </div>
+</div>
+
+<div class="page" id="content" style="display:none;">
+
+  <div class="report-header">
+    <div class="report-eyebrow">Weekly Performance Report</div>
+    <div class="report-title">Liverpool Los Angeles</div>
+    <div class="report-date">Mar 23 – 29, 2026 &nbsp;·&nbsp; Prepared by DigitsUp</div>
+    <div class="report-badges">
+      <span class="badge badge-blue">Email + SMS</span>
+      <span class="badge badge-gray">Klaviyo Live Data</span>
+      <span class="badge badge-green">WoW + YoY</span>
+    </div>
+  </div>
+
+  <!-- S1 -->
+  <div class="section">
+    <div class="section-title">S1 &nbsp;—&nbsp; Revenue Summary</div>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-label">Attributed Revenue</div>
+        <div class="stat-val accent">$78.4K</div>
+        <div class="changes">
+          <span class="ch dn">▼ 8.8% vs last week</span>
+          <span class="ch dn">▼ 16.8% vs same period LY</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Campaign Revenue</div>
+        <div class="stat-val">$30.2K</div>
+        <div class="changes">
+          <span class="ch dn">▼ 22.6% WoW</span>
+          <span class="ch dn">▼ 49.5% YoY</span>
+          <span class="ch nt">38.5% of attributed</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Flow Revenue</div>
+        <div class="stat-val">$48.3K</div>
+        <div class="changes">
+          <span class="ch up">▲ 2.5% WoW</span>
+          <span class="ch up">▲ 39.5% YoY</span>
+          <span class="ch nt">61.5% of attributed</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Email Revenue</div>
+        <div class="stat-val">$71.3K</div>
+        <div class="changes">
+          <span class="ch nt">91.0% of attributed</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">SMS Revenue</div>
+        <div class="stat-val">$7.1K</div>
+        <div class="changes">
+          <span class="ch nt">9.0% of attributed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S2 -->
+  <div class="section">
+    <div class="section-title">S2 &nbsp;—&nbsp; Campaign Performance</div>
+
+    <table class="mt">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>This Week</th>
+          <th>Last Week</th>
+          <th>WoW</th>
+          <th>Same Wk LY</th>
+          <th>YoY</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Recipients — Email</td>
+          <td>633,690</td>
+          <td>946,914</td>
+          <td class="wow dn">▼ 33.1%</td>
+          <td>821,578</td>
+          <td class="yoy dn">▼ 22.9%</td>
+        </tr>
+        <tr>
+          <td>Unique Opens</td>
+          <td>327,583</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Open Rate</td>
+          <td>40.5%</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Unique Clicks — Email</td>
+          <td>11,825</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Conversions — Email</td>
+          <td>130</td>
+          <td>—</td>
+          <td>—</td>
+          <td>148</td>
+          <td class="yoy dn">▼ 12.2%</td>
+        </tr>
+        <tr>
+          <td>Conversion Value — Email</td>
+          <td>$23.1K</td>
+          <td>$30.6K</td>
+          <td class="wow dn">▼ 24.6%</td>
+          <td>$40.7K</td>
+          <td class="yoy dn">▼ 43.2%</td>
+        </tr>
+        <tr>
+          <td>Recipients — SMS</td>
+          <td>81,531</td>
+          <td>123,378</td>
+          <td class="wow dn">▼ 33.9%</td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Conversion Value — SMS</td>
+          <td>$7.1K</td>
+          <td>$8.3K</td>
+          <td class="wow dn">▼ 15.1%</td>
+          <td>$19.0K</td>
+          <td class="yoy dn">▼ 62.6%</td>
+        </tr>
+        <tr>
+          <td>Total Campaign Revenue</td>
+          <td>$30.2K</td>
+          <td>$38.9K</td>
+          <td class="wow dn">▼ 22.6%</td>
+          <td>$59.7K</td>
+          <td class="yoy dn">▼ 49.5%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="sub-title">Top Email Campaigns This Week</div>
+    <table class="dt">
+      <thead><tr><th>Campaign</th><th>Date</th><th>Recipients</th><th>Orders</th><th>Revenue</th></tr></thead>
+      <tbody>
+        <tr><td class="td-n">3/24 Best Tops of the Season</td><td class="td-m">Mar 24</td><td class="td-m">152K</td><td class="td-m">42</td><td class="td-r">$7.9K</td></tr>
+        <tr><td class="td-n">3/28 Getaway Looks</td><td class="td-m">Mar 28</td><td class="td-m">194K</td><td class="td-m">32</td><td class="td-r">$6.3K</td></tr>
+        <tr><td class="td-n">3/26 A Superbloom of Style</td><td class="td-m">Mar 26</td><td class="td-m">238K</td><td class="td-m">34</td><td class="td-r">$6.2K</td></tr>
+        <tr><td class="td-n">3/27 NCO Welcome Offer</td><td class="td-m">Mar 27</td><td class="td-m">48K</td><td class="td-m">21</td><td class="td-r">$2.7K</td></tr>
+        <tr><td class="td-n">3/26 Wholesale: LPLA x Omaha</td><td class="td-m">Mar 26</td><td class="td-m">2K</td><td class="td-m">1</td><td class="td-r">$126</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sub-title">Top SMS Campaigns This Week</div>
+    <table class="dt">
+      <thead><tr><th>Campaign</th><th>Date</th><th>Recipients</th><th>Orders</th><th>Revenue</th></tr></thead>
+      <tbody>
+        <tr><td class="td-n">3/25 Spring Print Edit</td><td class="td-m">Mar 25</td><td class="td-m">54K</td><td class="td-m">16</td><td class="td-r">$2.7K</td></tr>
+        <tr><td class="td-n">3/29 Loyalty Points — Bronze Tier</td><td class="td-m">Mar 29</td><td class="td-m">16K</td><td class="td-m">13</td><td class="td-r">$2.3K</td></tr>
+        <tr><td class="td-n">3/29 Loyalty Double Points — Silver/Gold</td><td class="td-m">Mar 29</td><td class="td-m">2K</td><td class="td-m">5</td><td class="td-r">$1.5K</td></tr>
+        <tr><td class="td-n">3/27 SMS Ad Hoc Plus</td><td class="td-m">Mar 27</td><td class="td-m">5K</td><td class="td-m">3</td><td class="td-r">$416</td></tr>
+        <tr><td class="td-n">3/27 SMS Ad Hoc Petite</td><td class="td-m">Mar 27</td><td class="td-m">5K</td><td class="td-m">2</td><td class="td-r">$183</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- S3 -->
+  <div class="section">
+    <div class="section-title">S3 &nbsp;—&nbsp; Flow Performance</div>
+
+    <table class="mt">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>This Week</th>
+          <th>Last Week</th>
+          <th>WoW</th>
+          <th>Same Wk LY</th>
+          <th>YoY</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Recipients — Email</td>
+          <td>41,342</td>
+          <td>39,645</td>
+          <td class="wow up">▲ 4.3%</td>
+          <td>30,128</td>
+          <td class="yoy up">▲ 37.2%</td>
+        </tr>
+        <tr>
+          <td>Conversions — Email</td>
+          <td>660</td>
+          <td>627</td>
+          <td class="wow up">▲ 5.3%</td>
+          <td>502</td>
+          <td class="yoy up">▲ 31.5%</td>
+        </tr>
+        <tr>
+          <td>Conversion Value — Email</td>
+          <td>$48.3K</td>
+          <td>$47.1K</td>
+          <td class="wow up">▲ 2.5%</td>
+          <td>$34.6K</td>
+          <td class="yoy up">▲ 39.5%</td>
+        </tr>
+        <tr>
+          <td>AOV — Email Flows</td>
+          <td>$73</td>
+          <td>$75</td>
+          <td class="wow dn">▼ 2.7%</td>
+          <td>$69</td>
+          <td class="yoy up">▲ 5.8%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="sub-title">Top Flows This Week</div>
+    <table class="dt">
+      <thead><tr><th>Flow</th><th>Recipients</th><th>Orders</th><th>Revenue</th></tr></thead>
+      <tbody>
+        <tr><td class="td-n">Welcome Series — Email 2026</td><td class="td-m">928</td><td class="td-m">57</td><td class="td-r">$9.1K</td></tr>
+        <tr><td class="td-n">Abandoned Checkout 2025</td><td class="td-m">108</td><td class="td-m">15</td><td class="td-r">$2.7K</td></tr>
+        <tr><td class="td-n">Added2Cart 2025</td><td class="td-m">270</td><td class="td-m">17</td><td class="td-r">$2.6K</td></tr>
+        <tr><td class="td-n">Wonderment — Delivered</td><td class="td-m">1K</td><td class="td-m">27</td><td class="td-r">$1.9K</td></tr>
+        <tr><td class="td-n">Post-Purchase Optimization</td><td class="td-m">519</td><td class="td-m">11</td><td class="td-r">$1.6K</td></tr>
+        <tr><td class="td-n">Order Confirmation — Standard</td><td class="td-m">1K</td><td class="td-m">9</td><td class="td-r">$1.5K</td></tr>
+        <tr><td class="td-n">Browse Abandonment</td><td class="td-m">2K</td><td class="td-m">11</td><td class="td-r">$1.3K</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- S4 -->
+  <div class="section">
+    <div class="section-title">S4 &nbsp;—&nbsp; Analysis & Actions</div>
+
+    <div class="comm improved">
+      <div class="comm-title g">What Improved</div>
+      <ul>
+        <li>Flow revenue up 39.5% YoY — the strongest signal in this report. The lifecycle infrastructure is working. $48.3K from flows vs $34.6K same week last year.</li>
+        <li>Welcome Series Email 2026 is the top-performing flow at $9.1K and 57 orders. New series is clearly outperforming last year's welcome sequence.</li>
+        <li>Flows up 2.5% WoW with more recipients (41K vs 39K). Consistent week over week improvement — not a spike.</li>
+        <li>Loyalty SMS showing strong efficiency — $3.8K combined from two small sends (Bronze, Silver/Gold tiers). Revenue per recipient is well above average campaigns.</li>
+      </ul>
+    </div>
+
+    <div class="comm declined">
+      <div class="comm-title r">What Declined</div>
+      <ul>
+        <li>Campaign revenue down 49.5% YoY ($30.2K vs $59.7K LY). This is the biggest gap and needs context — last year's same week likely had a higher-volume promotional calendar.</li>
+        <li>Total attributed revenue down 16.8% YoY ($78.4K vs $94.3K). Flows are narrowing the gap significantly but campaigns still need to carry more weight.</li>
+        <li>Email campaign send volume down 22.9% YoY (634K vs 822K recipients). Fewer sends = fewer conversions regardless of efficiency.</li>
+        <li>SMS campaign revenue down 62.6% YoY. Last year's SMS performance in this window was significantly higher — worth investigating what campaigns ran same week LY.</li>
+        <li>NCO Welcome Offer conversion rate was low (21 orders from 48K recipients = 0.044%). Strong list size, weak return — offer or audience alignment needs review.</li>
+      </ul>
+    </div>
+
+    <div class="comm actions">
+      <div class="comm-title b">Recommended Actions</div>
+      <ul>
+        <li>Lead with the flow story in tomorrow's call — 39.5% YoY growth is a meaningful win and directly attributable to the work we've done on the lifecycle.</li>
+        <li>Pull last year's campaign calendar for this week and compare send volumes. The YoY campaign gap is almost certainly a volume problem, not an efficiency problem.</li>
+        <li>Review NCO Welcome Offer — 48K recipients with only 21 orders suggests subject line, offer amount, or segment targeting needs adjustment.</li>
+        <li>Loyalty SMS is punching above its weight. Recommend expanding the send window or testing a Gold-tier exclusive send to capitalize on the efficiency signal.</li>
+        <li>Confirm Welcome Series Email 2026 full sequence is active — with 57 orders from email 1 alone, emails 2 and 3 performance should be reviewed for drop-off.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-brand">Liverpool Los Angeles</div>
+    <div class="footer-note">DigitsUp &nbsp;·&nbsp; Mar 23–29, 2026 &nbsp;·&nbsp; Powered by Mollie</div>
+  </footer>
+
+</div>
+
+<script>
+// Simple string comparison — works on file:// and https://
+const PW = 'Liverpool2026';
+
+function unlock(){
+  const v = document.getElementById('pwi').value;
+  if(v === PW){
+    document.getElementById('gate').style.display='none';
+    document.getElementById('content').style.display='block';
+    sessionStorage.setItem('lps_auth','1');
+  } else {
+    document.getElementById('pwe').textContent='Incorrect password';
+    setTimeout(()=>document.getElementById('pwe').textContent='', 2000);
+  }
+}
+
+document.getElementById('pwb').addEventListener('click', unlock);
+document.getElementById('pwi').addEventListener('keydown', e=>{ if(e.key==='Enter') unlock(); });
+
+// Auto-unlock if session is set
+if(sessionStorage.getItem('lps_auth')==='1'){
+  document.getElementById('gate').style.display='none';
+  document.getElementById('content').style.display='block';
+}
+</script>
+</body>
+</html>
