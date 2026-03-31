@@ -689,7 +689,7 @@ function pwUnlock(){
   if(v==='Digi420'){
     document.getElementById('pw-gate').style.display='none';
     sessionStorage.setItem('mhq_auth','1');
-    if(window._mollieAnimReady) requestAnimationFrame(anim);
+    requestAnimationFrame(anim);
   } else {
     document.getElementById('pw-err').textContent='Incorrect password';
     document.getElementById('pw-input').style.borderColor='var(--red)';
@@ -1073,7 +1073,6 @@ updatePulse();updateTrust();
 // ══════════════════════════════════════════
 //  MOLLIE PIXEL ART ENGINE
 // ══════════════════════════════════════════
-(function(){
   const cv = document.getElementById('mollieCanvas');
   if(!cv) return;
   const cx = cv.getContext('2d');
@@ -1170,7 +1169,6 @@ updatePulse();updateTrust();
   }
   setState('idle');
   // anim started by unlock or on DOMContentLoaded if already authed
-  window._mollieAnimReady = true;
   if(sessionStorage.getItem('mhq_auth')==='1'){
     requestAnimationFrame(anim);
   }
@@ -1180,7 +1178,7 @@ updatePulse();updateTrust();
   const origHype = window.hypeWalk;
   window.smokeScreen = function(){if(origSmoke)origSmoke();setState('think');};
   window.hypeWalk = function(){if(origHype)origHype();setState('dance');setTimeout(()=>setState('idle'),3500);};
-})();
+
 
 </script>
 </body>
