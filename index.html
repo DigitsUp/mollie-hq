@@ -65,7 +65,7 @@ main{position:relative;z-index:5;max-width:1100px;margin:0 auto;padding:32px 24p
 .avatar-title{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.08em;}
 .avatar-wrap{position:relative;display:flex;flex-direction:column;align-items:center;}
 #mollieCanvas{image-rendering:pixelated;image-rendering:crisp-edges;filter:drop-shadow(0 0 20px rgba(61,158,255,.3));}
-.avatar-glow{width:120px;height:8px;background:radial-gradient(ellipse,rgba(61,158,255,.35) 0%,transparent 70%);border-radius:50%;margin-top:-4px;}
+.avatar-glow{width:96px;height:8px;background:radial-gradient(ellipse,rgba(61,158,255,.35) 0%,transparent 70%);border-radius:50%;margin-top:-4px;}
 .state-label{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-top:8px;}
 .state-btns{display:flex;gap:6px;margin-top:12px;}
 .sbtn{padding:5px 12px;border-radius:20px;border:1px solid var(--border);background:var(--bg2);color:var(--muted);font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;transition:all .2s;}
@@ -167,7 +167,7 @@ main{position:relative;z-index:5;max-width:1100px;margin:0 auto;padding:32px 24p
   <!-- AVATAR -->
   <div class="avatar-section">
     <div class="avatar-wrap">
-      <canvas id="mollieCanvas" width="120" height="260"></canvas>
+      <canvas id="mollieCanvas" width="96" height="156"></canvas>
       <div class="avatar-glow"></div>
       <div class="state-label" id="stateLabel">Idle</div>
     </div>
@@ -283,166 +283,101 @@ setInterval(()=>{
 // ── PIXEL ART ENGINE ──
 const canvas=document.getElementById('mollieCanvas');
 const ctx=canvas.getContext('2d');
-const SC=3;
+const SC=6;
 function px(x,y,w,h,c){if(!c)return;ctx.fillStyle=c;ctx.fillRect(x*SC,y*SC,w*SC,h*SC);}
 
 const C={
-  // Skin
-  S:'#D4906A',Sd:'#B06040',Sh:'#EAB890',
-  // Hair - dark
-  H:'#1A0A08',Hd:'#300A05',
-  // Halo - gold
-  Go:'#F5C020',Gd:'#D09010',Gh:'#FFE060',Gi:'#FFF0A0',
-  // Cloak - deep teal/blue (DigitsUp)
-  Cl:'#1A6A8A',Cd:'#0F4A64',Ch:'#2f91c3',Cm:'#0A3A50',
-  // Inner robe - gold/cream
-  R:'#E8B830',Rd:'#C09020',Rh:'#F8D860',Ri:'#FFF0C0',
-  // Hands - praying
-  Hd2:'#D4906A',Hs:'#EAB890',
-  // Dark bg behind figure
-  D:'#0A0A0A',Dm:'#151515',
-  // Rays
-  Ra:'#F0C030',Rb:'#FFE050',
-  // White/light
-  W:'#FFFFFF',Wm:'#F0F0F0',
-  // Eyes
-  E:'#2f91c3',Ew:'#D0EEFF',Ed:'#1A6090',
-  // Lips
-  Lp:'#C05050',
+  S:'#E8A87A',Sd:'#C07848',Sh:'#F0C09A',  // skin
+  H:'#1A0808',                              // hair/dark
+  Go:'#F5C020',Gd:'#C89010',Gh:'#FFE878',Gi:'#FFFAAA', // halo gold
+  Cl:'#2f91c3',Cd:'#1A6090',Ch:'#5BBAE0',  // cloak blue
+  R:'#E8C040',Rd:'#C09820',Rh:'#F8E080',Ri:'#FFFAD0',  // robe gold
+  E:'#2f91c3',Ed:'#1A6090',Ew:'#D0EEFF',   // eyes
+  Lp:'#C06060',                             // lips
+  D:'#000000',W:'#FFFFFF',
 };
 
 function draw(state,frame,blink){
   ctx.clearRect(0,0,canvas.width,canvas.height);
 
-  const t = Math.sin(frame*0.15)*0.5; // gentle float
-
-  // ── HALO (golden radiant) ──
-  // Outer rays
-  px(8,0,24,1,C.Go); px(6,1,28,1,C.Go);
-  px(5,1,1,1,C.Gd);  px(33,1,1,1,C.Gd);
-  px(4,2,32,1,C.Go); px(4,2,2,1,C.Gd); px(34,2,2,1,C.Gd);
-  px(3,3,34,1,C.Go);
-  px(3,4,3,1,C.Gd);  px(14,4,12,1,C.Gi); px(34,4,3,1,C.Gd);
-  px(2,5,36,1,C.Go);
-  px(2,5,2,1,C.Gd);  px(36,5,2,1,C.Gd);
-  // Halo ring
-  px(9,2,22,4,C.Go);
-  px(10,1,20,1,C.Go);
-  px(7,3,26,3,C.Gh);
-  px(10,2,20,1,C.Gh);
-  // Halo inner glow
-  px(11,3,18,4,C.Gi);
-  px(12,2,16,1,C.Gi);
+  // ── HALO ──
+  px(3,0,10,1,C.Go);
+  px(2,1,12,1,C.Go); px(3,1,10,1,C.Gh);
+  px(2,2,2,1,C.Go);  px(12,2,2,1,C.Go);
+  px(3,1,1,1,C.Gd);  px(12,1,1,1,C.Gd);
+  // inner shine
+  px(5,0,6,1,C.Gh);  px(6,1,4,1,C.Gi);
 
   // ── HAIR ──
-  px(14,5,12,1,C.H);
-  px(13,6,14,3,C.H);
-  px(14,9,12,1,C.H);
-  // Side hair strands
-  px(13,9,2,3,C.H);   px(25,9,2,3,C.H);
+  px(5,2,6,2,C.H);
+  px(4,3,1,3,C.H);   px(11,3,1,3,C.H);
 
   // ── FACE ──
-  px(15,6,10,6,C.S);
-  px(14,7,12,4,C.S);
-  px(14,6,1,1,C.Sd);  px(25,6,1,1,C.Sd);
-  // Face shading
-  px(14,7,1,4,C.Sd);  px(25,7,1,4,C.Sd);
-  px(15,11,1,1,C.Sd); px(24,11,1,1,C.Sd);
+  px(5,3,6,4,C.S);
+  px(4,4,8,2,C.S);
+  // shading
+  px(4,4,1,2,C.Sd);  px(11,4,1,2,C.Sd);
 
-  // ── EYES ──
+  // EYES
   if(!blink){
-    px(16,8,3,2,C.E);  px(21,8,3,2,C.E);
-    px(16,8,1,1,C.Ed); px(18,8,1,1,C.Ed);
-    px(17,8,1,1,C.Ew); // highlight
-    px(21,8,1,1,C.Ed); px(23,8,1,1,C.Ed);
-    px(22,8,1,1,C.Ew);
-    px(15,7,4,1,C.H);  px(21,7,4,1,C.H); // brows
+    px(5,5,2,1,C.E);   px(9,5,2,1,C.E);
+    px(5,5,1,1,C.Ed);  px(9,5,1,1,C.Ed);
+    px(6,5,1,1,C.Ew);  px(10,5,1,1,C.Ew);
+    px(4,4,3,1,C.H);   px(9,4,3,1,C.H);  // brows
   } else {
-    px(16,9,3,1,C.H);  px(21,9,3,1,C.H);
+    px(5,5,2,1,C.H);   px(9,5,2,1,C.H);
   }
 
-  // ── NOSE ──
-  px(19,10,2,1,C.Sd);
+  // NOSE
+  px(7,6,2,1,C.Sd);
 
-  // ── LIPS ──
-  px(17,11,6,1,C.Lp);
-  px(18,11,4,1,C.S);
-  px(17,11,1,1,C.Sd); px(22,11,1,1,C.Sd);
-
-  // ── CLOAK (flowing, majestic) ──
-  // Left side
-  px(5,8,10,4,C.Cl);
-  px(4,12,11,3,C.Cl);  px(4,12,1,3,C.Cd);
-  px(3,15,12,4,C.Cl);  px(3,15,1,4,C.Cd);
-  px(2,19,12,5,C.Cl);  px(2,19,1,5,C.Cd);
-  px(1,24,12,6,C.Cl);  px(1,24,1,6,C.Cd);
-  px(1,30,11,6,C.Cl);
-  // Right side
-  px(25,8,10,4,C.Cl);
-  px(25,12,11,3,C.Cl); px(35,12,1,3,C.Cd);
-  px(25,15,12,4,C.Cl); px(36,15,1,4,C.Cd);
-  px(26,19,12,5,C.Cl); px(37,19,1,5,C.Cd);
-  px(27,24,12,6,C.Cl); px(38,24,1,6,C.Cd);
-  px(28,30,11,6,C.Cl);
-  // Cloak highlights
-  px(6,10,2,8,C.Ch);   px(32,10,2,8,C.Ch);
-  px(5,15,1,10,C.Ch);  px(34,15,1,10,C.Ch);
-
-  // ── INNER ROBE (golden) ──
-  px(13,12,14,6,C.R);
-  px(12,18,16,5,C.R);
-  px(11,23,18,6,C.R);
-  px(11,29,18,7,C.R);
-  // Robe shading
-  px(13,12,1,6,C.Rd);  px(26,12,1,6,C.Rd);
-  px(14,13,1,4,C.Rh);  // highlight
-  // Robe inner glow
-  px(16,15,8,10,C.Rh);
-  px(17,14,6,2,C.Ri);
+  // MOUTH
+  px(6,7,4,1,C.Lp);
+  px(7,7,2,1,C.S);   // closed, slight smile
 
   // ── NECK ──
-  px(18,12,4,2,C.S);
+  px(7,7,2,2,C.S);
 
-  // ── PRAYING HANDS ──
-  // Left hand
-  px(13,20,4,6,C.S);
-  px(13,20,1,6,C.Sd);
-  px(14,19,3,1,C.S);  // fingers top
-  px(13,19,1,1,C.Sd);
-  px(14,25,3,1,C.Sd);
-  // Right hand
-  px(23,20,4,6,C.S);
-  px(26,20,1,6,C.Sd);
-  px(23,19,3,1,C.S);
-  px(26,19,1,1,C.Sd);
-  px(23,25,3,1,C.Sd);
-  // Hands touching center
-  px(17,20,6,6,C.Hs);
-  px(17,20,1,6,C.Sd); px(22,20,1,6,C.Sd);
-  px(18,19,4,1,C.S);  // fingertip row
-  px(18,25,4,1,C.Sd);
+  // ── CLOAK (blue, wings out like reference) ──
+  // Left wing
+  px(1,8,6,1,C.Cl);
+  px(0,9,7,1,C.Cl);
+  px(0,10,6,2,C.Cl);  px(0,10,1,2,C.Cd);
+  px(0,12,5,2,C.Cl);  px(0,12,1,2,C.Cd);
+  px(0,14,4,3,C.Cl);  px(0,14,1,3,C.Cd);
+  px(1,17,3,3,C.Cl);
+  px(1,20,2,4,C.Cl);
+  // Left cloak highlight
+  px(2,9,1,8,C.Ch);
 
-  // ── GLOW AROUND HANDS ──
-  if(frame%3===0){
-    px(16,18,8,1,C.Rh);
-  } else if(frame%3===1){
-    px(15,18,10,1,C.R);
-  }
+  // Right wing
+  px(9,8,6,1,C.Cl);
+  px(9,9,7,1,C.Cl);
+  px(10,10,6,2,C.Cl); px(15,10,1,2,C.Cd);
+  px(11,12,5,2,C.Cl); px(15,12,1,2,C.Cd);
+  px(12,14,4,3,C.Cl); px(15,14,1,3,C.Cd);
+  px(12,17,3,3,C.Cl);
+  px(13,20,2,4,C.Cl);
+  // Right cloak highlight
+  px(13,9,1,8,C.Ch);
+
+  // ── GOLDEN ROBE (center body) ──
+  px(5,8,6,1,C.R);   // shoulder
+  px(5,9,6,14,C.R);  // body
+  px(4,10,8,12,C.R);
+  px(4,10,1,12,C.Rd); px(11,10,1,12,C.Rd); // sides
+  px(5,9,2,8,C.Rh);  // shine
+  px(6,9,1,4,C.Ri);  // center highlight
+
+  // ── HANDS (praying, centered) ──
+  px(6,15,4,4,C.S);
+  px(6,15,1,4,C.Sd);  px(9,15,1,4,C.Sd);
+  px(7,14,2,1,C.S);   // fingertips
+  // Hands glow
+  if(frame%4<2){ px(5,14,6,1,C.Gh); }
 }
 
-function drawArms(state,frame){ /* handled in draw */ }
-
-// ── ANIMATION ──
-const STATES=['idle','idle','idle','idle','type','think','idle','dance','idle'];
-const LABELS={idle:'Blessing',type:'Working',think:'Meditating',dance:'Ascending'};
-const DURS={idle:9000,type:4000,think:3000,dance:3500};
-const FPS={idle:800,type:250,think:600,dance:180};
-let cur='idle',frame=0,lastF=0,stateStart=Date.now(),idx=0,blinking=false,nextBlink=Date.now()+3000;
-
-function setState(s){
-  cur=s;frame=0;stateStart=Date.now();
-  document.getElementById('stateLabel').textContent=LABELS[s]||s;
-}
+function drawArms(state,frame){}
 function forceState(s,btn){
   setState(s);
   document.querySelectorAll('.sbtn').forEach(b=>b.classList.remove('active'));
