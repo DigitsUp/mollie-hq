@@ -1068,8 +1068,9 @@ updatePulse();updateTrust();
 // ══════════════════════════════════════════
 //  MOLLIE PIXEL ART ENGINE
 // ══════════════════════════════════════════
+function startAvatar(){
   const cv = document.getElementById('mollieCanvas');
-  if(!cv) return;
+  if(!cv||typeof cv.getContext!=='function') return;
   const cx = cv.getContext('2d');
   const Z = 6;
 
@@ -1171,6 +1172,7 @@ updatePulse();updateTrust();
   const origHype = window.hypeWalk;
   window.smokeScreen = function(){if(origSmoke)origSmoke();setState('think');};
   window.hypeWalk = function(){if(origHype)origHype();setState('dance');setTimeout(()=>setState('idle'),3500);};
+} // end startAvatar
 
 
 </script>
