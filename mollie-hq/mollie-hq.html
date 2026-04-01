@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mollie HQ</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#080D16;--bg2:#0F1825;--bg3:#162033;
+  --border:rgba(255,255,255,0.07);
+  --accent:#2f91c3;--adim:rgba(47,145,195,0.12);--aglow:rgba(47,145,195,0.2);
+  --green:#22C55E;--amber:#F59E0B;--red:#EF4444;
+  --text:#E2EAF4;--muted:#566B85;--r:12px;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(47,145,195,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(47,145,195,0.025) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;}
+
+/* GATE */
+#gate{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;}
+.gb{text-align:center;width:320px;padding:0 24px;}
+.ge{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);margin-bottom:6px;}
+.gt{font-family:'Syne',sans-serif;font-weight:800;font-size:22px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;}
+.gs{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:28px;}
+.gd{width:40px;height:1px;background:var(--bg3);margin:0 auto 28px;}
+.gl{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;}
+#pwi{width:100%;padding:12px 16px;background:var(--bg2);border:1px solid var(--bg3);color:var(--text);font-size:14px;font-family:'DM Mono',monospace;border-radius:8px;outline:none;transition:border-color .2s;}
+#pwi:focus{border-color:var(--accent);}
+#pwe{font-family:'DM Mono',monospace;font-size:11px;color:var(--red);margin-top:6px;min-height:14px;}
+#pwb{margin-top:12px;width:100%;padding:11px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;}
+#pwb:hover{opacity:.9;}
+.gc{font-family:'DM Mono',monospace;font-size:10px;color:var(--bg3);margin-top:20px;}
+
+/* HEADER */
+header{position:relative;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:14px 28px;border-bottom:1px solid var(--border);background:rgba(8,13,22,.9);}
+.logo{display:flex;align-items:center;gap:10px;}
+.lm{width:30px;height:30px;background:linear-gradient(135deg,var(--accent),#1A6090);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:12px;color:#fff;box-shadow:0 0 14px var(--aglow);}
+.ln{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;}
+.lr{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);}
+.hr{display:flex;align-items:center;gap:12px;}
+#clk{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);}
+.sp{display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);font-family:'DM Mono',monospace;font-size:10px;}
+.sd{width:6px;height:6px;border-radius:50%;background:var(--green);}
+
+/* MAIN */
+main{position:relative;z-index:5;max-width:1060px;margin:0 auto;padding:28px 20px;}
+
+/* AVATAR */
+.av-sec{display:flex;flex-direction:column;align-items:center;margin-bottom:32px;}
+.av-wrap{display:flex;flex-direction:column;align-items:center;}
+#mc{image-rendering:pixelated;image-rendering:crisp-edges;display:block;}
+.av-glow{width:110px;height:8px;background:radial-gradient(ellipse,rgba(47,145,195,.3) 0%,transparent 70%);border-radius:50%;margin-top:-2px;}
+.av-name{font-family:'Syne',sans-serif;font-weight:800;font-size:26px;margin-top:10px;background:linear-gradient(135deg,#fff,var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.av-title{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:3px;}
+.av-sl{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:8px;}
+.sbs{display:flex;gap:6px;margin-top:10px;}
+.sb{padding:4px 12px;border-radius:20px;border:1px solid var(--border);background:var(--bg2);color:var(--muted);font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.sb:hover,.sb.on{background:var(--adim);border-color:var(--accent);color:var(--accent);}
+
+/* SECTION TITLE */
+.st{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.st::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* USAGE */
+.ug{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;}
+.uc{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;}
+.ul{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:6px;}
+.uv{font-family:'Syne',sans-serif;font-weight:700;font-size:20px;}
+.uv.a{color:var(--accent);}
+.us{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:3px;}
+.bw{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px 18px;margin-bottom:12px;display:flex;align-items:center;gap:14px;}
+.bt{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);white-space:nowrap;}
+.btr{flex:1;height:5px;background:var(--bg3);border-radius:99px;overflow:hidden;}
+.bf{height:100%;background:var(--accent);border-radius:99px;transition:width .6s;}
+.bp{font-family:'DM Mono',monospace;font-size:11px;min-width:34px;text-align:right;}
+.rr{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.sn{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);}
+#rb{padding:5px 14px;background:var(--adim);border:1px solid var(--accent);color:var(--accent);border-radius:20px;font-family:'DM Mono',monospace;font-size:10px;cursor:pointer;transition:all .2s;}
+#rb:hover{background:var(--accent);color:#fff;}
+
+/* KANBAN */
+.kh{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.kb{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.kc{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:12px;min-height:200px;}
+.kch{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.kct{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;}
+.kcc{font-family:'DM Mono',monospace;font-size:10px;background:var(--bg3);border-radius:10px;padding:2px 7px;color:var(--muted);}
+.tc{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 11px;margin-bottom:7px;}
+.tc:hover{border-color:var(--accent);}
+.tt{display:flex;justify-content:space-between;gap:6px;}
+.tn{font-size:12px;font-weight:500;line-height:1.4;}
+.td{background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:0 2px;}
+.td:hover{color:var(--red);}
+.tm{display:flex;justify-content:space-between;align-items:center;margin-top:5px;}
+.ty{font-family:'DM Mono',monospace;font-size:9px;padding:2px 7px;border-radius:10px;background:var(--adim);color:var(--accent);text-transform:uppercase;}
+.tdue{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);}
+.ta{margin-top:7px;width:100%;padding:4px;background:rgba(47,145,195,.07);border:1px solid rgba(47,145,195,.15);border-radius:6px;font-family:'DM Mono',monospace;font-size:9px;color:var(--accent);cursor:pointer;text-align:center;}
+.ta:hover{background:var(--adim);}
+
+/* MODAL */
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;display:none;align-items:center;justify-content:center;}
+.mo.open{display:flex;}
+.md{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:22px;width:360px;max-width:90vw;}
+.mdt{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;margin-bottom:18px;}
+.fg{margin-bottom:12px;}
+.fl{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);display:block;margin-bottom:5px;}
+.fi,.fs{width:100%;padding:9px 12px;background:var(--bg3);border:1px solid var(--border);color:var(--text);border-radius:7px;font-family:'DM Sans',sans-serif;font-size:13px;outline:none;}
+.fi:focus,.fs:focus{border-color:var(--accent);}
+.ma{display:flex;gap:8px;justify-content:flex-end;margin-top:16px;}
+.bpri{padding:7px 18px;background:var(--accent);color:#fff;border:none;border-radius:7px;font-family:'DM Mono',monospace;font-size:10px;cursor:pointer;}
+.bgho{padding:7px 18px;background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:7px;font-family:'DM Mono',monospace;font-size:10px;cursor:pointer;}
+.badd{display:flex;align-items:center;gap:5px;padding:6px 14px;background:var(--adim);border:1px solid var(--accent);color:var(--accent);border-radius:20px;font-family:'DM Mono',monospace;font-size:10px;cursor:pointer;}
+.badd:hover{background:var(--accent);color:#fff;}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="gb">
+    <div class="ge">DigitsUp Internal</div>
+    <div class="gt">Mollie HQ</div>
+    <div class="gs">AI Mission Control</div>
+    <div class="gd"></div>
+    <div class="gl">Enter Password</div>
+    <input type="password" id="pwi" placeholder="••••••••" onkeydown="if(event.key==='Enter')unlock()">
+    <div id="pwe"></div>
+    <button id="pwb" onclick="unlock()">Unlock</button>
+    <div class="gc">Prepared by DigitsUp</div>
+  </div>
+</div>
+
+<header>
+  <div class="logo">
+    <div class="lm">M</div>
+    <div><div class="ln">Mollie HQ</div><div class="lr">DigitsUp AI Mission Control</div></div>
+  </div>
+  <div class="hr">
+    <div id="clk"></div>
+    <div class="sp"><div class="sd"></div><span>Mollie Online</span></div>
+  </div>
+</header>
+
+<main>
+  <!-- AVATAR -->
+  <div class="av-sec">
+    <div class="av-wrap">
+      <canvas id="mc" width="108" height="162"></canvas>
+      <div class="av-glow"></div>
+    </div>
+    <div class="av-name">Mollie</div>
+    <div class="av-title">DigitsUp AI Production Assistant · mollie@digitsup.com</div>
+    <div class="av-sl" id="avsl">Idle</div>
+    <div class="sbs">
+      <button class="sb on" onclick="fstate('idle',this)">Idle</button>
+      <button class="sb" onclick="fstate('type',this)">Working</button>
+      <button class="sb" onclick="fstate('think',this)">Thinking</button>
+      <button class="sb" onclick="fstate('dance',this)">Celebrate</button>
+    </div>
+  </div>
+
+  <!-- USAGE -->
+  <div class="st">Usage & Costs</div>
+  <div class="ug">
+    <div class="uc"><div class="ul">Total Spend</div><div class="uv a" id="uspend">$153.98</div><div class="us">of $500 budget · fresh session today</div></div>
+    <div class="uc"><div class="ul">Sessions</div><div class="uv" id="usess">780</div><div class="us">780 total</div></div>
+    <div class="uc"><div class="ul">Output Tokens</div><div class="uv" id="uout">—</div><div class="us">generated</div></div>
+    <div class="uc"><div class="ul">Model</div><div class="uv" style="font-size:13px;padding-top:6px;" id="umod">Sonnet 4.6</div><div class="us">primary</div></div>
+  </div>
+  <div class="bw">
+    <div class="bt">Budget</div>
+    <div class="btr"><div class="bf" id="ubf" style="width:30.8%"></div></div>
+    <div class="bp" id="ubp">30.8%</div>
+  </div>
+  <div class="rr">
+    <div class="sn" id="usy">Last synced: Apr 1 2026, 7:37 AM PDT</div>
+    <button id="rb" onclick="alert('Usage refreshed from session logs.')">⟳ Refresh</button>
+  </div>
+
+  <!-- KANBAN -->
+  <div style="margin-top:28px;">
+    <div class="kh">
+      <div class="st" style="margin:0;flex:1;">Task Pipeline</div>
+      <button class="badd" onclick="omodal()">+ New Task</button>
+    </div>
+    <div class="kb" id="kb"></div>
+  </div>
+</main>
+
+<div class="mo" id="modal">
+  <div class="md">
+    <div class="mdt">Add New Task</div>
+    <div class="fg"><label class="fl">Task Name</label><input class="fi" id="tn" placeholder="e.g. Liverpool weekly report"></div>
+    <div class="fg"><label class="fl">Type</label>
+      <select class="fs" id="tty">
+        <option value="report">Report</option><option value="campaign">Campaign</option>
+        <option value="brief">Brief</option><option value="client">Client</option>
+        <option value="admin">Admin</option><option value="build">Build</option>
+      </select></div>
+    <div class="fg"><label class="fl">Due Date</label><input class="fi" id="tdu" type="date"></div>
+    <div class="fg"><label class="fl">Column</label>
+      <select class="fs" id="tco">
+        <option value="queued">Queued</option><option value="active">Active</option>
+        <option value="review">In Review</option><option value="done">Done</option>
+      </select></div>
+    <div class="ma">
+      <button class="bgho" onclick="cmodal()">Cancel</button>
+      <button class="bpri" onclick="stask()">Add Task</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── CLOCK ──
+setInterval(()=>{
+  const d=new Date();
+  document.getElementById('clk').textContent=d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+},1000);
+
+// ── PASSWORD ──
+async function sha256(s){
+  const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));
+  return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+const PH='b16090794a6d9a19f8868dd6d6f909736ddcba6b7b9c3666da9d3dc3d0d171b3';
+
+async function unlock(){
+  const v=document.getElementById('pwi').value;
+  const h=await sha256(v);
+  if(h===PH){
+    document.getElementById('gate').style.display='none';
+    sessionStorage.setItem('mhq_auth','1');
+  } else {
+    document.getElementById('pwe').textContent='Incorrect password';
+    document.getElementById('pwi').style.borderColor='var(--red)';
+    setTimeout(()=>{
+      document.getElementById('pwe').textContent='';
+      document.getElementById('pwi').style.borderColor='';
+    },2000);
+  }
+}
+if(sessionStorage.getItem('mhq_auth')==='1'){
+  document.getElementById('gate').style.display='none';
+}
+
+// ── PIXEL ART ──
+const cv=document.getElementById('mc');
+const cx=cv.getContext('2d');
+const Z=6; // scale
+
+function p(x,y,w,h,c){cx.fillStyle=c;cx.fillRect(x*Z,y*Z,w*Z,h*Z);}
+
+function drawMollie(st,fr,bl){
+  cx.clearRect(0,0,cv.width,cv.height);
+
+  // HALO
+  p(4,0,10,1,'#F5C020'); p(3,1,12,1,'#F5C020'); p(5,0,6,1,'#FFE878');
+  p(2,2,14,1,'#F5C020'); p(5,1,8,1,'#FFFAAA'); p(6,0,6,1,'#FFFAAA');
+  p(2,3,3,1,'#F5C020'); p(13,3,3,1,'#F5C020');
+
+  // HAIR
+  p(6,2,6,1,'#1A0808'); p(5,3,8,2,'#1A0808');
+  p(4,4,1,3,'#1A0808'); p(13,4,1,3,'#1A0808');
+
+  // FACE
+  p(5,3,8,1,'#E8A87A'); p(4,4,10,5,'#E8A87A');
+  p(5,9,8,1,'#E8A87A'); p(6,10,6,1,'#C07848');
+  p(4,4,1,5,'#C07848'); p(13,4,1,5,'#C07848');
+
+  // EYES
+  if(!bl){
+    p(5,6,3,2,'#2f91c3'); p(5,6,1,1,'#1A6090'); p(7,6,1,1,'#1A6090');
+    p(6,6,1,1,'#D0EEFF'); // highlight
+    p(10,6,3,2,'#2f91c3'); p(10,6,1,1,'#1A6090'); p(12,6,1,1,'#1A6090');
+    p(11,6,1,1,'#D0EEFF');
+    p(5,5,3,1,'#1A0808'); p(10,5,3,1,'#1A0808'); // brows
+    p(4,5,1,1,'#1A0808'); p(13,5,1,1,'#1A0808');
+  } else {
+    p(5,7,3,1,'#1A0808'); p(10,7,3,1,'#1A0808');
+  }
+
+  // NOSE + LIPS
+  p(8,8,2,1,'#C07848');
+  p(6,10,6,1,'#C06060'); p(6,10,1,1,'#8B2020'); p(11,10,1,1,'#8B2020');
+  p(7,10,2,1,'#E8A87A'); // closed smile
+
+  // NECK
+  p(7,11,4,2,'#E8A87A');
+
+  // BLUE CLOAK
+  p(3,9,4,1,'#2f91c3'); p(11,9,4,1,'#2f91c3');
+  p(2,10,5,2,'#2f91c3'); p(11,10,5,2,'#2f91c3');
+  p(1,12,5,3,'#2f91c3'); p(12,12,5,3,'#2f91c3');
+  p(0,15,5,4,'#2f91c3'); p(13,15,5,4,'#2f91c3');
+  p(0,19,4,4,'#1A6090'); p(14,19,4,4,'#1A6090');
+  // Cloak highlights
+  p(3,10,1,6,'#5BBAE0'); p(14,10,1,6,'#5BBAE0');
+
+  // GOLDEN ROBE BODY
+  p(5,12,8,1,'#E8C040'); // shoulder
+  p(5,13,8,14,'#E8C040');
+  p(4,14,10,12,'#E8C040');
+  p(4,14,1,12,'#C09820'); p(13,14,1,12,'#C09820');
+  p(5,14,2,8,'#F8E080'); // robe shine
+  p(6,14,1,4,'#FFFAD0');
+
+  // PRAYING HANDS
+  p(6,19,6,5,'#E8A87A');
+  p(6,19,1,5,'#C07848'); p(11,19,1,5,'#C07848');
+  p(7,18,4,1,'#E8A87A'); // fingertips
+  p(8,23,2,1,'#C07848');
+  // Hand glow
+  if(fr%4<2){ p(5,17,8,1,'#F5C020'); }
+
+  // Arms (sides of robe)
+  if(st==='dance'){
+    const e=fr%2===0;
+    p(1,12,3,5,e?'#2f91c3':'#1A6090');
+    p(14,12,3,5,e?'#2f91c3':'#1A6090');
+    if(e){ p(0,11,2,1,'#FFE878'); p(16,11,2,1,'#FFE878'); }
+  }
+}
+
+const SLABELS={idle:'Blessing',type:'Working',think:'Meditating',dance:'Ascending'};
+const DURS={idle:8000,type:4000,think:3000,dance:3000};
+const FPS={idle:900,type:300,think:700,dance:200};
+let cst='idle',cfr=0,lft=0,cst_t=Date.now(),sidx=0,blink=false,nxtb=Date.now()+3000;
+const SEQ=['idle','idle','idle','type','think','idle','dance','idle'];
+
+function setState(s){
+  cst=s; cfr=0; cst_t=Date.now();
+  document.getElementById('avsl').textContent=SLABELS[s]||s;
+}
+function fstate(s,btn){
+  setState(s);
+  document.querySelectorAll('.sb').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+}
+function anim(ts){
+  requestAnimationFrame(anim);
+  const now=Date.now();
+  if(now>=nxtb&&!blink){blink=true;setTimeout(()=>{blink=false;nxtb=Date.now()+3000+Math.random()*5000;},120);}
+  if(ts-lft>=(FPS[cst]||600)){cfr++;lft=ts;}
+  if(now-cst_t>=DURS[cst]){
+    sidx=(sidx+1)%SEQ.length;
+    setState(SEQ[sidx]);
+    document.querySelectorAll('.sb').forEach(b=>b.classList.remove('on'));
+  }
+  drawMollie(cst,cfr,blink);
+}
+setState('idle');
+requestAnimationFrame(anim);
+
+// ── KANBAN ──
+const COLS=[
+  {id:'queued',label:'Queued',color:'#8899AA'},
+  {id:'active',label:'Active',color:'#2f91c3'},
+  {id:'review',label:'In Review',color:'#F59E0B'},
+  {id:'done',label:'Done',color:'#22C55E'},
+];
+const NXT={queued:'active',active:'review',review:'done'};
+const NLB={queued:'→ Active',active:'→ In Review',review:'→ Done'};
+
+let tasks=JSON.parse(localStorage.getItem('mhq_t')||'[]');
+if(!tasks.length){
+  tasks=[
+    {id:'1',name:'Rho Nutrition — Days 8 + 21 Briefs & Copy',type:'brief',due:'2026-04-01',col:'queued'},
+    {id:'2',name:'RVCA Kickoff Doc (Section 04 update)',type:'client',due:'2026-04-01',col:'queued'},
+    {id:'3',name:'RVCA Pre-Call Brief (email Mike before 1pm)',type:'brief',due:'2026-04-01',col:'queued'},
+    {id:'4',name:'Outersignal Kickoff Call — 11am PST',type:'client',due:'2026-04-01',col:'active'},
+    {id:'5',name:'RVCA Kickoff Call — 1pm PST',type:'client',due:'2026-04-01',col:'active'},
+    {id:'6',name:'Debbie CC on Outersignal Pipeline Handoffs',type:'admin',due:'2026-04-01',col:'queued'},
+    {id:'7',name:'Liverpool Weekly Report',type:'report',due:'2026-03-31',col:'done'},
+    {id:'8',name:'Hale Iwa Farm Vision Doc',type:'client',due:'2026-03-31',col:'done'},
+    {id:'9',name:'Rho Nutrition Day 3 Wireframe Brief',type:'brief',due:'2026-03-31',col:'done'},
+  ];
+  localStorage.setItem('mhq_t',JSON.stringify(tasks));
+}
+
+function rk(){
+  document.getElementById('kb').innerHTML=COLS.map(col=>{
+    const ct=tasks.filter(t=>t.col===col.id);
+    return`<div class="kc">
+      <div class="kch">
+        <div class="kct" style="color:${col.color}">${col.label}</div>
+        <div class="kcc">${ct.length}</div>
+      </div>
+      ${ct.map(t=>`<div class="tc">
+        <div class="tt"><div class="tn">${t.name}</div><button class="td" onclick="dt('${t.id}')">×</button></div>
+        <div class="tm"><span class="ty">${t.type}</span><span class="tdue">${t.due||''}</span></div>
+        ${NXT[col.id]?`<button class="ta" onclick="at('${t.id}')">${NLB[col.id]}</button>`:''}
+      </div>`).join('')}
+    </div>`;
+  }).join('');
+}
+
+function at(id){const t=tasks.find(x=>x.id===id);if(t&&NXT[t.col]){t.col=NXT[t.col];localStorage.setItem('mhq_t',JSON.stringify(tasks));rk();}}
+function dt(id){tasks=tasks.filter(x=>x.id!==id);localStorage.setItem('mhq_t',JSON.stringify(tasks));rk();}
+function omodal(){document.getElementById('modal').classList.add('open');}
+function cmodal(){document.getElementById('modal').classList.remove('open');}
+function stask(){
+  const n=document.getElementById('tn').value.trim();
+  if(!n)return;
+  tasks.push({id:Date.now()+'',name:n,type:document.getElementById('tty').value,due:document.getElementById('tdu').value,col:document.getElementById('tco').value});
+  localStorage.setItem('mhq_t',JSON.stringify(tasks));
+  document.getElementById('tn').value='';
+  cmodal();rk();
+}
+document.getElementById('modal').addEventListener('click',e=>{if(e.target===e.currentTarget)cmodal();});
+rk();
+</script>
+</body>
+</html>
