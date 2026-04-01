@@ -1,0 +1,3474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RVCA × DigitsUp — 2026 Retention Program</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Barlow:wght@300;400;500&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+<style>
+
+/* ── BASE RESET ─────────────────────────────────── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:100%; height:100%; overflow:hidden; background:#070d18; }
+
+/* ── SPLASH ─────────────────────────────────────── */
+#splash {
+  position:fixed; inset:0; z-index:100;
+  background:#070d18; overflow:hidden;
+  transition: opacity 0.55s ease, visibility 0.55s ease;
+}
+#splash.gone { opacity:0; visibility:hidden; pointer-events:none; }
+
+#shore { position:absolute; inset:0; width:100%; height:100%; display:block; }
+
+.splash-ui {
+  position:absolute; inset:0; z-index:2;
+  display:grid; grid-template-rows:auto 1fr auto;
+  padding:40px 64px 44px;
+  font-family:'Barlow', sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.splash-header { display:flex; justify-content:space-between; align-items:flex-start; }
+.splash-wordmark {
+  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-size:13px; letter-spacing:0.24em; text-transform:uppercase; color:#fff;
+  opacity:0; animation:fadeUp 1s ease 0.3s both;
+}
+.splash-date {
+  font-family:'Space Mono',monospace; font-size:9px; letter-spacing:0.1em;
+  text-transform:uppercase; color:rgba(255,255,255,0.35);
+  text-align:right; line-height:1.9;
+  opacity:0; animation:fadeUp 1s ease 0.4s both;
+}
+.splash-hero {
+  display:flex; flex-direction:column;
+  justify-content:center; align-items:center; text-align:center;
+  margin-top:-8%;
+}
+.splash-eyebrow {
+  font-family:'Space Mono',monospace; font-size:9px; letter-spacing:0.18em;
+  text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:18px;
+  opacity:0; animation:fadeUp 1s ease 0.65s both;
+}
+.splash-title {
+  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-size:clamp(72px,11vw,140px); line-height:0.88;
+  letter-spacing:-0.01em; text-transform:uppercase; color:#fff; margin-bottom:24px;
+  opacity:0; animation:fadeUp 1s ease 0.75s both;
+}
+.splash-title em {
+  display:block; font-style:italic; font-weight:300; font-size:0.38em;
+  letter-spacing:0.06em; color:rgba(255,255,255,0.45); text-transform:none; margin-top:8px;
+}
+.splash-sub {
+  font-size:15px; font-weight:300; color:rgba(255,255,255,0.42);
+  line-height:1.72; max-width:620px;
+  opacity:0; animation:fadeUp 1s ease 0.95s both;
+}
+.splash-tiles {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.06);
+  opacity:0; animation:fadeUp 1s ease 1.1s both;
+}
+.splash-tile {
+  background:rgba(8,18,35,0.65); backdrop-filter:blur(8px);
+  padding:26px 24px 22px; cursor:pointer; text-decoration:none;
+  display:flex; flex-direction:column; gap:9px; position:relative;
+  transition:background 0.25s;
+}
+.splash-tile::after {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:2px;
+  background:#fff; transform:scaleX(0); transform-origin:left; transition:transform 0.28s ease;
+}
+.splash-tile:hover { background:rgba(18,38,68,0.75); }
+.splash-tile:hover::after { transform:scaleX(1); }
+.splash-tile-num { font-family:'Space Mono',monospace; font-size:9px; letter-spacing:0.14em; color:rgba(255,255,255,0.25); }
+.splash-tile-title { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:19px; letter-spacing:0.05em; text-transform:uppercase; color:#fff; line-height:1.1; flex:1; }
+.splash-tile-desc { font-size:11px; font-weight:300; color:rgba(255,255,255,0.38); line-height:1.55; }
+.splash-tile-arrow { font-size:11px; color:rgba(255,255,255,0.18); align-self:flex-end; transition:color 0.2s, transform 0.2s; font-family:'Space Mono',monospace; }
+.splash-tile:hover .splash-tile-arrow { color:#fff; transform:translateX(3px); }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── PROPOSAL ───────────────────────────────────── */
+#proposal {
+  display:none; position:fixed; inset:0; z-index:50;
+  overflow-y:auto; overflow-x:hidden;
+  background:#ffffff;
+  font-family:'Barlow',sans-serif;
+  -webkit-font-smoothing:antialiased;
+  color:#111111;
+}
+#proposal.visible { display:block; }
+
+.prop-nav {
+  position:sticky; top:0; z-index:200;
+  background:#111111; display:flex; overflow-x:auto; scrollbar-width:none;
+}
+.prop-nav::-webkit-scrollbar { display:none; }
+.prop-nav-btn {
+  flex-shrink:0; background:none; border:none;
+  border-right:1px solid rgba(255,255,255,0.08);
+  color:rgba(255,255,255,0.5);
+  font-family:'Space Mono',monospace; font-size:9px;
+  letter-spacing:0.12em; text-transform:uppercase;
+  padding:18px 28px; cursor:pointer; transition:all 0.15s; white-space:nowrap;
+}
+.prop-nav-btn:hover { color:#fff; background:rgba(255,255,255,0.06); }
+.prop-nav-btn.active { color:#fff; border-bottom:2px solid #fff; }
+.prop-nav-btn.home-btn { color:rgba(255,255,255,0.3); border-right:1px solid rgba(255,255,255,0.15); }
+.prop-nav-btn.home-btn:hover { color:#fff; }
+
+.prop-section { display:none; background:#ffffff; }
+.prop-section.active { display:block; }
+
+/* ── PROPOSAL CONTENT (from proposal file) ──────── */
+
+  :root {
+    color-scheme: light only;
+    --white: #ffffff;
+    --off: #f8f8f7;
+    --black: #111111;
+    --mid: #444444;
+    --light: #888888;
+    --rule: #e0e0e0;
+    --accent: #111111;
+    --tag-bg: #111111;
+    --tag-text: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light only;
+    forced-color-adjust: none;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Force light mode — override OS dark mode ── */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --white: #ffffff;
+      --off: #f8f8f7;
+      --black: #111111;
+      --mid: #444444;
+      --light: #888888;
+      --rule: #e0e0e0;
+    }
+    html, body {
+      background: #ffffff !important;
+      color: #111111 !important;
+    }
+    .cover { background: #ffffff !important; }
+    .tab-nav { background: #111111 !important; }
+    .tab-btn { color: #888888 !important; }
+    .tab-btn.active { color: #ffffff !important; background: #111111 !important; }
+    .tab-btn:hover { color: #ffffff !important; background: #333333 !important; }
+    .section { background: #ffffff !important; }
+    .page { background: #ffffff !important; }
+    .cover-h1 { color: #111111 !important; }
+    .cover-h1 .rule-line { color: #444444 !important; }
+    .cover-eyebrow { color: #888888 !important; }
+    .cover-desc { color: #444444 !important; border-top-color: #e0e0e0 !important; }
+    .cover-wordmark { color: #111111 !important; }
+    .cover-meta-top { color: #888888 !important; }
+    .cover-bottom { border-top-color: #e0e0e0 !important; }
+    .cover-bottom-left { color: #888888 !important; }
+    .cover-tag { background: #111111 !important; color: #ffffff !important; }
+    .section-index { color: #888888 !important; }
+    .section-index::after { background: #e0e0e0 !important; }
+    .section-title { color: #111111 !important; }
+    .section-intro { color: #444444 !important; border-bottom-color: #e0e0e0 !important; }
+    .h2 { color: #111111 !important; border-bottom-color: #e0e0e0 !important; }
+    p { color: #444444 !important; }
+    p strong { color: #111111 !important; }
+    li { color: #444444 !important; }
+    li strong { color: #111111 !important; }
+    th { background: #111111 !important; color: #ffffff !important; }
+    td { color: #444444 !important; border-bottom-color: #e0e0e0 !important; }
+    td strong { color: #111111 !important; }
+    tr:nth-child(even) td { background: #f8f8f7 !important; }
+    .tl-date { background: #111111 !important; color: #ffffff !important; }
+    .tl-body { background: #f8f8f7 !important; color: #444444 !important; }
+    .tl-body strong { color: #111111 !important; }
+    .callout { border-color: #111111 !important; }
+    .callout-label { background: #111111 !important; color: #ffffff !important; }
+    .callout p { color: #444444 !important; }
+    .callout p strong { color: #111111 !important; }
+    .alert { background: #f8f8f7 !important; border-left-color: #111111 !important; }
+    .alert-body { color: #444444 !important; }
+    .alert-body strong { color: #111111 !important; }
+    .flow-grid { background: #e0e0e0 !important; border-color: #e0e0e0 !important; }
+    .flow-card { background: #ffffff !important; }
+    .flow-name { color: #111111 !important; }
+    .flow-desc { color: #444444 !important; }
+    .pricing-card { background: #ffffff !important; border-color: #e0e0e0 !important; }
+    .pricing-card.featured { background: #111111 !important; }
+    .pricing-tier { color: #111111 !important; }
+    .pricing-card.featured .pricing-tier { color: #ffffff !important; }
+    .pricing-sub { color: #888888 !important; }
+    .audit-label { background: #f8f8f7 !important; color: #888888 !important; }
+    .audit-value { background: #ffffff !important; color: #444444 !important; }
+    .doc-footer { background: #111111 !important; color: rgba(255,255,255,0.35) !important; }
+    .tier-item { border-bottom-color: #e0e0e0 !important; }
+    .tier-num { color: #888888 !important; }
+    .tier-body { color: #444444 !important; }
+    .tier-body strong { color: #111111 !important; }
+    /* Strategy tab */
+    .strat-intro-bar { background: #0d1b2e !important; }
+    .strat-heading { color: #ffffff !important; }
+    .strat-eyebrow { color: rgba(255,255,255,0.35) !important; }
+    .strat-body { color: rgba(255,255,255,0.72) !important; }
+    .flow-block { border-bottom-color: #e0e0e0 !important; background: #ffffff !important; }
+    .flow-header-title { color: #111111 !important; }
+    .flow-num { color: #888888 !important; }
+    .flow-email-count { color: #888888 !important; }
+    .flow-chevron { color: #888888 !important; }
+    .trigger-bar { background: #f8f8f7 !important; }
+    .trigger-item { color: #444444 !important; }
+    .trigger-item span { color: #111111 !important; }
+    .lane-grid { background: #e0e0e0 !important; }
+    .lane-col { background: #ffffff !important; }
+    .lane-head { border-bottom-color: #e0e0e0 !important; }
+    .lane-label { color: #111111 !important; }
+    .lane-sublabel { color: #888888 !important; }
+    .email-row { border-bottom-color: #e0e0e0 !important; }
+    .email-timing { color: #888888 !important; }
+    .email-subj { color: #111111 !important; }
+    .email-desc { color: #444444 !important; }
+    .email-tag { color: #888888 !important; border-color: #e0e0e0 !important; }
+    .email-tag.offer { color: #111111 !important; border-color: #111111 !important; }
+    .cat-tab { background: #f8f8f7 !important; color: #888888 !important; border-color: #e0e0e0 !important; }
+    .cat-tab.active { background: #111111 !important; color: #ffffff !important; }
+    .phase-label { background: #111111 !important; color: #ffffff !important; }
+    .phase-rule { background: #e0e0e0 !important; }
+    .phase-timing { color: #888888 !important; }
+    .popup-step { background: #ffffff !important; }
+    .popup-step-num { color: #888888 !important; }
+    .popup-step-title { color: #111111 !important; }
+    .world-opt { background: #f8f8f7 !important; border-color: #e0e0e0 !important; color: #444444 !important; }
+    .world-opt.selected { background: #111111 !important; color: #ffffff !important; }
+    .handoff-cell { background: #ffffff !important; }
+    .handoff-flow { color: #111111 !important; }
+    .handoff-suppress { color: #444444 !important; }
+    .handoff-suppress strong { color: #111111 !important; }
+    .offer-matrix th { background: #111111 !important; color: #ffffff !important; }
+    .offer-matrix td { color: #444444 !important; border-bottom-color: #e0e0e0 !important; }
+    .offer-matrix td:first-child { color: #111111 !important; }
+    .om-never { color: #888888 !important; }
+    .om-offer { color: #111111 !important; }
+  }
+
+  /* ─── COVER ───────────────────────── */
+  .cover {
+    height: 100vh;
+    min-height: 600px;
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 48px 64px;
+    border-bottom: 1px solid var(--black);
+    position: relative;
+    overflow: hidden;
+  }
+
+
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .cover-wordmark {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--black);
+  }
+
+  .cover-meta-top {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--light);
+    letter-spacing: 0.05em;
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  .cover-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 0 40px;
+  }
+
+  .cover-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 24px;
+  }
+
+  .cover-h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: clamp(88px, 14vw, 168px);
+    line-height: 0.88;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 32px;
+  }
+
+  .cover-h1 .rule-line {
+    display: block;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(30px, 5vw, 56px);
+    letter-spacing: 0.04em;
+    color: var(--mid);
+    line-height: 1.2;
+    text-transform: none;
+    margin: 8px 0;
+  }
+
+  .cover-desc {
+    max-width: 560px;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--mid);
+    line-height: 1.75;
+    border-top: 1px solid var(--rule);
+    padding-top: 24px;
+  }
+
+  .cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .cover-bottom-left {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--light);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .cover-tag {
+    display: inline-block;
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+  }
+
+  /* ─── TAB NAV ─────────────────────── */
+  .tab-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--black);
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tab-nav::-webkit-scrollbar { display: none; }
+
+  .tab-btn {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    border-right: 1px solid var(--rule);
+    color: var(--light);
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 18px 28px;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { color: var(--black); background: var(--off); }
+  .tab-btn.active {
+    color: var(--white);
+    background: var(--black);
+    border-right-color: var(--black);
+  }
+
+  /* ─── SECTIONS ────────────────────── */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 80px 48px 100px;
+  }
+
+  /* ─── TYPOGRAPHY ──────────────────── */
+  .section-index {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-index::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: clamp(52px, 8vw, 96px);
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 40px;
+  }
+
+  .section-intro {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.78;
+    color: var(--mid);
+    max-width: 640px;
+    margin-bottom: 64px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin: 56px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .h3 {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--black);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin: 28px 0 10px;
+  }
+
+  p { color: var(--mid); line-height: 1.72; margin-bottom: 18px; font-weight: 300; }
+  p strong { color: var(--black); font-weight: 500; }
+  ul, ol { padding-left: 18px; margin-bottom: 18px; color: var(--mid); line-height: 1.75; font-weight: 300; }
+  li { margin-bottom: 6px; }
+  li strong { color: var(--black); font-weight: 500; }
+
+  /* ─── CALLOUT ─────────────────────── */
+  .callout {
+    border: 1px solid var(--black);
+    padding: 32px 36px;
+    margin: 40px 0;
+    position: relative;
+  }
+  .callout-label {
+    position: absolute;
+    top: -1px; left: -1px;
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+  }
+  .callout p { font-size: 14px; margin: 0; font-weight: 300; color: var(--mid); }
+  .callout p strong { color: var(--black); }
+
+  /* ─── ALERT ───────────────────────── */
+  .alert {
+    background: var(--off);
+    border-left: 3px solid var(--black);
+    padding: 22px 26px;
+    margin: 28px 0;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+  }
+  .alert-icon { font-size: 18px; flex-shrink: 0; }
+  .alert-body { font-size: 14px; line-height: 1.65; color: var(--mid); font-weight: 300; }
+  .alert-body strong { color: var(--black); font-weight: 600; display: block; margin-bottom: 5px;
+    font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* ─── PILL STATUS ─────────────────── */
+  .pill {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid;
+  }
+  .pill-pause  { color: #111; border-color: #111; background: #fff; }
+  .pill-keep   { color: #2a7a4a; border-color: #2a7a4a; background: #f0f8f4; }
+  .pill-rebuild{ color: #7a5a00; border-color: #c9960a; background: #fffbf0; }
+  .pill-new    { color: #1a3eaa; border-color: #1a3eaa; background: #f0f4ff; }
+
+  /* ─── FLOW GRID ───────────────────── */
+  .flow-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin: 24px 0;
+  }
+  @media (max-width: 600px) { .flow-grid { grid-template-columns: 1fr; } }
+  .flow-card {
+    background: var(--white);
+    padding: 24px 26px;
+  }
+  .flow-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+  .flow-desc {
+    font-size: 13px;
+    color: var(--mid);
+    line-height: 1.62;
+    margin-bottom: 14px;
+    font-weight: 300;
+  }
+
+  /* ─── TABLE ───────────────────────── */
+  table { width: 100%; border-collapse: collapse; margin: 28px 0; }
+  th {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 12px 18px;
+    text-align: left;
+    font-weight: 400;
+  }
+  td {
+    padding: 13px 18px;
+    border-bottom: 1px solid var(--rule);
+    color: var(--mid);
+    font-size: 13.5px;
+    vertical-align: top;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+  td strong { color: var(--black); font-weight: 500; }
+  tr:last-child td { border-bottom: none; }
+
+  /* ─── TIMELINE ────────────────────── */
+  .timeline { margin: 32px 0; }
+  .tl-item {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 0;
+    margin-bottom: 1px;
+  }
+  .tl-date {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 18px 16px;
+    display: flex;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+  .tl-body {
+    background: var(--off);
+    padding: 18px 24px;
+    font-size: 13.5px;
+    color: var(--mid);
+    font-weight: 300;
+    line-height: 1.65;
+  }
+  .tl-body strong { color: var(--black); font-weight: 600; display: block; margin-bottom: 4px; font-size: 13px; }
+
+  /* ─── PRICING ─────────────────────── */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin: 40px 0;
+  }
+  @media (max-width: 600px) { .pricing-grid { grid-template-columns: 1fr; } }
+
+  .pricing-card {
+    background: var(--white);
+    padding: 40px 36px;
+    position: relative;
+  }
+  .pricing-card.featured {
+    background: var(--black);
+  }
+  .pricing-badge {
+    display: inline-block;
+    background: var(--white);
+    color: var(--black);
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    margin-bottom: 20px;
+  }
+  .pricing-tier {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 34px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.05;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+  .pricing-card.featured .pricing-tier { color: var(--white); }
+  .pricing-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 28px;
+  }
+  .pricing-card.featured .pricing-sub { color: rgba(255,255,255,0.4); }
+  .pricing-rule {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 24px 0;
+  }
+  .pricing-card.featured .pricing-rule { border-color: rgba(255,255,255,0.12); }
+  .pricing-list { list-style: none; padding: 0; }
+  .pricing-list li {
+    padding: 8px 0;
+    font-size: 13.5px;
+    font-weight: 300;
+    color: var(--mid);
+    display: flex;
+    gap: 12px;
+    border-bottom: 1px solid var(--rule);
+    line-height: 1.5;
+  }
+  .pricing-card.featured .pricing-list li { color: rgba(255,255,255,0.65); border-color: rgba(255,255,255,0.08); }
+  .pricing-list li:last-child { border-bottom: none; }
+  .pricing-list li::before {
+    content: '+';
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--light);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .pricing-card.featured .pricing-list li::before { color: rgba(255,255,255,0.3); }
+  .pricing-rate {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--light);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+  }
+  .pricing-card.featured .pricing-rate { color: rgba(255,255,255,0.35); border-color: rgba(255,255,255,0.12); }
+
+  /* ─── AUDIT FIELDS ────────────────── */
+  .audit-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 0;
+    margin-bottom: 1px;
+    background: var(--rule);
+  }
+  .audit-label {
+    background: var(--off);
+    padding: 16px 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    line-height: 1.5;
+  }
+  .audit-value {
+    background: var(--white);
+    padding: 16px 20px;
+    font-size: 13.5px;
+    color: var(--mid);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+  .audit-placeholder { color: #bbb; font-style: italic; font-size: 13px; }
+
+  /* ─── CHECKLIST TIERS ─────────────── */
+  .tier-list { margin: 20px 0; }
+  .tier-item {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: flex-start;
+  }
+  .tier-item:last-child { border-bottom: none; }
+  .tier-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--light);
+    min-width: 24px;
+    padding-top: 2px;
+  }
+  .tier-body { font-size: 14px; font-weight: 300; color: var(--mid); line-height: 1.65; }
+  .tier-body strong { color: var(--black); font-weight: 500; }
+
+  /* ─── FOOTER ──────────────────────── */
+  .doc-footer {
+    background: var(--black);
+    color: rgba(255,255,255,0.35);
+    padding: 28px 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ─── ANIMATION ───────────────────── */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .section.active .page > * {
+    animation: fadeIn 0.35s ease both;
+  }
+  .section.active .page > *:nth-child(1) { animation-delay: 0.02s; }
+  .section.active .page > *:nth-child(2) { animation-delay: 0.06s; }
+  .section.active .page > *:nth-child(3) { animation-delay: 0.10s; }
+  .section.active .page > *:nth-child(4) { animation-delay: 0.14s; }
+  .section.active .page > *:nth-child(5) { animation-delay: 0.18s; }
+  .section.active .page > *:nth-child(6) { animation-delay: 0.22s; }
+
+
+
+/* ── PASSWORD SCREEN ────────────────────────────── */
+#password-screen {
+  position:fixed; inset:0; z-index:1000;
+  background:#070d18;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  font-family:'Barlow',sans-serif;
+  -webkit-font-smoothing:antialiased;
+  transition:opacity 0.5s ease, visibility 0.5s ease;
+}
+#password-screen.gone {
+  opacity:0; visibility:hidden; pointer-events:none;
+}
+.pw-wordmark {
+  position:absolute; top:48px; left:64px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:800; font-size:13px;
+  letter-spacing:0.24em; text-transform:uppercase; color:#ffffff;
+}
+.pw-box {
+  display:flex; flex-direction:column;
+  align-items:center; text-align:center; gap:0;
+  opacity:0; animation:fadeUp 0.8s ease 0.3s both;
+}
+.pw-eyebrow {
+  font-family:'Space Mono',monospace; font-size:9px;
+  letter-spacing:0.18em; text-transform:uppercase;
+  color:rgba(255,255,255,0.3); margin-bottom:20px;
+}
+.pw-title {
+  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-size:clamp(48px,7vw,88px); line-height:0.9;
+  letter-spacing:-0.01em; text-transform:uppercase;
+  color:#ffffff; margin-bottom:8px;
+}
+.pw-title em {
+  display:block; font-style:italic; font-weight:300;
+  font-size:0.42em; letter-spacing:0.06em;
+  color:rgba(255,255,255,0.4); text-transform:none; margin-top:6px;
+}
+.pw-divider {
+  width:40px; height:1px; background:rgba(255,255,255,0.15);
+  margin:32px auto;
+}
+.pw-field-wrap {
+  display:flex; flex-direction:column;
+  align-items:center; gap:12px; width:280px;
+}
+.pw-label {
+  font-family:'Space Mono',monospace; font-size:9px;
+  letter-spacing:0.14em; text-transform:uppercase;
+  color:rgba(255,255,255,0.3); align-self:flex-start;
+}
+.pw-input {
+  width:100%; background:transparent;
+  border:none; border-bottom:1px solid rgba(255,255,255,0.2);
+  color:#ffffff; font-family:'Space Mono',monospace;
+  font-size:15px; letter-spacing:0.12em;
+  padding:10px 0; outline:none;
+  transition:border-color 0.2s;
+  text-align:center; text-transform:uppercase;
+}
+.pw-input::placeholder { color:rgba(255,255,255,0.15); letter-spacing:0.12em; }
+.pw-input:focus { border-bottom-color:rgba(255,255,255,0.6); }
+.pw-btn {
+  width:100%; margin-top:8px;
+  background:#ffffff; color:#111111;
+  border:none; cursor:pointer;
+  font-family:'Barlow Condensed',sans-serif; font-weight:700;
+  font-size:14px; letter-spacing:0.16em; text-transform:uppercase;
+  padding:14px 0; transition:background 0.2s, color 0.2s;
+}
+.pw-btn:hover { background:rgba(255,255,255,0.85); }
+.pw-error {
+  font-family:'Space Mono',monospace; font-size:9px;
+  letter-spacing:0.1em; text-transform:uppercase;
+  color:rgba(255,80,80,0.8); height:16px; margin-top:4px;
+  transition:opacity 0.2s;
+}
+.pw-error.hidden { opacity:0; }
+
+
+/* Force pricing section to render correctly in dark mode */
+@media (prefers-color-scheme: dark) {
+  #sec-pricing { background:#ffffff !important; color:#111111 !important; }
+  #sec-pricing .section-title { color:#111111 !important; }
+  #sec-pricing .section-intro { color:#444444 !important; }
+  #sec-pricing .h2 { color:#111111 !important; border-bottom-color:#e0e0e0 !important; }
+  #sec-pricing p { color:#444444 !important; }
+  #sec-pricing .tier-list .tier-body { color:#444444 !important; }
+  #sec-pricing .tier-list .tier-num { color:#888888 !important; }
+  #sec-pricing .tier-item { border-bottom-color:#e0e0e0 !important; }
+  #sec-pricing table th { background:#111111 !important; color:#ffffff !important; }
+  #sec-pricing table td { color:#444444 !important; border-bottom-color:#e0e0e0 !important; }
+  #sec-pricing table td strong { color:#111111 !important; }
+  #sec-pricing .callout { border-color:#111111 !important; background:#ffffff !important; }
+  #sec-pricing .callout-label { background:#111111 !important; color:#ffffff !important; }
+  #sec-pricing .callout p { color:#444444 !important; }
+  /* Tier cards */
+  #sec-pricing [style*="background:var(--white)"],
+  #sec-pricing [style*="background: var(--white)"] { background:#ffffff !important; }
+  #sec-pricing [style*="background:var(--off)"],
+  #sec-pricing [style*="background: var(--off)"] { background:#f8f8f7 !important; }
+  #sec-pricing [style*="color:var(--black)"] { color:#111111 !important; }
+  #sec-pricing [style*="color:var(--mid)"] { color:#444444 !important; }
+  #sec-pricing [style*="color:var(--light)"] { color:#888888 !important; }
+  /* Tier 01 and Tier 03 text */
+  #sec-pricing [style*="color:var(--mid);display:flex"] { color:#444444 !important; }
+}
+
+
+
+
+/* ── MOBILE ─────────────────────────────────────── */
+@media (max-width: 640px) {
+
+  /* Splash — fix overflow */
+  #splash { overflow: hidden; }
+
+  .splash-ui {
+    padding: 28px 24px 24px;
+    overflow: hidden;
+  }
+
+  .splash-hero {
+    margin-top: 0;
+    padding: 0 4px;
+  }
+
+  .splash-eyebrow {
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  .splash-title {
+    font-size: clamp(54px, 18vw, 80px);
+    margin-bottom: 16px;
+  }
+
+  .splash-sub {
+    font-size: 13px;
+    max-width: 100%;
+    line-height: 1.65;
+    padding: 0 8px;
+  }
+
+  /* Tiles — 2x2 grid, no overflow */
+  .splash-tiles {
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .splash-tile {
+    padding: 18px 14px 14px;
+    min-width: 0;
+  }
+
+  .splash-tile-title {
+    font-size: 15px;
+  }
+
+  .splash-tile-desc {
+    font-size: 10px;
+    line-height: 1.45;
+  }
+
+  .splash-date { display: none; }
+
+  /* Proposal nav */
+  .prop-nav { flex-wrap: nowrap; overflow-x: auto; }
+  .prop-nav-btn { padding: 14px 14px; font-size: 8px; letter-spacing: 0.08em; }
+
+  /* Proposal content */
+  .page { padding: 40px 20px 60px; }
+  .section-title { font-size: clamp(40px, 12vw, 64px); }
+  .h2 { font-size: 17px; }
+
+  /* Tables scroll horizontally */
+  table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; }
+  table td, table th { white-space: normal; min-width: 100px; }
+
+  /* Stack grids */
+  .flow-grid,
+  .lane-grid,
+  .audit-row,
+  .handoff-grid,
+  .popup-grid,
+  .pricing-grid { grid-template-columns: 1fr !important; }
+
+  /* Timeline */
+  .tl-item { grid-template-columns: 64px 1fr; }
+  .tl-date { font-size: 8px; padding: 12px 8px; }
+
+  /* Strat page */
+  .strat-intro-bar { padding: 40px 20px; }
+  .strat-page { padding: 0 20px 60px; }
+  .strat-heading { font-size: clamp(38px, 12vw, 56px); }
+
+  /* Cat tabs */
+  .cat-tab { font-size: 8px; padding: 10px 4px; letter-spacing: 0.05em; }
+
+  /* Pricing investment block — unstack the price column */
+  #sec-pricing [style*="220px"] { width: 100% !important; min-width: 0 !important; }
+
+  /* Seg legend wrap */
+  .seg-legend { gap: 6px; }
+  .seg-pill { font-size: 8px; padding: 4px 8px; }
+
+  /* Flow header */
+  .flow-email-count { display: none; }
+}
+
+
+/* ── MOBILE ─────────────────────────────────── */
+@media (max-width: 700px) {
+
+  /* SPLASH */
+  .splash-ui { padding: 28px 24px 24px; }
+  .splash-hero { margin-top: 0; }
+  .splash-eyebrow { font-size: 8px; letter-spacing: 0.1em; margin-bottom: 12px; }
+  .splash-title { font-size: 18vw; margin-bottom: 16px; }
+  .splash-title em { font-size: 6vw; }
+  .splash-sub { font-size: 13px; max-width: 100%; line-height: 1.6; }
+  .splash-date { display: none; }
+  .splash-wordmark { font-size: 11px; }
+
+  /* Tiles — 2 columns */
+  .splash-tiles { grid-template-columns: 1fr 1fr; }
+  .splash-tile { padding: 18px 16px 16px; gap: 7px; }
+  .splash-tile-title { font-size: 15px; }
+  .splash-tile-desc { display: none; }
+  .splash-tile-arrow { display: none; }
+
+  /* PROPOSAL NAV */
+  .prop-nav-btn { padding: 14px 14px; font-size: 8px; letter-spacing: 0.07em; }
+
+  /* PROPOSAL CONTENT */
+  .page { padding: 40px 20px 60px; }
+  .section-title { font-size: 13vw; }
+  .section-intro { font-size: 15px; margin-bottom: 40px; padding-bottom: 28px; }
+  .h2 { font-size: 17px; margin: 40px 0 14px; }
+
+  /* Stack grids */
+  .flow-grid { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .lane-grid { grid-template-columns: 1fr; }
+  .popup-grid { grid-template-columns: 1fr; }
+  .handoff-grid { grid-template-columns: 1fr; }
+
+  /* Audit rows */
+  .audit-row { grid-template-columns: 1fr; }
+  .audit-label { border-bottom: none; padding-bottom: 4px; }
+
+  /* Timeline */
+  .tl-item { grid-template-columns: 64px 1fr; }
+  .tl-date { font-size: 8px; padding: 12px 8px; }
+  .tl-body { padding: 12px 16px; font-size: 13px; }
+
+  /* Tables scroll */
+  table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; font-size: 12px; }
+
+  /* Strategy tab */
+  .strat-intro-bar { padding: 40px 20px 40px; }
+  .strat-heading { font-size: 13vw; }
+  .strat-body { font-size: 15px; }
+  .strat-page { padding: 0 20px 60px; }
+  .flow-header { padding: 16px 0; }
+  .flow-header-title { font-size: 16px; }
+  .flow-email-count { display: none; }
+  .trigger-bar { flex-direction: column; gap: 8px; padding: 14px 14px; }
+  .cat-tabs { overflow-x: auto; }
+  .cat-tab { font-size: 8px; padding: 10px 8px; white-space: nowrap; flex-shrink: 0; }
+  .lane-emails { padding: 10px 12px; }
+  .email-subj { font-size: 12px; }
+  .email-desc { font-size: 11px; }
+
+  /* Seg legend */
+  .seg-legend { flex-direction: column; gap: 8px; }
+
+  /* Pricing investment block — unstack the side price box */
+  .pricing-investment-row { grid-template-columns: 1fr !important; }
+
+  /* Tier list */
+  .tier-list .tier-item { padding: 12px 0; gap: 12px; }
+  .tier-body { font-size: 13px; }
+
+  /* Callout */
+  .callout { padding: 24px 20px; }
+
+  /* Phase header */
+  .phase-header { gap: 10px; }
+  .phase-timing { display: none; }
+
+}
+
+
+@media (max-width: 700px) {
+  .pricing-investment-row {
+    grid-template-columns: 1fr !important;
+  }
+  .pricing-investment-row > div:last-child {
+    border-left: none !important;
+    border-top: 1px solid #e0e0e0;
+  }
+}
+
+/* ── SECTION HERO BARS ─────────────────────────── */
+.section-hero {
+  background: #0d1b2e;
+  padding: 64px 64px 56px;
+}
+.section-hero .section-index {
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-hero .section-index::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.1);
+}
+.section-hero .section-title {
+  color: #ffffff !important;
+  margin-bottom: 28px;
+}
+.section-hero .section-intro {
+  color: rgba(255,255,255,0.75) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.12) !important;
+  padding-bottom: 36px;
+  margin-bottom: 0;
+  max-width: 640px;
+}
+.section-hero .section-index {
+  color: rgba(255,255,255,0.35) !important;
+}
+.section-hero .section-index::after {
+  background: rgba(255,255,255,0.12) !important;
+}
+@media (max-width: 700px) {
+  .section-hero { padding: 40px 20px 40px; }
+}
+
+
+/* Pricing hero — must beat dark mode overrides */
+#sec-pricing .section-hero { background: #0d1b2e !important; }
+#sec-pricing .section-hero .section-title { color: #ffffff !important; }
+#sec-pricing .section-hero .section-intro { color: rgba(255,255,255,0.75) !important; border-bottom-color: rgba(255,255,255,0.12) !important; }
+#sec-pricing .section-hero .section-index { color: rgba(255,255,255,0.35) !important; }
+
+</style>
+</head>
+<body>
+
+<!-- ════════ PASSWORD ════════ -->
+<div id="password-screen">
+  <div class="pw-wordmark">DigitsUp Agency</div>
+  <div class="pw-box">
+    <div class="pw-eyebrow">Confidential &mdash; Enter Access Code</div>
+    <div class="pw-title">RVCA<em>&times; DigitsUp</em></div>
+    <div class="pw-divider"></div>
+    <div class="pw-field-wrap">
+      <div class="pw-label">Password</div>
+      <input
+        class="pw-input" id="pw-input" type="password"
+        placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
+        autocomplete="off"
+        onkeydown="if(event.key==='Enter')checkPassword()"
+      />
+      <div class="pw-error hidden" id="pw-error">Incorrect password</div>
+      <button class="pw-btn" onclick="checkPassword()">Enter</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════ SPLASH ════════ -->
+<div id="splash">
+  <canvas id="shore"></canvas>
+  <div class="splash-ui">
+    <div class="splash-header">
+      <div class="splash-wordmark">DigitsUp Agency</div>
+      <div class="splash-date">Prepared for RVCA<br/>March 2026<br/>Confidential</div>
+    </div>
+    <div class="splash-hero">
+      <div class="splash-eyebrow">Klaviyo Retention Program &mdash; 6-Month Proposal</div>
+      <div class="splash-title">RVCA<em>&times; DigitsUp</em></div>
+      <div class="splash-sub">A full account audit, flow architecture, campaign strategy, and 6-month roadmap &mdash; built to move Klaviyo from 8% to 25%+ of total store revenue.</div>
+    </div>
+    <div class="splash-tiles">
+      <a class="splash-tile" href="#" onclick="goTo('audit');return false;">
+        <div class="splash-tile-num">01</div>
+        <div class="splash-tile-title">Account<br/>Audit</div>
+        <div class="splash-tile-desc">Full Klaviyo diagnostic &mdash; flows, list health, revenue attribution, priority findings.</div>
+        <div class="splash-tile-arrow">&rarr;</div>
+      </a>
+      <a class="splash-tile" href="#" onclick="goTo('strategy');return false;">
+        <div class="splash-tile-num">02</div>
+        <div class="splash-tile-title">Flow<br/>Strategy</div>
+        <div class="splash-tile-desc">Complete automation architecture &mdash; 3-lane abandonment matrix, post-purchase, winback.</div>
+        <div class="splash-tile-arrow">&rarr;</div>
+      </a>
+      <a class="splash-tile" href="#" onclick="goTo('roadmap');return false;">
+        <div class="splash-tile-num">03</div>
+        <div class="splash-tile-title">6-Month<br/>Roadmap</div>
+        <div class="splash-tile-desc">Phased build timeline from account access through full program optimisation.</div>
+        <div class="splash-tile-arrow">&rarr;</div>
+      </a>
+      <a class="splash-tile" href="#" onclick="goTo('kickoff');return false;">
+        <div class="splash-tile-num">04</div>
+        <div class="splash-tile-title">Kickoff &amp;<br/>Onboarding</div>
+        <div class="splash-tile-desc">Onboarding checklist, Month 1 priorities, and what to expect in the first 30 days.</div>
+        <div class="splash-tile-arrow">&rarr;</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ PROPOSAL ════════ -->
+<div id="proposal">
+  <nav class="prop-nav">
+    <button class="prop-nav-btn home-btn" onclick="showSplash()">&#8592; Home</button>
+    <button class="prop-nav-btn active" data-sec="audit"    onclick="showSection('audit',this)">01 / Audit</button>
+    <button class="prop-nav-btn"        data-sec="strategy" onclick="showSection('strategy',this)">02 / Flow Strategy</button>
+    <button class="prop-nav-btn"        data-sec="roadmap"  onclick="showSection('roadmap',this)">03 / Roadmap</button>
+    <button class="prop-nav-btn"        data-sec="kickoff"  onclick="showSection('kickoff',this)">04 / Kickoff</button>
+  </nav>
+  <div class="prop-section active" id="sec-audit">
+<div class="section active" id="section-audit">
+  <div class="section-hero">
+    <div style="max-width:860px;margin:0 auto;padding:0 48px;">
+      <div class="section-index">Section 01</div>
+      <div class="section-title">Klaviyo<br/>Audit</div>
+      <div class="section-intro">
+        Full account diagnostic completed March 23, 2026. Klaviyo is currently generating 8–10% of total store revenue — down 74–90% YoY. The program is significantly underperforming. The opportunity to reach 25–40% of store revenue is large and directly addressable.
+      </div>
+    </div>
+  </div>
+  <div class="page" style="padding-top:56px;">
+
+    <!-- REVENUE -->
+    <div class="h2">Sales Overview</div>
+
+    <div class="alert">
+      <div class="alert-icon">⚠</div>
+      <div class="alert-body">
+        <strong>-74% YoY email revenue (L30D) · -90% YoY (L90D)</strong>
+        Klaviyo is generating 8% of total store revenue over the last 30 days and 10% over 90 days. Industry benchmark for a mature DTC apparel program is 25–40%. The 6-month program goal is to close that gap — target of 25% within 90 days.
+      </div>
+    </div>
+
+    <table>
+      <thead><tr><th>Period</th><th>Klaviyo % of Revenue</th><th>YoY</th><th>Campaigns</th><th>Automation</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Last 30 Days</strong></td>
+          <td><strong>8%</strong></td>
+          <td style="color:#c0392b;font-weight:500;">−74%</td>
+          <td>68%</td>
+          <td>32%</td>
+        </tr>
+        <tr>
+          <td><strong>Last 90 Days</strong></td>
+          <td><strong>10%</strong></td>
+          <td style="color:#c0392b;font-weight:500;">−90%</td>
+          <td>70%</td>
+          <td>30%</td>
+        </tr>
+        <tr>
+          <td><strong>Target (90 days)</strong></td>
+          <td style="color:#27ae60;font-weight:600;">25%+</td>
+          <td>—</td>
+          <td>~50%</td>
+          <td>~50%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>The campaign vs automation split confirms over-reliance on manual sends. A healthy program runs 40–50% flow revenue — RVCA is at 30–32%. Every flow built in this program increases the evergreen revenue baseline without incremental send effort.</p>
+    <p>Automation performance over the last 90 days across 103,402 total flow recipients — down 69.8% YoY, reflecting the underbuilt flow architecture. Open rate is <strong>57.79%</strong> (Excellent, +22.61% vs benchmark) and click rate is <strong>9.20%</strong> (Excellent, +238.59%) — the audience is engaged when they receive an email. The critical gap is placed order rate at <strong>0.39%</strong> (Poor) — high engagement is not converting to purchases. This points directly to weak flow logic, missing flows, and the cart abandonment split error excluding 70% of high-value buyers. The engagement signals are strong; the architecture is failing to convert them. Fix the flows and the revenue follows.</p>
+
+    <!-- FLOWS -->
+    <div class="h2">Flow Audit — Existing Flows</div>
+
+    <div class="flow-grid">
+      <div class="flow-card">
+        <div class="flow-name">Welcome Series</div>
+        <div class="flow-desc">Only 2 emails with a 3-day delay. No lane splits. No world-preference capture. No return policy lean-in. No offer reminder sequence.</div>
+        <span class="pill pill-rebuild">↺ Rebuild — 4–5 emails + lane splits</span>
+      </div>
+      <div class="flow-card">
+        <div class="flow-name">Cart Abandonment</div>
+        <div class="flow-desc"><strong style="color:#c0392b;">Critical split error.</strong> Anyone adding a 2nd item to cart is removed from the flow. ~70% of customers — the highest cart-size buyers — are being excluded. Only 1 email active.</div>
+        <span class="pill pill-pause">⚠ Fix immediately + rebuild</span>
+      </div>
+      <div class="flow-card">
+        <div class="flow-name">Browse Abandonment</div>
+        <div class="flow-desc">Only 1 email active. No lane splits by new / return / loyalty. Significantly underbuilt for the list size.</div>
+        <span class="pill pill-rebuild">↺ Rebuild — 3–4 emails + splits</span>
+      </div>
+      <div class="flow-card">
+        <div class="flow-name">Price Drop</div>
+        <div class="flow-desc">Active but underbuilt. Needs 2–3 emails and SMS added (if not already handled in Attentive).</div>
+        <span class="pill pill-rebuild">↺ Expand</span>
+      </div>
+      <div class="flow-card">
+        <div class="flow-name">Transactional Emails</div>
+        <div class="flow-desc">Design not audited. Footer needs rebuild — add loyalty CTA, social links, collection nav, snooze function, dynamic new vs return banners, geo-targeted content blocks, product name grid testing.</div>
+        <span class="pill pill-rebuild">↺ Footer rebuild</span>
+      </div>
+    </div>
+
+    <div class="h2">Missing Flows — Must Build</div>
+
+    <div class="flow-grid">
+      <div class="flow-card">
+        <div class="flow-name">Abandoned Checkout</div>
+        <div class="flow-desc"><strong style="color:#c0392b;">Likely not active.</strong> Must confirm whether enabled in Shopify. Bottom-of-funnel, highest-intent trigger in the system. 3–4 emails + SMS minimum. Split New vs Return.</div>
+        <span class="pill pill-new">+ Confirm + Build immediately</span>
+      </div>
+      <div class="flow-card">
+        <div class="flow-name">Post-Purchase</div>
+        <div class="flow-desc">Biggest revenue opportunity in the account. Split by order count into 3 lanes: New, Return, Loyalty. Drives loyalty sign-ups, social follows, cross-sell, and LTV from the very first order.</div>
+        <span class="pill pill-new">+ Net New — highest priority</span>
+      </div>
+      <div class="flow-card">
+        <div class="flow-name">Winback / Anniversary</div>
+        <div class="flow-desc">Missing end-of-lifecycle coverage. Critical to close the welcome-to-winback loop. Incentive based on AOV — high minimum order thresholds only (profitability first). Triggers sunset flow for deliverability and Klaviyo billing.</div>
+        <span class="pill pill-new">+ Net New — required</span>
+      </div>
+      <div class="flow-card">
+        <div class="flow-name">Sunset Series</div>
+        <div class="flow-desc">Companion to winback. Removes inactives from active billing count — directly reduces Klaviyo monthly cost and protects deliverability.</div>
+        <span class="pill pill-new">+ Net New — billing impact</span>
+      </div>
+      <div class="flow-card">
+        <div class="flow-name">VIP / High AOV</div>
+        <div class="flow-desc">Triggered when a customer exceeds a spend threshold. Acknowledge with a reward and a personal note from the founder. High-spenders respond to recognition — convert to even higher carts on high-margin products.</div>
+        <span class="pill pill-new">+ Net New</span>
+      </div>
+      <div class="flow-card">
+        <div class="flow-name">Review Request</div>
+        <div class="flow-desc">Migrating reviews into Klaviyo. Requires a 2-step series — initial request plus reminder — within Klaviyo once the Reviews integration is confirmed active.</div>
+        <span class="pill pill-new">+ Net New — post-integration</span>
+      </div>
+      <div class="flow-card">
+        <div class="flow-name">Active-on-Site (Concierge)</div>
+        <div class="flow-desc">Support-focused flow for visitors browsing without clicking into collections or products. Softly guides toward relevant categories. Reduces drop-off before browse abandonment triggers.</div>
+        <span class="pill pill-new">+ Net New</span>
+      </div>
+      <div class="flow-card">
+        <div class="flow-name">Back-in-Stock</div>
+        <div class="flow-desc">Build only if it aligns with RVCA's inventory practices. Confirm with team before scoping.</div>
+        <span class="pill pill-new">+ Conditional</span>
+      </div>
+    </div>
+
+    <!-- SEGMENTATION -->
+    <div class="h2">Audience &amp; Segmentation</div>
+    <p>The list is large and established — 673K+ total profiles including suppressed. The shape of the customer data tells the story: 434K prospects who have never purchased, and 163K one-hit wonders who bought once and stopped. These two groups are the entire program opportunity.</p>
+
+    <div class="h3" style="margin-top:32px;">Core Customer Groups (Opted-In)</div>
+    <table>
+      <thead><tr><th>Segment</th><th>Criteria</th><th>Size</th><th>Program Priority</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Loyalists</strong></td>
+          <td>4+ orders</td>
+          <td><strong>22,506</strong></td>
+          <td>VIP flow, early access, 2–3 sends/week, high-frequency nurture</td>
+        </tr>
+        <tr>
+          <td><strong>Potential Loyalists</strong></td>
+          <td>2–3 orders</td>
+          <td><strong>53,462</strong></td>
+          <td>Post-purchase series, loyalty program conversion push</td>
+        </tr>
+        <tr>
+          <td><strong>One Hit Wonders ⚠️</strong></td>
+          <td>1 order only</td>
+          <td><strong>162,917</strong></td>
+          <td>Most urgent target — post-purchase + winback. 163K buyers who haven't come back.</td>
+        </tr>
+        <tr>
+          <td><strong>Prospects</strong></td>
+          <td>No orders</td>
+          <td><strong>434,465</strong></td>
+          <td>Welcome series + full abandonment suite. Biggest volume, biggest conversion opportunity.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="h3" style="margin-top:32px;">Engagement-Based Segments (Last 90 Days)</div>
+    <table>
+      <thead><tr><th>Segment</th><th>Criteria</th><th>Size</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Clicked</strong></td><td>Clicked an email</td><td><strong>150,959</strong></td></tr>
+        <tr><td><strong>Opened — no click</strong></td><td>Opened but never clicked</td><td><strong>327,697</strong></td></tr>
+        <tr><td><strong>No Opens</strong></td><td>Never opened or clicked</td><td><strong>194,692</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div class="h3" style="margin-top:32px;">Consent-Based Segments</div>
+    <table>
+      <thead><tr><th>Segment</th><th>Criteria</th><th>Size</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Subscribed</strong></td><td>Opted in via form or checkout</td><td><strong>403,890</strong></td></tr>
+        <tr><td><strong>Never Subscribed</strong></td><td>Transactional only — no marketing consent</td><td><strong>269,458</strong></td></tr>
+        <tr><td><strong>Suppressed</strong></td><td>Unsubscribed</td><td><strong>177,682</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <div class="callout-label">Subscription Integration</div>
+      <p>Integration with Authentic not found in the account. Unable to verify or report on subscription-based segment data. Klaviyo billing plan also not accessible — cannot make plan reduction recommendation until access is granted. Sunset flow implementation will reduce active profile count and should lower monthly cost once live.</p>
+    </div>
+
+    <!-- DELIVERABILITY -->
+    <div class="h2">Deliverability — Last 30 Days</div>
+    <p>Deliverability health is solid across all three key metrics. This is the foundation the program is built on — as send volume and flow coverage increases, protecting these numbers is non-negotiable.</p>
+
+    <table>
+      <thead><tr><th>Metric</th><th>Current</th><th>Goal</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Bounce Rate</strong></td>
+          <td>0.28%</td>
+          <td>&lt;0.5%</td>
+          <td style="color:#27ae60;font-weight:500;">✓ Healthy</td>
+        </tr>
+        <tr>
+          <td><strong>Unsubscribe Rate</strong></td>
+          <td>0.09%</td>
+          <td>&lt;0.30%</td>
+          <td style="color:#27ae60;font-weight:500;">✓ Healthy</td>
+        </tr>
+        <tr>
+          <td><strong>Spam Rate</strong></td>
+          <td>0.004%</td>
+          <td>&lt;0.05%</td>
+          <td style="color:#27ae60;font-weight:500;">✓ Excellent</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- SIGNUP STRATEGY -->
+    <div class="h2">Signup &amp; Popup Strategy</div>
+    <div class="audit-row"><div class="audit-label">First Name Capture</div><div class="audit-value">Add first name field to popup. Increases personalization across welcome series, abandoned cart, browse, and all triggered flows — directly improves open rates pre-purchase.</div></div>
+    <div class="audit-row"><div class="audit-label">Teaser / Sticky Tab</div><div class="audit-value">Add a teaser element so visitors who accidentally close the popup can re-access the welcome offer. Currently lost permanently on accidental dismiss.</div></div>
+    <div class="audit-row"><div class="audit-label">Close Behavior</div><div class="audit-value">Remove click-to-close outside the modal box. Reduces accidental dismissals and improves capture rate without changing the offer.</div></div>
+
+    <!-- CAMPAIGN -->
+    <div class="h2">Campaign Insights &amp; Recommendations</div>
+    <div class="audit-row"><div class="audit-label">New vs Return Split</div><div class="audit-value">All campaigns must segment New vs Return. Sending the same message to both audiences wastes budget, erodes brand trust with buyers, and inflates unsubscribes from prospects getting irrelevant content.</div></div>
+    <div class="audit-row"><div class="audit-label">Engagement Throttling</div><div class="audit-value">Throttle campaign sends by engagement tier. Never broadcast to the full list. Cold and inactive segments hurt deliverability for the entire sending domain.</div></div>
+    <div class="audit-row"><div class="audit-label">Inactive Re-engagement</div><div class="audit-value">Test plain-text sends to inactive segments every 2 weeks. Plain text consistently outperforms designed emails for lapsed audiences — feels personal, bypasses promotional folder filtering.</div></div>
+    <div class="audit-row"><div class="audit-label">Loyalist Cadence</div><div class="audit-value">22,506 loyalists (4+ orders) can receive 2–3 campaign sends per week. They are opted-in, engaged, and responsive. Do not under-send to your best customers.</div></div>
+
+    <!-- TOP 10 -->
+    <div class="h2">Top 10 Recommendations</div>
+    <div class="tier-list">
+      <div class="tier-item">
+        <div class="tier-num">01</div>
+        <div class="tier-body"><strong>Fix the cart abandonment split error immediately.</strong> ~70% of high-cart buyers are being excluded from the flow right now. This is the fastest revenue recovery available in the account.</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-num">02</div>
+        <div class="tier-body"><strong>Confirm and activate abandoned checkout.</strong> If not live in Shopify, this is a complete gap at the highest-intent point in the funnel. Must be turned on and built to 3–4 emails + SMS.</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-num">03</div>
+        <div class="tier-body"><strong>Upgrade the popup — 3-step flow with world preference, first name, and SMS opt-in.</strong> The popup is the top of the funnel for 434K prospects. Getting interest capture right before email collection means every downstream flow is smarter from the first touch. Add teaser tab and remove outside-click close.</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-num">04</div>
+        <div class="tier-body"><strong>Build post-purchase flow.</strong> 163K one-hit wonders in the account. The post-purchase series is the mechanism that converts single buyers into loyal customers. This is the biggest revenue opportunity in the program.</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-num">05</div>
+        <div class="tier-body"><strong>Rebuild welcome series with lane splits.</strong> 434K prospects in the account. 2 emails at a 3-day delay is not a welcome program — it's a missed handshake. Rebuild to 4–5 emails across 4 world-preference lanes.</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-num">06</div>
+        <div class="tier-body"><strong>Build winback + sunset.</strong> No winback means the customer journey has no end-of-lifecycle coverage. Sunset reduces the Klaviyo bill and protects deliverability by cleaning inactives.</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-num">07</div>
+        <div class="tier-body"><strong>Split all campaigns New vs Return.</strong> Non-negotiable change. Every broadcast should know who it's talking to.</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-num">08</div>
+        <div class="tier-body"><strong>Verify attribution — resolve the custom tracking setup.</strong> Current revenue numbers may not be accurate. Cannot make informed program decisions without confirmed attribution against GA and Shopify.</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-num">09</div>
+        <div class="tier-body"><strong>Rebuild browse abandonment to 3–4 emails with lane splits.</strong> 1 email with no segmentation is leaving significant recovery revenue on the table across a list this size.</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-num">10</div>
+        <div class="tier-body"><strong>Evaluate Klaviyo CDP for cross-sell intelligence.</strong> The product recommendation engine provides behavioral co-purchase data that powers cross-sell flows with real signal — not manual product selection. Scope in Month 4–5.</div>
+      </div>
+    </div>
+
+    <!-- NEW TOOLS -->
+    <div class="h2">New Tool Recommendation</div>
+    <div class="callout">
+      <div class="callout-label">Klaviyo CDP — Product Recommendations</div>
+      <p>Klaviyo's CDP feature identifies the most common co-purchased and next-purchase products from real order data. Example from a client account: 18% of customers who purchased a specific item also purchased a second item in the same order. On the next order, 5% returned and purchased the original item in a different color. This behavioral intelligence powers cross-sell flows with genuine signal rather than manual product curation. Recommend evaluating once the core flow architecture is stable — Month 4 or 5.</p>
+    </div>
+
+  </div>
+</div>
+  </div>
+  <div class="prop-section" id="sec-strategy">
+<div class="section active" id="section-strategy">
+
+  <style>
+    /* ── Strategy-tab-specific styles ─────────────────── */
+
+    .strat-intro-bar {
+      background: #0d1b2e;
+      padding: 64px 64px 56px;
+    }
+    .strat-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .strat-eyebrow::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.1);
+    }
+    .strat-heading {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: clamp(52px, 8vw, 96px);
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 32px;
+    }
+    .strat-body {
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.78;
+      color: rgba(255,255,255,0.72);
+      max-width: 640px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* segment legend */
+    .seg-legend {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 36px;
+    }
+    .seg-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border: 1px solid;
+    }
+    .seg-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .seg-pill.new-v    { color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.2); }
+    .seg-pill.new-v .seg-dot { background: #ffffff; }
+    .seg-pill.return-v { color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.2); }
+    .seg-pill.return-v .seg-dot { background: #888888; }
+    .seg-pill.loyalty-v{ color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.2); }
+    .seg-pill.loyalty-v .seg-dot { background: #444444; }
+
+    /* flow accordion */
+    .strat-page { max-width: 900px; margin: 0 auto; padding: 0 48px 100px; }
+
+    .flow-block {
+      border-bottom: 1px solid var(--rule);
+    }
+    .flow-block:first-child { border-top: 1px solid var(--rule); margin-top: 56px; }
+
+    .flow-header {
+      display: grid;
+      grid-template-columns: 48px 1fr auto;
+      align-items: center;
+      gap: 0;
+      padding: 22px 0;
+      cursor: pointer;
+      user-select: none;
+    }
+    .flow-header:hover .flow-header-title { opacity: 0.6; }
+
+    .flow-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      color: var(--light);
+      letter-spacing: 0.1em;
+    }
+    .flow-header-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--black);
+      transition: opacity 0.15s;
+    }
+    .flow-header-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .flow-email-count {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      color: var(--light);
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+    .flow-chevron {
+      font-size: 10px;
+      color: var(--light);
+      transition: transform 0.2s;
+    }
+    .flow-block.open .flow-chevron { transform: rotate(180deg); }
+
+    .flow-body {
+      display: none;
+      padding-bottom: 36px;
+    }
+    .flow-block.open .flow-body { display: block; }
+
+    /* trigger bar */
+    .trigger-bar {
+      background: var(--off);
+      padding: 12px 16px;
+      margin-bottom: 28px;
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .trigger-item {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .trigger-item span { color: var(--black); font-weight: 700; }
+
+    /* lane grid */
+    .lane-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-bottom: 28px;
+    }
+    @media (max-width: 700px) { .lane-grid { grid-template-columns: 1fr; } }
+    .lane-col { background: var(--white); }
+
+    .lane-head {
+      padding: 12px 16px 10px;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .lane-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .dot-new     { background: var(--black); }
+    .dot-return  { background: #888; }
+    .dot-loyalty { background: #ccc; border: 1px solid #999; }
+
+    .lane-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+    .lane-sublabel {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      color: var(--light);
+      letter-spacing: 0.06em;
+      margin-left: auto;
+    }
+
+    .lane-emails { padding: 14px 16px; }
+
+    .email-row {
+      display: flex;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: flex-start;
+    }
+    .email-row:last-child { border-bottom: none; }
+
+    .email-timing {
+      font-family: 'Space Mono', monospace;
+      font-size: 8px;
+      color: var(--light);
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+      padding-top: 3px;
+      min-width: 48px;
+    }
+    .email-content {}
+    .email-subj {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--black);
+      margin-bottom: 3px;
+      line-height: 1.3;
+    }
+    .email-desc {
+      font-size: 11.5px;
+      color: var(--mid);
+      line-height: 1.5;
+      font-weight: 300;
+    }
+    .email-tag {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border: 1px solid var(--rule);
+      color: var(--light);
+      margin-top: 5px;
+    }
+    .email-tag.offer { border-color: var(--black); color: var(--black); }
+    .email-tag.brand { border-color: #aaa; }
+    .email-tag.loyalty-tag { border-color: #999; color: #666; }
+
+    /* popup section */
+    .popup-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-bottom: 28px;
+    }
+    @media (max-width: 640px) { .popup-grid { grid-template-columns: 1fr; } }
+    .popup-step { background: var(--white); padding: 24px; }
+    .popup-step-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--light);
+      margin-bottom: 12px;
+    }
+    .popup-step-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 10px;
+    }
+    .popup-step p { font-size: 13px; font-weight: 300; color: var(--mid); line-height: 1.6; margin-bottom: 12px; }
+    .world-options {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 10px;
+    }
+    .world-opt {
+      background: var(--off);
+      border: 1px solid var(--rule);
+      padding: 9px 14px;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .world-opt.selected {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
+    /* handoff logic */
+    .handoff-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin: 28px 0;
+    }
+    @media (max-width: 600px) { .handoff-grid { grid-template-columns: 1fr; } }
+    .handoff-cell {
+      background: var(--white);
+      padding: 18px 16px;
+    }
+    .handoff-flow {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--black);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .handoff-suppress {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--mid);
+      line-height: 1.55;
+    }
+    .handoff-suppress strong { color: var(--black); font-weight: 500; }
+
+    /* offer matrix */
+    .offer-matrix {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 28px 0;
+    }
+    .offer-matrix th {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 11px 16px;
+      text-align: left;
+      font-weight: 400;
+    }
+    .offer-matrix td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--rule);
+      font-size: 12.5px;
+      font-weight: 300;
+      color: var(--mid);
+      vertical-align: top;
+    }
+    .offer-matrix tr:last-child td { border-bottom: none; }
+    .offer-matrix td:first-child {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--black);
+      font-weight: 700;
+    }
+    .om-never { color: var(--light); font-style: italic; }
+    .om-offer { color: var(--black); font-weight: 500; }
+    .om-access { color: #555; }
+
+    /* category tags in welcome */
+    .cat-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      border-bottom: none;
+    }
+    .cat-tab {
+      flex: 1;
+      background: var(--off);
+      border: none;
+      border-right: 1px solid var(--rule);
+      padding: 11px 8px;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--light);
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: center;
+    }
+    .cat-tab:last-child { border-right: none; }
+    .cat-tab.active { background: var(--black); color: var(--white); }
+    .cat-tab:hover:not(.active) { background: var(--white); color: var(--mid); }
+
+    .cat-content { display: none; }
+    .cat-content.active { display: block; }
+
+    /* phase headers in post-purchase */
+    .phase-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 32px 0 16px;
+    }
+    .phase-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--black);
+      padding: 5px 12px;
+      white-space: nowrap;
+    }
+    .phase-rule { flex: 1; height: 1px; background: var(--rule); }
+    .phase-timing {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      color: var(--light);
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+  </style>
+
+  <!-- BLACK INTRO BAR -->
+  <div class="strat-intro-bar">
+    <div style="max-width:900px;margin:0 auto;padding:0 48px;">
+      <div class="strat-eyebrow">Section 06</div>
+      <div class="strat-heading">Flow<br/>Strategy</div>
+      <div class="strat-body">
+        A complete automation architecture built specifically for RVCA — six programs, three customer lanes, twelve flows. Every touchpoint mapped from first popup impression through winback. Segment logic is consistent across all flows so hand-offs are clean and no customer receives a conflicting message.
+      </div>
+      <div class="seg-legend">
+        <div class="seg-pill new-v"><div class="seg-dot"></div>New visitor — no purchase history</div>
+        <div class="seg-pill return-v"><div class="seg-dot"></div>Return customer — purchased before</div>
+        <div class="seg-pill loyalty-v"><div class="seg-dot"></div>Loyalty member — in program</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="strat-page">
+
+    <!-- ─── POPUP ─────────────────────────────────────── -->
+    <div class="flow-block open" id="fb-popup">
+      <div class="flow-header" onclick="toggleFlow('popup')">
+        <div class="flow-num">00</div>
+        <div class="flow-header-title">Popup &amp; Capture</div>
+        <div class="flow-header-meta">
+          <div class="flow-email-count">2-step · Preference capture</div>
+          <div class="flow-chevron">▲</div>
+        </div>
+      </div>
+      <div class="flow-body">
+        <div class="trigger-bar">
+          <div class="trigger-item">Step 01 <span>World preference — interest capture</span></div>
+          <div class="trigger-item">Step 02 <span>First name + email + 15% offer</span></div>
+          <div class="trigger-item">Step 03 <span>SMS opt-in — optional, early access framing</span></div>
+        </div>
+
+        <div class="popup-grid" style="grid-template-columns:1fr 1fr 1fr;">
+          <div class="popup-step">
+            <div class="popup-step-num">Step 01 — Interest</div>
+            <div class="popup-step-title">What moves you?</div>
+            <p>The first thing a visitor sees. Not an offer — a brand gesture. Four large tap-targets, one per line. The answer becomes a Klaviyo profile property that routes the welcome series and every subsequent flow from that moment on.</p>
+            <div class="world-options">
+              <div class="world-opt selected">Surf / Swim</div>
+              <div class="world-opt">Skate / Street</div>
+              <div class="world-opt">Sport</div>
+              <div class="world-opt">All of it</div>
+            </div>
+            <p style="margin-top:12px;font-size:11.5px;">If skipped — fallback to browse behavior. Klaviyo reads last-viewed category or defaults to "All of it" routing.</p>
+          </div>
+          <div class="popup-step">
+            <div class="popup-step-num">Step 02 — Capture</div>
+            <div class="popup-step-title">15% off your first order</div>
+            <p>First name and email. The offer is present but secondary — the brand world they just chose is the hook. First name field enables personalization across welcome, abandoned cart, and all triggered flows from day one.</p>
+            <p>No countdown timer. No confetti. One strong campaign image. Clean enough that it feels like the brand chose to talk to them, not a popup template.</p>
+          </div>
+          <div class="popup-step">
+            <div class="popup-step-num">Step 03 — SMS</div>
+            <div class="popup-step-title">Early access to drops.</div>
+            <p>Optional phone number field — framed as insider access, not a marketing list. Shown only after email is captured. High-intent framing produces a smaller but significantly more engaged SMS subscriber.</p>
+            <p style="font-size:11.5px;margin-top:8px;">RVCA's SMS program should be rare and signal-worthy. Drops, urgency, exclusive access — never content or culture sends.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── WELCOME ────────────────────────────────────── -->
+    <div class="flow-block" id="fb-welcome">
+      <div class="flow-header" onclick="toggleFlow('welcome')">
+        <div class="flow-num">01</div>
+        <div class="flow-header-title">Welcome Series</div>
+        <div class="flow-header-meta">
+          <div class="flow-email-count">4 lanes · 4 emails · 9 days</div>
+          <div class="flow-chevron">▼</div>
+        </div>
+      </div>
+      <div class="flow-body">
+        <div class="trigger-bar">
+          <div class="trigger-item">Trigger <span>List subscription</span></div>
+          <div class="trigger-item">Branch <span>World preference tag → behavior fallback</span></div>
+          <div class="trigger-item">Exit <span>First purchase</span></div>
+          <div class="trigger-item">Discount <span>15% code — email 1 only, soft placement</span></div>
+        </div>
+
+        <p style="font-size:13.5px;font-weight:300;color:var(--mid);margin-bottom:20px;">Four parallel sequences, one per world. The discount from the popup is present but not the point — each sequence is an onboarding into the brand universe, not a discount funnel. Select a lane to see the sequence.</p>
+
+        <div class="cat-tabs">
+          <button class="cat-tab active" onclick="switchCat(this,'wlc-surf')">Surf / Swim</button>
+          <button class="cat-tab" onclick="switchCat(this,'wlc-skate')">Skate / Street</button>
+          <button class="cat-tab" onclick="switchCat(this,'wlc-sport')">Sport</button>
+          <button class="cat-tab" onclick="switchCat(this,'wlc-all')">All of it</button>
+        </div>
+
+        <!-- SURF -->
+        <div class="lane-grid cat-content active" id="wlc-surf" style="border-top:none;">
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-new"></div><div class="lane-label">All new subscribers</div><div class="lane-sublabel">same sequence</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">Immediate</div>
+                <div class="email-content">
+                  <div class="email-subj">"Welcome to RVCA."</div>
+                  <div class="email-desc">No product. Full-bleed water image. Three sentences about who RVCA is. 15% code below the fold — present, not prominent. Soft "explore" link.</div>
+                  <div class="email-tag brand">Brand only</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">Day 2</div>
+                <div class="email-content">
+                  <div class="email-subj">"Barron at Pipe." / "Clay's world."</div>
+                  <div class="email-desc">The athlete story. A moment, not a bio. Photography-led. One product mention at the bottom — contextual, not promotional. "The boardshort Barron wore."</div>
+                  <div class="email-tag brand">Athlete / Brand</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">Day 5</div>
+                <div class="email-content">
+                  <div class="email-subj">"The surf edit."</div>
+                  <div class="email-desc">First real product introduction. Three items editorially framed — boardshorts, a tee, swim. Gender-split if known. Last mention of the 15% code. Quiet urgency: "Still here."</div>
+                  <div class="email-tag offer">15% last call</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">Day 9</div>
+                <div class="email-content">
+                  <div class="email-subj">"Art &amp; sport."</div>
+                  <div class="email-desc">The ANP email. An artist from the program, their work, the brand connection. No product. Pure brand equity. "This is what we're about." Converts brand believers, filters the rest.</div>
+                  <div class="email-tag brand">ANP / No product</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-loyalty"></div><div class="lane-label">Loyalty override</div><div class="lane-sublabel">+1 email day 11</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">Day 11</div>
+                <div class="email-content">
+                  <div class="email-subj">"Your membership."</div>
+                  <div class="email-desc">Loyalty onboarding. How points work, what tiers unlock, early access meaning. Written in RVCA voice — not a feature list, a membership card. Functional but brand-aligned.</div>
+                  <div class="email-tag loyalty-tag">Loyalty only</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lane-col" style="background:var(--off);">
+            <div class="lane-head" style="border-bottom:none;"><div class="lane-label" style="color:var(--light);">Voice guide</div></div>
+            <div class="lane-emails" style="padding-top:8px;">
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;border-bottom:1px solid var(--rule);">Subject lines are declarative, short. No emoji. No "Don't miss this."</div>
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;border-bottom:1px solid var(--rule);">Copy is sparse. One idea per email. Photography leads.</div>
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;border-bottom:1px solid var(--rule);">The 15% code exists. It doesn't shout.</div>
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;">CTAs are calm. "Explore" before "Shop."</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SKATE -->
+        <div class="lane-grid cat-content" id="wlc-skate" style="border-top:none;">
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-new"></div><div class="lane-label">Skate / Street subscriber</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">Immediate</div>
+                <div class="email-content">
+                  <div class="email-subj">"Welcome to RVCA."</div>
+                  <div class="email-desc">Urban/skate imagery. Copy leans into the art-sport duality — RVCA as a brand that exists between things. 15% code below fold. No product grid.</div>
+                  <div class="email-tag brand">Brand / Duality</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">Day 2</div>
+                <div class="email-content">
+                  <div class="email-subj">"The ANP."</div>
+                  <div class="email-desc">ANP leads this lane's second email, not an athlete. An artist, a collab, a mural. Cultural credentials. This buyer responds to creative legitimacy over performance storytelling.</div>
+                  <div class="email-tag brand">ANP / Culture</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">Day 5</div>
+                <div class="email-content">
+                  <div class="email-subj">"VAcancy." / "Dayshift."</div>
+                  <div class="email-desc">Product through the collection lens — not categories. Items feel like they belong to a story. Last 15% mention. The skate buyer buys collections, not SKUs.</div>
+                  <div class="email-tag offer">15% last call</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">Day 9</div>
+                <div class="email-content">
+                  <div class="email-subj">"Dropping soon."</div>
+                  <div class="email-desc">A drop preview or upcoming release. This buyer responds to exclusivity and cultural currency more than any other segment. End the welcome series feeling ahead of the curve.</div>
+                  <div class="email-tag brand">Drop preview</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lane-col" style="background:var(--off);">
+            <div class="lane-head" style="border-bottom:none;"><div class="lane-label" style="color:var(--light);">Skate buyer psychology</div></div>
+            <div class="lane-emails" style="padding-top:8px;">
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;border-bottom:1px solid var(--rule);">Most culturally driven segment. Buys into identity, not product.</div>
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;border-bottom:1px solid var(--rule);">ANP is the most powerful conversion tool with this segment — lean into it early.</div>
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;border-bottom:1px solid var(--rule);">Collection names matter. "VAcancy" sells better than "men's shirts" to this buyer.</div>
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;">Exclusivity and early access outperform discounts as conversion tools.</div>
+            </div>
+          </div>
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-loyalty"></div><div class="lane-label">Loyalty override</div><div class="lane-sublabel">+1 email day 11</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">Day 11</div>
+                <div class="email-content">
+                  <div class="email-subj">"Your membership."</div>
+                  <div class="email-desc">Loyalty onboarding. For skate buyers, emphasize early access to drops and collabs — the loyalty benefit that resonates most with this segment.</div>
+                  <div class="email-tag loyalty-tag">Loyalty only</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SPORT -->
+        <div class="lane-grid cat-content" id="wlc-sport" style="border-top:none;">
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-new"></div><div class="lane-label">Sport subscriber</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">Immediate</div>
+                <div class="email-content">
+                  <div class="email-subj">"Welcome to RVCA."</div>
+                  <div class="email-desc">Performance-forward imagery. Copy is more functional — restrained but rational. RVCA Sport at the intersection of performance and style. One clear statement. 15% below fold.</div>
+                  <div class="email-tag brand">Performance / Brand</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">Day 2</div>
+                <div class="email-content">
+                  <div class="email-subj">"Built to move."</div>
+                  <div class="email-desc">The technical story. Materials, movement, why it was designed this way, which athlete trains in it. Most rational email in the system — this buyer responds to substance over story.</div>
+                  <div class="email-tag brand">Product story</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">Day 5</div>
+                <div class="email-content">
+                  <div class="email-subj">"Beyond the training."</div>
+                  <div class="email-desc">Sport line first, then a deliberate bridge into lifestyle. One sport product, one lifestyle piece. The hand-off email — starts converting sport buyers into full RVCA customers. Last 15%.</div>
+                  <div class="email-tag offer">Bridge + 15%</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">Day 9</div>
+                <div class="email-content">
+                  <div class="email-subj">"There's more here."</div>
+                  <div class="email-desc">The wider brand reveal. ANP lite — the creative program introduced without making it feel like bait-and-switch. They came for sport. Here's the world it belongs to. Curious, not pushy.</div>
+                  <div class="email-tag brand">Brand reveal</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lane-col" style="background:var(--off);">
+            <div class="lane-head" style="border-bottom:none;"><div class="lane-label" style="color:var(--light);">Sport buyer psychology</div></div>
+            <div class="lane-emails" style="padding-top:8px;">
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;border-bottom:1px solid var(--rule);">Most distinct segment. Came for performance — earn the lifestyle conversation.</div>
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;border-bottom:1px solid var(--rule);">More rational than surf/skate. Substance over story — but keep RVCA voice throughout.</div>
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;border-bottom:1px solid var(--rule);">Sport buyers who discover lifestyle RVCA become the most valuable long-term customers.</div>
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;">Don't rush the brand reveal. Earn it at day 9, not day 2.</div>
+            </div>
+          </div>
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-loyalty"></div><div class="lane-label">Loyalty override</div><div class="lane-sublabel">+1 email day 11</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">Day 11</div>
+                <div class="email-content">
+                  <div class="email-subj">"Your membership."</div>
+                  <div class="email-desc">Loyalty onboarding. For sport buyers, lead with performance benefits — new collection early access, sport drop notifications. Then expand to full program benefits.</div>
+                  <div class="email-tag loyalty-tag">Loyalty only</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ALL -->
+        <div class="lane-grid cat-content" id="wlc-all" style="border-top:none;">
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-new"></div><div class="lane-label">Untagged / All of it</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">Immediate</div>
+                <div class="email-content">
+                  <div class="email-subj">"Welcome to RVCA."</div>
+                  <div class="email-desc">Most brand-forward welcome email. Surf, skate, sport, art in one image and three sentences. Broad but not generic. The full world.</div>
+                  <div class="email-tag brand">Full brand</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">Day 2</div>
+                <div class="email-content">
+                  <div class="email-subj">"Art &amp; sport. Balance."</div>
+                  <div class="email-desc">The brand story properly told. The name meaning, the ANP, the athletes, the balance. A fuller picture for someone who came in curious rather than category-directed.</div>
+                  <div class="email-tag brand">Brand story</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">Day 5</div>
+                <div class="email-content">
+                  <div class="email-subj">"The edit."</div>
+                  <div class="email-desc">Best of everything — one item from each world, editorially curated. Four products, four lines of copy. The menu. Last 15% mention. Let them self-select what resonates.</div>
+                  <div class="email-tag offer">Cross-world + 15%</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">Day 9</div>
+                <div class="email-content">
+                  <div class="email-subj">Dynamic — reads click behavior</div>
+                  <div class="email-desc">Behavioral redirect. Klaviyo reads strongest click signal from emails 1–3 and routes to category-specific content. If no clicks — ANP brand email, the universal closer.</div>
+                  <div class="email-tag brand">Dynamic content</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lane-col" style="background:var(--off);">
+            <div class="lane-head" style="border-bottom:none;"><div class="lane-label" style="color:var(--light);">Fallback logic</div></div>
+            <div class="lane-emails" style="padding-top:8px;">
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;border-bottom:1px solid var(--rule);">This lane catches step-2 abandoners and customers who chose "All of it."</div>
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;border-bottom:1px solid var(--rule);">By day 9, click behavior from the first three emails should signal the right world. Use Klaviyo conditional content to adapt email 4.</div>
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;">After welcome exits, the profile's behavioral data updates their segment for all future flows.</div>
+            </div>
+          </div>
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-loyalty"></div><div class="lane-label">Loyalty override</div><div class="lane-sublabel">+1 email day 11</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">Day 11</div>
+                <div class="email-content">
+                  <div class="email-subj">"Your membership."</div>
+                  <div class="email-desc">Universal loyalty onboarding. Full program overview — points, tiers, early access, what it means to be a member. Written in RVCA voice. Not a feature list.</div>
+                  <div class="email-tag loyalty-tag">Loyalty only</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─── BROWSE ABANDONMENT ────────────────────────── -->
+    <div class="flow-block" id="fb-browse">
+      <div class="flow-header" onclick="toggleFlow('browse')">
+        <div class="flow-num">02</div>
+        <div class="flow-header-title">Browse Abandonment</div>
+        <div class="flow-header-meta">
+          <div class="flow-email-count">3 lanes · 1–2 emails · 48h window</div>
+          <div class="flow-chevron">▼</div>
+        </div>
+      </div>
+      <div class="flow-body">
+        <div class="trigger-bar">
+          <div class="trigger-item">Trigger <span>Viewed product · No add-to-cart · 2 hours</span></div>
+          <div class="trigger-item">Exit <span>Cart add / Purchase</span></div>
+          <div class="trigger-item">Offer <span>Never — across all lanes</span></div>
+        </div>
+
+        <div class="lane-grid">
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-new"></div><div class="lane-label">New visitor</div><div class="lane-sublabel">2 emails</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">2 hrs</div>
+                <div class="email-content">
+                  <div class="email-subj">"The surf edit." / "The skate world."</div>
+                  <div class="email-desc">Category, not product. Don't surface the specific item — show the world around it. Lifestyle imagery from that category, 2–3 items from the same collection. Don't be creepy. Be editorial.</div>
+                  <div class="email-tag brand">World — not product</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">48 hrs</div>
+                <div class="email-content">
+                  <div class="email-subj">"In case you missed it."</div>
+                  <div class="email-desc">Now surface the specific product. One item, clean image, minimal copy. "Still here" energy. No offer — they're new, you don't know their price sensitivity yet.</div>
+                  <div class="email-tag">Product — no offer</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-return"></div><div class="lane-label">Return customer</div><div class="lane-sublabel">2 emails</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">1 hr</div>
+                <div class="email-content">
+                  <div class="email-subj">"Back for the [collection]?"</div>
+                  <div class="email-desc">More direct — they know you. Can reference the specific product or collection by name. One product, brief line, CTA. Clean and fast. No warmup needed.</div>
+                  <div class="email-tag">Direct · Product</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">24 hrs</div>
+                <div class="email-content">
+                  <div class="email-subj">Light scarcity if real — else "still here"</div>
+                  <div class="email-desc">Quiet follow-up. Inventory signal only if genuine. Points reminder if approaching loyalty threshold. Return customers convert on trust — never engineer urgency.</div>
+                  <div class="email-tag">Scarcity / Points</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-loyalty"></div><div class="lane-label">Loyalty member</div><div class="lane-sublabel">1 email · fastest send</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">45 min</div>
+                <div class="email-content">
+                  <div class="email-subj">Product name only. Or collection name.</div>
+                  <div class="email-desc">Fastest send in the browse system. Surface the product, their points balance, and whether this purchase would push them to a new tier. One email — they know what they're doing. Respect the intelligence of your best customers.</div>
+                  <div class="email-tag loyalty-tag">Points / Tier signal</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── CART ABANDONMENT ──────────────────────────── -->
+    <div class="flow-block" id="fb-cart">
+      <div class="flow-header" onclick="toggleFlow('cart')">
+        <div class="flow-num">03</div>
+        <div class="flow-header-title">Cart Abandonment</div>
+        <div class="flow-header-meta">
+          <div class="flow-email-count">3 lanes · 1–3 emails · 72h window</div>
+          <div class="flow-chevron">▼</div>
+        </div>
+      </div>
+      <div class="flow-body">
+        <div class="trigger-bar">
+          <div class="trigger-item">Trigger <span>Added to cart · No checkout · 1 hour</span></div>
+          <div class="trigger-item">Exit <span>Checkout initiated / Purchase</span></div>
+          <div class="trigger-item">Offer <span>New lane email 3 only — soft 10%</span></div>
+        </div>
+
+        <div class="lane-grid">
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-new"></div><div class="lane-label">New visitor</div><div class="lane-sublabel">3 emails</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">1 hr</div>
+                <div class="email-content">
+                  <div class="email-subj">"You left something."</div>
+                  <div class="email-desc">Just the cart. Product image, name, price, CTA. One line of copy: "Still available." No offer. No brand warmup. The product is the entire email.</div>
+                  <div class="email-tag">Cart only</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">24 hrs</div>
+                <div class="email-content">
+                  <div class="email-subj">Brand statement · then cart</div>
+                  <div class="email-desc">Open with one line of brand context, cart below. Add trust signals — free returns, sizing guide, one social proof signal. Objection handling without knowing the objection.</div>
+                  <div class="email-tag">Trust signals</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">72 hrs</div>
+                <div class="email-content">
+                  <div class="email-subj">Restated cart. Quiet offer.</div>
+                  <div class="email-desc">Last touch. 10% off, unique code, 24h expiry. Not a banner — a line in the email. Framed as a gesture, not a sale. Cart, offer, one CTA. Quiet. If no convert — exit flow.</div>
+                  <div class="email-tag offer">10% — 24hr expiry</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-return"></div><div class="lane-label">Return customer</div><div class="lane-sublabel">2 emails · no offer</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">1 hr</div>
+                <div class="email-content">
+                  <div class="email-subj">"Your cart's waiting."</div>
+                  <div class="email-desc">Product, price, CTA. More casual tone — they trust you. No brand warmup needed. Can be slightly warmer in copy than the new lane. "Saved it for you."</div>
+                  <div class="email-tag">Cart · casual tone</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">48 hrs</div>
+                <div class="email-content">
+                  <div class="email-subj">Inventory signal if real · else quiet follow</div>
+                  <div class="email-desc">One gentle follow-up. Genuine scarcity if it exists. Points reminder if relevant. No offer — return customers convert on trust and convenience, not discounts. Don't cheapen the relationship.</div>
+                  <div class="email-tag">Points / Scarcity</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-loyalty"></div><div class="lane-label">Loyalty member</div><div class="lane-sublabel">1 email · 30 min</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">30 min</div>
+                <div class="email-content">
+                  <div class="email-subj">"Your cart — and your points."</div>
+                  <div class="email-desc">Cart contents, points balance, points earned on this purchase, and whether it crosses a tier threshold. That's the entire email. One decision. No sequence — if they want it, they'll buy it. No follow-up sent.</div>
+                  <div class="email-tag loyalty-tag">Points math only</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── CHECKOUT ABANDONMENT ──────────────────────── -->
+    <div class="flow-block" id="fb-checkout">
+      <div class="flow-header" onclick="toggleFlow('checkout')">
+        <div class="flow-num">04</div>
+        <div class="flow-header-title">Checkout Abandonment</div>
+        <div class="flow-header-meta">
+          <div class="flow-email-count">3 lanes · 1–3 emails · Highest intent</div>
+          <div class="flow-chevron">▼</div>
+        </div>
+      </div>
+      <div class="flow-body">
+        <div class="trigger-bar">
+          <div class="trigger-item">Trigger <span>Checkout initiated · No order · 1 hour</span></div>
+          <div class="trigger-item">Exit <span>Purchase</span></div>
+          <div class="trigger-item">Note <span>Highest-intent trigger in the system — treat accordingly</span></div>
+        </div>
+
+        <div class="callout">
+          <div class="callout-label">Psychology</div>
+          <p>They put in their information and stopped. Something interrupted them, or they hit friction — shipping cost, payment issue, second thoughts. The approach is tighter, faster, and more direct than cart abandonment. This is not a re-engagement email. It's a removal of barriers.</p>
+        </div>
+
+        <div class="lane-grid">
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-new"></div><div class="lane-label">New visitor</div><div class="lane-sublabel">3 emails · fastest</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">30 min</div>
+                <div class="email-content">
+                  <div class="email-subj">"Almost."</div>
+                  <div class="email-desc">Cart + direct CTA back to checkout with info pre-filled. No copy beyond "You were close." Urgency without desperation. The most direct email in the entire system.</div>
+                  <div class="email-tag">Checkout link</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">24 hrs</div>
+                <div class="email-content">
+                  <div class="email-subj">Address friction without knowing it</div>
+                  <div class="email-desc">Proactively answer the most common drop-off reasons — shipping cost, returns policy, sizing, payment options. Framed as helpful, not sales-y. Pull actual friction data from RVCA's checkout analytics in audit.</div>
+                  <div class="email-tag">Friction removal</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">72 hrs</div>
+                <div class="email-content">
+                  <div class="email-subj">Cart + offer. Clean.</div>
+                  <div class="email-desc">The most justified offer in the entire program — highest intent, last chance. 10–15%, unique code, 24h expiry. Minimal copy. Cart + offer + one CTA. The email is almost entirely the cart and the gesture.</div>
+                  <div class="email-tag offer">10–15% · justified here</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-return"></div><div class="lane-label">Return customer</div><div class="lane-sublabel">2 emails · 20 min first</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">20 min</div>
+                <div class="email-content">
+                  <div class="email-subj">"Your cart's saved."</div>
+                  <div class="email-desc">Even faster for return customers — they know checkout, they know you. Something genuinely interrupted them. Frictionless return link. Clean, fast, no copy overhead.</div>
+                  <div class="email-tag">Frictionless return</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">24 hrs</div>
+                <div class="email-content">
+                  <div class="email-subj">First name only if available</div>
+                  <div class="email-desc">One quiet follow-up. Points reminder if relevant. No offer. Personal, brief. Subject line can be just their first name — signals this is different from a broadcast. Return customers don't need incentive, they need the path cleared.</div>
+                  <div class="email-tag">Personal · no offer</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-loyalty"></div><div class="lane-label">Loyalty member</div><div class="lane-sublabel">1 email · 15 min</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">15 min</div>
+                <div class="email-content">
+                  <div class="email-subj">"This order gets you to [tier]."</div>
+                  <div class="email-desc">Immediate. Their cart, points balance, points earned, and if this purchase crosses a tier — that's the entire subject line and the hero of the email. One email. If they didn't buy, it wasn't the email — something real stopped them. Respect that.</div>
+                  <div class="email-tag loyalty-tag">Tier milestone</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── POST PURCHASE ──────────────────────────────── -->
+    <div class="flow-block" id="fb-postpurchase">
+      <div class="flow-header" onclick="toggleFlow('postpurchase')">
+        <div class="flow-num">05</div>
+        <div class="flow-header-title">Post-Purchase</div>
+        <div class="flow-header-meta">
+          <div class="flow-email-count">4 categories · 3 phases · 60 days</div>
+          <div class="flow-chevron">▼</div>
+        </div>
+      </div>
+      <div class="flow-body">
+        <div class="trigger-bar">
+          <div class="trigger-item">Trigger <span>Placed Order — after Wonderment handles transactional</span></div>
+          <div class="trigger-item">Branch <span>Product category purchased → Loyalty overlay</span></div>
+          <div class="trigger-item">Exit <span>Next purchase (restarts flow)</span></div>
+        </div>
+
+        <p style="font-size:13.5px;font-weight:300;color:var(--mid);margin-bottom:8px;">The post-purchase window is when a customer is most emotionally connected to the brand. Most programs waste it on a cross-sell grid. This architecture uses it to deepen the relationship — product recommendations are the last thing that happens, not the first.</p>
+        <p style="font-size:13.5px;font-weight:300;color:var(--mid);margin-bottom:28px;">What they bought tells you who they are. The flow branches immediately on purchase category — Surf/Swim, Skate/Street, Sport, or Collection. Loyalty members receive an overlay across all phases.</p>
+
+        <!-- PHASE 1 -->
+        <div class="phase-header">
+          <div class="phase-label">Phase 01 — The Immediate Window</div>
+          <div class="phase-rule"></div>
+          <div class="phase-timing">Day 1–7</div>
+        </div>
+
+        <div class="cat-tabs" id="pp-tabs">
+          <button class="cat-tab active" onclick="switchCat(this,'pp-surf')">Surf / Swim</button>
+          <button class="cat-tab" onclick="switchCat(this,'pp-skate')">Skate / Street</button>
+          <button class="cat-tab" onclick="switchCat(this,'pp-sport')">Sport</button>
+          <button class="cat-tab" onclick="switchCat(this,'pp-collection')">Collection</button>
+        </div>
+
+        <div class="lane-grid cat-content active" id="pp-surf" style="border-top:none;">
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-new"></div><div class="lane-label">Surf / Swim purchase</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">Day 1</div>
+                <div class="email-content">
+                  <div class="email-subj">"You're in."</div>
+                  <div class="email-desc">Not "your order is confirmed" — Wonderment handles that. This is the brand moment. Single water campaign image. One line that validates the purchase emotionally. No product. No CTA. "You picked the right boardshort for the wrong day to be at work."</div>
+                  <div class="email-tag brand">Brand only · no product</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">Day 4</div>
+                <div class="email-content">
+                  <div class="email-subj">"How to take care of it."</div>
+                  <div class="email-desc">Practical care guide — rinse with fresh water, don't machine dry, why that matters for the material. Feels like advice from someone who surfs, not a brand FAQ. One soft "pairs well with" product at the bottom — one item, not a grid.</div>
+                  <div class="email-tag">Care + one cross-sell</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-loyalty"></div><div class="lane-label">Loyalty overlay</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">Day 1</div>
+                <div class="email-content">
+                  <div class="email-subj">Same — plus one line</div>
+                  <div class="email-desc">Identical to non-loyalty email 1, with one addition: their points earned on this purchase. One quiet line: "You're at X points." Not a feature — an acknowledgment. Below the hero, above the footer.</div>
+                  <div class="email-tag loyalty-tag">Points acknowledgment</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lane-col" style="background:var(--off);">
+            <div class="lane-head" style="border-bottom:none;"><div class="lane-label" style="color:var(--light);">Cross-sell logic</div></div>
+            <div class="lane-emails" style="padding-top:8px;">
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;border-bottom:1px solid var(--rule);">Boardshort → tee, rashguard, or cap</div>
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;border-bottom:1px solid var(--rule);">Swimwear → cover-up, sandals if available</div>
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;">One item only. Never a grid. The product is almost secondary to the care advice.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lane-grid cat-content" id="pp-skate" style="border-top:none;">
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-new"></div><div class="lane-label">Skate / Street purchase</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">Day 1</div>
+                <div class="email-content">
+                  <div class="email-subj">"The art behind it."</div>
+                  <div class="email-desc">Lead with the ANP. The artist or cultural context behind the piece they bought. A mural, a collab story, what RVCA invests in creatively. Makes the purchase feel like patronage, not just shopping.</div>
+                  <div class="email-tag brand">ANP / Cultural context</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">Day 4</div>
+                <div class="email-content">
+                  <div class="email-subj">"What's happening in the community."</div>
+                  <div class="email-desc">Community content — upcoming drop preview, ANP artist feature, collab announcement if live. Cross-sell here is world-building, not product-to-product. Keep them engaged with the culture and the purchases follow.</div>
+                  <div class="email-tag brand">Community · soft cross-sell</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-loyalty"></div><div class="lane-label">Loyalty overlay</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">Day 1</div>
+                <div class="email-content">
+                  <div class="email-subj">Same + points</div>
+                  <div class="email-desc">Identical email. Points earned acknowledgment in one quiet line below the hero. The cultural content is unchanged — that's what makes this email work.</div>
+                  <div class="email-tag loyalty-tag">Points acknowledgment</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lane-col" style="background:var(--off);">
+            <div class="lane-head" style="border-bottom:none;"><div class="lane-label" style="color:var(--light);">Cross-sell logic</div></div>
+            <div class="lane-emails" style="padding-top:8px;">
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;border-bottom:1px solid var(--rule);">Tee → flannel or walkshort from same collection</div>
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;border-bottom:1px solid var(--rule);">Hoodie → tee or hat</div>
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;">Collection items cross-sell within the same collection first — narrative coherence.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lane-grid cat-content" id="pp-sport" style="border-top:none;">
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-new"></div><div class="lane-label">Sport purchase</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">Day 1</div>
+                <div class="email-content">
+                  <div class="email-subj">"Built to move."</div>
+                  <div class="email-desc">Performance validation. The technical story of what they bought — materials, movement, athlete who trains in it. More rational than other lanes but still written in RVCA voice. They want to know it was the right choice.</div>
+                  <div class="email-tag brand">Performance validation</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">Day 4</div>
+                <div class="email-content">
+                  <div class="email-subj">"RVCA outside the gym."</div>
+                  <div class="email-desc">The bridge email. Sport item they bought + one lifestyle piece styled in an outdoor, non-gym setting. The most important email in the sport sequence — this is where you start converting performance buyers into full RVCA customers.</div>
+                  <div class="email-tag">Bridge — sport to lifestyle</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-loyalty"></div><div class="lane-label">Loyalty overlay</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">Day 1</div>
+                <div class="email-content">
+                  <div class="email-subj">Same + points</div>
+                  <div class="email-desc">Identical email. Points line added. For sport buyers, can also include new sport collection notifications as a loyalty benefit — "You'll get early access when new sport drops."</div>
+                  <div class="email-tag loyalty-tag">Points + early access note</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lane-col" style="background:var(--off);">
+            <div class="lane-head" style="border-bottom:none;"><div class="lane-label" style="color:var(--light);">Bridge strategy</div></div>
+            <div class="lane-emails" style="padding-top:8px;">
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;border-bottom:1px solid var(--rule);">Sport shorts → walkshort (same silhouette, lifestyle context)</div>
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;border-bottom:1px solid var(--rule);">Sport bra → bikini top (same category, different context)</div>
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;">Workout shirt → lifestyle tee. Don't jump to boardshorts yet. Bridge incrementally.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lane-grid cat-content" id="pp-collection" style="border-top:none;">
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-new"></div><div class="lane-label">Collection purchase</div><div class="lane-sublabel">Exotica · Hawaii · VAcancy</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">Day 1</div>
+                <div class="email-content">
+                  <div class="email-subj">"The [collection] story."</div>
+                  <div class="email-desc">Full editorial story behind the collection. Where it came from, the inspiration, the imagery. Most emotionally invested buyer in the system. Make them feel like they're inside something. This email is closest to a magazine spread — no product CTA, just world-building.</div>
+                  <div class="email-tag brand">Editorial · no CTA</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">Day 4</div>
+                <div class="email-content">
+                  <div class="email-subj">"You'll want to see what's coming."</div>
+                  <div class="email-desc">Sneak at the next collection or upcoming drop. Not a product dump — a single image, a teaser. Early access or waitlist CTA if that mechanic exists. This buyer bought into an aesthetic — the next sell is the next chapter of that aesthetic.</div>
+                  <div class="email-tag">Next drop preview</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-loyalty"></div><div class="lane-label">Loyalty overlay</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">Day 1</div>
+                <div class="email-content">
+                  <div class="email-subj">Same + points</div>
+                  <div class="email-desc">Identical editorial email. One points line added — subtle. The editorial integrity of this email is its value. Don't over-program it.</div>
+                  <div class="email-tag loyalty-tag">Points — minimal overlay</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lane-col" style="background:var(--off);">
+            <div class="lane-head" style="border-bottom:none;"><div class="lane-label" style="color:var(--light);">Collection buyer notes</div></div>
+            <div class="lane-emails" style="padding-top:8px;">
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;border-bottom:1px solid var(--rule);">Highest emotional investment in the system. Protect it — don't discount.</div>
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;border-bottom:1px solid var(--rule);">Cross-sell within collection first. Then next collection. Never cross to a different world (sport, etc.) in the immediate window.</div>
+              <div style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.65;padding:6px 0;">These buyers become brand ambassadors when nurtured correctly. The editorial approach pays long-term.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PHASE 2 -->
+        <div class="phase-header">
+          <div class="phase-label">Phase 02 — The Relationship Window</div>
+          <div class="phase-rule"></div>
+          <div class="phase-timing">Day 10–30</div>
+        </div>
+
+        <div class="lane-grid">
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-new"></div><div class="lane-label">All lanes — Email 3</div><div class="lane-sublabel">Day 10–14</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">Day 12</div>
+                <div class="email-content">
+                  <div class="email-subj">"Art &amp; sport. The ANP."</div>
+                  <div class="email-desc">The universal community email — identical across all four purchase categories. The ANP, the artists, the musicians, the surfers. A short editorial — three sentences and a great image. The goal: they bought something. Now they're in something. Shared across all lanes because the ANP is the universal RVCA thread.</div>
+                  <div class="email-tag brand">Shared · all lanes</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-new"></div><div class="lane-label">All lanes — Email 4</div><div class="lane-sublabel">Day 21–30</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">Day 25</div>
+                <div class="email-content">
+                  <div class="email-subj">Category-specific cross-world intro</div>
+                  <div class="email-desc">First explicit cross-category move. Surf → skate world via lifestyle image. Skate → swim via Barron (bridges both worlds). Sport → lifestyle via one piece outside the gym. Collection → next collection teaser. One product. Two lines. One CTA.</div>
+                  <div class="email-tag">Cross-category bridge</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-loyalty"></div><div class="lane-label">Loyalty overlay — Phase 2</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">Email 3</div>
+                <div class="email-content">
+                  <div class="email-subj">ANP email + tier status</div>
+                  <div class="email-desc">Same ANP email — adds loyalty tier status and what unlocks next. Framed as progression, not gamification. "You're at X. Here's what's next." One additional block in the template.</div>
+                  <div class="email-tag loyalty-tag">Tier progression</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PHASE 3 -->
+        <div class="phase-header">
+          <div class="phase-label">Phase 03 — The Retention Signal</div>
+          <div class="phase-rule"></div>
+          <div class="phase-timing">Day 45–60</div>
+        </div>
+
+        <div class="lane-grid">
+          <div class="lane-col" style="grid-column: span 2;">
+            <div class="lane-head"><div class="lane-dot dot-new"></div><div class="lane-label">All lanes — Email 5</div><div class="lane-sublabel">Day 50 · Early churn warning</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">Day 50</div>
+                <div class="email-content">
+                  <div class="email-subj">Timely · seasonal · current moment</div>
+                  <div class="email-desc">One final organic touch before the winback clock starts. Tied to a real moment — athlete in the water right now, collection just dropped, a campaign image that's fresh. Not explicitly promotional. "See what's new" not "shop now." No discount. If they open but don't buy — broadcast cadence. If they don't open — winback clock starts from here, not from purchase date. This distinction matters: you're measuring actual disengagement, not elapsed time.</div>
+                  <div class="email-tag">Timely content · no offer</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-loyalty"></div><div class="lane-label">Loyalty branch</div><div class="lane-sublabel">Day 45 · earlier trigger</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">Day 45</div>
+                <div class="email-content">
+                  <div class="email-subj">Points expiry warning if applicable</div>
+                  <div class="email-desc">Loyalty members get an earlier trigger — their lapse is more significant. If points are expiring, lead with that. If not, a drop preview or early access moment specific to their tier. Never a generic "we miss you" for loyalty members.</div>
+                  <div class="email-tag loyalty-tag">Earlier · tier-specific</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─── WINBACK ─────────────────────────────────────── -->
+    <div class="flow-block" id="fb-winback">
+      <div class="flow-header" onclick="toggleFlow('winback')">
+        <div class="flow-num">06</div>
+        <div class="flow-header-title">Winback &amp; Sunset</div>
+        <div class="flow-header-meta">
+          <div class="flow-email-count">2 lanes · 3 emails · 120–150 days</div>
+          <div class="flow-chevron">▼</div>
+        </div>
+      </div>
+      <div class="flow-body">
+        <div class="trigger-bar">
+          <div class="trigger-item">Trigger <span>No purchase 120 days AND no open 60 days</span></div>
+          <div class="trigger-item">Branch <span>Last-purchased category (behavior &gt; stated preference)</span></div>
+          <div class="trigger-item">Loyalty <span>Earlier trigger — day 105</span></div>
+          <div class="trigger-item">Exit <span>Any purchase or open + click</span></div>
+        </div>
+
+        <div class="callout">
+          <div class="callout-label">Dual-signal trigger</div>
+          <p>Using both purchase recency AND email engagement prevents suppressing customers who are still reading but not buying — those people are warm. Only trigger winback when both signals confirm disengagement. By this point, the flow branches on <strong>last-purchased category</strong> rather than signup preference — behavior over stated intent.</p>
+        </div>
+
+        <div class="lane-grid">
+          <div class="lane-col" style="grid-column: span 2;">
+            <div class="lane-head"><div class="lane-dot dot-new"></div><div class="lane-label">Non-loyalty — 3 emails</div><div class="lane-sublabel">Day 120 · 135 · 150</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">Day 120</div>
+                <div class="email-content">
+                  <div class="email-subj">"RVCA." / "Checking in."</div>
+                  <div class="email-desc">Pure brand. No product, no offer. A single campaign image from whatever's current. One line that's almost wistful — "A lot's happened." The goal is an open, not a click. Subject line is low-pressure — almost nothing after it. If they open: exit winback, move to broadcast cadence.</div>
+                  <div class="email-tag brand">Brand only · open goal</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">Day 135</div>
+                <div class="email-content">
+                  <div class="email-subj">"New in surf." / "The skate edit right now."</div>
+                  <div class="email-desc">If no open from email 1. Surface product from their last-purchased category. Current, relevant, no offer. If they click — exit winback, enter browse abandonment or broadcast. The product is the re-entry point, not a discount.</div>
+                  <div class="email-tag">Category product · no offer</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">Day 150</div>
+                <div class="email-content">
+                  <div class="email-subj">"We'd like you back."</div>
+                  <div class="email-desc">The offer email. Only place outside new-customer checkout abandonment where a meaningful offer is fully justified. 15–20%, unique code, 48h expiry. Personal-feeling subject line. Not a sale announcement — a gesture. Quiet design. If no conversion: sunset flow.</div>
+                  <div class="email-tag offer">15–20% · 48hr · last chance</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lane-col">
+            <div class="lane-head"><div class="lane-dot dot-loyalty"></div><div class="lane-label">Loyalty — 3 emails</div><div class="lane-sublabel">Day 105 · 120 · 135</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">Day 105</div>
+                <div class="email-content">
+                  <div class="email-subj">"We noticed you've been away."</div>
+                  <div class="email-desc">Earlier trigger — loyalty lapse is more significant and more recoverable. Acknowledge the relationship directly. Points balance, any expiring points, current tier status. Tone: warm, not alarmed.</div>
+                  <div class="email-tag loyalty-tag">Relationship · points expiry</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">Day 120</div>
+                <div class="email-content">
+                  <div class="email-subj">"X points away from [tier]."</div>
+                  <div class="email-desc">Product from last-purchased category + points math. Specific calculation makes the return feel like progress, not a restart. "You're 250 points from Gold." One new arrival. One CTA.</div>
+                  <div class="email-tag loyalty-tag">Points math · product</div>
+                </div>
+              </div>
+              <div class="email-row">
+                <div class="email-timing">Day 135</div>
+                <div class="email-content">
+                  <div class="email-subj">"For members only."</div>
+                  <div class="email-desc">Loyalty-specific value — not a percentage off. Free shipping upgrade, bonus points multiplier, early access to an upcoming drop. Real value, exclusive framing. Never a generic discount for a loyalty member. If no re-engage: sunset.</div>
+                  <div class="email-tag loyalty-tag">Exclusive · not a discount</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUNSET -->
+        <div class="phase-header" style="margin-top:40px;">
+          <div class="phase-label">Sunset</div>
+          <div class="phase-rule"></div>
+          <div class="phase-timing">After winback — no engagement</div>
+        </div>
+
+        <div class="lane-grid">
+          <div class="lane-col" style="grid-column: span 3;">
+            <div class="lane-head"><div class="lane-label">Final email before suppression — all lanes</div></div>
+            <div class="lane-emails">
+              <div class="email-row">
+                <div class="email-timing">Final</div>
+                <div class="email-content">
+                  <div class="email-subj">"Should we keep in touch?"</div>
+                  <div class="email-desc">Almost plain-text. No design. No product. Three options presented clearly: Yes, keep sending — Less often (opt-down to monthly digest) — No thanks (unsubscribe). The opt-down option is the reason this email exists. Some people want RVCA in their life, just quieter. Saving those subscribers is worth the extra option. Honest, on-brand, no pressure.</div>
+                  <div class="email-tag">Plain text · opt-down option</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─── OFFER MATRIX ───────────────────────────────── -->
+    <div class="h2">Offer Logic — Full System</div>
+    <p style="font-size:13.5px;font-weight:300;color:var(--mid);margin-bottom:20px;">Where offers live and don't — across all six programs. Offers in browse abandonment train your list to expect discounts for browsing. That behavior cannot be untrained. Restraint here protects margin and brand positioning across the entire customer lifetime.</p>
+
+    <table class="offer-matrix">
+      <thead>
+        <tr>
+          <th>Flow</th>
+          <th>New visitor</th>
+          <th>Return customer</th>
+          <th>Loyalty member</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Welcome</td>
+          <td>15% — email 1 only, soft</td>
+          <td class="om-never">N/A — enters post-purchase</td>
+          <td class="om-never">N/A — enters post-purchase</td>
+        </tr>
+        <tr>
+          <td>Browse Abandon</td>
+          <td class="om-never">Never</td>
+          <td class="om-never">Never</td>
+          <td class="om-access">Points reminder only</td>
+        </tr>
+        <tr>
+          <td>Cart Abandon</td>
+          <td>Email 3 only — 10%, quiet</td>
+          <td class="om-never">Never</td>
+          <td class="om-access">Points math only</td>
+        </tr>
+        <tr>
+          <td>Checkout Abandon</td>
+          <td>Email 3 only — 10–15%, justified</td>
+          <td class="om-never">Never</td>
+          <td class="om-access">Tier milestone framing</td>
+        </tr>
+        <tr>
+          <td>Post-Purchase</td>
+          <td class="om-never">Never</td>
+          <td class="om-never">Never</td>
+          <td class="om-never">Never — relationship only</td>
+        </tr>
+        <tr>
+          <td>Winback</td>
+          <td>Email 3 — 15–20%, last resort</td>
+          <td>Email 3 — 15–20%, last resort</td>
+          <td class="om-access">Exclusive benefit — not % off</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ─── HANDOFF LOGIC ──────────────────────────────── -->
+    <div class="h2">Flow Hand-Off Logic</div>
+    <p style="font-size:13.5px;font-weight:300;color:var(--mid);margin-bottom:20px;">The architecture only works if flows communicate correctly. These suppression rules prevent conflicting messages and ensure every customer is in exactly one flow at a time.</p>
+
+    <div class="handoff-grid">
+      <div class="handoff-cell">
+        <div class="handoff-flow">Welcome →</div>
+        <div class="handoff-suppress">Suppressed by <strong>first purchase.</strong> Customer exits immediately into post-purchase flow.</div>
+      </div>
+      <div class="handoff-cell">
+        <div class="handoff-flow">Browse Abandon →</div>
+        <div class="handoff-suppress">Suppressed by <strong>cart add or purchase.</strong> Immediately exits if either event fires.</div>
+      </div>
+      <div class="handoff-cell">
+        <div class="handoff-flow">Cart Abandon →</div>
+        <div class="handoff-suppress">Suppressed by <strong>checkout initiation or purchase.</strong> Cart → checkout is a natural progression, not abandonment.</div>
+      </div>
+      <div class="handoff-cell">
+        <div class="handoff-flow">Checkout Abandon →</div>
+        <div class="handoff-suppress">Suppressed by <strong>purchase only.</strong> Stays active until order placed or flow completes.</div>
+      </div>
+      <div class="handoff-cell">
+        <div class="handoff-flow">Post-Purchase →</div>
+        <div class="handoff-suppress">Suppresses <strong>all abandonment flows</strong> on order confirmation. Restarts on next purchase.</div>
+      </div>
+      <div class="handoff-cell">
+        <div class="handoff-flow">Winback →</div>
+        <div class="handoff-suppress">Suppressed by <strong>any purchase or open + click.</strong> Even a single re-engagement exits the flow immediately.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Dynamic profile updates</div>
+      <p>Segment tags and category properties should update dynamically throughout the customer lifecycle — not set once at signup. A sport buyer who later purchases a boardshort should be reclassified. Every flow should always read the <strong>most current profile state</strong>, not a tag set six months ago. This is the single most common implementation failure in Klaviyo programs of this complexity.</p>
+    </div>
+
+  </div>
+</div>
+  </div>
+  <div class="prop-section" id="sec-roadmap">
+<div class="section active" id="section-roadmap">
+  <div class="section-hero">
+    <div style="max-width:860px;margin:0 auto;padding:0 48px;">
+      <div class="section-index">Section 04</div>
+      <div class="section-title">6-Month<br/>Roadmap</div>
+      <div class="section-intro">
+        A phased program from account access through a fully optimized retention engine. Each phase has clear deliverables, success metrics, and a defined handoff to the next phase. The overarching goal: move Klaviyo from 8% of total store revenue today to 25%+ by the end of Month 3, and 30–40% by Month 6.
+      </div>
+    </div>
+  </div>
+  <div class="page" style="padding-top:56px;">
+
+    <div class="h2">Phase Overview</div>
+    <div class="tier-list">
+      <div class="tier-item">
+        <div class="tier-num">01</div>
+        <div class="tier-body"><strong>Audit &amp; Foundation (Month 1)</strong> — Account access, full diagnostic, quick wins deployed, foundation built.</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-num">02</div>
+        <div class="tier-body"><strong>Core Flow Build (Month 2)</strong> — Welcome series, abandonment suite (3×3 matrix), and popup rebuilt and live.</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-num">03</div>
+        <div class="tier-body"><strong>Post-Purchase &amp; Retention (Month 3)</strong> — Full post-purchase architecture live. Winback and sunset built. Broadcast cadence established.</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-num">04</div>
+        <div class="tier-body"><strong>Optimization &amp; Testing (Month 4)</strong> — A/B test roadmap running. Segmentation refined from real data. SMS program evaluated.</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-num">05</div>
+        <div class="tier-body"><strong>Scale &amp; Automation Depth (Month 5)</strong> — VIP flows, loyalty triggers, reviews flow, advanced segmentation layers added.</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-num">06</div>
+        <div class="tier-body"><strong>Review &amp; Renewal (Month 6)</strong> — Full program audit, performance review, renewal scope and pricing presented.</div>
+      </div>
+    </div>
+
+    <div class="h2">Detailed Timeline</div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">Wk 1–2</div>
+        <div class="tl-body"><strong>Audit &amp; Account Access</strong>Full Klaviyo account review completed. Flow inventory documented. List health pulled. Revenue attribution benchmarked. Audit findings presented to RVCA team. Priority list agreed.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Wk 3–4</div>
+        <div class="tl-body"><strong>Quick Wins &amp; Critical Fixes</strong>Priority 1: Fix the cart abandonment split error — the logic removing multi-item cart customers is eliminating ~70% of high-value buyers. Resolve immediately. Confirm abandoned checkout is enabled in Shopify. Attribution tracking verified against GA/Shopify. Design system and template framework established. Broadcast calendar Month 1 drafted.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Mo 2 Wk 1–2</div>
+        <div class="tl-body"><strong>Welcome Series + Popup Live</strong>Two-step popup built and deployed. All four welcome lanes (Surf/Swim, Skate/Street, Sport, All of it) built, tested, and live. 15% offer mechanic confirmed. Loyalty welcome overlay added.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Mo 2 Wk 3–4</div>
+        <div class="tl-body"><strong>Abandonment Suite Live</strong>Browse, Cart, and Checkout abandonment flows built — all three lanes (New, Return, Loyalty) for each. Nine total flow branches. All tested with seed orders before live activation.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Mo 3 Wk 1–2</div>
+        <div class="tl-body"><strong>Post-Purchase Architecture Live</strong>All four category branches (Surf/Swim, Skate/Street, Sport, Collection) built across three phases. Loyalty overlay active. Wonderment handoff confirmed — no duplicate transactional sends.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Mo 3 Wk 3–4</div>
+        <div class="tl-body"><strong>Winback, Sunset + Broadcast Cadence Established</strong>Winback sequence live (non-loyalty and loyalty lanes). Sunset flow with opt-down option deployed. Monthly broadcast rhythm running — first full month of structured campaign calendar complete.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Month 4</div>
+        <div class="tl-body"><strong>Optimization &amp; A/B Testing</strong>Subject line testing initiated across top flows. Send-time testing on broadcast. Segmentation performance reviewed — are world-preference tags performing as expected vs. behavioral data? SMS program evaluated and scoped if not already active.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Month 5</div>
+        <div class="tl-body"><strong>Advanced Automation Layer</strong>VIP / high-LTV trigger flow built. Loyalty tier progression emails added. Klaviyo Reviews flow live (if consolidation complete). Back-in-stock flow evaluated and built if applicable. Category cross-sell segments refined based on 3 months of purchase data.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Month 6</div>
+        <div class="tl-body"><strong>Full Program Review &amp; Renewal</strong>Complete 6-month performance audit. Revenue attribution before/after. Flow performance benchmarks. List growth and health metrics. Renewal scope presented — recommendations for next 6 months based on real program data.</div>
+      </div>
+    </div>
+
+    <div class="h2">Success Metrics — by Phase</div>
+    <table>
+      <thead><tr><th>Phase</th><th>Primary Metric</th><th>Target</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Month 1</strong></td><td>Cart split error fixed, checkout abandonment live, attribution confirmed</td><td>Multi-item cart buyers re-entering flow within week 3</td></tr>
+        <tr><td><strong>Month 2</strong></td><td>Welcome series conversion rate</td><td>&gt;15% purchase rate from welcome series</td></tr>
+        <tr><td><strong>Month 2</strong></td><td>Abandonment flow recovery rate</td><td>Checkout abandon &gt;10% recovery</td></tr>
+        <tr><td><strong>Month 3</strong></td><td>Post-purchase repeat purchase rate</td><td>Baseline established, improve M4+</td></tr>
+        <tr><td><strong>Month 3</strong></td><td>Broadcast open rate</td><td>&gt;35% on T1 engaged segment</td></tr>
+        <tr><td><strong>Month 4</strong></td><td>Revenue per recipient (RPR)</td><td>10–15% lift vs Month 1 baseline</td></tr>
+        <tr><td><strong>Month 6</strong></td><td>Email as % of total store revenue</td><td>Target 30–40% attribution</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <div class="callout-label">On Sequencing</div>
+      <p>The order matters. Welcome and abandonment flows are built before post-purchase because they generate the data — purchase history, category preferences, loyalty status — that makes post-purchase personalization possible. You can't segment a post-purchase flow on purchase category if you don't have purchase data yet. Foundation first, depth second.</p>
+    </div>
+  </div>
+</div>
+  </div>
+  <div class="prop-section" id="sec-kickoff">
+<div class="section active" id="section-kickoff">
+  <div class="section-hero">
+    <div style="max-width:860px;margin:0 auto;padding:0 48px;">
+      <div class="section-index">Section 04</div>
+      <div class="section-title">Kickoff &amp;<br/>Onboarding</div>
+      <div class="section-intro">
+        Everything we need to hit the ground running. Below is our onboarding checklist, Month 1 priorities, and what the first 30 days look like.
+      </div>
+    </div>
+  </div>
+  <div class="page" style="padding-top:56px;">
+
+    <div class="h2">Onboarding Checklist</div>
+    <div class="tier-list">
+      <div class="tier-item">
+        <div class="tier-num">01</div>
+        <div class="tier-body"><strong>Grant Klaviyo access.</strong> Full admin access for mike@digitsup.com. Required Day 1 — the cart split error fix goes in Week 1.</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-num">02</div>
+        <div class="tier-body"><strong>Confirm brand voice + asset access.</strong> Share brand guidelines, tone doc, and any existing copy references. We'll match your voice from Day 1.</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-num">03</div>
+        <div class="tier-body"><strong>Confirm email template assets.</strong> Access to any existing templates, Figma files, or design assets we can build from.</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-num">04</div>
+        <div class="tier-body"><strong>Set up approval workflow.</strong> Who approves emails? Who reviews copy? 48-hour turnaround is built into the schedule — we'll align on the right contacts.</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-num">05</div>
+        <div class="tier-body"><strong>Define promotional calendar.</strong> Key dates, sale windows, product launches, and blackout periods for the next 90 days. Shapes the campaign calendar immediately.</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-num">06</div>
+        <div class="tier-body"><strong>Confirm communication cadence.</strong> Weekly async update + bi-weekly strategy call to start. Adjust as needed once the program is in motion.</div>
+      </div>
+    </div>
+
+    <div class="h2">Phase 1 Priorities — First 30 Days</div>
+    <div class="tier-list">
+      <div class="tier-item">
+        <div class="tier-num">W1</div>
+        <div class="tier-body"><strong>Fix the cart split error.</strong> Currently excluding 70% of high-value abandoners from the cart flow. This is Day 1 work — it's costing revenue every hour it runs broken.</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-num">W1</div>
+        <div class="tier-body"><strong>Activate checkout abandonment.</strong> Klaviyo's dedicated checkout flow is currently not live. Immediate recovery opportunity before the automation build begins.</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-num">W2</div>
+        <div class="tier-body"><strong>Rebuild the welcome series.</strong> 4 world-preference lanes (Surf / Snow / MX / Skate). This is your highest-volume flow and the first experience every new subscriber has with the brand.</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-num">W2</div>
+        <div class="tier-body"><strong>Rebuild the popup.</strong> Add first-name capture, teaser element, and fix close behavior so subscribers aren't permanently lost on accidental dismiss.</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-num">W3–4</div>
+        <div class="tier-body"><strong>Post-purchase architecture.</strong> 4-branch category split (Surf / Snow / MX / Skate) with 3-phase journey: activation, retention, replenishment. Loyalist track built into Phase 2.</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-num">W4</div>
+        <div class="tier-body"><strong>Month 1 report.</strong> Revenue attribution from fixed flows, list health baseline, campaign performance summary. Delivered by the 5th of Month 2.</div>
+      </div>
+    </div>
+
+    <div class="h2">What to Expect</div>
+    <table>
+      <thead><tr><th>Area</th><th>How We Work</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Reporting</strong></td><td>Monthly performance report delivered by the 5th — revenue attribution, flow performance, list health, campaign metrics.</td></tr>
+        <tr><td><strong>Approvals</strong></td><td>Campaign briefs submitted 5 business days before send. 48-hour approval window. Delays shift the calendar, not the billing.</td></tr>
+        <tr><td><strong>Communication</strong></td><td>Weekly async update every Monday. Strategy call bi-weekly to start, monthly once the program is in a rhythm.</td></tr>
+        <tr><td><strong>Klaviyo Access</strong></td><td>We work directly in your account. All builds are documented and handed over. You own everything we build.</td></tr>
+        <tr><td><strong>Month 6</strong></td><td>Full program audit + renewal proposal based on real data. No guesswork — we'll show you exactly what moved the needle.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <div class="callout-label">The Opportunity</div>
+      <p>Klaviyo is currently generating 8% of total store revenue. The 90-day target is 25%. With 400K+ active profiles, 163K one-hit wonders, and a broken cart flow excluding 70% of high-value buyers — the recoverable revenue in Month 1 alone is significant. We're not starting from scratch, we're fixing what's already there and building what's missing.</p>
+    </div>
+
+  </div>
+</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const cv = document.getElementById('shore');
+  const cx = cv.getContext('2d');
+  let W, H, dpr;
+
+  function resize(){
+    dpr = window.devicePixelRatio||1;
+    W = window.innerWidth; H = window.innerHeight;
+    cv.width=W*dpr; cv.height=H*dpr;
+    cv.style.width=W+'px'; cv.style.height=H+'px';
+    cx.scale(dpr,dpr);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  /*
+    APPROACH: Horizontal gradient bands that gently breathe up and down.
+    No sharp angles. Each band spans the FULL width — edges never taper
+    to a point. The undulation is so small you feel it more than see it.
+    Bands sit in the lower 55% of the screen so the upper 45% is clean
+    dark navy for the text to live on.
+
+    Each band is drawn as:
+      - a full-width filled shape
+      - top edge = very gentle sine curve (tiny amplitude)
+      - bottom = below screen bottom (no visible lower edge)
+    Bands are semi-transparent so they blend softly into each other.
+  */
+
+  const BANDS = [
+    // Deepest water — sits at ~50% down, nearly invisible
+    { yF: 0.48, amp: 0.012, spd: 0.000014, ph: 0.0,  n: 6,
+      color: 'rgba(14, 58, 88, 0.55)' },
+    // Rich teal water
+    { yF: 0.54, amp: 0.010, spd: 0.000018, ph: 2.1,  n: 6,
+      color: 'rgba(18, 96, 102, 0.60)' },
+    // Bright shallow teal
+    { yF: 0.60, amp: 0.009, spd: 0.000022, ph: 4.3,  n: 7,
+      color: 'rgba(26, 122, 118, 0.55)' },
+    // Foam — very pale, thin band, most movement (still extremely slow)
+    { yF: 0.65, amp: 0.008, spd: 0.000030, ph: 1.4,  n: 8,
+      color: 'rgba(200, 232, 238, 0.28)', isFoam: true },
+    // Wet sand
+    { yF: 0.68, amp: 0.007, spd: 0.000012, ph: 3.7,  n: 6,
+      color: 'rgba(168, 158, 140, 0.65)' },
+    // Dry sand — fills to bottom
+    { yF: 0.74, amp: 0.005, spd: 0.000008, ph: 5.8,  n: 5,
+      color: 'rgba(190, 175, 148, 0.70)' },
+  ];
+
+  // Simple smooth path — just quadratic bezier through midpoints
+  // so there are zero sharp corners anywhere
+  function smoothBand(pts, yBottom){
+    if(pts.length < 2) return;
+    cx.moveTo(-10, yBottom + 20);
+    cx.lineTo(-10, pts[0].y);
+    // Start
+    cx.moveTo(pts[0].x, pts[0].y);
+    for(let i = 0; i < pts.length - 1; i++){
+      const mx = (pts[i].x + pts[i+1].x) / 2;
+      const my = (pts[i].y + pts[i+1].y) / 2;
+      cx.quadraticCurveTo(pts[i].x, pts[i].y, mx, my);
+    }
+    cx.lineTo(pts[pts.length-1].x, pts[pts.length-1].y);
+  }
+
+  function drawBand(B, T){
+    const yBase = B.yF * H;
+    const yBot  = H + 20;
+
+    // Build top-edge points — evenly spaced, tiny vertical displacement
+    const pts = [];
+    for(let i = 0; i <= B.n; i++){
+      const x = (i / B.n) * W;
+      // Single gentle sine — period is wider than the screen so it
+      // never creates a peak in the middle that looks like a wedge
+      const angle = (i / B.n) * Math.PI * 1.4 + B.ph + T * B.spd * 60;
+      const dy = Math.sin(angle) * B.amp * H;
+      pts.push({ x, y: yBase + dy });
+    }
+
+    cx.beginPath();
+    cx.moveTo(-10, yBot);
+    cx.lineTo(-10, pts[0].y);
+    for(let i = 0; i < pts.length - 1; i++){
+      const mx = (pts[i].x + pts[i+1].x) / 2;
+      const my = (pts[i].y + pts[i+1].y) / 2;
+      cx.quadraticCurveTo(pts[i].x, pts[i].y, mx, my);
+    }
+    const last = pts[pts.length-1];
+    cx.lineTo(last.x, last.y);
+    cx.lineTo(W + 10, last.y);
+    cx.lineTo(W + 10, yBot);
+    cx.closePath();
+    cx.fillStyle = B.color;
+    cx.fill();
+
+    // Foam band gets a single whisper-thin bright edge
+    if(B.isFoam){
+      cx.beginPath();
+      cx.moveTo(-10, pts[0].y);
+      for(let i = 0; i < pts.length - 1; i++){
+        const mx = (pts[i].x + pts[i+1].x) / 2;
+        const my = (pts[i].y + pts[i+1].y) / 2;
+        cx.quadraticCurveTo(pts[i].x, pts[i].y, mx, my);
+      }
+      cx.lineTo(W + 10, pts[pts.length-1].y);
+      cx.lineWidth = 1.5;
+      cx.strokeStyle = 'rgba(255,255,255,0.30)';
+      cx.stroke();
+    }
+  }
+
+  function drawOverlays(){
+    // Strong top overlay — keeps upper 40% pure dark for text clarity
+    const top = cx.createLinearGradient(0, 0, 0, H * 0.52);
+    top.addColorStop(0,   'rgba(7,13,24,1.0)');
+    top.addColorStop(0.6, 'rgba(7,13,24,0.6)');
+    top.addColorStop(1,   'rgba(7,13,24,0)');
+    cx.fillStyle = top;
+    cx.fillRect(0, 0, W, H * 0.52);
+
+    // Bottom overlay — tiles area
+    const bot = cx.createLinearGradient(0, H * 0.68, 0, H);
+    bot.addColorStop(0, 'rgba(7,13,24,0)');
+    bot.addColorStop(1, 'rgba(7,13,24,0.85)');
+    cx.fillStyle = bot;
+    cx.fillRect(0, H * 0.68, W, H * 0.32);
+
+    // Subtle left-side overlay so text is always on clean bg
+    const left = cx.createLinearGradient(0, 0, W * 0.45, 0);
+    left.addColorStop(0,   'rgba(7,13,24,0.45)');
+    left.addColorStop(1,   'rgba(7,13,24,0)');
+    cx.fillStyle = left;
+    cx.fillRect(0, 0, W * 0.45, H);
+  }
+
+  let last = performance.now();
+  let T = 0;
+
+  function frame(now){
+    const dt = Math.min(now - last, 50);
+    last = now; T += dt;
+
+    cx.clearRect(0, 0, W, H);
+
+    // Deep navy base
+    cx.fillStyle = '#070d18';
+    cx.fillRect(0, 0, W, H);
+
+    BANDS.forEach(B => drawBand(B, T));
+    drawOverlays();
+
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+})();
+</script>
+<script>
+
+function showSection(id, btn) {
+  document.querySelectorAll('.prop-section').forEach(function(s){ s.classList.remove('active'); });
+  document.querySelectorAll('.prop-nav-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById('sec-' + id).classList.add('active');
+  if(btn) btn.classList.add('active');
+  document.getElementById('proposal').scrollTop = 0;
+}
+
+function showSplash() {
+  document.getElementById('proposal').classList.remove('visible');
+  document.getElementById('splash').classList.remove('gone');
+}
+
+function goTo(id) {
+  document.getElementById('splash').classList.add('gone');
+  document.getElementById('proposal').classList.add('visible');
+  var btn = document.querySelector('.prop-nav-btn[data-sec="' + id + '"]');
+  showSection(id, btn);
+}
+
+function toggleFlow(id) {
+  var block = document.getElementById('fb-' + id);
+  var open = block.classList.contains('open');
+  block.classList.toggle('open', !open);
+  var ch = block.querySelector('.flow-chevron');
+  if(ch) ch.textContent = open ? '▼' : '▲';
+}
+
+function switchCat(btn, targetId) {
+  var body = btn.closest('.flow-body') || btn.closest('.prop-section');
+  btn.closest('.cat-tabs').querySelectorAll('.cat-tab').forEach(function(t){ t.classList.remove('active'); });
+  btn.classList.add('active');
+  body.querySelectorAll('.cat-content').forEach(function(c){ c.classList.remove('active'); });
+  var t = body.querySelector('#' + targetId);
+  if(t) t.classList.add('active');
+}
+
+
+function checkPassword() {
+  var val = document.getElementById('pw-input').value;
+  var err = document.getElementById('pw-error');
+  if(val === 'RVCA2026') {
+    document.getElementById('password-screen').classList.add('gone');
+    err.classList.add('hidden');
+  } else {
+    err.classList.remove('hidden');
+    document.getElementById('pw-input').value = '';
+    document.getElementById('pw-input').focus();
+    // Shake animation
+    var input = document.getElementById('pw-input');
+    input.style.transform = 'translateX(-6px)';
+    setTimeout(function(){ input.style.transform = 'translateX(6px)'; }, 80);
+    setTimeout(function(){ input.style.transform = 'translateX(-4px)'; }, 160);
+    setTimeout(function(){ input.style.transform = 'translateX(0)'; }, 240);
+  }
+}
+// Allow enter key from anywhere on password screen
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Enter' && !document.getElementById('password-screen').classList.contains('gone')){
+    checkPassword();
+  }
+});
+
+</script>
+</body>
+</html>
