@@ -214,15 +214,15 @@ main{position:relative;z-index:5;max-width:1100px;margin:0 auto;padding:24px 20p
       <div class="card">
         <div class="card-label">Usage — Mar 2026</div>
         <div class="usage-grid">
-          <div class="u-stat"><div class="u-val accent">$153.98</div><div class="u-lbl">Total Spend</div></div>
-          <div class="u-stat"><div class="u-val">780</div><div class="u-lbl">Sessions</div></div>
+          <div class="u-stat"><div class="u-val accent">$160.42</div><div class="u-lbl">Total Spend</div></div>
+          <div class="u-stat"><div class="u-val">795</div><div class="u-lbl">Sessions</div></div>
           <div class="u-stat" style="grid-column:1/-1"><div class="u-val" style="font-size:13px;">Sonnet 4.6</div><div class="u-lbl">Top Model</div></div>
         </div>
         <div class="budget-bar-wrap">
-          <div class="budget-label"><span>Budget Used</span><span>30.8% of $500</span></div>
-          <div class="budget-bar-track"><div class="budget-bar-fill" style="width:30.8%;"></div></div>
+          <div class="budget-label"><span>Budget Used</span><span>32.1% of $500</span></div>
+          <div class="budget-bar-track"><div class="budget-bar-fill" style="width:32.1%;"></div></div>
         </div>
-        <div class="sync-note" style="color:var(--accent);font-size:9px;margin-top:8px;text-align:center;">⟳ Last updated: Mar 31 2026, 10:50 PM PDT</div>
+        <div class="sync-note" style="color:var(--accent);font-size:9px;margin-top:8px;text-align:center;">⟳ Last updated: Apr 1 2026, 7:26 AM PDT</div>
       </div>
 
     </div>
@@ -233,19 +233,12 @@ main{position:relative;z-index:5;max-width:1100px;margin:0 auto;padding:24px 20p
       <!-- Activity Feed -->
       <div class="card">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-          <div class="card-label" style="margin:0;">Today's Activity — Mar 31</div>
+          <div class="card-label" style="margin:0;">Today's Activity — Apr 1</div>
           <div style="font-family:var(--mono);font-size:9px;color:var(--accent);">⟳ Mar 31, 1:36 PM PDT</div>
         </div>
         <div class="act-list" id="actList">
-          <div class="act-item accent"><div class="act-dot"></div><div class="act-text">Session cost review — $153.98 total, 30.8% of budget. Fresh sessions starting tomorrow.</div><div class="act-time">10:50 PM</div></div>
-          <div class="act-item green"><div class="act-dot"></div><div class="act-text">Rho Nutrition Day 3 wireframe brief built and emailed to Mike</div><div class="act-time">5:25 PM</div></div>
-          <div class="act-item green"><div class="act-dot"></div><div class="act-text">Hale Iwa Farm vision strategy doc built and deployed to GitHub</div><div class="act-time">4:00 PM</div></div>
-          <div class="act-item green"><div class="act-dot"></div><div class="act-text">Figma connected — Rho Nutrition OS board found, wireframe approach confirmed</div><div class="act-time">5:15 PM</div></div>
-          <div class="act-item green"><div class="act-dot"></div><div class="act-text">RVCA strategy file saved — kickoff prep queued for tomorrow</div><div class="act-time">3:40 PM</div></div>
-          <div class="act-item green"><div class="act-dot"></div><div class="act-text">Shelbie fully briefed — Outersignal overview + Rho briefs + 1st Phorm personas sent</div><div class="act-time">12:37 PM</div></div>
-          <div class="act-item green"><div class="act-dot"></div><div class="act-text">Liverpool pre-call brief emailed to Mike before 11:30am call</div><div class="act-time">11:04 AM</div></div>
-          <div class="act-item green"><div class="act-dot"></div><div class="act-text">Session discipline rules updated — heartbeat 3x/day, heavy builds to subagents</div><div class="act-time">10:01 AM</div></div>
-          <div class="act-item green"><div class="act-dot"></div><div class="act-text">OpenAI GPT-4.1 configured as Anthropic fallback</div><div class="act-time">8:57 AM</div></div>
+          <div class="act-item accent"><div class="act-dot"></div><div class="act-text">Good morning — new day, fresh focus. Outersignal kickoff 11am, RVCA kickoff 1pm.</div><div class="act-time">7:26 AM</div></div>
+          <div class="act-item green"><div class="act-dot"></div><div class="act-text">HQ refreshed — $160.42 total, $26.23 today so far</div><div class="act-time">7:26 AM</div></div>
         </div>
 
         <!-- Kanban<!-- Kanban -->
@@ -432,7 +425,7 @@ function lsGet(k,fb){try{const v=localStorage.getItem(k);return v?JSON.parse(v):
 function lsSet(k,v){localStorage.setItem(k,JSON.stringify(v));}
 
 // Version bump to reset stale data
-const VER='hq-v6.3';
+const VER='hq-v6.4';
 if(lsGet('hq_ver','')!==VER){
   localStorage.removeItem('hq_tasks');
   lsSet('hq_ver',VER);
