@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Riversol Campaign Ideas — April 2026 | Digitsup</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: #f7f8fa;
+      color: #1a1a2e;
+      line-height: 1.6;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #0d3349 0%, #1a6b7c 60%, #2a9d8f 100%);
+      color: white;
+      padding: 48px 40px 40px;
+    }
+    .header-meta {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      opacity: 0.7;
+      margin-bottom: 12px;
+    }
+    .header h1 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+    .header p {
+      font-size: 15px;
+      opacity: 0.85;
+    }
+    .header .data-note {
+      margin-top: 14px;
+      font-size: 12px;
+      opacity: 0.65;
+      font-style: italic;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #2a9d8f;
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #2a9d8f;
+    }
+
+    /* WHAT THEY DO WELL */
+    .working-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-bottom: 52px;
+    }
+    .working-card {
+      background: white;
+      border-radius: 10px;
+      padding: 18px;
+      border-left: 4px solid #2a9d8f;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    }
+    .working-card .icon { font-size: 20px; margin-bottom: 8px; }
+    .working-card h3 { font-size: 13px; font-weight: 700; margin-bottom: 4px; color: #0d3349; }
+    .working-card p { font-size: 12px; color: #555; }
+
+    /* GAPS */
+    .gaps-list {
+      background: #fff8e1;
+      border: 1px solid #ffe082;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 52px;
+    }
+    .gaps-list h3 { font-size: 13px; font-weight: 700; color: #b45309; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+    .gaps-list ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+    .gaps-list ul li {
+      font-size: 12px;
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      color: #92400e;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    /* CAMPAIGN IDEAS */
+    .ideas-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 52px;
+    }
+    .idea-card {
+      background: white;
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+    }
+    .idea-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: start;
+      margin-bottom: 20px;
+    }
+    .idea-num {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      color: #2a9d8f;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+    }
+    .idea-card h3 { font-size: 18px; font-weight: 700; color: #0d3349; margin-bottom: 10px; }
+    .idea-card .concept { font-size: 14px; color: #333; margin-bottom: 14px; line-height: 1.65; }
+    .idea-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .tag {
+      font-size: 11px; font-weight: 600;
+      padding: 4px 10px; border-radius: 20px;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .tag-segment { background: #f3e8ff; color: #6b21a8; }
+    .tag-timing { background: #e0f2fe; color: #0369a1; }
+
+    .why-it-works {
+      font-size: 12px;
+      font-style: italic;
+      color: #777;
+      border-top: 1px solid #f0f0f0;
+      padding-top: 10px;
+      margin-top: 4px;
+      margin-bottom: 20px;
+    }
+    .why-it-works span { font-weight: 700; color: #2a9d8f; font-style: normal; }
+
+    .channel-badge {
+      font-size: 12px; font-weight: 700;
+      padding: 6px 14px; border-radius: 20px;
+      white-space: nowrap; text-align: center;
+      height: fit-content;
+    }
+    .badge-email { background: #e3f4f8; color: #1a6b7c; }
+    .badge-sms { background: #fef3e2; color: #c8740a; }
+    .badge-both { background: #e8f5e9; color: #2e7d32; }
+
+    /* MOCK EMAIL */
+    .mock-email {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-radius: 10px;
+      padding: 20px 24px;
+    }
+    .mock-email-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #0369a1;
+      margin-bottom: 14px;
+    }
+    .mock-field {
+      margin-bottom: 10px;
+    }
+    .mock-field-name {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #64748b;
+      margin-bottom: 3px;
+    }
+    .mock-field-value {
+      font-size: 13px;
+      color: #1a1a2e;
+      font-family: Georgia, 'Times New Roman', serif;
+      line-height: 1.5;
+    }
+    .mock-field-value.subject {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0d3349;
+    }
+    .mock-field-value.preview {
+      color: #475569;
+      font-style: italic;
+    }
+    .mock-divider {
+      border: none;
+      border-top: 1px solid #bae6fd;
+      margin: 14px 0;
+    }
+    .mock-body {
+      font-size: 14px;
+      color: #1e293b;
+      font-family: Georgia, 'Times New Roman', serif;
+      line-height: 1.75;
+    }
+    .mock-body p { margin-bottom: 10px; }
+    .mock-body p:last-child { margin-bottom: 0; }
+    .mock-cta {
+      display: inline-block;
+      margin-top: 14px;
+      background: #0d3349;
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      padding: 10px 22px;
+      border-radius: 6px;
+      letter-spacing: 0.3px;
+    }
+
+    /* QUICK WINS */
+    .wins-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .win-card {
+      background: #0d3349; color: white;
+      border-radius: 12px; padding: 24px;
+    }
+    .win-card .win-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.6; margin-bottom: 10px; }
+    .win-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .win-card p { font-size: 13px; opacity: 0.85; line-height: 1.6; }
+
+    .footer {
+      text-align: center; padding: 32px;
+      font-size: 12px; color: #aaa;
+      border-top: 1px solid #eee; margin-top: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-meta">Digitsup × Riversol Skincare · April 2026</div>
+    <h1>Campaign Ideas</h1>
+    <p>Strategic opportunities based on 300+ campaigns analyzed (Jan 2026 back through 2025)</p>
+    <div class="data-note">Built from real Klaviyo send history — ideas are grounded in what they've already done, extended to what's genuinely missing.</div>
+  </div>
+
+  <div class="container">
+
+    <!-- WHAT'S WORKING -->
+    <div class="section-title">What's Already Working (Don't Break It)</div>
+    <div class="working-grid">
+      <div class="working-card">
+        <div class="icon">💸</div>
+        <h3>Tiered Spend Events</h3>
+        <p>Spend & Save is their bread and butter — run multiple times/year with heavy segmentation (FP/SNC/Bal/AA/AR). Driving AOV up smartly.</p>
+      </div>
+      <div class="working-card">
+        <div class="icon">🧪</div>
+        <h3>Trial → Feedback Loops</h3>
+        <p>Eye Serum, Hydra Replenish Serum, Exfoliating Cleanser — all getting trial invite → instructions → check-in → feedback sequences. Strong.</p>
+      </div>
+      <div class="working-card">
+        <div class="icon">👑</div>
+        <h3>Gold/Silver/Riv+ Tiers</h3>
+        <p>Early access, exclusive events, SMS VIP treats for $2000+ spend. The loyalty architecture is there — it just needs more moments to shine.</p>
+      </div>
+      <div class="working-card">
+        <div class="icon">📰</div>
+        <h3>The Calm Edit Newsletter</h3>
+        <p>Exists (Jan 9, Mar 17) — good format for non-promotional content. Highly underutilized at ~2/quarter.</p>
+      </div>
+      <div class="working-card">
+        <div class="icon">🔁</div>
+        <h3>Winback Series</h3>
+        <p>4-email winback (Dec-Jan) + a 40% OFF unsuppressed SNC blast. They know winback matters. Execution is solid — cadence could be tighter.</p>
+      </div>
+      <div class="working-card">
+        <div class="icon">🛡️</div>
+        <h3>Suppression Hygiene</h3>
+        <p>Multiple suppression lists built (invalid emails, bounces, inactive) — clean list management is protecting deliverability. Mature operation.</p>
+      </div>
+    </div>
+
+    <!-- GAPS -->
+    <div class="section-title">Confirmed Gaps (Not in the Data)</div>
+    <div class="gaps-list">
+      <h3>⚠️ These campaign types appear nowhere in 300+ sends:</h3>
+      <ul>
+        <li>Skin Quiz as Campaign Driver</li>
+        <li>Science/Education Series</li>
+        <li>Spring → Summer Routine Shift</li>
+        <li>Mother's Day</li>
+        <li>Loyalty Milestone ("You've Saved $X")</li>
+        <li>SMS-Exclusive Offer</li>
+        <li>Customer Story Series</li>
+        <li>Cross-Sell / Routine Builder</li>
+        <li>Referral / Friend Invite</li>
+        <li>Canadian/West Coast Identity Campaign</li>
+      </ul>
+    </div>
+
+    <!-- CAMPAIGN IDEAS -->
+    <div class="section-title">12 Campaign Ideas — Targeted &amp; Segmented</div>
+    <div class="ideas-grid">
+
+      <!-- 1 -->
+      <div class="idea-card">
+        <div class="idea-header">
+          <div>
+            <div class="idea-num">01 · NEW</div>
+            <h3>The Calm Edit → Monthly Cadence</h3>
+            <p class="concept">They have a newsletter — they just don't use it. Two sends in Q1 is leaving a huge content channel on the table. Build a monthly Calm Edit with 3 sections: one science story (hinokitiol, skin aging, sensitive skin triggers), one product spotlight, one reader skin story pulled from reviews. No discount. This trains the list to open even when there's no sale.</p>
+            <div class="idea-meta">
+              <span class="tag tag-segment">Segment: FP engaged last 30 + Active SNC</span>
+              <span class="tag tag-timing">Timing: 1st Monday of every month</span>
+            </div>
+            <div class="why-it-works"><span>Why now:</span> When every send is a sale, open rates train toward "discount or ignore." A content layer protects the rest of the program.</div>
+          </div>
+          <div class="channel-badge badge-email">Email</div>
+        </div>
+        <div class="mock-email">
+          <div class="mock-email-label">📧 Mock Email</div>
+          <div class="mock-field">
+            <div class="mock-field-name">Subject Line</div>
+            <div class="mock-field-value subject">The tiny molecule that changed everything about sensitive skin care</div>
+          </div>
+          <div class="mock-field">
+            <div class="mock-field-name">Preview Text</div>
+            <div class="mock-field-value preview">Plus: a skin story we had to share, and a spring product we love right now.</div>
+          </div>
+          <hr class="mock-divider">
+          <div class="mock-body">
+            <p><strong>The Calm Edit · May 2026</strong></p>
+            <p>In 1936, a Japanese researcher isolated a compound from the Pacific red cedar — a molecule found nowhere else in nature. Dr. Rivers spent years studying what it could do for skin that had been let down by everything else. The answer was hinokitiol: a naturally occurring compound with anti-inflammatory, antimicrobial, and barrier-strengthening properties that conventional skincare couldn't replicate.</p>
+            <p>It's the reason Riversol works when other brands don't. And it's still at the heart of every formula we make.</p>
+            <p><strong>This month's reader story:</strong> "I had rosacea for 11 years. I'd tried everything. I almost didn't try Riversol." — Margaret, 54, Victoria BC</p>
+            <p><strong>April spotlight:</strong> The Hydra Replenish Serum — why spring is the right time to rebuild your moisture barrier before the summer heat strips it again.</p>
+            <span class="mock-cta">Read This Month's Edit →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="idea-card">
+        <div class="idea-header">
+          <div>
+            <div class="idea-num">02 · NEW</div>
+            <h3>Skin Quiz → Personalized Product Drop</h3>
+            <p class="concept">Run the skin analysis quiz as a standalone campaign targeting non-purchasers and lapsed FPs. CTA is just: "Take the quiz." Nothing else. After quiz completion, trigger a personalized email within 24h — "Based on your skin profile, here's your 3-step routine." Product recs, one targeted offer. This tool exists on the site and isn't being driven via email at all.</p>
+            <div class="idea-meta">
+              <span class="tag tag-segment">Segment: Non-purchasers + Lapsed FP (no order 365d)</span>
+              <span class="tag tag-timing">Timing: Standalone + post-quiz flow</span>
+            </div>
+            <div class="why-it-works"><span>Why now:</span> They already survey lapsed customers — this is a lower-friction, higher-value alternative with a direct conversion path.</div>
+          </div>
+          <div class="channel-badge badge-both">Both</div>
+        </div>
+        <div class="mock-email">
+          <div class="mock-email-label">📧 Mock Email</div>
+          <div class="mock-field">
+            <div class="mock-field-name">Subject Line</div>
+            <div class="mock-field-value subject">We built a quiz. Your skin will thank you for taking it.</div>
+          </div>
+          <div class="mock-field">
+            <div class="mock-field-name">Preview Text</div>
+            <div class="mock-field-value preview">2 minutes. Real answers. A routine that's actually built for your skin.</div>
+          </div>
+          <hr class="mock-divider">
+          <div class="mock-body">
+            <p>Sensitive skin isn't one thing. It's reactive, dry, rosacea-prone, post-treatment, combination — and what works for one type can make another worse.</p>
+            <p>That's why we built a skin analysis quiz. Answer 8 questions about your skin, your climate, and what you've tried before. We'll recommend a routine from the ground up — no guessing, no trial-and-error.</p>
+            <p>It takes about 2 minutes. And we've never had anyone say it wasn't worth it.</p>
+            <span class="mock-cta">Find My Routine →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="idea-card">
+        <div class="idea-header">
+          <div>
+            <div class="idea-num">03 · NEW</div>
+            <h3>Summer-Ready Skin (SPF 50 Launch)</h3>
+            <p class="concept">The new SPF 50 Daily Glow Mineral Sunscreen is sitting on the product page with zero campaign behind it. Give it a proper launch: "New from Dr. Rivers — Canadian SPF built for sensitive skin." Two sends: Email 1A to FP/engaged (product focus, spring transition angle), Email 1B to SNC (pair with moisturizer as a spring-to-summer system). Mirror the trial invitation pattern they already use for new product launches.</p>
+            <div class="idea-meta">
+              <span class="tag tag-segment">Segment: All active (FP + SNC split)</span>
+              <span class="tag tag-timing">Timing: This week — April</span>
+            </div>
+            <div class="why-it-works"><span>Why now:</span> They launched the Corrector V2 back-in-stock with a two-send campaign. New SPF deserves the same treatment — it's April and people are thinking sunscreen.</div>
+          </div>
+          <div class="channel-badge badge-both">Both</div>
+        </div>
+        <div class="mock-email">
+          <div class="mock-email-label">📧 Mock Email</div>
+          <div class="mock-field">
+            <div class="mock-field-name">Subject Line</div>
+            <div class="mock-field-value subject">New: SPF 50 that doesn't hate your skin</div>
+          </div>
+          <div class="mock-field">
+            <div class="mock-field-name">Preview Text</div>
+            <div class="mock-field-value preview">Mineral sunscreen. No white cast. Built for sensitive skin from the same lab as your serum.</div>
+          </div>
+          <hr class="mock-divider">
+          <div class="mock-body">
+            <p>Most sunscreens that are safe for sensitive skin either leave a white cast, break you out, or just feel terrible to wear. We spent a long time on this one.</p>
+            <p>Introducing the <strong>SPF 50 Daily Glow Mineral Sunscreen</strong> — broad-spectrum UVA/UVB protection with the same gentle mineral formula philosophy behind everything Dr. Rivers formulates. No chemical filters. No fragrance. No compromise on feel.</p>
+            <p>It layers seamlessly over your Moisturizing Concentrate and under makeup. And yes — it actually glows.</p>
+            <p>April is the right time to start. Your skin will notice the difference by summer.</p>
+            <span class="mock-cta">Shop SPF 50 Daily Glow →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="idea-card">
+        <div class="idea-header">
+          <div>
+            <div class="idea-num">04 · NEW</div>
+            <h3>Mother's Day — Gift Her Glow</h3>
+            <p class="concept">They ran Valentine's Day (4 emails + 3 SMS, Feb 10–14). There's no Mother's Day campaign in the data at all. Same playbook: early access for Riversol+ (May 5), broad sale May 6–10, last-chance May 11. Hero products: Anti-Aging Trio Bundle, Eye Repair Treatment, Moisturizing Concentrate. Optional angle: "Gift a Riversol+ membership" — monthly credit she'll actually use.</p>
+            <div class="idea-meta">
+              <span class="tag tag-segment">Segment: Full active list, Riv+ early access, USA/CAD splits</span>
+              <span class="tag tag-timing">Timing: May 5–11 (tease starts late April)</span>
+            </div>
+            <div class="why-it-works"><span>Why now:</span> Valentine's is a proven playbook for them. Mother's Day is the bigger gifting moment in skincare. Direct repeat of a winning structure.</div>
+          </div>
+          <div class="channel-badge badge-both">Both</div>
+        </div>
+        <div class="mock-email">
+          <div class="mock-email-label">📧 Mock Email</div>
+          <div class="mock-field">
+            <div class="mock-field-name">Subject Line</div>
+            <div class="mock-field-value subject">She's been taking care of everyone. Time someone took care of her.</div>
+          </div>
+          <div class="mock-field">
+            <div class="mock-field-name">Preview Text</div>
+            <div class="mock-field-value preview">Mother's Day gifts that actually feel considered — and free shipping this week.</div>
+          </div>
+          <hr class="mock-divider">
+          <div class="mock-body">
+            <p>Some gifts say "I picked this up at the last minute." These don't.</p>
+            <p>Riversol was built for skin that's been through things — hormonal changes, stress, decades of products that promised more than they delivered. If your mom has sensitive skin, this is the one she'll actually use every day.</p>
+            <p><strong>Our gift picks this year:</strong></p>
+            <p>The <strong>Anti-Aging Trio Bundle</strong> — cleanser, serum, and moisturizer in one ritual. The <strong>Eye Repair Treatment</strong> — because the eyes always show it first. Or give her a <strong>Riversol+ membership</strong> — monthly credit toward whatever she needs, whenever she needs it.</p>
+            <p>Free shipping on all orders through May 11.</p>
+            <span class="mock-cta">Shop Mother's Day Gifts →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="idea-card">
+        <div class="idea-header">
+          <div>
+            <div class="idea-num">05 · EXPAND</div>
+            <h3>Replenishment → Full Routine Upgrade</h3>
+            <p class="concept">They already run replenishment for one-time FPs 0–3 months (Feb 20 — "Replenishment Reminder + Complimentary Booster"). Expand it: for customers who only bought one product, 45–60 days post-purchase, run a "What pairs with your [product]" campaign. Use the product name dynamically (if known from order). For the moisturizer: pair with the Cleanser + Serum. For the Retinol: pair with the Eye Repair. Make it feel like a dermatologist recommendation, not a cross-sell.</p>
+            <div class="idea-meta">
+              <span class="tag tag-segment">Segment: 1-product buyers, 45–60 days post-purchase</span>
+              <span class="tag tag-timing">Timing: Ongoing automated</span>
+            </div>
+            <div class="why-it-works"><span>Why now:</span> They have the replenishment infrastructure — this extends it from "buy again" to "buy more," meaningfully higher LTV.</div>
+          </div>
+          <div class="channel-badge badge-email">Email</div>
+        </div>
+        <div class="mock-email">
+          <div class="mock-email-label">📧 Mock Email</div>
+          <div class="mock-field">
+            <div class="mock-field-name">Subject Line</div>
+            <div class="mock-field-value subject">Your moisturizer is working. Here's what makes it work even harder.</div>
+          </div>
+          <div class="mock-field">
+            <div class="mock-field-name">Preview Text</div>
+            <div class="mock-field-value preview">Two products that were designed to go with it — and why the order matters.</div>
+          </div>
+          <hr class="mock-divider">
+          <div class="mock-body">
+            <p>You've been using the Moisturizing Concentrate for about six weeks. If you're noticing a difference, that's the hinokitiol working — your skin barrier is finally getting consistent support.</p>
+            <p>Here's what most people find next: the barrier holds better when it's layered correctly. A pH-balanced cleanser keeps the surface from fighting what comes after. A serum delivers actives deeper before the moisturizer seals them in.</p>
+            <p>The <strong>Exfoliating Cleanser</strong> and <strong>Hydra Replenish Serum</strong> were formulated to work with your Moisturizing Concentrate — not just alongside it. It's the full routine Dr. Rivers recommends for sensitive skin that's starting to stabilize.</p>
+            <p>No pressure to add everything at once. Start with whichever gap matters most.</p>
+            <span class="mock-cta">Complete Your Routine →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="idea-card">
+        <div class="idea-header">
+          <div>
+            <div class="idea-num">06 · NEW</div>
+            <h3>Gold &amp; Silver Milestone Email</h3>
+            <p class="concept">They have Gold and Silver loyalty tiers (visible in the early access segmentation) but no milestone celebration campaigns anywhere in the data. Build a tier-unlock moment: "You're now a Riversol Gold member." Brief, elegant, shows what they've unlocked, includes a small exclusive (a product trial invitation, early access to next event, or a bonus store credit). Make the tier feel earned, not just labeled.</p>
+            <div class="idea-meta">
+              <span class="tag tag-segment">Segment: Newly qualified Gold + Silver members (trigger-based)</span>
+              <span class="tag tag-timing">Timing: Triggered on tier unlock</span>
+            </div>
+            <div class="why-it-works"><span>Why now:</span> Gold/Silver exist in the data but they're only used for access gates — the moment of earning a tier is an emotionally high-value touchpoint that's being wasted.</div>
+          </div>
+          <div class="channel-badge badge-both">Both</div>
+        </div>
+        <div class="mock-email">
+          <div class="mock-email-label">📧 Mock Email</div>
+          <div class="mock-field">
+            <div class="mock-field-name">Subject Line</div>
+            <div class="mock-field-value subject">You've earned it — welcome to Riversol Gold</div>
+          </div>
+          <div class="mock-field">
+            <div class="mock-field-name">Preview Text</div>
+            <div class="mock-field-value preview">Here's what's unlocked for you now, and what's coming next.</div>
+          </div>
+          <hr class="mock-divider">
+          <div class="mock-body">
+            <p>You've officially reached Riversol Gold status — and that's not a label we hand out lightly.</p>
+            <p>Gold members get early access to every sale and new product launch, an exclusive invitation to our Gold-only events, and a complimentary trial of a product we've been saving for customers who really know the brand.</p>
+            <p>Your Gold trial offer: the <strong>Eye Repair Treatment</strong> — free with your next order, on us. It's one of our most requested products and a natural next step for skin at this stage of the routine.</p>
+            <p>Thank you for trusting us with your skin. We don't take it lightly.</p>
+            <span class="mock-cta">Claim Your Gold Benefit →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="idea-card">
+        <div class="idea-header">
+          <div>
+            <div class="idea-num">07 · NEW</div>
+            <h3>SMS-Only Flash — Exclusive to Text Subscribers</h3>
+            <p class="concept">Every SMS campaign they run mirrors an email campaign. There are no SMS-exclusive offers in the full send history. Run one: "This deal is SMS-only — never in email." 24-hour window, one product, light offer (free shipping on orders $69+ or a complimentary travel-size). Doesn't have to be deep. The exclusivity is the hook. Announce it by saying "This will never show up in your inbox."</p>
+            <div class="idea-meta">
+              <span class="tag tag-segment">Segment: Full SMS subscriber list</span>
+              <span class="tag tag-timing">Timing: Mid-month gap (no active sale)</span>
+            </div>
+            <div class="why-it-works"><span>Why now:</span> SMS-exclusive offers are the single most reliable driver of SMS list growth and engagement. You're training the list to value the channel.</div>
+          </div>
+          <div class="channel-badge badge-sms">SMS Only</div>
+        </div>
+        <div class="mock-email">
+          <div class="mock-email-label">📱 Mock SMS</div>
+          <div class="mock-field">
+            <div class="mock-field-name">SMS Message</div>
+            <div class="mock-field-value">Riversol: This one's just for you — never going to email. Free shipping on any order today + a complimentary travel-size Moisturizing Concentrate. 24 hrs only. → riversol.com/sms-exclusive | Reply STOP to opt out</div>
+          </div>
+          <hr class="mock-divider">
+          <div class="mock-field">
+            <div class="mock-field-name">Follow-up SMS (20 hrs later)</div>
+            <div class="mock-field-value">Riversol: 4 hours left on your SMS exclusive — free shipping + travel-size while we still have them. → riversol.com/sms-exclusive</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="idea-card">
+        <div class="idea-header">
+          <div>
+            <div class="idea-num">08 · NEW</div>
+            <h3>The Sensitive Skin Wins Series</h3>
+            <p class="concept">Pull 3–4 of their strongest customer testimonials (women 28–73 with sensitive skin transformations) and turn each into a standalone email. Not a review widget — a real story. Subject line: "Madison had sensitive skin that kept her from leaving the house." Body: tell the story, let it breathe, then make a soft product connection at the end. No discount. Just proof. Run 4 weeks in a row to cold/unengaged non-purchasers.</p>
+            <div class="idea-meta">
+              <span class="tag tag-segment">Segment: Non-purchasers + lapsed SNC (no open/click 90d)</span>
+              <span class="tag tag-timing">Timing: 4-week series, non-sale weeks</span>
+            </div>
+            <div class="why-it-works"><span>Why now:</span> Their testimonials are exceptional and completely unused as campaign content. These convert cold audiences better than any offer-led email for a brand with this level of trust signal.</div>
+          </div>
+          <div class="channel-badge badge-email">Email</div>
+        </div>
+        <div class="mock-email">
+          <div class="mock-email-label">📧 Mock Email</div>
+          <div class="mock-field">
+            <div class="mock-field-name">Subject Line</div>
+            <div class="mock-field-value subject">Sandra hadn't found anything that worked in 14 years</div>
+          </div>
+          <div class="mock-field">
+            <div class="mock-field-name">Preview Text</div>
+            <div class="mock-field-value preview">Then she tried the one thing she almost didn't.</div>
+          </div>
+          <hr class="mock-divider">
+          <div class="mock-body">
+            <p>Sandra is 61. She's been dealing with sensitive, reactive skin since her late 40s — the kind that flares with fragrance, stings with most moisturizers, and never quite settles. She'd tried everything her dermatologist recommended. She'd tried the "clean beauty" brands. She'd tried doing nothing.</p>
+            <p>She found Riversol through a friend who had rosacea. She almost didn't order. "I thought, this is just another thing that's going to disappoint me."</p>
+            <p>Six weeks in, she sent us a note. "For the first time in years, I don't dread washing my face."</p>
+            <p>We didn't design Riversol for everyone. We designed it for people like Sandra — and like you. If you haven't tried it yet, we'd like you to.</p>
+            <span class="mock-cta">See What Sandra Uses →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9 -->
+      <div class="idea-card">
+        <div class="idea-header">
+          <div>
+            <div class="idea-num">09 · NEW</div>
+            <h3>Made in Canada — West Coast Heritage Drop</h3>
+            <p class="concept">"Our formula comes from a Pacific red cedar tree. This is what makes Riversol different from everything else on the shelf." A single email built entirely around the Canadian identity and the hinokitiol story — Dr. Rivers, the cedar, BC origins, the 115,000 customers. No sale. No discount. Just: "This is who we are." For Canada Day (July 1) or as a brand-building standalone in a quiet month. CAD segment only.</p>
+            <div class="idea-meta">
+              <span class="tag tag-segment">Segment: CAD FP + SNC active</span>
+              <span class="tag tag-timing">Timing: Canada Day (July 1) or May quiet period</span>
+            </div>
+            <div class="why-it-works"><span>Why now:</span> Canadian consumers are increasingly loyal to Canadian brands — this is an identity-based brand story that builds long-term preference with zero margin cost.</div>
+          </div>
+          <div class="channel-badge badge-email">Email</div>
+        </div>
+        <div class="mock-email">
+          <div class="mock-email-label">📧 Mock Email</div>
+          <div class="mock-field">
+            <div class="mock-field-name">Subject Line</div>
+            <div class="mock-field-value subject">It starts with a tree on the BC coast</div>
+          </div>
+          <div class="mock-field">
+            <div class="mock-field-name">Preview Text</div>
+            <div class="mock-field-value preview">The molecule in every Riversol formula. And why it only comes from here.</div>
+          </div>
+          <hr class="mock-divider">
+          <div class="mock-body">
+            <p>The Pacific red cedar grows along the coast of British Columbia. It's been here for thousands of years. And somewhere inside it — in its heartwood, in the chemistry that makes it resistant to rot and infection — is a molecule called hinokitiol.</p>
+            <p>Dr. Rivers spent years studying what that molecule could do for sensitive, reactive skin. The answer became Riversol. Not a lab experiment from a multinational. A formula developed here, sourced from here, for 115,000 customers who needed something the mainstream market wasn't making.</p>
+            <p>We're proud to be a Canadian brand. Quietly, stubbornly, completely.</p>
+            <p>Happy Canada Day.</p>
+            <span class="mock-cta">Our Story →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10 -->
+      <div class="idea-card">
+        <div class="idea-header">
+          <div>
+            <div class="idea-num">10 · EXPAND</div>
+            <h3>Tighten the Winback Cadence</h3>
+            <p class="concept">Their current winback is a 4-email burst in late Dec–early Jan (8 months no purchase). That's too late and too seasonal. Build a rolling winback: Email 1 at 90 days (gentle, no discount), Email 2 at 120 days ("your skin is probably telling you something"), Email 3 at 150 days (best-value offer). Then suppress. The Dec 12 "40% OFF WB" for unsuppressed SNC suggests they know deep discounts exist for this — build the full funnel so you hit them before it gets to 40% off.</p>
+            <div class="idea-meta">
+              <span class="tag tag-segment">Segment: Lapsed FP (90/120/150d), Lapsed SNC</span>
+              <span class="tag tag-timing">Timing: Ongoing automated trigger</span>
+            </div>
+            <div class="why-it-works"><span>Why now:</span> Earlier intervention = cheaper recovery. Getting to a customer at 90 days costs far less (and requires far less discount) than waiting until 8 months.</div>
+          </div>
+          <div class="channel-badge badge-both">Both</div>
+        </div>
+        <div class="mock-email">
+          <div class="mock-email-label">📧 Mock Email — Winback Email 1 (Day 90)</div>
+          <div class="mock-field">
+            <div class="mock-field-name">Subject Line</div>
+            <div class="mock-field-value subject">It's been a while. How's your skin doing?</div>
+          </div>
+          <div class="mock-field">
+            <div class="mock-field-name">Preview Text</div>
+            <div class="mock-field-value preview">No pitch. Just checking in — and a note from us.</div>
+          </div>
+          <hr class="mock-divider">
+          <div class="mock-body">
+            <p>You haven't ordered in a little while, and we noticed. We're not going to pretend otherwise.</p>
+            <p>We just want to ask: how's your skin doing? If things are going well, that's genuinely great to hear. If it's been a bit off lately — drier than usual, a little reactive, not quite settled — it might be worth coming back.</p>
+            <p>The thing about a consistent routine is that the skin always remembers when it stops. We're here when you're ready.</p>
+            <span class="mock-cta">Come Back to Riversol →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11 -->
+      <div class="idea-card">
+        <div class="idea-header">
+          <div>
+            <div class="idea-num">11 · NEW</div>
+            <h3>Almost-Tier Buyer</h3>
+            <p class="concept">Some of your most valuable customers are sitting $25–$30 away from Gold or Silver — and they don't know it. Don't show them a generic progress bar. Show them the exact dollar amount between them and their next tier, and make the specific benefit real. "You're $27 from Gold. Gold members get early access to every sale, plus a complimentary product trial every quarter." Then give them one clear way to get there — a product that fills a gap in their routine.</p>
+            <div class="idea-meta">
+              <span class="tag tag-segment">Segment: Customers $25–$30 from Silver or Gold threshold</span>
+              <span class="tag tag-timing">Timing: Mid-month, no active sale</span>
+            </div>
+            <div class="why-it-works"><span>Why now:</span> This is the highest-intent segment outside of active buyers. They're loyal enough to be close — they just need a concrete nudge, not a generic message.</div>
+          </div>
+          <div class="channel-badge badge-both">Both</div>
+        </div>
+        <div class="mock-email">
+          <div class="mock-email-label">📧 Mock Email</div>
+          <div class="mock-field">
+            <div class="mock-field-name">Subject Line</div>
+            <div class="mock-field-value subject">You're $27 from Riversol Gold</div>
+          </div>
+          <div class="mock-field">
+            <div class="mock-field-name">Preview Text</div>
+            <div class="mock-field-value preview">Here's exactly what unlocks — and one product that gets you there.</div>
+          </div>
+          <hr class="mock-divider">
+          <div class="mock-body">
+            <p>We don't do vague progress bars. So here it is plainly: you're $27 away from Riversol Gold status.</p>
+            <p><strong>What Gold unlocks:</strong> Early access to every sale and new launch, an invitation to Gold-only events, and a complimentary product trial every quarter — starting immediately.</p>
+            <p>One order gets you there. Based on your routine, the product most people add at this stage is the <strong>Eye Repair Treatment</strong> — and at $68, it puts you comfortably over the threshold.</p>
+            <p>We're not suggesting you buy something you don't need. We're telling you exactly where you stand and leaving the decision with you.</p>
+            <span class="mock-cta">Reach Gold with Eye Repair →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12 -->
+      <div class="idea-card">
+        <div class="idea-header">
+          <div>
+            <div class="idea-num">12 · NEW</div>
+            <h3>Password Flash Sale — SMS Opt-In Mechanic</h3>
+            <p class="concept">Send an email to customers who are email-only (no SMS). Tell them there's a 48-hour sale — but the access code is locked behind a text. "Text RIVERSOL to [#] to unlock your offer." They opt into SMS, receive the code immediately, and now they're on both channels. The email plays it cool: "We're trying something different. This one's for the text subscribers." No pressure. Pure curiosity mechanic.</p>
+            <div class="idea-meta">
+              <span class="tag tag-segment">Segment: Email-only subscribers (no SMS consent)</span>
+              <span class="tag tag-timing">Timing: Mid-month quiet period</span>
+            </div>
+            <div class="why-it-works"><span>Why now:</span> SMS subscribers have significantly higher purchase rates. This converts email-only customers to dual-channel at low cost — no paid ads, no list buy, just a clever mechanic using your existing audience.</div>
+          </div>
+          <div class="channel-badge badge-both">Email → SMS</div>
+        </div>
+        <div class="mock-email">
+          <div class="mock-email-label">📧 Mock Email</div>
+          <div class="mock-field">
+            <div class="mock-field-name">Subject Line</div>
+            <div class="mock-field-value subject">There's a sale happening. The password is one text away.</div>
+          </div>
+          <div class="mock-field">
+            <div class="mock-field-name">Preview Text</div>
+            <div class="mock-field-value preview">48 hours. One text. We're trying something new.</div>
+          </div>
+          <hr class="mock-divider">
+          <div class="mock-body">
+            <p>We're running a flash sale this week. 48 hours, one offer, our most popular products.</p>
+            <p>But we're doing it differently this time. The access code isn't in this email — it's locked behind a text message. Our SMS subscribers already have it.</p>
+            <p>To unlock yours: <strong>text RIVERSOL to 1-833-XXX-XXXX</strong>. You'll get the code instantly, plus you'll be on the list for future SMS-exclusive deals (which are always better than the email ones).</p>
+            <p>If you'd rather not text, that's completely fine — the sale will open to everyone on Thursday at midnight. But the early window closes tomorrow.</p>
+            <span class="mock-cta">Text RIVERSOL to Unlock →</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- QUICK WINS -->
+    <div class="section-title">Quick Wins This Week</div>
+    <div class="wins-grid">
+      <div class="win-card">
+        <div class="win-label">Quick Win #1</div>
+        <h3>SPF 50 Launch Campaign</h3>
+        <p>New product is live, zero sends behind it. One email to FP engaged, one to SNC. Mirror their Corrector V2 back-in-stock playbook. Can go out this week.</p>
+      </div>
+      <div class="win-card">
+        <div class="win-label">Quick Win #2</div>
+        <h3>Mother's Day Teaser (SMS)</h3>
+        <p>It's April 1st. Send the VIP early-access teaser SMS in the next 7 days: "Something special for the mothers in your life — coming soon." Builds anticipation before the push.</p>
+      </div>
+      <div class="win-card">
+        <div class="win-label">Quick Win #3</div>
+        <h3>Skin Quiz Campaign (Non-Purchasers)</h3>
+        <p>One email, one CTA: "Take the quiz." No discount. Drive the non-purchaser segment to the tool. They already have lapsed FP survey campaigns — this is a higher-converting version.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    Built by Digitsup · April 2026 · Based on 300+ campaigns from Riversol Klaviyo account (Jan 2026 back through 2025)
+  </div>
+
+</body>
+</html>
