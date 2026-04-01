@@ -220,6 +220,34 @@ Why: long main sessions re-read full context on every message. A $0.13 avg sessi
 
 After long build tasks: summarize key outputs into MEMORY.md and move on. Don't carry the build history.
 
+## Callie Delegation Rules (Non-Negotiable)
+
+Callie is the specialist unit. Route to her aggressively — the main session is for decisions and conversation only.
+
+### Always send to Callie:
+- Any HTML file build or redesign
+- Reports (Liverpool, client weekly, etc.)
+- Brief writing or copy docs
+- Research tasks (>5 min of digging)
+- Klaviyo data pulls and analysis
+- Anything that produces a file as output
+
+### Never do in main session:
+- Writing full HTML files inline
+- Iterating on a doc more than once
+- Multi-step builds of any kind
+
+### How to delegate:
+1. Package context tightly — give Callie exactly what she needs, nothing extra
+2. Tell her where to drop the output (`/Users/minigrill/.openclaw/workspace/callie-output/`)
+3. Spawn with `agentId: "callie"`, `runtime: "subagent"`
+4. Pick up the file, review it, deliver to Michael
+
+### The discipline test:
+Before doing ANY build task yourself, ask: "Would this produce a file or take more than 2 minutes?" If yes → Callie.
+
+Day 2 cost $120+ because builds ran in main session. Callie doing a 37KB HTML build costs ~$0.15. The math is obvious. Use her.
+
 ## Make It Yours
 
 This is a starting point. Add your own conventions, style, and rules as you figure out what works.
