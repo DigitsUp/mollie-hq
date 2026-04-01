@@ -1168,25 +1168,7 @@ html, body { width:100%; height:100%; overflow:hidden; background:#070d18; }
 <body>
 
 <!-- ════════ PASSWORD ════════ -->
-<div id="password-screen">
-  <div class="pw-wordmark">DigitsUp Agency</div>
-  <div class="pw-box">
-    <div class="pw-eyebrow">Confidential &mdash; Enter Access Code</div>
-    <div class="pw-title">RVCA<em>&times; DigitsUp</em></div>
-    <div class="pw-divider"></div>
-    <div class="pw-field-wrap">
-      <div class="pw-label">Password</div>
-      <input
-        class="pw-input" id="pw-input" type="password"
-        placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
-        autocomplete="off"
-        onkeydown="if(event.key==='Enter')checkPassword()"
-      />
-      <div class="pw-error hidden" id="pw-error">Incorrect password</div>
-      <button class="pw-btn" onclick="checkPassword()">Enter</button>
-    </div>
-  </div>
-</div>
+
 
 
 <!-- ════════ SPLASH ════════ -->
@@ -3445,10 +3427,10 @@ function switchCat(btn, targetId) {
 
 
 function checkPassword() {
-  var val = document.getElementById('pw-input').value;
+  var val = document.getElementById('pw-input') ? document.getElementById('pw-input').value : 'RVCA2026';
   var err = document.getElementById('pw-error');
   if(val === 'RVCA2026') {
-    document.getElementById('password-screen').classList.add('gone');
+    var ps = document.getElementById('password-screen'); if(ps) ps.classList.add('gone');
     err.classList.add('hidden');
   } else {
     err.classList.remove('hidden');
@@ -3462,9 +3444,12 @@ function checkPassword() {
     setTimeout(function(){ input.style.transform = 'translateX(0)'; }, 240);
   }
 }
+// Auto-dismiss password screen (no password required)
+(function(){ var ps = document.getElementById('password-screen'); if(ps) ps.classList.add('gone'); })();
 // Allow enter key from anywhere on password screen
 document.addEventListener('keydown', function(e){
-  if(e.key === 'Enter' && !document.getElementById('password-screen').classList.contains('gone')){
+  var ps = document.getElementById('password-screen');
+  if(e.key === 'Enter' && ps && !ps.classList.contains('gone')){
     checkPassword();
   }
 });
