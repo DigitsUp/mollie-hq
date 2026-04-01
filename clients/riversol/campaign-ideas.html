@@ -3,873 +3,989 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Riversol — Strategy & Q1 Report | Digitsup</title>
+  <title>Riversol × Digitsup — Q1 2026 Review</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-      background: #f7f8fa;
-      color: #1a1a2e;
-      line-height: 1.6;
-    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: #f7f8fa; color: #1a1a2e; line-height: 1.6; }
 
-    /* TABS */
-    .tab-nav {
-      background: #0d3349;
-      display: flex;
-      padding: 0 40px;
-      gap: 4px;
+    /* ── HEADER ── */
+    .site-header {
+      background: linear-gradient(135deg, #0d3349 0%, #1a6b7c 60%, #2a9d8f 100%);
+      color: white; padding: 36px 40px 28px;
     }
-    .tab-btn {
-      background: none;
-      border: none;
-      color: rgba(255,255,255,0.55);
-      font-size: 13px;
-      font-weight: 600;
-      padding: 16px 20px;
-      cursor: pointer;
-      border-bottom: 3px solid transparent;
-      letter-spacing: 0.3px;
-      transition: color 0.15s;
-    }
-    .tab-btn:hover { color: rgba(255,255,255,0.85); }
-    .tab-btn.active { color: white; border-bottom-color: #2a9d8f; }
+    .site-header .meta { font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; opacity: .65; margin-bottom: 10px; }
+    .site-header h1 { font-size: 28px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 4px; }
+    .site-header p { font-size: 14px; opacity: .8; }
+
+    /* ── TABS ── */
+    .tab-nav { background: #0d3349; display: flex; padding: 0 40px; gap: 2px; overflow-x: auto; }
+    .tab-btn { background: none; border: none; color: rgba(255,255,255,.5); font-size: 13px; font-weight: 600; padding: 14px 18px; cursor: pointer; border-bottom: 3px solid transparent; letter-spacing: .3px; white-space: nowrap; transition: color .15s; }
+    .tab-btn:hover { color: rgba(255,255,255,.8); }
+    .tab-btn.active { color: #fff; border-bottom-color: #2a9d8f; }
     .tab-pane { display: none; }
     .tab-pane.active { display: block; }
 
-    /* HEADER */
-    .header {
-      background: linear-gradient(135deg, #0d3349 0%, #1a6b7c 60%, #2a9d8f 100%);
-      color: white;
-      padding: 48px 40px 40px;
-    }
-    .header-meta { font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.7; margin-bottom: 12px; }
-    .header h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
-    .header p { font-size: 15px; opacity: 0.85; }
-    .header .data-note { margin-top: 14px; font-size: 12px; opacity: 0.65; font-style: italic; }
+    /* ── LAYOUT ── */
+    .container { max-width: 1000px; margin: 0 auto; padding: 40px 24px; }
+    .section-title { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: #2a9d8f; margin-bottom: 18px; padding-bottom: 8px; border-bottom: 2px solid #2a9d8f; }
 
-    .container { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
+    /* ── KPI CARDS ── */
+    .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 36px; }
+    .kpi-card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 1px 5px rgba(0,0,0,.07); }
+    .kpi-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #64748b; margin-bottom: 8px; }
+    .kpi-value { font-size: 24px; font-weight: 800; color: #0d3349; letter-spacing: -.5px; margin-bottom: 4px; }
+    .kpi-sub { font-size: 12px; color: #64748b; }
+    .up { color: #16a34a; font-weight: 700; }
+    .down { color: #dc2626; font-weight: 700; }
+    .flat { color: #64748b; font-weight: 700; }
 
-    .section-title {
-      font-size: 11px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 2px; color: #2a9d8f; margin-bottom: 20px;
-      padding-bottom: 8px; border-bottom: 2px solid #2a9d8f;
-    }
+    /* ── DATA TABLES ── */
+    .table-wrap { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 5px rgba(0,0,0,.07); margin-bottom: 32px; }
+    .table-head { background: #0d3349; color: #fff; padding: 14px 20px; font-size: 13px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
+    .table-head span { font-size: 11px; opacity: .6; font-weight: 400; }
+    table.dt { width: 100%; border-collapse: collapse; font-size: 13px; }
+    table.dt th { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #64748b; padding: 10px 16px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+    table.dt th.r, table.dt td.r { text-align: right; }
+    table.dt td { padding: 10px 16px; border-bottom: 1px solid #f1f5f9; color: #1e293b; }
+    table.dt tr:last-child td { border-bottom: none; }
+    table.dt tr.total td { font-weight: 700; color: #0d3349; background: #f8fafc; border-top: 1px solid #e2e8f0; }
+    table.dt tr:hover:not(.total) td { background: #f8fafc; }
+    .g { color: #16a34a; font-weight: 700; }
+    .y { color: #ca8a04; font-weight: 700; }
+    .r { color: #dc2626; font-weight: 700; }
+    .bold { font-weight: 700; }
+    .name { font-weight: 600; color: #0d3349; }
 
-    /* WORKING GRID */
-    .working-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 52px; }
-    .working-card { background: white; border-radius: 10px; padding: 18px; border-left: 4px solid #2a9d8f; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+    /* ── OBSERVATION BOXES ── */
+    .obs { border-radius: 12px; padding: 22px 24px; margin-bottom: 32px; }
+    .obs-green { background: #f0fdf4; border: 1px solid #bbf7d0; }
+    .obs-amber { background: #fffbeb; border: 1px solid #fde68a; }
+    .obs-red { background: #fef2f2; border: 1px solid #fecaca; }
+    .obs-blue { background: #eff6ff; border: 1px solid #bfdbfe; }
+    .obs h4 { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
+    .obs-green h4 { color: #15803d; }
+    .obs-amber h4 { color: #92400e; }
+    .obs-red h4 { color: #991b1b; }
+    .obs-blue h4 { color: #1d4ed8; }
+    .obs ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .obs ul li { font-size: 13px; color: #1e293b; padding-left: 18px; position: relative; line-height: 1.6; }
+    .obs ul li::before { position: absolute; left: 0; font-weight: 700; }
+    .obs-green ul li::before { content: "→"; color: #16a34a; }
+    .obs-amber ul li::before { content: "→"; color: #d97706; }
+    .obs-red ul li::before { content: "⚠"; color: #dc2626; }
+    .obs-blue ul li::before { content: "?"; color: #2563eb; }
+
+    /* ── NARRATIVE CARD ── */
+    .narrative { background: #fff; border-radius: 12px; padding: 24px 28px; box-shadow: 0 1px 5px rgba(0,0,0,.07); margin-bottom: 32px; border-left: 4px solid #2a9d8f; }
+    .narrative h4 { font-size: 15px; font-weight: 700; color: #0d3349; margin-bottom: 12px; }
+    .narrative p { font-size: 14px; color: #334155; line-height: 1.7; margin-bottom: 8px; }
+    .narrative p:last-child { margin-bottom: 0; }
+
+    /* ── FLOW OPP CARDS ── */
+    .opp-grid { display: flex; flex-direction: column; gap: 18px; margin-bottom: 40px; }
+    .opp-card { background: #fff; border-radius: 12px; padding: 24px 28px; box-shadow: 0 1px 5px rgba(0,0,0,.07); display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start; }
+    .opp-num { font-size: 10px; font-weight: 800; color: #2a9d8f; letter-spacing: 1px; margin-bottom: 4px; }
+    .opp-card h3 { font-size: 17px; font-weight: 700; color: #0d3349; margin-bottom: 8px; }
+    .opp-card p { font-size: 13px; color: #334155; line-height: 1.65; margin-bottom: 10px; }
+    .opp-impact { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
+    .impact-high { background: #fef2f2; color: #dc2626; }
+    .impact-med { background: #fffbeb; color: #92400e; }
+    .impact-quick { background: #f0fdf4; color: #15803d; }
+    .opp-data { background: #f8fafc; border-radius: 8px; padding: 12px 16px; font-size: 12px; color: #475569; margin-top: 8px; }
+    .opp-data strong { color: #0d3349; }
+    .priority-badge { font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 20px; white-space: nowrap; height: fit-content; }
+    .p1 { background: #fef2f2; color: #dc2626; }
+    .p2 { background: #fffbeb; color: #92400e; }
+    .p3 { background: #f0fdf4; color: #15803d; }
+
+    /* ── CAMPAIGN IDEAS (carried over) ── */
+    .working-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px,1fr)); gap: 14px; margin-bottom: 48px; }
+    .working-card { background: #fff; border-radius: 10px; padding: 18px; border-left: 4px solid #2a9d8f; box-shadow: 0 1px 4px rgba(0,0,0,.07); }
     .working-card .icon { font-size: 20px; margin-bottom: 8px; }
     .working-card h3 { font-size: 13px; font-weight: 700; margin-bottom: 4px; color: #0d3349; }
     .working-card p { font-size: 12px; color: #555; }
-
-    /* GAPS */
-    .gaps-list { background: #fff8e1; border: 1px solid #ffe082; border-radius: 10px; padding: 20px 24px; margin-bottom: 52px; }
-    .gaps-list h3 { font-size: 13px; font-weight: 700; color: #b45309; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+    .gaps-list { background: #fff8e1; border: 1px solid #ffe082; border-radius: 10px; padding: 18px 22px; margin-bottom: 48px; }
+    .gaps-list h3 { font-size: 12px; font-weight: 700; color: #b45309; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
     .gaps-list ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
     .gaps-list ul li { font-size: 12px; background: #fff3cd; border: 1px solid #ffc107; color: #92400e; padding: 4px 12px; border-radius: 20px; font-weight: 600; }
-
-    /* IDEA CARDS */
-    .ideas-grid { display: flex; flex-direction: column; gap: 20px; margin-bottom: 52px; }
-    .idea-card { background: white; border-radius: 12px; padding: 28px; box-shadow: 0 1px 6px rgba(0,0,0,0.08); }
-    .idea-header { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start; margin-bottom: 20px; }
-    .idea-num { display: inline-block; font-size: 11px; font-weight: 800; color: #2a9d8f; margin-bottom: 6px; letter-spacing: 1px; }
-    .idea-card h3 { font-size: 18px; font-weight: 700; color: #0d3349; margin-bottom: 10px; }
-    .idea-card .concept { font-size: 14px; color: #333; margin-bottom: 14px; line-height: 1.65; }
-    .idea-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
-    .tag { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .tag-segment { background: #f3e8ff; color: #6b21a8; }
-    .tag-timing { background: #e0f2fe; color: #0369a1; }
-    .why-it-works { font-size: 12px; font-style: italic; color: #777; border-top: 1px solid #f0f0f0; padding-top: 10px; margin-top: 4px; margin-bottom: 20px; }
-    .why-it-works span { font-weight: 700; color: #2a9d8f; font-style: normal; }
-    .channel-badge { font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 20px; white-space: nowrap; text-align: center; height: fit-content; }
-    .badge-email { background: #e3f4f8; color: #1a6b7c; }
-    .badge-sms { background: #fef3e2; color: #c8740a; }
-    .badge-both { background: #e8f5e9; color: #2e7d32; }
-
-    /* MOCK EMAIL */
-    .mock-email { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 10px; padding: 20px 24px; }
-    .mock-email-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #0369a1; margin-bottom: 14px; }
-    .mock-field { margin-bottom: 10px; }
-    .mock-field-name { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #64748b; margin-bottom: 3px; }
-    .mock-field-value { font-size: 13px; color: #1a1a2e; font-family: Georgia, 'Times New Roman', serif; line-height: 1.5; }
-    .mock-field-value.subject { font-size: 15px; font-weight: 700; color: #0d3349; }
-    .mock-field-value.preview { color: #475569; font-style: italic; }
-    .mock-divider { border: none; border-top: 1px solid #bae6fd; margin: 14px 0; }
-    .mock-body { font-size: 14px; color: #1e293b; font-family: Georgia, 'Times New Roman', serif; line-height: 1.75; }
+    .ideas-grid { display: flex; flex-direction: column; gap: 18px; margin-bottom: 48px; }
+    .idea-card { background: #fff; border-radius: 12px; padding: 26px; box-shadow: 0 1px 6px rgba(0,0,0,.08); }
+    .idea-header { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start; margin-bottom: 18px; }
+    .idea-num { font-size: 10px; font-weight: 800; color: #2a9d8f; letter-spacing: 1px; display: block; margin-bottom: 4px; }
+    .idea-card h3 { font-size: 17px; font-weight: 700; color: #0d3349; margin-bottom: 8px; }
+    .idea-card .concept { font-size: 13px; color: #334155; margin-bottom: 12px; line-height: 1.65; }
+    .idea-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+    .tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: .5px; }
+    .tag-s { background: #f3e8ff; color: #6b21a8; }
+    .tag-t { background: #e0f2fe; color: #0369a1; }
+    .why { font-size: 12px; font-style: italic; color: #777; border-top: 1px solid #f0f0f0; padding-top: 10px; margin-bottom: 18px; }
+    .why span { font-weight: 700; color: #2a9d8f; font-style: normal; }
+    .ch-badge { font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 20px; white-space: nowrap; height: fit-content; }
+    .ch-email { background: #e3f4f8; color: #1a6b7c; }
+    .ch-sms { background: #fef3e2; color: #c8740a; }
+    .ch-both { background: #e8f5e9; color: #2e7d32; }
+    .mock { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 10px; padding: 18px 22px; }
+    .mock-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #0369a1; margin-bottom: 12px; }
+    .mf { margin-bottom: 10px; }
+    .mf-name { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #64748b; margin-bottom: 3px; }
+    .mf-val { font-size: 13px; color: #1a1a2e; font-family: Georgia,serif; line-height: 1.5; }
+    .mf-val.subj { font-size: 15px; font-weight: 700; color: #0d3349; }
+    .mf-val.prev { color: #475569; font-style: italic; }
+    .mock hr { border: none; border-top: 1px solid #bae6fd; margin: 12px 0; }
+    .mock-body { font-size: 13px; color: #1e293b; font-family: Georgia,serif; line-height: 1.75; }
     .mock-body p { margin-bottom: 10px; }
     .mock-body p:last-child { margin-bottom: 0; }
-    .mock-cta { display: inline-block; margin-top: 14px; background: #0d3349; color: white; font-size: 13px; font-weight: 700; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; padding: 10px 22px; border-radius: 6px; letter-spacing: 0.3px; }
+    .mock-cta { display: inline-block; margin-top: 12px; background: #0d3349; color: #fff; font-size: 13px; font-weight: 700; font-family: -apple-system,sans-serif; padding: 10px 20px; border-radius: 6px; }
+    .wins-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 16px; margin-bottom: 40px; }
+    .win-card { background: #0d3349; color: #fff; border-radius: 12px; padding: 22px; }
+    .win-lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; opacity: .55; margin-bottom: 10px; }
+    .win-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+    .win-card p { font-size: 13px; opacity: .85; line-height: 1.6; }
 
-    /* QUICK WINS */
-    .wins-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
-    .win-card { background: #0d3349; color: white; border-radius: 12px; padding: 24px; }
-    .win-card .win-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.6; margin-bottom: 10px; }
-    .win-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
-    .win-card p { font-size: 13px; opacity: 0.85; line-height: 1.6; }
+    /* ── QUESTIONS ── */
+    .q-grid { display: flex; flex-direction: column; gap: 14px; margin-bottom: 40px; }
+    .q-card { background: #fff; border-radius: 12px; padding: 22px 24px; box-shadow: 0 1px 5px rgba(0,0,0,.07); display: flex; gap: 18px; align-items: flex-start; }
+    .q-num { font-size: 18px; font-weight: 800; color: #2a9d8f; min-width: 32px; }
+    .q-card h4 { font-size: 14px; font-weight: 700; color: #0d3349; margin-bottom: 6px; }
+    .q-card p { font-size: 13px; color: #475569; line-height: 1.6; }
+    .q-category { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 2px 10px; border-radius: 12px; display: inline-block; margin-bottom: 8px; }
+    .qc-data { background: #eff6ff; color: #1d4ed8; }
+    .qc-riv { background: #f0fdf4; color: #15803d; }
+    .qc-flow { background: #fef3e2; color: #c2410c; }
 
-    /* ====================== Q1 REPORT STYLES ====================== */
-    .report-header {
-      background: linear-gradient(135deg, #0d3349 0%, #1a6b7c 60%, #2a9d8f 100%);
-      color: white; padding: 48px 40px 40px;
-    }
-    .report-header h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
-    .report-header p { font-size: 15px; opacity: 0.85; }
-    .report-header .data-note { margin-top: 14px; font-size: 12px; opacity: 0.65; font-style: italic; }
-
-    /* SUMMARY CARDS */
-    .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 40px; }
-    .kpi-card { background: white; border-radius: 12px; padding: 22px; box-shadow: 0 1px 5px rgba(0,0,0,0.08); }
-    .kpi-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #64748b; margin-bottom: 8px; }
-    .kpi-value { font-size: 26px; font-weight: 800; color: #0d3349; margin-bottom: 4px; letter-spacing: -0.5px; }
-    .kpi-compare { font-size: 12px; color: #64748b; }
-    .kpi-up { color: #16a34a; font-weight: 700; }
-    .kpi-down { color: #dc2626; font-weight: 700; }
-    .kpi-neutral { color: #64748b; font-weight: 700; }
-
-    /* MONTH SECTION */
-    .month-section { margin-bottom: 48px; }
-    .month-header {
-      display: flex; align-items: center; gap: 16px; margin-bottom: 20px;
-      padding-bottom: 12px; border-bottom: 2px solid #e2e8f0;
-    }
-    .month-title { font-size: 20px; font-weight: 800; color: #0d3349; }
-    .month-badge { font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; background: #e0f2fe; color: #0369a1; }
-    .month-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    @media (max-width: 640px) { .month-grid { grid-template-columns: 1fr; } }
-
-    /* DATA TABLE */
-    .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    .data-table th { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #64748b; padding: 8px 12px; text-align: left; border-bottom: 1px solid #e2e8f0; }
-    .data-table td { padding: 10px 12px; border-bottom: 1px solid #f1f5f9; color: #1e293b; }
-    .data-table tr:last-child td { border-bottom: none; font-weight: 700; color: #0d3349; background: #f8fafc; }
-    .data-table tr:hover td { background: #f8fafc; }
-    .metric-good { color: #16a34a; font-weight: 700; }
-    .metric-ok { color: #ca8a04; font-weight: 700; }
-    .metric-low { color: #dc2626; font-weight: 700; }
-
-    /* YEAR COMPARISON */
-    .compare-card { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 5px rgba(0,0,0,0.08); }
-    .compare-card h4 { font-size: 14px; font-weight: 700; color: #0d3349; margin-bottom: 16px; }
-
-    /* FLOW TABLE */
-    .flow-section { margin-bottom: 48px; }
-    .flow-table-wrap { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 5px rgba(0,0,0,0.08); margin-bottom: 24px; }
-    .flow-table-title { background: #0d3349; color: white; padding: 14px 20px; font-size: 13px; font-weight: 700; }
-    .flow-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    .flow-table th { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #64748b; padding: 8px 16px; text-align: left; border-bottom: 1px solid #e2e8f0; }
-    .flow-table td { padding: 10px 16px; border-bottom: 1px solid #f1f5f9; }
-    .flow-table tr:last-child td { border-bottom: none; }
-    .flow-table tr:hover td { background: #f8fafc; }
-    .flow-name { font-weight: 600; color: #0d3349; }
-    .flow-status-live { display: inline-block; background: #dcfce7; color: #16a34a; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
-    .flow-status-manual { display: inline-block; background: #fef9c3; color: #a16207; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
-
-    /* OBSERVATIONS */
-    .observations { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 24px; margin-bottom: 40px; }
-    .observations h4 { font-size: 13px; font-weight: 700; color: #15803d; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 1px; }
-    .observations ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-    .observations ul li { font-size: 13px; color: #1e293b; padding-left: 20px; position: relative; line-height: 1.6; }
-    .observations ul li::before { content: "→"; position: absolute; left: 0; color: #16a34a; font-weight: 700; }
-
-    .obs-warn { background: #fff7ed; border-color: #fed7aa; }
-    .obs-warn h4 { color: #c2410c; }
-    .obs-warn ul li::before { color: #ea580c; }
-
-    .footer { text-align: center; padding: 32px; font-size: 12px; color: #aaa; border-top: 1px solid #eee; margin-top: 24px; }
+    .footer { text-align: center; padding: 28px; font-size: 12px; color: #aaa; border-top: 1px solid #eee; margin-top: 16px; }
   </style>
 </head>
 <body>
 
-  <div class="header">
-    <div class="header-meta">Digitsup × Riversol Skincare · April 2026</div>
-    <h1>Riversol Strategy & Reporting</h1>
-    <p>Campaign opportunities + Q1 performance review — built from live Klaviyo data</p>
+<div class="site-header">
+  <div class="meta">Digitsup × Riversol Skincare · April 2026</div>
+  <h1>Q1 2026 Review</h1>
+  <p>Performance analysis · Campaign opportunities · Flow strategy · Built from live Klaviyo data</p>
+</div>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('q1report',this)">📊 Q1 Report</button>
+  <button class="tab-btn" onclick="switchTab('flow-opps',this)">⚡ Flow Opportunities</button>
+  <button class="tab-btn" onclick="switchTab('campaigns',this)">💡 Campaign Ideas</button>
+  <button class="tab-btn" onclick="switchTab('questions',this)">❓ Questions</button>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     TAB 1 · Q1 REPORT
+══════════════════════════════════════════════════════════ -->
+<div id="tab-q1report" class="tab-pane active">
+<div class="container">
+
+  <!-- TOP LINE -->
+  <div class="section-title" style="margin-top:0">Q1 Business Performance — Klaviyo (Campaigns + Flows)</div>
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-label">Total Attributed Revenue</div>
+      <div class="kpi-value">$1.12M</div>
+      <div class="kpi-sub"><span class="down">↓ −26%</span> vs $1.51M Q1 2025</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Campaign Revenue</div>
+      <div class="kpi-value">$949K</div>
+      <div class="kpi-sub"><span class="down">↓ −16%</span> vs $1.13M</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Flow Revenue</div>
+      <div class="kpi-value">$165K</div>
+      <div class="kpi-sub"><span class="down">↓ −56%</span> vs $378K</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Total Orders</div>
+      <div class="kpi-value">20,821</div>
+      <div class="kpi-sub"><span class="up">↑ +11%</span> vs 18,686</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Avg Order Value</div>
+      <div class="kpi-value">$54</div>
+      <div class="kpi-sub"><span class="down">↓ from $81</span> Q1 2025</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Emails Delivered</div>
+      <div class="kpi-value">3.73M</div>
+      <div class="kpi-sub"><span class="up">↑ +24%</span> vs 3.0M (camps + flows)</div>
+    </div>
   </div>
 
-  <!-- TAB NAV -->
-  <div class="tab-nav">
-    <button class="tab-btn active" onclick="switchTab('ideas')">Campaign Ideas</button>
-    <button class="tab-btn" onclick="switchTab('q1report')">Q1 Report</button>
+  <div class="obs obs-amber" style="margin-bottom:36px">
+    <h4>🔍 How to Read These Numbers</h4>
+    <ul>
+      <li>Revenue is down 26% YoY despite sending 24% more email. More volume, less return per send — the story is in <strong>AOV compression and two missing flow sequences</strong>.</li>
+      <li>Order count is up 11% — the list is transacting more frequently. This is partly real, partly Riversol+ $19/month charges being counted as orders in Klaviyo attribution.</li>
+      <li>Flow revenue drop (−56%) is largely structural: the post-sample delivery flow was restructured (707K delivered, $110K in Q1 2025), and the abandoned cart flow is absent from Q1 2026 ($71K at $115 AOV in Q1 2025). These two gaps alone account for ~$180K of the $213K flow gap.</li>
+    </ul>
   </div>
 
-  <!-- ============================= TAB 1: IDEAS ============================= -->
-  <div id="tab-ideas" class="tab-pane active">
+  <!-- CAMPAIGNS -->
+  <div class="section-title">Campaign Performance — Q1 2026 vs Q1 2025</div>
 
-    <div class="container">
+  <div class="narrative">
+    <h4>Campaign Review</h4>
+    <p>Q1 2026 campaigns generated <strong>$949K across 15,157 attributed orders</strong> — up 37% in order volume but down 16% in revenue vs Q1 2025. The primary driver of the gap is offer depth: Q1 2025 campaigns averaged <strong>$102 AOV</strong> compared to <strong>$63 in Q1 2026</strong>. Lighter promotional structures (tiered thresholds, free-gift mechanics) drove more transactions at lower basket sizes.</p>
+    <p>March was the strongest month ($461K) anchored by Spend & Save and the Spring Sale running concurrently — but two overlapping major events may have split audience attention and diluted individual campaign performance. The Q1 2025 equivalent (Spring Sale + Customer Appreciation Sale) drove $538K on less volume.</p>
+    <p>Bright spots: survey and feedback campaigns consistently delivered above-average click rates (3–7%), and the Calm Edit newsletter generated $34K across three sends with zero promotional offers.</p>
+  </div>
 
-      <div class="section-title">What's Already Working (Don't Break It)</div>
-      <div class="working-grid">
-        <div class="working-card">
-          <div class="icon">💸</div>
-          <h3>Tiered Spend Events</h3>
-          <p>Spend & Save is their bread and butter — run multiple times/year with heavy segmentation. Driving AOV up smartly.</p>
-        </div>
-        <div class="working-card">
-          <div class="icon">🧪</div>
-          <h3>Trial → Feedback Loops</h3>
-          <p>Eye Serum, Hydra Replenish, Exfoliating Cleanser — all getting trial invite → instructions → check-in → feedback. Strong infrastructure.</p>
-        </div>
-        <div class="working-card">
-          <div class="icon">👑</div>
-          <h3>Gold/Silver/Riv+ Tiers</h3>
-          <p>Early access, exclusive events, SMS VIP treats for $2000+ spend. The loyalty architecture is there — needs more moments.</p>
-        </div>
-        <div class="working-card">
-          <div class="icon">📰</div>
-          <h3>The Calm Edit Newsletter</h3>
-          <p>Their initiative, their content — 3 sends in Q1 2026 (Jan, Feb, Mar). Strong open rates ~110%. Worth protecting and sustaining.</p>
-        </div>
-        <div class="working-card">
-          <div class="icon">🔁</div>
-          <h3>Winback Automation</h3>
-          <p>Customer Winback flow triggers at 95/105 days post-purchase. Live. 73K delivered in Q1 2026 — but click rate only 2.4%. Needs depth.</p>
-        </div>
-        <div class="working-card">
-          <div class="icon">🛡️</div>
-          <h3>Suppression Hygiene</h3>
-          <p>Multiple suppression lists built — invalid emails, bounces, inactive. Clean list management is protecting deliverability.</p>
-        </div>
-      </div>
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-label">Campaign Revenue 2026</div>
+      <div class="kpi-value">$949K</div>
+      <div class="kpi-sub"><span class="down">↓ −16%</span> vs $1.13M</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Campaign Orders 2026</div>
+      <div class="kpi-value">15,157</div>
+      <div class="kpi-sub"><span class="up">↑ +37%</span> vs 11,077</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Campaign AOV 2026</div>
+      <div class="kpi-value">$63</div>
+      <div class="kpi-sub"><span class="down">↓ from $102</span> Q1 2025</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Delivered 2026</div>
+      <div class="kpi-value">3.33M</div>
+      <div class="kpi-sub"><span class="up">↑ +43%</span> vs 2.34M</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Click Rate 2026</div>
+      <div class="kpi-value">2.1%</div>
+      <div class="kpi-sub"><span class="down">↓ from 3.4%</span> Q1 2025</div>
+    </div>
+  </div>
 
-      <div class="section-title">Confirmed Gaps (Not in Campaigns or Flows)</div>
-      <div class="gaps-list">
-        <h3>⚠️ These types appear nowhere in 300+ sends or 170 flows:</h3>
-        <ul>
-          <li>Gold/Silver Tier Unlock Moment</li>
-          <li>Bundle Math (show savings vs. individual)</li>
-          <li>Mother's Day</li>
-          <li>Loyalty Milestone ("You've Saved $X")</li>
-          <li>SMS-Exclusive Offer</li>
-          <li>Customer Story Series</li>
-          <li>Almost-Tier Nudge</li>
-          <li>Password Flash / SMS Opt-in Mechanic</li>
-          <li>Canadian/West Coast Identity Campaign</li>
-        </ul>
-      </div>
+  <div class="table-wrap">
+    <div class="table-head">Campaign Performance by Type <span>Q1 2026 vs Q1 2025 · attributed (5-day click / 1-day open)</span></div>
+    <table class="dt">
+      <thead>
+        <tr>
+          <th>Campaign Type</th>
+          <th class="r">2026 Revenue</th>
+          <th class="r">2026 Orders</th>
+          <th class="r">2026 AOV</th>
+          <th class="r">2026 Click%</th>
+          <th class="r">2025 Revenue</th>
+          <th class="r">2025 AOV</th>
+          <th class="r">Rev Δ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name">Sale / Promotional</td>
+          <td class="r">$627,147</td>
+          <td class="r">10,253</td>
+          <td class="r">$61</td>
+          <td class="r">2.1%</td>
+          <td class="r">$632,689</td>
+          <td class="r g">$94</td>
+          <td class="r flat">−1%</td>
+        </tr>
+        <tr>
+          <td class="name">Spend &amp; Save</td>
+          <td class="r">$249,807</td>
+          <td class="r">3,323</td>
+          <td class="r">$75</td>
+          <td class="r">1.9%</td>
+          <td class="r">—</td>
+          <td class="r">—</td>
+          <td class="r">New</td>
+        </tr>
+        <tr>
+          <td class="name">Customer Appreciation Sale</td>
+          <td class="r">—</td>
+          <td class="r">—</td>
+          <td class="r">—</td>
+          <td class="r">—</td>
+          <td class="r">$111,856</td>
+          <td class="r g">$110</td>
+          <td class="r r">−100%</td>
+        </tr>
+        <tr>
+          <td class="name">Newsletter (Calm Edit)</td>
+          <td class="r">$33,683</td>
+          <td class="r">719</td>
+          <td class="r">$47</td>
+          <td class="r">1.9%</td>
+          <td class="r">—</td>
+          <td class="r">—</td>
+          <td class="r">New</td>
+        </tr>
+        <tr>
+          <td class="name">Winback Campaign</td>
+          <td class="r">$14,036</td>
+          <td class="r">163</td>
+          <td class="r">$86</td>
+          <td class="r y">1.1%</td>
+          <td class="r">$4,540</td>
+          <td class="r">$101</td>
+          <td class="r up">+209%</td>
+        </tr>
+        <tr>
+          <td class="name">Survey / Feedback</td>
+          <td class="r">$13,707</td>
+          <td class="r">424</td>
+          <td class="r">$32</td>
+          <td class="r g">4.7%</td>
+          <td class="r">$4,291</td>
+          <td class="r">$71</td>
+          <td class="r">+219%</td>
+        </tr>
+        <tr>
+          <td class="name">Replenishment</td>
+          <td class="r">$2,032</td>
+          <td class="r">20</td>
+          <td class="r g">$102</td>
+          <td class="r g">5.5%</td>
+          <td class="r">$0</td>
+          <td class="r">—</td>
+          <td class="r">New</td>
+        </tr>
+        <tr class="total">
+          <td><strong>Q1 Total</strong></td>
+          <td class="r"><strong>$949,934</strong></td>
+          <td class="r"><strong>15,157</strong></td>
+          <td class="r"><strong>$63</strong></td>
+          <td class="r"><strong>2.1%</strong></td>
+          <td class="r"><strong>$1,134,979</strong></td>
+          <td class="r"><strong>$102</strong></td>
+          <td class="r down"><strong>−16%</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-      <div class="section-title">10 Campaign Ideas — Targeted &amp; Segmented</div>
-      <div class="ideas-grid">
+  <div class="obs obs-amber">
+    <h4>⚠️ Campaign Watch Items</h4>
+    <ul>
+      <li>No Customer Appreciation Sale ran in Q1 2026 — that single event drove $111K at $110 AOV in Q1 2025. Its absence accounts for roughly half the campaign revenue gap.</li>
+      <li>AOV is the real story. Revenue per email sent is down significantly because offer mechanics in Q1 2026 skew toward smaller-basket incentives. This is worth discussing — is the goal transaction frequency or basket size?</li>
+      <li>Winback campaigns (3x volume YoY, $14K vs $4.5K) are improving in reach but click rate of 1.1% suggests offer or timing needs work.</li>
+      <li>Replenishment campaign (Feb 20, $102 AOV) outperformed every other Q1 2026 campaign on order value — this audience is worth building an automated sequence for.</li>
+    </ul>
+  </div>
 
-        <!-- 1 -->
-        <div class="idea-card">
-          <div class="idea-header">
-            <div>
-              <div class="idea-num">01 · NEW</div>
-              <h3>Bundle Math Email</h3>
-              <p class="concept">Some of your best customers bought three products individually when a bundle would have saved them $30+. They don't know they overpaid. Show them. "You bought the Cleanser, Serum, and Moisturizing Concentrate separately — the Anti-Aging Trio Bundle would have saved you $31." No guilt, just math. Then offer them the bundle as their next purchase at a slight loyalty discount.</p>
-              <div class="idea-meta">
-                <span class="tag tag-segment">Segment: Bought 3+ matching bundle products individually in last 90d</span>
-                <span class="tag tag-timing">Timing: 14 days post-3rd qualifying purchase</span>
-              </div>
-              <div class="why-it-works"><span>Why it works:</span> Customers who bought individually are already proven buyers at full price. The "overpaid" framing is a retention signal, not a discount mechanic — it shows you're looking out for them.</div>
-            </div>
-            <div class="channel-badge badge-email">Email</div>
-          </div>
-          <div class="mock-email">
-            <div class="mock-email-label">📧 Mock Email</div>
-            <div class="mock-field"><div class="mock-field-name">Subject Line</div><div class="mock-field-value subject">Quick note: you could have saved $31</div></div>
-            <div class="mock-field"><div class="mock-field-name">Preview Text</div><div class="mock-field-value preview">You bought the pieces. Here's what the set would have cost you.</div></div>
-            <hr class="mock-divider">
-            <div class="mock-body">
-              <p>We noticed something in your recent orders — you picked up the Exfoliating Cleanser, Hydra Replenish Serum, and Moisturizing Concentrate separately over the last couple of months.</p>
-              <p>That's the Anti-Aging Trio Bundle. Bought individually, it runs $148. As a set, it's $117. The math isn't in your favor when you order them one at a time.</p>
-              <p>We're not saying you did anything wrong — people build their routines one step at a time. But next time you're ready to replenish, the bundle saves you $31 and ships as one order.</p>
-              <p>As a thank-you for being a consistent customer: here's 10% off your next bundle order.</p>
-              <span class="mock-cta">Shop the Anti-Aging Trio →</span>
-            </div>
-          </div>
-        </div>
+  <!-- FLOWS -->
+  <div class="section-title">Automation Performance — Q1 2026 vs Q1 2025</div>
 
-        <!-- 2 -->
-        <div class="idea-card">
-          <div class="idea-header">
-            <div>
-              <div class="idea-num">02 · NEW</div>
-              <h3>Mother's Day — Gift Her Glow</h3>
-              <p class="concept">Valentine's Day is proven (4 emails + 3 SMS in both 2025 and 2026). There's no Mother's Day campaign in the data at all. Same playbook: early access for Riversol+ (May 5), broad sale May 6–10, last-chance May 11. Hero products: Anti-Aging Trio Bundle, Eye Repair Treatment, Moisturizing Concentrate. Option: "Gift a Riversol+ membership" — monthly credit she'll use.</p>
-              <div class="idea-meta">
-                <span class="tag tag-segment">Segment: Full active list, Riv+ early access, USA/CAD splits</span>
-                <span class="tag tag-timing">Timing: May 5–11 (tease late April)</span>
-              </div>
-              <div class="why-it-works"><span>Why now:</span> Valentine's is a proven playbook. Mother's Day is the bigger gifting moment in skincare. Direct repeat of a winning structure with zero new creative risk.</div>
-            </div>
-            <div class="channel-badge badge-both">Both</div>
-          </div>
-          <div class="mock-email">
-            <div class="mock-email-label">📧 Mock Email</div>
-            <div class="mock-field"><div class="mock-field-name">Subject Line</div><div class="mock-field-value subject">She's been taking care of everyone. Time someone took care of her.</div></div>
-            <div class="mock-field"><div class="mock-field-name">Preview Text</div><div class="mock-field-value preview">Mother's Day gifts that actually feel considered — free shipping this week.</div></div>
-            <hr class="mock-divider">
-            <div class="mock-body">
-              <p>Some gifts say "I picked this up at the last minute." These don't.</p>
-              <p>Riversol was built for skin that's been through things — hormonal changes, stress, decades of products that promised more than they delivered. If your mom has sensitive skin, this is the one she'll actually use every day.</p>
-              <p><strong>Our gift picks this year:</strong><br>The <strong>Anti-Aging Trio Bundle</strong> — cleanser, serum, moisturizer as one ritual. The <strong>Eye Repair Treatment</strong> — because the eyes always show it first. Or give her a <strong>Riversol+ membership</strong> — monthly credit toward whatever she needs.</p>
-              <p>Free shipping on all orders through May 11.</p>
-              <span class="mock-cta">Shop Mother's Day Gifts →</span>
-            </div>
-          </div>
-        </div>
+  <div class="narrative">
+    <h4>Flow / Automation Review</h4>
+    <p>Q1 2026 flow revenue came in at <strong>$165K across 5,664 orders</strong> — down 56% from $378K in Q1 2025. The decline is largely structural rather than performance-based. Two high-volume sequences that drove significant Q1 2025 revenue were either restructured or are absent: the post-sample delivery flow ($110K, 707K delivered) and the abandoned cart flow ($71K, $115 AOV, 20.3% click rate).</p>
+    <p>The Riversol+ ecosystem is the clear bright spot: Reminders, Recharges, and Welcome flows combined generated <strong>$98K in Q1 2026</strong> — revenue that didn't exist in Q1 2025. Subscription is a growing and healthy revenue layer. However, the program is showing churn pressure in Q1 2026 that's worth monitoring closely.</p>
+    <p>The winback flow (95/105 days post-purchase) is the highest-volume non-transactional flow at 73K delivered, but its 2.4% click rate and $6K revenue output signals it needs a rebuild — either deeper sequencing or a stronger offer structure.</p>
+  </div>
 
-        <!-- 3 -->
-        <div class="idea-card">
-          <div class="idea-header">
-            <div>
-              <div class="idea-num">03 · NEW</div>
-              <h3>Summer-Ready Skin (SPF 50 Launch)</h3>
-              <p class="concept">The SPF 50 Daily Glow Mineral Sunscreen has a live post-purchase flow (Replenishment Reminder V2 and a standalone post-purchase flow) but no proper launch campaign behind it. Give it one. Two sends: Email 1A to FP/engaged (product focus, spring transition angle), Email 1B to SNC (pair with moisturizer as a spring-to-summer system). Mirror the Corrector V2 back-in-stock playbook.</p>
-              <div class="idea-meta">
-                <span class="tag tag-segment">Segment: All active (FP + SNC split)</span>
-                <span class="tag tag-timing">Timing: April — now</span>
-              </div>
-              <div class="why-it-works"><span>Why now:</span> The post-purchase flow exists which confirms it's selling — but there's been no launch campaign to drive awareness. It's April and people are thinking sunscreen.</div>
-            </div>
-            <div class="channel-badge badge-both">Both</div>
-          </div>
-          <div class="mock-email">
-            <div class="mock-email-label">📧 Mock Email</div>
-            <div class="mock-field"><div class="mock-field-name">Subject Line</div><div class="mock-field-value subject">New: SPF 50 that doesn't hate your skin</div></div>
-            <div class="mock-field"><div class="mock-field-name">Preview Text</div><div class="mock-field-value preview">Mineral. No white cast. Built for sensitive skin from the same lab as your serum.</div></div>
-            <hr class="mock-divider">
-            <div class="mock-body">
-              <p>Most sunscreens safe for sensitive skin either leave a white cast, break you out, or just feel terrible to wear. We spent a long time on this one.</p>
-              <p>Introducing the <strong>SPF 50 Daily Glow Mineral Sunscreen</strong> — broad-spectrum UVA/UVB protection with the same gentle mineral formula philosophy behind everything Dr. Rivers formulates. No chemical filters. No fragrance. No compromise on feel.</p>
-              <p>It layers seamlessly over your Moisturizing Concentrate and under makeup. April is the right time to start. Your skin will notice the difference by summer.</p>
-              <span class="mock-cta">Shop SPF 50 Daily Glow →</span>
-            </div>
-          </div>
-        </div>
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-label">Flow Revenue 2026</div>
+      <div class="kpi-value">$165K</div>
+      <div class="kpi-sub"><span class="down">↓ −56%</span> vs $378K</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Flow Orders 2026</div>
+      <div class="kpi-value">5,664</div>
+      <div class="kpi-sub"><span class="down">↓ from 7,609</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Riv+ Flow Revenue</div>
+      <div class="kpi-value">$98K</div>
+      <div class="kpi-sub"><span class="up">↑ New in 2026</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Abandoned Cart Gap</div>
+      <div class="kpi-value">$71K</div>
+      <div class="kpi-sub"><span class="r">Missing vs Q1 2025</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Winback Flow Click Rate</div>
+      <div class="kpi-value">2.4%</div>
+      <div class="kpi-sub"><span class="down">Low</span> on 73K delivered</div>
+    </div>
+  </div>
 
-        <!-- 4 -->
-        <div class="idea-card">
-          <div class="idea-header">
-            <div>
-              <div class="idea-num">04 · EXPAND</div>
-              <h3>Replenishment → Full Routine Upgrade</h3>
-              <p class="concept">They have Replenishment Reminder V2 live. The Replenishment Reminder (original) is manual — meaning some of this is happening but not consistently automated. For customers who only bought one product, 45–60 days post-purchase: "What pairs with your [product]." Use the product name dynamically. For the moisturizer: pair with Cleanser + Serum. For the Retinol: pair with Eye Repair. Make it feel like a dermatologist recommendation, not a cross-sell.</p>
-              <div class="idea-meta">
-                <span class="tag tag-segment">Segment: 1-product buyers, 45–60 days post-purchase</span>
-                <span class="tag tag-timing">Timing: Automated trigger — ongoing</span>
-              </div>
-              <div class="why-it-works"><span>Why now:</span> The replenishment infrastructure exists but focuses on "buy again" — this extends it to "buy more," which is meaningfully higher LTV.</div>
-            </div>
-            <div class="channel-badge badge-email">Email</div>
-          </div>
-          <div class="mock-email">
-            <div class="mock-email-label">📧 Mock Email</div>
-            <div class="mock-field"><div class="mock-field-name">Subject Line</div><div class="mock-field-value subject">Your moisturizer is working. Here's what makes it work even harder.</div></div>
-            <div class="mock-field"><div class="mock-field-name">Preview Text</div><div class="mock-field-value preview">Two products designed to go with it — and why the order matters.</div></div>
-            <hr class="mock-divider">
-            <div class="mock-body">
-              <p>You've been using the Moisturizing Concentrate for about six weeks. If you're noticing a difference, that's the hinokitiol working — your skin barrier is finally getting consistent support.</p>
-              <p>Here's what most people find next: the barrier holds better when it's layered correctly. A pH-balanced cleanser keeps the surface from fighting what comes after. A serum delivers actives deeper before the moisturizer seals them in.</p>
-              <p>The <strong>Exfoliating Cleanser</strong> and <strong>Hydra Replenish Serum</strong> were formulated to work with your Moisturizing Concentrate — not just alongside it. Start with whichever gap matters most.</p>
-              <span class="mock-cta">Complete Your Routine →</span>
-            </div>
-          </div>
-        </div>
+  <div class="table-wrap">
+    <div class="table-head">Top Flows by Revenue — Q1 2026 <span>attributed (5-day click / 1-day open)</span></div>
+    <table class="dt">
+      <thead>
+        <tr><th>Flow</th><th class="r">Revenue</th><th class="r">Orders</th><th class="r">AOV</th><th class="r">Delivered</th><th class="r">Click%</th><th>Note</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">Riversol+ Reminders (Subscribfy)</td><td class="r g">$65,050</td><td class="r">2,886</td><td class="r">$23</td><td class="r">15,692</td><td class="r g">17.8%</td><td>Subscription credits — growing</td></tr>
+        <tr><td class="name">Riversol+ Recharges (Subscribfy)</td><td class="r">$30,078</td><td class="r">756</td><td class="r">$40</td><td class="r">29,175</td><td class="r">12.7%</td><td>Monthly billing, healthy</td></tr>
+        <tr><td class="name">Judge.me Review Request</td><td class="r">$19,149</td><td class="r">663</td><td class="r">$29</td><td class="r">56,538</td><td class="r">5.2%</td><td>Solid — review-to-purchase working</td></tr>
+        <tr><td class="name">Order Fulfilled</td><td class="r">$14,650</td><td class="r">507</td><td class="r">$29</td><td class="r">85,436</td><td class="r g">23.3%</td><td>Consistent performer</td></tr>
+        <tr><td class="name">Order Confirmation</td><td class="r">$9,696</td><td class="r">270</td><td class="r">$36</td><td class="r">91,110</td><td class="r">9.2%</td><td>Transactional — upsell opportunity</td></tr>
+        <tr><td class="name">Customer Winback (95/105d)</td><td class="r">$5,964</td><td class="r">100</td><td class="r">$60</td><td class="r">73,653</td><td class="r y">2.4%</td><td>⚠️ Low click — needs rebuild</td></tr>
+        <tr><td class="name">Replenishment Reminder V2</td><td class="r">$4,014</td><td class="r">48</td><td class="r g">$84</td><td class="r">16,160</td><td class="r y">2.1%</td><td>High AOV, low click — review content</td></tr>
+        <tr><td class="name">Riversol+ Welcome (Subscribfy)</td><td class="r">$2,708</td><td class="r">25</td><td class="r g">$108</td><td class="r">4,698</td><td class="r g">27.1%</td><td>⭐ Best click rate in program</td></tr>
+        <tr><td class="name">Post-Purchase — Eye Repair</td><td class="r">$1,862</td><td class="r">—</td><td class="r">—</td><td class="r">1,862</td><td class="r">10.8%</td><td>New — performing well</td></tr>
+        <tr class="total"><td><strong>Q1 Total (all flows)</strong></td><td class="r"><strong>$165,602</strong></td><td class="r"><strong>5,664</strong></td><td class="r"><strong>$29</strong></td><td class="r"><strong>396K</strong></td><td class="r">—</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
 
-        <!-- 5 -->
-        <div class="idea-card">
-          <div class="idea-header">
-            <div>
-              <div class="idea-num">05 · NEW</div>
-              <h3>Gold &amp; Silver Milestone Email</h3>
-              <p class="concept">Confirmed: no Gold/Silver tier unlock flow exists in 170 flows. The tier is used as an access gate but the moment of earning it is completely silent. Build a trigger-based flow: "You're now a Riversol Gold member." Brief, elegant, shows exactly what they've unlocked, and delivers a small exclusive — a product trial invitation, early access to the next event, or a bonus store credit. Make the tier feel earned, not just labeled.</p>
-              <div class="idea-meta">
-                <span class="tag tag-segment">Segment: Newly qualified Gold + Silver (trigger-based flow)</span>
-                <span class="tag tag-timing">Timing: Triggered on tier unlock event</span>
-              </div>
-              <div class="why-it-works"><span>Why now:</span> Confirmed gap — checked 170 flows, nothing exists. Gold/Silver customers are their highest-value segment and the tier-earn moment is a proven loyalty lever that's being completely wasted.</div>
-            </div>
-            <div class="channel-badge badge-both">Both</div>
-          </div>
-          <div class="mock-email">
-            <div class="mock-email-label">📧 Mock Email</div>
-            <div class="mock-field"><div class="mock-field-name">Subject Line</div><div class="mock-field-value subject">You've earned it — welcome to Riversol Gold</div></div>
-            <div class="mock-field"><div class="mock-field-name">Preview Text</div><div class="mock-field-value preview">Here's what's unlocked for you now, and what's coming next.</div></div>
-            <hr class="mock-divider">
-            <div class="mock-body">
-              <p>You've officially reached Riversol Gold status — and that's not a label we hand out lightly.</p>
-              <p><strong>What Gold unlocks:</strong> Early access to every sale and new launch, an invitation to Gold-only events, and a complimentary product trial every quarter — starting now.</p>
-              <p>Your Gold trial offer: the <strong>Eye Repair Treatment</strong> — free with your next order, on us. It's one of our most requested products and a natural next step for skin at this stage of the routine.</p>
-              <p>Thank you for trusting us with your skin.</p>
-              <span class="mock-cta">Claim Your Gold Benefit →</span>
-            </div>
-          </div>
-        </div>
+  <div class="table-wrap">
+    <div class="table-head">Top Flows by Revenue — Q1 2025 <span>for comparison</span></div>
+    <table class="dt">
+      <thead>
+        <tr><th>Flow</th><th class="r">Revenue</th><th class="r">Orders</th><th class="r">AOV</th><th class="r">Delivered</th><th class="r">Click%</th><th>Status in 2026</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">Welcome Series (Oct '24–Mar '25)</td><td class="r g">$125,799</td><td class="r">1,126</td><td class="r g">$112</td><td class="r">19,452</td><td class="r g">17.5%</td><td><span class="y">Restructured / split</span></td></tr>
+        <tr><td class="name">Sample Flow: Post-Delivery</td><td class="r g">$110,794</td><td class="r">3,399</td><td class="r">$33</td><td class="r">707,266</td><td class="r">4.9%</td><td><span class="y">Restructured</span></td></tr>
+        <tr><td class="name">Abandoned Cart</td><td class="r g">$71,961</td><td class="r">624</td><td class="r g">$115</td><td class="r">15,278</td><td class="r g">20.3%</td><td><span class="r">⚠️ Not in top flows</span></td></tr>
+        <tr><td class="name">Order Fulfilled</td><td class="r">$21,116</td><td class="r">385</td><td class="r">$55</td><td class="r">142,287</td><td class="r g">22.7%</td><td><span class="g">Live ✓</span></td></tr>
+        <tr><td class="name">Judge.me Review Request</td><td class="r">$14,003</td><td class="r">340</td><td class="r">$41</td><td class="r">97,137</td><td class="r">7.5%</td><td><span class="g">Live ✓</span></td></tr>
+        <tr><td class="name">Order Confirmation</td><td class="r">$13,513</td><td class="r">544</td><td class="r">$25</td><td class="r">140,088</td><td class="r">15.4%</td><td><span class="g">Live ✓</span></td></tr>
+        <tr><td class="name">Replenishment Reminder</td><td class="r">$5,181</td><td class="r">39</td><td class="r g">$133</td><td class="r">13,297</td><td class="r">4.3%</td><td><span class="y">Manual in 2026</span></td></tr>
+        <tr class="total"><td><strong>Q1 Total (all flows)</strong></td><td class="r"><strong>$378,310</strong></td><td class="r"><strong>7,609</strong></td><td class="r"><strong>$50</strong></td><td class="r"><strong>1.17M</strong></td><td class="r">—</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
 
-        <!-- 6 -->
-        <div class="idea-card">
-          <div class="idea-header">
-            <div>
-              <div class="idea-num">06 · NEW</div>
-              <h3>SMS-Only Flash — Exclusive to Text Subscribers</h3>
-              <p class="concept">Every SMS campaign they run mirrors an email campaign — confirmed across 300+ sends. There are zero SMS-exclusive offers in the data. Run one: "This deal is SMS-only — never in email." 24-hour window, one product, light offer (free shipping or complimentary travel-size). The exclusivity is the hook. Announce it by saying "This will never show up in your inbox." This also trains the list to value the channel.</p>
-              <div class="idea-meta">
-                <span class="tag tag-segment">Segment: Full SMS subscriber list</span>
-                <span class="tag tag-timing">Timing: Mid-month gap, no active sale</span>
-              </div>
-              <div class="why-it-works"><span>Why now:</span> SMS-exclusive offers are the single most reliable driver of SMS engagement and list growth. You're giving people a reason to stay subscribed that has nothing to do with email.</div>
-            </div>
-            <div class="channel-badge badge-sms">SMS Only</div>
-          </div>
-          <div class="mock-email">
-            <div class="mock-email-label">📱 Mock SMS</div>
-            <div class="mock-field"><div class="mock-field-name">SMS Message</div><div class="mock-field-value">Riversol: This one's just for you — never going to email. Free shipping + complimentary travel-size Moisturizing Concentrate on any order today. 24 hrs only. → riversol.com/sms-exclusive | Reply STOP to opt out</div></div>
-            <hr class="mock-divider">
-            <div class="mock-field"><div class="mock-field-name">Follow-up SMS (20 hrs later)</div><div class="mock-field-value">Riversol: 4 hours left on your SMS exclusive. Free shipping + travel-size, while stock lasts. → riversol.com/sms-exclusive</div></div>
-          </div>
-        </div>
+  <!-- RIV+ -->
+  <div class="section-title">Riversol+ Program Health — Q1 2026</div>
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-label">New Members Q1 2026</div>
+      <div class="kpi-value">1,891</div>
+      <div class="kpi-sub">Jan: 954 · Feb: 773 · Mar: 164</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Cancellations Q1 2026</div>
+      <div class="kpi-value">3,441</div>
+      <div class="kpi-sub"><span class="down">Net: −1,550</span> members this quarter</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Active Billing Base</div>
+      <div class="kpi-value">~16,700</div>
+      <div class="kpi-sub">Successful charges/month Q1</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Failed Charge Rate</div>
+      <div class="kpi-value">19%</div>
+      <div class="kpi-sub"><span class="down">↑ to 22.5%</span> by March — rising</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Peak Growth Month</div>
+      <div class="kpi-value">Nov 2025</div>
+      <div class="kpi-sub">5,429 new members (BFCM?)</div>
+    </div>
+  </div>
 
-        <!-- 7 -->
-        <div class="idea-card">
-          <div class="idea-header">
-            <div>
-              <div class="idea-num">07 · NEW</div>
-              <h3>The Sensitive Skin Wins Series</h3>
-              <p class="concept">Pull 3–4 of their strongest customer testimonials and turn each into a standalone email. Not a review widget — a real story. "Sandra hadn't found anything that worked in 14 years." Tell the story, let it breathe, soft product connection at the end. No discount. Just proof. Run 4 weeks in a row to cold/unengaged non-purchasers. This converts cold audiences better than any offer-led email for a brand with this level of trust signal.</p>
-              <div class="idea-meta">
-                <span class="tag tag-segment">Segment: Non-purchasers + lapsed SNC (no open/click 90d)</span>
-                <span class="tag tag-timing">Timing: 4-week series, non-sale weeks</span>
-              </div>
-              <div class="why-it-works"><span>Why now:</span> Their testimonials are exceptional and completely unused as campaign content. Story-driven emails consistently outperform offer-driven emails for trust-based brands.</div>
-            </div>
-            <div class="channel-badge badge-email">Email</div>
-          </div>
-          <div class="mock-email">
-            <div class="mock-email-label">📧 Mock Email</div>
-            <div class="mock-field"><div class="mock-field-name">Subject Line</div><div class="mock-field-value subject">Sandra hadn't found anything that worked in 14 years</div></div>
-            <div class="mock-field"><div class="mock-field-name">Preview Text</div><div class="mock-field-value preview">Then she tried the one thing she almost didn't.</div></div>
-            <hr class="mock-divider">
-            <div class="mock-body">
-              <p>Sandra is 61. She'd been dealing with sensitive, reactive skin since her late 40s — the kind that flares with fragrance, stings with most moisturizers, never quite settles. She'd tried everything her dermatologist recommended. The "clean beauty" brands. Doing nothing.</p>
-              <p>She found Riversol through a friend with rosacea. She almost didn't order. "I thought, this is just another thing that's going to disappoint me."</p>
-              <p>Six weeks in, she sent us a note. "For the first time in years, I don't dread washing my face."</p>
-              <p>We didn't design Riversol for everyone. We designed it for people like Sandra. If you haven't tried it yet, we'd like you to.</p>
-              <span class="mock-cta">See What Sandra Uses →</span>
-            </div>
-          </div>
-        </div>
+  <div class="obs obs-red">
+    <h4>⚠️ Riversol+ Watch Items</h4>
+    <ul>
+      <li>The program is in <strong>net negative membership</strong> every month of Q1 2026 — losing more members than it's gaining. This is a retention signal worth addressing proactively.</li>
+      <li><strong>Failed charge rate of 18–22%</strong> is high for a subscription program. Industry average is typically 5–10%. Failed charges in Q1 2026: 3,924 — this is significant lost recurring revenue.</li>
+      <li>The November 2025 spike (5,429 new members) likely came from a promotional push and didn't retain — by Q1 2026 new signups have dropped sharply (164 in March).</li>
+      <li>US launch in January 2026 generated 954 new members but hasn't driven the growth momentum the Canada launch did (Jul 2025: 3,322 new). May need different acquisition strategy for US.</li>
+    </ul>
+  </div>
 
-        <!-- 8 -->
-        <div class="idea-card">
-          <div class="idea-header">
-            <div>
-              <div class="idea-num">08 · NEW</div>
-              <h3>Made in Canada — West Coast Heritage Drop</h3>
-              <p class="concept">"Our formula comes from a Pacific red cedar tree." A single email built entirely around the Canadian identity and the hinokitiol story — Dr. Rivers, the cedar, BC origins, 115,000 customers. No sale. No discount. Just: "This is who we are." For Canada Day (July 1) or as a brand-building standalone in a quiet month. CAD segment only. Costs nothing in margin and builds long-term brand preference.</p>
-              <div class="idea-meta">
-                <span class="tag tag-segment">Segment: CAD FP + SNC active</span>
-                <span class="tag tag-timing">Timing: Canada Day (July 1) or May quiet period</span>
-              </div>
-              <div class="why-it-works"><span>Why now:</span> Canadian consumers are increasingly loyal to Canadian brands. This is an identity play that builds preference at zero margin cost.</div>
-            </div>
-            <div class="channel-badge badge-email">Email</div>
-          </div>
-          <div class="mock-email">
-            <div class="mock-email-label">📧 Mock Email</div>
-            <div class="mock-field"><div class="mock-field-name">Subject Line</div><div class="mock-field-value subject">It starts with a tree on the BC coast</div></div>
-            <div class="mock-field"><div class="mock-field-name">Preview Text</div><div class="mock-field-value preview">The molecule in every Riversol formula — and why it only comes from here.</div></div>
-            <hr class="mock-divider">
-            <div class="mock-body">
-              <p>The Pacific red cedar grows along the coast of British Columbia. It's been here for thousands of years. Inside it — in its heartwood — is a molecule called hinokitiol.</p>
-              <p>Dr. Rivers spent years studying what that molecule could do for sensitive, reactive skin. The answer became Riversol. Not a lab experiment from a multinational. A formula developed here, sourced from here, for 115,000 customers who needed something the mainstream market wasn't making.</p>
-              <p>We're proud to be a Canadian brand. Quietly, stubbornly, completely. Happy Canada Day.</p>
-              <span class="mock-cta">Our Story →</span>
-            </div>
-          </div>
-        </div>
+</div>
+</div><!-- /tab-q1report -->
 
-        <!-- 9 -->
-        <div class="idea-card">
-          <div class="idea-header">
-            <div>
-              <div class="idea-num">09 · UPGRADE</div>
-              <h3>Winback Automation — Build the Full Sequence</h3>
-              <p class="concept">A winback flow exists and triggers at 95/105 days post-purchase. But it's a single moment, and its click rate in Q1 2026 is only 2.4% on 73K delivered — underperforming. The manual "Customer Winback - Standard" isn't live at all. The real opportunity: build a proper 3-touch automated sequence (90d / 120d / 150d), each with escalating offers, before defaulting to the deep-discount 40% OFF blast they're currently using as a first resort.</p>
-              <div class="idea-meta">
-                <span class="tag tag-segment">Segment: Lapsed FP (90/120/150d), Lapsed SNC</span>
-                <span class="tag tag-timing">Timing: Automated — replace current single-touch trigger</span>
-              </div>
-              <div class="why-it-works"><span>Why now:</span> Getting to a customer at 90 days costs far less (and requires far less discount) than hitting them at 150 days with 40% off. The single-touch flow is better than nothing but leaves revenue on the table at every earlier touchpoint.</div>
-            </div>
-            <div class="channel-badge badge-both">Both</div>
-          </div>
-          <div class="mock-email">
-            <div class="mock-email-label">📧 Mock Email — Winback Touch 1 (Day 90)</div>
-            <div class="mock-field"><div class="mock-field-name">Subject Line</div><div class="mock-field-value subject">It's been a while. How's your skin doing?</div></div>
-            <div class="mock-field"><div class="mock-field-name">Preview Text</div><div class="mock-field-value preview">No pitch. Just checking in — and a note from us.</div></div>
-            <hr class="mock-divider">
-            <div class="mock-body">
-              <p>You haven't ordered in a little while, and we noticed. We're not going to pretend otherwise.</p>
-              <p>We just want to ask: how's your skin doing? If things are going well, that's genuinely great to hear. If it's been a bit off lately — drier than usual, a little reactive, not quite settled — it might be worth coming back.</p>
-              <p>The thing about a consistent routine is that the skin always remembers when it stops. We're here when you're ready.</p>
-              <span class="mock-cta">Come Back to Riversol →</span>
-            </div>
-          </div>
-        </div>
 
-        <!-- 10 -->
-        <div class="idea-card">
-          <div class="idea-header">
-            <div>
-              <div class="idea-num">10 · NEW</div>
-              <h3>Almost-Tier Buyer</h3>
-              <p class="concept">Some of your most valuable customers are $25–$30 from Gold or Silver — and they don't know it. Don't show them a generic progress bar. Show them the exact dollar gap and make the specific benefit real. "You're $27 from Gold. Gold members get early access to every sale, plus a complimentary product trial every quarter." Then give them one clear path to get there — a product that fills a gap in their current routine.</p>
-              <div class="idea-meta">
-                <span class="tag tag-segment">Segment: Customers $25–$30 below Silver or Gold threshold</span>
-                <span class="tag tag-timing">Timing: Mid-month, no active sale</span>
-              </div>
-              <div class="why-it-works"><span>Why now:</span> This is the highest-intent segment outside of active buyers. They're loyal enough to be close — they need a concrete nudge and a specific benefit, not a generic "you're almost there."</div>
-            </div>
-            <div class="channel-badge badge-both">Both</div>
-          </div>
-          <div class="mock-email">
-            <div class="mock-email-label">📧 Mock Email</div>
-            <div class="mock-field"><div class="mock-field-name">Subject Line</div><div class="mock-field-value subject">You're $27 from Riversol Gold</div></div>
-            <div class="mock-field"><div class="mock-field-name">Preview Text</div><div class="mock-field-value preview">Here's exactly what unlocks — and one product that gets you there.</div></div>
-            <hr class="mock-divider">
-            <div class="mock-body">
-              <p>We don't do vague progress bars. So here it is plainly: you're $27 away from Riversol Gold status.</p>
-              <p><strong>What Gold unlocks:</strong> Early access to every sale and new launch, Gold-only events, and a complimentary product trial every quarter — starting immediately.</p>
-              <p>One order gets you there. Based on your routine, the most natural next step is the <strong>Eye Repair Treatment</strong> — at $68, it puts you comfortably over the threshold.</p>
-              <p>We're not suggesting you buy something you don't need. Just telling you exactly where you stand.</p>
-              <span class="mock-cta">Reach Gold with Eye Repair →</span>
-            </div>
-          </div>
-        </div>
+<!-- ══════════════════════════════════════════════════════════
+     TAB 2 · FLOW OPPORTUNITIES
+══════════════════════════════════════════════════════════ -->
+<div id="tab-flow-opps" class="tab-pane">
+<div class="container">
 
-      </div><!-- /ideas-grid -->
+  <div class="section-title" style="margin-top:0">Flow Opportunities — Ranked by Revenue Impact</div>
 
-      <!-- QUICK WINS -->
-      <div class="section-title">Quick Wins This Month</div>
-      <div class="wins-grid">
-        <div class="win-card">
-          <div class="win-label">Quick Win #1</div>
-          <h3>SPF 50 Launch Campaign</h3>
-          <p>Post-purchase flow exists — but no launch send. One email to FP engaged, one to SNC. Can go this week while it's still April.</p>
-        </div>
-        <div class="win-card">
-          <div class="win-label">Quick Win #2</div>
-          <h3>Mother's Day Teaser (SMS)</h3>
-          <p>It's April 1st. Send the VIP early-access teaser SMS in the next 7 days. Builds anticipation before the push. Mirror the Valentine's Day playbook exactly.</p>
-        </div>
-        <div class="win-card">
-          <div class="win-label">Quick Win #3</div>
-          <h3>Gold/Silver Tier Unlock Flow</h3>
-          <p>Confirmed zero flows exist for this. Build a simple 1-email trigger with a trial offer or early access note. High-value segment, easy win, no campaign needed.</p>
+  <div class="obs obs-blue" style="margin-bottom:32px">
+    <h4>Context</h4>
+    <ul>
+      <li>These are grounded in the live flow audit (170 flows reviewed) and Q1 2026 vs 2025 performance data. Priority is based on confirmed revenue gaps, not assumptions.</li>
+      <li>Items marked <strong>P1</strong> have a confirmed dollar gap traceable to a missing or underperforming flow. P2 are upgrades to existing live flows. P3 are new build opportunities.</li>
+    </ul>
+  </div>
+
+  <div class="opp-grid">
+
+    <div class="opp-card">
+      <div>
+        <div class="opp-num">01 · P1 · CONFIRMED GAP</div>
+        <h3>Abandoned Cart — Confirm Status &amp; Restore</h3>
+        <p>The abandoned cart flow was the 3rd highest revenue flow in Q1 2025: <strong>$71,961 revenue, 624 orders, $115 AOV, 20.3% click rate</strong>. It is not appearing in Q1 2026 top flows. This is a significant, confirmed gap. Current status in Klaviyo: the "Browse Abandonment" flow is live, but the full "Abandoned Added to Cart" flow shows as draft/test in 2026. If it's not firing, this is immediate revenue loss every single day.</p>
+        <div class="opp-data">
+          <strong>Q1 2025 performance:</strong> $71,961 revenue · 624 orders · $115 AOV · 20.3% click rate<br>
+          <strong>Q1 2026 performance:</strong> Not in top 20 flows by revenue<br>
+          <strong>Estimated annualized gap:</strong> ~$285K if Q1 2025 rate maintained
         </div>
       </div>
-
-    </div><!-- /container -->
-  </div><!-- /tab-ideas -->
-
-  <!-- ============================= TAB 2: Q1 REPORT ============================= -->
-  <div id="tab-q1report" class="tab-pane">
-
-    <div class="report-header">
-      <div class="header-meta">Digitsup × Riversol Skincare · Q1 2026 vs Q1 2025</div>
-      <h1>Q1 Performance Report</h1>
-      <p>Campaigns and flows — January, February, March. Revenue, orders, AOV, and engagement.</p>
-      <div class="data-note">Pulled directly from Klaviyo API. Conversions = attributed orders (5-day click, 1-day open window). Open rates >100% = Apple MPP. Use click rate and revenue as primary signals.</div>
+      <div class="priority-badge p1">P1 — Urgent</div>
     </div>
 
-    <div class="container">
-
-      <!-- Q1 TOP-LINE KPIS -->
-      <div class="section-title" style="margin-top:0">Q1 Campaign Rollup — Top Line</div>
-      <div class="kpi-row">
-        <div class="kpi-card">
-          <div class="kpi-label">Campaign Revenue (Q1 2026)</div>
-          <div class="kpi-value">$949K</div>
-          <div class="kpi-compare"><span class="kpi-down">↓ −16%</span> vs $1.135M Q1 2025</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Campaign Orders (Q1 2026)</div>
-          <div class="kpi-value">15,157</div>
-          <div class="kpi-compare"><span class="kpi-up">↑ +37%</span> vs 11,077 Q1 2025</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Avg Order Value (Q1 2026)</div>
-          <div class="kpi-value">$63</div>
-          <div class="kpi-compare"><span class="kpi-down">↓ from $102</span> Q1 2025 — significant drop</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Click Rate (Q1 2026)</div>
-          <div class="kpi-value">2.1%</div>
-          <div class="kpi-compare"><span class="kpi-down">↓ from 3.4%</span> Q1 2025</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Emails Delivered (Q1 2026)</div>
-          <div class="kpi-value">3.33M</div>
-          <div class="kpi-compare"><span class="kpi-up">↑ +43%</span> vs 2.34M Q1 2025</div>
+    <div class="opp-card">
+      <div>
+        <div class="opp-num">02 · P1 · CONFIRMED GAP</div>
+        <h3>Winback Flow — Upgrade from Single Touch to 3-Step Sequence</h3>
+        <p>The current winback flow fires once at 95/105 days post-purchase. Q1 2026 performance: 73K delivered, 2.4% click rate, 100 orders, $5,964 revenue. That's a 0.14% order conversion rate on a warm audience. The standard "Customer Winback - Standard" flow with Email + SMS is sitting on <strong>manual</strong> — it's built but not live. A proper 3-step sequence (90d soft check-in / 120d offer / 150d last-chance) with escalating urgency would recover customers before they hit the deep-discount rescue stage.</p>
+        <div class="opp-data">
+          <strong>Current:</strong> Single touch at 95/105d · 73K delivered · $60 AOV · 2.4% click<br>
+          <strong>Opportunity:</strong> 3x as many touchpoints across 60-day window before needing 40% off<br>
+          <strong>Manual flow exists:</strong> "Customer Winback - Standard (Email & SMS)" — ready to activate
         </div>
       </div>
+      <div class="priority-badge p1">P1 — High</div>
+    </div>
 
-      <div class="observations obs-warn" style="margin-bottom:40px">
-        <h4>⚠️ The Big Picture: More Volume, Less Revenue Per Send</h4>
-        <ul>
-          <li><strong>Revenue is down 16% YoY despite sending 43% more email</strong> — the list is bigger but each send is generating less. More campaigns, more saturation, lower AOV.</li>
-          <li><strong>AOV dropped from $102 → $63</strong> — deeper discount offers in Q1 2026 (20% off, $20/$35 tiers, Spring Flash) vs Q1 2025's larger events. Customers are being trained to buy smaller or wait for a better offer.</li>
-          <li><strong>Order count is up 37%</strong> — so the list is transacting more frequently, just at lower values. Volume play vs value play.</li>
-          <li>Flow revenue also down: $165K in Q1 2026 vs $378K in Q1 2025 — the sample flow restructure removed a major revenue-driving sequence.</li>
-        </ul>
-      </div>
-
-      <!-- JANUARY -->
-      <div class="month-section">
-        <div class="month-header">
-          <div class="month-title">January</div>
-          <div class="month-badge">2026 vs 2025</div>
-        </div>
-        <div class="month-grid">
-          <div class="compare-card">
-            <h4>📅 January 2026</h4>
-            <table class="data-table">
-              <thead><tr><th>Type</th><th>Delivered</th><th>Click%</th><th>Revenue</th><th>Orders</th><th>AOV</th></tr></thead>
-              <tbody>
-                <tr><td>Sale / Promo (3 events)</td><td>693,386</td><td>1.6%</td><td>$169,521</td><td>2,882</td><td>$59</td></tr>
-                <tr><td>Winback (Jan 1–2 blast)</td><td>240,325</td><td class="metric-low">1.1%</td><td>$14,036</td><td>163</td><td>$86</td></tr>
-                <tr><td>Newsletter (Calm Edit)</td><td>70,326</td><td>1.9%</td><td>$9,736</td><td>194</td><td>$50</td></tr>
-                <tr><td>Survey</td><td>63,403</td><td class="metric-good">6.9%</td><td>$10,317</td><td>306</td><td>$34</td></tr>
-                <tr><td>Amazon (USA)</td><td>35,670</td><td class="metric-low">0.9%</td><td>$339</td><td>4</td><td>$85</td></tr>
-                <tr><td>Trial</td><td>568</td><td class="metric-low">0.7%</td><td>$860</td><td>45</td><td>$19</td></tr>
-                <tr><td><strong>TOTAL</strong></td><td><strong>1,103,678</strong></td><td><strong>1.8%</strong></td><td><strong>$204,809</strong></td><td><strong>3,594</strong></td><td><strong>$57</strong></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="compare-card">
-            <h4>📅 January 2025</h4>
-            <table class="data-table">
-              <thead><tr><th>Type</th><th>Delivered</th><th>Click%</th><th>Revenue</th><th>Orders</th><th>AOV</th></tr></thead>
-              <tbody>
-                <tr><td>Post-Holiday / General</td><td>748,876</td><td>2.3%</td><td>$263,822</td><td>2,450</td><td class="metric-good">$108</td></tr>
-                <tr><td>Review Request</td><td>109,298</td><td>2.4%</td><td>$14,843</td><td>169</td><td>$88</td></tr>
-                <tr><td>Survey</td><td>7,145</td><td class="metric-good">22.1%</td><td>$2,046</td><td>27</td><td>$76</td></tr>
-                <tr><td><strong>TOTAL</strong></td><td><strong>865,452</strong></td><td><strong>2.5%</strong></td><td><strong>$280,711</strong></td><td><strong>2,646</strong></td><td class="metric-good"><strong>$106</strong></td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="observations" style="margin-top:16px">
-          <h4>✅ January Notes</h4>
-          <ul>
-            <li>January 2026 generated <strong>$204K vs $280K in 2025</strong> — 27% lower despite 27% more volume. AOV fell from $106 → $57.</li>
-            <li>Winback blast (240K delivered, $14K revenue, 163 orders) — the AOV is decent at $86 but the volume:revenue ratio is poor. Campaign-based winback is an expensive tool for low return.</li>
-            <li>3 sale events in January — Free Gift / 15% Off / $20-$35 tiers — all small-offer positioning, which explains the AOV compression.</li>
-          </ul>
+    <div class="opp-card">
+      <div>
+        <div class="opp-num">03 · P1 · RIV+ RETENTION</div>
+        <h3>Failed Charge Recovery Sequence</h3>
+        <p>19% of Riversol+ charge attempts are failing — that's 3,924 failed charges in Q1 2026 alone and rising (22.5% in March). The "Riversol+ Failed Charge (Subscribfy)" flow exists and is live, but with only 3,527 delivered and a 20.2% click rate, it doesn't appear to be fully recovering the audience. At $19/month per member, 3,924 failed charges = ~$74K in missed recurring revenue per quarter. A proper dunning sequence (immediate / +3 days / +7 days with card-update CTA) could recover a meaningful portion of this.</p>
+        <div class="opp-data">
+          <strong>Failed charges Q1 2026:</strong> 3,924 (Jan: 1,306 · Feb: 1,098 · Mar: 1,520)<br>
+          <strong>Missed revenue at $19/charge:</strong> ~$74,556/quarter<br>
+          <strong>Existing flow:</strong> Live but likely single-touch — needs dunning sequence
         </div>
       </div>
+      <div class="priority-badge p1">P1 — High</div>
+    </div>
 
-      <!-- FEBRUARY -->
-      <div class="month-section">
-        <div class="month-header">
-          <div class="month-title">February</div>
-          <div class="month-badge">2026 vs 2025</div>
-        </div>
-        <div class="month-grid">
-          <div class="compare-card">
-            <h4>📅 February 2026</h4>
-            <table class="data-table">
-              <thead><tr><th>Type</th><th>Delivered</th><th>Click%</th><th>Revenue</th><th>Orders</th><th>AOV</th></tr></thead>
-              <tbody>
-                <tr><td>Sale / Promo (Valentine's + Riv+ + Flash)</td><td>681,749</td><td>2.3%</td><td>$261,944</td><td>4,323</td><td>$61</td></tr>
-                <tr><td>Newsletter (Calm Edit)</td><td>93,859</td><td>1.8%</td><td>$12,066</td><td>251</td><td>$48</td></tr>
-                <tr><td>Acne Campaign</td><td>4,255</td><td class="metric-good">6.0%</td><td>$4,360</td><td>130</td><td>$34</td></tr>
-                <tr><td>Replenishment (20 variants)</td><td>2,951</td><td>5.5%</td><td>$2,032</td><td>20</td><td class="metric-good">$102</td></tr>
-                <tr><td>Amazon</td><td>23,858</td><td>4.4%</td><td>$1,940</td><td>19</td><td class="metric-good">$102</td></tr>
-                <tr><td>Survey / Feedback</td><td>21,710</td><td>3.0%</td><td>$1,107</td><td>8</td><td class="metric-good">$138</td></tr>
-                <tr><td><strong>TOTAL</strong></td><td><strong>829,467</strong></td><td><strong>2.4%</strong></td><td><strong>$283,601</strong></td><td><strong>4,760</strong></td><td><strong>$60</strong></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="compare-card">
-            <h4>📅 February 2025</h4>
-            <table class="data-table">
-              <thead><tr><th>Type</th><th>Delivered</th><th>Click%</th><th>Revenue</th><th>Orders</th><th>AOV</th></tr></thead>
-              <tbody>
-                <tr><td>Sale / Promo (Valentine's + DOTD + other)</td><td>504,244</td><td>3.1%</td><td>$275,319</td><td>2,923</td><td class="metric-good">$94</td></tr>
-                <tr><td>General / Other</td><td>165,911</td><td>2.8%</td><td>$40,436</td><td>448</td><td class="metric-good">$90</td></tr>
-                <tr><td><strong>TOTAL</strong></td><td><strong>670,155</strong></td><td><strong>3.0%</strong></td><td><strong>$315,755</strong></td><td><strong>3,371</strong></td><td class="metric-good"><strong>$94</strong></td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="observations" style="margin-top:16px">
-          <h4>✅ February Notes</h4>
-          <ul>
-            <li>February 2026: $283K vs $315K 2025 — <strong>10% lower revenue on 24% more volume</strong>. Same pattern: more sends, lower AOV ($60 vs $94).</li>
-            <li>Replenishment campaign (Feb 20) stood out: $102 AOV — significantly above the month average. Replenishment buyers spend more per order. This channel is underutilized.</li>
-            <li>Valentine's 2026 drove 4,323 orders vs 2,923 in 2025 — more transactions, but at $61 vs $94 AOV. Suggests the offer was shallower or more broadly targeted.</li>
-          </ul>
+    <div class="opp-card">
+      <div>
+        <div class="opp-num">04 · P2 · UPGRADE</div>
+        <h3>Replenishment Flow — Restore Click Rate</h3>
+        <p>The original Replenishment Reminder flow (Q1 2025: $133 AOV, 4.3% click) outperformed the current V2 ($84 AOV, 2.1% click). The original is now manual. V2 is delivering more volume (16K vs 13K) but at meaningfully lower engagement and order value. Worth reviewing what changed between V1 and V2 — different offer, different timing, or different copy. The Feb 20 replenishment campaign (5.5% click, $102 AOV) proves the audience responds well when the message is right.</p>
+        <div class="opp-data">
+          <strong>V2 Q1 2026:</strong> 16,160 delivered · 2.1% click · $84 AOV · $4,014 revenue<br>
+          <strong>Original Q1 2025:</strong> 13,297 delivered · 4.3% click · $133 AOV · $5,181 revenue<br>
+          <strong>Feb campaign benchmark:</strong> 5.5% click · $102 AOV (manual send)
         </div>
       </div>
+      <div class="priority-badge p2">P2 — Medium</div>
+    </div>
 
-      <!-- MARCH -->
-      <div class="month-section">
-        <div class="month-header">
-          <div class="month-title">March</div>
-          <div class="month-badge">2026 vs 2025</div>
-        </div>
-        <div class="month-grid">
-          <div class="compare-card">
-            <h4>📅 March 2026</h4>
-            <table class="data-table">
-              <thead><tr><th>Type</th><th>Delivered</th><th>Click%</th><th>Revenue</th><th>Orders</th><th>AOV</th></tr></thead>
-              <tbody>
-                <tr><td>Spend & Save (multi-wave)</td><td>715,569</td><td>1.9%</td><td>$249,807</td><td>3,323</td><td>$75</td></tr>
-                <tr><td>Spring Sale 20% Off</td><td>549,023</td><td>2.5%</td><td>$195,682</td><td>3,048</td><td>$64</td></tr>
-                <tr><td>Newsletter (Calm Edit)</td><td>75,560</td><td>2.0%</td><td>$11,881</td><td>274</td><td>$43</td></tr>
-                <tr><td>Survey / Feedback</td><td>56,570</td><td>3.5%</td><td>$3,282</td><td>110</td><td>$30</td></tr>
-                <tr><td>Trial</td><td>1,138</td><td>6.4%</td><td>$807</td><td>45</td><td>$18</td></tr>
-                <tr><td>Review Request</td><td>245</td><td class="metric-good">23.3%</td><td>$64</td><td>3</td><td>$21</td></tr>
-                <tr><td><strong>TOTAL</strong></td><td><strong>1,398,105</strong></td><td><strong>2.2%</strong></td><td><strong>$461,524</strong></td><td><strong>6,803</strong></td><td><strong>$68</strong></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="compare-card">
-            <h4>📅 March 2025</h4>
-            <table class="data-table">
-              <thead><tr><th>Type</th><th>Delivered</th><th>Click%</th><th>Revenue</th><th>Orders</th><th>AOV</th></tr></thead>
-              <tbody>
-                <tr><td>Spring Sale 20% Off</td><td>520,949</td><td>4.3%</td><td>$357,369</td><td>3,283</td><td class="metric-good">$109</td></tr>
-                <tr><td>Customer Appreciation Sale</td><td>61,099</td><td class="metric-good">7.0%</td><td>$111,856</td><td>1,018</td><td class="metric-good">$110</td></tr>
-                <tr><td>General / Other</td><td>150,007</td><td class="metric-good">6.8%</td><td>$62,504</td><td>671</td><td class="metric-good">$93</td></tr>
-                <tr><td>Winback</td><td>60,556</td><td class="metric-low">1.3%</td><td>$4,540</td><td>45</td><td>$101</td></tr>
-                <tr><td>Survey / Feedback</td><td>7,808</td><td class="metric-low">1.0%</td><td>$2,244</td><td>41</td><td>$55</td></tr>
-                <tr><td><strong>TOTAL</strong></td><td><strong>800,429</strong></td><td class="metric-good"><strong>4.7%</strong></td><td><strong>$538,513</strong></td><td><strong>5,060</strong></td><td class="metric-good"><strong>$106</strong></td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="observations obs-warn" style="margin-top:16px">
-          <h4>⚠️ March Watch Items</h4>
-          <ul>
-            <li><strong>March revenue: $461K vs $538K in 2025</strong> — down 14% on 75% more volume. The gap is almost entirely AOV: $68 vs $106.</li>
-            <li>2025 had a Customer Appreciation Sale driving $111K at a $110 AOV — no equivalent in 2026. That one event alone accounts for most of the gap.</li>
-            <li>Spring Sale 2026 drove $195K vs $357K in 2025 for similar delivered volumes — same event, dramatically lower revenue. The offer structure in 2026 is weaker.</li>
-            <li>Two overlapping major events in March (Spring Sale + Spend & Save) may have split the audience and diluted both.</li>
-          </ul>
+    <div class="opp-card">
+      <div>
+        <div class="opp-num">05 · P3 · NEW BUILD</div>
+        <h3>Gold &amp; Silver Tier Unlock Flow</h3>
+        <p>Confirmed: no tier milestone flow exists across 170 flows. Gold and Silver are used purely as access gates — the moment a customer earns a tier is completely silent. This is the highest-value emotional touchpoint in a loyalty program and it's being wasted. A simple trigger: when a customer crosses the Gold or Silver spend threshold, send a congratulations email delivering the exclusive — a product trial, early access confirmation, or store credit. Riversol+ Welcome has a 27.1% click rate and $108 AOV, which gives a strong benchmark for what a high-intent milestone email can do.</p>
+        <div class="opp-data">
+          <strong>Benchmark:</strong> Riv+ Welcome — 27.1% click · $108 AOV<br>
+          <strong>Confirmed gap:</strong> Zero tier unlock flows in Klaviyo (170 flows audited)<br>
+          <strong>Build complexity:</strong> Low — 1-email trigger flow on loyalty tier property change
         </div>
       </div>
+      <div class="priority-badge p3">P3 — Build</div>
+    </div>
 
-      <!-- Q1 FULL ROLLUP TABLE -->
-      <div class="section-title">Q1 Full Rollup — Campaigns</div>
-      <div class="compare-card" style="margin-bottom:48px">
-        <table class="data-table">
-          <thead><tr><th>Month</th><th>2026 Revenue</th><th>2026 Orders</th><th>2026 AOV</th><th>2025 Revenue</th><th>2025 Orders</th><th>2025 AOV</th><th>Rev YoY</th></tr></thead>
-          <tbody>
-            <tr><td>January</td><td>$204,809</td><td>3,594</td><td>$57</td><td>$280,711</td><td>2,646</td><td>$106</td><td class="kpi-down">−27%</td></tr>
-            <tr><td>February</td><td>$283,601</td><td>4,760</td><td>$60</td><td>$315,755</td><td>3,371</td><td>$94</td><td class="kpi-down">−10%</td></tr>
-            <tr><td>March</td><td>$461,524</td><td>6,803</td><td>$68</td><td>$538,513</td><td>5,060</td><td>$106</td><td class="kpi-down">−14%</td></tr>
-            <tr><td><strong>Q1 Total</strong></td><td><strong>$949,934</strong></td><td><strong>15,157</strong></td><td><strong>$63</strong></td><td><strong>$1,134,979</strong></td><td><strong>11,077</strong></td><td><strong>$102</strong></td><td class="kpi-down"><strong>−16%</strong></td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- FLOWS SECTION -->
-      <div class="section-title">Q1 Flows — Revenue & Performance</div>
-
-      <div class="kpi-row">
-        <div class="kpi-card">
-          <div class="kpi-label">Flow Revenue (Q1 2026)</div>
-          <div class="kpi-value">$165K</div>
-          <div class="kpi-compare"><span class="kpi-down">↓ −56%</span> vs $378K Q1 2025</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Flow Orders (Q1 2026)</div>
-          <div class="kpi-value">5,664</div>
-          <div class="kpi-compare"><span class="kpi-down">↓ from 7,609</span> Q1 2025</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Top Flow by Revenue</div>
-          <div class="kpi-value">Riv+ Reminders</div>
-          <div class="kpi-compare">$65K revenue, 2,886 orders, 17.8% click</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Biggest Flow Gap vs 2025</div>
-          <div class="kpi-value">Welcome Series</div>
-          <div class="kpi-compare">$125K in Q1 2025 — no equivalent in Q1 2026</div>
+    <div class="opp-card">
+      <div>
+        <div class="opp-num">06 · P3 · NEW BUILD</div>
+        <h3>Post-Purchase Cross-Sell — Routine Builder</h3>
+        <p>Three product-specific post-purchase flows launched in 2026 (Eye Repair, SPF 50, Retinol Neck Cream) and all show strong open rates (165–192%). The gap is customers who bought one product but haven't been shown how it fits into a full routine. A cross-sell flow at 45–60 days post-first-purchase — "what pairs with your [product]" — extends the replenishment infrastructure into genuine routine-building. The Feb 20 replenishment campaign proved this audience spends at $100+ AOV when approached correctly.</p>
+        <div class="opp-data">
+          <strong>Existing:</strong> 3 product-specific PPF flows live, strong opens (165–192%)<br>
+          <strong>Gap:</strong> No routine-builder for 1-product buyers at 45–60d<br>
+          <strong>Replenishment AOV benchmark:</strong> $84–$133 (vs $63 campaign average)
         </div>
       </div>
+      <div class="priority-badge p3">P3 — Build</div>
+    </div>
 
-      <div class="flow-table-wrap">
-        <div class="flow-table-title">📊 Top Flows by Revenue — Q1 2026</div>
-        <table class="flow-table">
-          <thead><tr><th>Flow</th><th>Revenue</th><th>Orders</th><th>AOV</th><th>Delivered</th><th>Click%</th></tr></thead>
-          <tbody>
-            <tr><td class="flow-name">Riversol+ Reminders (Subscribfy)</td><td>$65,050</td><td>2,886</td><td>$23</td><td>15,692</td><td class="metric-good">17.8%</td></tr>
-            <tr><td class="flow-name">Riversol+ Recharges (Subscribfy)</td><td>$30,078</td><td>756</td><td>$40</td><td>29,175</td><td>12.7%</td></tr>
-            <tr><td class="flow-name">Judge.me Review Request</td><td>$19,149</td><td>663</td><td>$29</td><td>56,538</td><td>5.2%</td></tr>
-            <tr><td class="flow-name">Order Fulfilled</td><td>$14,650</td><td>507</td><td>$29</td><td>85,436</td><td>23.3%</td></tr>
-            <tr><td class="flow-name">Order Confirmation</td><td>$9,696</td><td>270</td><td>$36</td><td>91,110</td><td>9.2%</td></tr>
-            <tr><td class="flow-name">Customer Winback (95/105d)</td><td>$5,964</td><td>100</td><td class="metric-good">$60</td><td>73,653</td><td class="metric-low">2.4%</td></tr>
-            <tr><td class="flow-name">Replenishment Reminder V2</td><td>$4,014</td><td>48</td><td class="metric-good">$84</td><td>16,160</td><td class="metric-low">2.1%</td></tr>
-            <tr><td class="flow-name">Riversol+ Welcome</td><td>$2,708</td><td>25</td><td class="metric-good">$108</td><td>4,698</td><td class="metric-good">27.1%</td></tr>
-            <tr><td class="flow-name">Post-Purchase — Eye Repair</td><td>$1,862 est</td><td>—</td><td>—</td><td>1,862</td><td>10.8%</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="flow-table-wrap">
-        <div class="flow-table-title">📊 Top Flows by Revenue — Q1 2025</div>
-        <table class="flow-table">
-          <thead><tr><th>Flow</th><th>Revenue</th><th>Orders</th><th>AOV</th><th>Delivered</th><th>Click%</th></tr></thead>
-          <tbody>
-            <tr><td class="flow-name">Welcome Series (Oct 2024 – Mar 2025)</td><td>$125,799</td><td>1,126</td><td class="metric-good">$112</td><td>19,452</td><td class="metric-good">17.5%</td></tr>
-            <tr><td class="flow-name">Sample Flow: Post-Delivery</td><td>$110,794</td><td>3,399</td><td>$33</td><td>707,266</td><td>4.9%</td></tr>
-            <tr><td class="flow-name">Abandoned Cart</td><td>$71,961</td><td>624</td><td class="metric-good">$115</td><td>15,278</td><td class="metric-good">20.3%</td></tr>
-            <tr><td class="flow-name">Order Fulfilled</td><td>$21,116</td><td>385</td><td>$55</td><td>142,287</td><td>22.7%</td></tr>
-            <tr><td class="flow-name">Judge.me Review Request</td><td>$14,003</td><td>340</td><td>$41</td><td>97,137</td><td>7.5%</td></tr>
-            <tr><td class="flow-name">Order Confirmation</td><td>$13,513</td><td>544</td><td>$25</td><td>140,088</td><td>15.4%</td></tr>
-            <tr><td class="flow-name">Replenishment Reminder</td><td>$5,181</td><td>39</td><td class="metric-good">$133</td><td>13,297</td><td>4.3%</td></tr>
-            <tr><td class="flow-name">Points Reminder: 3 Months Zero Orders</td><td>$4,047</td><td>109</td><td>$37</td><td>3,474</td><td>16.6%</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="observations" style="margin-bottom:40px">
-        <h4>✅ Flow Observations — Q1 2026 vs Q1 2025</h4>
-        <ul>
-          <li><strong>Flow revenue collapsed from $378K → $165K (−56%)</strong> — almost entirely explained by two missing flows: Welcome Series ($125K in 2025, appears restructured/replaced) and Sample Post-Delivery flow ($110K, was 707K volume in 2025).</li>
-          <li><strong>Welcome Series was the highest-AOV flow in 2025</strong> at $112 per order and 17.5% click — whatever replaced it in 2026 is not appearing in the top flows. Worth identifying and benchmarking against 2025 performance.</li>
-          <li><strong>Abandoned Cart was the 3rd highest revenue flow in Q1 2025</strong> ($71K, $115 AOV, 20.3% click) — not showing in Q1 2026 top flows. This is a significant gap. Need to confirm it's live and triggering.</li>
-          <li><strong>Riversol+ ecosystem is the bright spot:</strong> Reminders + Recharges + Welcome = $98K combined in Q1 2026. This didn't exist in Q1 2025. Subscription is growing and generating meaningful revenue.</li>
-          <li><strong>Replenishment AOV is strong</strong> — $84 in V2, $133 in the original (2025). These buyers purchase higher-value orders when they come back. The replenishment flow should be the highest-priority automation to optimize.</li>
-          <li><strong>Winback flow AOV = $60</strong> — decent, but 73K delivered for only 100 orders (0.14% conversion). Even a 2x improvement here would be meaningful.</li>
-        </ul>
-      </div>
-
-      <!-- COMBINED TOTAL -->
-      <div class="section-title">Combined Klaviyo Revenue — Campaigns + Flows</div>
-      <div class="compare-card" style="margin-bottom:48px">
-        <table class="data-table">
-          <thead><tr><th>Channel</th><th>Q1 2026 Revenue</th><th>Q1 2026 Orders</th><th>Q1 2025 Revenue</th><th>Q1 2025 Orders</th><th>YoY Revenue</th></tr></thead>
-          <tbody>
-            <tr><td>Campaigns</td><td>$949,934</td><td>15,157</td><td>$1,134,979</td><td>11,077</td><td class="kpi-down">−16%</td></tr>
-            <tr><td>Flows</td><td>$165,602</td><td>5,664</td><td>$378,310</td><td>7,609</td><td class="kpi-down">−56%</td></tr>
-            <tr><td><strong>Total Klaviyo</strong></td><td><strong>$1,115,536</strong></td><td><strong>20,821</strong></td><td><strong>$1,513,289</strong></td><td><strong>18,686</strong></td><td class="kpi-down"><strong>−26%</strong></td></tr>
-          </tbody>
-        </table>
-        <p style="margin-top:14px;font-size:12px;color:#64748b;line-height:1.6;">⚠️ Note: Total Klaviyo attributed revenue is down 26% YoY ($1.11M vs $1.51M). The primary drivers are: (1) AOV compression from lighter offers, (2) loss of the high-AOV Welcome Series and Sample Post-Delivery flows, and (3) Abandoned Cart gap in flows. These three factors together explain the majority of the $400K gap.</p>
-      </div>
-
-    </div><!-- /container -->
-  </div><!-- /tab-q1report -->
-
-  <div class="footer">
-    Built by Digitsup · April 2026 · Live Klaviyo data — Riversol Skincare
   </div>
 
-  <script>
-    function switchTab(name) {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
-      document.getElementById('tab-' + name).classList.add('active');
-      event.target.classList.add('active');
-    }
-  </script>
+</div>
+</div><!-- /tab-flow-opps -->
 
+
+<!-- ══════════════════════════════════════════════════════════
+     TAB 3 · CAMPAIGN IDEAS
+══════════════════════════════════════════════════════════ -->
+<div id="tab-campaigns" class="tab-pane">
+<div class="container">
+
+  <div class="section-title" style="margin-top:0">What's Already Working</div>
+  <div class="working-grid">
+    <div class="working-card"><div class="icon">💸</div><h3>Tiered Spend Events</h3><p>Spend & Save is their bread and butter — multiple events/year with tight segmentation (FP/SNC/Bal/AA/AR). AOV driver.</p></div>
+    <div class="working-card"><div class="icon">🧪</div><h3>Trial → Feedback Loops</h3><p>Eye Serum, Hydra Replenish, Exfoliating Cleanser, Corrector V2 — all have trial invite → instructions → check-in → feedback. Mature infrastructure.</p></div>
+    <div class="working-card"><div class="icon">👑</div><h3>Gold / Silver / Riv+ Tiers</h3><p>Early access, exclusive events, VIP treats. The architecture is strong — needs more moments to activate it (see Flow tab).</p></div>
+    <div class="working-card"><div class="icon">📰</div><h3>The Calm Edit Newsletter</h3><p>Their initiative — Jan, Feb, Mar 2026. $34K revenue, 110%+ open rates. Not promotional. Protecting deliverability and brand trust.</p></div>
+    <div class="working-card"><div class="icon">💌</div><h3>Valentine's Day Playbook</h3><p>4 emails + 3 SMS in both 2025 and 2026. Proven structure to repeat. Mother's Day has zero equivalent in the data.</p></div>
+    <div class="working-card"><div class="icon">🛡️</div><h3>Suppression Hygiene</h3><p>Multiple suppression lists — invalid, bounces, inactive. Deliverability is being protected. Mature list management.</p></div>
+  </div>
+
+  <div class="section-title">Confirmed Gaps — Not in 300+ Campaign Sends or 170 Flows</div>
+  <div class="gaps-list">
+    <h3>⚠️ These types appear nowhere in campaigns or automations:</h3>
+    <ul>
+      <li>Gold / Silver Tier Unlock Moment</li>
+      <li>Bundle Math ("you overpaid $31")</li>
+      <li>Mother's Day</li>
+      <li>SMS-Exclusive Offer</li>
+      <li>Customer Story Series</li>
+      <li>Almost-Tier Nudge ($27 from Gold)</li>
+      <li>Password Flash / SMS Opt-In Mechanic</li>
+      <li>Canadian Heritage / West Coast Identity</li>
+    </ul>
+  </div>
+
+  <div class="section-title">10 Campaign Ideas</div>
+  <div class="ideas-grid">
+
+    <div class="idea-card">
+      <div class="idea-header">
+        <div>
+          <span class="idea-num">01 · NEW</span>
+          <h3>Bundle Math Email</h3>
+          <p class="concept">Customers who bought the Cleanser, Serum, and Moisturizer individually overpaid vs the Anti-Aging Trio Bundle. Show them the math — no guilt, just numbers — and offer the bundle at a loyalty discount on their next purchase.</p>
+          <div class="idea-meta"><span class="tag tag-s">Segment: Bought 3+ matching products individually, last 90d</span><span class="tag tag-t">Timing: 14 days post-3rd qualifying purchase</span></div>
+          <div class="why"><span>Why it works:</span> These are proven buyers at full price. The "overpaid" framing is a loyalty signal — you're looking out for them, not pushing a discount.</div>
+        </div>
+        <div class="ch-badge ch-email">Email</div>
+      </div>
+      <div class="mock">
+        <div class="mock-lbl">📧 Mock Email</div>
+        <div class="mf"><div class="mf-name">Subject</div><div class="mf-val subj">Quick note: you could have saved $31</div></div>
+        <div class="mf"><div class="mf-name">Preview</div><div class="mf-val prev">You bought the pieces. Here's what the set would have cost you.</div></div>
+        <hr>
+        <div class="mock-body">
+          <p>We noticed something in your recent orders — you picked up the Exfoliating Cleanser, Hydra Replenish Serum, and Moisturizing Concentrate separately over the last couple of months.</p>
+          <p>That's the Anti-Aging Trio Bundle. Bought individually, it runs $148. As a set, it's $117. The math isn't in your favour when you order one at a time.</p>
+          <p>Next time you replenish, the bundle saves you $31 and ships as one order. As a thank-you: here's 10% off your next bundle.</p>
+          <span class="mock-cta">Shop the Anti-Aging Trio →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="idea-card">
+      <div class="idea-header">
+        <div>
+          <span class="idea-num">02 · NEW</span>
+          <h3>Mother's Day — Gift Her Glow</h3>
+          <p class="concept">Valentine's Day is a proven playbook (4 emails + 3 SMS, both 2025 and 2026). Mother's Day has zero equivalent in the data — it's the bigger gifting moment in skincare. Same structure: Riv+ early access May 5, broad sale May 6–10, last-chance May 11. Hero products: Anti-Aging Trio Bundle, Eye Repair Treatment. Optional: gift a Riversol+ membership.</p>
+          <div class="idea-meta"><span class="tag tag-s">Segment: Full active list, Riv+ early access, CAD/USA splits</span><span class="tag tag-t">Timing: May 5–11 · tease late April</span></div>
+          <div class="why"><span>Why now:</span> Direct repeat of a proven structure. Zero new creative risk.</div>
+        </div>
+        <div class="ch-badge ch-both">Both</div>
+      </div>
+      <div class="mock">
+        <div class="mock-lbl">📧 Mock Email</div>
+        <div class="mf"><div class="mf-name">Subject</div><div class="mf-val subj">She's been taking care of everyone. Time someone took care of her.</div></div>
+        <div class="mf"><div class="mf-name">Preview</div><div class="mf-val prev">Mother's Day gifts that actually feel considered — free shipping this week.</div></div>
+        <hr>
+        <div class="mock-body">
+          <p>Some gifts say "I picked this up at the last minute." These don't.</p>
+          <p>Riversol was built for skin that's been through things — hormonal changes, stress, decades of products that promised more than they delivered. If your mom has sensitive skin, this is the one she'll actually use every day.</p>
+          <p><strong>Our picks:</strong> The Anti-Aging Trio Bundle. The Eye Repair Treatment. Or a Riversol+ membership — monthly credit toward whatever she needs.</p>
+          <p>Free shipping on all orders through May 11.</p>
+          <span class="mock-cta">Shop Mother's Day Gifts →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="idea-card">
+      <div class="idea-header">
+        <div>
+          <span class="idea-num">03 · NEW</span>
+          <h3>SPF 50 Launch Campaign</h3>
+          <p class="concept">The SPF 50 Daily Glow Mineral Sunscreen has a post-purchase flow, confirming it's selling — but no launch campaign behind it. Two sends: Email 1A to FP/engaged (product focus, spring transition), Email 1B to SNC (pair with moisturizer as a spring-to-summer system). Mirror the Corrector V2 back-in-stock playbook. It's April.</p>
+          <div class="idea-meta"><span class="tag tag-s">Segment: All active (FP + SNC split)</span><span class="tag tag-t">Timing: This week</span></div>
+          <div class="why"><span>Why now:</span> Quick win. Product exists, audience is warm, timing is right.</div>
+        </div>
+        <div class="ch-badge ch-both">Both</div>
+      </div>
+      <div class="mock">
+        <div class="mock-lbl">📧 Mock Email</div>
+        <div class="mf"><div class="mf-name">Subject</div><div class="mf-val subj">New: SPF 50 that doesn't hate your skin</div></div>
+        <div class="mf"><div class="mf-name">Preview</div><div class="mf-val prev">Mineral. No white cast. Built for sensitive skin from the same lab as your serum.</div></div>
+        <hr>
+        <div class="mock-body">
+          <p>Most sunscreens safe for sensitive skin leave a white cast, break you out, or just feel terrible. We spent a long time on this one.</p>
+          <p>Introducing the <strong>SPF 50 Daily Glow Mineral Sunscreen</strong> — broad-spectrum UVA/UVB, no chemical filters, no fragrance. Layers seamlessly over your Moisturizing Concentrate and under makeup.</p>
+          <p>April is the right time to start. Your skin will notice by summer.</p>
+          <span class="mock-cta">Shop SPF 50 Daily Glow →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="idea-card">
+      <div class="idea-header">
+        <div>
+          <span class="idea-num">04 · NEW</span>
+          <h3>Gold &amp; Silver Tier Unlock Email</h3>
+          <p class="concept">Confirmed: no tier milestone flow exists in 170 flows audited. Gold and Silver are used as access gates but the moment of earning a tier is completely silent. This is the highest-value emotional touchpoint in loyalty and it's being missed. Build a 1-email trigger that fires when a customer crosses the tier threshold — elegant, brief, delivers the exclusive immediately.</p>
+          <div class="idea-meta"><span class="tag tag-s">Segment: Newly qualified Gold + Silver (trigger-based)</span><span class="tag tag-t">Timing: Triggered on tier unlock</span></div>
+          <div class="why"><span>Why now:</span> Confirmed gap. Gold/Silver customers are the highest-value segment. The Riv+ Welcome (27.1% click, $108 AOV) benchmarks what a milestone moment can do.</div>
+        </div>
+        <div class="ch-badge ch-both">Both</div>
+      </div>
+      <div class="mock">
+        <div class="mock-lbl">📧 Mock Email</div>
+        <div class="mf"><div class="mf-name">Subject</div><div class="mf-val subj">You've earned it — welcome to Riversol Gold</div></div>
+        <div class="mf"><div class="mf-name">Preview</div><div class="mf-val prev">Here's what's unlocked for you now.</div></div>
+        <hr>
+        <div class="mock-body">
+          <p>You've officially reached Riversol Gold status.</p>
+          <p><strong>What Gold unlocks:</strong> Early access to every sale and new launch, Gold-only events, and a complimentary product trial every quarter — starting now.</p>
+          <p>Your Gold trial: the <strong>Eye Repair Treatment</strong> — free with your next order, on us.</p>
+          <span class="mock-cta">Claim Your Gold Benefit →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="idea-card">
+      <div class="idea-header">
+        <div>
+          <span class="idea-num">05 · NEW</span>
+          <h3>SMS-Only Flash Sale</h3>
+          <p class="concept">Every SMS campaign mirrors an email — confirmed across 300+ sends. Zero SMS-exclusive offers in the data. Run one: 24-hour window, light offer (free shipping or complimentary travel-size), and explicitly say "this will never show up in your inbox." The exclusivity is the hook and trains the list to value the SMS channel.</p>
+          <div class="idea-meta"><span class="tag tag-s">Segment: Full SMS subscriber list</span><span class="tag tag-t">Timing: Mid-month, no active sale</span></div>
+          <div class="why"><span>Why it works:</span> SMS-exclusive offers are the single most reliable driver of SMS list engagement and retention.</div>
+        </div>
+        <div class="ch-badge ch-sms">SMS Only</div>
+      </div>
+      <div class="mock">
+        <div class="mock-lbl">📱 Mock SMS</div>
+        <div class="mf"><div class="mf-name">Message</div><div class="mf-val">Riversol: This one's just for you — never going to email. Free shipping + complimentary travel-size Moisturizing Concentrate on any order today. 24 hrs only. → riversol.com/sms-exclusive | Reply STOP to opt out</div></div>
+      </div>
+    </div>
+
+    <div class="idea-card">
+      <div class="idea-header">
+        <div>
+          <span class="idea-num">06 · NEW</span>
+          <h3>The Sensitive Skin Wins Series</h3>
+          <p class="concept">Pull 3–4 strongest customer testimonials and turn each into a standalone email — not a review widget, a real story. "Sandra hadn't found anything that worked in 14 years." Tell the story, let it breathe, soft product connection at the end. No discount. Run 4 weeks to cold non-purchasers and lapsed SNC.</p>
+          <div class="idea-meta"><span class="tag tag-s">Segment: Non-purchasers + lapsed SNC (no open/click 90d)</span><span class="tag tag-t">Timing: 4-week series, non-sale weeks</span></div>
+          <div class="why"><span>Why it works:</span> Story-driven emails convert cold audiences better than offer-driven for a trust-based brand. Their testimonials are exceptional and unused as campaign content.</div>
+        </div>
+        <div class="ch-badge ch-email">Email</div>
+      </div>
+      <div class="mock">
+        <div class="mock-lbl">📧 Mock Email</div>
+        <div class="mf"><div class="mf-name">Subject</div><div class="mf-val subj">Sandra hadn't found anything that worked in 14 years</div></div>
+        <div class="mf"><div class="mf-name">Preview</div><div class="mf-val prev">Then she tried the one thing she almost didn't.</div></div>
+        <hr>
+        <div class="mock-body">
+          <p>Sandra is 61. She'd been dealing with sensitive, reactive skin since her late 40s. She'd tried everything. She almost didn't try Riversol. "I thought, this is just another thing that's going to disappoint me."</p>
+          <p>Six weeks in, she sent us a note. "For the first time in years, I don't dread washing my face."</p>
+          <p>We designed Riversol for people like Sandra. If you haven't tried it yet, we'd like you to.</p>
+          <span class="mock-cta">See What Sandra Uses →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="idea-card">
+      <div class="idea-header">
+        <div>
+          <span class="idea-num">07 · UPGRADE</span>
+          <h3>Winback — Build the Full 3-Step Sequence</h3>
+          <p class="concept">Current winback fires once at 95/105 days with 2.4% click on 73K delivered. The "Customer Winback - Standard (Email & SMS)" flow exists and is on manual — it's built but not live. A proper sequence: Day 90 (soft check-in, no offer) / Day 120 (best product offer) / Day 150 (last-chance, escalated offer). Intercept customers before the deep-discount rescue is the only option.</p>
+          <div class="idea-meta"><span class="tag tag-s">Segment: Lapsed FP (90/120/150d), Lapsed SNC</span><span class="tag tag-t">Timing: Automated — replace single touch</span></div>
+          <div class="why"><span>Why now:</span> The manual flow is already built. Recovery at 90 days costs far less than recovery at 150 days with 40% off.</div>
+        </div>
+        <div class="ch-badge ch-both">Both</div>
+      </div>
+      <div class="mock">
+        <div class="mock-lbl">📧 Mock — Winback Touch 1 (Day 90)</div>
+        <div class="mf"><div class="mf-name">Subject</div><div class="mf-val subj">It's been a while. How's your skin doing?</div></div>
+        <div class="mf"><div class="mf-name">Preview</div><div class="mf-val prev">No pitch. Just checking in.</div></div>
+        <hr>
+        <div class="mock-body">
+          <p>You haven't ordered in a little while, and we noticed. We're not going to pretend otherwise.</p>
+          <p>How's your skin doing? If it's been a bit off lately — drier, more reactive, not quite settled — it might be worth coming back. The skin always remembers when a consistent routine stops.</p>
+          <span class="mock-cta">Come Back to Riversol →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="idea-card">
+      <div class="idea-header">
+        <div>
+          <span class="idea-num">08 · NEW</span>
+          <h3>Almost-Tier Buyer</h3>
+          <p class="concept">Customers $25–$30 from Gold or Silver don't know it. Don't show a generic progress bar — show the exact dollar gap and the specific benefit. "You're $27 from Gold. Gold members get early access to every sale plus a complimentary trial every quarter." Then give one clear path to get there.</p>
+          <div class="idea-meta"><span class="tag tag-s">Segment: Customers $25–$30 below Silver or Gold threshold</span><span class="tag tag-t">Timing: Mid-month, no active sale</span></div>
+          <div class="why"><span>Why it works:</span> Highest-intent segment outside of active buyers. Concrete nudge with specific benefit outperforms generic progress messaging.</div>
+        </div>
+        <div class="ch-badge ch-both">Both</div>
+      </div>
+      <div class="mock">
+        <div class="mock-lbl">📧 Mock Email</div>
+        <div class="mf"><div class="mf-name">Subject</div><div class="mf-val subj">You're $27 from Riversol Gold</div></div>
+        <div class="mf"><div class="mf-name">Preview</div><div class="mf-val prev">Here's exactly what unlocks — and one product that gets you there.</div></div>
+        <hr>
+        <div class="mock-body">
+          <p>No vague progress bars. Plainly: you're $27 from Riversol Gold.</p>
+          <p><strong>What unlocks:</strong> Early access to every sale, Gold-only events, and a complimentary trial every quarter — starting immediately.</p>
+          <p>The Eye Repair Treatment ($68) gets you there comfortably. We're not suggesting you buy something you don't need. Just telling you exactly where you stand.</p>
+          <span class="mock-cta">Reach Gold with Eye Repair →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="idea-card">
+      <div class="idea-header">
+        <div>
+          <span class="idea-num">09 · NEW</span>
+          <h3>Password Flash Sale — SMS Opt-In Mechanic</h3>
+          <p class="concept">Email non-SMS subscribers: "There's a 48-hour sale — the code is locked behind a text." Text RIVERSOL to unlock. They opt into SMS, get the code immediately, and are now on both channels. The email plays it cool: "We're trying something different." Curiosity over pressure.</p>
+          <div class="idea-meta"><span class="tag tag-s">Segment: Email-only (no SMS consent)</span><span class="tag tag-t">Timing: Mid-month quiet period</span></div>
+          <div class="why"><span>Why it works:</span> SMS subscribers have measurably higher purchase rates. Converts email-only to dual-channel at zero paid acquisition cost.</div>
+        </div>
+        <div class="ch-badge ch-both">Email → SMS</div>
+      </div>
+      <div class="mock">
+        <div class="mock-lbl">📧 Mock Email</div>
+        <div class="mf"><div class="mf-name">Subject</div><div class="mf-val subj">There's a sale happening. The password is one text away.</div></div>
+        <div class="mf"><div class="mf-name">Preview</div><div class="mf-val prev">48 hours. One text. We're trying something new.</div></div>
+        <hr>
+        <div class="mock-body">
+          <p>We're running a flash sale. 48 hours, one offer. But we're doing it differently — the code isn't in this email. It's locked behind a text message.</p>
+          <p>To unlock: <strong>text RIVERSOL to 1-833-XXX-XXXX</strong>. You'll get the code instantly.</p>
+          <p>If you'd rather not text, the sale opens to everyone Thursday at midnight. But the early window closes tomorrow.</p>
+          <span class="mock-cta">Text RIVERSOL to Unlock →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="idea-card">
+      <div class="idea-header">
+        <div>
+          <span class="idea-num">10 · NEW</span>
+          <h3>Made in Canada — West Coast Heritage Drop</h3>
+          <p class="concept">One email built entirely around the Canadian identity: the Pacific red cedar, hinokitiol, Dr. Rivers, BC origins, 115,000 customers. No sale. No discount. Just "this is who we are." For Canada Day (July 1) or a quiet month. CAD segment only. Zero margin cost.</p>
+          <div class="idea-meta"><span class="tag tag-s">Segment: CAD FP + SNC active</span><span class="tag tag-t">Timing: Canada Day (July 1) or May</span></div>
+          <div class="why"><span>Why it works:</span> Canadian consumers are increasingly loyal to Canadian brands. Brand story email builds long-term preference with no offer required.</div>
+        </div>
+        <div class="ch-badge ch-email">Email</div>
+      </div>
+      <div class="mock">
+        <div class="mock-lbl">📧 Mock Email</div>
+        <div class="mf"><div class="mf-name">Subject</div><div class="mf-val subj">It starts with a tree on the BC coast</div></div>
+        <div class="mf"><div class="mf-name">Preview</div><div class="mf-val prev">The molecule in every Riversol formula — and why it only comes from here.</div></div>
+        <hr>
+        <div class="mock-body">
+          <p>The Pacific red cedar grows along the BC coast. Inside it is a molecule called hinokitiol. Dr. Rivers spent years studying what it could do for sensitive skin. The answer became Riversol — not a multinational lab experiment. A formula developed here, sourced from here, for 115,000 customers who needed something the mainstream market wasn't making.</p>
+          <p>We're proud to be a Canadian brand. Quietly, stubbornly, completely. Happy Canada Day.</p>
+          <span class="mock-cta">Our Story →</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-title">Quick Wins This Month</div>
+  <div class="wins-grid">
+    <div class="win-card"><div class="win-lbl">Quick Win #1</div><h3>SPF 50 Launch Campaign</h3><p>Post-purchase flow exists, no launch send. One email to FP engaged, one to SNC. Can go this week.</p></div>
+    <div class="win-card"><div class="win-lbl">Quick Win #2</div><h3>Mother's Day Teaser (SMS)</h3><p>It's April 1. Send the Riv+ early-access teaser in the next 7 days. Same structure as Valentine's.</p></div>
+    <div class="win-card"><div class="win-lbl">Quick Win #3</div><h3>Abandoned Cart — Confirm Live</h3><p>Was $71K in Q1 2025. Not showing in Q1 2026 data. Confirm it's firing before anything else.</p></div>
+  </div>
+
+</div>
+</div><!-- /tab-campaigns -->
+
+
+<!-- ══════════════════════════════════════════════════════════
+     TAB 4 · QUESTIONS
+══════════════════════════════════════════════════════════ -->
+<div id="tab-questions" class="tab-pane">
+<div class="container">
+
+  <div class="section-title" style="margin-top:0">Questions for Riversol</div>
+  <p style="font-size:13px;color:#475569;margin-bottom:28px;line-height:1.7;">These are open items that affect how we interpret the Q1 data and build the right strategy. Some are for context, some are for report accuracy, some are for roadmap prioritization.</p>
+
+  <div class="q-grid">
+
+    <div class="q-card">
+      <div class="q-num">01</div>
+      <div>
+        <span class="q-category qc-data">Reporting</span>
+        <h4>How does Riversol report total revenue internally — Shopify or Klaviyo?</h4>
+        <p>Klaviyo's conversion attribution includes Riversol+ $19/month membership charges as "orders." If you're comparing to a Shopify revenue number, these two figures won't reconcile cleanly. Understanding your source of truth helps us report on the right metric.</p>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-num">02</div>
+      <div>
+        <span class="q-category qc-riv">Riversol+</span>
+        <h4>What drove the November 2025 spike (5,429 new Riversol+ members)?</h4>
+        <p>November saw 5x the monthly average for new Riv+ signups. If this was a BFCM promotional push, most of those members appear to have churned — Q1 2026 is showing net negative membership. Understanding what the offer was helps us assess whether Riv+ acquisition needs a different strategy.</p>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-num">03</div>
+      <div>
+        <span class="q-category qc-riv">Riversol+</span>
+        <h4>What's the target Riversol+ membership base, and how is success measured?</h4>
+        <p>Q1 2026 is showing net churn (−1,550 members) with a 19% failed charge rate. Is there a target active member count? A retention rate goal? Understanding the Riv+ KPIs helps frame whether the current trajectory is a concern or within expected range for a growing subscription program.</p>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-num">04</div>
+      <div>
+        <span class="q-category qc-flow">Flows</span>
+        <h4>Is the Abandoned Cart flow currently live and triggering?</h4>
+        <p>The abandoned cart flow generated $71,961 at $115 AOV and 20.3% click rate in Q1 2025. It is not appearing in Q1 2026 top flows by revenue. The "[2025] 🎯 Abandoned Added to Cart (testing)" flow is showing as draft. If this is paused or broken, it's an immediate revenue gap to address.</p>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-num">05</div>
+      <div>
+        <span class="q-category qc-flow">Flows</span>
+        <h4>What replaced the old Welcome Series — and is it performing?</h4>
+        <p>The Welcome Series (Oct 2024–Mar 2025) drove $125,799 at $112 AOV in Q1 2025 — the highest-AOV flow in the program. The "[2025] 🎯 Welcome Series - New Subscribers" is live in 2026 but doesn't appear in the Q1 2026 top flows. Is the Welcome Series still the primary first-purchase driver for new subscribers, or has that role moved to the sample post-delivery journey?</p>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-num">06</div>
+      <div>
+        <span class="q-category qc-flow">Flows</span>
+        <h4>What's the current sample → first FP conversion rate?</h4>
+        <p>The sample post-delivery flow was the single highest-volume flow in Q1 2025 (707K delivered, $110K revenue). It was restructured in 2026. Understanding the current trial → paid conversion rate and how the restructured flow is performing helps us determine whether the post-sample journey needs optimization or is tracking to target.</p>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-num">07</div>
+      <div>
+        <span class="q-category qc-data">Reporting</span>
+        <h4>How does Riversol count Riv+ revenue — is it included in total Klaviyo revenue or separate?</h4>
+        <p>Riv+ successful charges (16,704 in Q1 2026) flow through Klaviyo's attribution as "Placed Order" events. If Riversol tracks Riv+ subscription revenue separately from product revenue, YoY comparisons of Klaviyo-attributed figures need to account for this split to be accurate.</p>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-num">08</div>
+      <div>
+        <span class="q-category qc-riv">Riversol+</span>
+        <h4>Is there a dunning / failed charge recovery sequence beyond the first notification?</h4>
+        <p>The "Riversol+ Failed Charge (Subscribfy)" flow is live but small (3,527 delivered vs 3,924 failed charges). At a 19% failure rate, this is ~$75K in missed monthly recurring revenue. A proper dunning sequence (immediate / +3d / +7d with card update CTA) is standard practice for subscription programs and could recover a meaningful portion of this.</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</div><!-- /tab-questions -->
+
+
+<div class="footer">Built by Digitsup · April 2026 · Live Klaviyo data — Riversol Skincare</div>
+
+<script>
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
 </body>
 </html>
