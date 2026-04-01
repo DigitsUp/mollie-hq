@@ -98,6 +98,33 @@ main{position:relative;z-index:5;max-width:1060px;margin:0 auto;padding:28px 20p
 .ta{margin-top:7px;width:100%;padding:4px;background:rgba(47,145,195,.07);border:1px solid rgba(47,145,195,.15);border-radius:6px;font-family:'DM Mono',monospace;font-size:9px;color:var(--accent);cursor:pointer;text-align:center;}
 .ta:hover{background:var(--adim);}
 
+/* CALLIE POD */
+.cp{background:var(--bg2);border:1px solid rgba(245,158,11,.2);border-radius:var(--r);padding:14px 18px;margin-bottom:28px;display:flex;align-items:center;gap:16px;}
+.cp-badge{width:36px;height:36px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:15px;color:#F59E0B;flex-shrink:0;font-weight:700;}
+.cp-info{flex:1;}
+.cp-name{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#F59E0B;}
+.cp-role{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-top:2px;}
+.cp-stat{display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;font-family:'DM Mono',monospace;font-size:10px;}
+.cp-stat.idle{background:rgba(86,107,133,.1);border:1px solid rgba(86,107,133,.25);color:var(--muted);}
+.cp-stat.active{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:#F59E0B;}
+.cp-dot{width:6px;height:6px;border-radius:50%;background:var(--muted);}
+.cp-dot.on{background:#F59E0B;animation:cpulse 1.2s ease-in-out infinite;}
+@keyframes cpulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* DELEGATION FEED */
+.dfl{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
+.dfl-hd{padding:11px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.dfl-tt{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);}
+.dfl-ct{font-family:'DM Mono',monospace;font-size:10px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);color:#F59E0B;border-radius:10px;padding:2px 7px;}
+.dfl-bd{max-height:220px;overflow-y:auto;}
+.df-row{display:flex;align-items:center;gap:10px;padding:9px 16px;border-bottom:1px solid rgba(255,255,255,.03);font-family:'DM Mono',monospace;font-size:11px;}
+.df-row:last-child{border-bottom:none;}
+.df-ck{color:#22C55E;font-size:12px;flex-shrink:0;}
+.df-tk{flex:1;color:var(--text);line-height:1.4;}
+.df-ag{color:#F59E0B;font-size:9px;padding:2px 7px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.18);border-radius:10px;white-space:nowrap;}
+.df-ts{color:var(--muted);font-size:9px;white-space:nowrap;}
+.df-empty{padding:22px 16px;color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;text-align:center;}
+
 /* MODAL */
 .mo{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;display:none;align-items:center;justify-content:center;}
 .mo.open{display:flex;}
@@ -142,6 +169,16 @@ main{position:relative;z-index:5;max-width:1060px;margin:0 auto;padding:28px 20p
 </header>
 
 <main>
+  <!-- CALLIE POD -->
+  <div class="cp">
+    <div class="cp-badge">C</div>
+    <div class="cp-info">
+      <div class="cp-name">Callie</div>
+      <div class="cp-role">Specialist Unit &nbsp;·&nbsp; Research &nbsp;·&nbsp; Brief Writing &nbsp;·&nbsp; Analysis &nbsp;·&nbsp; Builds</div>
+    </div>
+    <div class="cp-stat idle" id="cpstat"><div class="cp-dot" id="cpdot"></div><span id="cpstatlabel">Standing By</span></div>
+  </div>
+
   <!-- AVATAR -->
   <div class="av-sec">
     <div class="av-wrap">
@@ -185,6 +222,18 @@ main{position:relative;z-index:5;max-width:1060px;margin:0 auto;padding:28px 20p
     </div>
     <div class="kb" id="kb"></div>
   </div>
+
+  <!-- DELEGATION FEED -->
+  <div style="margin-top:28px;">
+    <div class="st">Delegation Log · via Callie</div>
+    <div class="dfl">
+      <div class="dfl-hd">
+        <div class="dfl-tt">Tasks Handled by Specialist</div>
+        <div class="dfl-ct" id="dflct">0</div>
+      </div>
+      <div class="dfl-bd" id="dflbd"></div>
+    </div>
+  </div>
 </main>
 
 <div class="mo" id="modal">
@@ -198,6 +247,11 @@ main{position:relative;z-index:5;max-width:1060px;margin:0 auto;padding:28px 20p
         <option value="admin">Admin</option><option value="build">Build</option>
       </select></div>
     <div class="fg"><label class="fl">Due Date</label><input class="fi" id="tdu" type="date"></div>
+    <div class="fg"><label class="fl">Assigned To</label>
+      <select class="fs" id="tag">
+        <option value="mollie">Mollie</option>
+        <option value="callie">Callie (Specialist)</option>
+      </select></div>
     <div class="fg"><label class="fl">Column</label>
       <select class="fs" id="tco">
         <option value="queued">Queued</option><option value="active">Active</option>
@@ -364,16 +418,18 @@ const NLB={queued:'→ Active',active:'→ In Review',review:'→ Done'};
 let tasks=JSON.parse(localStorage.getItem('mhq_t')||'[]');
 if(!tasks.length){
   tasks=[
-    {id:'1',name:'Rho Nutrition — Days 8 + 21 Briefs & Copy',type:'brief',due:'2026-04-02',col:'queued'},
-    {id:'2',name:'Riversol Campaign Ideas — Sales Strategies + Deploy',type:'client',due:'2026-04-02',col:'queued'},
-    {id:'3',name:'Fix Subagents / Gateway Pairing',type:'admin',due:'2026-04-02',col:'queued'},
-    {id:'4',name:'SFR Distillery Intro Call Prep',type:'brief',due:'2026-04-06',col:'queued'},
-    {id:'5',name:'RVCA Kickoff Call — 1pm PST',type:'client',due:'2026-04-01',col:'done'},
-    {id:'6',name:'Outersignal Kickoff Call — 11am PST',type:'client',due:'2026-04-01',col:'done'},
-    {id:'7',name:'RVCA Kickoff Doc — Section 04 (no pricing)',type:'client',due:'2026-04-01',col:'done'},
-    {id:'8',name:'Liverpool Weekly Report',type:'report',due:'2026-03-31',col:'done'},
-    {id:'9',name:'Hale Iwa Farm Vision Doc',type:'client',due:'2026-03-31',col:'done'},
-    {id:'10',name:'Rho Nutrition Day 3 Wireframe Brief',type:'brief',due:'2026-03-31',col:'done'},
+    {id:'1',name:'Rho Nutrition — Days 8 + 21 Briefs & Copy',type:'brief',due:'2026-04-02',col:'queued',agent:'callie'},
+    {id:'2',name:'Riversol Campaign Ideas — Sales Strategies + Deploy',type:'client',due:'2026-04-02',col:'queued',agent:'mollie'},
+    {id:'3',name:'SFR Distillery Intro Call Prep',type:'brief',due:'2026-04-06',col:'queued',agent:'mollie'},
+    {id:'4',name:'Write Callie Client Knowledge Briefing Files',type:'admin',due:'2026-04-02',col:'queued',agent:'mollie'},
+    {id:'5',name:'RVCA Kickoff Call — 1pm PST',type:'client',due:'2026-04-01',col:'done',agent:'mollie'},
+    {id:'6',name:'Outersignal Kickoff Call — 11am PST',type:'client',due:'2026-04-01',col:'done',agent:'mollie'},
+    {id:'7',name:'RVCA Kickoff Doc — Section 04 (no pricing)',type:'client',due:'2026-04-01',col:'done',agent:'callie'},
+    {id:'8',name:'Liverpool Weekly Report',type:'report',due:'2026-03-31',col:'done',agent:'callie'},
+    {id:'9',name:'Hale Iwa Farm Vision Doc',type:'client',due:'2026-03-31',col:'done',agent:'callie'},
+    {id:'10',name:'Rho Nutrition Day 3 Wireframe Brief',type:'brief',due:'2026-03-31',col:'done',agent:'callie'},
+    {id:'11',name:'Callie Agent Setup + Registration',type:'admin',due:'2026-04-01',col:'done',agent:'mollie'},
+    {id:'12',name:'Outersignal Briefing Docs — Shelbie + Meaghan',type:'brief',due:'2026-03-31',col:'done',agent:'callie'},
   ];
   localStorage.setItem('mhq_t',JSON.stringify(tasks));
 }
@@ -386,13 +442,32 @@ function rk(){
         <div class="kct" style="color:${col.color}">${col.label}</div>
         <div class="kcc">${ct.length}</div>
       </div>
-      ${ct.map(t=>`<div class="tc">
-        <div class="tt"><div class="tn">${t.name}</div><button class="td" onclick="dt('${t.id}')">×</button></div>
-        <div class="tm"><span class="ty">${t.type}</span><span class="tdue">${t.due||''}</span></div>
-        ${NXT[col.id]?`<button class="ta" onclick="at('${t.id}')">${NLB[col.id]}</button>`:''}
-      </div>`).join('')}
+      ${ct.map(t=>{
+        const byCallie=t.agent==='callie';
+        return`<div class="tc">
+          <div class="tt"><div class="tn">${t.name}</div><button class="td" onclick="dt('${t.id}')">×</button></div>
+          <div class="tm">
+            <span class="ty">${t.type}</span>
+            ${byCallie?`<span style="font-family:'DM Mono',monospace;font-size:9px;padding:2px 7px;border-radius:10px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);color:#F59E0B;">via Callie</span>`:''}
+            <span class="tdue">${t.due||''}</span>
+          </div>
+          ${NXT[col.id]?`<button class="ta" onclick="at('${t.id}')">${NLB[col.id]}</button>`:''}
+        </div>`;
+      }).join('')}
     </div>`;
   }).join('');
+  rdf();
+}
+
+function rdf(){
+  const done=tasks.filter(t=>t.agent==='callie'&&t.col==='done');
+  const bd=document.getElementById('dflbd');
+  document.getElementById('dflct').textContent=done.length;
+  if(!done.length){bd.innerHTML='<div class="df-empty">No delegated tasks completed yet.</div>';return;}
+  const fmt={'2026-04-01':'Apr 1','2026-03-31':'Mar 31','2026-03-30':'Mar 30','2026-04-02':'Apr 2'};
+  bd.innerHTML=done.slice().reverse().map(t=>
+    `<div class="df-row"><span class="df-ck">✓</span><span class="df-tk">${t.name}</span><span class="df-ag">Callie</span><span class="df-ts">${fmt[t.due]||t.due||'—'}</span></div>`
+  ).join('');
 }
 
 function at(id){const t=tasks.find(x=>x.id===id);if(t&&NXT[t.col]){t.col=NXT[t.col];localStorage.setItem('mhq_t',JSON.stringify(tasks));rk();}}
@@ -402,7 +477,7 @@ function cmodal(){document.getElementById('modal').classList.remove('open');}
 function stask(){
   const n=document.getElementById('tn').value.trim();
   if(!n)return;
-  tasks.push({id:Date.now()+'',name:n,type:document.getElementById('tty').value,due:document.getElementById('tdu').value,col:document.getElementById('tco').value});
+  tasks.push({id:Date.now()+'',name:n,type:document.getElementById('tty').value,due:document.getElementById('tdu').value,agent:document.getElementById('tag').value,col:document.getElementById('tco').value});
   localStorage.setItem('mhq_t',JSON.stringify(tasks));
   document.getElementById('tn').value='';
   cmodal();rk();
