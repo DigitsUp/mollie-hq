@@ -1,0 +1,240 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans)}
+.wrap{max-width:860px;margin:0 auto;padding:2rem 1.5rem}
+.header{border-bottom:0.5px solid var(--color-border-tertiary);padding-bottom:1.5rem;margin-bottom:2rem}
+.badge{display:inline-block;font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;margin-right:6px;margin-bottom:4px}
+.badge-green{background:#EAF3DE;color:#27500A}
+.badge-gray{background:#F1EFE8;color:#444441}
+.badge-blue{background:#E6F1FB;color:#0C447C}
+.section-title{font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-secondary);margin-bottom:1rem;margin-top:2rem;padding-bottom:.5rem;border-bottom:0.5px solid var(--color-border-tertiary)}
+.persona-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:2rem}
+.persona-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:1rem}
+.persona-name{font-size:14px;font-weight:500;margin-bottom:4px;color:var(--color-text-primary)}
+.persona-pct{font-size:12px;color:var(--color-text-secondary);margin-bottom:8px}
+.persona-tag{font-size:11px;padding:2px 8px;border-radius:20px;display:inline-block;margin:2px 2px 0 0}
+.cadence-row{display:grid;grid-template-columns:80px 1fr;gap:16px;margin-bottom:1rem;align-items:start}
+.day-pill{background:#EAF3DE;color:#27500A;border-radius:20px;font-size:12px;font-weight:500;padding:4px 12px;text-align:center;white-space:nowrap}
+.email-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:2rem}
+.email-table th{text-align:left;padding:8px 12px;font-weight:500;font-size:12px;color:var(--color-text-secondary);border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-secondary)}
+.email-table td{padding:10px 12px;border-bottom:0.5px solid var(--color-border-tertiary);vertical-align:top;color:var(--color-text-primary)}
+.email-table tr:last-child td{border-bottom:none}
+.persona-label{font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;white-space:nowrap}
+.p1{background:#EAF3DE;color:#27500A}
+.p2{background:#E6F1FB;color:#0C447C}
+.p3{background:#FAEEDA;color:#633806}
+.p4{background:#EEEDFE;color:#3C3489}
+.p5{background:#FAECE7;color:#712B13}
+.p6{background:#F1EFE8;color:#444441}
+.dynamic-block{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:1.25rem;margin-bottom:1rem}
+.dynamic-block h4{font-size:13px;font-weight:500;margin-bottom:.5rem;color:var(--color-text-primary)}
+.dynamic-block p{font-size:13px;color:var(--color-text-secondary);line-height:1.6}
+.molly-box{background:#EAF3DE;border:0.5px solid #97C459;border-radius:12px;padding:1.25rem;margin-bottom:2rem}
+.molly-box h3{font-size:14px;font-weight:500;color:#27500A;margin-bottom:.75rem}
+.molly-box p,.molly-box li{font-size:13px;color:#3B6D11;line-height:1.7}
+.molly-box ol{padding-left:1.25rem}
+.voice-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:2rem}
+.voice-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:1rem}
+.voice-card h4{font-size:12px;font-weight:500;color:var(--color-text-secondary);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.05em}
+.voice-card li{font-size:13px;color:var(--color-text-primary);line-height:1.7;margin-left:1rem}
+</style>
+
+<div class="wrap">
+
+<div class="header">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:.75rem">
+    <div style="width:36px;height:36px;background:#EAF3DE;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:500;color:#27500A">R</div>
+    <div>
+      <div style="font-size:18px;font-weight:500;color:var(--color-text-primary)">Rho Nutrition — Post Purchase Flow Strategy</div>
+      <div style="font-size:13px;color:var(--color-text-secondary)">DigitsUp x Rho Nutrition · Built for Molly</div>
+    </div>
+  </div>
+  <div>
+    <span class="badge badge-green">18 emails total</span>
+    <span class="badge badge-green">6 personas</span>
+    <span class="badge badge-green">3 sends</span>
+    <span class="badge badge-gray">Day 3 · Day 8 · Day 21</span>
+    <span class="badge badge-blue">Dynamic subscription block</span>
+  </div>
+</div>
+
+<div class="molly-box">
+  <h3>Molly — how to read and use this document</h3>
+  <p>This is your source of truth for the Rho Nutrition post purchase flow. Your job is to work through this document and produce one brief per email (18 briefs total). Each brief must include: email objective, subject line direction (2-3 options), preview text direction, primary message, content block structure, CTA copy direction, and tone notes specific to that persona. Do not write copy in the brief — that comes after Shelby approves. Work through one persona at a time, all three emails in sequence, before moving to the next persona.</p>
+  <ol style="margin-top:.75rem">
+    <li>Read the cadence rationale and flow arc below</li>
+    <li>Read all 6 persona summaries and their language profiles</li>
+    <li>Read the brand voice guardrails</li>
+    <li>Read the dynamic block spec for email 3</li>
+    <li>Then brief each email using the per-persona strategy table</li>
+  </ol>
+</div>
+
+<div class="section-title">Flow arc</div>
+<div style="margin-bottom:2rem">
+  <div class="cadence-row">
+    <div class="day-pill">Day 3</div>
+    <div>
+      <div style="font-size:14px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px">Email 1 — Welcome + how to use</div>
+      <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.6">Product has arrived or is arriving. Customer is starting their routine. Reinforce the purchase decision, provide clear usage instructions, set expectations for what they will feel and when. Primary goal: activation. Get them using the product correctly from day one.</div>
+    </div>
+  </div>
+  <div class="cadence-row">
+    <div class="day-pill">Day 8</div>
+    <div>
+      <div style="font-size:14px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px">Email 2 — Product education + results timeline</div>
+      <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.6">One full week in. Customer has experience with the product. Education lands with context now. Go deeper on the science for clinical and executive personas, lifestyle reinforcement for creative and trade personas. Tell them what is happening in their body. Build confidence in the product working even if they do not feel it yet. Primary goal: retention and belief.</div>
+    </div>
+  </div>
+  <div class="cadence-row">
+    <div class="day-pill">Day 21</div>
+    <div>
+      <div style="font-size:14px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px">Email 3 — Reorder + subscription conversion</div>
+      <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.6">One week before a typical 30-day supply runs out. No scramble, no gap in routine. Dynamic block handles the split: subscribers receive a loyalty acknowledgment and encouragement to stay consistent. Non-subscribers receive a subscription value prop with a clear reason to commit. Primary goal: repeat purchase and subscription conversion.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section-title">Persona reference</div>
+<div class="persona-grid">
+  <div class="persona-card">
+    <div class="persona-name">The High-Performance Executive</div>
+    <div class="persona-pct">~25% of customer base</div>
+    <span class="persona-tag p1">CEOs / Founders / VPs</span>
+    <span class="persona-tag p1">NAD+ / cognitive</span>
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-top:8px;line-height:1.6">Language: ROI, optimization, efficiency, performance edge. Treat health like a business asset. Time-poor. Want proof, not story.</div>
+  </div>
+  <div class="persona-card">
+    <div class="persona-name">The Creative Entrepreneur</div>
+    <div class="persona-pct">~15% of customer base</div>
+    <span class="persona-tag p2">Designers / Artists / Owners</span>
+    <span class="persona-tag p2">Clean / aesthetic</span>
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-top:8px;line-height:1.6">Language: curated, clean, intentional, creative clarity. Aesthetics matter. Brand story resonates. Transparency builds trust.</div>
+  </div>
+  <div class="persona-card">
+    <div class="persona-name">The Community Educator and Parent</div>
+    <div class="persona-pct">~10% of customer base</div>
+    <span class="persona-tag p3">Teachers / Principals / Nonprofits</span>
+    <span class="persona-tag p3">Family safety / trust</span>
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-top:8px;line-height:1.6">Language: safe, trustworthy, family, community, responsible. Founder mission resonates deeply. They are the family health gatekeeper.</div>
+  </div>
+  <div class="persona-card">
+    <div class="persona-name">The Clinical Wellness Advocate</div>
+    <div class="persona-pct">~15% of customer base</div>
+    <span class="persona-tag p4">MDs / Chiropractors / PTs / PAs</span>
+    <span class="persona-tag p4">Bioavailability / science</span>
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-top:8px;line-height:1.6">Language: bioavailability, liposomal delivery, cellular absorption, Glutathione, NAD+. Skeptical until proven. Will recommend to patients if convinced.</div>
+  </div>
+  <div class="persona-card">
+    <div class="persona-name">The Active Performance Optimizer</div>
+    <div class="persona-pct">~20% of customer base</div>
+    <span class="persona-tag p5">Trainers / Gym Owners / Coaches</span>
+    <span class="persona-tag p5">Recovery / inflammation</span>
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-top:8px;line-height:1.6">Language: recovery, inflammation, performance, results. Curcumin + Resveratrol. Early adopters. Community influencers.</div>
+  </div>
+  <div class="persona-card">
+    <div class="persona-name">The Skilled Trade and Industry Leader</div>
+    <div class="persona-pct">~15% of customer base</div>
+    <span class="persona-tag p6">Contractors / Builders / Logistics</span>
+    <span class="persona-tag p6">Joint health / energy</span>
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-top:8px;line-height:1.6">Language: no-nonsense, potency, results, reliable. Physical wear and tear. Science-backed means not wasting money. Straight talk only.</div>
+  </div>
+</div>
+
+<div class="section-title">Brand voice guardrails</div>
+<div class="voice-grid">
+  <div class="voice-card">
+    <h4>Always</h4>
+    <ul>
+      <li>Clean, premium, aspirational</li>
+      <li>Transformation language</li>
+      <li>Specific ingredients by name</li>
+      <li>Liposomal delivery as differentiator</li>
+      <li>Confident but not hype</li>
+      <li>Short sentences. White space.</li>
+    </ul>
+  </div>
+  <div class="voice-card">
+    <h4>Never</h4>
+    <ul>
+      <li>Overclaiming health benefits</li>
+      <li>Discount or urgency tactics</li>
+      <li>Generic wellness buzzwords</li>
+      <li>Cluttered copy blocks</li>
+      <li>Emoji in body copy</li>
+      <li>Em dashes anywhere</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section-title">Per-persona email strategy</div>
+
+<div style="margin-bottom:.5rem;display:flex;gap:6px;flex-wrap:wrap">
+  <span class="persona-label p1">P1: Executive</span>
+  <span class="persona-label p2">P2: Creative</span>
+  <span class="persona-label p3">P3: Educator/Parent</span>
+  <span class="persona-label p4">P4: Clinical</span>
+  <span class="persona-label p5">P5: Performance</span>
+  <span class="persona-label p6">P6: Trade</span>
+</div>
+
+<table class="email-table">
+  <thead>
+    <tr>
+      <th style="width:90px">Persona</th>
+      <th style="width:60px">Send</th>
+      <th style="width:180px">Subject direction</th>
+      <th>Primary message</th>
+      <th style="width:140px">CTA direction</th>
+      <th style="width:110px">Tone note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><span class="persona-label p1">Executive</span></td><td><span class="day-pill" style="font-size:11px;padding:2px 8px">Day 3</span></td><td style="font-size:12px">Your optimization protocol starts now</td><td style="font-size:12px">How and when to take it. Frame as a daily performance protocol. 1 serving = done. Reinforce ROI of the purchase.</td><td style="font-size:12px">Add to your morning stack</td><td style="font-size:12px">Direct, confident, zero fluff</td></tr>
+    <tr><td><span class="persona-label p1">Executive</span></td><td><span class="day-pill" style="font-size:11px;padding:2px 8px">Day 8</span></td><td style="font-size:12px">What NAD+ is doing right now</td><td style="font-size:12px">Cellular energy and cognitive clarity timeline. What is happening at a biological level. Frame results as compounding. Week 1 is the foundation.</td><td style="font-size:12px">Read the science</td><td style="font-size:12px">Data-led, efficient, precise</td></tr>
+    <tr><td><span class="persona-label p1">Executive</span></td><td><span class="day-pill" style="font-size:11px;padding:2px 8px">Day 21</span></td><td style="font-size:12px">Do not let your results reset</td><td style="font-size:12px">Consistency is the protocol. Running low = performance gap. Dynamic block: subscriber loyalty / non-subscriber subscription value at a cost-per-day framing.</td><td style="font-size:12px">Secure your next supply</td><td style="font-size:12px">Logical, outcome-focused</td></tr>
+    <tr style="background:var(--color-background-secondary)"><td><span class="persona-label p2">Creative</span></td><td><span class="day-pill" style="font-size:11px;padding:2px 8px">Day 3</span></td><td style="font-size:12px">Your new ritual is ready</td><td style="font-size:12px">Usage as a curated daily ritual. Liquid format = intentional, elevated. Position taking Rho as a moment of self-care, not a chore.</td><td style="font-size:12px">Make it your morning ritual</td><td style="font-size:12px">Aesthetic, warm, lifestyle</td></tr>
+    <tr style="background:var(--color-background-secondary)"><td><span class="persona-label p2">Creative</span></td><td><span class="day-pill" style="font-size:11px;padding:2px 8px">Day 8</span></td><td style="font-size:12px">Clean ingredients for a clear mind</td><td style="font-size:12px">What makes Rho different: no fillers, no compromise. Tie clean ingredients to creative output and mental clarity. Transparency as a brand value.</td><td style="font-size:12px">See what is inside</td><td style="font-size:12px">Considered, honest, artisan</td></tr>
+    <tr style="background:var(--color-background-secondary)"><td><span class="persona-label p2">Creative</span></td><td><span class="day-pill" style="font-size:11px;padding:2px 8px">Day 21</span></td><td style="font-size:12px">Keep the ritual going</td><td style="font-size:12px">The routine they have built is worth protecting. Dynamic block: subscriber appreciation / non-subscriber subscription as simplifying the ritual, never running out.</td><td style="font-size:12px">Never run out</td><td style="font-size:12px">Gentle, identity-affirming</td></tr>
+    <tr><td><span class="persona-label p3">Educator</span></td><td><span class="day-pill" style="font-size:11px;padding:2px 8px">Day 3</span></td><td style="font-size:12px">You made a good choice for yourself</td><td style="font-size:12px">Warm welcome. Reinforce that this is a safe, trusted product. Usage instructions framed around ease and consistency for a busy life. You deserve this.</td><td style="font-size:12px">Start your routine today</td><td style="font-size:12px">Warm, reassuring, human</td></tr>
+    <tr><td><span class="persona-label p3">Educator</span></td><td><span class="day-pill" style="font-size:11px;padding:2px 8px">Day 8</span></td><td style="font-size:12px">Immune support built for your world</td><td style="font-size:12px">High-contact environment education. Why immune and energy support matters when you give so much to others. Founder mission tie-in: products they trust for their own families.</td><td style="font-size:12px">Learn what is inside</td><td style="font-size:12px">Community, care, trust</td></tr>
+    <tr><td><span class="persona-label p3">Educator</span></td><td><span class="day-pill" style="font-size:11px;padding:2px 8px">Day 21</span></td><td style="font-size:12px">Stay consistent for the people who count on you</td><td style="font-size:12px">Framed around reliability and being present for family and community. Dynamic block: subscriber gratitude / non-subscriber subscription as consistency and savings for the household.</td><td style="font-size:12px">Keep your supply going</td><td style="font-size:12px">Nurturing, community-first</td></tr>
+    <tr style="background:var(--color-background-secondary)"><td><span class="persona-label p4">Clinical</span></td><td><span class="day-pill" style="font-size:11px;padding:2px 8px">Day 3</span></td><td style="font-size:12px">Your liposomal protocol is active</td><td style="font-size:12px">Clinical usage framing. Dosing, timing, and absorption window. Acknowledge their expertise — they already know why they chose liposomal. Confirm they made the right clinical call.</td><td style="font-size:12px">View the full formulation</td><td style="font-size:12px">Peer-level, clinical, precise</td></tr>
+    <tr style="background:var(--color-background-secondary)"><td><span class="persona-label p4">Clinical</span></td><td><span class="day-pill" style="font-size:11px;padding:2px 8px">Day 8</span></td><td style="font-size:12px">The bioavailability difference, by the numbers</td><td style="font-size:12px">Deep science on liposomal vs standard delivery. Glutathione and NAD+ absorption rates. Cellular repair timeline. Position as something they can confidently recommend to patients.</td><td style="font-size:12px">Read the research</td><td style="font-size:12px">Evidence-based, professional</td></tr>
+    <tr style="background:var(--color-background-secondary)"><td><span class="persona-label p4">Clinical</span></td><td><span class="day-pill" style="font-size:11px;padding:2px 8px">Day 21</span></td><td style="font-size:12px">Clinical consistency drives clinical results</td><td style="font-size:12px">Outcomes require uninterrupted supplementation. Frame the reorder as clinical discipline. Dynamic block: subscriber clinical loyalty message / non-subscriber subscription framed as the preferred clinical protocol.</td><td style="font-size:12px">Maintain your protocol</td><td style="font-size:12px">Professional, outcome-driven</td></tr>
+    <tr><td><span class="persona-label p5">Performance</span></td><td><span class="day-pill" style="font-size:11px;padding:2px 8px">Day 3</span></td><td style="font-size:12px">Recovery starts with day one</td><td style="font-size:12px">How to stack Rho into a training and recovery routine. Morning timing for anti-inflammatory support. Quick, actionable. Frame as part of their performance system.</td><td style="font-size:12px">Add it to your stack</td><td style="font-size:12px">Active, results-focused, peer</td></tr>
+    <tr><td><span class="persona-label p5">Performance</span></td><td><span class="day-pill" style="font-size:11px;padding:2px 8px">Day 8</span></td><td style="font-size:12px">What Curcumin is doing inside your joints</td><td style="font-size:12px">Inflammation biology specific to training stress. Curcumin + Resveratrol mechanism explained without dumbing it down. By now they should feel something — name it and validate it.</td><td style="font-size:12px">See the science behind recovery</td><td style="font-size:12px">Knowledgeable, energetic, direct</td></tr>
+    <tr><td><span class="persona-label p5">Performance</span></td><td><span class="day-pill" style="font-size:11px;padding:2px 8px">Day 21</span></td><td style="font-size:12px">Do not lose the progress you have built</td><td style="font-size:12px">Consistency = compounding recovery gains. Breaking the routine = inflammation catching up. Dynamic block: subscriber loyalty with performance-focused message / non-subscriber subscription as never breaking the chain.</td><td style="font-size:12px">Stay in the stack</td><td style="font-size:12px">Motivating, coach-like</td></tr>
+    <tr style="background:var(--color-background-secondary)"><td><span class="persona-label p6">Trade</span></td><td><span class="day-pill" style="font-size:11px;padding:2px 8px">Day 3</span></td><td style="font-size:12px">Here is how to get the most out of it</td><td style="font-size:12px">No-nonsense usage instructions. When to take it, what to expect. Straight talk. This works if you are consistent. No ritual language, no lifestyle framing.</td><td style="font-size:12px">Start today</td><td style="font-size:12px">Blunt, practical, zero fluff</td></tr>
+    <tr style="background:var(--color-background-secondary)"><td><span class="persona-label p6">Trade</span></td><td><span class="day-pill" style="font-size:11px;padding:2px 8px">Day 8</span></td><td style="font-size:12px">Why this works when others do not</td><td style="font-size:12px">Practical explanation of liposomal delivery vs standard supplements they have tried. Frame as getting your money's worth. Joint health and sustained energy for long days — specific to physical demands of their work.</td><td style="font-size:12px">See why it is different</td><td style="font-size:12px">Straight, credible, practical</td></tr>
+    <tr style="background:var(--color-background-secondary)"><td><span class="persona-label p6">Trade</span></td><td><span class="day-pill" style="font-size:11px;padding:2px 8px">Day 21</span></td><td style="font-size:12px">Running low? Do not let it run out.</td><td style="font-size:12px">Simple. Running low means stopping results. Do not start over. Dynamic block: subscriber recognition for smart planning / non-subscriber subscription framed as the practical move, saves money, never runs out.</td><td style="font-size:12px">Lock it in</td><td style="font-size:12px">Practical, no-nonsense</td></tr>
+  </tbody>
+</table>
+
+<div class="section-title">Email 3 dynamic block spec</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:2rem">
+  <div class="dynamic-block">
+    <h4>Subscriber version</h4>
+    <p>Acknowledge they are already subscribed. Reinforce the decision as smart and consistent. Persona-appropriate loyalty message. Light encouragement to stay on track. No hard sell. CTA directs to account or product page.</p>
+  </div>
+  <div class="dynamic-block">
+    <h4>Non-subscriber version</h4>
+    <p>Lead with the tangible value prop: save X%, never run out, skip or cancel anytime. Persona-appropriate framing on why consistency matters for their specific goals. Single clear CTA to subscribe. No pressure, but clear benefit.</p>
+  </div>
+</div>
+<div style="background:var(--color-background-secondary);border-radius:8px;padding:1rem;font-size:13px;color:var(--color-text-secondary);margin-bottom:2rem">
+  Klaviyo conditional logic: use a profile property or tag to identify active subscribers. Block renders inline within the email — not a separate email. Both versions share the same subject line and primary message. Only the secondary content block changes.
+</div>
+
+<div class="section-title">Next steps for Molly</div>
+<div style="font-size:13px;color:var(--color-text-secondary);line-height:1.8;margin-bottom:2rem">
+  1. Brief Email 1 for all 6 personas (Day 3) — submit to Shelby for review<br>
+  2. Once approved, brief Email 2 for all 6 personas (Day 8) — submit to Shelby<br>
+  3. Brief Email 3 for all 6 personas (Day 21) including dynamic block spec — submit to Shelby<br>
+  4. After all briefs approved, move to copy for Email 1 across all personas — submit to Megan<br>
+  5. Repeat copy phase for Email 2, then Email 3<br>
+  6. Once copy approved, build Figma wireframe structure and notify Morrow
+</div>
+
+</div>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Hale Iwa Farm — A Vision</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --ink:#1C1A16;--ink2:#3D3A34;--ink3:#6B6760;
+  --cream:#F7F4EE;--cream2:#EDE9E0;--cream3:#DDD8CD;
+  --green:#2C4A2E;--green2:#3D6B40;--green3:#5A8F5E;--green-light:#E8F0E8;
+  --ocean:#1A4A6B;--ocean2:#2A6A9B;--ocean-light:#E6F0F8;
+  --earth:#8B6914;--earth-light:#F5EDD8;
+  --serif:'Cormorant Garant',serif;--sans:'DM Sans',sans-serif;
+}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);line-height:1.6;}
+
+/* GATE */
+#gate{position:fixed;inset:0;z-index:999;background:var(--ink);display:flex;align-items:center;justify-content:center;}
+.gate-inner{text-align:center;max-width:360px;width:100%;padding:0 32px;}
+.gate-label{font-family:var(--sans);font-size:10px;text-transform:uppercase;letter-spacing:.25em;color:rgba(255,255,255,.4);margin-bottom:8px;}
+.gate-title{font-family:var(--serif);font-size:32px;font-weight:400;color:#fff;margin-bottom:4px;font-style:italic;}
+.gate-sub{font-size:12px;color:rgba(255,255,255,.35);margin-bottom:36px;letter-spacing:.05em;}
+.gate-divider{width:40px;height:1px;background:rgba(255,255,255,.15);margin:0 auto 36px;}
+#pwi{width:100%;padding:14px 18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:#fff;font-size:14px;font-family:var(--sans);border-radius:4px;outline:none;text-align:center;letter-spacing:.1em;transition:border-color .2s;}
+#pwi:focus{border-color:rgba(255,255,255,.4);}
+#pwe{font-size:11px;color:rgba(255,100,100,.8);margin-top:8px;min-height:16px;}
+#pwb{margin-top:14px;width:100%;padding:13px;background:var(--green2);color:#fff;border:none;font-family:var(--sans);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.15em;cursor:pointer;border-radius:4px;transition:background .2s;}
+#pwb:hover{background:var(--green3);}
+.gate-credit{font-size:10px;color:rgba(255,255,255,.15);margin-top:24px;letter-spacing:.05em;}
+#content{display:none;}
+
+/* HERO */
+.hero{background:var(--ink);color:#fff;padding:120px 32px 100px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(90,143,94,.15) 0%,transparent 60%);pointer-events:none;}
+.hero-eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.25em;color:rgba(255,255,255,.4);margin-bottom:20px;}
+.hero-title{font-family:var(--serif);font-size:clamp(38px,5vw,68px);font-weight:400;line-height:1.2;color:#fff;max-width:800px;margin:0 auto 24px;}
+.hero-title em{font-style:italic;color:rgba(255,255,255,.7);}
+.hero-sub{font-size:16px;color:rgba(255,255,255,.5);max-width:520px;margin:0 auto 40px;line-height:1.8;}
+.hero-tag{display:inline-block;padding:6px 16px;border:1px solid rgba(255,255,255,.15);border-radius:20px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);}
+
+/* LAYOUT */
+.container{max-width:1040px;margin:0 auto;padding:0 32px;}
+section{padding:80px 0;}
+
+/* SECTION TITLES */
+.section-tag{font-size:10px;text-transform:uppercase;letter-spacing:.25em;color:var(--green2);margin-bottom:12px;font-weight:500;}
+.section-title{font-family:var(--serif);font-size:clamp(28px,3vw,42px);font-weight:400;color:var(--ink);line-height:1.3;margin-bottom:16px;}
+.section-title em{font-style:italic;}
+.section-intro{font-size:16px;color:var(--ink3);line-height:1.8;max-width:640px;margin-bottom:48px;}
+
+/* STORY SECTION */
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+@media(max-width:700px){.story-grid{grid-template-columns:1fr;}}
+.story-text p{font-size:15px;color:var(--ink2);line-height:1.9;margin-bottom:16px;}
+.story-text p:last-child{margin-bottom:0;}
+.story-quote{background:var(--green);color:#fff;padding:40px 36px;border-radius:8px;position:relative;}
+.story-quote::before{content:'\201C';font-family:var(--serif);font-size:120px;color:rgba(255,255,255,.1);position:absolute;top:-20px;left:20px;line-height:1;}
+.story-quote p{font-family:var(--serif);font-size:22px;font-style:italic;line-height:1.6;color:rgba(255,255,255,.9);position:relative;z-index:1;}
+.story-quote cite{display:block;margin-top:16px;font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:rgba(255,255,255,.4);}
+
+/* AUDIENCE */
+.audience-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;}
+.audience-card{background:#fff;border:1px solid var(--cream3);border-radius:10px;padding:28px 24px;transition:box-shadow .2s;}
+.audience-card:hover{box-shadow:0 8px 32px rgba(0,0,0,.06);}
+.audience-num{font-family:var(--serif);font-size:36px;font-weight:400;color:var(--cream3);line-height:1;margin-bottom:12px;}
+.audience-name{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--ink);margin-bottom:8px;}
+.audience-who{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--green2);margin-bottom:12px;font-weight:500;}
+.audience-desc{font-size:14px;color:var(--ink3);line-height:1.7;}
+.audience-why{margin-top:14px;padding-top:14px;border-top:1px solid var(--cream3);font-size:12px;color:var(--ink2);line-height:1.6;}
+.audience-why strong{color:var(--green);}
+
+/* CHANNELS */
+.channels-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;}
+.channel-card{border-radius:10px;padding:28px 24px;position:relative;overflow:hidden;}
+.channel-card.instagram{background:linear-gradient(135deg,#F5EDD8,#EDE9E0);}
+.channel-card.youtube{background:linear-gradient(135deg,#E6F0F8,#D8E8F0);}
+.channel-card.newsletter{background:linear-gradient(135deg,#E8F0E8,#DDE8DD);}
+.channel-card.email{background:linear-gradient(135deg,#F0EAD8,#E8E0CC);}
+.channel-card.agritourism{background:linear-gradient(135deg,#E8EEE8,var(--green-light));}
+.channel-card.partnerships{background:linear-gradient(135deg,#EEE8F0,#E8E0EE);}
+.channel-icon{font-size:28px;margin-bottom:14px;display:block;}
+.channel-name{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--ink);margin-bottom:6px;}
+.channel-role{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--ink3);margin-bottom:12px;}
+.channel-desc{font-size:14px;color:var(--ink2);line-height:1.7;}
+.channel-revenue{margin-top:14px;padding:10px 14px;background:rgba(255,255,255,.6);border-radius:6px;font-size:12px;color:var(--ink2);line-height:1.5;}
+.channel-revenue strong{color:var(--green);}
+
+/* EMAIL ROADMAP */
+.roadmap{display:flex;flex-direction:column;gap:0;}
+.roadmap-item{display:grid;grid-template-columns:160px 1fr;gap:32px;padding:28px 0;border-bottom:1px solid var(--cream3);}
+.roadmap-item:last-child{border-bottom:none;}
+@media(max-width:600px){.roadmap-item{grid-template-columns:1fr;gap:8px;}}
+.roadmap-phase{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--green2);}
+.roadmap-status{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);margin-top:4px;}
+.roadmap-status.live{color:var(--green);}
+.roadmap-title{font-size:16px;font-weight:500;color:var(--ink);margin-bottom:6px;}
+.roadmap-desc{font-size:14px;color:var(--ink3);line-height:1.7;}
+
+/* CLOSER */
+.closer{background:var(--green);color:#fff;padding:100px 32px;text-align:center;}
+.closer-title{font-family:var(--serif);font-size:clamp(32px,4vw,52px);font-weight:400;color:#fff;line-height:1.3;max-width:680px;margin:0 auto 24px;}
+.closer-title em{font-style:italic;color:rgba(255,255,255,.6);}
+.closer-text{font-size:15px;color:rgba(255,255,255,.65);max-width:500px;margin:0 auto 40px;line-height:1.8;}
+.closer-sig{font-family:var(--serif);font-size:18px;font-style:italic;color:rgba(255,255,255,.5);}
+.closer-sig strong{display:block;font-style:normal;font-size:14px;letter-spacing:.1em;text-transform:uppercase;margin-top:4px;color:rgba(255,255,255,.3);}
+
+/* BG SECTIONS */
+.bg-cream2{background:var(--cream2);}
+.bg-white{background:#fff;}
+</style>
+</head>
+<body>
+
+<div id="gate" style="display:none;">
+  <div class="gate-inner">
+    <div class="gate-label">For Billy & Keira</div>
+    <div class="gate-title">Hale Iwa Farm</div>
+    <div class="gate-sub">A vision for what you're building</div>
+    <div class="gate-divider"></div>
+    <input type="password" id="pwi" placeholder="Enter password">
+    <div id="pwe"></div>
+    <button id="pwb">Open</button>
+    <div class="gate-credit">From Mike Grill &amp; DigitsUp</div>
+  </div>
+</div>
+
+<div id="content" style="display:block;">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">Hale Iwa Farm &nbsp;·&nbsp; North Shore, Hawaii</div>
+      <h1 class="hero-title">You don't have to move to Hawaii to live better.<br><em>But you did — and people will follow.</em></h1>
+      <p class="hero-sub">What you're building isn't just a farm. It's a permission slip for every family that's been quietly asking if there's another way.</p>
+      <div class="hero-tag">A vision document from DigitsUp</div>
+    </div>
+  </div>
+
+  <!-- STORY -->
+  <section class="bg-white">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-text">
+          <div class="section-tag">The Real Story</div>
+          <h2 class="section-title">This isn't a farm brand.<br><em>It's a life brand.</em></h2>
+          <p>Billy and Keira didn't move to Hawaii to start a business. They moved to raise their boys on real food, real land, and real values. The farm is the setting. The mission is the story.</p>
+          <p>And that story — choosing differently, betting on your family, building something that actually matters — resonates with millions of people who will never leave their zip code but deeply wish they could feel the way you do.</p>
+          <p>That's the audience. That's the opportunity. Not just people who want to buy organic fruit — people who want to be part of what you're building, even from the other side of the world.</p>
+        </div>
+        <div class="story-quote">
+          <p>"The most powerful thing you can do right now isn't grow your first crop. It's grow your audience while you wait for the harvest."</p>
+          <cite>The strategy</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIENCE -->
+  <section class="bg-cream2">
+    <div class="container">
+      <div class="section-tag">Who's Watching</div>
+      <h2 class="section-title">Five audiences.<br><em>All waiting for you.</em></h2>
+      <p class="section-intro">You don't have to chase any of these people. When you tell your story authentically, they find you. Here's who they are and why they care.</p>
+
+      <div class="audience-grid">
+
+        <div class="audience-card">
+          <div class="audience-num">01</div>
+          <div class="audience-name">The Inspired Parent</div>
+          <div class="audience-who">28–42 · Urban & Suburban</div>
+          <div class="audience-desc">They're in the grind. Good job, good life on paper, but something feels off. They follow accounts that make them feel like a different life is possible — even if they never take the leap.</div>
+          <div class="audience-why"><strong>Why they care:</strong> You're living the version of their life they haven't been brave enough to try. You're not selling them anything. You're giving them permission to feel differently.</div>
+        </div>
+
+        <div class="audience-card">
+          <div class="audience-num">02</div>
+          <div class="audience-name">The Organic Family</div>
+          <div class="audience-who">Mom-led · 30–45 · Values-driven</div>
+          <div class="audience-desc">They read labels. They buy organic. They think about what their kids eat. They've been looking for a farm brand they actually believe in — one with a real family behind it, not a corporation.</div>
+          <div class="audience-why"><strong>Why they care:</strong> You are what they've been looking for. When you have product, they'll be first in line. Until then, they'll evangelize your story.</div>
+        </div>
+
+        <div class="audience-card">
+          <div class="audience-num">03</div>
+          <div class="audience-name">The Surf & Outdoor Crowd</div>
+          <div class="audience-who">Surfers · Outdoor Enthusiasts · Lifestyle-led</div>
+          <div class="audience-desc">North Shore Hawaii. Family. Waves. Living close to the land. This audience lives and breathes the culture you're building in. The farm-to-table ethos, the outdoor lifestyle, the family values — it all resonates deeply.</div>
+          <div class="audience-why"><strong>Why they care:</strong> You're living their dream with a family twist. Farm stay experiences, behind-the-scenes content, and brand partnerships land naturally here.</div>
+        </div>
+
+        <div class="audience-card">
+          <div class="audience-num">04</div>
+          <div class="audience-name">The Wellness Seeker</div>
+          <div class="audience-who">28–45 · Health-Conscious · Values-Led</div>
+          <div class="audience-desc">They've been moving away from processed food for years. They grow herbs on their windowsill. They watch documentaries about food systems. They want to know where things come from and who grew them.</div>
+          <div class="audience-why"><strong>Why they care:</strong> You are the answer to the question they've been asking. A real family, real land, real food. When product exists, this audience becomes your most loyal customer.</div>
+        </div>
+
+        <div class="audience-card">
+          <div class="audience-num">05</div>
+          <div class="audience-name">The Young Couple Dreaming</div>
+          <div class="audience-who">22–32 · Aspirational · High Engagement</div>
+          <div class="audience-desc">They're watching. They're saving. They're not sure what they want but they know it looks something like what you're building. High engagement, high share rate, the reason content goes viral.</div>
+          <div class="audience-why"><strong>Why they care:</strong> You're the dream they haven't named yet. They don't need to buy anything to become your most powerful marketing channel — they just need to feel it.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CHANNELS -->
+  <section class="bg-white">
+    <div class="container">
+      <div class="section-tag">How You Build It</div>
+      <h2 class="section-title">Six channels.<br><em>One connected story.</em></h2>
+      <p class="section-intro">Each channel does a different job. Together they tell one story across the places people already spend their time — and none of it requires being a tech expert. Just showing up and being real.</p>
+
+      <div class="channels-grid">
+
+        <div class="channel-card instagram">
+          <span class="channel-icon">📸</span>
+          <div class="channel-name">Instagram</div>
+          <div class="channel-role">The Window</div>
+          <div class="channel-desc">Behind the scenes. The boys in the field. Keira in the kitchen. The land changing with the seasons. Short, beautiful, real. This is where people fall in love with what you're building before they even know your name.</div>
+          <div class="channel-revenue"><strong>Lever:</strong> Families, moms, outdoor enthusiasts, and people craving a slower life are already searching for this content. You don't need to find them — they'll find you.</div>
+        </div>
+
+        <div class="channel-card youtube">
+          <span class="channel-icon">🎥</span>
+          <div class="channel-name">YouTube</div>
+          <div class="channel-role">The Depth</div>
+          <div class="channel-desc">The move. The first season. The failures and the wins. 10-minute episodes that feel like a show you can't stop watching. YouTube is the long game — it compounds over years and becomes your most valuable asset.</div>
+          <div class="channel-revenue"><strong>Lever:</strong> Ad revenue + brand deals once audience builds. Evergreen content that works while you sleep. The farm journal that never expires.</div>
+        </div>
+
+        <div class="channel-card newsletter">
+          <span class="channel-icon">✉️</span>
+          <div class="channel-name">Letters from the Farm</div>
+          <div class="channel-role">The Newsletter</div>
+          <div class="channel-desc">Weekly. Personal. Reads like a letter from a friend who moved to Hawaii and wants to bring you along. What's growing. What's failing. What the boys learned this week. What Keira cooked. Real life, beautifully told.</div>
+          <div class="channel-revenue"><strong>Lever:</strong> Sponsorship-ready at 10K subscribers. Product launch vehicle. The most loyal audience you'll build — people who chose to invite you into their inbox.</div>
+        </div>
+
+        <div class="channel-card email">
+          <span class="channel-icon">⚡</span>
+          <div class="channel-name">Email / Klaviyo</div>
+          <div class="channel-role">The Infrastructure</div>
+          <div class="channel-desc">The engine under everything else. Pre-launch list building right now. Welcome series that tells the full story. Segmented sequences for product buyers, experience guests, and content fans — each getting something tailored.</div>
+          <div class="channel-revenue"><strong>Lever:</strong> The asset that survives every algorithm change. When product launches, the email list is what converts. Build it from day one.</div>
+        </div>
+
+        <div class="channel-card agritourism">
+          <span class="channel-icon">🌿</span>
+          <div class="channel-name">Stay & Farm Experiences</div>
+          <div class="channel-role">The Premium Play</div>
+          <div class="channel-desc">North Shore Hawaii. Surf in the morning. Farm in the afternoon. Keira's cooking at dinner. A week with the Busch family on the land they chose over everything else. This isn't a vacation — it's a transformation.</div>
+          <div class="channel-revenue"><strong>Lever:</strong> Agritourism is a massive and growing market. Build the waitlist now. Launch to the network first. Premium price, premium experience, word of mouth does the rest.</div>
+        </div>
+
+        <div class="channel-card partnerships">
+          <span class="channel-icon">✍️</span>
+          <div class="channel-name">The Farm Journal</div>
+          <div class="channel-role">Blog & Long-Form Writing</div>
+          <div class="channel-desc">Short stories from the farm. What you learned planting your first crop. What you fed the boys this week and why. How you chose Hawaii. Written simply, from the heart — no expertise required, just your real life on the page.</div>
+          <div class="channel-revenue"><strong>Why it matters:</strong> People search for this kind of life. "Farm to table family Hawaii." "Raising kids on a farm." "Organic fruit North Shore." Every post you write is a door that stays open forever — bringing new people to your story long after you wrote it.</div>
+        </div>
+
+        <div class="channel-card" style="background:linear-gradient(135deg,#EEE8F0,#E8E0EE);">
+          <span class="channel-icon">🤝</span>
+          <div class="channel-name">Brand Partnerships</div>
+          <div class="channel-role">The Amplifier</div>
+          <div class="channel-desc">Outdoor gear. Organic food. Family wellness. Surf brands. Baby and kids. Once the audience exists, the right brands will want to be part of your story. You choose who fits — and you don't need to chase anyone.</div>
+          <div class="channel-revenue"><strong>Lever:</strong> Meaningful partnerships only — brands that align with the values. Each one extends reach into new audiences without compromising the story.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EMAIL ROADMAP -->
+  <section class="bg-cream2">
+    <div class="container">
+      <div class="section-tag">The Email Roadmap</div>
+      <h2 class="section-title">Before a single product ships.<br><em>The list is the asset.</em></h2>
+      <p class="section-intro">The website password page is already collecting emails. That's the seed. Here's how you turn it into a harvest.</p>
+
+      <div class="roadmap">
+
+        <div class="roadmap-item">
+          <div>
+            <div class="roadmap-phase">Right Now</div>
+            <div class="roadmap-status live">✓ Already Happening</div>
+          </div>
+          <div>
+            <div class="roadmap-title">Password Page Email Capture</div>
+            <div class="roadmap-desc">"Seeds are planted." People are finding the site and leaving their email. Every one of those addresses is someone who chose you before you even had a product. That's your most valuable customer.</div>
+          </div>
+        </div>
+
+        <div class="roadmap-item">
+          <div>
+            <div class="roadmap-phase">Next Step</div>
+            <div class="roadmap-status">Ready to Build</div>
+          </div>
+          <div>
+            <div class="roadmap-title">Welcome Series — 3 Emails</div>
+            <div class="roadmap-desc">Email 1: Who you are and why you left. Email 2: What you're building and what's coming. Email 3: How to follow along and what it means to be part of this. Make people feel like insiders before the farm is even open.</div>
+          </div>
+        </div>
+
+        <div class="roadmap-item">
+          <div>
+            <div class="roadmap-phase">Ongoing</div>
+            <div class="roadmap-status">The Long Game</div>
+          </div>
+          <div>
+            <div class="roadmap-title">Letters from the Farm — Weekly</div>
+            <div class="roadmap-desc">Behind the scenes. What's growing. What's hard. What the boys are learning. Keira's recipe from whatever came in this week. Short, personal, real. This is what builds the community that converts when the time comes.</div>
+          </div>
+        </div>
+
+        <div class="roadmap-item">
+          <div>
+            <div class="roadmap-phase">Pre-Launch</div>
+            <div class="roadmap-status">When the Harvest Comes</div>
+          </div>
+          <div>
+            <div class="roadmap-title">Product Launch Sequence</div>
+            <div class="roadmap-desc">The list has been warm for months. They've been following the journey. When the first product is ready, the launch sequence fires — and you're not selling to strangers. You're inviting friends to be part of something they've been watching come to life.</div>
+          </div>
+        </div>
+
+        <div class="roadmap-item">
+          <div>
+            <div class="roadmap-phase">Experience Launch</div>
+            <div class="roadmap-status">When You're Ready</div>
+          </div>
+          <div>
+            <div class="roadmap-title">Stay & Farm Waitlist Sequence</div>
+            <div class="roadmap-desc">A separate track for people who want to come stay. Collect interest now. Build anticipation. When you're ready to open the gates, the waitlist converts immediately — and the first guests become the best marketing you'll ever have.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSER -->
+  <div class="closer">
+    <div class="container">
+      <h2 class="closer-title">The farm is the beginning.<br><em>The brand is what lasts.</em></h2>
+      <p class="closer-text">What you and Keira are building in Hawaii isn't just a place to grow fruit. It's proof that a different life is possible — and millions of people are desperate to see it. We'd love to help you build the audience that deserves it.</p>
+      <p class="closer-sig">Whenever you're ready.<br><strong>Mike Grill &nbsp;·&nbsp; DigitsUp</strong></p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function unlock(){
+  if(document.getElementById('pwi').value==='HaleIwa2026'){
+    document.getElementById('gate').style.display='none';
+    document.getElementById('content').style.display='block';
+  } else {
+    document.getElementById('pwe').textContent='Incorrect password';
+    setTimeout(()=>document.getElementById('pwe').textContent='',2000);
+  }
+}
+document.getElementById('pwb').addEventListener('click',unlock);
+document.getElementById('pwi').addEventListener('keydown',e=>{if(e.key==='Enter')unlock();});
+</script>
+</body>
+</html>

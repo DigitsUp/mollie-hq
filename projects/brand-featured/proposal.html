@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BrandFeatured × DigitsUp — Retention Marketing Proposal</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#0b1623;
+  --navy2:#0f2035;
+  --teal:#00a8b5;
+  --teal-dim:rgba(0,168,181,0.15);
+  --teal-line:rgba(0,168,181,0.3);
+  --white:#ffffff;
+  --off:#f5f7fa;
+  --ink:#1a2332;
+  --muted:#6b7a8d;
+  --border:#e4e8f0;
+  --gold:#c9a84c;
+  --serif:'Libre Baskerville',serif;
+  --sans:'Plus Jakarta Sans',sans-serif;
+  --mono:'Plus Jakarta Sans',monospace;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--navy);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+
+/* \─\─\─ PROGRESS BAR \─\─\─ */
+.progress-bar{position:fixed;top:0;left:0;height:2px;background:var(–teal);z-index:200;width:0%;transition:width 0.1s;}
+
+/* \─\─\─ NAV \─\─\─ */
+nav{
+position:fixed;top:0;left:0;right:0;z-index:100;
+display:flex;align-items:center;justify-content:space-between;
+padding:0 48px;height:56px;
+background:rgba(11,22,35,0.92);backdrop-filter:blur(16px);
+border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.nav-logo{font-family:var(–mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.4);}
+.nav-logo span{color:var(–teal);}
+.nav-links{display:flex;gap:4px;}
+.nav-link{
+font-family:var(–mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;
+color:rgba(255,255,255,0.35);padding:5px 12px;border-radius:3px;
+cursor:pointer;border:none;background:none;transition:all 0.2s;text-decoration:none;
+}
+.nav-link:hover{color:rgba(255,255,255,0.8);}
+.nav-cta{
+font-family:var(–mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
+color:var(–navy);background:var(–teal);padding:6px 16px;border-radius:3px;
+border:none;cursor:pointer;transition:all 0.2s;
+}
+.nav-cta:hover{background:#00c4d3;}
+
+/* \─\─\─ SECTIONS \─\─\─ */
+section{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;}
+section.light{background:var(–off);color:var(–ink);}
+section.white{background:var(–white);color:var(–ink);}
+section.dark{background:var(–navy);}
+section.dark2{background:var(–navy2);}
+
+.container{max-width:1100px;margin:0 auto;padding:100px 48px 80px;width:100%;}
+.container-sm{max-width:860px;margin:0 auto;padding:100px 48px 80px;width:100%;}
+
+/* \─\─\─ SECTION LABELS \─\─\─ */
+.s-label{
+font-family:var(–mono);font-size:10px;letter-spacing:0.24em;text-transform:uppercase;
+color:var(–teal);margin-bottom:20px;display:flex;align-items:center;gap:12px;
+}
+.s-label::before{content:’’;display:block;width:28px;height:1px;background:var(–teal);}
+
+/* \─\─\─ HERO \─\─\─ */
+#hero{
+background:var(–navy);
+background-image:
+radial-gradient(ellipse 60% 50% at 70% 50%, rgba(0,168,181,0.08) 0%, transparent 70%),
+radial-gradient(ellipse 40% 60% at 20% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
+overflow:hidden;
+}
+.hero-inner{max-width:1100px;margin:0 auto;padding:140px 48px 80px;display:grid;grid-template-columns:1fr 380px;gap:60px;align-items:center;}
+.hero-kicker{font-family:var(–mono);font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:var(–teal);margin-bottom:24px;}
+.hero-h1{font-family:var(–serif);font-size:clamp(42px,5.5vw,72px);line-height:1.02;font-weight:900;margin-bottom:24px;letter-spacing:-0.01em;}
+.hero-h1 em{font-style:italic;color:var(–teal);}
+.hero-sub{font-size:16px;color:rgba(255,255,255,0.5);line-height:1.7;max-width:480px;margin-bottom:40px;}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-primary{font-family:var(–mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;background:var(–teal);color:var(–navy);padding:12px 24px;border-radius:4px;border:none;cursor:pointer;font-weight:600;transition:all 0.2s;text-decoration:none;display:inline-block;}
+.btn-primary:hover{background:#00c4d3;transform:translateY(-1px);}
+.btn-ghost{font-family:var(–mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;background:none;color:rgba(255,255,255,0.5);padding:12px 24px;border-radius:4px;border:1px solid rgba(255,255,255,0.15);cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-block;}
+.btn-ghost:hover{color:var(–white);border-color:rgba(255,255,255,0.4);}
+.hero-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:28px;}
+.hero-card-label{font-family:var(–mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(–teal);margin-bottom:20px;}
+.hero-stat{padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.07);}
+.hero-stat:last-child{border-bottom:none;padding-bottom:0;}
+.hero-stat-val{font-family:var(–serif);font-size:28px;font-weight:700;color:var(–white);}
+.hero-stat-lbl{font-family:var(–mono);font-size:10px;color:rgba(255,255,255,0.35);margin-top:2px;text-transform:uppercase;letter-spacing:0.1em;}
+
+/* \─\─\─ PROBLEM \─\─\─ */
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:48px;}
+.problem-text h2{font-family:var(–serif);font-size:clamp(30px,3.5vw,46px);line-height:1.1;font-weight:700;margin-bottom:20px;color:var(–ink);}
+.problem-text h2 em{font-style:italic;color:var(–teal);}
+.problem-text p{font-size:15px;color:var(–muted);line-height:1.75;margin-bottom:16px;}
+.gap-list{display:flex;flex-direction:column;gap:12px;}
+.gap-item{background:var(–white);border:1px solid var(–border);border-radius:8px;padding:18px 20px;border-left:3px solid var(–teal);}
+.gap-num{font-family:var(–mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(–teal);margin-bottom:5px;}
+.gap-title{font-size:13px;font-weight:600;color:var(–ink);margin-bottom:3px;}
+.gap-desc{font-size:12px;color:var(–muted);line-height:1.55;font-family:var(–mono);}
+
+/* \─\─\─ STRATEGY \─\─\─ */
+.strategy-intro{font-size:15px;color:rgba(255,255,255,0.5);line-height:1.75;max-width:600px;margin-bottom:56px;}
+.flows-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.07);border-radius:10px;overflow:hidden;margin-bottom:40px;}
+.flow-tile{background:var(–navy2);padding:24px;}
+.flow-tile:hover{background:rgba(0,168,181,0.07);}
+.ft-num{font-family:var(–serif);font-size:36px;font-weight:700;color:rgba(255,255,255,0.08);line-height:1;margin-bottom:12px;}
+.ft-title{font-size:13px;font-weight:600;color:var(–white);margin-bottom:6px;}
+.ft-desc{font-family:var(–mono);font-size:10px;color:rgba(255,255,255,0.4);line-height:1.6;}
+.ft-tag{display:inline-block;margin-top:10px;font-family:var(–mono);font-size:9px;letter-spacing:0.07em;padding:2px 8px;border-radius:2px;text-transform:uppercase;}
+.ft-email{background:rgba(0,168,181,0.15);color:var(–teal);}
+.ft-sms{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);}
+.ft-both{background:rgba(201,168,76,0.12);color:var(–gold);}
+
+/* segment table dark */
+.seg-section-title{font-family:var(–serif);font-size:28px;font-weight:700;color:var(–white);margin-bottom:20px;}
+.seg-wrap{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;overflow:hidden;}
+.seg-table{width:100%;border-collapse:collapse;}
+.seg-table th{font-family:var(–mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(–teal);padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);text-align:left;}
+.seg-table td{font-family:var(–mono);font-size:11px;color:rgba(255,255,255,0.5);padding:13px 16px;border-bottom:1px solid rgba(255,255,255,0.05);vertical-align:top;line-height:1.5;}
+.seg-table tr:last-child td{border-bottom:none;}
+.seg-table tr:hover td{background:rgba(0,168,181,0.04);color:rgba(255,255,255,0.65);}
+.seg-name{font-family:var(–sans);font-size:12px;font-weight:600;color:var(–white);}
+
+/* \─\─\─ PACKAGES \─\─\─ */
+.pkg-intro{font-size:15px;color:var(–muted);line-height:1.75;max-width:580px;margin-bottom:48px;}
+.pkg-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:48px;max-width:900px;margin-left:auto;margin-right:auto;}
+.pkg{background:var(–white);border:1.5px solid var(–border);border-radius:10px;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;display:flex;flex-direction:column;}
+.pkg:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.1);}
+.pkg.highlighted{border-color:var(–teal);}
+.pkg-top{padding:22px 20px 18px;border-bottom:1px solid var(–border);}
+.pkg.highlighted .pkg-top{background:var(–teal);}
+.pkg-option{font-family:var(–mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(–teal);margin-bottom:8px;}
+.pkg.highlighted .pkg-option{color:rgba(255,255,255,0.6);}
+.pkg-name{font-size:15px;font-weight:700;color:var(–ink);margin-bottom:4px;line-height:1.2;}
+.pkg.highlighted .pkg-name{color:var(–white);}
+.pkg-line{font-family:var(–mono);font-size:10px;color:var(–muted);line-height:1.4;}
+.pkg.highlighted .pkg-line{color:rgba(255,255,255,0.55);}
+.pkg-price-area{margin-top:14px;}
+.pkg-price{font-family:var(–serif);font-size:30px;font-weight:700;color:var(–ink);line-height:1;}
+.pkg.highlighted .pkg-price{color:var(–white);}
+.pkg-price-sub{font-family:var(–mono);font-size:10px;color:var(–muted);margin-top:2px;}
+.pkg.highlighted .pkg-price-sub{color:rgba(255,255,255,0.5);}
+.pkg-body{padding:18px 20px;flex:1;display:flex;flex-direction:column;}
+.pkg-meta{display:flex;gap:16px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(–border);}
+.pm-item{text-align:center;}
+.pm-val{font-family:var(–serif);font-size:20px;font-weight:700;color:var(–teal);display:block;line-height:1;}
+.pm-lbl{font-family:var(–mono);font-size:8px;text-transform:uppercase;letter-spacing:0.1em;color:var(–muted);}
+.pkg-features{list-style:none;display:flex;flex-direction:column;gap:6px;flex:1;}
+.pkg-features li{font-family:var(–mono);font-size:10px;color:var(–ink);display:flex;gap:7px;line-height:1.45;}
+.pkg-features li::before{content:’\✓’;color:var(–teal);font-weight:700;flex-shrink:0;}
+.pkg-features li.off{color:#b0b8c4;}
+.pkg-features li.off::before{content:’—’;color:#d1d8e0;}
+/* ─── TIMELINE ─── */
+.tl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid rgba(255,255,255,0.07);border-radius:10px;overflow:hidden;margin-bottom:40px;}
+.tl-col{border-right:1px solid rgba(255,255,255,0.07);}
+.tl-col:last-child{border-right:none;}
+.tl-head{padding:16px 18px;background:rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.07);}
+.tl-head.h-teal{background:var(–teal);}
+.tl-pkg{font-family:var(–mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:4px;}
+.tl-head.h-teal .tl-pkg{color:rgba(11,22,35,0.6);}
+.tl-name{font-size:13px;font-weight:700;color:var(–white);}
+.tl-head.h-teal .tl-name{color:var(–navy);}
+.tl-phases{padding:4px 0;}
+.tl-phase{padding:12px 18px;border-bottom:1px solid rgba(255,255,255,0.05);}
+.tl-phase:last-child{border-bottom:none;}
+.tl-ph-date{font-family:var(–mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(–teal);margin-bottom:3px;}
+.tl-ph-desc{font-family:var(–mono);font-size:10px;color:rgba(255,255,255,0.4);line-height:1.5;}
+
+/* ─── NEXT STEPS ─── */
+#nextsteps{background:var(–navy);background-image:radial-gradient(ellipse 80% 60% at 50% 100%, rgba(0,168,181,0.07) 0%, transparent 60%);}
+.ns-center{text-align:center;max-width:600px;margin:0 auto 56px;}
+.ns-h{font-family:var(–serif);font-size:clamp(28px,3.5vw,44px);font-weight:700;color:var(–white);margin-bottom:16px;line-height:1.1;}
+.ns-h em{font-style:italic;color:var(–teal);}
+.ns-p{font-size:15px;color:rgba(255,255,255,0.45);line-height:1.75;}
+.ns-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:56px;}
+.ns-step{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:28px 24px;}
+.ns-step-n{font-family:var(–mono);font-size:11px;font-weight:700;color:var(–teal);letter-spacing:0.14em;margin-bottom:10px;}
+.ns-step-t{font-size:13px;font-weight:600;color:var(–white);margin-bottom:5px;}
+.ns-step-d{font-family:var(–mono);font-size:10px;color:rgba(255,255,255,0.4);line-height:1.65;}
+.ns-cta{display:flex;gap:12px;justify-content:center;}
+
+/* ─── METRICS SECTION ─── */
+.mx-tier{margin-bottom:48px;}
+.mx-tier-head{margin-bottom:20px;}
+.mx-tier-label{font-family:var(–mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(–teal);margin-bottom:6px;}
+.mx-tier-name{font-family:var(–serif);font-size:22px;font-weight:700;color:var(–white);margin-bottom:6px;}
+.mx-tier-desc{font-family:var(–mono);font-size:11px;color:rgba(255,255,255,0.4);line-height:1.65;max-width:580px;}
+.mx-table-wrap{border:1px solid rgba(255,255,255,0.07);border-radius:10px;overflow:hidden;}
+.mx-table{width:100%;border-collapse:collapse;}
+.mx-table thead tr{background:rgba(255,255,255,0.04);}
+.mx-table th{font-family:var(–mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(–teal);padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.07);text-align:left;white-space:nowrap;}
+.mx-table td{font-family:var(–mono);font-size:10px;color:rgba(255,255,255,0.45);padding:13px 16px;border-bottom:1px solid rgba(255,255,255,0.05);vertical-align:middle;line-height:1.5;}
+.mx-table tr:last-child td{border-bottom:none;}
+.mx-table tr:hover td{background:rgba(0,168,181,0.04);color:rgba(255,255,255,0.65);}
+.mx-metric{font-size:11px;font-weight:600;color:var(–white);font-family:var(–sans);}
+.mx-val{color:var(–teal);font-weight:600;white-space:nowrap;}
+.mx-cadence{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:32px 36px;}
+.mx-cad-title{font-family:var(–serif);font-size:20px;font-weight:700;color:var(–white);margin-bottom:24px;}
+.mx-cad-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.mx-cad-item{border-left:2px solid var(–teal);padding-left:16px;}
+.mx-cad-freq{font-family:var(–mono);font-size:10px;font-weight:700;color:var(–teal);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;}
+.mx-cad-desc{font-family:var(–mono);font-size:10px;color:rgba(255,255,255,0.4);line-height:1.65;}
+
+/* ─── STRATEGY TABS ─── */
+
+/* ─── RADIO TABS ─── */
+.tab-radio { display: none; }
+.str-tab { cursor: pointer; }
+.flow-detail { display: none; }
+#tab-checkout:checked ~ .str-tabs label[for=“tab-checkout”],
+#tab-postpurchase:checked ~ .str-tabs label[for=“tab-postpurchase”],
+#tab-winback:checked ~ .str-tabs label[for=“tab-winback”],
+#tab-siteabandon:checked ~ .str-tabs label[for=“tab-siteabandon”],
+#tab-welcome:checked ~ .str-tabs label[for=“tab-welcome”] {
+background: var(–teal); color: var(–navy); border-color: var(–teal); font-weight: 700;
+}
+#tab-checkout:checked ~ #flow-checkout,
+#tab-postpurchase:checked ~ #flow-postpurchase,
+#tab-winback:checked ~ #flow-winback,
+#tab-siteabandon:checked ~ #flow-siteabandon,
+#tab-welcome:checked ~ #flow-welcome { display: block; }
+
+.str-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;}
+.str-tab{font-family:var(–mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:8px 16px;border-radius:4px;border:1px solid rgba(255,255,255,0.15);background:none;color:rgba(255,255,255,0.45);cursor:pointer;transition:all 0.2s;}
+.str-tab:hover{color:rgba(255,255,255,0.8);border-color:rgba(255,255,255,0.3);}
+.str-tab.active{background:var(–teal);color:var(–navy);border-color:var(–teal);font-weight:700;}
+.flow-detail{display:none;}.flow-detail.active{display:block;}
+.fd-meta{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:20px;}
+.fd-trigger{font-family:var(–mono);font-size:10px;letter-spacing:0.06em;color:rgba(255,255,255,0.45);text-transform:uppercase;}
+.fd-tag{font-family:var(–mono);font-size:10px;letter-spacing:0.06em;color:var(–teal);text-transform:uppercase;}
+.fd-emails{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+.fd-email{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:20px;}
+.fd-email-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.fd-num{font-family:var(–mono);font-size:10px;font-weight:700;color:var(–teal);letter-spacing:0.08em;text-transform:uppercase;}
+.fd-timing{font-family:var(–mono);font-size:9px;color:rgba(255,255,255,0.35);letter-spacing:0.06em;}
+.fd-subject{font-size:14px;font-weight:600;color:var(–white);margin-bottom:8px;line-height:1.3;}
+.fd-purpose{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:8px;}
+.fd-goal{font-family:var(–mono);font-size:9px;color:var(–teal);letter-spacing:0.06em;text-transform:uppercase;}
+.fd-branches{margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.08);}
+.fd-branch-label{font-family:var(–mono);font-size:9px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px;}
+.fd-branch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;}
+.fd-branch{background:rgba(255,255,255,0.03);border-radius:6px;padding:12px;}
+.fd-branch-name{font-family:var(–mono);font-size:9px;font-weight:700;color:var(–teal);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:5px;}
+.fd-branch-hook{font-size:11px;color:rgba(255,255,255,0.45);line-height:1.6;}
+.strategy-intro{font-size:15px;color:rgba(255,255,255,0.5);line-height:1.75;max-width:600px;margin-bottom:40px;}
+
+/* ─── TECH STACK SECTION ─── */
+
+/* ─── SYSTEM ARCHITECTURE ─── */
+
+.ts-cta{margin-top:24px;}
+.ts-doc-btn{display:inline-flex;align-items:center;gap:20px;background:rgba(0,168,181,0.08);border:1px solid rgba(0,168,181,0.25);border-radius:10px;padding:20px 28px;text-decoration:none;transition:all 0.2s;width:100%;box-sizing:border-box;}
+.ts-doc-btn:hover{background:rgba(0,168,181,0.14);border-color:rgba(0,168,181,0.45);transform:translateY(-1px);}
+.ts-doc-icon{font-size:22px;color:var(–teal);flex-shrink:0;font-weight:300;}
+.ts-doc-text{display:flex;flex-direction:column;gap:3px;}
+.ts-doc-label{font-size:14px;font-weight:600;color:var(–white);}
+.ts-doc-sub{font-family:var(–mono);font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:0.04em;}
+.ts-arch{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:36px 40px;margin-bottom:0;}
+.ts-arch-flow{display:grid;grid-template-columns:1fr 40px 1fr 40px 1fr;gap:0;align-items:start;margin-top:32px;}
+.ts-arch-col{display:flex;flex-direction:column;gap:0;}
+.ts-arch-divider{display:flex;align-items:center;justify-content:center;font-size:20px;color:rgba(255,255,255,0.2);padding-top:60px;}
+.ts-arch-node{border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:16px 18px;margin-bottom:0;}
+.ts-arch-arrow{text-align:center;padding:8px 0;font-size:16px;color:rgba(255,255,255,0.15);}
+.ts-arch-node-label{font-family:var(–mono);font-size:8px;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:5px;}
+.ts-arch-node-name{font-size:12px;font-weight:600;color:var(–white);margin-bottom:5px;line-height:1.3;}
+.ts-arch-node-desc{font-family:var(–mono);font-size:9px;color:rgba(255,255,255,0.35);line-height:1.6;}
+.ts-arch-user{border-color:rgba(255,255,255,0.12);background:rgba(255,255,255,0.03);}
+.ts-arch-user .ts-arch-node-label{color:rgba(255,255,255,0.4);}
+.ts-arch-klaviyo{border-color:rgba(0,168,181,0.25);background:rgba(0,168,181,0.05);}
+.ts-arch-klaviyo .ts-arch-node-label{color:var(–teal);}
+.ts-arch-thrivecart{border-color:rgba(201,168,76,0.25);background:rgba(201,168,76,0.05);}
+.ts-arch-thrivecart .ts-arch-node-label{color:var(–gold);}
+.ts-arch-stripe{border-color:rgba(99,91,255,0.25);background:rgba(99,91,255,0.05);}
+.ts-arch-stripe .ts-arch-node-label{color:#a78bfa;}
+.ts-arch-mailerlite{border-color:rgba(255,255,255,0.1);background:rgba(255,255,255,0.03);}
+.ts-arch-mailerlite .ts-arch-node-label{color:rgba(255,255,255,0.4);}
+@media(max-width:900px){.ts-arch-flow{grid-template-columns:1fr;}.ts-arch-divider{transform:rotate(90deg);padding:0;}}
+
+.ts-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:48px;}
+.ts-platform{border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;}
+.ts-platform-head{padding:24px 28px;}
+.ts-ml{background:rgba(255,255,255,0.04);}
+.ts-kl{background:rgba(0,168,181,0.12);border-bottom:1px solid rgba(0,168,181,0.2);}
+.ts-platform-label{font-family:var(–mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:8px;}
+.ts-kl .ts-platform-label{color:var(–teal);}
+.ts-platform-name{font-family:var(–serif);font-size:18px;font-weight:700;color:var(–white);margin-bottom:4px;line-height:1.2;}
+.ts-platform-sub{font-family:var(–mono);font-size:10px;color:rgba(255,255,255,0.35);}
+.ts-platform-body{padding:24px 28px;}
+.ts-flow-label{font-family:var(–mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:16px;}
+.ts-flows{display:flex;flex-direction:column;gap:0;}
+.ts-flow{display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.ts-flow:last-child{border-bottom:none;}
+.ts-flow-num{font-family:var(–mono);font-size:10px;font-weight:700;color:rgba(255,255,255,0.2);flex-shrink:0;width:20px;padding-top:2px;}
+.ts-kl .ts-flow-num{color:var(–teal);}
+.ts-flow-name{font-size:12px;font-weight:600;color:var(–white);margin-bottom:3px;}
+.ts-flow-desc{font-family:var(–mono);font-size:10px;color:rgba(255,255,255,0.4);line-height:1.6;}
+.ts-note{margin-top:20px;padding:12px 16px;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:6px;font-family:var(–mono);font-size:10px;color:rgba(201,168,76,0.8);line-height:1.6;}
+.ts-dev{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:36px 40px;}
+.ts-dev-title{font-family:var(–serif);font-size:22px;font-weight:700;color:var(–white);margin-bottom:6px;}
+.ts-dev-sub{font-family:var(–mono);font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:32px;line-height:1.6;}
+.ts-dev{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:36px 40px;}
+.ts-dev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.ts-dev-item{display:flex;gap:14px;align-items:flex-start;}
+.ts-dev-title{font-family:var(–serif);font-size:22px;font-weight:700;color:var(–white);margin-bottom:6px;}
+.ts-dev-sub{font-family:var(–mono);font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:32px;line-height:1.6;}
+.ts-dev-num{font-family:var(–mono);font-size:11px;font-weight:700;color:var(–teal);flex-shrink:0;width:20px;padding-top:2px;}
+.ts-dev-name{font-size:12px;font-weight:600;color:var(–white);margin-bottom:4px;}
+.ts-dev-desc{font-family:var(–mono);font-size:10px;color:rgba(255,255,255,0.4);line-height:1.6;}
+@media(max-width:768px){.ts-grid{grid-template-columns:1fr;}.ts-dev-grid{grid-template-columns:1fr;}}
+
+/* Floating cards animation */
+
+8%   { opacity: 0.65; }
+92%  { opacity: 0.45; }
+100% { transform: translateY(110vh); opacity: 0; }
+}
+
+/* Login card */
+
+.pg-input:focus { border-color: #00a8b5; }
+
+.pg-btn:hover { background: #009aa6; }
+
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+–navy:#0b1623;
+–navy2:#0f2035;
+–teal:#00a8b5;
+–teal-dim:rgba(0,168,181,0.15);
+–teal-line:rgba(0,168,181,0.3);
+–white:#ffffff;
+–off:#f5f7fa;
+–ink:#1a2332;
+–muted:#6b7a8d;
+–border:#e4e8f0;
+–gold:#c9a84c;
+–serif:‘Libre Baskerville’,serif;
+–sans:‘Plus Jakarta Sans’,sans-serif;
+–mono:‘Plus Jakarta Sans’,monospace;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(–sans);background:var(–navy);color:var(–white);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+
+/* \─\─\─ PROGRESS BAR \─\─\─ */
+.progress-bar{position:fixed;top:0;left:0;height:2px;background:var(–teal);z-index:200;width:0%;transition:width 0.1s;}
+
+/* \─\─\─ NAV \─\─\─ */
+nav{
+position:fixed;top:0;left:0;right:0;z-index:100;
+display:flex;align-items:center;justify-content:space-between;
+padding:0 48px;height:56px;
+background:rgba(11,22,35,0.92);backdrop-filter:blur(16px);
+border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.nav-logo{font-family:var(–mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.4);}
+.nav-logo span{color:var(–teal);}
+.nav-links{display:flex;gap:4px;}
+.nav-link{
+font-family:var(–mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;
+color:rgba(255,255,255,0.35);padding:5px 12px;border-radius:3px;
+cursor:pointer;border:none;background:none;transition:all 0.2s;text-decoration:none;
+}
+.nav-link:hover{color:rgba(255,255,255,0.8);}
+.nav-cta{
+font-family:var(–mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
+color:var(–navy);background:var(–teal);padding:6px 16px;border-radius:3px;
+border:none;cursor:pointer;transition:all 0.2s;
+}
+.nav-cta:hover{background:#00c4d3;}
+
+/* \─\─\─ SECTIONS \─\─\─ */
+section{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;}
+section.light{background:var(–off);color:var(–ink);}
+section.white{background:var(–white);color:var(–ink);}
+section.dark{background:var(–navy);}
+section.dark2{background:var(–navy2);}
+
+.container{max-width:1100px;margin:0 auto;padding:100px 48px 80px;width:100%;}
+.container-sm{max-width:860px;margin:0 auto;padding:100px 48px 80px;width:100%;}
+
+/* \─\─\─ SECTION LABELS \─\─\─ */
+.s-label{
+font-family:var(–mono);font-size:10px;letter-spacing:0.24em;text-transform:uppercase;
+color:var(–teal);margin-bottom:20px;display:flex;align-items:center;gap:12px;
+}
+.s-label::before{content:’’;display:block;width:28px;height:1px;background:var(–teal);}
+
+/* \─\─\─ HERO \─\─\─ */
+#hero{
+background:var(–navy);
+background-image:
+radial-gradient(ellipse 60% 50% at 70% 50%, rgba(0,168,181,0.08) 0%, transparent 70%),
+radial-gradient(ellipse 40% 60% at 20% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
+overflow:hidden;
+}
+.hero-inner{max-width:1100px;margin:0 auto;padding:140px 48px 80px;display:grid;grid-template-columns:1fr 380px;gap:60px;align-items:center;}
+.hero-kicker{font-family:var(–mono);font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:var(–teal);margin-bottom:24px;}
+.hero-h1{font-family:var(–serif);font-size:clamp(42px,5.5vw,72px);line-height:1.02;font-weight:900;margin-bottom:24px;letter-spacing:-0.01em;}
+.hero-h1 em{font-style:italic;color:var(–teal);}
+.hero-sub{font-size:16px;color:rgba(255,255,255,0.5);line-height:1.7;max-width:480px;margin-bottom:40px;}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-primary{font-family:var(–mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;background:var(–teal);color:var(–navy);padding:12px 24px;border-radius:4px;border:none;cursor:pointer;font-weight:600;transition:all 0.2s;text-decoration:none;display:inline-block;}
+.btn-primary:hover{background:#00c4d3;transform:translateY(-1px);}
+.btn-ghost{font-family:var(–mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;background:none;color:rgba(255,255,255,0.5);padding:12px 24px;border-radius:4px;border:1px solid rgba(255,255,255,0.15);cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-block;}
+.btn-ghost:hover{color:var(–white);border-color:rgba(255,255,255,0.4);}
+.hero-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:28px;}
+.hero-card-label{font-family:var(–mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(–teal);margin-bottom:20px;}
+.hero-stat{padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.07);}
+.hero-stat:last-child{border-bottom:none;padding-bottom:0;}
+.hero-stat-val{font-family:var(–serif);font-size:28px;font-weight:700;color:var(–white);}
+.hero-stat-lbl{font-family:var(–mono);font-size:10px;color:rgba(255,255,255,0.35);margin-top:2px;text-transform:uppercase;letter-spacing:0.1em;}
+
+/* \─\─\─ PROBLEM \─\─\─ */
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:48px;}
+.problem-text h2{font-family:var(–serif);font-size:clamp(30px,3.5vw,46px);line-height:1.1;font-weight:700;margin-bottom:20px;color:var(–ink);}
+.problem-text h2 em{font-style:italic;color:var(–teal);}
+.problem-text p{font-size:15px;color:var(–muted);line-height:1.75;margin-bottom:16px;}
+.gap-list{display:flex;flex-direction:column;gap:12px;}
+.gap-item{background:var(–white);border:1px solid var(–border);border-radius:8px;padding:18px 20px;border-left:3px solid var(–teal);}
+.gap-num{font-family:var(–mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(–teal);margin-bottom:5px;}
+.gap-title{font-size:13px;font-weight:600;color:var(–ink);margin-bottom:3px;}
+.gap-desc{font-size:12px;color:var(–muted);line-height:1.55;font-family:var(–mono);}
+
+/* \─\─\─ STRATEGY \─\─\─ */
+.strategy-intro{font-size:15px;color:rgba(255,255,255,0.5);line-height:1.75;max-width:600px;margin-bottom:56px;}
+.flows-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.07);border-radius:10px;overflow:hidden;margin-bottom:40px;}
+.flow-tile{background:var(–navy2);padding:24px;}
+.flow-tile:hover{background:rgba(0,168,181,0.07);}
+.ft-num{font-family:var(–serif);font-size:36px;font-weight:700;color:rgba(255,255,255,0.08);line-height:1;margin-bottom:12px;}
+.ft-title{font-size:13px;font-weight:600;color:var(–white);margin-bottom:6px;}
+.ft-desc{font-family:var(–mono);font-size:10px;color:rgba(255,255,255,0.4);line-height:1.6;}
+.ft-tag{display:inline-block;margin-top:10px;font-family:var(–mono);font-size:9px;letter-spacing:0.07em;padding:2px 8px;border-radius:2px;text-transform:uppercase;}
+.ft-email{background:rgba(0,168,181,0.15);color:var(–teal);}
+.ft-sms{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);}
+.ft-both{background:rgba(201,168,76,0.12);color:var(–gold);}
+
+/* segment table dark */
+.seg-section-title{font-family:var(–serif);font-size:28px;font-weight:700;color:var(–white);margin-bottom:20px;}
+.seg-wrap{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;overflow:hidden;}
+.seg-table{width:100%;border-collapse:collapse;}
+.seg-table th{font-family:var(–mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(–teal);padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);text-align:left;}
+.seg-table td{font-family:var(–mono);font-size:11px;color:rgba(255,255,255,0.5);padding:13px 16px;border-bottom:1px solid rgba(255,255,255,0.05);vertical-align:top;line-height:1.5;}
+.seg-table tr:last-child td{border-bottom:none;}
+.seg-table tr:hover td{background:rgba(0,168,181,0.04);color:rgba(255,255,255,0.65);}
+.seg-name{font-family:var(–sans);font-size:12px;font-weight:600;color:var(–white);}
+
+/* \─\─\─ PACKAGES \─\─\─ */
+.pkg-intro{font-size:15px;color:var(–muted);line-height:1.75;max-width:580px;margin-bottom:48px;}
+.pkg-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:48px;max-width:900px;margin-left:auto;margin-right:auto;}
+.pkg{background:var(–white);border:1.5px solid var(–border);border-radius:10px;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;display:flex;flex-direction:column;}
+.pkg:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.1);}
+.pkg.highlighted{border-color:var(–teal);}
+.pkg-top{padding:22px 20px 18px;border-bottom:1px solid var(–border);}
+.pkg.highlighted .pkg-top{background:var(–teal);}
+.pkg-option{font-family:var(–mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(–teal);margin-bottom:8px;}
+.pkg.highlighted .pkg-option{color:rgba(255,255,255,0.6);}
+.pkg-name{font-size:15px;font-weight:700;color:var(–ink);margin-bottom:4px;line-height:1.2;}
+.pkg.highlighted .pkg-name{color:var(–white);}
+.pkg-line{font-family:var(–mono);font-size:10px;color:var(–muted);line-height:1.4;}
+.pkg.highlighted .pkg-line{color:rgba(255,255,255,0.55);}
+.pkg-price-area{margin-top:14px;}
+.pkg-price{font-family:var(–serif);font-size:30px;font-weight:700;color:var(–ink);line-height:1;}
+.pkg.highlighted .pkg-price{color:var(–white);}
+.pkg-price-sub{font-family:var(–mono);font-size:10px;color:var(–muted);margin-top:2px;}
+.pkg.highlighted .pkg-price-sub{color:rgba(255,255,255,0.5);}
+.pkg-body{padding:18px 20px;flex:1;display:flex;flex-direction:column;}
+.pkg-meta{display:flex;gap:16px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(–border);}
+.pm-item{text-align:center;}
+.pm-val{font-family:var(–serif);font-size:20px;font-weight:700;color:var(–teal);display:block;line-height:1;}
+.pm-lbl{font-family:var(–mono);font-size:8px;text-transform:uppercase;letter-spacing:0.1em;color:var(–muted);}
+.pkg-features{list-style:none;display:flex;flex-direction:column;gap:6px;flex:1;}
+.pkg-features li{font-family:var(–mono);font-size:10px;color:var(–ink);display:flex;gap:7px;line-height:1.45;}
+.pkg-features li::before{content:’\✓’;color:var(–teal);font-weight:700;flex-shrink:0;}
+.pkg-features li.off{color:#b0b8c4;}
+.pkg-features li.off::before{content:’—’;color:#d1d8e0;}
+/* ─── TIMELINE ─── */
+.tl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid rgba(255,255,255,0.07);border-radius:10px;overflow:hidden;margin-bottom:40px;}
+.tl-col{border-right:1px solid rgba(255,255,255,0.07);}
+.tl-col:last-child{border-right:none;}
+.tl-head{padding:16px 18px;background:rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.07);}
+.tl-head.h-teal{background:var(–teal);}
+.tl-pkg{font-family:var(–mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:4px;}
+.tl-head.h-teal .tl-pkg{color:rgba(11,22,35,0.6);}
+.tl-name{font-size:13px;font-weight:700;color:var(–white);}
+.tl-head.h-teal .tl-name{color:var(–navy);}
+.tl-phases{padding:4px 0;}
+.tl-phase{padding:12px 18px;border-bottom:1px solid rgba(255,255,255,0.05);}
+.tl-phase:last-child{border-bottom:none;}
+.tl-ph-date{font-family:var(–mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(–teal);margin-bottom:3px;}
+.tl-ph-desc{font-family:var(–mono);font-size:10px;color:rgba(255,255,255,0.4);line-height:1.5;}
+
+/* ─── NEXT STEPS ─── */
+#nextsteps{background:var(–navy);background-image:radial-gradient(ellipse 80% 60% at 50% 100%, rgba(0,168,181,0.07) 0%, transparent 60%);}
+.ns-center{text-align:center;max-width:600px;margin:0 auto 56px;}
+.ns-h{font-family:var(–serif);font-size:clamp(28px,3.5vw,44px);font-weight:700;color:var(–white);margin-bottom:16px;line-height:1.1;}
+.ns-h em{font-style:italic;color:var(–teal);}
+.ns-p{font-size:15px;color:rgba(255,255,255,0.45);line-height:1.75;}
+.ns-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:56px;}
+.ns-step{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:28px 24px;}
+.ns-step-n{font-family:var(–mono);font-size:11px;font-weight:700;color:var(–teal);letter-spacing:0.14em;margin-bottom:10px;}
+.ns-step-t{font-size:13px;font-weight:600;color:var(–white);margin-bottom:5px;}
+.ns-step-d{font-family:var(–mono);font-size:10px;color:rgba(255,255,255,0.4);line-height:1.65;}
+.ns-cta{display:flex;gap:12px;justify-content:center;}
+
+/* ─── METRICS SECTION ─── */
+.mx-tier{margin-bottom:48px;}
+.mx-tier-head{margin-bottom:20px;}
+.mx-tier-label{font-family:var(–mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(–teal);margin-bottom:6px;}
+.mx-tier-name{font-family:var(–serif);font-size:22px;font-weight:700;color:var(–white);margin-bottom:6px;}
+.mx-tier-desc{font-family:var(–mono);font-size:11px;color:rgba(255,255,255,0.4);line-height:1.65;max-width:580px;}
+.mx-table-wrap{border:1px solid rgba(255,255,255,0.07);border-radius:10px;overflow:hidden;}
+.mx-table{width:100%;border-collapse:collapse;}
+.mx-table thead tr{background:rgba(255,255,255,0.04);}
+.mx-table th{font-family:var(–mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(–teal);padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.07);text-align:left;white-space:nowrap;}
+.mx-table td{font-family:var(–mono);font-size:10px;color:rgba(255,255,255,0.45);padding:13px 16px;border-bottom:1px solid rgba(255,255,255,0.05);vertical-align:middle;line-height:1.5;}
+.mx-table tr:last-child td{border-bottom:none;}
+.mx-table tr:hover td{background:rgba(0,168,181,0.04);color:rgba(255,255,255,0.65);}
+.mx-metric{font-size:11px;font-weight:600;color:var(–white);font-family:var(–sans);}
+.mx-val{color:var(–teal);font-weight:600;white-space:nowrap;}
+.mx-cadence{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:32px 36px;}
+.mx-cad-title{font-family:var(–serif);font-size:20px;font-weight:700;color:var(–white);margin-bottom:24px;}
+.mx-cad-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.mx-cad-item{border-left:2px solid var(–teal);padding-left:16px;}
+.mx-cad-freq{font-family:var(–mono);font-size:10px;font-weight:700;color:var(–teal);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;}
+.mx-cad-desc{font-family:var(–mono);font-size:10px;color:rgba(255,255,255,0.4);line-height:1.65;}
+
+/* ─── STRATEGY TABS ─── */
+
+/* ─── RADIO TABS ─── */
+.tab-radio { display: none; }
+.str-tab { cursor: pointer; }
+.flow-detail { display: none; }
+#tab-checkout:checked ~ .str-tabs label[for=“tab-checkout”],
+#tab-postpurchase:checked ~ .str-tabs label[for=“tab-postpurchase”],
+#tab-winback:checked ~ .str-tabs label[for=“tab-winback”],
+#tab-siteabandon:checked ~ .str-tabs label[for=“tab-siteabandon”],
+#tab-welcome:checked ~ .str-tabs label[for=“tab-welcome”] {
+background: var(–teal); color: var(–navy); border-color: var(–teal); font-weight: 700;
+}
+#tab-checkout:checked ~ #flow-checkout,
+#tab-postpurchase:checked ~ #flow-postpurchase,
+#tab-winback:checked ~ #flow-winback,
+#tab-siteabandon:checked ~ #flow-siteabandon,
+#tab-welcome:checked ~ #flow-welcome { display: block; }
+
+.str-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;}
+.str-tab{font-family:var(–mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:8px 16px;border-radius:4px;border:1px solid rgba(255,255,255,0.15);background:none;color:rgba(255,255,255,0.45);cursor:pointer;transition:all 0.2s;}
+.str-tab:hover{color:rgba(255,255,255,0.8);border-color:rgba(255,255,255,0.3);}
+.str-tab.active{background:var(–teal);color:var(–navy);border-color:var(–teal);font-weight:700;}
+.flow-detail{display:none;}.flow-detail.active{display:block;}
+.fd-meta{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:20px;}
+.fd-trigger{font-family:var(–mono);font-size:10px;letter-spacing:0.06em;color:rgba(255,255,255,0.45);text-transform:uppercase;}
+.fd-tag{font-family:var(–mono);font-size:10px;letter-spacing:0.06em;color:var(–teal);text-transform:uppercase;}
+.fd-emails{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+.fd-email{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:20px;}
+.fd-email-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.fd-num{font-family:var(–mono);font-size:10px;font-weight:700;color:var(–teal);letter-spacing:0.08em;text-transform:uppercase;}
+.fd-timing{font-family:var(–mono);font-size:9px;color:rgba(255,255,255,0.35);letter-spacing:0.06em;}
+.fd-subject{font-size:14px;font-weight:600;color:var(–white);margin-bottom:8px;line-height:1.3;}
+.fd-purpose{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:8px;}
+.fd-goal{font-family:var(–mono);font-size:9px;color:var(–teal);letter-spacing:0.06em;text-transform:uppercase;}
+.fd-branches{margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.08);}
+.fd-branch-label{font-family:var(–mono);font-size:9px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px;}
+.fd-branch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;}
+.fd-branch{background:rgba(255,255,255,0.03);border-radius:6px;padding:12px;}
+.fd-branch-name{font-family:var(–mono);font-size:9px;font-weight:700;color:var(–teal);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:5px;}
+.fd-branch-hook{font-size:11px;color:rgba(255,255,255,0.45);line-height:1.6;}
+.strategy-intro{font-size:15px;color:rgba(255,255,255,0.5);line-height:1.75;max-width:600px;margin-bottom:40px;}
+
+/* Floating cards animation */
+
+8%   { opacity: 0.65; }
+92%  { opacity: 0.45; }
+100% { transform: translateY(110vh); opacity: 0; }
+}
+
+/* Login card */
+
+.pg-input:focus { border-color: #00a8b5; }
+
+.pg-btn:hover { background: #009aa6; }
+
+/* ─── PASSWORD GATE ─── */
+#pg-gate{position:fixed;inset:0;z-index:9999;background:#f0f4f8;display:flex;align-items:center;justify-content:center;font-family:‘Plus Jakarta Sans’,sans-serif;transition:opacity 0.4s;}
+.pg-login{background:#fff;border-radius:16px;padding:48px 44px;width:360px;box-shadow:0 24px 80px rgba(0,0,0,0.12),0 4px 16px rgba(0,0,0,0.06);text-align:center;}
+.pg-brand{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#00a8b5;font-weight:700;margin-bottom:20px;}
+.pg-title{font-family:‘Libre Baskerville’,serif;font-size:22px;font-weight:700;color:#0b1623;margin-bottom:8px;line-height:1.25;}
+.pg-sub{font-size:12px;color:#8a96a3;margin-bottom:28px;line-height:1.6;}
+.pg-field{width:100%;box-sizing:border-box;padding:12px 16px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:14px;font-family:‘Plus Jakarta Sans’,sans-serif;color:#0b1623;outline:none;transition:border-color 0.2s;text-align:center;letter-spacing:0.1em;}
+.pg-field:focus{border-color:#00a8b5;}
+.pg-field:valid{border-color:#00a8b5;background:#f0fafb;}
+.pg-btn{width:100%;margin-top:12px;padding:13px;background:#00a8b5;color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;font-family:‘Plus Jakarta Sans’,sans-serif;}
+.pg-date{margin-top:20px;font-size:10px;color:#b0bac4;letter-spacing:0.08em;text-transform:uppercase;}
+body:has(#pg-field:valid) #pg-gate{opacity:0;pointer-events:none;}
+body:has(#pg-field:valid) #mc{display:block!important;}
+
+.migration-waiver {
+  background: rgba(61, 158, 255, 0.06);
+  border: 1px solid rgba(61, 158, 255, 0.25);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin: 24px 0 32px;
+}
+.waiver-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #3D9EFF;
+  margin-bottom: 8px;
+}
+.waiver-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: inherit;
+  opacity: 0.85;
+}
+.strike {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+.milestone-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: rgba(76, 175, 125, 0.12);
+  color: #4CAF7D;
+  margin-bottom: 8px;
+}
+.milestone-list {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.milestone-list li {
+  font-size: 13px;
+  padding-left: 20px;
+  position: relative;
+  line-height: 1.5;
+}
+.milestone-list li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  opacity: 0.5;
+}
+.milestone-list li strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+}
+</style>
+
+</head>
+<body>
+
+<div id="pg-gate">
+  <div class="pg-login">
+    <div class="pg-brand">DigitsUp × BrandFeatured</div>
+    <div class="pg-title">Retention Strategy<br>Proposal</div>
+    <div class="pg-sub">Enter the password to continue.</div>
+    <input id="pg-field" class="pg-field" type="password" placeholder="Password" pattern="BF2026" required/>
+    <button class="pg-btn" id="pg-btn">View Proposal</button>
+    <div class="pg-date">March 2026 · Confidential</div>
+  </div>
+</div>
+<div id="mc" style="display:none;">
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav>
+  <div class="nav-logo">BrandFeatured <span>×</span> DigitsUp</div>
+  <div class="nav-links">
+    <a class="nav-link" href="#problem">The Gap</a>
+    <a class="nav-link" href="#strategy">Strategy</a>
+    <a class="nav-link" href="#techstack">Platform</a>
+    <a class="nav-link" href="#packages">Packages</a>
+    <a class="nav-link" href="#metrics">Metrics</a>
+    <a class="nav-link" href="#timeline">Timeline</a>
+    <a class="nav-link" href="#nextsteps">Next Steps</a>
+  </div>
+</nav>
+
+<!-- \═\═\═ HERO \═\═\═ -->
+
+<section id="hero" class="dark">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-kicker reveal">Email + SMS Growth Proposal &nbsp;·&nbsp; March 2025</div>
+      <h1 class="hero-h1 reveal reveal-delay-1">Turning Press Coverage Into a <em>Repeat Revenue Engine</em></h1>
+      <p class="hero-sub reveal reveal-delay-2">BrandFeatured has the product. The opportunity is everything that happens after the first sale — and right now, that's almost entirely untapped. This proposal outlines exactly how we close that gap.</p>
+      <div class="hero-actions reveal reveal-delay-3">
+        <a class="btn-primary" href="#packages">View Packages</a>
+        <a class="btn-ghost" href="#strategy">See the Strategy</a>
+      </div>
+    </div>
+    <div class="hero-card reveal reveal-delay-2">
+      <div class="hero-card-label">What we're building</div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">5</div>
+        <div class="hero-stat-lbl">Klaviyo automation flows</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">30–90</div>
+        <div class="hero-stat-lbl">Days to full deployment</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">$1,500</div>
+        <div class="hero-stat-lbl">Starting monthly</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- \═\═\═ PROBLEM \═\═\═ -->
+
+<section id="problem" class="light">
+  <div class="container">
+    <div class="s-label reveal">The Gap</div>
+    <div class="problem-grid">
+      <div class="problem-text reveal">
+        <h2>BrandFeatured sells a <em>one-time</em> product to customers who should be buying quarterly.</h2>
+        <p>Every touchpoint on the site is acquisition-only. The current email program is transactional at best — stage updates that read like receipts, no relationship, no retention, no reason to come back.</p>
+        <p>Meanwhile, the brands that compound their PR coverage — publishing every quarter, timed to seasonal moments — see outsized SEO gains, higher social proof scores, and measurably stronger conversion rates. BrandFeatured should be the one telling that story. Right now, nobody is.</p>
+      </div>
+      <div class="gap-list reveal reveal-delay-1">
+        <div class="gap-item">
+          <div class="gap-num">Gap 01</div>
+          <div class="gap-title">Pipeline emails are receipts, not relationships</div>
+          <div class="gap-desc">Stage updates (Briefing, Writing, Draft, Published) have zero brand voice. The "You're live" moment — the highest-leverage touchpoint BrandFeatured has — is currently a status notification.</div>
+        </div>
+        <div class="gap-item">
+          <div class="gap-num">Gap 02</div>
+          <div class="gap-title">No lifecycle after the campaign ends</div>
+          <div class="gap-desc">Nothing fires after Published. No post-purchase nurture. No seasonal re-engagement. No win-back. Buyers who should be on their third campaign have gone silent.</div>
+        </div>
+        <div class="gap-item">
+          <div class="gap-num">Gap 03</div>
+          <div class="gap-title">High-intent drop-off with no recovery</div>
+          <div class="gap-desc">PR is a considered purchase. Visitors land on the pricing page, hesitate, and leave. No site abandonment flow. No checkout recovery. These are the warmest leads on the site — and they're walking out quietly.</div>
+        </div>
+        <div class="gap-item">
+          <div class="gap-num">Gap 04</div>
+          <div class="gap-title">One message to every vertical</div>
+          <div class="gap-desc">A DTC founder and a restaurant operator have entirely different PR calendars. Right now they get the same email. Vertical segmentation unlocks seasonal relevance that generic sends can never achieve.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="strategy" class="dark2">
+  <div class="container">
+    <div class="s-label reveal">The Strategy</div>
+    <h2 style="font-family:var(--serif);font-size:clamp(28px,3.5vw,44px);font-weight:700;margin-bottom:16px;" class="reveal reveal-delay-1">Five flows. Every email, mapped out.</h2>
+    <p class="strategy-intro reveal reveal-delay-2">Here's exactly what gets built — every flow, every email, every subject line. The popup is the foundation: one industry question on signup that personalizes everything downstream.</p>
+
+```
+<!-- FLOW TABS -->
+```
+
+<input type="radio" name="flow-tab" id="tab-checkout" class="tab-radio" checked>
+<input type="radio" name="flow-tab" id="tab-welcome" class="tab-radio">
+<input type="radio" name="flow-tab" id="tab-winback" class="tab-radio">
+<input type="radio" name="flow-tab" id="tab-siteabandon" class="tab-radio">
+<input type="radio" name="flow-tab" id="tab-postpurchase" class="tab-radio">
+<div class="str-tabs">
+  <label class="str-tab" for="tab-checkout">Checkout Abandon</label>
+  <label class="str-tab" for="tab-welcome">Welcome + Popup</label>
+  <label class="str-tab" for="tab-winback">Win-Back</label>
+  <label class="str-tab" for="tab-siteabandon">Site Abandon</label>
+  <label class="str-tab" for="tab-postpurchase">Post-Purchase</label>
+</div>
+<div class="flow-detail" id="flow-checkout">
+
+```
+  <div class="fd-meta">
+    <span class="fd-trigger">Trigger: Started Checkout (no purchase)</span>
+    <span class="fd-tag">3 Emails · 1 SMS · 72hr window</span>
+  </div>
+  <div class="fd-emails">
+    <div class="fd-email">
+      <div class="fd-email-head">
+        <div class="fd-num">Email 1</div>
+        <div class="fd-timing">1 hour after abandon</div>
+      </div>
+      <div class="fd-subject">"You were close…"</div>
+      <div class="fd-purpose">Simple cart reminder. "[Package name] is still available." One trust signal — Trustpilot rating or total brands featured. Single CTA back to checkout. No discount yet — recovers anyone who just got interrupted.</div>
+      <div class="fd-goal">Goal: recover the easy wins before applying pressure</div>
+    </div>
+    <div class="fd-email">
+      <div class="fd-email-head">
+        <div class="fd-num">Email 2 + SMS</div>
+        <div class="fd-timing">24 hours after abandon</div>
+      </div>
+      <div class="fd-subject">"The 5 questions people ask before their first campaign"</div>
+      <div class="fd-purpose">Objection buster. Answers the real hesitations head-on: Is this real editorial? How long does it take? What's the SEO value? Can I review the draft? Can agencies resell? SMS fires alongside: "Still have questions about BrandFeatured? Reply — we'll answer directly."</div>
+      <div class="fd-goal">Goal: remove every reason not to buy</div>
+    </div>
+    <div class="fd-email">
+      <div class="fd-email-head">
+        <div class="fd-num">Email 3</div>
+        <div class="fd-timing">72 hours after abandon</div>
+      </div>
+      <div class="fd-subject">"Last chance — $15 off your first campaign"</div>
+      <div class="fd-purpose">Small incentive, valid 24 hours. "We want your first campaign to be a no-brainer." Modest offer — not a fire sale. After this email, subscriber moves to broadcast list. No further recovery pressure.</div>
+      <div class="fd-goal">Goal: close the final fence-sitters with a low-risk nudge</div>
+    </div>
+  </div>
+```
+
+</div>
+<div class="flow-detail" id="flow-welcome">
+
+```
+  <div class="fd-meta">
+    <span class="fd-trigger">Trigger: List join (popup signup) · Exit: Placed Order</span>
+    <span class="fd-tag">4 Emails · 10-day sequence · $25 off offer</span>
+  </div>
+  <div class="fd-emails">
+    <div class="fd-email">
+      <div class="fd-email-head">
+        <div class="fd-num">Popup — Step 1</div>
+        <div class="fd-timing">On-site form</div>
+      </div>
+      <div class="fd-subject">$25 off offer + email capture</div>
+      <div class="fd-purpose">Lead with the incentive. Single field — email only. No friction on Step 1. The industry question comes after they've already opted in on Step 2, so commitment is locked before we ask anything of them.</div>
+      <div class="fd-goal">Goal: maximize signup rate before asking anything</div>
+    </div>
+    <div class="fd-email">
+      <div class="fd-email-head">
+        <div class="fd-num">Popup — Step 2</div>
+        <div class="fd-timing">Immediately after email submitted</div>
+      </div>
+      <div class="fd-subject">"What best describes your brand?" (6 options)</div>
+      <div class="fd-purpose">DTC / Fashion · Service Business · Hospitality · Agency / Reseller · Personal Brand · Tech / Startup. Selecting an option sets a Klaviyo profile property: industry: [vertical]. This tag drives Post-Purchase branching, Win-Back FOMO angle, and Site Abandon case study matching. If skipped — tagged industry: unknown, receives default sequences.</div>
+      <div class="fd-goal">Goal: capture the segmentation data that personalizes everything downstream</div>
+    </div>
+    <div class="fd-email">
+      <div class="fd-email-head">
+        <div class="fd-num">Email 1</div>
+        <div class="fd-timing">Immediately on subscribe</div>
+      </div>
+      <div class="fd-subject">"$25 off inside — and what press coverage actually does for a brand like yours"</div>
+      <div class="fd-purpose">Deliver the code immediately. Lead with it, back it up with one real client result. Industry tag used here to swap one line — DTC gets a product brand example, service gets a consultant example. Short — the code is the hero.</div>
+      <div class="fd-goal">Goal: deliver on the promise instantly, establish credibility</div>
+    </div>
+    <div class="fd-email">
+      <div class="fd-email-head">
+        <div class="fd-num">Email 2</div>
+        <div class="fd-timing">Day 1</div>
+      </div>
+      <div class="fd-subject">"What press coverage actually does for your business"</div>
+      <div class="fd-purpose">Education email — no CTA, pure value. Three outcomes: (1) High-authority backlinks that move Google rankings, (2) "As Seen On" trust badge that converts visitors, (3) Press that qualifies for social verification. Demystifies the product before asking them to buy.</div>
+      <div class="fd-goal">Goal: shift perception from "press release service" to strategic growth tool</div>
+    </div>
+    <div class="fd-email">
+      <div class="fd-email-head">
+        <div class="fd-num">Email 3</div>
+        <div class="fd-timing">Day 3</div>
+      </div>
+      <div class="fd-subject">"Which package is right for your brand?"</div>
+      <div class="fd-purpose">CTA links to pricing page. Industry tag determines which package gets highlighted in copy — but it's one email, not six versions. Unknown/untagged subscribers get a "here's how to choose" angle instead.</div>
+      <div class="fd-goal">Goal: guide them to the right package without overwhelming</div>
+    </div>
+    <div class="fd-email">
+      <div class="fd-email-head">
+        <div class="fd-num">Email 4</div>
+        <div class="fd-timing">Day 8 · code expires Day 10</div>
+      </div>
+      <div class="fd-subject">"Your $25 off expires in 48 hours"</div>
+      <div class="fd-purpose">Short, direct, urgent. One line of social proof. Single CTA. After this email — if no purchase, subscriber moves to the broadcast list. No further nurture pressure.</div>
+      <div class="fd-goal">Goal: close with urgency, then hand off to campaigns</div>
+    </div>
+  </div>
+```
+
+</div>
+<div class="flow-detail" id="flow-winback">
+
+```
+  <div class="fd-meta">
+    <span class="fd-trigger">Trigger: 120+ days since last order · Previous buyer only</span>
+    <span class="fd-tag">3 Emails · 1 SMS · Industry FOMO angle</span>
+  </div>
+  <div class="fd-emails">
+    <div class="fd-email">
+      <div class="fd-email-head">
+        <div class="fd-num">Email 1</div>
+        <div class="fd-timing">Day 120 since last order</div>
+      </div>
+      <div class="fd-subject">"A lot has changed since your last BrandFeatured campaign"</div>
+      <div class="fd-purpose">Lead with product updates, not a discount. New premium outlets added. Expanded distribution. Updated badge formats. Frame the gap since their last campaign as an opportunity. Remind them what their original campaign accomplished. No ask yet — re-establish the relationship first.</div>
+      <div class="fd-goal">Goal: re-open the conversation without desperation</div>
+    </div>
+    <div class="fd-email">
+      <div class="fd-email-head">
+        <div class="fd-num">Email 2 + SMS</div>
+        <div class="fd-timing">Day 128</div>
+      </div>
+      <div class="fd-subject">"While you were away — what brands in your space did"</div>
+      <div class="fd-purpose">Industry FOMO drives this email entirely. A consulting firm used Business Insider to anchor their speaker bio — booked 3 new keynotes. A DTC brand published quarterly, organic traffic up 40% by month 6. "Press compounds. One placement builds on the last." SMS: "[Name] — brands in your space are publishing quarterly. One campaign away → [link]"</div>
+      <div class="fd-goal">Goal: make inaction feel costly</div>
+    </div>
+    <div class="fd-email">
+      <div class="fd-email-head">
+        <div class="fd-num">Email 3</div>
+        <div class="fd-timing">Day 135</div>
+      </div>
+      <div class="fd-subject">"We want to continue your PR story — 20% off this week"</div>
+      <div class="fd-purpose">20% off any package, valid 5 days. Framed as loyalty, not desperation. "We want to continue your PR story." After this touch — if no conversion, suppress from win-back for 90 days before cycling again.</div>
+      <div class="fd-goal">Goal: close with a value offer, not a plea</div>
+    </div>
+  </div>
+```
+
+</div>
+<div class="flow-detail" id="flow-siteabandon">
+
+```
+  <div class="fd-meta">
+    <span class="fd-trigger">Trigger: Active on Site (pricing/browse pages) · no checkout started</span>
+    <span class="fd-tag">2 Emails · 1 SMS · 48hr window</span>
+  </div>
+  <div class="fd-emails">
+    <div class="fd-email">
+      <div class="fd-email-head">
+        <div class="fd-num">Email 1</div>
+        <div class="fd-timing">4 hours after site visit</div>
+      </div>
+      <div class="fd-subject">"Still thinking it over? Here's what usually helps."</div>
+      <div class="fd-purpose">Conversational, zero pressure. "You were checking out what BrandFeatured does — totally get it if you're still weighing it." Briefly addresses the two most common hesitations: "Is this real press?" and "Will it actually help my business?" Industry tag used if available — swap one example to match their vertical. Ends with a low-friction CTA: see how it works for brands like theirs.</div>
+      <div class="fd-goal">Goal: stay top of mind without feeling like a follow-up</div>
+    </div>
+    <div class="fd-email">
+      <div class="fd-email-head">
+        <div class="fd-num">Email 2 + SMS</div>
+        <div class="fd-timing">24 hours after site visit</div>
+      </div>
+      <div class="fd-subject">"What a brand like yours did with BrandFeatured"</div>
+      <div class="fd-purpose">Industry-matched case study if tag is set. DTC brand on Business Insider before their launch. Consultant used AP News coverage to close a corporate contract. Restaurant anchored their franchise pitch with Yahoo Finance. If no industry tag — send the most universally relatable story. SMS fires alongside: "One example might make this click → [link]"</div>
+      <div class="fd-goal">Goal: make the value concrete and personal</div>
+    </div>
+  </div>
+```
+
+</div>
+<div class="flow-detail" id="flow-postpurchase">
+
+```
+  <div class="fd-meta">
+    <span class="fd-trigger">Trigger: Placed Order · Exit: 2nd purchase placed</span>
+    <span class="fd-tag">3 Emails · 1 SMS · 90-day window · Industry-branched</span>
+  </div>
+  <div class="fd-emails">
+    <div class="fd-email">
+      <div class="fd-email-head">
+        <div class="fd-num">Email 1 — Universal</div>
+        <div class="fd-timing">Day 7 after purchase</div>
+      </div>
+      <div class="fd-subject">"How to make your press coverage work 10x harder"</div>
+      <div class="fd-purpose">Same for all industries. Amplification guide — positions BrandFeatured as a PR strategist, not just a distributor. How to use coverage in pitches, how placements compound in Google, how to turn one article into multiple content assets. Zero purchase CTA. Pure value that builds trust before the next ask.</div>
+      <div class="fd-goal">Goal: make the first purchase feel like the beginning, not a transaction</div>
+    </div>
+    <div class="fd-email">
+      <div class="fd-email-head">
+        <div class="fd-num">Email 2 — Industry Branch</div>
+        <div class="fd-timing">Day 45 after purchase</div>
+      </div>
+      <div class="fd-subject">"The next story your brand should be telling"</div>
+      <div class="fd-purpose">This is where the industry tag from the popup earns its place. Each vertical gets a seasonal hook most relevant to them. Preview text is industry-specific. CTA introduces the next package naturally.</div>
+      <div class="fd-goal">Goal: make the repeat purchase feel personally timed, not generic</div>
+      <!-- INDUSTRY BRANCHES -->
+      <div class="fd-branches">
+        <div class="fd-branch-label">How each vertical gets this email:</div>
+        <div class="fd-branch-grid">
+          <div class="fd-branch">
+            <div class="fd-branch-name">DTC / Fashion</div>
+            <div class="fd-branch-hook">Fall/winter collection launch, Black Friday prep. "Brands who publish quarterly see compounding SEO gains. Your next story: the collection your customers are already searching for."</div>
+          </div>
+          <div class="fd-branch">
+            <div class="fd-branch-name">Service Business</div>
+            <div class="fd-branch-hook">Q4 authority push, year-end credibility window. "The consultants closing the best contracts in Q1 are building their Google presence now. Your next story is the one that closes the gap."</div>
+          </div>
+          <div class="fd-branch">
+            <div class="fd-branch-name">Hospitality</div>
+            <div class="fd-branch-hook">Upcoming peak season, holiday reservations. "Your next story should be live before the season — press coverage that brings guests in before they've even searched."</div>
+          </div>
+          <div class="fd-branch">
+            <div class="fd-branch-name">Agency / Reseller</div>
+            <div class="fd-branch-hook">Client onboarding window, retainer renewal season. "Your clients are asking for PR. Here's how agencies like yours are offering it at 3–5x markup with zero fulfillment."</div>
+          </div>
+          <div class="fd-branch">
+            <div class="fd-branch-name">Personal Brand</div>
+            <div class="fd-branch-hook">Speaking season, course or book launch. "Your next speaking fee depends on what Google says about you. Your next story sets the stage."</div>
+          </div>
+          <div class="fd-branch">
+            <div class="fd-branch-name">Tech / Startup</div>
+            <div class="fd-branch-hook">Funding round, conference season, product launch. "Investors Google you before they meet you. Your next campaign is fundraising collateral as much as it is PR."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fd-email">
+      <div class="fd-email-head">
+        <div class="fd-num">Email 3 + SMS</div>
+        <div class="fd-timing">Day 90 · if no 2nd purchase</div>
+      </div>
+      <div class="fd-subject">"It's been 90 days — here's what brands like yours are doing"</div>
+      <div class="fd-purpose">Industry-matched case study showing what consistent clients accomplish. Email leads with the story, ends with the CTA. SMS fires alongside: "Hey [Name] — it's been 90 days since your BrandFeatured campaign. Your next story is waiting → [link]"</div>
+      <div class="fd-goal">Goal: re-engage before the buyer goes fully cold</div>
+    </div>
+  </div>
+```
+
+</div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="techstack" class="dark">
+  <div class="container">
+    <div class="s-label reveal">Platform Setup</div>
+    <h2 style="font-family:var(--serif);font-size:clamp(28px,3.5vw,44px);font-weight:700;margin-bottom:12px;" class="reveal reveal-delay-1">Two platforms. One clear owner each.</h2>
+    <p style="font-size:15px;color:rgba(255,255,255,0.5);line-height:1.75;max-width:640px;margin-bottom:56px;" class="reveal reveal-delay-2">MailerLite stays active and handles everything tied to the PR campaign pipeline. Klaviyo is introduced alongside it to own acquisition, retention, and re-engagement. The two platforms don't overlap — each has a defined lane.</p>
+
+```
+<div class="ts-grid reveal reveal-delay-1">
+
+  <!-- MailerLite -->
+  <div class="ts-platform">
+    <div class="ts-platform-head ts-ml">
+      <div class="ts-platform-label">Stays in MailerLite</div>
+      <div class="ts-platform-name">Pipeline Transactional Emails</div>
+      <div class="ts-platform-sub">Order-triggered · Do not migrate · Already working</div>
+    </div>
+    <div class="ts-platform-body">
+      <div class="ts-flow-label">Triggered automatically when campaign status changes</div>
+      <div class="ts-flows">
+        <div class="ts-flow">
+          <div class="ts-flow-num">01</div>
+          <div class="ts-flow-info">
+            <div class="ts-flow-name">Draft Stage</div>
+            <div class="ts-flow-desc">Fires when a new PR package is purchased and brief is received. Confirms order and sets expectations for the writing process.</div>
+          </div>
+        </div>
+        <div class="ts-flow">
+          <div class="ts-flow-num">02</div>
+          <div class="ts-flow-info">
+            <div class="ts-flow-name">Writing Stage</div>
+            <div class="ts-flow-desc">Notifies client that their campaign is actively being written. Builds anticipation and reduces support inquiries.</div>
+          </div>
+        </div>
+        <div class="ts-flow">
+          <div class="ts-flow-num">03</div>
+          <div class="ts-flow-info">
+            <div class="ts-flow-name">Review Stage</div>
+            <div class="ts-flow-desc">Sends draft for client approval. Includes review instructions and response deadline.</div>
+          </div>
+        </div>
+        <div class="ts-flow">
+          <div class="ts-flow-num">04</div>
+          <div class="ts-flow-info">
+            <div class="ts-flow-name">Published Stage</div>
+            <div class="ts-flow-desc">Confirms campaign is live. Delivers placement links and "As Seen On" badge assets. Highest-leverage touchpoint — currently a status notification, future opportunity for retention handoff to Klaviyo.</div>
+          </div>
+        </div>
+      </div>
+      <div class="ts-note">⚠ These flows are not touched during this engagement. No MailerLite credentials, templates, or automations will be modified.</div>
+    </div>
+  </div>
+
+  <!-- Klaviyo -->
+  <div class="ts-platform">
+    <div class="ts-platform-head ts-kl">
+      <div class="ts-platform-label">New — Built in Klaviyo</div>
+      <div class="ts-platform-name">Acquisition, Retention & Re-engagement</div>
+      <div class="ts-platform-sub">Installed fresh · Full build · 5 flows + popup</div>
+    </div>
+    <div class="ts-platform-body">
+      <div class="ts-flow-label">Triggered by site behavior and purchase history</div>
+      <div class="ts-flows">
+        <div class="ts-flow">
+          <div class="ts-flow-num">01</div>
+          <div class="ts-flow-info">
+            <div class="ts-flow-name">Welcome Series + Popup</div>
+            <div class="ts-flow-desc">3-step popup captures email, then industry vertical. Drives a 4-email welcome sequence with $25 off incentive and industry-personalized content.</div>
+          </div>
+        </div>
+        <div class="ts-flow">
+          <div class="ts-flow-num">02</div>
+          <div class="ts-flow-info">
+            <div class="ts-flow-name">Checkout Abandonment</div>
+            <div class="ts-flow-desc">3 emails + SMS over 72 hours. Fires when someone starts checkout but doesn't purchase. Always the first flow activated — Week 1 of every plan.</div>
+          </div>
+        </div>
+        <div class="ts-flow">
+          <div class="ts-flow-num">03</div>
+          <div class="ts-flow-info">
+            <div class="ts-flow-name">Browse / Site Abandonment</div>
+            <div class="ts-flow-desc">2 emails + SMS over 48 hours. Fires when a known contact browses the pricing or packages page without starting checkout.</div>
+          </div>
+        </div>
+        <div class="ts-flow">
+          <div class="ts-flow-num">04</div>
+          <div class="ts-flow-info">
+            <div class="ts-flow-name">Post-Purchase</div>
+            <div class="ts-flow-desc">3 emails + SMS over 90 days. Fires after a Klaviyo-tracked purchase. Industry-branched at Day 45 using the vertical tag set during signup.</div>
+          </div>
+        </div>
+        <div class="ts-flow">
+          <div class="ts-flow-num">05</div>
+          <div class="ts-flow-info">
+            <div class="ts-flow-name">Win-Back</div>
+            <div class="ts-flow-desc">3 emails + SMS. Fires at Day 120 post-purchase if no repeat order. Industry FOMO angle + 20% loyalty offer at Day 135.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- System Architecture -->
+<div class="ts-arch reveal reveal-delay-2">
+  <div class="ts-dev-title">System Architecture</div>
+  <div class="ts-dev-sub">Two data flows feed Klaviyo in parallel. Behavioral events come from the site via Klaviyo JS. Purchase events come from ThriveCart. MailerLite runs independently and is never touched.</div>
+
+  <div class="ts-arch-flow">
+
+    <!-- Column 1: Site / Behavioral -->
+    <div class="ts-arch-col">
+      <div class="ts-arch-node ts-arch-user">
+        <div class="ts-arch-node-label">Entry Point</div>
+        <div class="ts-arch-node-name">Visits brandfeatured.com</div>
+        <div class="ts-arch-node-desc">User browses site, views pricing page, or starts checkout. Identity resolved via Klaviyo cookie if previously subscribed.</div>
+      </div>
+      <div class="ts-arch-arrow">↓</div>
+      <div class="ts-arch-node ts-arch-klaviyo">
+        <div class="ts-arch-node-label">Klaviyo JS — Site Tracking</div>
+        <div class="ts-arch-node-name">Behavioral Events</div>
+        <div class="ts-arch-node-desc">Custom JS on brandfeatured.com captures: Active on Site · Viewed Item · Started Checkout. Required for browse and checkout abandonment — ThriveCart does not pass these events.</div>
+      </div>
+      <div class="ts-arch-arrow">↓</div>
+      <div class="ts-arch-node ts-arch-klaviyo">
+        <div class="ts-arch-node-label">Klaviyo Popup</div>
+        <div class="ts-arch-node-name">3-Step Signup Form</div>
+        <div class="ts-arch-node-desc">Step 1: email + $25 offer. Step 2: industry vertical tag. Step 3: SMS opt-in. Triggers Welcome Series. Replaces existing MailerLite popup on site.</div>
+      </div>
+    </div>
+
+    <div class="ts-arch-divider">→</div>
+
+    <!-- Column 2: ThriveCart / Stripe -->
+    <div class="ts-arch-col">
+      <div class="ts-arch-node ts-arch-thrivecart">
+        <div class="ts-arch-node-label">ThriveCart — Native Integration</div>
+        <div class="ts-arch-node-name">Purchase Events → Klaviyo</div>
+        <div class="ts-arch-node-desc">ThriveCart's native Klaviyo integration sends: Placed Order · Ordered Product · Cancelled Order · Refunded Order. Connect via ThriveCart Settings → Integrations → Klaviyo. No custom code required.</div>
+      </div>
+      <div class="ts-arch-arrow">↓</div>
+      <div class="ts-arch-node ts-arch-stripe">
+        <div class="ts-arch-node-label">Stripe — No Direct Connection</div>
+        <div class="ts-arch-node-name">Payment Processing Only</div>
+        <div class="ts-arch-node-desc">Stripe connects to ThriveCart only. Do not connect Stripe directly to Klaviyo — all order data already passes through ThriveCart. Direct connection causes duplicate events.</div>
+      </div>
+      <div class="ts-arch-arrow">↓</div>
+      <div class="ts-arch-node ts-arch-klaviyo">
+        <div class="ts-arch-node-label">Klaviyo</div>
+        <div class="ts-arch-node-name">Revenue Tracking + Automations</div>
+        <div class="ts-arch-node-desc">Placed Order triggers Post-Purchase flow and suppresses any active Checkout Abandon sequence. Revenue attributed to profiles for reporting.</div>
+      </div>
+    </div>
+
+    <div class="ts-arch-divider">→</div>
+
+    <!-- Column 3: MailerLite / Post-publish -->
+    <div class="ts-arch-col">
+      <div class="ts-arch-node ts-arch-mailerlite">
+        <div class="ts-arch-node-label">MailerLite — Unchanged</div>
+        <div class="ts-arch-node-name">Pipeline Transactional Emails</div>
+        <div class="ts-arch-node-desc">6 automations stay untouched: Status = Starting · Form Not Filled (48hr + 7 day) · Status = Writing · Status = DraftSent · Status = Publishing. No unsubscribe link — operational emails only.</div>
+      </div>
+      <div class="ts-arch-arrow">↓</div>
+      <div class="ts-arch-node ts-arch-thrivecart">
+        <div class="ts-arch-node-label">Custom Event — Dev Required</div>
+        <div class="ts-arch-node-name">"Publishing Complete" → Klaviyo</div>
+        <div class="ts-arch-node-desc">When Status = Published, a custom event fires to Klaviyo. This triggers the Post-Purchase flow at the right moment rather than on a fixed delay from purchase date.</div>
+      </div>
+      <div class="ts-arch-arrow">↓</div>
+      <div class="ts-arch-node ts-arch-klaviyo">
+        <div class="ts-arch-node-label">Klaviyo</div>
+        <div class="ts-arch-node-name">Post-Purchase + Win-Back</div>
+        <div class="ts-arch-node-desc">Day 7: amplification guide. Day 45: industry-branched repeat hook. Day 90: case study + SMS. Day 120+: Win-Back if no repeat order.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Developer Setup Requirements -->
+<div class="ts-dev reveal reveal-delay-2" style="margin-top:24px;">
+  <div class="ts-dev-title">Developer Setup Requirements</div>
+  <div class="ts-dev-sub">Seven prerequisites before any flow goes live. Items marked DEV REQUIRED need active development work — others are configuration only.</div>
+  <div class="ts-dev-grid">
+    <div class="ts-dev-item">
+      <div class="ts-dev-num">01</div>
+      <div class="ts-dev-content">
+        <div class="ts-dev-name">Klaviyo Account + Domain Auth</div>
+        <div class="ts-dev-desc">Create Klaviyo account. Add SPF, DKIM, and DMARC records to BrandFeatured DNS. Required before any email can send. Allow 24–48hrs for DNS propagation.</div>
+      </div>
+    </div>
+    <div class="ts-dev-item">
+      <div class="ts-dev-num">02</div>
+      <div class="ts-dev-content">
+        <div class="ts-dev-name">Subscriber Data Migration</div>
+        <div class="ts-dev-desc">Export active subscribers, custom fields, segments, and suppression data (unsubscribes, bounces, spam complaints) from MailerLite. Import into Klaviyo with correct status flags to maintain compliance.</div>
+      </div>
+    </div>
+    <div class="ts-dev-item">
+      <div class="ts-dev-num">03</div>
+      <div class="ts-dev-content">
+        <div class="ts-dev-name">ThriveCart → Klaviyo Integration</div>
+        <div class="ts-dev-desc">Connect via ThriveCart's native Klaviyo integration (Settings → Integrations → Klaviyo). Passes: Placed Order, Ordered Product, Cancelled Order, Refunded Order. Do not connect Stripe directly — causes duplicate events.</div>
+      </div>
+    </div>
+    <div class="ts-dev-item">
+      <div class="ts-dev-num">04</div>
+      <div class="ts-dev-content">
+        <div class="ts-dev-name">Klaviyo JS — Behavioral Tracking <span style="color:var(--teal);font-size:9px;letter-spacing:0.08em;">DEV LIKELY NOT REQUIRED</span></div>
+        <div class="ts-dev-desc">ThriveCart's native integration does not pass behavioral events. Custom Klaviyo JS may be needed on brandfeatured.com for: Active on Site, Started Checkout, Viewed Item. DigitsUp will confirm within Week 1 whether custom implementation is needed or if ThriveCart can cover this differently.</div>
+      </div>
+    </div>
+    <div class="ts-dev-item">
+      <div class="ts-dev-num">05</div>
+      <div class="ts-dev-content">
+        <div class="ts-dev-name">"Publishing Complete" Custom Event <span style="color:var(--gold);font-size:9px;letter-spacing:0.08em;">DEV REQUIRED</span></div>
+        <div class="ts-dev-desc">When a campaign finishes publishing, send a custom event to Klaviyo to trigger the Post-Purchase flow at the correct moment. Fires from BrandFeatured's internal system when Status = Published. Implementation outline provided by DigitsUp within Week 1.</div>
+      </div>
+    </div>
+    <div class="ts-dev-item">
+      <div class="ts-dev-num">06</div>
+      <div class="ts-dev-content">
+        <div class="ts-dev-name">Replace MailerLite Popup</div>
+        <div class="ts-dev-desc">Disable existing MailerLite popup on brandfeatured.com. Replace with new 3-step Klaviyo popup. MailerLite embedded forms feeding pipeline lists (order forms etc.) stay as-is — do not remove.</div>
+      </div>
+    </div>
+    <div class="ts-dev-item">
+      <div class="ts-dev-num">07</div>
+      <div class="ts-dev-content">
+        <div class="ts-dev-name">SMS Compliance (A2P 10DLC)</div>
+        <div class="ts-dev-desc">Enable Klaviyo SMS, register sending number, add compliant opt-in language to popup Step 3. US sends require A2P 10DLC carrier registration — allow 1–2 weeks for approval before SMS flows can activate.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="ts-cta reveal reveal-delay-3">
+  <a class="ts-doc-btn" href="https://docs.google.com/document/d/1XqoFYe8o-jbHfFocFYXRRZ7JYe1yeplDR1SFos1G7ic/edit?usp=sharing" target="_blank">
+    <span class="ts-doc-icon">↗</span>
+    <span class="ts-doc-text">
+      <span class="ts-doc-label">Developer Reference Doc</span>
+      <span class="ts-doc-sub">Full setup instructions, event specs, and integration notes</span>
+    </span>
+  </a>
+</div>
+```
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="packages" class="white">
+  <div class="container">
+    <div class="s-label reveal" style="color:var(--teal);">Investment</div>
+    <h2 style="font-family:var(--serif);font-size:clamp(28px,3.5vw,44px);font-weight:700;color:var(--ink);margin-bottom:12px;" class="reveal reveal-delay-1">The build. Three ways to pay.</h2>
+    <p class="pkg-intro reveal reveal-delay-2">The scope is identical across all three options — popup rebuild, all 5 automation flows, full copywriting, segmentation logic, and SMS. Payments are tied to milestone delivery — you pay when the work is live and confirmed, not before.</p>
+    <div style="background:rgba(47,145,195,0.07);border:1px solid rgba(47,145,195,0.25);border-radius:12px;padding:20px 24px;margin:24px 0 32px;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#2f91c3;margin-bottom:8px;">Migration Fee — Waived</div>
+      <div style="font-size:14px;line-height:1.7;opacity:0.85;">Our standard Klaviyo migration fee is <span style="text-decoration:line-through;opacity:0.5;">$5,500</span>. We're waiving it entirely. We're confident we can execute this quickly and correctly — and we'd rather prove it than charge for it upfront.</div>
+    </div>
+    <div class="pkg-row">
+      <div class="pkg">
+        <div class="pkg-top"><div class="pkg-option">Lowest Monthly · Lowest Total</div><div class="pkg-name">90-Day Build</div><div class="pkg-line">$1,500/mo · billed monthly</div><div class="pkg-price-area"><div class="pkg-price">$1,500<span style="font-size:14px;font-weight:400;opacity:0.6;">/mo</span></div><div class="pkg-price-sub">$4,500 total · 3 payments</div></div></div>
+        <div class="pkg-body"><div class="pkg-meta"><div class="pm-item"><span class="pm-val">90</span><span class="pm-lbl">Days</span></div><div class="pm-item"><span class="pm-val">3×</span><span class="pm-lbl">Payments</span></div><div class="pm-item"><span class="pm-val">$4.5k</span><span class="pm-lbl">Total</span></div></div><ul class="pkg-features"><li>Full scope — all 5 flows + popup</li><li>Checkout Abandon live in Week 1</li><li>Flows delivered across 90 days</li><li>Migration fee waived — <span style="text-decoration:line-through;opacity:0.5;">$5,500</span> value</li><li>Payments tied to milestone delivery</li><li>Post-launch check-in at Day 90</li></ul><div style="margin:12px 0 0;padding:14px 16px;background:rgba(76,175,125,0.07);border:1px solid rgba(76,175,125,0.2);border-radius:10px;"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#4CAF7D;margin-bottom:8px;">Milestone Payment Schedule</div><div style="font-size:12px;line-height:1.9;"><b>Payment 1 — $1,500</b> · Checkout Abandon + Welcome + Popup live<br><b>Payment 2 — $1,500</b> · Win-Back + Site Abandonment live<br><b>Payment 3 — $1,500</b> · Post-Purchase + full QA + Day 90 review</div></div></div>
+      </div>
+      <div class="pkg highlighted">
+        <div class="pkg-top"><div class="pkg-option">Best Value · Most Popular</div><div class="pkg-name">60-Day Build</div><div class="pkg-line">$3,000/mo · billed monthly</div><div class="pkg-price-area"><div class="pkg-price">$3,000<span style="font-size:14px;font-weight:400;opacity:0.6;">/mo</span></div><div class="pkg-price-sub">$6,000 total · 2 payments</div></div></div>
+        <div class="pkg-body"><div class="pkg-meta"><div class="pm-item"><span class="pm-val">60</span><span class="pm-lbl">Days</span></div><div class="pm-item"><span class="pm-val">2×</span><span class="pm-lbl">Payments</span></div><div class="pm-item"><span class="pm-val">$6k</span><span class="pm-lbl">Total</span></div></div><ul class="pkg-features"><li>Full scope — all 5 flows + popup</li><li>Checkout Abandon live in Week 1</li><li>All flows live and tested by Day 60</li><li>Faster recovery than 90-day</li><li>Payments tied to milestone delivery</li><li>Post-launch review at Day 60</li></ul><div style="margin:12px 0 0;padding:14px 16px;background:rgba(76,175,125,0.07);border:1px solid rgba(76,175,125,0.2);border-radius:10px;"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#4CAF7D;margin-bottom:8px;">Milestone Payment Schedule</div><div style="font-size:12px;line-height:1.9;"><b>Payment 1 — $3,000</b> · Checkout Abandon + Welcome + Popup live<br><b>Payment 2 — $3,000</b> · All remaining flows + full QA + Day 60 review</div></div></div>
+      </div>
+      <div class="pkg">
+        <div class="pkg-top"><div class="pkg-option">Fastest · Speed Premium</div><div class="pkg-name">30-Day Build</div><div class="pkg-line">One payment · everything live in 30 days</div><div class="pkg-price-area"><div class="pkg-price">$7,500</div><div class="pkg-price-sub">paid upfront at kickoff</div></div></div>
+        <div class="pkg-body"><div class="pkg-meta"><div class="pm-item"><span class="pm-val">30</span><span class="pm-lbl">Days</span></div><div class="pm-item"><span class="pm-val">1×</span><span class="pm-lbl">Payment</span></div><div class="pm-item"><span class="pm-val">$7.5k</span><span class="pm-lbl">Total</span></div></div><ul class="pkg-features"><li>Full scope — all 5 flows + popup</li><li>Checkout Abandon live in Week 1</li><li>All flows live and tested by Day 30</li><li>Maximum revenue recovery speed</li><li>Single payment — everything live in 30 days</li><li>Post-launch check-in at Day 30</li></ul>
+<div style="margin:12px 0 0;padding:14px 16px;background:rgba(76,175,125,0.07);border:1px solid rgba(76,175,125,0.2);border-radius:10px;">
+  <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#4CAF7D;margin-bottom:8px;">Payment Schedule</div>
+  <div style="font-size:12px;line-height:1.9;opacity:0.9;">
+    <b>$7,500 at kickoff</b> · All 5 flows live and QA complete by Day 30. No further payments.
+  </div>
+</div>
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="metrics" class="dark2">
+  <div class="container">
+    <div class="s-label reveal">Success Metrics</div>
+    <h2 style="font-family:var(--serif);font-size:clamp(28px,3.5vw,44px);font-weight:700;margin-bottom:12px;" class="reveal reveal-delay-1">What success looks like — and how we measure it.</h2>
+    <p style="font-size:15px;color:rgba(255,255,255,0.5);line-height:1.75;max-width:640px;margin-bottom:56px;" class="reveal reveal-delay-2">We don't report on activity. Every metric below ties directly to revenue, conversion, or repeat purchase rate. Months 1–2 establish the baseline. Month 1 does have one measurable milestone: Checkout Abandonment recovery. This flow has the fastest data cycle and gives us a real signal within 2–3 weeks of going live. Every other benchmark is set honestly at Month 3 — when we have real data to measure against.</p>
+
+```
+<!-- Tier 1 -->
+<div class="mx-tier reveal reveal-delay-1">
+  <div class="mx-tier-head">
+    <div class="mx-tier-label">Tier 1</div>
+    <div class="mx-tier-name">Flow Performance</div>
+    <div class="mx-tier-desc">Measured per flow, reported monthly. These are the leading indicators — they tell us what's working before revenue confirms it.</div>
+  </div>
+  <div class="mx-table-wrap">
+    <table class="mx-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Flow</th>
+          <th>What It Measures</th>
+          <th>Month 3 Target</th>
+          <th>Month 6 Target</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="mx-metric">Checkout Recovery Rate</span></td>
+          <td>Checkout Abandon</td>
+          <td>% of abandoned checkouts that convert via flow</td>
+          <td class="mx-val">3–5%</td>
+          <td class="mx-val">5–8%</td>
+        </tr>
+        <tr>
+          <td><span class="mx-metric">Welcome Conversion Rate</span></td>
+          <td>Welcome Series</td>
+          <td>% of new subscribers who purchase within 10 days</td>
+          <td class="mx-val">2–4%</td>
+          <td class="mx-val">4–7%</td>
+        </tr>
+        <tr>
+          <td><span class="mx-metric">Browse Recovery Rate</span></td>
+          <td>Site Abandonment</td>
+          <td>% of site abandoners who convert within 48hrs</td>
+          <td class="mx-val">1–3%</td>
+          <td class="mx-val">3–5%</td>
+        </tr>
+        <tr>
+          <td><span class="mx-metric">Win-Back Conversion Rate</span></td>
+          <td>Win-Back</td>
+          <td>% of Day 120+ lapsed buyers who repurchase</td>
+          <td class="mx-val">Baseline only</td>
+          <td class="mx-val">4–8%</td>
+        </tr>
+        <tr>
+          <td><span class="mx-metric">Click-to-Purchase Rate</span></td>
+          <td>All Flows</td>
+          <td>% of email clicks that result in a completed order</td>
+          <td class="mx-val">8–12%</td>
+          <td class="mx-val">12–18%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Tier 2 -->
+<div class="mx-tier reveal reveal-delay-2">
+  <div class="mx-tier-head">
+    <div class="mx-tier-label">Tier 2</div>
+    <div class="mx-tier-name">Revenue Attribution</div>
+    <div class="mx-tier-desc">The numbers that tie directly to pipeline. Reported monthly with Klaviyo attribution window set to 5-day click, 1-day open.</div>
+  </div>
+  <div class="mx-table-wrap">
+    <table class="mx-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>How It's Tracked</th>
+          <th>What It Means</th>
+          <th>Month 3 Target</th>
+          <th>Month 6 Target</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="mx-metric">Klaviyo Attributed Revenue</span></td>
+          <td>Klaviyo dashboard</td>
+          <td>Total revenue with a Klaviyo touchpoint in the window</td>
+          <td class="mx-val">Baseline set</td>
+          <td class="mx-val">15–25% of total rev</td>
+        </tr>
+        <tr>
+          <td><span class="mx-metric">Revenue Per Recipient</span></td>
+          <td>Per flow, per send</td>
+          <td>Avg. revenue generated per contact in each flow</td>
+          <td class="mx-val">Baseline set</td>
+          <td class="mx-val">Month-on-month growth</td>
+        </tr>
+        <tr>
+          <td><span class="mx-metric">Repeat Purchase Rate</span></td>
+          <td>Klaviyo + ThriveCart</td>
+          <td>% of first-time buyers who place a second order</td>
+          <td class="mx-val">Baseline only</td>
+          <td class="mx-val">10–15%</td>
+        </tr>
+        <tr>
+          <td><span class="mx-metric">Avg. Days to Repurchase</span></td>
+          <td>Klaviyo profiles</td>
+          <td>Time between 1st and 2nd order — are we compressing the cycle?</td>
+          <td class="mx-val">Baseline only</td>
+          <td class="mx-val">Trending down vs. baseline</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Tier 3 -->
+<div class="mx-tier reveal reveal-delay-3">
+  <div class="mx-tier-head">
+    <div class="mx-tier-label">Tier 3</div>
+    <div class="mx-tier-name">List &amp; Retention Health</div>
+    <div class="mx-tier-desc">The long-game indicators. These compound over time — a healthy list in Month 6 is the foundation for everything in Year 2.</div>
+  </div>
+  <div class="mx-table-wrap">
+    <table class="mx-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>How It's Tracked</th>
+          <th>What It Means</th>
+          <th>Month 3 Target</th>
+          <th>Month 6 Target</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="mx-metric">Net List Growth Rate</span></td>
+          <td>Klaviyo profiles</td>
+          <td>New subscribers minus unsubscribes — is the list growing?</td>
+          <td class="mx-val">Positive</td>
+          <td class="mx-val">&gt;5% monthly growth</td>
+        </tr>
+        <tr>
+          <td><span class="mx-metric">Unsubscribe Rate</span></td>
+          <td>Per flow + per send</td>
+          <td>Healthy signal that messaging is relevant. Flag if &gt;0.5%</td>
+          <td class="mx-val">&lt;0.3%</td>
+          <td class="mx-val">&lt;0.2%</td>
+        </tr>
+        <tr>
+          <td><span class="mx-metric">Flow Revenue Share</span></td>
+          <td>Klaviyo vs. campaigns</td>
+          <td>% of Klaviyo revenue coming from flows vs. one-off campaigns</td>
+          <td class="mx-val">&gt;40% flows</td>
+          <td class="mx-val">&gt;55% flows</td>
+        </tr>
+        <tr>
+          <td><span class="mx-metric">SMS Opt-in Rate</span></td>
+          <td>Klaviyo popup Step 3</td>
+          <td>% of email subscribers who also opt into SMS</td>
+          <td class="mx-val">15–25%</td>
+          <td class="mx-val">25–35%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Reporting cadence -->
+<div class="mx-cadence reveal reveal-delay-3">
+  <div class="mx-cad-title">Reporting Cadence</div>
+  <div class="mx-cad-grid">
+    <div class="mx-cad-item">
+      <div class="mx-cad-freq">Monthly</div>
+      <div class="mx-cad-desc">Full metrics report across all three tiers. Klaviyo attributed revenue, flow performance, list health. Delivered as a shared doc with commentary — not a data dump.</div>
+    </div>
+    <div class="mx-cad-item">
+      <div class="mx-cad-freq">Month 3</div>
+      <div class="mx-cad-desc">First benchmark review. We set formal targets based on actual baseline data from Months 1–2. Any underperforming flows get a copy or logic audit.</div>
+    </div>
+    <div class="mx-cad-item">
+      <div class="mx-cad-freq">Month 6</div>
+      <div class="mx-cad-desc">Full performance review against benchmarks. Optimization recommendations, flow refresh where needed, and a roadmap for the next phase of the program.</div>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="timeline" class="dark">
+  <div class="container">
+    <div class="s-label reveal">Delivery</div>
+    <h2 style="font-family:var(--serif);font-size:clamp(28px,3.5vw,44px);font-weight:700;margin-bottom:8px;" class="reveal reveal-delay-1">What gets built and when.</h2>
+    <p style="font-size:14px;color:rgba(255,255,255,0.55);margin-bottom:40px;line-height:1.7;" class="reveal reveal-delay-2">Checkout Abandonment is always Week 1. Welcome + Popup comes second so industry segmentation is live before post-purchase flows launch.</p>
+    <div class="tl-grid reveal reveal-delay-1">
+      <div class="tl-col">
+        <div class="tl-head"><div class="tl-pkg">90-Day Build · $1,500/mo</div><div class="tl-name">$4,500 total · 3 payments</div></div>
+        <div class="tl-phases">
+          <div class="tl-phase"><div class="tl-ph-date">Week 1</div><div class="tl-ph-desc"><strong style="display:block;margin-bottom:3px;color:rgba(255,255,255,0.8);">Checkout Abandonment</strong>Audit + architecture. Live by end of week.</div></div>
+          <div class="tl-phase"><div class="tl-ph-date">Weeks 2–4</div><div class="tl-ph-desc"><strong style="display:block;margin-bottom:3px;color:rgba(255,255,255,0.8);">Welcome + Popup</strong>3-step popup built. Industry segmentation live. Welcome sequence active.</div></div>
+          <div class="tl-phase"><div class="tl-ph-date">Weeks 5–7</div><div class="tl-ph-desc"><strong style="display:block;margin-bottom:3px;color:rgba(255,255,255,0.8);">Win-Back</strong>Industry FOMO branching built and live.</div></div>
+          <div class="tl-phase"><div class="tl-ph-date">Weeks 8–10</div><div class="tl-ph-desc"><strong style="display:block;margin-bottom:3px;color:rgba(255,255,255,0.8);">Site Abandonment</strong>Browse + pricing page triggers live.</div></div>
+          <div class="tl-phase"><div class="tl-ph-date">Weeks 11–13</div><div class="tl-ph-desc"><strong style="display:block;margin-bottom:3px;color:rgba(255,255,255,0.8);">Post-Purchase · Full QA</strong>Industry-branched post-purchase live. Full QA.</div></div>
+          <div class="tl-phase"><div class="tl-ph-date">Day 90</div><div class="tl-ph-desc">Performance check-in. Handoff docs delivered.</div></div>
+        </div>
+      </div>
+      <div class="tl-col" style="border:1px solid rgba(0,168,181,0.25);border-radius:8px;overflow:hidden;">
+        <div class="tl-head h-teal"><div class="tl-pkg">60-Day Build · $3,000/mo</div><div class="tl-name">$6,000 total · 2 payments</div></div>
+        <div class="tl-phases">
+          <div class="tl-phase"><div class="tl-ph-date">Week 1</div><div class="tl-ph-desc"><strong style="display:block;margin-bottom:3px;color:rgba(255,255,255,0.8);">Checkout Abandonment</strong>Audit + architecture. Live by end of week.</div></div>
+          <div class="tl-phase"><div class="tl-ph-date">Weeks 2–3</div><div class="tl-ph-desc"><strong style="display:block;margin-bottom:3px;color:rgba(255,255,255,0.8);">Welcome + Popup</strong>Popup + segmentation live. Welcome sequence active by Week 3.</div></div>
+          <div class="tl-phase"><div class="tl-ph-date">Weeks 4–5</div><div class="tl-ph-desc"><strong style="display:block;margin-bottom:3px;color:rgba(255,255,255,0.8);">Win-Back + Site Abandon</strong>Both flows live with industry branching.</div></div>
+          <div class="tl-phase"><div class="tl-ph-date">Weeks 6–8</div><div class="tl-ph-desc"><strong style="display:block;margin-bottom:3px;color:rgba(255,255,255,0.8);">Post-Purchase · Full QA</strong>Industry-branched post-purchase live. Full QA.</div></div>
+          <div class="tl-phase"><div class="tl-ph-date">Day 60</div><div class="tl-ph-desc">Performance review. All flows active.</div></div>
+        </div>
+      </div>
+      <div class="tl-col">
+        <div class="tl-head"><div class="tl-pkg">30-Day Build · $7,500 upfront</div><div class="tl-name">Everything live in one month</div></div>
+        <div class="tl-phases">
+          <div class="tl-phase"><div class="tl-ph-date">Week 1</div><div class="tl-ph-desc"><strong style="display:block;margin-bottom:3px;color:rgba(255,255,255,0.8);">Checkout Abandonment</strong>Audit + architecture. Live by Day 5.</div></div>
+          <div class="tl-phase"><div class="tl-ph-date">Week 2</div><div class="tl-ph-desc"><strong style="display:block;margin-bottom:3px;color:rgba(255,255,255,0.8);">Welcome + Popup</strong>Popup built. Segmentation live. Welcome active.</div></div>
+          <div class="tl-phase"><div class="tl-ph-date">Week 3</div><div class="tl-ph-desc"><strong style="display:block;margin-bottom:3px;color:rgba(255,255,255,0.8);">Win-Back + Site Abandon</strong>Both flows live with industry branching.</div></div>
+          <div class="tl-phase"><div class="tl-ph-date">Week 4</div><div class="tl-ph-desc"><strong style="display:block;margin-bottom:3px;color:rgba(255,255,255,0.8);">Post-Purchase · Full QA</strong>All 5 flows active. Full QA complete.</div></div>
+          <div class="tl-phase"><div class="tl-ph-date">Day 30</div><div class="tl-ph-desc">Handoff + check-in. Everything running independently.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="nextsteps" class="dark">
+  <div class="container">
+    <div class="ns-center">
+      <div class="s-label reveal" style="justify-content:center;">Next Steps</div>
+      <h2 class="ns-h reveal reveal-delay-1">Ready to build the <em>retention engine?</em></h2>
+      <p class="ns-p reveal reveal-delay-2">Pick the timeline that fits where BrandFeatured is right now. The flows are the foundation — everything else gets layered on after.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-l">Prepared by <strong>DigitsUp</strong> for BrandFeatured &nbsp;·&nbsp; March 2026</div>
+  <div class="footer-r">Confidential · Not for distribution</div>
+</footer>
+
+</div><!-- /mc -->
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  window.addEventListener('scroll', function() {
+    var bar = document.getElementById('progressBar');
+    if (bar) bar.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      if (el.getBoundingClientRect().top < window.innerHeight - 60) el.classList.add('visible');
+    });
+  });
+  document.querySelectorAll('.reveal').forEach(function(el) {
+    if (el.getBoundingClientRect().top < window.innerHeight - 60) el.classList.add('visible');
+  });
+});
+</script>
+
+</div><!-- /mc -->
+
+<script>
+(function(){
+  var btn = document.getElementById('pg-btn');
+  var inp = document.getElementById('pg-field');
+  function unlock() {
+    if (inp && inp.value === 'BF2026') {
+      var gate = document.getElementById('pg-gate');
+      var mc = document.getElementById('mc');
+      if (gate) { gate.style.opacity='0'; gate.style.pointerEvents='none'; setTimeout(function(){ gate.style.display='none'; }, 400); }
+      if (mc) mc.style.display = 'block';
+    } else {
+      if (inp) { inp.style.borderColor='#e05252'; inp.value=''; inp.focus(); setTimeout(function(){ inp.style.borderColor='#e2e8f0'; }, 2000); }
+    }
+  }
+  if (btn) btn.addEventListener('click', unlock);
+  if (inp) inp.addEventListener('keydown', function(e){ if(e.key==='Enter') unlock(); });
+})();
+</script>
+
+</body>
+</html>

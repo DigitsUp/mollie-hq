@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Liverpool LA — Weekly Report Mar 23-29</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#0D0D0D;--bg2:#141414;--bg3:#1C1C1C;--border:#2A2A2A;--text:#F0EDE8;--muted:#888880;--dim:#555550;--accent:#3D9EFF;--green:#4CAF7D;--red:#E05555;}
+body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+#gate{position:fixed;inset:0;z-index:999;background:var(--bg);display:flex;align-items:center;justify-content:center;}
+.gi{text-align:center;width:320px;padding:0 24px;}
+.ge{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);margin-bottom:8px;}
+.gt{font-size:20px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;}
+.gd{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:28px;}
+.gdiv{width:48px;height:1px;background:var(--border);margin:0 auto 28px;}
+.gl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;}
+#pwi{width:100%;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);color:var(--text);font-size:14px;font-family:'IBM Plex Mono',monospace;outline:none;}
+#pwi:focus{border-color:var(--accent);}
+#pwe{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);margin-top:6px;min-height:14px;}
+#pwb{margin-top:12px;width:100%;padding:10px;background:#000;color:#fff;border:none;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;}
+#pwb:hover{background:var(--accent);}
+.gcredit{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);margin-top:20px;}
+#content{display:none;}
+.page{max-width:960px;margin:0 auto;padding:40px 24px;}
+.rh{border-bottom:1px solid var(--border);padding-bottom:24px;margin-bottom:32px;}
+.reyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);margin-bottom:6px;}
+.rtitle{font-size:28px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;}
+.rdate{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);}
+.badges{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap;}
+.badge{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 10px;border-radius:20px;}
+.b-blue{background:rgba(61,158,255,.12);color:#3D9EFF;}
+.b-gray{background:var(--bg3);color:var(--muted);}
+.b-green{background:rgba(76,175,125,.12);color:#4CAF7D;}
+.sec{margin-bottom:36px;}
+.stitle{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:var(--muted);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
+.sc{background:var(--bg2);border:1px solid var(--border);padding:14px 16px;}
+.sl{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px;}
+.sv{font-size:22px;font-weight:700;margin-bottom:4px;}
+.sv.accent{color:var(--accent);}
+.changes{display:flex;flex-direction:column;gap:3px;}
+.ch{font-family:'IBM Plex Mono',monospace;font-size:10px;}
+.up{color:var(--green);}.dn{color:var(--red);}.nt{color:var(--muted);}
+.mt{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:20px;}
+.mt th{padding:8px 12px;font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--bg3);}
+.mt th:first-child{text-align:left;}.mt th:not(:first-child){text-align:right;}
+.mt td{padding:9px 12px;border-bottom:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:11px;}
+.mt td:first-child{text-align:left;font-family:'Montserrat',sans-serif;font-weight:500;font-size:12px;}
+.mt td:not(:first-child){text-align:right;}.mt .muted{color:var(--muted);}
+.dt{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:16px;}
+.dt th{text-align:left;padding:8px 12px;font-size:9px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--bg2);}
+.dt td{padding:9px 12px;border-bottom:1px solid var(--border);}
+.name-cell{font-weight:600;max-width:280px;}
+.accent-val{font-weight:700;color:var(--accent);font-family:'IBM Plex Mono',monospace;}
+.dt td:not(.name-cell):not(.accent-val){font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);}
+.comm{background:var(--bg2);border:1px solid var(--border);padding:18px 20px;margin-bottom:12px;}
+.ct{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;}
+.ct.g{color:var(--green);}.ct.r{color:var(--red);}.ct.b{color:var(--accent);}
+.comm ul{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.comm li{font-size:13px;line-height:1.6;padding-left:16px;position:relative;}
+.comm.imp li::before{content:"rise";font-size:0;}.comm.imp li::before{content:"▲";position:absolute;left:0;color:var(--green);font-size:9px;}
+.comm.dec li::before{content:"▼";position:absolute;left:0;color:var(--red);font-size:9px;}
+.comm.act li::before{content:"→";position:absolute;left:0;color:var(--accent);}
+.sub{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:20px 0 10px;}
+footer{border-top:1px solid var(--border);padding-top:20px;margin-top:40px;display:flex;justify-content:space-between;align-items:center;}
+.fb{font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.1em;}
+.fn{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);}
+</style></head><body><div id="gate"><div class="gi">
+  <div class="ge">Weekly Performance Report</div>
+  <div class="gt">Liverpool Los Angeles</div>
+  <div class="gd">Mar 23 &#8211; 29, 2026</div>
+  <div class="gdiv"></div>
+  <div class="gl">Enter Password</div>
+  <input type="password" id="pwi" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;">
+  <div id="pwe"></div>
+  <button id="pwb">Unlock Report</button>
+  <div class="gcredit">Prepared by DigitsUp</div>
+</div></div><div id="content"><div class="page">
+  <div class="rh">
+    <div class="reyebrow">Weekly Performance Report</div>
+    <div class="rtitle">Liverpool Los Angeles</div>
+    <div class="rdate">Mar 23 &#8211; 29, 2026 &nbsp;&#183;&nbsp; Prepared by DigitsUp</div>
+    <div class="badges">
+      <span class="badge b-blue">Email + SMS</span>
+      <span class="badge b-gray">Klaviyo Live Data</span>
+      <span class="badge b-green">WoW + YoY</span>
+    </div>
+  </div><div class="sec"><div class="stitle">S1 &#8212; Klaviyo Performance Review</div><div class="sgrid"><div class="sc"><div class="sl">Attributed Revenue</div><div class="sv accent">$79.0K</div><div class="changes"><span class="ch up">+42.5% WoW</span><span class="ch up">+73.0% YoY</span></div></div><div class="sc"><div class="sl">Campaign Revenue</div><div class="sv">$30.3K</div><div class="changes"><span class="ch up">+264.4% WoW</span><span class="ch dn">-33.6% YoY</span></div></div><div class="sc"><div class="sl">Flow Revenue</div><div class="sv">$48.6K</div><div class="changes"><span class="ch up">+3.3% WoW</span><span class="ch nt">— YoY</span></div></div></div><table class="mt"><thead><tr><th>Metric</th><th>This Week</th><th>Last Week</th><th>WoW</th><th>Same Wk LY</th><th>YoY</th></tr></thead><tbody><tr><td style="">Email Recipients</td><td style="">634K</td><td class="muted">&#8212;</td><td class="dn">&#8212;</td><td class="muted">822K</td><td class="dn">-22.9%</td></tr><tr><td style="">Email Open Rate</td><td style="">52.1%</td><td class="muted">&#8212;</td><td class="dn">&#8212;</td><td class="muted">&#8212;</td><td class="dn">&#8212;</td></tr><tr><td style="">Email Clicks</td><td style="">12K</td><td class="muted">&#8212;</td><td class="dn">&#8212;</td><td class="muted">&#8212;</td><td class="dn">&#8212;</td></tr><tr><td style="">Email Conversions</td><td style="">132</td><td class="muted">&#8212;</td><td class="dn">&#8212;</td><td class="muted">234</td><td class="dn">-43.6%</td></tr><tr><td style="font-weight:700;">Email Campaign Rev</td><td style="font-weight:700;">$23.3K</td><td class="muted">&#8212;</td><td class="dn">&#8212;</td><td class="muted">$45.7K</td><td class="dn">-49.0%</td></tr><tr><td style="">SMS Recipients</td><td style="">82K</td><td class="muted">&#8212;</td><td class="dn">&#8212;</td><td class="muted">&#8212;</td><td class="dn">&#8212;</td></tr><tr><td style="font-weight:700;">SMS Revenue</td><td style="font-weight:700;">$7.1K</td><td class="muted">&#8212;</td><td class="dn">&#8212;</td><td class="muted">&#8212;</td><td class="dn">&#8212;</td></tr><tr><td style="">Flow Recipients</td><td style="">41K</td><td class="muted">40K</td><td class="up">+4.3%</td><td class="muted">&#8212;</td><td class="dn">&#8212;</td></tr><tr><td style="">Flow Conversions</td><td style="">344</td><td class="muted">332</td><td class="up">+3.6%</td><td class="muted">&#8212;</td><td class="dn">&#8212;</td></tr><tr><td style="font-weight:700;">Flow Revenue</td><td style="font-weight:700;">$48.6K</td><td class="muted">$47.1K</td><td class="up">+3.3%</td><td class="muted">&#8212;</td><td class="nt">—</td></tr></tbody></table></div><div class="sec"><div class="stitle">S2 &#8212; Klaviyo Campaign Review (YoY)</div><div class="sub">Top Email Campaigns &#8212; This Week (Mar 23&#8211;29, 2026)</div><table class="dt"><thead><tr><th>Campaign</th><th>Recipients</th><th>Orders</th><th>Revenue</th></tr></thead><tbody><tr><td class="name-cell">3/24 BEST TOPS OF THE SEASON</td><td>152K</td><td>42</td><td class="accent-val">$7.9K</td></tr><tr><td class="name-cell">3/28 GETAWAY LOOKS</td><td>193K</td><td>34</td><td class="accent-val">$6.5K</td></tr><tr><td class="name-cell">3/26 EMAIL: A SUPERBLOOM OF STYLE - UPDA</td><td>238K</td><td>34</td><td class="accent-val">$6.2K</td></tr><tr><td class="name-cell">20260327_PT_NCOWelcomeOffer</td><td>47K</td><td>21</td><td class="accent-val">$2.7K</td></tr><tr><td class="name-cell">03/26 WHOLESALE: LPLA X OMAHA, NE</td><td>1K</td><td>1</td><td class="accent-val">$125</td></tr></tbody></table><div class="sub">Top Email Campaigns &#8212; Same Week Last Year (Mar 23&#8211;29, 2025)</div><table class="dt"><thead><tr><th>Campaign</th><th>Recipients</th><th>Orders</th><th>Revenue</th></tr></thead><tbody><tr><td class="name-cell">01JPNC6DPRB4JSP9838137YXT8</td><td>242K</td><td>59</td><td class="accent-val">$13.7K</td></tr><tr><td class="name-cell">01JPXC5GWQAFM4DJXDBM744ZV7</td><td>177K</td><td>49</td><td class="accent-val">$10.3K</td></tr><tr><td class="name-cell">01JPR1DG93TCCTKHXKEG9BRC2G</td><td>166K</td><td>41</td><td class="accent-val">$7.2K</td></tr><tr><td class="name-cell">01JPB1WMMW8XYV71VYJBYAZ3VZ</td><td>175K</td><td>43</td><td class="accent-val">$6.9K</td></tr><tr><td class="name-cell">01JPN8VGR6P2F6DWQ1XGJG603A</td><td>27K</td><td>28</td><td class="accent-val">$6.1K</td></tr></tbody></table><div class="sub">Top SMS Campaigns &#8212; This Week</div><table class="dt"><thead><tr><th>Campaign</th><th>Recipients</th><th>Orders</th><th>Revenue</th></tr></thead><tbody><tr><td class="name-cell">3/25 SMS: SPRING PRINT EDIT</td><td>53K</td><td>16</td><td class="accent-val">$2.7K</td></tr><tr><td class="name-cell">3/29 Loyalty Points to Redeem - Bronze T</td><td>15K</td><td>13</td><td class="accent-val">$2.3K</td></tr><tr><td class="name-cell">3/29 Loyalty Double Points Day - Silver </td><td>1K</td><td>5</td><td class="accent-val">$1.5K</td></tr><tr><td class="name-cell">3/27 SMS Ad Hoc Plus</td><td>5K</td><td>3</td><td class="accent-val">$416</td></tr><tr><td class="name-cell">3/27 SMS Ad Hoc Petite</td><td>5K</td><td>2</td><td class="accent-val">$183</td></tr></tbody></table></div><div class="sec"><div class="stitle">S3 &#8212; Klaviyo Flows Review (YoY)</div><div class="sub">Top Flows &#8212; This Week</div><table class="dt"><thead><tr><th>Flow</th><th>Recipients</th><th>Orders</th><th>Revenue</th></tr></thead><tbody><tr><td class="name-cell">UaeNDJ</td><td>928</td><td>57</td><td class="accent-val">$9.1K</td></tr><tr><td class="name-cell">XBuiBy</td><td>108</td><td>15</td><td class="accent-val">$2.7K</td></tr><tr><td class="name-cell">Added2Cart 2025</td><td>270</td><td>17</td><td class="accent-val">$2.6K</td></tr><tr><td class="name-cell">Txm9QN</td><td>519</td><td>12</td><td class="accent-val">$2.0K</td></tr><tr><td class="name-cell">V9LLVS</td><td>1K</td><td>27</td><td class="accent-val">$1.9K</td></tr></tbody></table><div class="sub">Top Flows &#8212; Last Week</div><table class="dt"><thead><tr><th>Flow</th><th>Recipients</th><th>Orders</th><th>Revenue</th></tr></thead><tbody><tr><td class="name-cell">UaeNDJ</td><td>878</td><td>55</td><td class="accent-val">$8.9K</td></tr><tr><td class="name-cell">Added2Cart 2025</td><td>277</td><td>9</td><td class="accent-val">$2.1K</td></tr><tr><td class="name-cell">V9LLVS</td><td>1K</td><td>28</td><td class="accent-val">$2.1K</td></tr><tr><td class="name-cell">W7qbs5</td><td>1K</td><td>11</td><td class="accent-val">$1.5K</td></tr><tr><td class="name-cell">U9NPLQ</td><td>2K</td><td>8</td><td class="accent-val">$1.5K</td></tr></tbody></table></div><div class="sec"><div class="stitle">S4 &#8212; Top 5 Campaigns &amp; Top 5 Flows vs YoY</div><div class="sub">Top 5 Email Campaigns &#8212; This Week</div><table class="dt"><thead><tr><th>Campaign</th><th>Recipients</th><th>Orders</th><th>Revenue</th></tr></thead><tbody><tr><td class="name-cell">3/24 BEST TOPS OF THE SEASON</td><td>152K</td><td>42</td><td class="accent-val">$7.9K</td></tr><tr><td class="name-cell">3/28 GETAWAY LOOKS</td><td>193K</td><td>34</td><td class="accent-val">$6.5K</td></tr><tr><td class="name-cell">3/26 EMAIL: A SUPERBLOOM OF STYLE - UPDA</td><td>238K</td><td>34</td><td class="accent-val">$6.2K</td></tr><tr><td class="name-cell">20260327_PT_NCOWelcomeOffer</td><td>47K</td><td>21</td><td class="accent-val">$2.7K</td></tr><tr><td class="name-cell">03/26 WHOLESALE: LPLA X OMAHA, NE</td><td>1K</td><td>1</td><td class="accent-val">$125</td></tr></tbody></table><div class="sub">Top 5 Flows &#8212; This Week</div><table class="dt"><thead><tr><th>Flow</th><th>Recipients</th><th>Orders</th><th>Revenue</th></tr></thead><tbody><tr><td class="name-cell">UaeNDJ</td><td>928</td><td>57</td><td class="accent-val">$9.1K</td></tr><tr><td class="name-cell">XBuiBy</td><td>108</td><td>15</td><td class="accent-val">$2.7K</td></tr><tr><td class="name-cell">Added2Cart 2025</td><td>270</td><td>17</td><td class="accent-val">$2.6K</td></tr><tr><td class="name-cell">Txm9QN</td><td>519</td><td>12</td><td class="accent-val">$2.0K</td></tr><tr><td class="name-cell">V9LLVS</td><td>1K</td><td>27</td><td class="accent-val">$1.9K</td></tr></tbody></table></div><div class="sec"><div class="stitle">S5 &#8212; Last 30 Days (YoY)</div><div class="sgrid"><div class="sc"><div class="sl">30-Day Attributed Rev</div><div class="sv accent">$235.6K</div><div class="changes"><span class="ch dn">-34.0% YoY vs $356.8K</span></div></div><div class="sc"><div class="sl">30-Day Campaign Rev</div><div class="sv">$28.8K</div><div class="changes"><span class="ch dn">-84.9% YoY vs $191.1K</span></div></div><div class="sc"><div class="sl">30-Day Flow Rev</div><div class="sv">$206.8K</div><div class="changes"><span class="ch up">+24.8% YoY vs $165.7K</span></div></div></div><div class="sub">Top 10 Flows &#8212; Mar 2026</div><table class="dt"><thead><tr><th>Flow</th><th>Recipients</th><th>Orders</th><th>Revenue</th></tr></thead><tbody><tr><td class="name-cell">UaeNDJ</td><td>3K</td><td>236</td><td class="accent-val">$36.2K</td></tr><tr><td class="name-cell">Added2Cart 2025</td><td>1K</td><td>57</td><td class="accent-val">$9.8K</td></tr><tr><td class="name-cell">V9LLVS</td><td>5K</td><td>118</td><td class="accent-val">$9.3K</td></tr><tr><td class="name-cell">XBuiBy</td><td>561</td><td>42</td><td class="accent-val">$8.3K</td></tr><tr><td class="name-cell">UaeNDJ</td><td>783</td><td>37</td><td class="accent-val">$6.5K</td></tr><tr><td class="name-cell">Added2Cart 2025</td><td>1K</td><td>31</td><td class="accent-val">$6.3K</td></tr><tr><td class="name-cell">U9NPLQ</td><td>8K</td><td>35</td><td class="accent-val">$5.2K</td></tr><tr><td class="name-cell">Txm9QN</td><td>2K</td><td>37</td><td class="accent-val">$4.9K</td></tr><tr><td class="name-cell">W7qbs5</td><td>5K</td><td>34</td><td class="accent-val">$4.5K</td></tr><tr><td class="name-cell">XBuiBy</td><td>554</td><td>27</td><td class="accent-val">$4.4K</td></tr></tbody></table></div><div class="sec"><div class="stitle">S6 &#8212; Last 30 Days vs Same Period LY</div><div class="sub">Top 10 Flows &#8212; Mar 2025</div><table class="dt"><thead><tr><th>Flow</th><th>Recipients</th><th>Orders</th><th>Revenue</th></tr></thead><tbody><tr><td class="name-cell">YiH5s7</td><td>3K</td><td>128</td><td class="accent-val">$21.1K</td></tr><tr><td class="name-cell">Added2Cart 2025</td><td>1K</td><td>67</td><td class="accent-val">$12.7K</td></tr><tr><td class="name-cell">V9LLVS</td><td>5K</td><td>97</td><td class="accent-val">$11.3K</td></tr><tr><td class="name-cell">YiH5s7</td><td>1K</td><td>48</td><td class="accent-val">$7.1K</td></tr><tr><td class="name-cell">Added2Cart 2025</td><td>1K</td><td>37</td><td class="accent-val">$5.5K</td></tr><tr><td class="name-cell">UViKZR</td><td>5K</td><td>40</td><td class="accent-val">$4.9K</td></tr><tr><td class="name-cell">XBuiBy</td><td>376</td><td>30</td><td class="accent-val">$4.7K</td></tr><tr><td class="name-cell">XBuiBy</td><td>687</td><td>23</td><td class="accent-val">$4.6K</td></tr><tr><td class="name-cell">W7qbs5</td><td>5K</td><td>36</td><td class="accent-val">$4.5K</td></tr><tr><td class="name-cell">XBuiBy</td><td>382</td><td>25</td><td class="accent-val">$3.9K</td></tr></tbody></table></div><div class="sec"><div class="stitle">Analysis &amp; Recommended Actions</div><div class="comm imp"><div class="ct g">What Improved</div><ul><li>Total attributed revenue up 42.5% WoW &#8212; $79.0K this week. Strong recovery.</li><li>Flow revenue up 3.3% WoW ($48.6K vs $47.1K) &#8212; consistent upward trend.</li><li>Loyalty SMS driving outsized efficiency &#8212; small sends, strong conversion rates.</li><li>Welcome Series 2026 and Abandoned Checkout remain top flow performers.</li></ul></div><div class="comm dec"><div class="ct r">What Declined</div><ul><li>Email campaign revenue down 33.6% YoY ($23.3K vs $45.7K LY) &#8212; campaign calendar is the driver.</li><li>30-day attributed revenue down 34.0% YoY ($235.6K vs $356.8K) &#8212; monthly gap persists.</li></ul></div><div class="comm act"><div class="ct b">Recommended Actions</div><ul><li>Lead the call with WoW recovery &#8212; 42.5% growth week over week is the headline.</li><li>Review last year&#8217;s campaign calendar to explain YoY gap &#8212; volume, not efficiency.</li><li>Confirm Welcome Series 2026 full sequence is firing (emails 2 and 3).</li><li>Expand Loyalty SMS segments &#8212; efficiency signal is strong, audience is undertapped.</li></ul></div></div><footer><div class="fb">Liverpool Los Angeles</div><div class="fn">DigitsUp &#183; Mar 23&#8211;29, 2026 &#183; Powered by Mollie</div></footer></div></div><script>
+function unlock(){
+  var v=document.getElementById('pwi').value;
+  if(v==='Liverpool2026'){
+    document.getElementById('gate').style.display='none';
+    document.getElementById('content').style.display='block';
+  } else {
+    document.getElementById('pwe').textContent='Incorrect password';
+    setTimeout(function(){document.getElementById('pwe').textContent='';},2000);
+  }
+}
+document.getElementById('pwb').addEventListener('click',unlock);
+document.getElementById('pwi').addEventListener('keydown',function(e){if(e.key==='Enter')unlock();});
+</script></body></html>
