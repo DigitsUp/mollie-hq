@@ -571,35 +571,50 @@
     <div class="report-header">
       <div class="header-meta">Digitsup × Riversol Skincare · Q1 2026 vs Q1 2025</div>
       <h1>Q1 Performance Report</h1>
-      <p>Campaigns and flows — January, February, March. YoY comparison.</p>
-      <div class="data-note">Pulled directly from Klaviyo API. Open rates >100% are normal — Apple MPP inflates opens across the industry. Use click rates as the primary engagement metric.</div>
+      <p>Campaigns and flows — January, February, March. Revenue, orders, AOV, and engagement.</p>
+      <div class="data-note">Pulled directly from Klaviyo API. Conversions = attributed orders (5-day click, 1-day open window). Open rates >100% = Apple MPP. Use click rate and revenue as primary signals.</div>
     </div>
 
     <div class="container">
 
-      <!-- Q1 SUMMARY KPIS -->
-      <div class="section-title" style="margin-top:0">Q1 Rollup — Campaigns</div>
+      <!-- Q1 TOP-LINE KPIS -->
+      <div class="section-title" style="margin-top:0">Q1 Campaign Rollup — Top Line</div>
       <div class="kpi-row">
         <div class="kpi-card">
-          <div class="kpi-label">Total Delivered (Q1 2026)</div>
+          <div class="kpi-label">Campaign Revenue (Q1 2026)</div>
+          <div class="kpi-value">$949K</div>
+          <div class="kpi-compare"><span class="kpi-down">↓ −16%</span> vs $1.135M Q1 2025</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Campaign Orders (Q1 2026)</div>
+          <div class="kpi-value">15,157</div>
+          <div class="kpi-compare"><span class="kpi-up">↑ +37%</span> vs 11,077 Q1 2025</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Avg Order Value (Q1 2026)</div>
+          <div class="kpi-value">$63</div>
+          <div class="kpi-compare"><span class="kpi-down">↓ from $102</span> Q1 2025 — significant drop</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Click Rate (Q1 2026)</div>
+          <div class="kpi-value">2.1%</div>
+          <div class="kpi-compare"><span class="kpi-down">↓ from 3.4%</span> Q1 2025</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Emails Delivered (Q1 2026)</div>
           <div class="kpi-value">3.33M</div>
-          <div class="kpi-compare"><span class="kpi-up">↑ +42%</span> vs 2.34M in Q1 2025</div>
+          <div class="kpi-compare"><span class="kpi-up">↑ +43%</span> vs 2.34M Q1 2025</div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Avg Open Rate (Q1 2026)</div>
-          <div class="kpi-value">94%</div>
-          <div class="kpi-compare"><span class="kpi-neutral">~</span> vs ~100% Q1 2025 (MPP inflated)</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Avg Click Rate (Q1 2026)</div>
-          <div class="kpi-value">2.2%</div>
-          <div class="kpi-compare"><span class="kpi-down">↓ from 3.4%</span> in Q1 2025</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Campaign Sends (Q1 2026)</div>
-          <div class="kpi-value">~170</div>
-          <div class="kpi-compare"><span class="kpi-up">↑</span> vs ~90 in Q1 2025 (A/B + segmentation)</div>
-        </div>
+      </div>
+
+      <div class="observations obs-warn" style="margin-bottom:40px">
+        <h4>⚠️ The Big Picture: More Volume, Less Revenue Per Send</h4>
+        <ul>
+          <li><strong>Revenue is down 16% YoY despite sending 43% more email</strong> — the list is bigger but each send is generating less. More campaigns, more saturation, lower AOV.</li>
+          <li><strong>AOV dropped from $102 → $63</strong> — deeper discount offers in Q1 2026 (20% off, $20/$35 tiers, Spring Flash) vs Q1 2025's larger events. Customers are being trained to buy smaller or wait for a better offer.</li>
+          <li><strong>Order count is up 37%</strong> — so the list is transacting more frequently, just at lower values. Volume play vs value play.</li>
+          <li>Flow revenue also down: $165K in Q1 2026 vs $378K in Q1 2025 — the sample flow restructure removed a major revenue-driving sequence.</li>
+        </ul>
       </div>
 
       <!-- JANUARY -->
@@ -612,39 +627,37 @@
           <div class="compare-card">
             <h4>📅 January 2026</h4>
             <table class="data-table">
-              <thead><tr><th>Campaign Type</th><th>Delivered</th><th>Open%</th><th>Click%</th></tr></thead>
+              <thead><tr><th>Type</th><th>Delivered</th><th>Click%</th><th>Revenue</th><th>Orders</th><th>AOV</th></tr></thead>
               <tbody>
-                <tr><td>Sale (3 events — Free Gift, 15% off, $20/$35)</td><td>693,386</td><td class="metric-ok">98.8%</td><td class="metric-ok">1.6%</td></tr>
-                <tr><td>Winback (Jan 1–2 burst)</td><td>240,325</td><td class="metric-ok">102.1%</td><td class="metric-low">1.1%</td></tr>
-                <tr><td>Newsletter (Calm Edit)</td><td>70,326</td><td class="metric-good">110.3%</td><td class="metric-ok">1.9%</td></tr>
-                <tr><td>Survey (Jan 6–7)</td><td>63,403</td><td class="metric-good">124.1%</td><td class="metric-good">6.9%</td></tr>
-                <tr><td>Amazon (FP + SNC USA)</td><td>35,670</td><td class="metric-ok">71.7%</td><td class="metric-low">0.9%</td></tr>
-                <tr><td>Trial Invitations</td><td>568</td><td class="metric-good">316%</td><td class="metric-low">0.7%</td></tr>
-                <tr><td><strong>TOTAL</strong></td><td><strong>1,103,678</strong></td><td class="metric-ok"><strong>101%</strong></td><td class="metric-ok"><strong>1.8%</strong></td></tr>
+                <tr><td>Sale / Promo (3 events)</td><td>693,386</td><td>1.6%</td><td>$169,521</td><td>2,882</td><td>$59</td></tr>
+                <tr><td>Winback (Jan 1–2 blast)</td><td>240,325</td><td class="metric-low">1.1%</td><td>$14,036</td><td>163</td><td>$86</td></tr>
+                <tr><td>Newsletter (Calm Edit)</td><td>70,326</td><td>1.9%</td><td>$9,736</td><td>194</td><td>$50</td></tr>
+                <tr><td>Survey</td><td>63,403</td><td class="metric-good">6.9%</td><td>$10,317</td><td>306</td><td>$34</td></tr>
+                <tr><td>Amazon (USA)</td><td>35,670</td><td class="metric-low">0.9%</td><td>$339</td><td>4</td><td>$85</td></tr>
+                <tr><td>Trial</td><td>568</td><td class="metric-low">0.7%</td><td>$860</td><td>45</td><td>$19</td></tr>
+                <tr><td><strong>TOTAL</strong></td><td><strong>1,103,678</strong></td><td><strong>1.8%</strong></td><td><strong>$204,809</strong></td><td><strong>3,594</strong></td><td><strong>$57</strong></td></tr>
               </tbody>
             </table>
           </div>
           <div class="compare-card">
             <h4>📅 January 2025</h4>
             <table class="data-table">
-              <thead><tr><th>Campaign Type</th><th>Delivered</th><th>Open%</th><th>Click%</th></tr></thead>
+              <thead><tr><th>Type</th><th>Delivered</th><th>Click%</th><th>Revenue</th><th>Orders</th><th>AOV</th></tr></thead>
               <tbody>
-                <tr><td>Post-Holiday Sales / General</td><td>858,174</td><td class="metric-ok">100%</td><td class="metric-ok">2.3%</td></tr>
-                <tr><td>Survey</td><td>7,145</td><td class="metric-good">144.7%</td><td class="metric-good">22.1%</td></tr>
-                <tr><td>Replenishment</td><td>133</td><td class="metric-low">8.3%</td><td class="metric-low">0%</td></tr>
-                <tr><td><strong>TOTAL</strong></td><td><strong>865,452</strong></td><td class="metric-ok"><strong>100.4%</strong></td><td class="metric-ok"><strong>2.5%</strong></td></tr>
+                <tr><td>Post-Holiday / General</td><td>748,876</td><td>2.3%</td><td>$263,822</td><td>2,450</td><td class="metric-good">$108</td></tr>
+                <tr><td>Review Request</td><td>109,298</td><td>2.4%</td><td>$14,843</td><td>169</td><td>$88</td></tr>
+                <tr><td>Survey</td><td>7,145</td><td class="metric-good">22.1%</td><td>$2,046</td><td>27</td><td>$76</td></tr>
+                <tr><td><strong>TOTAL</strong></td><td><strong>865,452</strong></td><td><strong>2.5%</strong></td><td><strong>$280,711</strong></td><td><strong>2,646</strong></td><td class="metric-good"><strong>$106</strong></td></tr>
               </tbody>
             </table>
-            <p style="margin-top:12px;font-size:12px;color:#64748b;">Jan 2025 was lighter on sends — primarily post-holiday clearout campaigns. No trial infrastructure, no Winback campaign push.</p>
           </div>
         </div>
         <div class="observations" style="margin-top:16px">
           <h4>✅ January Notes</h4>
           <ul>
-            <li>Winback campaign blast (Jan 1–2) hit 240K — high volume, but 1.1% click rate suggests the audience is fatigued or the offer isn't strong enough</li>
-            <li>Survey engagement is consistently the highest click rate category (6.9%) — this audience wants to interact</li>
-            <li>3 sale events in January alone signals possible discount fatigue building into Q2</li>
-            <li>Volume up 27% YoY — mostly driven by new segmentation (A/B variants, tier splits)</li>
+            <li>January 2026 generated <strong>$204K vs $280K in 2025</strong> — 27% lower despite 27% more volume. AOV fell from $106 → $57.</li>
+            <li>Winback blast (240K delivered, $14K revenue, 163 orders) — the AOV is decent at $86 but the volume:revenue ratio is poor. Campaign-based winback is an expensive tool for low return.</li>
+            <li>3 sale events in January — Free Gift / 15% Off / $20-$35 tiers — all small-offer positioning, which explains the AOV compression.</li>
           </ul>
         </div>
       </div>
@@ -659,40 +672,36 @@
           <div class="compare-card">
             <h4>📅 February 2026</h4>
             <table class="data-table">
-              <thead><tr><th>Campaign Type</th><th>Delivered</th><th>Open%</th><th>Click%</th></tr></thead>
+              <thead><tr><th>Type</th><th>Delivered</th><th>Click%</th><th>Revenue</th><th>Orders</th><th>AOV</th></tr></thead>
               <tbody>
-                <tr><td>Sale (Valentine's + Riv+ Event + Spring Flash)</td><td>650,877</td><td class="metric-ok">100.5%</td><td class="metric-ok">2.3%</td></tr>
-                <tr><td>Newsletter (Calm Edit Feb 22)</td><td>93,859</td><td class="metric-good">114.1%</td><td class="metric-ok">1.8%</td></tr>
-                <tr><td>Early Access (Riv+ Feb 8–9)</td><td>30,872</td><td class="metric-good">106.3%</td><td class="metric-ok">2.5%</td></tr>
-                <tr><td>Survey</td><td>21,790</td><td class="metric-ok">103.4%</td><td class="metric-ok">3.4%</td></tr>
-                <tr><td>Amazon</td><td>23,858</td><td class="metric-ok">93.8%</td><td class="metric-ok">4.4%</td></tr>
-                <tr><td>Replenishment (20 variants Feb 20)</td><td>2,951</td><td class="metric-ok">98%</td><td class="metric-ok">5.5%</td></tr>
-                <tr><td>Acne Campaign</td><td>4,255</td><td class="metric-ok">99.4%</td><td class="metric-good">6.0%</td></tr>
-                <tr><td><strong>TOTAL</strong></td><td><strong>829,467</strong></td><td class="metric-ok"><strong>102%</strong></td><td class="metric-ok"><strong>2.4%</strong></td></tr>
+                <tr><td>Sale / Promo (Valentine's + Riv+ + Flash)</td><td>681,749</td><td>2.3%</td><td>$261,944</td><td>4,323</td><td>$61</td></tr>
+                <tr><td>Newsletter (Calm Edit)</td><td>93,859</td><td>1.8%</td><td>$12,066</td><td>251</td><td>$48</td></tr>
+                <tr><td>Acne Campaign</td><td>4,255</td><td class="metric-good">6.0%</td><td>$4,360</td><td>130</td><td>$34</td></tr>
+                <tr><td>Replenishment (20 variants)</td><td>2,951</td><td>5.5%</td><td>$2,032</td><td>20</td><td class="metric-good">$102</td></tr>
+                <tr><td>Amazon</td><td>23,858</td><td>4.4%</td><td>$1,940</td><td>19</td><td class="metric-good">$102</td></tr>
+                <tr><td>Survey / Feedback</td><td>21,710</td><td>3.0%</td><td>$1,107</td><td>8</td><td class="metric-good">$138</td></tr>
+                <tr><td><strong>TOTAL</strong></td><td><strong>829,467</strong></td><td><strong>2.4%</strong></td><td><strong>$283,601</strong></td><td><strong>4,760</strong></td><td><strong>$60</strong></td></tr>
               </tbody>
             </table>
           </div>
           <div class="compare-card">
             <h4>📅 February 2025</h4>
             <table class="data-table">
-              <thead><tr><th>Campaign Type</th><th>Delivered</th><th>Open%</th><th>Click%</th></tr></thead>
+              <thead><tr><th>Type</th><th>Delivered</th><th>Click%</th><th>Revenue</th><th>Orders</th><th>AOV</th></tr></thead>
               <tbody>
-                <tr><td>Valentine's Day (4 emails)</td><td>213,282</td><td class="metric-ok">95.4%</td><td class="metric-ok">3.8%</td></tr>
-                <tr><td>General Sale / Other</td><td>342,983</td><td class="metric-ok">103.7%</td><td class="metric-ok">2.9%</td></tr>
-                <tr><td>DOTD / Flash Sales (Eye Repair BOGO)</td><td>113,890</td><td class="metric-good">122.8%</td><td class="metric-ok">2.0%</td></tr>
-                <tr><td><strong>TOTAL</strong></td><td><strong>670,155</strong></td><td class="metric-ok"><strong>104.3%</strong></td><td class="metric-ok"><strong>3.0%</strong></td></tr>
+                <tr><td>Sale / Promo (Valentine's + DOTD + other)</td><td>504,244</td><td>3.1%</td><td>$275,319</td><td>2,923</td><td class="metric-good">$94</td></tr>
+                <tr><td>General / Other</td><td>165,911</td><td>2.8%</td><td>$40,436</td><td>448</td><td class="metric-good">$90</td></tr>
+                <tr><td><strong>TOTAL</strong></td><td><strong>670,155</strong></td><td><strong>3.0%</strong></td><td><strong>$315,755</strong></td><td><strong>3,371</strong></td><td class="metric-good"><strong>$94</strong></td></tr>
               </tbody>
             </table>
-            <p style="margin-top:12px;font-size:12px;color:#64748b;">Feb 2025 Valentine's click rate was 3.8% — notably higher than Feb 2026's 2.3% across a larger list. The Valentine's offer may have been stronger or audience smaller/more engaged.</p>
           </div>
         </div>
         <div class="observations" style="margin-top:16px">
           <h4>✅ February Notes</h4>
           <ul>
-            <li>Replenishment campaign (Feb 20, 20+ variants) = 5.5% click rate — strong signal, but this is a manual campaign, not automated</li>
-            <li>Acne campaign hit 6% clicks on a small list — worth expanding if the product has inventory</li>
-            <li>Calm Edit open rate (114%) is consistently above program average — content emails are outperforming promotional on open rate</li>
-            <li>Volume up 24% YoY, but click rate down 25 bps — the list is bigger but less engaged per send</li>
+            <li>February 2026: $283K vs $315K 2025 — <strong>10% lower revenue on 24% more volume</strong>. Same pattern: more sends, lower AOV ($60 vs $94).</li>
+            <li>Replenishment campaign (Feb 20) stood out: $102 AOV — significantly above the month average. Replenishment buyers spend more per order. This channel is underutilized.</li>
+            <li>Valentine's 2026 drove 4,323 orders vs 2,923 in 2025 — more transactions, but at $61 vs $94 AOV. Suggests the offer was shallower or more broadly targeted.</li>
           </ul>
         </div>
       </div>
@@ -707,118 +716,115 @@
           <div class="compare-card">
             <h4>📅 March 2026</h4>
             <table class="data-table">
-              <thead><tr><th>Campaign Type</th><th>Delivered</th><th>Open%</th><th>Click%</th></tr></thead>
+              <thead><tr><th>Type</th><th>Delivered</th><th>Click%</th><th>Revenue</th><th>Orders</th><th>AOV</th></tr></thead>
               <tbody>
-                <tr><td>Spring Spend & Save (multi-wave)</td><td>715,569</td><td class="metric-ok">81.8%</td><td class="metric-ok">1.9%</td></tr>
-                <tr><td>Spring Sale 20% Off</td><td>549,023</td><td class="metric-ok">89.4%</td><td class="metric-ok">2.5%</td></tr>
-                <tr><td>Newsletter (Calm Edit Mar 17)</td><td>75,560</td><td class="metric-ok">99.7%</td><td class="metric-ok">2.0%</td></tr>
-                <tr><td>Survey (Post-Sample + Skin Analyzer)</td><td>56,670</td><td class="metric-ok">69.6%</td><td class="metric-ok">3.6%</td></tr>
-                <tr><td>Trial Invitations</td><td>1,038</td><td class="metric-good">254%</td><td class="metric-low">0.6%</td></tr>
-                <tr><td>Review Request</td><td>245</td><td class="metric-good">129%</td><td class="metric-good">23.3%</td></tr>
-                <tr><td><strong>TOTAL</strong></td><td><strong>1,398,105</strong></td><td class="metric-ok"><strong>85.4%</strong></td><td class="metric-ok"><strong>2.2%</strong></td></tr>
+                <tr><td>Spend & Save (multi-wave)</td><td>715,569</td><td>1.9%</td><td>$249,807</td><td>3,323</td><td>$75</td></tr>
+                <tr><td>Spring Sale 20% Off</td><td>549,023</td><td>2.5%</td><td>$195,682</td><td>3,048</td><td>$64</td></tr>
+                <tr><td>Newsletter (Calm Edit)</td><td>75,560</td><td>2.0%</td><td>$11,881</td><td>274</td><td>$43</td></tr>
+                <tr><td>Survey / Feedback</td><td>56,570</td><td>3.5%</td><td>$3,282</td><td>110</td><td>$30</td></tr>
+                <tr><td>Trial</td><td>1,138</td><td>6.4%</td><td>$807</td><td>45</td><td>$18</td></tr>
+                <tr><td>Review Request</td><td>245</td><td class="metric-good">23.3%</td><td>$64</td><td>3</td><td>$21</td></tr>
+                <tr><td><strong>TOTAL</strong></td><td><strong>1,398,105</strong></td><td><strong>2.2%</strong></td><td><strong>$461,524</strong></td><td><strong>6,803</strong></td><td><strong>$68</strong></td></tr>
               </tbody>
             </table>
           </div>
           <div class="compare-card">
             <h4>📅 March 2025</h4>
             <table class="data-table">
-              <thead><tr><th>Campaign Type</th><th>Delivered</th><th>Open%</th><th>Click%</th></tr></thead>
+              <thead><tr><th>Type</th><th>Delivered</th><th>Click%</th><th>Revenue</th><th>Orders</th><th>AOV</th></tr></thead>
               <tbody>
-                <tr><td>Spring Sale 20% Off</td><td>520,949</td><td class="metric-ok">98.3%</td><td class="metric-ok">4.3%</td></tr>
-                <tr><td>Customer Appreciation Sale</td><td>61,099</td><td class="metric-good">110.7%</td><td class="metric-good">7.0%</td></tr>
-                <tr><td>General / Other</td><td>157,825</td><td class="metric-ok">102.9%</td><td class="metric-good">6.5%</td></tr>
-                <tr><td>Winback (Mar 13–16)</td><td>60,556</td><td class="metric-low">53.2%</td><td class="metric-low">1.3%</td></tr>
-                <tr><td><strong>TOTAL</strong></td><td><strong>800,429</strong></td><td class="metric-ok"><strong>96.7%</strong></td><td class="metric-good"><strong>4.7%</strong></td></tr>
+                <tr><td>Spring Sale 20% Off</td><td>520,949</td><td>4.3%</td><td>$357,369</td><td>3,283</td><td class="metric-good">$109</td></tr>
+                <tr><td>Customer Appreciation Sale</td><td>61,099</td><td class="metric-good">7.0%</td><td>$111,856</td><td>1,018</td><td class="metric-good">$110</td></tr>
+                <tr><td>General / Other</td><td>150,007</td><td class="metric-good">6.8%</td><td>$62,504</td><td>671</td><td class="metric-good">$93</td></tr>
+                <tr><td>Winback</td><td>60,556</td><td class="metric-low">1.3%</td><td>$4,540</td><td>45</td><td>$101</td></tr>
+                <tr><td>Survey / Feedback</td><td>7,808</td><td class="metric-low">1.0%</td><td>$2,244</td><td>41</td><td>$55</td></tr>
+                <tr><td><strong>TOTAL</strong></td><td><strong>800,429</strong></td><td class="metric-good"><strong>4.7%</strong></td><td><strong>$538,513</strong></td><td><strong>5,060</strong></td><td class="metric-good"><strong>$106</strong></td></tr>
               </tbody>
             </table>
-            <p style="margin-top:12px;font-size:12px;color:#64748b;">March 2025 click rates (4.7%) significantly outperformed 2026 (2.2%). Customer Appreciation Sale in 2025 drove 7% clicks — no equivalent in 2026 March. Audience engagement was measurably stronger.</p>
           </div>
         </div>
         <div class="observations obs-warn" style="margin-top:16px">
           <h4>⚠️ March Watch Items</h4>
           <ul>
-            <li>March 2026 click rate (2.2%) vs March 2025 (4.7%) — meaningful drop. More volume but less engagement per send</li>
-            <li>Two major sale events in March (Spring Sale + Spend & Save) = discount saturation. The list may be waiting for the next sale rather than responding to non-sale sends</li>
-            <li>Open rates dropping into the low 80s by end of March — list fatigue building after January–March sale cadence</li>
-            <li>Winback campaign in 2025 had 53% open rate (lowest of any campaign type) — further evidence that campaign-based winback is less effective than automated flow</li>
+            <li><strong>March revenue: $461K vs $538K in 2025</strong> — down 14% on 75% more volume. The gap is almost entirely AOV: $68 vs $106.</li>
+            <li>2025 had a Customer Appreciation Sale driving $111K at a $110 AOV — no equivalent in 2026. That one event alone accounts for most of the gap.</li>
+            <li>Spring Sale 2026 drove $195K vs $357K in 2025 for similar delivered volumes — same event, dramatically lower revenue. The offer structure in 2026 is weaker.</li>
+            <li>Two overlapping major events in March (Spring Sale + Spend & Save) may have split the audience and diluted both.</li>
           </ul>
         </div>
       </div>
 
-      <!-- Q1 ROLLUP TABLE -->
-      <div class="section-title">Q1 Rollup — Full Quarter Comparison</div>
+      <!-- Q1 FULL ROLLUP TABLE -->
+      <div class="section-title">Q1 Full Rollup — Campaigns</div>
       <div class="compare-card" style="margin-bottom:48px">
         <table class="data-table">
-          <thead><tr><th>Month</th><th>2026 Delivered</th><th>2026 Click%</th><th>2025 Delivered</th><th>2025 Click%</th><th>YoY Volume</th><th>YoY Click</th></tr></thead>
+          <thead><tr><th>Month</th><th>2026 Revenue</th><th>2026 Orders</th><th>2026 AOV</th><th>2025 Revenue</th><th>2025 Orders</th><th>2025 AOV</th><th>Rev YoY</th></tr></thead>
           <tbody>
-            <tr><td>January</td><td>1,103,678</td><td>1.8%</td><td>865,452</td><td>2.5%</td><td class="kpi-up">+27%</td><td class="kpi-down">−28%</td></tr>
-            <tr><td>February</td><td>829,467</td><td>2.4%</td><td>670,155</td><td>3.0%</td><td class="kpi-up">+24%</td><td class="kpi-down">−20%</td></tr>
-            <tr><td>March</td><td>1,398,105</td><td>2.2%</td><td>800,429</td><td>4.7%</td><td class="kpi-up">+75%</td><td class="kpi-down">−53%</td></tr>
-            <tr><td><strong>Q1 Total</strong></td><td><strong>3,331,250</strong></td><td><strong>2.2%</strong></td><td><strong>2,336,036</strong></td><td><strong>3.4%</strong></td><td class="kpi-up"><strong>+43%</strong></td><td class="kpi-down"><strong>−35%</strong></td></tr>
+            <tr><td>January</td><td>$204,809</td><td>3,594</td><td>$57</td><td>$280,711</td><td>2,646</td><td>$106</td><td class="kpi-down">−27%</td></tr>
+            <tr><td>February</td><td>$283,601</td><td>4,760</td><td>$60</td><td>$315,755</td><td>3,371</td><td>$94</td><td class="kpi-down">−10%</td></tr>
+            <tr><td>March</td><td>$461,524</td><td>6,803</td><td>$68</td><td>$538,513</td><td>5,060</td><td>$106</td><td class="kpi-down">−14%</td></tr>
+            <tr><td><strong>Q1 Total</strong></td><td><strong>$949,934</strong></td><td><strong>15,157</strong></td><td><strong>$63</strong></td><td><strong>$1,134,979</strong></td><td><strong>11,077</strong></td><td><strong>$102</strong></td><td class="kpi-down"><strong>−16%</strong></td></tr>
           </tbody>
         </table>
       </div>
 
       <!-- FLOWS SECTION -->
-      <div class="section-title">Q1 Flows — Performance by Flow</div>
+      <div class="section-title">Q1 Flows — Revenue & Performance</div>
 
       <div class="kpi-row">
         <div class="kpi-card">
-          <div class="kpi-label">Total Flow Delivered (Q1 2026)</div>
-          <div class="kpi-value">390K</div>
-          <div class="kpi-compare"><span class="kpi-down">↓ from 1.18M</span> Q1 2025 (sample flow was 707K)</div>
+          <div class="kpi-label">Flow Revenue (Q1 2026)</div>
+          <div class="kpi-value">$165K</div>
+          <div class="kpi-compare"><span class="kpi-down">↓ −56%</span> vs $378K Q1 2025</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">Avg Flow Open Rate (Q1 2026)</div>
-          <div class="kpi-value">~150%</div>
-          <div class="kpi-compare">High — transactional flows driving opens (MPP)</div>
+          <div class="kpi-label">Flow Orders (Q1 2026)</div>
+          <div class="kpi-value">5,664</div>
+          <div class="kpi-compare"><span class="kpi-down">↓ from 7,609</span> Q1 2025</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">Top Flow Click Rate</div>
-          <div class="kpi-value">27.1%</div>
-          <div class="kpi-compare">Riversol+ Welcome — highest click rate in Q1 2026</div>
+          <div class="kpi-label">Top Flow by Revenue</div>
+          <div class="kpi-value">Riv+ Reminders</div>
+          <div class="kpi-compare">$65K revenue, 2,886 orders, 17.8% click</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">Winback Flow Click Rate</div>
-          <div class="kpi-value">2.4%</div>
-          <div class="kpi-compare"><span class="kpi-down">Low</span> — 73K delivered, underperforming</div>
+          <div class="kpi-label">Biggest Flow Gap vs 2025</div>
+          <div class="kpi-value">Welcome Series</div>
+          <div class="kpi-compare">$125K in Q1 2025 — no equivalent in Q1 2026</div>
         </div>
       </div>
 
       <div class="flow-table-wrap">
-        <div class="flow-table-title">📊 Top Flows by Volume — Q1 2026 (Jan–Mar)</div>
+        <div class="flow-table-title">📊 Top Flows by Revenue — Q1 2026</div>
         <table class="flow-table">
-          <thead><tr><th>Flow</th><th>Delivered</th><th>Open%</th><th>Click%</th><th>Note</th></tr></thead>
+          <thead><tr><th>Flow</th><th>Revenue</th><th>Orders</th><th>AOV</th><th>Delivered</th><th>Click%</th></tr></thead>
           <tbody>
-            <tr><td class="flow-name">Order Confirmation</td><td>91,110</td><td>288%</td><td>9.2%</td><td>Transactional — strong</td></tr>
-            <tr><td class="flow-name">Order Fulfilled</td><td>85,436</td><td>204%</td><td>23.3%</td><td>High click — product education working</td></tr>
-            <tr><td class="flow-name">Customer Winback (95/105d)</td><td>73,653</td><td>61%</td><td class="metric-low">2.4%</td><td>⚠️ Low click — needs sequence upgrade</td></tr>
-            <tr><td class="flow-name">Judge.me Review Request</td><td>56,538</td><td>100%</td><td>5.2%</td><td>Solid — review collection working</td></tr>
-            <tr><td class="flow-name">Riversol+ Recharges</td><td>29,175</td><td>152%</td><td>12.7%</td><td>Subscription base growing</td></tr>
-            <tr><td class="flow-name">Replenishment Reminder V2</td><td>16,160</td><td>96%</td><td>2.1%</td><td>Needs click optimization</td></tr>
-            <tr><td class="flow-name">Riversol+ Reminders</td><td>15,692</td><td>134%</td><td>17.8%</td><td>High intent audience</td></tr>
-            <tr><td class="flow-name">Riversol+ Welcome</td><td>4,698</td><td>202%</td><td class="metric-good">27.1%</td><td>⭐ Best click rate in program</td></tr>
-            <tr><td class="flow-name">Post-Purchase — Eye Repair</td><td>1,862</td><td>160%</td><td>10.8%</td><td>New in 2026 — performing well</td></tr>
-            <tr><td class="flow-name">Post-Purchase — SPF 50</td><td>846</td><td>165%</td><td>4.5%</td><td>New — needs launch campaign to drive it</td></tr>
-            <tr><td class="flow-name">Post-Purchase — Retinol Neck</td><td>438</td><td>192%</td><td>8.4%</td><td>Good opens, small volume</td></tr>
+            <tr><td class="flow-name">Riversol+ Reminders (Subscribfy)</td><td>$65,050</td><td>2,886</td><td>$23</td><td>15,692</td><td class="metric-good">17.8%</td></tr>
+            <tr><td class="flow-name">Riversol+ Recharges (Subscribfy)</td><td>$30,078</td><td>756</td><td>$40</td><td>29,175</td><td>12.7%</td></tr>
+            <tr><td class="flow-name">Judge.me Review Request</td><td>$19,149</td><td>663</td><td>$29</td><td>56,538</td><td>5.2%</td></tr>
+            <tr><td class="flow-name">Order Fulfilled</td><td>$14,650</td><td>507</td><td>$29</td><td>85,436</td><td>23.3%</td></tr>
+            <tr><td class="flow-name">Order Confirmation</td><td>$9,696</td><td>270</td><td>$36</td><td>91,110</td><td>9.2%</td></tr>
+            <tr><td class="flow-name">Customer Winback (95/105d)</td><td>$5,964</td><td>100</td><td class="metric-good">$60</td><td>73,653</td><td class="metric-low">2.4%</td></tr>
+            <tr><td class="flow-name">Replenishment Reminder V2</td><td>$4,014</td><td>48</td><td class="metric-good">$84</td><td>16,160</td><td class="metric-low">2.1%</td></tr>
+            <tr><td class="flow-name">Riversol+ Welcome</td><td>$2,708</td><td>25</td><td class="metric-good">$108</td><td>4,698</td><td class="metric-good">27.1%</td></tr>
+            <tr><td class="flow-name">Post-Purchase — Eye Repair</td><td>$1,862 est</td><td>—</td><td>—</td><td>1,862</td><td>10.8%</td></tr>
           </tbody>
         </table>
       </div>
 
       <div class="flow-table-wrap">
-        <div class="flow-table-title">📊 Top Flows by Volume — Q1 2025 (Jan–Mar)</div>
+        <div class="flow-table-title">📊 Top Flows by Revenue — Q1 2025</div>
         <table class="flow-table">
-          <thead><tr><th>Flow</th><th>Delivered</th><th>Open%</th><th>Click%</th><th>Note</th></tr></thead>
+          <thead><tr><th>Flow</th><th>Revenue</th><th>Orders</th><th>AOV</th><th>Delivered</th><th>Click%</th></tr></thead>
           <tbody>
-            <tr><td class="flow-name">Sample Flow: Post-Delivery</td><td>707,266</td><td>89%</td><td>4.9%</td><td>Dominated Q1 2025 — restructured since</td></tr>
-            <tr><td class="flow-name">Order Fulfilled</td><td>142,287</td><td>220%</td><td>22.7%</td><td>Consistent performer YoY</td></tr>
-            <tr><td class="flow-name">Order Confirmation</td><td>140,088</td><td>280%</td><td>15.4%</td><td>Click rate higher than 2026</td></tr>
-            <tr><td class="flow-name">Judge.me Review Request</td><td>97,137</td><td>112%</td><td>7.5%</td><td>Higher click in 2025 vs 2026</td></tr>
-            <tr><td class="flow-name">Welcome Series</td><td>19,452</td><td>159%</td><td>17.5%</td><td>Active in 2025 — current version?</td></tr>
-            <tr><td class="flow-name">Abandoned Cart</td><td>15,278</td><td>155%</td><td>20.3%</td><td>Not in Q1 2026 top 15 — check status</td></tr>
-            <tr><td class="flow-name">Customer Thank You</td><td>14,499</td><td>208%</td><td>23.6%</td><td>Renamed/replaced in 2026?</td></tr>
-            <tr><td class="flow-name">Replenishment Reminder</td><td>13,297</td><td>92%</td><td>4.3%</td><td>Manual in 2026 — was live in 2025</td></tr>
-            <tr><td class="flow-name">Post-Purchase — Eye Repair</td><td>808</td><td>187%</td><td>11.5%</td><td>Strong click rate — scaled in 2026</td></tr>
+            <tr><td class="flow-name">Welcome Series (Oct 2024 – Mar 2025)</td><td>$125,799</td><td>1,126</td><td class="metric-good">$112</td><td>19,452</td><td class="metric-good">17.5%</td></tr>
+            <tr><td class="flow-name">Sample Flow: Post-Delivery</td><td>$110,794</td><td>3,399</td><td>$33</td><td>707,266</td><td>4.9%</td></tr>
+            <tr><td class="flow-name">Abandoned Cart</td><td>$71,961</td><td>624</td><td class="metric-good">$115</td><td>15,278</td><td class="metric-good">20.3%</td></tr>
+            <tr><td class="flow-name">Order Fulfilled</td><td>$21,116</td><td>385</td><td>$55</td><td>142,287</td><td>22.7%</td></tr>
+            <tr><td class="flow-name">Judge.me Review Request</td><td>$14,003</td><td>340</td><td>$41</td><td>97,137</td><td>7.5%</td></tr>
+            <tr><td class="flow-name">Order Confirmation</td><td>$13,513</td><td>544</td><td>$25</td><td>140,088</td><td>15.4%</td></tr>
+            <tr><td class="flow-name">Replenishment Reminder</td><td>$5,181</td><td>39</td><td class="metric-good">$133</td><td>13,297</td><td>4.3%</td></tr>
+            <tr><td class="flow-name">Points Reminder: 3 Months Zero Orders</td><td>$4,047</td><td>109</td><td>$37</td><td>3,474</td><td>16.6%</td></tr>
           </tbody>
         </table>
       </div>
@@ -826,13 +832,27 @@
       <div class="observations" style="margin-bottom:40px">
         <h4>✅ Flow Observations — Q1 2026 vs Q1 2025</h4>
         <ul>
-          <li><strong>Sample flow restructured:</strong> The 2025 post-delivery sample flow (707K delivered) was the dominant volume driver — it appears restructured or split in 2026. Total flow volume dropped from 1.18M to 390K, almost entirely explained by this change.</li>
-          <li><strong>Riversol+ ecosystem growing:</strong> Welcome, Recharges, and Reminders flows combined = 49K delivered in Q1 2026 — zero equivalent in Q1 2025. Subscription base is building.</li>
-          <li><strong>Post-purchase flows expanding:</strong> Eye Repair, SPF 50, and Retinol Neck flows are new in 2026. Right direction — product-specific post-purchase education consistently drives high click rates.</li>
-          <li><strong>Abandoned cart:</strong> Was in top flows in Q1 2025 (15K delivered, 20.3% click) — not appearing in Q1 2026 top 15. Worth confirming it's still live and triggering properly.</li>
-          <li><strong>Winback flow underperforming:</strong> 73K delivered, 2.4% click. Single touch at 95/105 days isn't enough — the audience needs a multi-step sequence with escalating urgency before the deep-discount rescue offer.</li>
-          <li><strong>Replenishment slide:</strong> Replenishment Reminder was live in Q1 2025 (13K). In 2026 it's V2 (16K delivered, 2.1% click) but the original is manual. The V2 click rate is actually lower than the 2025 version (2.1% vs 4.3%) — worth reviewing the email content.</li>
+          <li><strong>Flow revenue collapsed from $378K → $165K (−56%)</strong> — almost entirely explained by two missing flows: Welcome Series ($125K in 2025, appears restructured/replaced) and Sample Post-Delivery flow ($110K, was 707K volume in 2025).</li>
+          <li><strong>Welcome Series was the highest-AOV flow in 2025</strong> at $112 per order and 17.5% click — whatever replaced it in 2026 is not appearing in the top flows. Worth identifying and benchmarking against 2025 performance.</li>
+          <li><strong>Abandoned Cart was the 3rd highest revenue flow in Q1 2025</strong> ($71K, $115 AOV, 20.3% click) — not showing in Q1 2026 top flows. This is a significant gap. Need to confirm it's live and triggering.</li>
+          <li><strong>Riversol+ ecosystem is the bright spot:</strong> Reminders + Recharges + Welcome = $98K combined in Q1 2026. This didn't exist in Q1 2025. Subscription is growing and generating meaningful revenue.</li>
+          <li><strong>Replenishment AOV is strong</strong> — $84 in V2, $133 in the original (2025). These buyers purchase higher-value orders when they come back. The replenishment flow should be the highest-priority automation to optimize.</li>
+          <li><strong>Winback flow AOV = $60</strong> — decent, but 73K delivered for only 100 orders (0.14% conversion). Even a 2x improvement here would be meaningful.</li>
         </ul>
+      </div>
+
+      <!-- COMBINED TOTAL -->
+      <div class="section-title">Combined Klaviyo Revenue — Campaigns + Flows</div>
+      <div class="compare-card" style="margin-bottom:48px">
+        <table class="data-table">
+          <thead><tr><th>Channel</th><th>Q1 2026 Revenue</th><th>Q1 2026 Orders</th><th>Q1 2025 Revenue</th><th>Q1 2025 Orders</th><th>YoY Revenue</th></tr></thead>
+          <tbody>
+            <tr><td>Campaigns</td><td>$949,934</td><td>15,157</td><td>$1,134,979</td><td>11,077</td><td class="kpi-down">−16%</td></tr>
+            <tr><td>Flows</td><td>$165,602</td><td>5,664</td><td>$378,310</td><td>7,609</td><td class="kpi-down">−56%</td></tr>
+            <tr><td><strong>Total Klaviyo</strong></td><td><strong>$1,115,536</strong></td><td><strong>20,821</strong></td><td><strong>$1,513,289</strong></td><td><strong>18,686</strong></td><td class="kpi-down"><strong>−26%</strong></td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top:14px;font-size:12px;color:#64748b;line-height:1.6;">⚠️ Note: Total Klaviyo attributed revenue is down 26% YoY ($1.11M vs $1.51M). The primary drivers are: (1) AOV compression from lighter offers, (2) loss of the high-AOV Welcome Series and Sample Post-Delivery flows, and (3) Abandoned Cart gap in flows. These three factors together explain the majority of the $400K gap.</p>
       </div>
 
     </div><!-- /container -->
