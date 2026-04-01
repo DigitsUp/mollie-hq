@@ -199,19 +199,32 @@ main{position:relative;z-index:5;max-width:1060px;margin:0 auto;padding:28px 20p
   <!-- USAGE -->
   <div class="st">Usage & Costs</div>
   <div class="ug">
-    <div class="uc"><div class="ul">Total Spend</div><div class="uv a" id="uspend">$162.00</div><div class="us">of $500 budget · Apr 1 2026</div></div>
-    <div class="uc"><div class="ul">Sessions</div><div class="uv" id="usess">~820</div><div class="us">approx total</div></div>
+    <div class="uc"><div class="ul">Total Spend</div><div class="uv a" id="uspend">~$165</div><div class="us">of $500 budget · Apr 1 2026</div></div>
+    <div class="uc"><div class="ul">Sessions</div><div class="uv" id="usess">~835</div><div class="us">approx total</div></div>
     <div class="uc"><div class="ul">Output Tokens</div><div class="uv" id="uout">—</div><div class="us">generated</div></div>
     <div class="uc"><div class="ul">Model</div><div class="uv" style="font-size:13px;padding-top:6px;" id="umod">Sonnet 4.6</div><div class="us">primary</div></div>
   </div>
   <div class="bw">
     <div class="bt">Budget</div>
-    <div class="btr"><div class="bf" id="ubf" style="width:32.4%"></div></div>
-    <div class="bp" id="ubp">32.4%</div>
+    <div class="btr"><div class="bf" id="ubf" style="width:33%"></div></div>
+    <div class="bp" id="ubp">33%</div>
   </div>
   <div class="rr">
-    <div class="sn" id="usy">Last synced: Apr 1 2026, 1:46 PM PDT</div>
+    <div class="sn" id="usy">Last synced: Apr 1 2026, 4:22 PM PDT</div>
     <button id="rb" onclick="alert('Usage refreshed from session logs.')">⟳ Refresh</button>
+  </div>
+
+  <!-- ACTIVITY FEED -->
+  <div style="margin-top:28px;margin-bottom:28px;">
+    <div class="st">Today's Activity — Apr 1</div>
+    <div class="dfl">
+      <div class="dfl-bd" style="max-height:none;">
+        <div class="df-row"><span style="width:6px;height:6px;border-radius:50%;background:#566B85;display:inline-block;flex-shrink:0;"></span>&nbsp;<span class="df-tk">Good morning — fresh start. Outersignal kickoff 11am, RVCA kickoff 1pm.</span><span class="df-ts">7:28 AM</span></div>
+        <div class="df-row"><span style="width:6px;height:6px;border-radius:50%;background:#22C55E;display:inline-block;flex-shrink:0;"></span>&nbsp;<span class="df-tk">Outersignal Team Kickoff ✓ — Thomas, Marl, Meaghan, Shelbie. Rho pipeline demo'd.</span><span class="df-ts">11:00 AM</span></div>
+        <div class="df-row"><span style="width:6px;height:6px;border-radius:50%;background:#22C55E;display:inline-block;flex-shrink:0;"></span>&nbsp;<span class="df-tk">RVCA Internal Kickoff ✓ — went great. Client kickoff tomorrow Apr 2 with Clayton Dahl.</span><span class="df-ts">1:00 PM</span></div>
+        <div class="df-row"><span style="width:6px;height:6px;border-radius:50%;background:#2f91c3;display:inline-block;flex-shrink:0;"></span>&nbsp;<span class="df-tk">Mollie HQ refreshed — tasks + activity updated. ~$165 total spend, ~33% budget used.</span><span class="df-ts">4:22 PM</span></div>
+      </div>
+    </div>
   </div>
 
   <!-- KANBAN -->
@@ -415,21 +428,23 @@ const COLS=[
 const NXT={queued:'active',active:'review',review:'done'};
 const NLB={queued:'→ Active',active:'→ In Review',review:'→ Done'};
 
+if(localStorage.getItem('mhq_tv')!=='v2'){localStorage.removeItem('mhq_t');localStorage.setItem('mhq_tv','v2');}
 let tasks=JSON.parse(localStorage.getItem('mhq_t')||'[]');
 if(!tasks.length){
   tasks=[
     {id:'1',name:'Rho Nutrition — Days 8 + 21 Briefs & Copy',type:'brief',due:'2026-04-02',col:'queued',agent:'callie'},
     {id:'2',name:'Riversol Campaign Ideas — Sales Strategies + Deploy',type:'client',due:'2026-04-02',col:'queued',agent:'mollie'},
-    {id:'3',name:'SFR Distillery Intro Call Prep',type:'brief',due:'2026-04-06',col:'queued',agent:'mollie'},
+    {id:'3',name:'SFR Distillery Intro Call Prep (Apr 7)',type:'brief',due:'2026-04-06',col:'queued',agent:'mollie'},
     {id:'4',name:'Write Callie Client Knowledge Briefing Files',type:'admin',due:'2026-04-02',col:'queued',agent:'mollie'},
-    {id:'5',name:'RVCA Kickoff Call — 1pm PST',type:'client',due:'2026-04-01',col:'done',agent:'mollie'},
-    {id:'6',name:'Outersignal Kickoff Call — 11am PST',type:'client',due:'2026-04-01',col:'done',agent:'mollie'},
+    {id:'13',name:'RVCA Client Kickoff — Apr 2 (Clayton Dahl)',type:'client',due:'2026-04-02',col:'queued',agent:'mollie'},
+    {id:'5',name:'RVCA Internal Kickoff ✓',type:'client',due:'2026-04-01',col:'done',agent:'mollie'},
+    {id:'6',name:'Outersignal Team Kickoff ✓',type:'client',due:'2026-04-01',col:'done',agent:'mollie'},
     {id:'7',name:'RVCA Kickoff Doc — Section 04 (no pricing)',type:'client',due:'2026-04-01',col:'done',agent:'callie'},
     {id:'8',name:'Liverpool Weekly Report',type:'report',due:'2026-03-31',col:'done',agent:'callie'},
     {id:'9',name:'Hale Iwa Farm Vision Doc',type:'client',due:'2026-03-31',col:'done',agent:'callie'},
     {id:'10',name:'Rho Nutrition Day 3 Wireframe Brief',type:'brief',due:'2026-03-31',col:'done',agent:'callie'},
     {id:'11',name:'Callie Agent Setup + Registration',type:'admin',due:'2026-04-01',col:'done',agent:'mollie'},
-    {id:'12',name:'Outersignal Briefing Docs — Shelbie + Meaghan',type:'brief',due:'2026-03-31',col:'done',agent:'callie'},
+    {id:'12',name:'Outersignal Shelbie + Meaghan Briefing Docs',type:'brief',due:'2026-03-31',col:'done',agent:'callie'},
   ];
   localStorage.setItem('mhq_t',JSON.stringify(tasks));
 }
