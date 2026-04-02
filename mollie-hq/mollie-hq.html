@@ -818,6 +818,27 @@ main{
         </div>
         <div class="feed-time">5:14 PM</div>
       </div>
+      <div class="feed-entry">
+        <div class="feed-dot green"></div>
+        <div class="feed-body">
+          <div class="feed-text">Outersignal Team Kickoff ✓ — Thomas, Marl, Meaghan, Shelbie aligned on Rho pipeline.</div>
+        </div>
+        <div class="feed-time">11:00 AM</div>
+      </div>
+      <div class="feed-entry">
+        <div class="feed-dot green"></div>
+        <div class="feed-body">
+          <div class="feed-text">RVCA Team Kickoff ✓ — Clayton Dahl call complete. Retention program officially launched.</div>
+        </div>
+        <div class="feed-time">1:00 PM</div>
+      </div>
+      <div class="feed-entry">
+        <div class="feed-dot blue"></div>
+        <div class="feed-body">
+          <div class="feed-text">HQ refreshed — Apr 1 evening session startup.</div>
+        </div>
+        <div class="feed-time">6:02 PM</div>
+      </div>
     </div>
   </div>
 
@@ -1048,10 +1069,10 @@ const COLS=[
 const NXT={queued:'active',active:'review',review:'done'};
 const NLB={queued:'→ Active',active:'→ In Review',review:'→ Done'};
 
-// Cache bust: v4
-if(localStorage.getItem('mhq_tv')!=='v4'){
+// Cache bust: v5
+if(localStorage.getItem('mhq_tv')!=='v5'){
   localStorage.removeItem('mhq_t');
-  localStorage.setItem('mhq_tv','v4');
+  localStorage.setItem('mhq_tv','v5');
 }
 let tasks=JSON.parse(localStorage.getItem('mhq_t')||'[]');
 if(!tasks.length){
@@ -1060,7 +1081,7 @@ if(!tasks.length){
     {id:'2', name:'Riversol Campaign Ideas — Sales Strategies + Deploy',  type:'client', due:'2026-04-02',col:'queued',agent:'mollie'},
     {id:'3', name:'SFR Distillery Intro Call Prep (Apr 7)',               type:'brief',  due:'2026-04-06',col:'queued',agent:'mollie'},
     {id:'4', name:'Write Callie Client Knowledge Briefing Files',         type:'admin',  due:'2026-04-02',col:'queued',agent:'mollie'},
-    {id:'13',name:'RVCA Client Kickoff — Apr 2 (Clayton Dahl)',           type:'client', due:'2026-04-02',col:'queued',agent:'mollie'},
+    {id:'13',name:'RVCA Client Kickoff — Clayton Dahl ✓',                 type:'client', due:'2026-04-01',col:'done',  agent:'mollie'},
     {id:'5', name:'RVCA Internal Kickoff ✓',                             type:'client', due:'2026-04-01',col:'done',  agent:'mollie'},
     {id:'6', name:'Outersignal Team Kickoff ✓',                          type:'client', due:'2026-04-01',col:'done',  agent:'mollie'},
     {id:'7', name:'RVCA Kickoff Doc — Section 04 (no pricing)',           type:'client', due:'2026-04-01',col:'done',  agent:'callie'},
