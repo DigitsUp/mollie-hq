@@ -734,7 +734,7 @@ main{
   <div class="usage-grid">
     <div class="usage-card">
       <div class="usage-label">Total Spend</div>
-      <div class="usage-value accent">~$165</div>
+      <div class="usage-value accent">$59.23</div>
       <div class="usage-note">of $500 budget</div>
     </div>
     <div class="usage-card">
@@ -749,15 +749,15 @@ main{
     </div>
     <div class="usage-card">
       <div class="usage-label">Budget Used</div>
-      <div class="usage-value accent">33%</div>
-      <div class="usage-note">$165 of $500</div>
+      <div class="usage-value accent">12%</div>
+      <div class="usage-note">$59.23 of $500</div>
     </div>
   </div>
 
   <div class="budget-row">
     <div class="budget-label">Budget</div>
-    <div class="budget-track"><div class="budget-fill" style="width:33%"></div></div>
-    <div class="budget-pct">33%</div>
+    <div class="budget-track"><div class="budget-fill" style="width:12%"></div></div>
+    <div class="budget-pct">12%</div>
   </div>
 
   <div class="sync-row">
@@ -767,8 +767,22 @@ main{
 
   <!-- 4. TODAY'S ACTIVITY -->
   <div class="mt-28">
-    <div class="section-label">Today's Activity — Apr 1</div>
+    <div class="section-label">Today's Activity — Apr 2</div>
     <div class="feed">
+      <div class="feed-entry">
+        <div class="feed-dot green"></div>
+        <div class="feed-body">
+          <div class="feed-text">Morning Briefing cron set — 6am daily Telegram proactive update</div>
+        </div>
+        <div class="feed-time">Apr 2</div>
+      </div>
+      <div class="feed-entry">
+        <div class="feed-dot green"></div>
+        <div class="feed-body">
+          <div class="feed-text">EOD Recap cron set — 5pm daily Telegram end-of-day wrap</div>
+        </div>
+        <div class="feed-time">Apr 2</div>
+      </div>
       <div class="feed-entry">
         <div class="feed-dot grey"></div>
         <div class="feed-body">
@@ -1069,18 +1083,19 @@ const COLS=[
 const NXT={queued:'active',active:'review',review:'done'};
 const NLB={queued:'→ Active',active:'→ In Review',review:'→ Done'};
 
-// Cache bust: v5
-if(localStorage.getItem('mhq_tv')!=='v5'){
+// Cache bust: v6
+if(localStorage.getItem('mhq_tv')!=='v6'){
   localStorage.removeItem('mhq_t');
-  localStorage.setItem('mhq_tv','v5');
+  localStorage.setItem('mhq_tv','v6');
 }
 let tasks=JSON.parse(localStorage.getItem('mhq_t')||'[]');
 if(!tasks.length){
   tasks=[
-    {id:'1', name:'Rho Nutrition — Days 8 + 21 Briefs & Copy',           type:'brief',  due:'2026-04-02',col:'queued',agent:'callie'},
-    {id:'2', name:'Riversol Campaign Ideas — Sales Strategies + Deploy',  type:'client', due:'2026-04-02',col:'queued',agent:'mollie'},
+    {id:'1', name:'Rho Nutrition — Days 8 + 21 Briefs & Copy',           type:'brief',  due:'2026-04-04',col:'queued',agent:'callie'},
     {id:'3', name:'SFR Distillery Intro Call Prep (Apr 7)',               type:'brief',  due:'2026-04-06',col:'queued',agent:'mollie'},
-    {id:'4', name:'Write Callie Client Knowledge Briefing Files',         type:'admin',  due:'2026-04-02',col:'queued',agent:'mollie'},
+    {id:'4', name:'Write Callie Client Knowledge Briefing Files',         type:'admin',  due:'2026-04-03',col:'queued',agent:'mollie'},
+    {id:'2', name:'Riversol Campaign Ideas — Sales Strategies + Deploy',  type:'client', due:'2026-04-03',col:'queued',agent:'mollie'},
+    {id:'14',name:'Morning Briefing + EOD Recap Crons',                   type:'admin',  due:'2026-04-02',col:'done',  agent:'mollie'},
     {id:'13',name:'RVCA Client Kickoff — Clayton Dahl ✓',                 type:'client', due:'2026-04-01',col:'done',  agent:'mollie'},
     {id:'5', name:'RVCA Internal Kickoff ✓',                             type:'client', due:'2026-04-01',col:'done',  agent:'mollie'},
     {id:'6', name:'Outersignal Team Kickoff ✓',                          type:'client', due:'2026-04-01',col:'done',  agent:'mollie'},
@@ -1132,7 +1147,9 @@ function rdf(){
   }
   const fmt={
     '2026-04-01':'Apr 1','2026-03-31':'Mar 31',
-    '2026-03-30':'Mar 30','2026-04-02':'Apr 2'
+    '2026-03-30':'Mar 30','2026-04-02':'Apr 2',
+    '2026-04-03':'Apr 3','2026-04-04':'Apr 4',
+    '2026-04-06':'Apr 6'
   };
   bd.innerHTML=done.slice().reverse().map(t=>
     `<div class="deleg-row">
