@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mollie HQ · v2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Mollie HQ · v3</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -13,15 +13,15 @@
   --bg3:#122038;
   --bg4:#162640;
   --border:rgba(255,255,255,0.06);
-  --border2:rgba(255,255,255,0.1);
+  --border2:rgba(255,255,255,0.10);
   --m:#2f91c3;
   --mdim:rgba(47,145,195,0.12);
   --mglow:rgba(47,145,195,0.25);
   --mborder:rgba(47,145,195,0.25);
   --c:#F59E0B;
-  --cdim:rgba(245,158,11,0.1);
-  --cglow:rgba(245,158,11,0.2);
-  --cborder:rgba(245,158,11,0.25);
+  --cdim:rgba(245,158,11,0.10);
+  --cglow:rgba(245,158,11,0.20);
+  --cborder:rgba(245,158,11,0.28);
   --green:#22C55E;
   --red:#EF4444;
   --text:#D9E8F5;
@@ -29,9 +29,10 @@
   --muted:#566B85;
   --r:14px;
   --r2:10px;
+  --max:600px;
 }
 
-body{
+html,body{
   font-family:'DM Sans',sans-serif;
   background:var(--bg);
   color:var(--text);
@@ -53,7 +54,7 @@ body::before{
 body::after{
   content:'';
   position:fixed;inset:0;
-  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(47,145,195,0.04) 0%,transparent 70%);
+  background:radial-gradient(ellipse 90% 55% at 50% 0%,rgba(47,145,195,0.05) 0%,transparent 70%);
   pointer-events:none;
   z-index:0;
 }
@@ -93,7 +94,7 @@ body::after{
   background:var(--bg2);border:1px solid var(--bg3);
   color:var(--text);font-size:14px;font-family:'DM Mono',monospace;
   border-radius:9px;outline:none;transition:border-color .2s;
-  letter-spacing:.1em;
+  letter-spacing:.12em;
 }
 #pwi:focus{border-color:var(--m);}
 #pwe{
@@ -117,44 +118,44 @@ body::after{
 header{
   position:relative;z-index:10;
   display:flex;align-items:center;justify-content:space-between;
-  padding:14px 32px;
+  padding:12px 20px;
   border-bottom:1px solid var(--border);
-  background:rgba(7,16,28,0.92);
+  background:rgba(7,16,28,0.94);
   backdrop-filter:blur(12px);
 }
-.logo{display:flex;align-items:center;gap:12px;}
+.logo{display:flex;align-items:center;gap:10px;}
 .logo-mark{
-  width:34px;height:34px;
+  width:30px;height:30px;
   background:linear-gradient(135deg,var(--m),#1a6090);
-  border-radius:9px;display:flex;align-items:center;justify-content:center;
-  font-family:'Syne',sans-serif;font-weight:800;font-size:13px;color:#fff;
-  box-shadow:0 0 20px var(--mglow);
+  border-radius:8px;display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-weight:800;font-size:12px;color:#fff;
+  box-shadow:0 0 16px var(--mglow);
   flex-shrink:0;
 }
 .logo-text{display:flex;flex-direction:column;gap:1px;}
 .logo-name{
-  font-family:'Syne',sans-serif;font-weight:700;font-size:15px;
+  font-family:'Syne',sans-serif;font-weight:700;font-size:14px;
   line-height:1;
 }
 .logo-sub{
-  font-family:'DM Mono',monospace;font-size:9px;
+  font-family:'DM Mono',monospace;font-size:8px;
   color:var(--muted);letter-spacing:.04em;
 }
-.header-right{display:flex;align-items:center;gap:14px;}
+.header-right{display:flex;align-items:center;gap:10px;}
 #clk{
-  font-family:'DM Mono',monospace;font-size:11px;
+  font-family:'DM Mono',monospace;font-size:10px;
   color:var(--muted);
 }
 .status-pill{
-  display:flex;align-items:center;gap:6px;
-  padding:5px 12px;border-radius:99px;
+  display:flex;align-items:center;gap:5px;
+  padding:4px 10px;border-radius:99px;
   background:rgba(34,197,94,0.08);
   border:1px solid rgba(34,197,94,0.2);
-  font-family:'DM Mono',monospace;font-size:10px;
+  font-family:'DM Mono',monospace;font-size:9px;
   color:var(--green);
 }
 .status-dot{
-  width:6px;height:6px;border-radius:50%;
+  width:5px;height:5px;border-radius:50%;
   background:var(--green);
   animation:pulse-green 2s ease-in-out infinite;
 }
@@ -162,19 +163,24 @@ header{
   0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(34,197,94,0.5);}
   50%{opacity:.8;box-shadow:0 0 0 3px rgba(34,197,94,0);}
 }
+@keyframes pulse-amber{
+  0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(245,158,11,0.5);}
+  50%{opacity:.7;box-shadow:0 0 0 3px rgba(245,158,11,0);}
+}
 
-/* ── MAIN ── */
+/* ── MAIN LAYOUT ── */
 main{
   position:relative;z-index:5;
-  max-width:1100px;margin:0 auto;
-  padding:36px 24px 64px;
+  max-width:var(--max);
+  margin:0 auto;
+  padding:28px 16px 72px;
 }
 
 /* ── SECTION LABEL ── */
 .section-label{
   font-family:'DM Mono',monospace;font-size:9px;
   text-transform:uppercase;letter-spacing:.18em;
-  color:var(--muted);margin-bottom:16px;
+  color:var(--muted);margin-bottom:14px;
   display:flex;align-items:center;gap:10px;
 }
 .section-label::after{
@@ -182,199 +188,181 @@ main{
   background:var(--border);
 }
 
-/* ── AGENT ROW ── */
-.agent-row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:16px;
-  margin-bottom:36px;
-}
-
-/* Agent Card Base */
-.agent-card{
+/* ── MOLLIE HERO ── */
+.mollie-hero{
+  text-align:center;
+  padding:28px 20px 24px;
+  background:var(--bg2);
+  border:1px solid var(--mborder);
   border-radius:var(--r);
-  border:1px solid var(--border);
-  overflow:hidden;
   position:relative;
+  overflow:hidden;
+  margin-bottom:12px;
 }
-.agent-card::before{
+.mollie-hero::before{
   content:'';
-  position:absolute;top:0;left:0;right:0;
-  height:2px;
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--m),transparent);
 }
-.agent-card.mollie::before{background:linear-gradient(90deg,transparent,var(--m),transparent);}
-.agent-card.callie::before{background:linear-gradient(90deg,transparent,var(--c),transparent);}
-
-.agent-card.mollie{background:var(--bg2);border-color:var(--mborder);}
-.agent-card.callie{background:var(--bg2);border-color:var(--cborder);}
-
-.agent-card-inner{padding:24px;}
-
-.agent-top{
-  display:flex;align-items:flex-start;gap:16px;
-  margin-bottom:18px;
+.mollie-hero::after{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;bottom:0;
+  background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(47,145,195,0.06),transparent 70%);
+  pointer-events:none;
 }
-
-/* Mollie avatar section */
-.mollie-avatar-wrap{
-  display:flex;flex-direction:column;align-items:center;
-  flex-shrink:0;
+.avatar-wrap{
+  position:relative;
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  margin-bottom:16px;
 }
 #mc{
   image-rendering:pixelated;
   image-rendering:crisp-edges;
   display:block;
 }
-.mollie-avatar-glow{
-  width:72px;height:6px;
-  background:radial-gradient(ellipse,rgba(47,145,195,.35) 0%,transparent 70%);
-  border-radius:50%;margin-top:-1px;
+.avatar-glow{
+  width:108px;height:8px;
+  background:radial-gradient(ellipse,rgba(47,145,195,.4) 0%,transparent 70%);
+  border-radius:50%;margin-top:-2px;
 }
-
-/* Callie avatar section */
-.callie-avatar{
-  width:72px;height:108px;
-  border-radius:10px;
-  background:linear-gradient(160deg,rgba(245,158,11,0.12),rgba(245,158,11,0.04));
-  border:1px solid rgba(245,158,11,0.2);
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
-  position:relative;
-  overflow:hidden;
-}
-.callie-avatar::after{
-  content:'';
-  position:absolute;bottom:0;left:0;right:0;height:30px;
-  background:linear-gradient(transparent,rgba(245,158,11,0.06));
-}
-.callie-monogram{
-  font-family:'Syne',sans-serif;font-weight:800;
-  font-size:42px;color:var(--c);
-  opacity:0.85;
-  text-shadow:0 0 30px rgba(245,158,11,0.4);
-  line-height:1;
-}
-
-.agent-info{flex:1;min-width:0;}
-.agent-name{
-  font-family:'Syne',sans-serif;font-weight:800;font-size:22px;
-  line-height:1;margin-bottom:6px;
-}
-.agent-card.mollie .agent-name{
-  background:linear-gradient(135deg,#fff,var(--m));
+.mollie-name{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:28px;
+  letter-spacing:.02em;line-height:1;
+  background:linear-gradient(135deg,#fff 30%,var(--m) 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  margin-bottom:5px;
 }
-.agent-card.callie .agent-name{
-  background:linear-gradient(135deg,#fff,var(--c));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-}
-.agent-role{
+.mollie-role{
   font-family:'DM Mono',monospace;font-size:10px;
-  color:var(--muted);line-height:1.5;margin-bottom:10px;
+  color:var(--muted);margin-bottom:4px;
+  letter-spacing:.04em;
 }
-.agent-email{
+.mollie-email{
   font-family:'DM Mono',monospace;font-size:10px;
-  color:var(--muted);opacity:.7;
+  color:var(--muted);opacity:.6;margin-bottom:16px;
 }
-
-.agent-status-badge{
+.mollie-online{
   display:inline-flex;align-items:center;gap:6px;
-  padding:5px 12px;border-radius:99px;
+  padding:5px 14px;border-radius:99px;
+  background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.22);
   font-family:'DM Mono',monospace;font-size:10px;
-  margin-bottom:10px;
+  color:var(--green);margin-bottom:20px;
 }
-.agent-status-badge.online{
-  background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.25);
-  color:var(--green);
-}
-.agent-status-badge.standby{
-  background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.22);
-  color:var(--c);
-}
-.badge-dot{
+.mollie-online .badge-dot{
   width:6px;height:6px;border-radius:50%;
-  flex-shrink:0;
-}
-.badge-dot.green{
   background:var(--green);
   animation:pulse-green 2s ease-in-out infinite;
 }
-.badge-dot.amber{
-  background:var(--c);
-  animation:pulse-amber 2.4s ease-in-out infinite;
-}
-@keyframes pulse-amber{
-  0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(245,158,11,0.5);}
-  50%{opacity:.7;box-shadow:0 0 0 3px rgba(245,158,11,0);}
-}
 
-/* State label */
-.agent-state-label{
+/* State section */
+.state-section{
+  border-top:1px solid var(--border);
+  padding-top:16px;
+}
+.state-label{
   font-family:'DM Mono',monospace;font-size:9px;
-  text-transform:uppercase;letter-spacing:.1em;
-  color:var(--muted);margin-bottom:8px;
+  text-transform:uppercase;letter-spacing:.12em;
+  color:var(--muted);margin-bottom:10px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
 }
-
-/* State buttons */
+.state-label-val{
+  color:var(--m);font-weight:500;
+}
 .state-buttons{
-  display:flex;flex-wrap:wrap;gap:6px;
+  display:flex;flex-wrap:wrap;justify-content:center;gap:8px;
 }
 .sb{
-  padding:4px 12px;border-radius:99px;
+  padding:7px 18px;border-radius:99px;
   border:1px solid var(--border2);
   background:rgba(255,255,255,0.03);
   color:var(--muted);
   font-family:'DM Mono',monospace;font-size:9px;
-  text-transform:uppercase;letter-spacing:.06em;
+  text-transform:uppercase;letter-spacing:.08em;
   cursor:pointer;transition:all .2s;
+  -webkit-tap-highlight-color:transparent;
 }
-.sb:hover{
-  background:var(--mdim);border-color:var(--mborder);color:var(--m);
-}
-.sb.on{
-  background:var(--mdim);border-color:var(--mborder);color:var(--m);
-}
+.sb:hover{background:var(--mdim);border-color:var(--mborder);color:var(--m);}
+.sb.on{background:var(--mdim);border-color:var(--mborder);color:var(--m);}
 
-/* Callie capabilities */
-.callie-caps{
-  display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;
+/* ── CALLIE STATUS CARD ── */
+.callie-card{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 16px;
+  background:var(--bg2);
+  border:1px solid var(--cborder);
+  border-radius:var(--r2);
+  position:relative;
+  overflow:hidden;
+  margin-bottom:28px;
 }
-.cap-tag{
-  padding:3px 10px;border-radius:99px;
+.callie-card::before{
+  content:'';
+  position:absolute;top:0;left:0;bottom:0;width:2px;
+  background:linear-gradient(180deg,var(--c),transparent);
+}
+.callie-mono{
+  width:44px;height:44px;border-radius:8px;
+  background:linear-gradient(145deg,rgba(245,158,11,0.14),rgba(245,158,11,0.05));
+  border:1px solid rgba(245,158,11,0.22);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-weight:800;font-size:22px;
+  color:var(--c);flex-shrink:0;
+  text-shadow:0 0 16px rgba(245,158,11,0.35);
+}
+.callie-info{flex:1;min-width:0;}
+.callie-name-row{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+}
+.callie-name{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:13px;
+  color:var(--text);
+}
+.callie-role-text{
+  font-family:'DM Mono',monospace;font-size:9px;
+  color:var(--muted);margin-top:2px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.callie-standby{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:3px 9px;border-radius:99px;
+  background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.22);
+  font-family:'DM Mono',monospace;font-size:9px;
+  color:var(--c);white-space:nowrap;
+}
+.callie-standby .dot{
+  width:5px;height:5px;border-radius:50%;
+  background:var(--c);
+  animation:pulse-amber 2.4s ease-in-out infinite;
+}
+.callie-tags{
+  display:flex;gap:5px;margin-top:6px;flex-wrap:wrap;
+}
+.callie-tag{
+  padding:2px 8px;border-radius:99px;
   background:rgba(245,158,11,0.06);
-  border:1px solid rgba(245,158,11,0.16);
-  font-family:'DM Mono',monospace;font-size:9px;
-  color:var(--c);opacity:.85;
+  border:1px solid rgba(245,158,11,0.14);
+  font-family:'DM Mono',monospace;font-size:8px;
+  color:var(--c);opacity:.8;
 }
 
-/* Agent divider */
-.agent-divider{
-  height:1px;background:var(--border);
-  margin:0 24px 16px;
-}
-
-.agent-footer{
-  padding:0 24px 20px;
-  display:flex;align-items:center;justify-content:space-between;
-}
-.agent-footer-label{
-  font-family:'DM Mono',monospace;font-size:9px;
-  color:var(--muted);
-}
-
-/* ── USAGE ── */
+/* ── USAGE GRID ── */
 .usage-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:12px;margin-bottom:12px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:10px;
 }
 .usage-card{
   background:var(--bg2);border:1px solid var(--border);
-  border-radius:var(--r);padding:16px 18px;
+  border-radius:var(--r2);padding:14px 16px;
 }
 .usage-label{
   font-family:'DM Mono',monospace;font-size:9px;
   text-transform:uppercase;letter-spacing:.1em;
-  color:var(--muted);margin-bottom:8px;
+  color:var(--muted);margin-bottom:6px;
 }
 .usage-value{
   font-family:'Syne',sans-serif;font-weight:700;font-size:22px;
@@ -382,47 +370,46 @@ main{
 }
 .usage-value.accent{color:var(--m);}
 .usage-note{
-  font-family:'DM Mono',monospace;font-size:10px;
-  color:var(--muted);margin-top:5px;line-height:1.4;
+  font-family:'DM Mono',monospace;font-size:9px;
+  color:var(--muted);margin-top:4px;line-height:1.4;
 }
 .budget-row{
   background:var(--bg2);border:1px solid var(--border);
-  border-radius:var(--r);padding:16px 20px;
-  display:flex;align-items:center;gap:16px;
-  margin-bottom:10px;
+  border-radius:var(--r2);padding:14px 16px;
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:8px;
 }
 .budget-label{
   font-family:'DM Mono',monospace;font-size:10px;
   color:var(--muted);white-space:nowrap;
 }
 .budget-track{
-  flex:1;height:6px;background:var(--bg3);
+  flex:1;height:5px;background:var(--bg3);
   border-radius:99px;overflow:hidden;
 }
 .budget-fill{
   height:100%;
   background:linear-gradient(90deg,var(--m),#5BBAE0);
   border-radius:99px;
-  transition:width .8s cubic-bezier(.4,0,.2,1);
-  box-shadow:0 0 8px rgba(47,145,195,0.4);
+  box-shadow:0 0 6px rgba(47,145,195,0.4);
 }
 .budget-pct{
   font-family:'DM Mono',monospace;font-size:12px;
-  color:var(--text);min-width:36px;text-align:right;font-weight:500;
+  color:var(--text);min-width:34px;text-align:right;font-weight:500;
 }
 .sync-row{
   display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:8px;
+  margin-bottom:6px;
 }
 .sync-note{
-  font-family:'DM Mono',monospace;font-size:10px;
+  font-family:'DM Mono',monospace;font-size:9px;
   color:var(--muted);
 }
 #rb{
-  padding:5px 14px;
+  padding:4px 12px;
   background:var(--mdim);border:1px solid var(--mborder);
   color:var(--m);border-radius:99px;
-  font-family:'DM Mono',monospace;font-size:10px;
+  font-family:'DM Mono',monospace;font-size:9px;
   cursor:pointer;transition:all .2s;
 }
 #rb:hover{background:var(--m);color:#fff;}
@@ -431,11 +418,10 @@ main{
 .feed{
   background:var(--bg2);border:1px solid var(--border);
   border-radius:var(--r);overflow:hidden;
-  margin-bottom:4px;
 }
 .feed-entry{
-  display:flex;align-items:flex-start;gap:12px;
-  padding:12px 20px;
+  display:flex;align-items:flex-start;gap:10px;
+  padding:11px 16px;
   border-bottom:1px solid rgba(255,255,255,0.03);
   transition:background .15s;
 }
@@ -450,32 +436,30 @@ main{
 .feed-dot.blue{background:var(--m);}
 .feed-dot.amber{background:var(--c);}
 .feed-body{flex:1;}
-.feed-text{
-  font-size:13px;line-height:1.5;
-  color:var(--text);
-}
+.feed-text{font-size:12px;line-height:1.5;color:var(--text);}
 .feed-time{
-  font-family:'DM Mono',monospace;font-size:10px;
-  color:var(--muted);white-space:nowrap;margin-top:1px;flex-shrink:0;
+  font-family:'DM Mono',monospace;font-size:9px;
+  color:var(--muted);white-space:nowrap;margin-top:2px;flex-shrink:0;
 }
 
 /* ── KANBAN ── */
 .kanban-header{
   display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:14px;
+  margin-bottom:12px;
 }
+/* Mobile: vertical stack */
 .kanban-board{
-  display:grid;grid-template-columns:repeat(4,1fr);
+  display:flex;
+  flex-direction:column;
   gap:12px;
 }
 .kanban-col{
   background:var(--bg2);border:1px solid var(--border);
   border-radius:var(--r);padding:14px;
-  min-height:200px;
 }
 .kanban-col-header{
   display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:12px;
+  margin-bottom:10px;
 }
 .kanban-col-title{
   font-family:'DM Mono',monospace;font-size:9px;
@@ -490,14 +474,10 @@ main{
 .task-card{
   background:var(--bg3);border:1px solid var(--border);
   border-radius:var(--r2);padding:10px 12px;
-  margin-bottom:8px;
-  transition:border-color .2s,transform .1s;
-  cursor:default;
+  margin-bottom:7px;
+  transition:border-color .2s;
 }
-.task-card:hover{
-  border-color:var(--border2);
-  transform:translateY(-1px);
-}
+.task-card:active{border-color:var(--border2);}
 .task-top{
   display:flex;justify-content:space-between;
   align-items:flex-start;gap:6px;
@@ -544,10 +524,9 @@ main{
   font-family:'DM Mono',monospace;font-size:9px;
   color:var(--m);cursor:pointer;
   text-align:center;transition:all .2s;
+  -webkit-tap-highlight-color:transparent;
 }
-.task-advance:hover{
-  background:var(--mdim);border-color:var(--mborder);
-}
+.task-advance:hover{background:var(--mdim);border-color:var(--mborder);}
 
 /* ── DELEGATION LOG ── */
 .deleg-card{
@@ -555,7 +534,7 @@ main{
   border-radius:var(--r);overflow:hidden;
 }
 .deleg-header{
-  padding:12px 20px;
+  padding:10px 16px;
   border-bottom:1px solid var(--border);
   display:flex;align-items:center;justify-content:space-between;
 }
@@ -568,16 +547,16 @@ main{
   background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);
   color:var(--c);border-radius:99px;padding:2px 9px;
 }
-.deleg-body{max-height:240px;overflow-y:auto;}
+.deleg-body{max-height:260px;overflow-y:auto;}
 .deleg-row{
-  display:flex;align-items:center;gap:10px;
-  padding:10px 20px;
+  display:flex;align-items:flex-start;gap:8px;
+  padding:9px 16px;
   border-bottom:1px solid rgba(255,255,255,0.03);
   font-family:'DM Mono',monospace;font-size:11px;
 }
 .deleg-row:last-child{border-bottom:none;}
-.deleg-check{color:var(--green);font-size:12px;flex-shrink:0;}
-.deleg-task{flex:1;color:var(--text);line-height:1.4;}
+.deleg-check{color:var(--green);font-size:11px;flex-shrink:0;margin-top:1px;}
+.deleg-task{flex:1;color:var(--text);line-height:1.4;font-size:10px;}
 .deleg-agent{
   color:var(--c);font-size:9px;
   padding:2px 8px;
@@ -586,7 +565,7 @@ main{
 }
 .deleg-date{color:var(--muted);font-size:9px;white-space:nowrap;}
 .deleg-empty{
-  padding:28px 20px;
+  padding:24px 16px;
   color:var(--muted);
   font-family:'DM Mono',monospace;font-size:11px;
   text-align:center;
@@ -595,71 +574,71 @@ main{
 /* ── ADD TASK BUTTON ── */
 .btn-add{
   display:inline-flex;align-items:center;gap:6px;
-  padding:7px 16px;
+  padding:7px 14px;
   background:var(--mdim);border:1px solid var(--mborder);
   color:var(--m);border-radius:99px;
-  font-family:'DM Mono',monospace;font-size:10px;
+  font-family:'DM Mono',monospace;font-size:9px;
   cursor:pointer;transition:all .2s;
+  -webkit-tap-highlight-color:transparent;
 }
 .btn-add:hover{background:var(--m);color:#fff;}
 
 /* ── MODAL ── */
 .modal-overlay{
   position:fixed;inset:0;
-  background:rgba(0,0,0,.75);
+  background:rgba(0,0,0,.78);
   backdrop-filter:blur(4px);
   z-index:1000;
   display:none;align-items:center;justify-content:center;
+  padding:16px;
 }
 .modal-overlay.open{display:flex;}
 .modal-box{
   background:var(--bg2);
   border:1px solid var(--border2);
-  border-radius:16px;padding:24px;
-  width:380px;max-width:92vw;
+  border-radius:16px;padding:22px;
+  width:100%;max-width:380px;
 }
 .modal-title{
-  font-family:'Syne',sans-serif;font-weight:700;font-size:16px;
-  margin-bottom:20px;
+  font-family:'Syne',sans-serif;font-weight:700;font-size:15px;
+  margin-bottom:18px;
 }
-.form-group{margin-bottom:14px;}
+.form-group{margin-bottom:12px;}
 .form-label{
   font-family:'DM Mono',monospace;font-size:9px;
   text-transform:uppercase;letter-spacing:.1em;
-  color:var(--muted);display:block;margin-bottom:6px;
+  color:var(--muted);display:block;margin-bottom:5px;
 }
 .form-input,.form-select{
-  width:100%;padding:10px 13px;
+  width:100%;padding:10px 12px;
   background:var(--bg3);border:1px solid var(--border);
   color:var(--text);border-radius:8px;
   font-family:'DM Sans',sans-serif;font-size:13px;
   outline:none;transition:border-color .2s;
 }
 .form-input:focus,.form-select:focus{border-color:var(--m);}
+.form-select option{background:var(--bg2);}
 .modal-actions{
-  display:flex;gap:8px;justify-content:flex-end;margin-top:18px;
+  display:flex;gap:8px;justify-content:flex-end;margin-top:16px;
 }
 .btn-cancel{
-  padding:8px 18px;background:transparent;
+  padding:8px 16px;background:transparent;
   color:var(--muted);border:1px solid var(--border);
   border-radius:8px;font-family:'DM Mono',monospace;font-size:10px;
   cursor:pointer;transition:all .2s;
 }
 .btn-cancel:hover{border-color:var(--border2);color:var(--text);}
 .btn-confirm{
-  padding:8px 18px;background:var(--m);
+  padding:8px 16px;background:var(--m);
   color:#fff;border:none;border-radius:8px;
   font-family:'DM Mono',monospace;font-size:10px;
   cursor:pointer;transition:all .2s;
 }
 .btn-confirm:hover{opacity:.88;box-shadow:0 4px 12px var(--mglow);}
 
-/* Spacing utility */
-.mt-8{margin-top:8px;}
-.mt-16{margin-top:16px;}
+/* Spacing */
+.mt-24{margin-top:24px;}
 .mt-28{margin-top:28px;}
-.mt-36{margin-top:36px;}
-.mb-28{margin-bottom:28px;}
 
 /* Scrollbar */
 ::-webkit-scrollbar{width:4px;}
@@ -674,7 +653,7 @@ main{
   <div class="gb">
     <div class="g-eyebrow">DigitsUp Internal</div>
     <div class="g-title">Mollie HQ</div>
-    <div class="g-sub">AI Mission Control · v2</div>
+    <div class="g-sub">AI Mission Control · v3</div>
     <div class="g-label">Enter Password</div>
     <input type="password" id="pwi" placeholder="••••••••" onkeydown="if(event.key==='Enter')unlock()">
     <div id="pwe"></div>
@@ -696,7 +675,7 @@ main{
     <div id="clk"></div>
     <div class="status-pill">
       <div class="status-dot"></div>
-      <span>Systems Online</span>
+      <span>Online</span>
     </div>
   </div>
 </header>
@@ -704,116 +683,90 @@ main{
 <!-- ── MAIN ── -->
 <main>
 
-  <!-- SECTION: AGENT STATUS -->
-  <div class="section-label">Agent Status</div>
-
-  <div class="agent-row">
-
-    <!-- MOLLIE CARD -->
-    <div class="agent-card mollie">
-      <div class="agent-card-inner">
-        <div class="agent-top">
-          <!-- Pixel art avatar -->
-          <div class="mollie-avatar-wrap">
-            <canvas id="mc" width="72" height="108"></canvas>
-            <div class="mollie-avatar-glow"></div>
-          </div>
-          <div class="agent-info">
-            <div class="agent-name">Mollie</div>
-            <div class="agent-role">DigitsUp AI Production Assistant<br>Coordinator · Email · Strategy · Lifecycle</div>
-            <div class="agent-status-badge online">
-              <div class="badge-dot green"></div>
-              Online
-            </div>
-            <div class="agent-email">mollie@digitsup.com</div>
-          </div>
-        </div>
-        <div class="agent-divider"></div>
-        <div style="padding:0;">
-          <div class="agent-state-label" id="avsl">Idle</div>
-          <div class="state-buttons">
-            <button class="sb on" onclick="fstate('idle',this)">Idle</button>
-            <button class="sb" onclick="fstate('type',this)">Working</button>
-            <button class="sb" onclick="fstate('think',this)">Thinking</button>
-            <button class="sb" onclick="fstate('dance',this)">Celebrate</button>
-          </div>
-        </div>
+  <!-- 1. MOLLIE HERO -->
+  <div class="mollie-hero">
+    <div class="avatar-wrap">
+      <canvas id="mc" width="108" height="162"></canvas>
+      <div class="avatar-glow"></div>
+    </div>
+    <div class="mollie-name">Mollie</div>
+    <div class="mollie-role">DigitsUp AI Production Assistant · Coordinator</div>
+    <div class="mollie-email">mollie@digitsup.com</div>
+    <div>
+      <div class="mollie-online">
+        <div class="badge-dot"></div>
+        Online
       </div>
     </div>
-
-    <!-- CALLIE CARD -->
-    <div class="agent-card callie">
-      <div class="agent-card-inner">
-        <div class="agent-top">
-          <div class="callie-avatar">
-            <div class="callie-monogram">C</div>
-          </div>
-          <div class="agent-info">
-            <div class="agent-name">Callie</div>
-            <div class="agent-role">DigitsUp Specialist Unit<br>Research · Briefs · Analysis · Builds</div>
-            <div class="agent-status-badge standby">
-              <div class="badge-dot amber"></div>
-              Standing By
-            </div>
-            <div class="agent-email">callie@digitsup.com</div>
-          </div>
-        </div>
-        <div class="agent-divider"></div>
-        <div>
-          <div class="agent-state-label" style="color:var(--muted);font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;">Capabilities</div>
-          <div class="callie-caps">
-            <span class="cap-tag">Brief Writing</span>
-            <span class="cap-tag">Copywriting</span>
-            <span class="cap-tag">Research</span>
-            <span class="cap-tag">Klaviyo Docs</span>
-            <span class="cap-tag">HTML Builds</span>
-            <span class="cap-tag">Reporting</span>
-          </div>
-        </div>
+    <div class="state-section">
+      <div class="state-label">
+        State: <span class="state-label-val" id="avsl">Idle</span>
+      </div>
+      <div class="state-buttons">
+        <button class="sb on" onclick="fstate('idle',this)">Idle</button>
+        <button class="sb" onclick="fstate('type',this)">Working</button>
+        <button class="sb" onclick="fstate('think',this)">Thinking</button>
+        <button class="sb" onclick="fstate('dance',this)">Celebrate</button>
       </div>
     </div>
-
   </div>
 
-  <!-- SECTION: USAGE & BUDGET -->
+  <!-- 2. CALLIE STATUS CARD -->
+  <div class="callie-card">
+    <div class="callie-mono">C</div>
+    <div class="callie-info">
+      <div class="callie-name-row">
+        <span class="callie-name">Callie</span>
+        <span class="callie-standby"><span class="dot"></span>Standing By</span>
+      </div>
+      <div class="callie-role-text">Specialist Unit · Research · Briefs · Analysis · Builds</div>
+      <div class="callie-tags">
+        <span class="callie-tag">Brief Writing</span>
+        <span class="callie-tag">Copywriting</span>
+        <span class="callie-tag">HTML Builds</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. USAGE & BUDGET -->
   <div class="section-label">Usage &amp; Budget</div>
 
   <div class="usage-grid">
     <div class="usage-card">
       <div class="usage-label">Total Spend</div>
-      <div class="usage-value accent" id="uspend">~$165</div>
-      <div class="usage-note">of $500 budget<br>Apr 1 2026</div>
+      <div class="usage-value accent">~$165</div>
+      <div class="usage-note">of $500 budget</div>
     </div>
     <div class="usage-card">
       <div class="usage-label">Sessions</div>
-      <div class="usage-value" id="usess">~835</div>
+      <div class="usage-value">~835</div>
       <div class="usage-note">approx total</div>
     </div>
     <div class="usage-card">
       <div class="usage-label">Model</div>
-      <div class="usage-value" style="font-size:16px;padding-top:4px;" id="umod">Sonnet 4.6</div>
-      <div class="usage-note">primary model</div>
+      <div class="usage-value" style="font-size:16px;padding-top:4px;">Sonnet 4.6</div>
+      <div class="usage-note">primary</div>
     </div>
     <div class="usage-card">
-      <div class="usage-label">Output Tokens</div>
-      <div class="usage-value" id="uout">—</div>
-      <div class="usage-note">this session</div>
+      <div class="usage-label">Budget Used</div>
+      <div class="usage-value accent">33%</div>
+      <div class="usage-note">$165 of $500</div>
     </div>
   </div>
 
   <div class="budget-row">
-    <div class="budget-label">Budget Usage</div>
-    <div class="budget-track"><div class="budget-fill" id="ubf" style="width:33%"></div></div>
-    <div class="budget-pct" id="ubp">33%</div>
+    <div class="budget-label">Budget</div>
+    <div class="budget-track"><div class="budget-fill" style="width:33%"></div></div>
+    <div class="budget-pct">33%</div>
   </div>
 
   <div class="sync-row">
-    <div class="sync-note" id="usy">Last synced: Apr 1 2026, 4:30 PM PDT</div>
-    <button id="rb" onclick="alert('Usage refreshed from session logs.')">⟳ Refresh</button>
+    <div class="sync-note">Last synced: Apr 1 2026, 5:14 PM PDT</div>
+    <button id="rb" onclick="alert('Usage refreshed.')">⟳ Refresh</button>
   </div>
 
-  <!-- SECTION: TODAY'S ACTIVITY -->
-  <div class="mt-36">
+  <!-- 4. TODAY'S ACTIVITY -->
+  <div class="mt-28">
     <div class="section-label">Today's Activity — Apr 1</div>
     <div class="feed">
       <div class="feed-entry">
@@ -858,11 +811,18 @@ main{
         </div>
         <div class="feed-time">4:43 PM</div>
       </div>
+      <div class="feed-entry">
+        <div class="feed-dot amber"></div>
+        <div class="feed-body">
+          <div class="feed-text">Mollie HQ v3 briefed — mobile-first redesign, Mollie centered as hero.</div>
+        </div>
+        <div class="feed-time">5:14 PM</div>
+      </div>
     </div>
   </div>
 
-  <!-- SECTION: TASK PIPELINE -->
-  <div class="mt-36">
+  <!-- 5. TASK PIPELINE -->
+  <div class="mt-28">
     <div class="kanban-header">
       <div class="section-label" style="margin:0;flex:1;">Task Pipeline</div>
       <button class="btn-add" onclick="omodal()">+ New Task</button>
@@ -870,8 +830,8 @@ main{
     <div class="kanban-board" id="kb"></div>
   </div>
 
-  <!-- SECTION: DELEGATION LOG -->
-  <div class="mt-36">
+  <!-- 6. DELEGATION LOG -->
+  <div class="mt-28">
     <div class="section-label">Delegation Log · via Callie</div>
     <div class="deleg-card">
       <div class="deleg-header">
@@ -969,9 +929,10 @@ if(sessionStorage.getItem('mhq_auth')==='1'){
 }
 
 // ── PIXEL ART AVATAR (Mollie) ──
+// Z=6: canvas 108x162 (18*6 wide, 27*6 tall)
 const cv=document.getElementById('mc');
 const cx=cv.getContext('2d');
-const Z=4; // scale (72px wide = 18 * 4)
+const Z=6;
 
 function p(x,y,w,h,c){cx.fillStyle=c;cx.fillRect(x*Z,y*Z,w*Z,h*Z);}
 
@@ -1079,34 +1040,35 @@ requestAnimationFrame(anim);
 
 // ── KANBAN ──
 const COLS=[
-  {id:'queued', label:'Queued',   color:'#8899AA'},
-  {id:'active', label:'Active',   color:'#2f91c3'},
-  {id:'review', label:'In Review',color:'#F59E0B'},
-  {id:'done',   label:'Done',     color:'#22C55E'},
+  {id:'queued', label:'Queued',    color:'#8899AA'},
+  {id:'active', label:'Active',    color:'#2f91c3'},
+  {id:'review', label:'In Review', color:'#F59E0B'},
+  {id:'done',   label:'Done',      color:'#22C55E'},
 ];
 const NXT={queued:'active',active:'review',review:'done'};
 const NLB={queued:'→ Active',active:'→ In Review',review:'→ Done'};
 
-if(localStorage.getItem('mhq_tv')!=='v3'){
+// Cache bust: v4
+if(localStorage.getItem('mhq_tv')!=='v4'){
   localStorage.removeItem('mhq_t');
-  localStorage.setItem('mhq_tv','v3');
+  localStorage.setItem('mhq_tv','v4');
 }
 let tasks=JSON.parse(localStorage.getItem('mhq_t')||'[]');
 if(!tasks.length){
   tasks=[
-    {id:'1', name:'Rho Nutrition — Days 8 + 21 Briefs & Copy',            type:'brief',  due:'2026-04-02',col:'queued',agent:'callie'},
-    {id:'2', name:'Riversol Campaign Ideas — Sales Strategies + Deploy',   type:'client', due:'2026-04-02',col:'queued',agent:'mollie'},
-    {id:'3', name:'SFR Distillery Intro Call Prep (Apr 7)',                type:'brief',  due:'2026-04-06',col:'queued',agent:'mollie'},
-    {id:'4', name:'Write Callie Client Knowledge Briefing Files',          type:'admin',  due:'2026-04-02',col:'queued',agent:'mollie'},
-    {id:'13',name:'RVCA Client Kickoff — Apr 2 (Clayton Dahl)',            type:'client', due:'2026-04-02',col:'queued',agent:'mollie'},
-    {id:'5', name:'RVCA Internal Kickoff ✓',                              type:'client', due:'2026-04-01',col:'done',  agent:'mollie'},
-    {id:'6', name:'Outersignal Team Kickoff ✓',                           type:'client', due:'2026-04-01',col:'done',  agent:'mollie'},
-    {id:'7', name:'RVCA Kickoff Doc — Section 04 (no pricing)',            type:'client', due:'2026-04-01',col:'done',  agent:'callie'},
-    {id:'8', name:'Liverpool Weekly Report',                               type:'report', due:'2026-03-31',col:'done',  agent:'callie'},
-    {id:'9', name:'Hale Iwa Farm Vision Doc',                              type:'client', due:'2026-03-31',col:'done',  agent:'callie'},
-    {id:'10',name:'Rho Nutrition Day 3 Wireframe Brief',                   type:'brief',  due:'2026-03-31',col:'done',  agent:'callie'},
-    {id:'11',name:'Callie Agent Setup + Registration',                     type:'admin',  due:'2026-04-01',col:'done',  agent:'mollie'},
-    {id:'12',name:'Outersignal Shelbie + Meaghan Briefing Docs',           type:'brief',  due:'2026-03-31',col:'done',  agent:'callie'},
+    {id:'1', name:'Rho Nutrition — Days 8 + 21 Briefs & Copy',           type:'brief',  due:'2026-04-02',col:'queued',agent:'callie'},
+    {id:'2', name:'Riversol Campaign Ideas — Sales Strategies + Deploy',  type:'client', due:'2026-04-02',col:'queued',agent:'mollie'},
+    {id:'3', name:'SFR Distillery Intro Call Prep (Apr 7)',               type:'brief',  due:'2026-04-06',col:'queued',agent:'mollie'},
+    {id:'4', name:'Write Callie Client Knowledge Briefing Files',         type:'admin',  due:'2026-04-02',col:'queued',agent:'mollie'},
+    {id:'13',name:'RVCA Client Kickoff — Apr 2 (Clayton Dahl)',           type:'client', due:'2026-04-02',col:'queued',agent:'mollie'},
+    {id:'5', name:'RVCA Internal Kickoff ✓',                             type:'client', due:'2026-04-01',col:'done',  agent:'mollie'},
+    {id:'6', name:'Outersignal Team Kickoff ✓',                          type:'client', due:'2026-04-01',col:'done',  agent:'mollie'},
+    {id:'7', name:'RVCA Kickoff Doc — Section 04 (no pricing)',           type:'client', due:'2026-04-01',col:'done',  agent:'callie'},
+    {id:'8', name:'Liverpool Weekly Report',                              type:'report', due:'2026-03-31',col:'done',  agent:'callie'},
+    {id:'9', name:'Hale Iwa Farm Vision Doc',                             type:'client', due:'2026-03-31',col:'done',  agent:'callie'},
+    {id:'10',name:'Rho Nutrition Day 3 Wireframe Brief',                  type:'brief',  due:'2026-03-31',col:'done',  agent:'callie'},
+    {id:'11',name:'Callie Agent Setup + Registration',                    type:'admin',  due:'2026-04-01',col:'done',  agent:'mollie'},
+    {id:'12',name:'Outersignal Shelbie + Meaghan Briefing Docs',          type:'brief',  due:'2026-03-31',col:'done',  agent:'callie'},
   ];
   localStorage.setItem('mhq_t',JSON.stringify(tasks));
 }
