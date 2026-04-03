@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Mollie HQ · v3</title>
+<title>Mollie HQ · v4</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -31,7 +31,6 @@
   --r2:10px;
   --max:600px;
 }
-
 html,body{
   font-family:'DM Sans',sans-serif;
   background:var(--bg);
@@ -39,8 +38,6 @@ html,body{
   min-height:100vh;
   overflow-x:hidden;
 }
-
-/* GRID BACKGROUND */
 body::before{
   content:'';
   position:fixed;inset:0;
@@ -48,15 +45,13 @@ body::before{
     linear-gradient(rgba(47,145,195,0.03) 1px,transparent 1px),
     linear-gradient(90deg,rgba(47,145,195,0.03) 1px,transparent 1px);
   background-size:48px 48px;
-  pointer-events:none;
-  z-index:0;
+  pointer-events:none;z-index:0;
 }
 body::after{
   content:'';
   position:fixed;inset:0;
   background:radial-gradient(ellipse 90% 55% at 50% 0%,rgba(47,145,195,0.05) 0%,transparent 70%);
-  pointer-events:none;
-  z-index:0;
+  pointer-events:none;z-index:0;
 }
 
 /* ── PASSWORD GATE ── */
@@ -65,54 +60,17 @@ body::after{
   background:var(--bg);
   display:flex;align-items:center;justify-content:center;
 }
-.gb{
-  text-align:center;width:340px;padding:0 24px;
-  position:relative;z-index:2;
-}
-.g-eyebrow{
-  font-family:'DM Mono',monospace;font-size:9px;
-  text-transform:uppercase;letter-spacing:.22em;
-  color:var(--muted);margin-bottom:10px;
-}
-.g-title{
-  font-family:'Syne',sans-serif;font-weight:800;font-size:26px;
-  letter-spacing:.04em;margin-bottom:4px;
-  background:linear-gradient(135deg,#fff 0%,var(--m) 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-}
-.g-sub{
-  font-family:'DM Mono',monospace;font-size:10px;
-  color:var(--muted);margin-bottom:32px;
-}
-.g-label{
-  font-family:'DM Mono',monospace;font-size:9px;
-  color:var(--muted);text-transform:uppercase;letter-spacing:.1em;
-  margin-bottom:8px;text-align:left;
-}
-#pwi{
-  width:100%;padding:13px 16px;
-  background:var(--bg2);border:1px solid var(--bg3);
-  color:var(--text);font-size:14px;font-family:'DM Mono',monospace;
-  border-radius:9px;outline:none;transition:border-color .2s;
-  letter-spacing:.12em;
-}
+.gb{text-align:center;width:340px;padding:0 24px;position:relative;z-index:2;}
+.g-eyebrow{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.22em;color:var(--muted);margin-bottom:10px;}
+.g-title{font-family:'Syne',sans-serif;font-weight:800;font-size:26px;letter-spacing:.04em;margin-bottom:4px;background:linear-gradient(135deg,#fff 0%,var(--m) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.g-sub{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:32px;}
+.g-label{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;text-align:left;}
+#pwi{width:100%;padding:13px 16px;background:var(--bg2);border:1px solid var(--bg3);color:var(--text);font-size:14px;font-family:'DM Mono',monospace;border-radius:9px;outline:none;transition:border-color .2s;letter-spacing:.12em;}
 #pwi:focus{border-color:var(--m);}
-#pwe{
-  font-family:'DM Mono',monospace;font-size:11px;
-  color:var(--red);margin-top:6px;min-height:16px;text-align:left;
-}
-#pwb{
-  margin-top:10px;width:100%;padding:13px;
-  background:var(--m);color:#fff;border:none;
-  border-radius:9px;font-family:'DM Mono',monospace;font-size:11px;
-  text-transform:uppercase;letter-spacing:.1em;cursor:pointer;
-  transition:opacity .2s,box-shadow .2s;
-}
+#pwe{font-family:'DM Mono',monospace;font-size:11px;color:var(--red);margin-top:6px;min-height:16px;text-align:left;}
+#pwb{margin-top:10px;width:100%;padding:13px;background:var(--m);color:#fff;border:none;border-radius:9px;font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.1em;cursor:pointer;transition:opacity .2s,box-shadow .2s;}
 #pwb:hover{opacity:.9;box-shadow:0 4px 20px var(--mglow);}
-.g-credit{
-  font-family:'DM Mono',monospace;font-size:9px;
-  color:rgba(86,107,133,0.5);margin-top:22px;
-}
+.g-credit{font-family:'DM Mono',monospace;font-size:9px;color:rgba(86,107,133,0.5);margin-top:22px;}
 
 /* ── HEADER ── */
 header{
@@ -124,517 +82,129 @@ header{
   backdrop-filter:blur(12px);
 }
 .logo{display:flex;align-items:center;gap:10px;}
-.logo-mark{
-  width:30px;height:30px;
-  background:linear-gradient(135deg,var(--m),#1a6090);
-  border-radius:8px;display:flex;align-items:center;justify-content:center;
-  font-family:'Syne',sans-serif;font-weight:800;font-size:12px;color:#fff;
-  box-shadow:0 0 16px var(--mglow);
-  flex-shrink:0;
-}
+.logo-mark{width:30px;height:30px;background:linear-gradient(135deg,var(--m),#1a6090);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:12px;color:#fff;box-shadow:0 0 16px var(--mglow);flex-shrink:0;}
 .logo-text{display:flex;flex-direction:column;gap:1px;}
-.logo-name{
-  font-family:'Syne',sans-serif;font-weight:700;font-size:14px;
-  line-height:1;
-}
-.logo-sub{
-  font-family:'DM Mono',monospace;font-size:8px;
-  color:var(--muted);letter-spacing:.04em;
-}
+.logo-name{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;line-height:1;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:.04em;}
 .header-right{display:flex;align-items:center;gap:10px;}
-#clk{
-  font-family:'DM Mono',monospace;font-size:10px;
-  color:var(--muted);
-}
-.status-pill{
-  display:flex;align-items:center;gap:5px;
-  padding:4px 10px;border-radius:99px;
-  background:rgba(34,197,94,0.08);
-  border:1px solid rgba(34,197,94,0.2);
-  font-family:'DM Mono',monospace;font-size:9px;
-  color:var(--green);
-}
-.status-dot{
-  width:5px;height:5px;border-radius:50%;
-  background:var(--green);
-  animation:pulse-green 2s ease-in-out infinite;
-}
-@keyframes pulse-green{
-  0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(34,197,94,0.5);}
-  50%{opacity:.8;box-shadow:0 0 0 3px rgba(34,197,94,0);}
-}
-@keyframes pulse-amber{
-  0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(245,158,11,0.5);}
-  50%{opacity:.7;box-shadow:0 0 0 3px rgba(245,158,11,0);}
-}
+#clk{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);}
+.status-pill{display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:99px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);font-family:'DM Mono',monospace;font-size:9px;color:var(--green);}
+.status-dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:pulse-green 2s ease-in-out infinite;}
+@keyframes pulse-green{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(34,197,94,0.5);}50%{opacity:.8;box-shadow:0 0 0 3px rgba(34,197,94,0);}}
+@keyframes pulse-amber{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(245,158,11,0.5);}50%{opacity:.7;box-shadow:0 0 0 3px rgba(245,158,11,0);}}
 
-/* ── MAIN LAYOUT ── */
-main{
-  position:relative;z-index:5;
-  max-width:var(--max);
-  margin:0 auto;
-  padding:28px 16px 72px;
-}
+/* ── MAIN ── */
+main{position:relative;z-index:5;max-width:var(--max);margin:0 auto;padding:28px 16px 72px;}
 
 /* ── SECTION LABEL ── */
-.section-label{
-  font-family:'DM Mono',monospace;font-size:9px;
-  text-transform:uppercase;letter-spacing:.18em;
-  color:var(--muted);margin-bottom:14px;
-  display:flex;align-items:center;gap:10px;
-}
-.section-label::after{
-  content:'';flex:1;height:1px;
-  background:var(--border);
-}
+.section-label{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.18em;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* ── SYNC ROW ── */
+.sync-row{display:flex;justify-content:space-between;align-items:center;margin-top:10px;margin-bottom:0;}
+.sync-note{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);}
 
 /* ── MOLLIE HERO ── */
-.mollie-hero{
-  text-align:center;
-  padding:28px 20px 24px;
-  background:var(--bg2);
-  border:1px solid var(--mborder);
-  border-radius:var(--r);
-  position:relative;
-  overflow:hidden;
-  margin-bottom:12px;
-}
-.mollie-hero::before{
-  content:'';
-  position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,var(--m),transparent);
-}
-.mollie-hero::after{
-  content:'';
-  position:absolute;
-  top:0;left:0;right:0;bottom:0;
-  background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(47,145,195,0.06),transparent 70%);
-  pointer-events:none;
-}
-.avatar-wrap{
-  position:relative;
-  display:inline-flex;
-  flex-direction:column;
-  align-items:center;
-  margin-bottom:16px;
-}
-#mc{
-  image-rendering:pixelated;
-  image-rendering:crisp-edges;
-  display:block;
-}
-.avatar-glow{
-  width:108px;height:8px;
-  background:radial-gradient(ellipse,rgba(47,145,195,.4) 0%,transparent 70%);
-  border-radius:50%;margin-top:-2px;
-}
-.mollie-name{
-  font-family:'Syne',sans-serif;font-weight:800;font-size:28px;
-  letter-spacing:.02em;line-height:1;
-  background:linear-gradient(135deg,#fff 30%,var(--m) 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  margin-bottom:5px;
-}
-.mollie-role{
-  font-family:'DM Mono',monospace;font-size:10px;
-  color:var(--muted);margin-bottom:4px;
-  letter-spacing:.04em;
-}
-.mollie-email{
-  font-family:'DM Mono',monospace;font-size:10px;
-  color:var(--muted);opacity:.6;margin-bottom:16px;
-}
-.mollie-online{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:5px 14px;border-radius:99px;
-  background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.22);
-  font-family:'DM Mono',monospace;font-size:10px;
-  color:var(--green);margin-bottom:20px;
-}
-.mollie-online .badge-dot{
-  width:6px;height:6px;border-radius:50%;
-  background:var(--green);
-  animation:pulse-green 2s ease-in-out infinite;
-}
-
-/* State section */
-.state-section{
-  border-top:1px solid var(--border);
-  padding-top:16px;
-}
-.state-label{
-  font-family:'DM Mono',monospace;font-size:9px;
-  text-transform:uppercase;letter-spacing:.12em;
-  color:var(--muted);margin-bottom:10px;
-  display:flex;align-items:center;justify-content:center;gap:8px;
-}
-.state-label-val{
-  color:var(--m);font-weight:500;
-}
-.state-buttons{
-  display:flex;flex-wrap:wrap;justify-content:center;gap:8px;
-}
-.sb{
-  padding:7px 18px;border-radius:99px;
-  border:1px solid var(--border2);
-  background:rgba(255,255,255,0.03);
-  color:var(--muted);
-  font-family:'DM Mono',monospace;font-size:9px;
-  text-transform:uppercase;letter-spacing:.08em;
-  cursor:pointer;transition:all .2s;
-  -webkit-tap-highlight-color:transparent;
-}
+.mollie-hero{text-align:center;padding:28px 20px 24px;background:var(--bg2);border:1px solid var(--mborder);border-radius:var(--r);position:relative;overflow:hidden;margin-bottom:12px;}
+.mollie-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--m),transparent);}
+.mollie-hero::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(47,145,195,0.06),transparent 70%);pointer-events:none;}
+.avatar-wrap{position:relative;display:inline-flex;flex-direction:column;align-items:center;margin-bottom:16px;}
+#mc{image-rendering:pixelated;image-rendering:crisp-edges;display:block;}
+.avatar-glow{width:108px;height:8px;background:radial-gradient(ellipse,rgba(47,145,195,.4) 0%,transparent 70%);border-radius:50%;margin-top:-2px;}
+.mollie-name{font-family:'Syne',sans-serif;font-weight:800;font-size:28px;letter-spacing:.02em;line-height:1;background:linear-gradient(135deg,#fff 30%,var(--m) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:5px;}
+.mollie-role{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:4px;letter-spacing:.04em;}
+.mollie-email{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);opacity:.6;margin-bottom:16px;}
+.mollie-online{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:99px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.22);font-family:'DM Mono',monospace;font-size:10px;color:var(--green);margin-bottom:20px;}
+.mollie-online .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse-green 2s ease-in-out infinite;}
+.state-section{border-top:1px solid var(--border);padding-top:16px;}
+.state-label{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:8px;}
+.state-label-val{color:var(--m);font-weight:500;}
+.state-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;}
+.sb{padding:7px 18px;border-radius:99px;border:1px solid var(--border2);background:rgba(255,255,255,0.03);color:var(--muted);font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;}
 .sb:hover{background:var(--mdim);border-color:var(--mborder);color:var(--m);}
 .sb.on{background:var(--mdim);border-color:var(--mborder);color:var(--m);}
 
-/* ── CALLIE STATUS CARD ── */
-.callie-card{
-  display:flex;align-items:center;gap:12px;
-  padding:12px 16px;
-  background:var(--bg2);
-  border:1px solid var(--cborder);
-  border-radius:var(--r2);
-  position:relative;
-  overflow:hidden;
-  margin-bottom:28px;
-}
-.callie-card::before{
-  content:'';
-  position:absolute;top:0;left:0;bottom:0;width:2px;
-  background:linear-gradient(180deg,var(--c),transparent);
-}
-.callie-mono{
-  width:44px;height:44px;border-radius:8px;
-  background:linear-gradient(145deg,rgba(245,158,11,0.14),rgba(245,158,11,0.05));
-  border:1px solid rgba(245,158,11,0.22);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Syne',sans-serif;font-weight:800;font-size:22px;
-  color:var(--c);flex-shrink:0;
-  text-shadow:0 0 16px rgba(245,158,11,0.35);
-}
+/* ── CALLIE CARD ── */
+.callie-card{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg2);border:1px solid var(--cborder);border-radius:var(--r2);position:relative;overflow:hidden;margin-bottom:28px;}
+.callie-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--c),transparent);}
+.callie-mono{width:44px;height:44px;border-radius:8px;background:linear-gradient(145deg,rgba(245,158,11,0.14),rgba(245,158,11,0.05));border:1px solid rgba(245,158,11,0.22);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:22px;color:var(--c);flex-shrink:0;text-shadow:0 0 16px rgba(245,158,11,0.35);}
 .callie-info{flex:1;min-width:0;}
-.callie-name-row{
-  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
-}
-.callie-name{
-  font-family:'Syne',sans-serif;font-weight:700;font-size:13px;
-  color:var(--text);
-}
-.callie-role-text{
-  font-family:'DM Mono',monospace;font-size:9px;
-  color:var(--muted);margin-top:2px;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
-.callie-standby{
-  display:inline-flex;align-items:center;gap:5px;
-  padding:3px 9px;border-radius:99px;
-  background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.22);
-  font-family:'DM Mono',monospace;font-size:9px;
-  color:var(--c);white-space:nowrap;
-}
-.callie-standby .dot{
-  width:5px;height:5px;border-radius:50%;
-  background:var(--c);
-  animation:pulse-amber 2.4s ease-in-out infinite;
-}
-.callie-tags{
-  display:flex;gap:5px;margin-top:6px;flex-wrap:wrap;
-}
-.callie-tag{
-  padding:2px 8px;border-radius:99px;
-  background:rgba(245,158,11,0.06);
-  border:1px solid rgba(245,158,11,0.14);
-  font-family:'DM Mono',monospace;font-size:8px;
-  color:var(--c);opacity:.8;
-}
+.callie-name-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.callie-name{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:var(--text);}
+.callie-role-text{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.callie-standby{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:99px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.22);font-family:'DM Mono',monospace;font-size:9px;color:var(--c);white-space:nowrap;}
+.callie-standby .dot{width:5px;height:5px;border-radius:50%;background:var(--c);animation:pulse-amber 2.4s ease-in-out infinite;}
+.callie-tags{display:flex;gap:5px;margin-top:6px;flex-wrap:wrap;}
+.callie-tag{padding:2px 8px;border-radius:99px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.14);font-family:'DM Mono',monospace;font-size:8px;color:var(--c);opacity:.8;}
 
-/* ── USAGE GRID ── */
-.usage-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-bottom:10px;
-}
-.usage-card{
-  background:var(--bg2);border:1px solid var(--border);
-  border-radius:var(--r2);padding:14px 16px;
-}
-.usage-label{
-  font-family:'DM Mono',monospace;font-size:9px;
-  text-transform:uppercase;letter-spacing:.1em;
-  color:var(--muted);margin-bottom:6px;
-}
-.usage-value{
-  font-family:'Syne',sans-serif;font-weight:700;font-size:22px;
-  line-height:1;
-}
+/* ── USAGE ── */
+.usage-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+.usage-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:14px 16px;}
+.usage-label{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px;}
+.usage-value{font-family:'Syne',sans-serif;font-weight:700;font-size:22px;line-height:1;}
 .usage-value.accent{color:var(--m);}
-.usage-note{
-  font-family:'DM Mono',monospace;font-size:9px;
-  color:var(--muted);margin-top:4px;line-height:1.4;
-}
-.budget-row{
-  background:var(--bg2);border:1px solid var(--border);
-  border-radius:var(--r2);padding:14px 16px;
-  display:flex;align-items:center;gap:14px;
-  margin-bottom:8px;
-}
-.budget-label{
-  font-family:'DM Mono',monospace;font-size:10px;
-  color:var(--muted);white-space:nowrap;
-}
-.budget-track{
-  flex:1;height:5px;background:var(--bg3);
-  border-radius:99px;overflow:hidden;
-}
-.budget-fill{
-  height:100%;
-  background:linear-gradient(90deg,var(--m),#5BBAE0);
-  border-radius:99px;
-  box-shadow:0 0 6px rgba(47,145,195,0.4);
-}
-.budget-pct{
-  font-family:'DM Mono',monospace;font-size:12px;
-  color:var(--text);min-width:34px;text-align:right;font-weight:500;
-}
-.sync-row{
-  display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:6px;
-}
-.sync-note{
-  font-family:'DM Mono',monospace;font-size:9px;
-  color:var(--muted);
-}
-#rb{
-  padding:4px 12px;
-  background:var(--mdim);border:1px solid var(--mborder);
-  color:var(--m);border-radius:99px;
-  font-family:'DM Mono',monospace;font-size:9px;
-  cursor:pointer;transition:all .2s;
-}
-#rb:hover{background:var(--m);color:#fff;}
+.usage-note{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-top:4px;line-height:1.4;}
+.budget-row{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:14px 16px;display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+.budget-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);white-space:nowrap;}
+.budget-track{flex:1;height:5px;background:var(--bg3);border-radius:99px;overflow:hidden;}
+.budget-fill{height:100%;background:linear-gradient(90deg,var(--m),#5BBAE0);border-radius:99px;box-shadow:0 0 6px rgba(47,145,195,0.4);}
+.budget-pct{font-family:'DM Mono',monospace;font-size:12px;color:var(--text);min-width:34px;text-align:right;font-weight:500;}
+.chart-wrap{margin-top:16px;}
+.chart-title{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:10px;}
+.chart-bars{display:flex;align-items:flex-end;gap:6px;height:80px;}
+.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;}
+.bar-amt{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);}
+.bar-rect{width:100%;border-radius:3px 3px 0 0;align-self:flex-end;min-height:2px;}
+.bar-lbl{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);}
+.bar-lbl.today{color:var(--m);font-weight:600;}
+.chart-note{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);margin-top:6px;}
 
 /* ── ACTIVITY FEED ── */
-.feed{
-  background:var(--bg2);border:1px solid var(--border);
-  border-radius:var(--r);overflow:hidden;
-}
-.feed-entry{
-  display:flex;align-items:flex-start;gap:10px;
-  padding:11px 16px;
-  border-bottom:1px solid rgba(255,255,255,0.03);
-  transition:background .15s;
-}
+.feed{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
+.feed-entry{display:flex;align-items:flex-start;gap:10px;padding:11px 16px;border-bottom:1px solid rgba(255,255,255,0.03);transition:background .15s;}
 .feed-entry:hover{background:rgba(255,255,255,0.015);}
 .feed-entry:last-child{border-bottom:none;}
-.feed-dot{
-  width:7px;height:7px;border-radius:50%;
-  flex-shrink:0;margin-top:4px;
-}
+.feed-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:4px;}
 .feed-dot.grey{background:var(--muted);}
 .feed-dot.green{background:var(--green);}
 .feed-dot.blue{background:var(--m);}
 .feed-dot.amber{background:var(--c);}
 .feed-body{flex:1;}
 .feed-text{font-size:12px;line-height:1.5;color:var(--text);}
-.feed-time{
-  font-family:'DM Mono',monospace;font-size:9px;
-  color:var(--muted);white-space:nowrap;margin-top:2px;flex-shrink:0;
-}
+.feed-time{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);white-space:nowrap;margin-top:2px;flex-shrink:0;}
 
 /* ── KANBAN ── */
-.kanban-header{
-  display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:12px;
-}
-/* Mobile: vertical stack */
-.kanban-board{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-.kanban-col{
-  background:var(--bg2);border:1px solid var(--border);
-  border-radius:var(--r);padding:14px;
-}
-.kanban-col-header{
-  display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:10px;
-}
-.kanban-col-title{
-  font-family:'DM Mono',monospace;font-size:9px;
-  text-transform:uppercase;letter-spacing:.12em;
-}
-.kanban-col-count{
-  font-family:'DM Mono',monospace;font-size:10px;
-  background:var(--bg3);border-radius:99px;
-  padding:2px 8px;color:var(--muted);
-}
-/* Task card */
-.task-card{
-  background:var(--bg3);border:1px solid var(--border);
-  border-radius:var(--r2);padding:10px 12px;
-  margin-bottom:7px;
-  transition:border-color .2s;
-}
-.task-card:active{border-color:var(--border2);}
-.task-top{
-  display:flex;justify-content:space-between;
-  align-items:flex-start;gap:6px;
-}
-.task-name{
-  font-size:12px;font-weight:500;
-  line-height:1.45;color:var(--text);flex:1;
-}
-.task-del{
-  background:none;border:none;
-  color:var(--muted);cursor:pointer;
-  font-size:14px;padding:0 2px;
-  line-height:1;flex-shrink:0;
-  transition:color .15s;
-}
-.task-del:hover{color:var(--red);}
-.task-meta{
-  display:flex;align-items:center;
-  flex-wrap:wrap;gap:5px;margin-top:7px;
-}
-.task-type{
-  font-family:'DM Mono',monospace;font-size:9px;
-  padding:2px 8px;border-radius:99px;
-  background:var(--mdim);color:var(--m);
-  text-transform:uppercase;
-}
-.task-callie-badge{
-  font-family:'DM Mono',monospace;font-size:9px;
-  padding:2px 8px;border-radius:99px;
-  background:var(--cdim);
-  border:1px solid var(--cborder);
-  color:var(--c);
-}
-.task-due{
-  font-family:'DM Mono',monospace;font-size:9px;
-  color:var(--muted);margin-left:auto;
-}
-.task-advance{
-  margin-top:8px;width:100%;
-  padding:5px;
-  background:rgba(47,145,195,0.06);
-  border:1px solid rgba(47,145,195,0.14);
-  border-radius:6px;
-  font-family:'DM Mono',monospace;font-size:9px;
-  color:var(--m);cursor:pointer;
-  text-align:center;transition:all .2s;
-  -webkit-tap-highlight-color:transparent;
-}
-.task-advance:hover{background:var(--mdim);border-color:var(--mborder);}
+.kanban-board{display:flex;flex-direction:column;gap:12px;}
+.kanban-col{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px;}
+.kanban-col-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.kanban-col-title{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;}
+.kanban-col-count{font-family:'DM Mono',monospace;font-size:10px;background:var(--bg3);border-radius:99px;padding:2px 8px;color:var(--muted);}
+.task-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:10px 12px;margin-bottom:7px;}
+.task-card:last-child{margin-bottom:0;}
+.task-name{font-size:12px;font-weight:500;line-height:1.45;color:var(--text);}
+.task-meta{display:flex;align-items:center;flex-wrap:wrap;gap:5px;margin-top:7px;}
+.task-type{font-family:'DM Mono',monospace;font-size:9px;padding:2px 8px;border-radius:99px;background:var(--mdim);color:var(--m);text-transform:uppercase;}
+.task-callie-badge{font-family:'DM Mono',monospace;font-size:9px;padding:2px 8px;border-radius:99px;background:var(--cdim);border:1px solid var(--cborder);color:var(--c);}
+.task-due{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-left:auto;}
+.task-empty{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);text-align:center;padding:12px 0;opacity:.6;}
 
 /* ── DELEGATION LOG ── */
-.deleg-card{
-  background:var(--bg2);border:1px solid var(--border);
-  border-radius:var(--r);overflow:hidden;
-}
-.deleg-header{
-  padding:10px 16px;
-  border-bottom:1px solid var(--border);
-  display:flex;align-items:center;justify-content:space-between;
-}
-.deleg-header-title{
-  font-family:'DM Mono',monospace;font-size:9px;
-  text-transform:uppercase;letter-spacing:.14em;color:var(--muted);
-}
-.deleg-count{
-  font-family:'DM Mono',monospace;font-size:10px;
-  background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);
-  color:var(--c);border-radius:99px;padding:2px 9px;
-}
+.deleg-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
+.deleg-header{padding:10px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.deleg-header-title{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);}
+.deleg-count{font-family:'DM Mono',monospace;font-size:10px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);color:var(--c);border-radius:99px;padding:2px 9px;}
 .deleg-body{max-height:260px;overflow-y:auto;}
-.deleg-row{
-  display:flex;align-items:flex-start;gap:8px;
-  padding:9px 16px;
-  border-bottom:1px solid rgba(255,255,255,0.03);
-  font-family:'DM Mono',monospace;font-size:11px;
-}
+.deleg-row{display:flex;align-items:flex-start;gap:8px;padding:9px 16px;border-bottom:1px solid rgba(255,255,255,0.03);font-family:'DM Mono',monospace;font-size:11px;}
 .deleg-row:last-child{border-bottom:none;}
 .deleg-check{color:var(--green);font-size:11px;flex-shrink:0;margin-top:1px;}
 .deleg-task{flex:1;color:var(--text);line-height:1.4;font-size:10px;}
-.deleg-agent{
-  color:var(--c);font-size:9px;
-  padding:2px 8px;
-  background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.17);
-  border-radius:99px;white-space:nowrap;
-}
+.deleg-agent{color:var(--c);font-size:9px;padding:2px 8px;background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.17);border-radius:99px;white-space:nowrap;}
 .deleg-date{color:var(--muted);font-size:9px;white-space:nowrap;}
-.deleg-empty{
-  padding:24px 16px;
-  color:var(--muted);
-  font-family:'DM Mono',monospace;font-size:11px;
-  text-align:center;
-}
+.deleg-empty{padding:24px 16px;color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;text-align:center;}
 
-/* ── ADD TASK BUTTON ── */
-.btn-add{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:7px 14px;
-  background:var(--mdim);border:1px solid var(--mborder);
-  color:var(--m);border-radius:99px;
-  font-family:'DM Mono',monospace;font-size:9px;
-  cursor:pointer;transition:all .2s;
-  -webkit-tap-highlight-color:transparent;
-}
-.btn-add:hover{background:var(--m);color:#fff;}
-
-/* ── MODAL ── */
-.modal-overlay{
-  position:fixed;inset:0;
-  background:rgba(0,0,0,.78);
-  backdrop-filter:blur(4px);
-  z-index:1000;
-  display:none;align-items:center;justify-content:center;
-  padding:16px;
-}
-.modal-overlay.open{display:flex;}
-.modal-box{
-  background:var(--bg2);
-  border:1px solid var(--border2);
-  border-radius:16px;padding:22px;
-  width:100%;max-width:380px;
-}
-.modal-title{
-  font-family:'Syne',sans-serif;font-weight:700;font-size:15px;
-  margin-bottom:18px;
-}
-.form-group{margin-bottom:12px;}
-.form-label{
-  font-family:'DM Mono',monospace;font-size:9px;
-  text-transform:uppercase;letter-spacing:.1em;
-  color:var(--muted);display:block;margin-bottom:5px;
-}
-.form-input,.form-select{
-  width:100%;padding:10px 12px;
-  background:var(--bg3);border:1px solid var(--border);
-  color:var(--text);border-radius:8px;
-  font-family:'DM Sans',sans-serif;font-size:13px;
-  outline:none;transition:border-color .2s;
-}
-.form-input:focus,.form-select:focus{border-color:var(--m);}
-.form-select option{background:var(--bg2);}
-.modal-actions{
-  display:flex;gap:8px;justify-content:flex-end;margin-top:16px;
-}
-.btn-cancel{
-  padding:8px 16px;background:transparent;
-  color:var(--muted);border:1px solid var(--border);
-  border-radius:8px;font-family:'DM Mono',monospace;font-size:10px;
-  cursor:pointer;transition:all .2s;
-}
-.btn-cancel:hover{border-color:var(--border2);color:var(--text);}
-.btn-confirm{
-  padding:8px 16px;background:var(--m);
-  color:#fff;border:none;border-radius:8px;
-  font-family:'DM Mono',monospace;font-size:10px;
-  cursor:pointer;transition:all .2s;
-}
-.btn-confirm:hover{opacity:.88;box-shadow:0 4px 12px var(--mglow);}
+/* ── LOADING / ERROR STATES ── */
+.loading-msg{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);padding:24px 16px;text-align:center;opacity:.7;}
+.error-msg{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);padding:24px 16px;text-align:center;opacity:.6;}
 
 /* Spacing */
 .mt-24{margin-top:24px;}
@@ -653,7 +223,7 @@ main{
   <div class="gb">
     <div class="g-eyebrow">DigitsUp Internal</div>
     <div class="g-title">Mollie HQ</div>
-    <div class="g-sub">AI Mission Control · v3</div>
+    <div class="g-sub">AI Mission Control · v4</div>
     <div class="g-label">Enter Password</div>
     <input type="password" id="pwi" placeholder="••••••••" onkeydown="if(event.key==='Enter')unlock()">
     <div id="pwe"></div>
@@ -699,9 +269,7 @@ main{
       </div>
     </div>
     <div class="state-section">
-      <div class="state-label">
-        State: <span class="state-label-val" id="avsl">Idle</span>
-      </div>
+      <div class="state-label">State: <span class="state-label-val" id="avsl">Idle</span></div>
       <div class="state-buttons">
         <button class="sb on" onclick="fstate('idle',this)">Idle</button>
         <button class="sb" onclick="fstate('type',this)">Working</button>
@@ -730,165 +298,35 @@ main{
 
   <!-- 3. USAGE & BUDGET -->
   <div class="section-label">Usage &amp; Budget</div>
-
-  <div class="usage-grid">
-    <div class="usage-card">
-      <div class="usage-label">Total Spend</div>
-      <div class="usage-value accent">~$165</div>
-      <div class="usage-note">of $500 budget</div>
-    </div>
-    <div class="usage-card">
-      <div class="usage-label">Sessions</div>
-      <div class="usage-value">~835</div>
-      <div class="usage-note">approx total</div>
-    </div>
-    <div class="usage-card">
-      <div class="usage-label">Model</div>
-      <div class="usage-value" style="font-size:16px;padding-top:4px;">Sonnet 4.6</div>
-      <div class="usage-note">primary</div>
-    </div>
-    <div class="usage-card">
-      <div class="usage-label">Budget Used</div>
-      <div class="usage-value accent">33%</div>
-      <div class="usage-note">$165 of $500</div>
-    </div>
-  </div>
-
-  <div class="budget-row">
-    <div class="budget-label">Budget</div>
-    <div class="budget-track"><div class="budget-fill" style="width:33%"></div></div>
-    <div class="budget-pct">33%</div>
-  </div>
-
-  <div class="sync-row">
-    <div class="sync-note">Last synced: Apr 1 2026, 5:14 PM PDT</div>
-    <button id="rb" onclick="alert('Usage refreshed.')">⟳ Refresh</button>
+  <div id="usage-section">
+    <div class="loading-msg">Loading…</div>
   </div>
 
   <!-- 4. TODAY'S ACTIVITY -->
   <div class="mt-28">
-    <div class="section-label">Today's Activity — Apr 1</div>
-    <div class="feed">
-      <div class="feed-entry">
-        <div class="feed-dot grey"></div>
-        <div class="feed-body">
-          <div class="feed-text">Fresh session started. Outersignal kickoff 11am, RVCA kickoff 1pm.</div>
-        </div>
-        <div class="feed-time">7:28 AM</div>
-      </div>
-      <div class="feed-entry">
-        <div class="feed-dot green"></div>
-        <div class="feed-body">
-          <div class="feed-text">Outersignal Team Kickoff ✓ — Thomas, Marl, Meaghan, Shelbie. Rho pipeline demo'd.</div>
-        </div>
-        <div class="feed-time">11:00 AM</div>
-      </div>
-      <div class="feed-entry">
-        <div class="feed-dot green"></div>
-        <div class="feed-body">
-          <div class="feed-text">RVCA Internal Kickoff ✓ — Went great. Client kickoff tomorrow Apr 2 with Clayton Dahl.</div>
-        </div>
-        <div class="feed-time">1:00 PM</div>
-      </div>
-      <div class="feed-entry">
-        <div class="feed-dot amber"></div>
-        <div class="feed-body">
-          <div class="feed-text">Mollie HQ v2 briefed to Callie for full redesign.</div>
-        </div>
-        <div class="feed-time">4:22 PM</div>
-      </div>
-      <div class="feed-entry">
-        <div class="feed-dot green"></div>
-        <div class="feed-body">
-          <div class="feed-text">Mollie HQ v2 built by Callie and deployed ✓ — dual-agent mission control layout live.</div>
-        </div>
-        <div class="feed-time">4:34 PM</div>
-      </div>
-      <div class="feed-entry">
-        <div class="feed-dot blue"></div>
-        <div class="feed-body">
-          <div class="feed-text">HQ activity feed updated to 4:43 PM.</div>
-        </div>
-        <div class="feed-time">4:43 PM</div>
-      </div>
-      <div class="feed-entry">
-        <div class="feed-dot amber"></div>
-        <div class="feed-body">
-          <div class="feed-text">Mollie HQ v3 briefed — mobile-first redesign, Mollie centered as hero.</div>
-        </div>
-        <div class="feed-time">5:14 PM</div>
-      </div>
+    <div class="section-label" id="activity-label">Today's Activity</div>
+    <div id="activity-section">
+      <div class="feed"><div class="loading-msg">Loading…</div></div>
     </div>
   </div>
 
   <!-- 5. TASK PIPELINE -->
   <div class="mt-28">
-    <div class="kanban-header">
-      <div class="section-label" style="margin:0;flex:1;">Task Pipeline</div>
-      <button class="btn-add" onclick="omodal()">+ New Task</button>
+    <div class="section-label">Task Pipeline</div>
+    <div id="kanban-section">
+      <div class="loading-msg">Loading…</div>
     </div>
-    <div class="kanban-board" id="kb"></div>
   </div>
 
   <!-- 6. DELEGATION LOG -->
   <div class="mt-28">
     <div class="section-label">Delegation Log · via Callie</div>
-    <div class="deleg-card">
-      <div class="deleg-header">
-        <div class="deleg-header-title">Tasks Handled by Specialist</div>
-        <div class="deleg-count" id="dflct">0</div>
-      </div>
-      <div class="deleg-body" id="dflbd"></div>
+    <div id="deleg-section">
+      <div class="deleg-card"><div class="loading-msg">Loading…</div></div>
     </div>
   </div>
 
 </main>
-
-<!-- ── ADD TASK MODAL ── -->
-<div class="modal-overlay" id="modal">
-  <div class="modal-box">
-    <div class="modal-title">Add New Task</div>
-    <div class="form-group">
-      <label class="form-label">Task Name</label>
-      <input class="form-input" id="tn" placeholder="e.g. Liverpool weekly report">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Type</label>
-      <select class="form-select" id="tty">
-        <option value="report">Report</option>
-        <option value="campaign">Campaign</option>
-        <option value="brief">Brief</option>
-        <option value="client">Client</option>
-        <option value="admin">Admin</option>
-        <option value="build">Build</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Due Date</label>
-      <input class="form-input" id="tdu" type="date">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Assigned To</label>
-      <select class="form-select" id="tag">
-        <option value="mollie">Mollie</option>
-        <option value="callie">Callie (Specialist)</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Column</label>
-      <select class="form-select" id="tco">
-        <option value="queued">Queued</option>
-        <option value="active">Active</option>
-        <option value="review">In Review</option>
-        <option value="done">Done</option>
-      </select>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-cancel" onclick="cmodal()">Cancel</button>
-      <button class="btn-confirm" onclick="stask()">Add Task</button>
-    </div>
-  </div>
-</div>
 
 <script>
 // ── CLOCK ──
@@ -914,6 +352,7 @@ async function unlock(){
   if(h===PH){
     document.getElementById('gate').style.display='none';
     sessionStorage.setItem('mhq_auth','1');
+    loadData();
   } else {
     document.getElementById('pwe').textContent='Incorrect password.';
     const inp=document.getElementById('pwi');
@@ -926,34 +365,212 @@ async function unlock(){
 }
 if(sessionStorage.getItem('mhq_auth')==='1'){
   document.getElementById('gate').style.display='none';
+  // load after DOM ready
+  window.addEventListener('DOMContentLoaded',loadData);
+  if(document.readyState!=='loading') loadData();
+}
+
+// ── DATA FETCH ──
+async function loadData(){
+  try{
+    const res=await fetch('https://digitsup.github.io/mollie-hq/data.json?v='+Date.now());
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const d=await res.json();
+    renderUsage(d.usage, d.meta);
+    renderActivity(d.activity, d.meta);
+    renderKanban(d.tasks, d.meta);
+    renderDeleg(d.tasks);
+  } catch(e){
+    const errHtml='<div class="error-msg">Unable to load data — check back shortly</div>';
+    document.getElementById('usage-section').innerHTML=errHtml;
+    document.getElementById('activity-section').innerHTML='<div class="feed">'+errHtml+'</div>';
+    document.getElementById('kanban-section').innerHTML=errHtml;
+    document.getElementById('deleg-section').innerHTML='<div class="deleg-card">'+errHtml+'</div>';
+  }
+}
+
+// ── FORMAT META DATE ──
+function fmtDate(iso){
+  try{
+    const d=new Date(iso);
+    return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+
+      ', '+d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',hour12:true})+' PDT';
+  } catch(e){ return iso; }
+}
+
+// ── FORMAT DUE DATE ──
+function fmtDue(s){
+  const m={'2026-03-27':'Mar 27','2026-03-28':'Mar 28','2026-03-29':'Mar 29','2026-03-30':'Mar 30',
+           '2026-03-31':'Mar 31','2026-04-01':'Apr 1','2026-04-02':'Apr 2','2026-04-03':'Apr 3',
+           '2026-04-04':'Apr 4','2026-04-05':'Apr 5','2026-04-06':'Apr 6','2026-04-07':'Apr 7'};
+  return m[s]||s;
+}
+
+// ── USAGE ──
+function renderUsage(u, meta){
+  const budgetPct=Math.round((u.mtd/u.budget)*100);
+  const maxCost=Math.max(...u.dailyCosts.map(d=>d.amount),1);
+  const CHART_H=64; // px available for bars (within 80px total row)
+  const todayLabel=u.todayLabel;
+
+  const bars=u.dailyCosts.map(d=>{
+    const h=d.amount>0?Math.max(2,Math.round((d.amount/maxCost)*CHART_H)):2;
+    const isToday=d.label===todayLabel;
+    const isSpike=d.amount===maxCost&&d.amount>50;
+    const bg=isToday?'var(--m)':isSpike?'rgba(245,158,11,0.65)':'rgba(47,145,195,0.4)';
+    const shadow=isToday?'box-shadow:0 0 8px var(--mglow);':'';
+    const amtColor=isToday?'color:var(--text)':isSpike?'color:var(--c)':'';
+    const lblClass=isToday?'bar-lbl today':'bar-lbl';
+    const lblText=isToday?d.label+' ←':d.label;
+    const amtText=d.amount>0?'$'+d.amount.toFixed(2):'';
+    return`<div class="bar-col">
+      <div class="bar-amt" style="${amtColor}">${amtText}</div>
+      <div class="bar-rect" style="height:${h}px;background:${bg};${shadow}"></div>
+      <div class="${lblClass}">${lblText}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('usage-section').innerHTML=`
+    <div class="usage-grid">
+      <div class="usage-card">
+        <div class="usage-label">${u.monthLabel} MTD</div>
+        <div class="usage-value accent">$${u.mtd.toFixed(2)}</div>
+        <div class="usage-note">of $${u.budget.toLocaleString()} monthly limit</div>
+      </div>
+      <div class="usage-card">
+        <div class="usage-label">Today (${u.todayLabel})</div>
+        <div class="usage-value">$${u.today.toFixed(2)}</div>
+        <div class="usage-note">${u.model} primary</div>
+      </div>
+      <div class="usage-card">
+        <div class="usage-label">Model</div>
+        <div class="usage-value" style="font-size:16px;padding-top:4px;">${u.model}</div>
+        <div class="usage-note">primary</div>
+      </div>
+      <div class="usage-card">
+        <div class="usage-label">Budget Used</div>
+        <div class="usage-value accent">${budgetPct}%</div>
+        <div class="usage-note">$${u.mtd.toFixed(2)} of $${u.budget.toLocaleString()}</div>
+      </div>
+    </div>
+    <div class="budget-row">
+      <div class="budget-label">Budget</div>
+      <div class="budget-track"><div class="budget-fill" style="width:${budgetPct}%"></div></div>
+      <div class="budget-pct">${budgetPct}%</div>
+    </div>
+    <div class="chart-wrap">
+      <div class="chart-title">Daily Cost · Last 7 Days</div>
+      <div class="chart-bars">${bars}</div>
+      <div class="chart-note">${u.dailyNote}</div>
+    </div>
+    <div class="sync-row">
+      <div class="sync-note">Last updated: ${fmtDate(meta.lastUpdated)} · by ${meta.updatedBy}</div>
+    </div>
+  `;
+}
+
+// ── ACTIVITY ──
+function renderActivity(activity, meta){
+  const today=new Date();
+  const label=`Today's Activity — ${today.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}`;
+  document.getElementById('activity-label').textContent=label;
+
+  const reversed=[...activity].reverse();
+  const entries=reversed.map(e=>
+    `<div class="feed-entry">
+      <div class="feed-dot ${e.dot}"></div>
+      <div class="feed-body"><div class="feed-text">${e.text}</div></div>
+      <div class="feed-time">${e.time}</div>
+    </div>`
+  ).join('');
+
+  document.getElementById('activity-section').innerHTML=`
+    <div class="feed">${entries}</div>
+    <div class="sync-row" style="margin-top:8px;">
+      <div class="sync-note">Last updated: ${fmtDate(meta.lastUpdated)} · by ${meta.updatedBy}</div>
+    </div>
+  `;
+}
+
+// ── KANBAN ──
+const COLS=[
+  {id:'queued',label:'Queued',    color:'#8899AA'},
+  {id:'active',label:'Active',    color:'#2f91c3'},
+  {id:'review',label:'In Review', color:'#F59E0B'},
+  {id:'done',  label:'Done',      color:'#22C55E'},
+];
+
+function renderKanban(tasks, meta){
+  const cols=COLS.map(col=>{
+    const ct=tasks.filter(t=>t.col===col.id);
+    const cards=ct.length
+      ? ct.map(t=>`<div class="task-card">
+          <div class="task-name">${t.name}</div>
+          <div class="task-meta">
+            <span class="task-type">${t.type}</span>
+            ${t.agent==='callie'?'<span class="task-callie-badge">via Callie</span>':''}
+            <span class="task-due">${fmtDue(t.due)}</span>
+          </div>
+        </div>`).join('')
+      : '<div class="task-empty">—</div>';
+    return`<div class="kanban-col">
+      <div class="kanban-col-header">
+        <div class="kanban-col-title" style="color:${col.color}">${col.label}</div>
+        <div class="kanban-col-count">${ct.length}</div>
+      </div>
+      ${cards}
+    </div>`;
+  }).join('');
+
+  document.getElementById('kanban-section').innerHTML=`
+    <div class="kanban-board">${cols}</div>
+    <div class="sync-row" style="margin-top:10px;">
+      <div class="sync-note">Last updated: ${fmtDate(meta.lastUpdated)} · by ${meta.updatedBy}</div>
+    </div>
+  `;
+}
+
+// ── DELEGATION LOG ──
+function renderDeleg(tasks){
+  const done=tasks.filter(t=>t.agent==='callie'&&t.col==='done');
+  const rows=done.length
+    ? done.slice().reverse().map(t=>
+        `<div class="deleg-row">
+          <span class="deleg-check">✓</span>
+          <span class="deleg-task">${t.name}</span>
+          <span class="deleg-agent">Callie</span>
+          <span class="deleg-date">${fmtDue(t.due)}</span>
+        </div>`
+      ).join('')
+    : '<div class="deleg-empty">No delegated tasks completed yet.</div>';
+
+  document.getElementById('deleg-section').innerHTML=`
+    <div class="deleg-card">
+      <div class="deleg-header">
+        <div class="deleg-header-title">Tasks Handled by Specialist</div>
+        <div class="deleg-count">${done.length}</div>
+      </div>
+      <div class="deleg-body">${rows}</div>
+    </div>
+  `;
 }
 
 // ── PIXEL ART AVATAR (Mollie) ──
-// Z=6: canvas 108x162 (18*6 wide, 27*6 tall)
 const cv=document.getElementById('mc');
 const cx=cv.getContext('2d');
 const Z=6;
-
 function p(x,y,w,h,c){cx.fillStyle=c;cx.fillRect(x*Z,y*Z,w*Z,h*Z);}
 
 function drawMollie(st,fr,bl){
   cx.clearRect(0,0,cv.width,cv.height);
-
-  // HALO
   p(4,0,10,1,'#F5C020');p(3,1,12,1,'#F5C020');p(5,0,6,1,'#FFE878');
   p(2,2,14,1,'#F5C020');p(5,1,8,1,'#FFFAAA');p(6,0,6,1,'#FFFAAA');
   p(2,3,3,1,'#F5C020');p(13,3,3,1,'#F5C020');
-
-  // HAIR
   p(6,2,6,1,'#1A0808');p(5,3,8,2,'#1A0808');
   p(4,4,1,3,'#1A0808');p(13,4,1,3,'#1A0808');
-
-  // FACE
   p(5,3,8,1,'#E8A87A');p(4,4,10,5,'#E8A87A');
   p(5,9,8,1,'#E8A87A');p(6,10,6,1,'#C07848');
   p(4,4,1,5,'#C07848');p(13,4,1,5,'#C07848');
-
-  // EYES
   if(!bl){
     p(5,6,3,2,'#2f91c3');p(5,6,1,1,'#1A6090');p(7,6,1,1,'#1A6090');
     p(6,6,1,1,'#D0EEFF');
@@ -964,39 +581,27 @@ function drawMollie(st,fr,bl){
   } else {
     p(5,7,3,1,'#1A0808');p(10,7,3,1,'#1A0808');
   }
-
-  // NOSE + LIPS
   p(8,8,2,1,'#C07848');
   p(6,10,6,1,'#C06060');p(6,10,1,1,'#8B2020');p(11,10,1,1,'#8B2020');
   p(7,10,2,1,'#E8A87A');
-
-  // NECK
   p(7,11,4,2,'#E8A87A');
-
-  // BLUE CLOAK
   p(3,9,4,1,'#2f91c3');p(11,9,4,1,'#2f91c3');
   p(2,10,5,2,'#2f91c3');p(11,10,5,2,'#2f91c3');
   p(1,12,5,3,'#2f91c3');p(12,12,5,3,'#2f91c3');
   p(0,15,5,4,'#2f91c3');p(13,15,5,4,'#2f91c3');
   p(0,19,4,4,'#1A6090');p(14,19,4,4,'#1A6090');
   p(3,10,1,6,'#5BBAE0');p(14,10,1,6,'#5BBAE0');
-
-  // GOLDEN ROBE
   p(5,12,8,1,'#E8C040');
   p(5,13,8,14,'#E8C040');
   p(4,14,10,12,'#E8C040');
   p(4,14,1,12,'#C09820');p(13,14,1,12,'#C09820');
   p(5,14,2,8,'#F8E080');
   p(6,14,1,4,'#FFFAD0');
-
-  // PRAYING HANDS
   p(6,19,6,5,'#E8A87A');
   p(6,19,1,5,'#C07848');p(11,19,1,5,'#C07848');
   p(7,18,4,1,'#E8A87A');
   p(8,23,2,1,'#C07848');
   if(fr%4<2){p(5,17,8,1,'#F5C020');}
-
-  // DANCE ARMS
   if(st==='dance'){
     const e=fr%2===0;
     p(1,12,3,5,e?'#2f91c3':'#1A6090');
@@ -1037,127 +642,6 @@ function anim(ts){
 }
 setState('idle');
 requestAnimationFrame(anim);
-
-// ── KANBAN ──
-const COLS=[
-  {id:'queued', label:'Queued',    color:'#8899AA'},
-  {id:'active', label:'Active',    color:'#2f91c3'},
-  {id:'review', label:'In Review', color:'#F59E0B'},
-  {id:'done',   label:'Done',      color:'#22C55E'},
-];
-const NXT={queued:'active',active:'review',review:'done'};
-const NLB={queued:'→ Active',active:'→ In Review',review:'→ Done'};
-
-// Cache bust: v4
-if(localStorage.getItem('mhq_tv')!=='v4'){
-  localStorage.removeItem('mhq_t');
-  localStorage.setItem('mhq_tv','v4');
-}
-let tasks=JSON.parse(localStorage.getItem('mhq_t')||'[]');
-if(!tasks.length){
-  tasks=[
-    {id:'1', name:'Rho Nutrition — Days 8 + 21 Briefs & Copy',           type:'brief',  due:'2026-04-02',col:'queued',agent:'callie'},
-    {id:'2', name:'Riversol Campaign Ideas — Sales Strategies + Deploy',  type:'client', due:'2026-04-02',col:'queued',agent:'mollie'},
-    {id:'3', name:'SFR Distillery Intro Call Prep (Apr 7)',               type:'brief',  due:'2026-04-06',col:'queued',agent:'mollie'},
-    {id:'4', name:'Write Callie Client Knowledge Briefing Files',         type:'admin',  due:'2026-04-02',col:'queued',agent:'mollie'},
-    {id:'13',name:'RVCA Client Kickoff — Apr 2 (Clayton Dahl)',           type:'client', due:'2026-04-02',col:'queued',agent:'mollie'},
-    {id:'5', name:'RVCA Internal Kickoff ✓',                             type:'client', due:'2026-04-01',col:'done',  agent:'mollie'},
-    {id:'6', name:'Outersignal Team Kickoff ✓',                          type:'client', due:'2026-04-01',col:'done',  agent:'mollie'},
-    {id:'7', name:'RVCA Kickoff Doc — Section 04 (no pricing)',           type:'client', due:'2026-04-01',col:'done',  agent:'callie'},
-    {id:'8', name:'Liverpool Weekly Report',                              type:'report', due:'2026-03-31',col:'done',  agent:'callie'},
-    {id:'9', name:'Hale Iwa Farm Vision Doc',                             type:'client', due:'2026-03-31',col:'done',  agent:'callie'},
-    {id:'10',name:'Rho Nutrition Day 3 Wireframe Brief',                  type:'brief',  due:'2026-03-31',col:'done',  agent:'callie'},
-    {id:'11',name:'Callie Agent Setup + Registration',                    type:'admin',  due:'2026-04-01',col:'done',  agent:'mollie'},
-    {id:'12',name:'Outersignal Shelbie + Meaghan Briefing Docs',          type:'brief',  due:'2026-03-31',col:'done',  agent:'callie'},
-  ];
-  localStorage.setItem('mhq_t',JSON.stringify(tasks));
-}
-
-function rk(){
-  document.getElementById('kb').innerHTML=COLS.map(col=>{
-    const ct=tasks.filter(t=>t.col===col.id);
-    return`<div class="kanban-col">
-      <div class="kanban-col-header">
-        <div class="kanban-col-title" style="color:${col.color}">${col.label}</div>
-        <div class="kanban-col-count">${ct.length}</div>
-      </div>
-      ${ct.map(t=>{
-        const byCallie=t.agent==='callie';
-        return`<div class="task-card">
-          <div class="task-top">
-            <div class="task-name">${t.name}</div>
-            <button class="task-del" onclick="dt('${t.id}')" title="Remove">×</button>
-          </div>
-          <div class="task-meta">
-            <span class="task-type">${t.type}</span>
-            ${byCallie?`<span class="task-callie-badge">via Callie</span>`:''}
-            <span class="task-due">${t.due||''}</span>
-          </div>
-          ${NXT[col.id]?`<button class="task-advance" onclick="at('${t.id}')">${NLB[col.id]}</button>`:''}
-        </div>`;
-      }).join('')}
-    </div>`;
-  }).join('');
-  rdf();
-}
-
-function rdf(){
-  const done=tasks.filter(t=>t.agent==='callie'&&t.col==='done');
-  const bd=document.getElementById('dflbd');
-  document.getElementById('dflct').textContent=done.length;
-  if(!done.length){
-    bd.innerHTML='<div class="deleg-empty">No delegated tasks completed yet.</div>';
-    return;
-  }
-  const fmt={
-    '2026-04-01':'Apr 1','2026-03-31':'Mar 31',
-    '2026-03-30':'Mar 30','2026-04-02':'Apr 2'
-  };
-  bd.innerHTML=done.slice().reverse().map(t=>
-    `<div class="deleg-row">
-      <span class="deleg-check">✓</span>
-      <span class="deleg-task">${t.name}</span>
-      <span class="deleg-agent">Callie</span>
-      <span class="deleg-date">${fmt[t.due]||t.due||'—'}</span>
-    </div>`
-  ).join('');
-}
-
-function at(id){
-  const t=tasks.find(x=>x.id===id);
-  if(t&&NXT[t.col]){
-    t.col=NXT[t.col];
-    localStorage.setItem('mhq_t',JSON.stringify(tasks));
-    rk();
-  }
-}
-function dt(id){
-  tasks=tasks.filter(x=>x.id!==id);
-  localStorage.setItem('mhq_t',JSON.stringify(tasks));
-  rk();
-}
-function omodal(){document.getElementById('modal').classList.add('open');}
-function cmodal(){document.getElementById('modal').classList.remove('open');}
-function stask(){
-  const n=document.getElementById('tn').value.trim();
-  if(!n)return;
-  tasks.push({
-    id:Date.now()+'',
-    name:n,
-    type:document.getElementById('tty').value,
-    due:document.getElementById('tdu').value,
-    agent:document.getElementById('tag').value,
-    col:document.getElementById('tco').value
-  });
-  localStorage.setItem('mhq_t',JSON.stringify(tasks));
-  document.getElementById('tn').value='';
-  cmodal();rk();
-}
-document.getElementById('modal').addEventListener('click',e=>{
-  if(e.target===e.currentTarget)cmodal();
-});
-
-rk();
 </script>
 </body>
 </html>
