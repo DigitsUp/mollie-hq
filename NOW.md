@@ -1,5 +1,5 @@
 # NOW.md — Session Handoff
-_Last updated: 2026-04-02 (end of day)_
+_Last updated: 2026-04-02 6pm PDT — session close_
 
 ---
 
