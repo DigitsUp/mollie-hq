@@ -734,13 +734,13 @@ main{
   <div class="usage-grid">
     <div class="usage-card">
       <div class="usage-label">Total Spend</div>
-      <div class="usage-value accent">$59.23</div>
+      <div class="usage-value accent">$233.91</div>
       <div class="usage-note">of $500 budget</div>
     </div>
     <div class="usage-card">
-      <div class="usage-label">Sessions</div>
-      <div class="usage-value">~835</div>
-      <div class="usage-note">approx total</div>
+      <div class="usage-label">Today (Apr 2)</div>
+      <div class="usage-value">$30.56</div>
+      <div class="usage-note">Sonnet 4.6 primary</div>
     </div>
     <div class="usage-card">
       <div class="usage-label">Model</div>
@@ -749,130 +749,133 @@ main{
     </div>
     <div class="usage-card">
       <div class="usage-label">Budget Used</div>
-      <div class="usage-value accent">12%</div>
-      <div class="usage-note">$59.23 of $500</div>
+      <div class="usage-value accent">47%</div>
+      <div class="usage-note">$233.91 of $500</div>
     </div>
   </div>
 
   <div class="budget-row">
     <div class="budget-label">Budget</div>
-    <div class="budget-track"><div class="budget-fill" style="width:12%"></div></div>
-    <div class="budget-pct">12%</div>
+    <div class="budget-track"><div class="budget-fill" style="width:47%"></div></div>
+    <div class="budget-pct">47%</div>
+  </div>
+
+  <!-- Daily Cost Bars -->
+  <div style="margin-top:16px;">
+    <div style="font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:10px;">Daily Cost · Last 7 Days · UTC dates</div>
+    <div style="display:flex;align-items:flex-end;gap:6px;height:80px;">
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
+        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);">~$5</div>
+        <div style="width:100%;flex:1;max-height:4px;background:rgba(47,145,195,0.4);border-radius:3px 3px 0 0;align-self:flex-end;height:4px;"></div>
+        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);">Mar 27</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
+        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);">~$65</div>
+        <div style="width:100%;height:36px;background:rgba(47,145,195,0.5);border-radius:3px 3px 0 0;align-self:flex-end;"></div>
+        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);">Mar 28</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
+        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);">~$8</div>
+        <div style="width:100%;height:5px;background:rgba(47,145,195,0.4);border-radius:3px 3px 0 0;align-self:flex-end;"></div>
+        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);">Mar 30</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
+        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);">~$5</div>
+        <div style="width:100%;height:3px;background:rgba(47,145,195,0.4);border-radius:3px 3px 0 0;align-self:flex-end;"></div>
+        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);">Mar 31</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
+        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--c);">~$120</div>
+        <div style="width:100%;height:64px;background:rgba(245,158,11,0.6);border-radius:3px 3px 0 0;align-self:flex-end;"></div>
+        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);">Apr 1</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
+        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--text);">$30.56</div>
+        <div style="width:100%;height:16px;background:var(--m);border-radius:3px 3px 0 0;align-self:flex-end;box-shadow:0 0 8px var(--mglow);"></div>
+        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--m);font-weight:600;">Apr 2 ←</div>
+      </div>
+    </div>
+    <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);margin-top:6px;">* Approx · Anthropic console · UTC dates</div>
   </div>
 
   <div class="sync-row">
-    <div class="sync-note">Last synced: Apr 2 2026, 8:04 AM PDT</div>
+    <div class="sync-note">Last synced: Apr 2 2026, 6:28 PM PDT</div>
     <button id="rb" onclick="alert('Usage refreshed.')">⟳ Refresh</button>
   </div>
 
   <!-- 4. TODAY'S ACTIVITY -->
   <div class="mt-28">
-    <div class="section-label">Today's Activity — Apr 2</div>
+    <div class="section-label">Today's Activity — Apr 2, 2026</div>
     <div class="feed">
-      <div class="feed-entry">
-        <div class="feed-dot green"></div>
-        <div class="feed-body">
-          <div class="feed-text">Morning Briefing cron set — 6am daily Telegram proactive update</div>
-        </div>
-        <div class="feed-time">Apr 2</div>
-      </div>
-      <div class="feed-entry">
-        <div class="feed-dot green"></div>
-        <div class="feed-body">
-          <div class="feed-text">EOD Recap cron set — 5pm daily Telegram end-of-day wrap</div>
-        </div>
-        <div class="feed-time">Apr 2</div>
-      </div>
       <div class="feed-entry">
         <div class="feed-dot grey"></div>
         <div class="feed-body">
-          <div class="feed-text">Fresh session started. Outersignal kickoff 11am, RVCA kickoff 1pm.</div>
+          <div class="feed-text">Session started — RVCA client kickoff + Rho pipeline work planned</div>
         </div>
         <div class="feed-time">7:28 AM</div>
       </div>
       <div class="feed-entry">
         <div class="feed-dot green"></div>
         <div class="feed-body">
-          <div class="feed-text">Outersignal Team Kickoff ✓ — Thomas, Marl, Meaghan, Shelbie. Rho pipeline demo'd.</div>
+          <div class="feed-text">Morning Briefing (6am) + EOD Recap (5pm) daily crons live ✓</div>
+        </div>
+        <div class="feed-time">8:10 AM</div>
+      </div>
+      <div class="feed-entry">
+        <div class="feed-dot green"></div>
+        <div class="feed-body">
+          <div class="feed-text">RVCA client kickoff ✓ — Clayton Dahl. Retention program launched. Following Liverpool model.</div>
         </div>
         <div class="feed-time">11:00 AM</div>
       </div>
       <div class="feed-entry">
         <div class="feed-dot green"></div>
         <div class="feed-body">
-          <div class="feed-text">RVCA Internal Kickoff ✓ — Went great. Client kickoff tomorrow Apr 2 with Clayton Dahl.</div>
+          <div class="feed-text">Riversol Apr campaign strategy sent to Ali — SMS Flash, Tier Nudge, Summer-Ready Skin</div>
         </div>
-        <div class="feed-time">1:00 PM</div>
-      </div>
-      <div class="feed-entry">
-        <div class="feed-dot amber"></div>
-        <div class="feed-body">
-          <div class="feed-text">Mollie HQ v2 briefed to Callie for full redesign.</div>
-        </div>
-        <div class="feed-time">4:22 PM</div>
-      </div>
-      <div class="feed-entry">
-        <div class="feed-dot green"></div>
-        <div class="feed-body">
-          <div class="feed-text">Mollie HQ v2 built by Callie and deployed ✓ — dual-agent mission control layout live.</div>
-        </div>
-        <div class="feed-time">4:34 PM</div>
+        <div class="feed-time">12:00 PM</div>
       </div>
       <div class="feed-entry">
         <div class="feed-dot blue"></div>
         <div class="feed-body">
-          <div class="feed-text">HQ activity feed updated to 4:43 PM.</div>
+          <div class="feed-text">Rho Nutrition pipeline rebuilt — 6 persona briefs + 6 copy docs built and sent to Mike + Shelbie</div>
         </div>
-        <div class="feed-time">4:43 PM</div>
-      </div>
-      <div class="feed-entry">
-        <div class="feed-dot amber"></div>
-        <div class="feed-body">
-          <div class="feed-text">Mollie HQ v3 briefed — mobile-first redesign, Mollie centered as hero.</div>
-        </div>
-        <div class="feed-time">5:14 PM</div>
+        <div class="feed-time">3:00 PM</div>
       </div>
       <div class="feed-entry">
         <div class="feed-dot green"></div>
         <div class="feed-body">
-          <div class="feed-text">Outersignal Team Kickoff ✓ — Thomas, Marl, Meaghan, Shelbie aligned on Rho pipeline.</div>
+          <div class="feed-text">Hiba March report finalized + deployed ✓ — digitsup.github.io/hiba/march-2026</div>
         </div>
-        <div class="feed-time">11:00 AM</div>
+        <div class="feed-time">4:30 PM</div>
       </div>
       <div class="feed-entry">
         <div class="feed-dot green"></div>
         <div class="feed-body">
-          <div class="feed-text">RVCA Team Kickoff ✓ — Clayton Dahl call complete. Retention program officially launched.</div>
+          <div class="feed-text">Shelbie approved Rho briefs ✓ — no notes. Copy docs in her inbox, nudge cron set for 8:30am Apr 3.</div>
         </div>
-        <div class="feed-time">1:00 PM</div>
+        <div class="feed-time">6:10 PM</div>
+      </div>
+      <div class="feed-entry">
+        <div class="feed-dot green"></div>
+        <div class="feed-body">
+          <div class="feed-text">Ali (Riversol) confirmed ✓ — SPF 50 sends Apr 7, layers well with our strategy</div>
+        </div>
+        <div class="feed-time">6:10 PM</div>
+      </div>
+      <div class="feed-entry">
+        <div class="feed-dot green"></div>
+        <div class="feed-body">
+          <div class="feed-text">Notion workspace accepted ✓ — mollie@digitsup.com now assignable member in DigitsUp</div>
+        </div>
+        <div class="feed-time">6:21 PM</div>
       </div>
       <div class="feed-entry">
         <div class="feed-dot blue"></div>
         <div class="feed-body">
-          <div class="feed-text">HQ refreshed — Apr 1 evening session startup.</div>
+          <div class="feed-text">HQ refreshed — usage updated to $233.91, daily chart added, activity feed cleaned up</div>
         </div>
-        <div class="feed-time">6:02 PM</div>
-      </div>
-      <div class="feed-entry">
-        <div class="feed-dot green"></div>
-        <div class="feed-body">
-          <div class="feed-text">Shelbie approved Rho Nutrition briefs — no notes. Moving to copy phase.</div>
-        </div>
-        <div class="feed-time">Apr 2 · 6:10 PM</div>
-      </div>
-      <div class="feed-entry">
-        <div class="feed-dot green"></div>
-        <div class="feed-body">
-          <div class="feed-text">Ali (Riversol) replied — SPF 50 campaign layers well, sending Tuesday Apr 7. Draft incoming from Ali.</div>
-        </div>
-        <div class="feed-time">Apr 2 · 6:10 PM</div>
-      </div>
-      <div class="feed-entry">
-        <div class="feed-dot amber"></div>
-        <div class="feed-body">
-          <div class="feed-text">Attentive Partnership — Caroline following up on scheduling. Mike requested reply draft (OOO Thu, off Fri + Mon).</div>
-        </div>
-        <div class="feed-time">Apr 2 · 6:10 PM</div>
+        <div class="feed-time">6:28 PM</div>
       </div>
     </div>
   </div>
