@@ -55,23 +55,28 @@ _Curated knowledge that persists across sessions. Updated as I learn._
 
 - Michael Grill — mike@digitsup.com (founder)
 - Shelbie Jarvis — shelbie@digitsup.com (brief reviewer)
-- Thomas — thomas@digitsup.com
+- Thomas (Tom) — thomas@digitsup.com
 - Debbie Taylor — debbie@digitsup.com (Project Manager — owns Notion)
 - Meaghan Reid — meaghan@digitsup.com (copy reviewer)
-- Kieran — kieran@digitsup.com
-- Erik — erik@digitsup.com
-- RV — rv@digitsup.com
+- Kieran White — kieran@digitsup.com
+- Erik Walsingham — erik@digitsup.com
+- RV — rv@digitsup.com. CRM specialist + web dev. Used sparingly — only when really needed.
 - Marl (Marljone Dizon) — dizonmarljone@gmail.com (designer)
+- Lawrence Robertson — COO. Contracts, payroll, HR. Childhood best friend of Michael's.
+- Melric — Assistant/secondary designer. Works under Marl.
 
-## Active Clients (as of March 2026)
+## Active Clients (updated Apr 1 — brain dump from Michael)
 
-- **RVCA** — Contact: Clayton Dahl (Ethos Brands). Kickoff call Wed Apr 1 1pm.
-- **Riversol** — Contacts: James, Ali (Riversol); Una, Arnaud (RMDY Brands). Weekly Tue 10:30am.
-- **Liverpool LA** — Contacts: Otaner King, Morgan Kairey; also David Kadosh (Celebrity Pink). Klaviyo API connected. Weekly report built in JSX. Weekly call Tue 11:30am.
-- **Hiba Academy** — Contacts: Fiona Duong, Homa Hanjani, Skye Chen; involves Iolite Ventures (David Varnai, Veronica Madarang) and IT Consultis.
-- **Axis Health** — Contacts: Myles, Harshil Topiwala.
-- **TMM (The Miles Market)** — Contact: Nahum. Weekly Mon 7pm.
-- **LPLA** — Weekly Tue 11:30am with Clayton Dahl.
+- **Liverpool LA** — Biggest/best client. ~2 years in. Mix of campaigns + automation. NOT full campaign ownership yet — upgraded proposal in progress to get there. Automation work is elite. Contacts: Otaner King, Morgan Kairey; David Kadosh (Celebrity Pink). Klaviyo API connected. Weekly call Tue 11:30am.
+- **RVCA** — New client. Similar structure to Liverpool: big automations + some campaign management. Contact: Clayton Dahl (Ethos Brands). Kickoff done Apr 1.
+- **Axis Health** — Strategy + automation design only. Brief, copy, design — then hand off to Axis Health team to build. We don't build it ourselves.
+- **Hiba Academy** — Chinese immersion school, SF Bay Area. First 3 months (Jan–Mar): automation build + system integration + some campaigns. Now entering maintenance retainer. Still finishing long-term nurture journey from last month — needs to move into pipeline. Contacts: Fiona Duong, Homa Hanjani, Skye Chen; Iolite Ventures (David Varnai, Veronica Madarang); IT Consultis.
+- **Riversol** — Skincare brand with strong internal email team. Our role: consulting, reporting/insights, campaign ideas, automation brief concepts. Contacts: James, Ali (Riversol); Una, Arnaud (RMDY Brands). Weekly Tue 10:30am. Klaviyo API connected. CAD.
+- **Stand Flagpoles** — Michael's personal account, solo (Michael + Mollie only). Full scope: campaigns, automations, Shopify access, landing pages. Low pressure. Must maintain 2–3 emails/week. No team involvement.
+- **Brand Featured** — Prospect. Proposal done (Klaviyo migration timeline included). Waiting to hear back if it's a go.
+- **TMM (The Miles Market)** — OFFBOARDED. Last files sent. Now inactive.
+- **OBG** — Past client. Done. Bad experience. Ignore.
+- **Mother Nature's Cleaning** — Inactive client. UTMs recently added — check report end of April 2026.
 - **Rho Nutrition** — Under Outersignal scope. Post-purchase flow project active.
 
 ## Outersignal / Rho Nutrition Project
@@ -123,16 +128,49 @@ _Curated knowledge that persists across sessions. Updated as I learn._
 - Rho Nutrition (OS) file key: TkoU9zovIP1VvPTIxqS7SG
 - Figma REST API is READ-ONLY — cannot create frames or upload images via API. Writing to Figma requires Plugin API (runs inside Figma app). Wireframe briefs go to Marl as Word/PDF docs, he builds in Figma.
 
+## Callie — Specialist Agent
+- Name: Callie (Mollie's specialist counterpart — Mo**llie** / Ca**llie**)
+- Workspace: ~/.openclaw/workspace-callie/
+- Agent ID: callie
+- Model: claude-sonnet-4-6 (same as Mollie for now, can upgrade to Opus for heavy work)
+- Role: research, brief writing, copy, Klaviyo analysis, HTML builds, reports
+- Does NOT talk to Michael directly — all comms route through Mollie
+- Config live in openclaw.json, gateway restarted, both agents confirmed running
+- Knowledge transfer: briefing files to be added to her workspace
+
+## Agent Architecture (confirmed Apr 1)
+- Mollie = coordinator (daily rhythm, client comms, routing, memory, heartbeats)
+- Callie = specialist (heavy builds, research, analysis, reports) — internal only, no channel binding, no email
+- Callie is Mollie's specialist unit — not a peer. "via Callie" in HQ, not a separate identity
+- Context packaging is Mollie's job — she briefs Callie with exactly what's needed
+- Learning loop runs through Mollie — she retains long-term memory, Callie retains task-level notes
+- Delegation fully wired and tested Apr 1: sessions_spawn with agentId="callie" confirmed working
+- Config: tools.agentToAgent enabled, agents.main.subagents.allowAgents=["callie"]
+- All heavy builds go to Callie. Mollie coordinates, Callie executes.
+- Handoff folder: workspace/callie-output/ — Callie drops finished files here, Mollie picks up and delivers
+
 ## Active Queue (Next Session)
+- [ ] Update Mollie HQ dashboard to include Callie visually
 - [ ] Rho Nutrition Days 8 + 21 — briefs + copy docs (complete the 18-email build)
 - [ ] Riversol Campaign Ideas doc — add Sales Strategies section, deploy to GitHub
-- [ ] Fix subagents / gateway pairing (with Michael)
 - [ ] SFR Distillery intro call prep (call Apr 7)
+- [ ] Write Callie's client knowledge briefing files
+
+## Architecture Cleanup (End of Week — April 4/5)
+- Consolidate fragmented folder structure: `projects/` and `clients/` have overlap (liverpool, riversol, hale-iwa-farm, brand-featured all duplicated)
+- Goal: one folder per client under `workspace/clients/[client]/` — reports, builds, notes, admin all inside
+- Trim MEMORY.md to lightweight index only (pointers to files, not the files themselves)
+- Build warm-tier context files per client (loaded just-in-time, not hot)
+- Add NOW.md — end-of-session snapshot for clean handoffs
+- Feed SOPs into domain skills for both Mollie and Callie (Klaviyo best practices, agency workflows)
 
 ## Completed Apr 1
 - RVCA kickoff doc — Section 04 replaced with Kickoff & Onboarding (no pricing). Live at digitsup.github.io/mollie-hq/clients/proposals/rvca.html. Password removed. Sent to #rvca Slack.
 - RVCA Kickoff Call — 1pm PST (with Clayton Dahl)
 - Outersignal Kickoff Call — 11am PST
+- Callie agent built and registered — workspace, SOUL, AGENTS.md, config all live
+- Subagent pairing fixed — device re-paired with full operator scopes
+- GitHub checkpoint committed (pre-Callie state saved)
 
 ## Session Cost Lessons (Day 2)
 - Long sessions re-read full history = $1.50-2.00 per message by end of day

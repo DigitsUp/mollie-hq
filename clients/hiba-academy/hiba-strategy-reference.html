@@ -1,0 +1,1941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hiba Academy Bay Area — CRM Strategy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+
+  :root {
+    --red: #C8392B;
+    --red-light: #E8503F;
+    --gold: #D4A843;
+    --gold-light: #F0C96A;
+    --navy: #1A2744;
+    --navy-mid: #243460;
+    --cream: #FAF7F2;
+    --warm-white: #FFFDF9;
+    --gray-100: #F3F0EB;
+    --gray-200: #E5E1D8;
+    --gray-400: #9B9488;
+    --gray-600: #5C574F;
+    --gray-800: #2E2A25;
+    --green: #2E7D4F;
+    --green-light: #E8F5EE;
+    --amber: #C17D1A;
+    --amber-light: #FFF3DC;
+    --blue: #1E5A8C;
+    --blue-light: #E8F0F8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--gray-800);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--navy);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(26,39,68,0.3);
+  }
+
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .header-logo-mark {
+    width: 36px;
+    height: 36px;
+    background: var(--gold);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--navy);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .header-title {
+    font-family: 'Playfair Display', serif;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .header-sub {
+    color: var(--gold-light);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .header-meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .header-badge {
+    background: rgba(212,168,67,0.2);
+    border: 1px solid rgba(212,168,67,0.4);
+    color: var(--gold-light);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 20px;
+  }
+
+  /* NAV TABS */
+  .nav-tabs {
+    background: var(--navy-mid);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+
+  .nav-tab {
+    padding: 13px 22px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.55);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-tab:hover { color: rgba(255,255,255,0.85); }
+  .nav-tab.active {
+    color: var(--gold-light);
+    border-bottom-color: var(--gold);
+  }
+
+  /* MAIN */
+  .main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 40px 80px;
+  }
+
+  /* SECTIONS */
+  .section { }
+
+  /* SECTION HEADER */
+  .section-header {
+    margin-bottom: 32px;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .section-desc {
+    font-size: 15px;
+    color: var(--gray-600);
+    line-height: 1.6;
+    max-width: 680px;
+  }
+
+  /* CARDS */
+  .card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--gray-200);
+    padding: 28px 32px;
+    margin-bottom: 20px;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+
+  .card-desc {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  /* GRID */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; }
+
+  /* LEAD SOURCE CARDS */
+  .source-card {
+    background: white;
+    border-radius: 10px;
+    border: 1px solid var(--gray-200);
+    padding: 20px 22px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .source-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .source-card.popup::before { background: var(--red); }
+  .source-card.newsletter::before { background: var(--gold); }
+  .source-card.event::before { background: var(--blue); }
+  .source-card.contact::before { background: var(--green); }
+
+  .source-icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .source-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  .source-detail {
+    font-size: 12px;
+    color: var(--gray-600);
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  .field-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .field-tag {
+    background: var(--gray-100);
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-size: 11px;
+    color: var(--gray-600);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* FLOW DIAGRAM */
+  .flow-container {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--gray-200);
+    padding: 36px;
+    margin-bottom: 20px;
+  }
+
+  .flow-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .flow-title span {
+    background: var(--navy);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+
+  /* EMAIL SEQUENCE */
+  .email-sequence {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+
+  .email-sequence::before {
+    content: '';
+    position: absolute;
+    left: 22px;
+    top: 44px;
+    bottom: 44px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--navy), var(--gray-200));
+    z-index: 0;
+  }
+
+  .email-step {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 16px 0;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  .email-step:hover .email-content { background: var(--gray-100); }
+
+  .email-dot {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+    border: 3px solid var(--cream);
+  }
+
+  .email-content {
+    flex: 1;
+    background: var(--gray-100);
+    border-radius: 10px;
+    padding: 16px 20px;
+    transition: background 0.2s;
+  }
+
+  .email-day {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 4px;
+  }
+
+  .email-subject {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  .email-desc {
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.5;
+  }
+
+  .email-detail {
+    display: none;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--gray-200);
+  }
+
+  .email-detail.open { display: block; }
+
+  .email-detail ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .email-detail ul li {
+    font-size: 13px;
+    color: var(--gray-600);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .email-detail ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 12px;
+  }
+
+  /* FORK */
+  .fork-container {
+    background: white;
+    border-radius: 12px;
+    border: 2px dashed var(--gray-200);
+    padding: 32px;
+    margin: 20px 0;
+  }
+
+  .fork-label {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 20px;
+  }
+
+  .fork-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .fork-branch {
+    border-radius: 10px;
+    padding: 22px;
+    position: relative;
+  }
+
+  .fork-branch.urgent {
+    background: linear-gradient(135deg, #FFF0EE, #FFF8F7);
+    border: 1px solid rgba(200,57,43,0.2);
+  }
+
+  .fork-branch.nurture {
+    background: linear-gradient(135deg, #EEF3FF, #F5F8FF);
+    border: 1px solid rgba(30,90,140,0.2);
+  }
+
+  .fork-branch-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .fork-branch.urgent .fork-branch-label { color: var(--red); }
+  .fork-branch.nurture .fork-branch-label { color: var(--blue); }
+
+  .fork-branch-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .fork-branch-desc {
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.6;
+  }
+
+  /* SEGMENT BLOCKS */
+  .segment-block {
+    background: white;
+    border-radius: 10px;
+    border: 1px solid var(--gray-200);
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .segment-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .segment-header:hover { background: var(--gray-100); }
+
+  .segment-header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .segment-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .segment-name {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--navy);
+  }
+
+  .segment-trigger {
+    font-size: 12px;
+    color: var(--gray-400);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .segment-chevron {
+    color: var(--gray-400);
+    font-size: 18px;
+    transition: transform 0.2s;
+  }
+
+  .segment-chevron.open { transform: rotate(180deg); }
+
+  .segment-body {
+    display: none;
+    padding: 0 24px 22px;
+    border-top: 1px solid var(--gray-100);
+  }
+
+  .segment-body.open { display: block; padding-top: 18px; }
+
+  /* NOTES SECTION */
+  .notes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .note-item {
+    background: var(--amber-light);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .note-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .note-content {}
+
+  .note-category {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 4px;
+  }
+
+  .note-question {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+
+  .note-context {
+    font-size: 12px;
+    color: var(--gray-600);
+    line-height: 1.5;
+  }
+
+  /* TIMELINE */
+  .timeline-phase {
+    display: flex;
+    gap: 0;
+    margin-bottom: 8px;
+  }
+
+  .phase-label {
+    width: 160px;
+    flex-shrink: 0;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gray-600);
+    padding: 12px 16px 12px 0;
+    text-align: right;
+    line-height: 1.3;
+  }
+
+  .phase-bar-container {
+    flex: 1;
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .phase-bar {
+    height: 40px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+    margin: 4px 0;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .phase-bar.strategy { background: var(--navy); }
+  .phase-bar.creative { background: var(--blue); }
+  .phase-bar.build { background: var(--red); }
+  .phase-bar.launch { background: var(--green); }
+  .phase-bar.changeover { background: var(--amber); color: var(--gray-800); }
+
+  /* TAGS */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .tag-red { background: #FEECEB; color: var(--red); }
+  .tag-blue { background: var(--blue-light); color: var(--blue); }
+  .tag-green { background: var(--green-light); color: var(--green); }
+  .tag-gold { background: var(--amber-light); color: var(--amber); }
+  .tag-navy { background: rgba(26,39,68,0.08); color: var(--navy); }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--gray-200);
+    margin: 28px 0;
+  }
+
+  /* CONDITION PILL */
+  .condition {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--gray-800);
+    margin: 4px;
+  }
+
+  .condition .key { color: var(--blue); }
+  .condition .op { color: var(--gray-400); }
+  .condition .val { color: var(--green); font-weight: 500; }
+
+  /* PROGRESS */
+  .progress-bar {
+    height: 6px;
+    background: var(--gray-200);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--navy), var(--blue));
+    transition: width 1s ease;
+  }
+
+  /* SUMMARY STAT */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .stat-card {
+    background: white;
+    border-radius: 10px;
+    border: 1px solid var(--gray-200);
+    padding: 20px 22px;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--gray-400);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* PLACEHOLDER NOTE */
+  .placeholder {
+    background: rgba(212,168,67,0.08);
+    border: 1px dashed var(--gold);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: var(--amber);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .main { padding: 24px 20px 60px; }
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .fork-grid { grid-template-columns: 1fr; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .header-inner { padding: 14px 20px; }
+    .nav-inner { padding: 0 20px; }
+  }
+
+  /* CHANGEOVER SECTION */
+  .changeover-card {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .changeover-header {
+    padding: 18px 24px;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .changeover-title {
+    font-family: 'Playfair Display', serif;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .changeover-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--gold-light);
+    background: rgba(255,255,255,0.1);
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+
+  .changeover-body {
+    padding: 22px 24px;
+  }
+
+  .change-row {
+    display: flex;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--gray-100);
+    align-items: flex-start;
+  }
+
+  .change-row:last-child { border-bottom: none; }
+
+  .change-area {
+    width: 140px;
+    flex-shrink: 0;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gray-600);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding-top: 1px;
+  }
+
+  .change-desc {
+    flex: 1;
+    font-size: 13px;
+    color: var(--gray-800);
+    line-height: 1.6;
+  }
+
+  .change-arrow {
+    color: var(--gold);
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0 6px;
+  }
+
+
+  /* SPLASH NAV CARDS */
+  .splash-card {
+    background: white;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 14px;
+    padding: 28px;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    text-decoration: none;
+    display: block;
+  }
+  .splash-card:hover {
+    border-color: var(--navy);
+    box-shadow: 0 6px 24px rgba(26,39,68,0.10);
+    transform: translateY(-2px);
+  }
+  .splash-icon { font-size: 28px; margin-bottom: 14px; }
+  .splash-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .splash-desc {
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .splash-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .splash-tag {
+    background: var(--gray-100);
+    color: var(--gray-600);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  .splash-tag.green { background: var(--green-light); color: var(--green); }
+  .splash-tag.blue { background: var(--blue-light); color: var(--blue); }
+  .splash-tag.amber { background: var(--amber-light); color: var(--amber); }
+
+  /* SUB NAV */
+  .sub-nav { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+  .sub-btn {
+    padding: 8px 18px;
+    border-radius: 6px;
+    border: 1.5px solid var(--gray-200);
+    background: white;
+    color: var(--gray-600);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s;
+  }
+  .sub-btn.active, .sub-btn:hover {
+    background: var(--navy);
+    color: white;
+    border-color: var(--navy);
+  }
+  .sub-section + .sub-section { margin-top: 48px; padding-top: 40px; border-top: 2px solid var(--gray-200); }
+
+  /* BACK LINK */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-400);
+    cursor: pointer;
+    margin-bottom: 24px;
+    padding: 6px 0;
+    border: none;
+    background: none;
+    font-family: inherit;
+    transition: color 0.15s;
+  }
+  .back-link:hover { color: var(--navy); }
+
+  .splash-card {
+    background: white;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 14px;
+    padding: 28px;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+  }
+  .splash-card:hover {
+    border-color: var(--navy);
+    box-shadow: 0 6px 24px rgba(26,39,68,0.10);
+    transform: translateY(-2px);
+  }
+  .splash-icon { font-size:28px; margin-bottom:14px; }
+  .splash-title { font-family:"Playfair Display",serif; font-size:19px; font-weight:600; color:var(--navy); margin-bottom:8px; }
+  .splash-desc { font-size:13px; color:var(--gray-600); line-height:1.6; margin-bottom:16px; }
+  .splash-tags { display:flex; gap:6px; flex-wrap:wrap; }
+  .splash-tag { background:var(--gray-100); color:var(--gray-600); font-size:11px; font-weight:600; padding:3px 10px; border-radius:20px; }
+  .splash-tag.green { background:var(--green-light); color:var(--green); }
+  .splash-tag.blue { background:var(--blue-light); color:var(--blue); }
+  .splash-tag.amber { background:var(--amber-light); color:var(--amber); }
+  .back-link { display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:var(--gray-400); cursor:pointer; margin-bottom:24px; padding:6px 0; border:none; background:none; font-family:inherit; transition:color 0.15s; }
+  .back-link:hover { color:var(--navy); }
+  .sub-section + .sub-section { margin-top:48px; padding-top:40px; border-top:2px solid var(--gray-200); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-logo-mark">H</div>
+      <div>
+        <div class="header-title">Hiba Academy Bay Area</div>
+        <div class="header-sub">CRM &amp; Email Strategy</div>
+      </div>
+    </div>
+    <div class="header-meta">
+      <div class="header-badge">DigitsUp — Draft v1</div>
+    </div>
+  </div>
+</div>
+
+<div class="main" id="app">
+
+  <!-- HOME: always in DOM, shown/hidden via JS -->
+  <div id="page-home">
+    <div style="background:var(--navy);border-radius:16px;padding:48px 48px 40px;margin-bottom:32px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:-60px;right:-60px;width:280px;height:280px;background:var(--gold);opacity:0.05;border-radius:50%;"></div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-light);margin-bottom:14px;">DigitsUp x Hiba Academy Bay Area</div>
+      <div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:white;line-height:1.2;margin-bottom:14px;">CRM &amp; Email Strategy</div>
+      <div style="font-size:15px;color:rgba(255,255,255,0.65);line-height:1.7;max-width:560px;margin-bottom:32px;">Full-funnel strategy covering how Hiba Academy attracts, nurtures, and converts prospective families — from first website visit through to enrolled student.</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <div style="background:rgba(255,255,255,0.1);border-radius:6px;padding:7px 14px;font-size:12px;color:rgba(255,255,255,0.75);font-weight:500;">Fall 2026 Enrollment</div>
+        <div style="background:rgba(255,255,255,0.1);border-radius:6px;padding:7px 14px;font-size:12px;color:rgba(255,255,255,0.75);font-weight:500;">Klaviyo + Ravenna</div>
+        <div style="background:rgba(255,255,255,0.1);border-radius:6px;padding:7px 14px;font-size:12px;color:rgba(255,255,255,0.75);font-weight:500;">879 Email Subscribers</div>
+        <div style="background:rgba(255,255,255,0.1);border-radius:6px;padding:7px 14px;font-size:12px;color:rgba(255,255,255,0.75);font-weight:500;">3-Month Build Plan</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div class="splash-card" onclick="goTo('flows')">
+        <div class="splash-icon">✉️</div>
+        <div class="splash-title">Email Flows</div>
+        <div class="splash-desc">How families move from first contact to enrolled student — the welcome series, three nurture tracks, and the annual enrollment changeover.</div>
+        <div class="splash-tags">
+          <span class="splash-tag">Lead Sources</span>
+          <span class="splash-tag">Welcome Series</span>
+          <span class="splash-tag">Tracks A1 · A2 · B</span>
+          <span class="splash-tag">Changeover</span>
+        </div>
+      </div>
+      <div class="splash-card" onclick="goTo('reports')">
+        <div class="splash-icon">📊</div>
+        <div class="splash-title">Monthly Report</div>
+        <div class="splash-desc">Plain-English performance summaries — list growth, opt-in sources, campaign results, welcome series health, and what we're doing about it.</div>
+        <div class="splash-tags">
+          <span class="splash-tag green">52% Open Rate</span>
+          <span class="splash-tag green">879 Subscribers</span>
+          <span class="splash-tag">Feb 2026</span>
+        </div>
+      </div>
+      <div class="splash-card" onclick="goTo('database')">
+        <div class="splash-icon">🗂️</div>
+        <div class="splash-title">Database Health</div>
+        <div class="splash-desc">The sunset flow — how we identify disengaged families, give them a genuine chance to stay, and keep the list clean without losing real candidates.</div>
+        <div class="splash-tags">
+          <span class="splash-tag amber">9–12 Month Window</span>
+          <span class="splash-tag amber">3-Email Sequence</span>
+        </div>
+      </div>
+      <div class="splash-card" onclick="goTo('plan')">
+        <div class="splash-icon">📅</div>
+        <div class="splash-title">Timeline &amp; Q&amp;A</div>
+        <div class="splash-desc">The 3-month build schedule and the open questions for the client workshop that will shape the final flow architecture, copy, and priorities.</div>
+        <div class="splash-tags">
+          <span class="splash-tag blue">Month 1–3 Roadmap</span>
+          <span class="splash-tag blue">20+ Questions</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT PAGES: injected on demand -->
+  <div id="page-content" style="display:none;">
+    <button class="back-link" onclick="goTo('home')">← Back to Home</button>
+    <div id="page-content-inner"></div>
+  </div>
+
+</div>
+
+<!-- CONTENT TEMPLATES (never rendered by browser) -->
+<template id="tpl-flows"><div class="section-header">
+      <div class="section-eyebrow">Email Flows</div>
+      <div class="section-title">From First Touch to Enrolled Family</div>
+      <div class="section-desc">Four entry points, one welcome series, and three long-term nurture tracks — all connected through Klaviyo and Ravenna.</div>
+    </div>
+    <div id="sub-lead" class="sub-section"><div class="section-header">
+      <div class="section-eyebrow">Acquisition</div>
+      <div class="section-title">Lead Sources & Entry Points</div>
+      <div class="section-desc">Four distinct touchpoints funnel prospects into the welcome series. All capture the same core fields — enabling unified segmentation from first contact.</div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:20px;">
+      <div class="source-card popup">
+        <div class="source-icon">💬</div>
+        <div class="source-name">Curriculum Popup</div>
+        <div class="source-detail">Triggered on site visit. Primary hook: learn more about the bilingual curriculum and what makes Hiba different. Currently being updated to a second popup version.</div>
+        <div class="field-tags">
+          <span class="field-tag">full_name</span>
+          <span class="field-tag">email</span>
+          <span class="field-tag">phone</span>
+          <span class="field-tag">grade_interest</span>
+          <span class="field-tag">start_year</span>
+        </div>
+      </div>
+      <div class="source-card newsletter">
+        <div class="source-icon">📰</div>
+        <div class="source-name">Newsletter Signup</div>
+        <div class="source-detail">Currently only in homepage footer — needs to be added to all page footers to maximize capture across the full site.</div>
+        <div class="field-tags">
+          <span class="field-tag">full_name</span>
+          <span class="field-tag">email</span>
+          <span class="field-tag">phone</span>
+          <span class="field-tag">grade_interest</span>
+          <span class="field-tag">start_year</span>
+        </div>
+        <div class="placeholder">⚠ Needs sitewide footer deployment</div>
+      </div>
+      <div class="source-card event">
+        <div class="source-icon">🎟</div>
+        <div class="source-name">Event Registration</div>
+        <div class="source-detail">Registration forms for open houses, campus tours, and other admissions events. Triggers event property in Klaviyo profile upon attendance confirmation via Ravenna.</div>
+        <div class="field-tags">
+          <span class="field-tag">full_name</span>
+          <span class="field-tag">email</span>
+          <span class="field-tag">phone</span>
+          <span class="field-tag">grade_interest</span>
+          <span class="field-tag">start_year</span>
+        </div>
+      </div>
+      <div class="source-card contact">
+        <div class="source-icon">✉️</div>
+        <div class="source-name">Contact Form</div>
+        <div class="source-detail">General inquiry form for families who have questions or want to get in touch directly with the admissions team before committing to an event or application.</div>
+        <div class="field-tags">
+          <span class="field-tag">full_name</span>
+          <span class="field-tag">email</span>
+          <span class="field-tag">phone</span>
+          <span class="field-tag">grade_interest</span>
+          <span class="field-tag">start_year</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">All Roads Lead to the Welcome Series</div>
+      <div class="card-desc">Regardless of entry point, every new contact flows into the same 5-email welcome sequence. The <code style="background:var(--gray-100);padding:2px 6px;border-radius:4px;font-family:'DM Mono',monospace;font-size:12px;">start_year</code> and <code style="background:var(--gray-100);padding:2px 6px;border-radius:4px;font-family:'DM Mono',monospace;font-size:12px;">grade_interest</code> fields captured at signup are the segmentation backbone for the entire downstream nurture strategy.</div>
+    </div>
+  </div></div>
+    <div id="sub-welcome" class="sub-section"><div class="section-header">
+      <div class="section-eyebrow">Email Flow</div>
+      <div class="section-title">Welcome Series</div>
+      <div class="section-desc">A 5-email sequence over 30 days. Designed to educate, inspire, and build enough relationship capital that the family is ready to attend an event — which is the real conversion gate before application.</div>
+    </div>
+
+    <div class="flow-container">
+      <div class="flow-title">Welcome Sequence <span>Existing / Live</span></div>
+      <div class="email-sequence">
+
+        <div class="email-step" onclick="toggleEmail(this)">
+          <div class="email-dot">D0</div>
+          <div class="email-content">
+            <div class="email-day">Day 0 — Immediate</div>
+            <div class="email-subject">Welcome to Hiba Academy Bay Area</div>
+            <div class="email-desc">Warm welcome, confirm signup, introduce the school's mission and the founding family concept.</div>
+            <div class="email-detail">
+              <ul>
+                <li>Acknowledge what they signed up for (curriculum info / newsletter / event)</li>
+                <li>Establish the "founding family" framing — this is historic, they're early</li>
+                <li>Brief intro to Wellington College Education heritage (160 years, global network)</li>
+                <li>Single CTA: View our digital prospectus or join an upcoming event</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="email-step" onclick="toggleEmail(this)">
+          <div class="email-dot">D3</div>
+          <div class="email-content">
+            <div class="email-day">Day 3</div>
+            <div class="email-subject">What does bilingual really mean for your child?</div>
+            <div class="email-desc">Deep dive into the dual-language model — not just learning Chinese, but learning IN Chinese.</div>
+            <div class="email-detail">
+              <ul>
+                <li>Explain the difference between language class vs. language of instruction</li>
+                <li>Neuroscience of bilingualism — executive functioning, cognitive advantages</li>
+                <li>Shanghai math model, IB PYP curriculum overview</li>
+                <li>CTA: Explore the curriculum page or register for an info session</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="email-step" onclick="toggleEmail(this)">
+          <div class="email-dot">D7</div>
+          <div class="email-content">
+            <div class="email-day">Day 7</div>
+            <div class="email-subject">We teach the whole child</div>
+            <div class="email-desc">Beyond academics — values, character, well-being, and the global citizen identity at the heart of Hiba.</div>
+            <div class="email-detail">
+              <ul>
+                <li>Introduce Hiba's five core values: kindness, courage, respect, responsibility, integrity</li>
+                <li>Well-being program, arts, PE, after-school — rounded day overview</li>
+                <li>Social-emotional component in Primary curriculum</li>
+                <li>Graduate outcome stories (Wellington network alumni — Johns Hopkins, Oxford, Caltech, etc.)</li>
+                <li>CTA: Read parent testimonials or watch campus video</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="email-step" onclick="toggleEmail(this)">
+          <div class="email-dot">D14</div>
+          <div class="email-content">
+            <div class="email-day">Day 14</div>
+            <div class="email-subject">Your questions answered — Admissions at Hiba</div>
+            <div class="email-desc">Walk through the admissions process, timeline, and what it means to be part of the founding cohort.</div>
+            <div class="email-detail">
+              <ul>
+                <li>Step-by-step: inquiry → event → application (Ravenna) → enrollment</li>
+                <li>Tuition and affordability framing ($52K/year — position value)</li>
+                <li>No Chinese required for PK3–K–G1 entry</li>
+                <li>Homa Hanjani intro — 25 years Bay Area admissions, human face of the process</li>
+                <li>CTA: Book a 1:1 call with admissions or register for open house</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="email-step" onclick="toggleEmail(this)">
+          <div class="email-dot">D30</div>
+          <div class="email-content">
+            <div class="email-day">Day 30</div>
+            <div class="email-subject">See it for yourself — upcoming events at Hiba</div>
+            <div class="email-desc">Final welcome email. Direct push toward event attendance as the next logical step before application.</div>
+            <div class="email-detail">
+              <ul>
+                <li>Recap the Hiba story in 3 sentences</li>
+                <li>List upcoming open house and campus tour dates</li>
+                <li>Urgency: Fall 2026 enrollment is active — spots are limited</li>
+                <li>CTA: Register for your preferred event via Ravenna</li>
+                <li>After this email → cohort fork based on start_year and event_attended</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="fork-container">
+      <div class="fork-label">↓ After Day 30 — Cohort Fork</div>
+      <div class="fork-grid">
+        <div class="fork-branch urgent">
+          <div class="fork-branch-label">Track A — Fall 2026</div>
+          <div class="fork-branch-title">Active Enrollment Mode</div>
+          <div class="fork-branch-desc">These families need to apply now. Primary goal is getting them to attend an event first, then pushing toward application. Urgency is real and appropriate.</div>
+          <div style="margin-top:12px;">
+            <span class="tag tag-red">Event not attended → aggressive event push</span><br><br>
+            <span class="tag tag-green">Event attended → application sequence</span>
+          </div>
+        </div>
+        <div class="fork-branch nurture">
+          <div class="fork-branch-label">Track B — Fall 2027 & Future</div>
+          <div class="fork-branch-title">Long-Term Relationship Mode</div>
+          <div class="fork-branch-desc">These families are researching, not applying yet. Over-pushing creates churn. Goal is to stay warm, deliver value, and convert when their timeline arrives.</div>
+          <div style="margin-top:12px;">
+            <span class="tag tag-blue">Value content: curriculum, culture, community</span><br><br>
+            <span class="tag tag-navy">Gentle event invites — 1–2x / quarter max</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div></div>
+    <div id="sub-nurture" class="sub-section"><div class="section-header">
+      <div class="section-eyebrow">Post-Welcome Strategy</div>
+      <div class="section-title">Long-Term Nurture Flows</div>
+      <div class="section-desc">Three distinct tracks based on start year and event attendance. Click each segment to see the recommended flow.</div>
+    </div>
+
+    <!-- TRACK A1 -->
+    <div class="segment-block">
+      <div class="segment-header" onclick="toggleSegment(this)">
+        <div class="segment-header-left">
+          <div class="segment-dot" style="background:var(--red);"></div>
+          <div>
+            <div class="segment-name">Track A1 — Fall 2026, Event Not Yet Attended</div>
+            <div class="segment-trigger">start_year = Fall 2026 AND open_house = false AND campus_tour = false</div>
+          </div>
+        </div>
+        <div class="segment-chevron">⌄</div>
+      </div>
+      <div class="segment-body">
+        <div class="card-desc" style="margin-bottom:16px;">Primary goal: get them to an event. Application conversion rates are significantly higher post-event. This track is designed to be direct and create genuine urgency without being pushy.</div>
+        <div class="email-sequence">
+          <div class="email-step" onclick="toggleEmail(this)">
+            <div class="email-dot" style="background:var(--red);">W1</div>
+            <div class="email-content">
+              <div class="email-day">Week 1 Post-Welcome</div>
+              <div class="email-subject">One hour that could change your child's future</div>
+              <div class="email-desc">Dedicated event invite. Sell the experience of attending — meet the faculty, see the campus, ask your questions in person.</div>
+              <div class="email-detail">
+                <ul>
+                  <li>Position the event as a "low-commitment, high-value" step</li>
+                  <li>Highlight Homa and the admissions team — this is a warm, personal experience</li>
+                  <li>List 2–3 upcoming event dates with direct Ravenna registration links</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="email-step" onclick="toggleEmail(this)">
+            <div class="email-dot" style="background:var(--red);">W3</div>
+            <div class="email-content">
+              <div class="email-day">Week 3 Post-Welcome</div>
+              <div class="email-subject">What other Bay Area families are asking us</div>
+              <div class="email-desc">FAQ-style email addressing the most common hesitations. Builds confidence and moves them closer to committing to a visit.</div>
+              <div class="email-detail">
+                <ul>
+                  <li>"Does my child need to speak Chinese?" — No, especially for PK3–K entry</li>
+                  <li>"How is this different from SFUSD's immersion programs?" — Global network, IB, whole child</li>
+                  <li>"What does a typical day look like?" — Brief visual schedule overview</li>
+                  <li>CTA: Come see it yourself — next open house dates</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="email-step" onclick="toggleEmail(this)">
+            <div class="email-dot" style="background:var(--red);">W6</div>
+            <div class="email-content">
+              <div class="email-day">Week 6 Post-Welcome</div>
+              <div class="email-subject">Fall 2026 enrollment — where things stand</div>
+              <div class="email-desc">Enrollment status update. Genuine scarcity signal — founding cohort is limited. Last push before cadence slows.</div>
+              <div class="email-detail">
+                <ul>
+                  <li>Founding Family framing — these are the families that will define the school's culture</li>
+                  <li>Acknowledge that PK3, PK4, K, and Grade 1 seats are limited</li>
+                  <li>CTA: Register for the next event — or contact Homa directly for a 1:1</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:12px;padding:14px 18px;background:var(--green-light);border-radius:8px;font-size:13px;color:var(--green);">
+          ✓ Once <code style="font-family:'DM Mono',monospace;background:rgba(0,0,0,0.06);padding:1px 5px;border-radius:3px;">open_house = true</code> or <code style="font-family:'DM Mono',monospace;background:rgba(0,0,0,0.06);padding:1px 5px;border-radius:3px;">campus_tour = true</code> — automatically move to Track A2
+        </div>
+      </div>
+    </div>
+
+    <!-- TRACK A2 -->
+    <div class="segment-block">
+      <div class="segment-header" onclick="toggleSegment(this)">
+        <div class="segment-header-left">
+          <div class="segment-dot" style="background:var(--green);"></div>
+          <div>
+            <div class="segment-name">Track A2 — Fall 2026, Event Attended, Not Applied</div>
+            <div class="segment-trigger">start_year = Fall 2026 AND (open_house = true OR campus_tour = true) AND ravenna = false</div>
+          </div>
+        </div>
+        <div class="segment-chevron">⌄</div>
+      </div>
+      <div class="segment-body">
+        <div class="card-desc" style="margin-bottom:16px;">They showed up. That's a massive signal. Now close them. This sequence is warm, confident, and focused on removing the final barriers to application.</div>
+        <div class="email-sequence">
+          <div class="email-step" onclick="toggleEmail(this)">
+            <div class="email-dot" style="background:var(--green);">+1D</div>
+            <div class="email-content">
+              <div class="email-day">1 Day After Event</div>
+              <div class="email-subject">It was wonderful to meet you</div>
+              <div class="email-desc">Personal follow-up from Homa. Recap the event experience, invite any lingering questions, and introduce the application as the logical next step.</div>
+              <div class="email-detail">
+                <ul>
+                  <li>Personal, first-person tone from Homa — not from "the admissions team"</li>
+                  <li>Reference what they likely saw / experienced (campus, faculty, classrooms)</li>
+                  <li>Address the most common post-event question: "what happens next?"</li>
+                  <li>CTA: Start your application in Ravenna — takes about 20 minutes</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="email-step" onclick="toggleEmail(this)">
+            <div class="email-dot" style="background:var(--green);">+5D</div>
+            <div class="email-content">
+              <div class="email-day">5 Days After Event</div>
+              <div class="email-subject">Your application checklist</div>
+              <div class="email-desc">Remove friction. Walk them through exactly what they need to complete the Ravenna application — no surprises, no overwhelm.</div>
+              <div class="email-detail">
+                <ul>
+                  <li>Step-by-step Ravenna application walkthrough</li>
+                  <li>Documents needed, timeline expectations</li>
+                  <li>Reassure: no Chinese required, PK3–K–G1 are open grade levels</li>
+                  <li>CTA: Complete your application or reply to this email with questions</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="email-step" onclick="toggleEmail(this)">
+            <div class="email-dot" style="background:var(--green);">+14D</div>
+            <div class="email-content">
+              <div class="email-day">14 Days After Event</div>
+              <div class="email-subject">Still thinking it over? Here's what founding families say</div>
+              <div class="email-desc">Social proof email. Real parent voices from the Wellington network. Addresses hesitation with empathy.</div>
+              <div class="email-detail">
+                <ul>
+                  <li>2–3 short testimonials from Wellington network alumni parents</li>
+                  <li>Acknowledge this is a big decision — that's appropriate</li>
+                  <li>Remind them: Hiba is not a startup, it's a proven model in a new city</li>
+                  <li>CTA: Apply now or schedule a call with Homa to talk through concerns</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:12px;padding:14px 18px;background:var(--blue-light);border-radius:8px;font-size:13px;color:var(--blue);">
+          ✓ Once <code style="font-family:'DM Mono',monospace;background:rgba(0,0,0,0.06);padding:1px 5px;border-radius:3px;">ravenna = true</code> — suppress from all marketing flows. Application is in progress.
+        </div>
+      </div>
+    </div>
+
+    <!-- TRACK B -->
+    <div class="segment-block">
+      <div class="segment-header" onclick="toggleSegment(this)">
+        <div class="segment-header-left">
+          <div class="segment-dot" style="background:var(--blue);"></div>
+          <div>
+            <div class="segment-name">Track B — Fall 2027 & Future</div>
+            <div class="segment-trigger">start_year = Fall 2027 OR start_year = Future</div>
+          </div>
+        </div>
+        <div class="segment-chevron">⌄</div>
+      </div>
+      <div class="segment-body">
+        <div class="card-desc" style="margin-bottom:16px;">Long runway. These families are 12–24+ months out. The goal is not to convert — it's to stay present, build trust, and be the obvious choice when their timeline arrives. Value content over urgency.</div>
+
+        <div style="margin-bottom:20px;">
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-600);margin-bottom:10px;">Recommended Cadence: Monthly</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div style="background:var(--gray-100);border-radius:8px;padding:14px 16px;">
+              <div style="font-weight:600;font-size:13px;color:var(--navy);margin-bottom:4px;">📚 Curriculum Deep Dives</div>
+              <div style="font-size:12px;color:var(--gray-600);">Shanghai math, IB PYP units of inquiry, how Chinese becomes a thinking language</div>
+            </div>
+            <div style="background:var(--gray-100);border-radius:8px;padding:14px 16px;">
+              <div style="font-weight:600;font-size:13px;color:var(--navy);margin-bottom:4px;">🌏 Culture & Community</div>
+              <div style="font-size:12px;color:var(--gray-600);">Behind the scenes of campus build-out, teacher spotlights, founding family stories</div>
+            </div>
+            <div style="background:var(--gray-100);border-radius:8px;padding:14px 16px;">
+              <div style="font-weight:600;font-size:13px;color:var(--navy);margin-bottom:4px;">🎓 Outcomes & Evidence</div>
+              <div style="font-size:12px;color:var(--gray-600);">Wellington alumni going to Oxford, Caltech, Brown — the proof that this works long-term</div>
+            </div>
+            <div style="background:var(--gray-100);border-radius:8px;padding:14px 16px;">
+              <div style="font-weight:600;font-size:13px;color:var(--navy);margin-bottom:4px;">📅 Gentle Event Invites</div>
+              <div style="font-size:12px;color:var(--gray-600);">1–2x per quarter, low pressure, positioned as "come whenever you're ready"</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:14px 18px;background:var(--amber-light);border-radius:8px;font-size:13px;color:var(--amber);">
+          ⚠ When Track B contacts hit their enrollment window (i.e. Fall 2027 approaches), they should be re-qualified and migrated into Track A1/A2 logic. This is managed during the annual changeover.
+        </div>
+      </div>
+    </div>
+
+  </div></div>
+    <div id="sub-changeover" class="sub-section"><div class="section-header">
+      <div class="section-eyebrow">Annual Pivot</div>
+      <div class="section-title">Enrollment Changeover Plan</div>
+      <div class="section-desc">When Fall 2026 enrollment closes (est. July 2026), the entire funnel needs to pivot. This section maps what changes, when, and what triggers the switch.</div>
+    </div>
+
+    <div class="changeover-card">
+      <div class="changeover-header">
+        <div class="changeover-title">Phase 1 — Wind Down Fall 2026</div>
+        <div class="changeover-date">Est. May – July 2026</div>
+      </div>
+      <div class="changeover-body">
+        <div class="change-row">
+          <div class="change-area">Forms</div>
+          <div class="change-desc">Begin phasing out Fall 2026 urgency language. Remove "enrollment open" banners. Prepare updated start_year field values: Fall 2027 / Fall 2028 / Future.</div>
+        </div>
+        <div class="change-row">
+          <div class="change-area">Welcome Series</div>
+          <div class="change-desc">Update Day 30 email to remove Fall 2026 enrollment urgency. Replace with Fall 2027 enrollment preview language.</div>
+        </div>
+        <div class="change-row">
+          <div class="change-area">Track A1 / A2</div>
+          <div class="change-desc">Pause or sunset the Fall 2026 urgency sequences. Migrate remaining non-applicants to a "we'll keep you updated" holding list.</div>
+        </div>
+        <div class="change-row">
+          <div class="change-area">Track B</div>
+          <div class="change-desc">No immediate changes needed — this track is already designed for long-horizon families. Simply update content calendar to reflect Fall 2027 as the active enrollment year.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="changeover-card">
+      <div class="changeover-header">
+        <div class="changeover-title">Phase 2 — Launch Fall 2027 Enrollment</div>
+        <div class="changeover-date">Est. Aug 2026</div>
+      </div>
+      <div class="changeover-body">
+        <div class="change-row">
+          <div class="change-area">Forms</div>
+          <div class="change-desc">Update start_year dropdown options: <span class="change-arrow">→</span> Fall 2026 removed, Fall 2027 becomes primary option, Fall 2028 and Future added.</div>
+        </div>
+        <div class="change-row">
+          <div class="change-area">Welcome Series</div>
+          <div class="change-desc">Update enrollment references throughout the sequence — "Fall 2026 enrollment is live" <span class="change-arrow">→</span> "Fall 2027 enrollment opens [date]." Retain all evergreen curriculum and values content.</div>
+        </div>
+        <div class="change-row">
+          <div class="change-area">Nurture Logic</div>
+          <div class="change-desc">Former Track B Fall 2027 contacts re-qualify into Track A1 logic. Rebuild urgency sequences with Fall 2027 as the new target.</div>
+        </div>
+        <div class="change-row">
+          <div class="change-area">Klaviyo Segments</div>
+          <div class="change-desc">Update all segment definitions and flow triggers to reflect new start_year values. Archive Fall 2026 flows for reference.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">What Stays the Same</div>
+      <div class="card-desc">The core strategy architecture — welcome series structure, event-as-gate logic, Ravenna integration, and Track B relationship content — all remain unchanged. Only the year-specific language and segment triggers need updating. This is a light lift by design.</div>
+    </div>
+
+    <div class="placeholder" style="display:flex;margin-top:0;">⚠ Confirm exact Fall 2026 enrollment close date with client — placeholder is July 2026</div>
+
+  </div></div></template>
+<template id="tpl-reports"><div class="section-header">
+      <div class="section-eyebrow">Monthly Performance</div>
+      <div class="section-title">Monthly Report — February 2026</div>
+      <div class="section-desc">A plain-English summary of how your emails performed — what's working, what to watch, and what we're doing about it.</div>
+    </div>
+
+    <div style="background:var(--navy);border-radius:12px;padding:28px 32px;margin-bottom:24px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-light);margin-bottom:10px;">The Big Picture</div>
+      <div style="font-size:18px;font-weight:600;color:white;line-height:1.5;margin-bottom:12px;">Your emails are being opened by more than half your audience — that's exceptional. The opportunity now is getting more of those readers to take the next step.</div>
+      <div style="font-size:14px;color:rgba(255,255,255,0.65);line-height:1.6;">The average marketing email gets opened by about 20–25% of recipients. Hiba's emails are running at <strong style="color:white;">50%+</strong> — meaning families are genuinely interested in what you're sending. The focus for the next 90 days is converting that interest into event registrations and applications.</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;">
+      <div style="background:white;border-radius:10px;border:1px solid var(--gray-200);padding:20px 22px;text-align:center;">
+        <div style="font-family:'DM Mono',monospace;font-size:30px;font-weight:500;color:var(--navy);line-height:1;">879</div>
+        <div style="font-size:12px;color:var(--gray-400);font-weight:500;text-transform:uppercase;letter-spacing:0.06em;margin-top:5px;">Email Subscribers</div>
+        <div style="font-size:12px;color:var(--green);margin-top:4px;font-weight:500;">+37 this month</div>
+      </div>
+      <div style="background:white;border-radius:10px;border:1px solid var(--gray-200);padding:20px 22px;text-align:center;">
+        <div style="font-family:'DM Mono',monospace;font-size:30px;font-weight:500;color:var(--navy);line-height:1;">446</div>
+        <div style="font-size:12px;color:var(--gray-400);font-weight:500;text-transform:uppercase;letter-spacing:0.06em;margin-top:5px;">SMS Subscribers</div>
+        <div style="font-size:12px;color:var(--green);margin-top:4px;font-weight:500;">+22 this month</div>
+      </div>
+      <div style="background:white;border-radius:10px;border:1px solid var(--gray-200);padding:20px 22px;text-align:center;">
+        <div style="font-family:'DM Mono',monospace;font-size:30px;font-weight:500;color:var(--navy);line-height:1;">52%</div>
+        <div style="font-size:12px;color:var(--gray-400);font-weight:500;text-transform:uppercase;letter-spacing:0.06em;margin-top:5px;">Avg Open Rate</div>
+        <div style="font-size:12px;color:var(--green);margin-top:4px;font-weight:500;">2× industry average</div>
+      </div>
+      <div style="background:white;border-radius:10px;border:1px solid var(--gray-200);padding:20px 22px;text-align:center;">
+        <div style="font-family:'DM Mono',monospace;font-size:30px;font-weight:500;color:var(--navy);line-height:1;">370</div>
+        <div style="font-size:12px;color:var(--gray-400);font-weight:500;text-transform:uppercase;letter-spacing:0.06em;margin-top:5px;">Total New Subs</div>
+        <div style="font-size:12px;color:var(--gray-400);margin-top:4px;">106 unsubscribed all-time</div>
+      </div>
+    </div>
+
+    <!-- HOW FAMILIES ARE FINDING YOU -->
+    <div style="background:white;border-radius:12px;border:1px solid var(--gray-200);padding:28px 32px;margin-bottom:20px;">
+      <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--navy);margin-bottom:4px;">How Families Are Finding You</div>
+      <div style="font-size:13px;color:var(--gray-600);margin-bottom:20px;">Four places on the website where a family can raise their hand — here's how each is performing.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
+        <div style="border:1px solid var(--gray-200);border-radius:10px;padding:18px 20px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
+            <div style="font-size:13px;font-weight:700;color:var(--navy);">📰 Newsletter Signup Form</div>
+            <div style="background:var(--amber-light);color:var(--amber);font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;margin-left:auto;">Needs Fix</div>
+          </div>
+          <div style="font-family:'DM Mono',monospace;font-size:22px;font-weight:500;color:var(--navy);margin-bottom:6px;">0.78%</div>
+          <div style="font-size:13px;color:var(--gray-600);line-height:1.5;margin-bottom:10px;">Form is below the fold on the homepage only. Submit rate is expected given placement — the fix is visibility, not the form itself.</div>
+          <div style="background:var(--green-light);border-radius:6px;padding:10px 12px;font-size:12px;color:var(--gray-700);"><strong style="color:var(--green);">Month 1:</strong> Adding to every page footer sitewide.</div>
+        </div>
+        <div style="border:1px solid var(--gray-200);border-radius:10px;padding:18px 20px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
+            <div style="font-size:13px;font-weight:700;color:var(--navy);">💬 Website Pop-Up</div>
+            <div style="background:var(--amber-light);color:var(--amber);font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;margin-left:auto;">Upgrade Planned</div>
+          </div>
+          <div style="font-size:13px;color:var(--gray-600);line-height:1.5;margin-bottom:10px;">Current pop-up is a general welcome message. Pop-ups perform best when they offer something genuinely valuable in return for an email address.</div>
+          <div style="background:var(--green-light);border-radius:6px;padding:10px 12px;font-size:12px;color:var(--gray-700);"><strong style="color:var(--green);">Month 2:</strong> Replacing with a Shanghai Math assessment offer.</div>
+        </div>
+        <div style="border:1px solid var(--gray-200);border-radius:10px;padding:18px 20px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
+            <div style="font-size:13px;font-weight:700;color:var(--navy);">🎟️ Event Registration</div>
+            <div style="background:var(--green-light);color:var(--green);font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;margin-left:auto;">High Intent</div>
+          </div>
+          <div style="font-size:13px;color:var(--gray-600);line-height:1.5;margin-bottom:10px;">Highest-intent opt-in source. Families who register for an event have already decided to invest their time — that's a strong signal. Every registration fires the open_house or campus_tour tag in Klaviyo automatically.</div>
+          <div style="background:var(--blue-light);border-radius:6px;padding:10px 12px;font-size:12px;color:var(--gray-700);">Once tagged, contact moves into the Track A2 conversion sequence.</div>
+        </div>
+        <div style="border:1px solid var(--gray-200);border-radius:10px;padding:18px 20px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
+            <div style="font-size:13px;font-weight:700;color:var(--navy);">✉️ Contact / Inquiry Form</div>
+            <div style="background:var(--green-light);color:var(--green);font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;margin-left:auto;">Fully Set Up</div>
+          </div>
+          <div style="font-size:13px;color:var(--gray-600);line-height:1.5;margin-bottom:10px;">When a family reaches out, a follow-up email fires automatically and they're added to the welcome series. The admissions team alert is live — every inquiry triggers both an automated family email and an internal team notification.</div>
+          <div style="background:var(--green-light);border-radius:6px;padding:10px 12px;font-size:12px;color:var(--gray-700);">No inquiry falls through the cracks.</div>
+        </div>
+      </div>
+      <div style="background:var(--gray-100);border-radius:8px;padding:16px 20px;font-size:13px;color:var(--gray-600);line-height:1.6;">
+        <strong style="color:var(--navy);">A note on unsubscribes:</strong> 106 have opted out since October — about 28% of new subscribers. This is worth monitoring but not alarming. Some unsubscribes are healthy: families who enrolled elsewhere or weren't the right fit. Our segmentation strategy is designed to keep the right families engaged and reduce friction for those ready to act.
+      </div>
+    </div>
+
+    <!-- LIST GROWTH -->
+    <div style="background:white;border-radius:12px;border:1px solid var(--gray-200);padding:28px 32px;margin-bottom:20px;">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;gap:20px;flex-wrap:wrap;">
+        <div>
+          <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--navy);margin-bottom:4px;">How Your List Has Grown</div>
+          <div style="font-size:13px;color:var(--gray-600);">New families joining vs. those who opted out, month by month.</div>
+        </div>
+        <div style="background:var(--amber-light);border-radius:8px;padding:12px 16px;max-width:300px;">
+          <div style="font-size:11px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:3px;">What This Means</div>
+          <div style="font-size:12px;color:var(--gray-700);line-height:1.5;">January's spike (+126) included 78 manually imported contacts — organic signups from the website are the area to grow. The Month 1 form fixes are designed to change this.</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:grid;grid-template-columns:100px 1fr 70px 70px;gap:8px;align-items:center;">
+          <div style="font-size:11px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.06em;">Month</div>
+          <div style="font-size:11px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.06em;">Growth</div>
+          <div style="font-size:11px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.06em;text-align:center;">Joined</div>
+          <div style="font-size:11px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.06em;text-align:center;">Left</div>
+        </div>
+        <div style="display:grid;grid-template-columns:100px 1fr 70px 70px;gap:8px;align-items:center;"><div style="font-size:13px;color:var(--gray-600);">Oct 2025</div><div style="background:var(--gray-100);border-radius:4px;height:26px;overflow:hidden;"><div style="width:47%;background:var(--navy);height:100%;border-radius:4px;"></div></div><div style="text-align:center;font-size:13px;font-weight:600;color:var(--navy);">60</div><div style="text-align:center;font-size:13px;color:#C8392B;">−10</div></div>
+        <div style="display:grid;grid-template-columns:100px 1fr 70px 70px;gap:8px;align-items:center;"><div style="font-size:13px;color:var(--gray-600);">Nov 2025</div><div style="background:var(--gray-100);border-radius:4px;height:26px;overflow:hidden;"><div style="width:82%;background:var(--navy);height:100%;border-radius:4px;"></div></div><div style="text-align:center;font-size:13px;font-weight:600;color:var(--navy);">104</div><div style="text-align:center;font-size:13px;color:#C8392B;">−37</div></div>
+        <div style="display:grid;grid-template-columns:100px 1fr 70px 70px;gap:8px;align-items:center;"><div style="font-size:13px;color:var(--gray-600);">Dec 2025</div><div style="background:var(--gray-100);border-radius:4px;height:26px;overflow:hidden;"><div style="width:30%;background:var(--navy);height:100%;border-radius:4px;"></div></div><div style="text-align:center;font-size:13px;font-weight:600;color:var(--navy);">38</div><div style="text-align:center;font-size:13px;color:#C8392B;">−20</div></div>
+        <div style="display:grid;grid-template-columns:100px 1fr 70px 70px;gap:8px;align-items:center;"><div style="font-size:13px;color:var(--gray-600);">Jan 2026</div><div style="background:var(--gray-100);border-radius:4px;height:26px;overflow:hidden;position:relative;"><div style="width:100%;background:var(--blue);height:100%;border-radius:4px;display:flex;align-items:center;padding-left:10px;"><span style="font-size:10px;color:rgba(255,255,255,0.85);white-space:nowrap;">78 manually imported</span></div></div><div style="text-align:center;font-size:13px;font-weight:600;color:var(--navy);">126</div><div style="text-align:center;font-size:13px;color:#C8392B;">−23</div></div>
+        <div style="display:grid;grid-template-columns:100px 1fr 70px 70px;gap:8px;align-items:center;"><div style="font-size:13px;color:var(--gray-600);">Feb 2026</div><div style="background:var(--gray-100);border-radius:4px;height:26px;overflow:hidden;"><div style="width:29%;background:var(--navy);height:100%;border-radius:4px;"></div></div><div style="text-align:center;font-size:13px;font-weight:600;color:var(--navy);">37</div><div style="text-align:center;font-size:13px;color:#C8392B;">−14</div></div>
+      </div>
+    </div>
+
+    <!-- WELCOME SERIES + CAMPAIGNS -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
+      <div style="background:white;border-radius:12px;border:1px solid var(--gray-200);padding:24px 26px;">
+        <div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--navy);margin-bottom:4px;">Welcome Series Health</div>
+        <div style="font-size:13px;color:var(--gray-600);margin-bottom:16px;">The automated emails new families receive when they sign up.</div>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px;">
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:12px;font-weight:600;color:var(--gray-700);">Open Rate</span><span style="font-size:12px;font-weight:700;color:var(--navy);">56%</span></div><div style="background:var(--gray-100);border-radius:3px;height:8px;overflow:hidden;"><div style="width:56%;background:var(--navy);height:100%;border-radius:3px;"></div></div><div style="font-size:11px;color:var(--gray-400);margin-top:3px;">Down 15% YoY — still very strong</div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:12px;font-weight:600;color:var(--gray-700);">Click Rate</span><span style="font-size:12px;font-weight:700;color:var(--amber);">2.78%</span></div><div style="background:var(--gray-100);border-radius:3px;height:8px;overflow:hidden;"><div style="width:14%;background:var(--amber);height:100%;border-radius:3px;"></div></div><div style="font-size:11px;color:var(--gray-400);margin-top:3px;">Down 74% YoY — main area to improve</div></div>
+        </div>
+        <div style="background:var(--amber-light);border-radius:8px;padding:12px 14px;font-size:12px;color:var(--gray-700);line-height:1.5;"><strong style="color:var(--amber);">Plain English:</strong> Families are opening your emails — that's a win. But they're not clicking through. The buttons inside need to be more compelling. We'll fix this in the Month 1 welcome series rebuild.</div>
+      </div>
+      <div style="background:white;border-radius:12px;border:1px solid var(--gray-200);padding:24px 26px;">
+        <div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--navy);margin-bottom:4px;">February Campaigns</div>
+        <div style="font-size:13px;color:var(--gray-600);margin-bottom:16px;">Two emails sent to your list in February.</div>
+        <div style="background:var(--gray-100);border-radius:8px;padding:14px;margin-bottom:10px;">
+          <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:8px;">📧 Curious Scientists Newsletter</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center;margin-bottom:8px;">
+            <div><div style="font-size:18px;font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;">52%</div><div style="font-size:10px;color:var(--gray-400);text-transform:uppercase;">Opened</div></div>
+            <div><div style="font-size:18px;font-weight:700;color:var(--amber);font-family:'DM Mono',monospace;">1.92%</div><div style="font-size:10px;color:var(--gray-400);text-transform:uppercase;">Clicked</div></div>
+            <div><div style="font-size:18px;font-weight:700;color:var(--blue);font-family:'DM Mono',monospace;">1,065</div><div style="font-size:10px;color:var(--gray-400);text-transform:uppercase;">Sent</div></div>
+          </div>
+          <div style="font-size:12px;color:var(--gray-600);line-height:1.5;">FAQ, Book an Appointment, and Admissions Events drove the most clicks — families are in research mode. <span style="color:#C8392B;font-weight:600;">No preview text was set</span> — quick fix for the next send.</div>
+        </div>
+        <div style="background:var(--gray-100);border-radius:8px;padding:14px;">
+          <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:8px;">💌 Valentine's Day Referral</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center;margin-bottom:8px;">
+            <div><div style="font-size:18px;font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;">49%</div><div style="font-size:10px;color:var(--gray-400);text-transform:uppercase;">Opened</div></div>
+            <div><div style="font-size:18px;font-weight:700;color:var(--amber);font-family:'DM Mono',monospace;">1.75%</div><div style="font-size:10px;color:var(--gray-400);text-transform:uppercase;">Clicked</div></div>
+            <div><div style="font-size:18px;font-weight:700;color:var(--blue);font-family:'DM Mono',monospace;">403</div><div style="font-size:10px;color:var(--gray-400);text-transform:uppercase;">Sent</div></div>
+          </div>
+          <div style="font-size:12px;color:var(--gray-600);line-height:1.5;">Top clicks went straight to the Contact/Inquiry page — engaged families took direct action to reach out. Good template for future sends.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHAT WE'RE DOING -->
+    <div style="background:white;border-radius:12px;border:1px solid var(--gray-200);padding:28px 32px;margin-bottom:20px;">
+      <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--navy);margin-bottom:6px;">What We're Doing About It</div>
+      <div style="font-size:13px;color:var(--gray-600);margin-bottom:20px;">Every observation in this report maps directly to an action in the 3-month plan.</div>
+      <div style="display:flex;flex-direction:column;gap:0;">
+        <div style="display:grid;grid-template-columns:28px 1fr 140px;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--gray-100);"><div style="width:28px;height:28px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white;flex-shrink:0;">1</div><div><div style="font-size:14px;font-weight:600;color:var(--gray-800);margin-bottom:3px;">Not enough families finding the signup form</div><div style="font-size:13px;color:var(--gray-600);line-height:1.5;">Newsletter signup only appears on the homepage. We're adding it to every page footer so no family slips through.</div></div><div style="text-align:right;"><span class="tag tag-navy">Month 1</span></div></div>
+        <div style="display:grid;grid-template-columns:28px 1fr 140px;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--gray-100);"><div style="width:28px;height:28px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white;flex-shrink:0;">2</div><div><div style="font-size:14px;font-weight:600;color:var(--gray-800);margin-bottom:3px;">Families open emails but don't click through</div><div style="font-size:13px;color:var(--gray-600);line-height:1.5;">Rebuilding the welcome series with clearer, more relevant calls to action — event signups, curriculum deep dives, relevant blogs at each stage.</div></div><div style="text-align:right;"><span class="tag tag-navy">Month 1</span></div></div>
+        <div style="display:grid;grid-template-columns:28px 1fr 140px;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--gray-100);"><div style="width:28px;height:28px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white;flex-shrink:0;">3</div><div><div style="font-size:14px;font-weight:600;color:var(--gray-800);margin-bottom:3px;">The pop-up doesn't give families a reason to sign up</div><div style="font-size:13px;color:var(--gray-600);line-height:1.5;">Replacing with a free Shanghai Math assessment — a tangible resource that gives families a real reason to share their email.</div></div><div style="text-align:right;"><span class="tag tag-blue">Month 2</span></div></div>
+        <div style="display:grid;grid-template-columns:28px 1fr 140px;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--gray-100);"><div style="width:28px;height:28px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white;flex-shrink:0;">4</div><div><div style="font-size:14px;font-weight:600;color:var(--gray-800);margin-bottom:3px;">Contact form inquiries get an immediate response</div><div style="font-size:13px;color:var(--gray-600);line-height:1.5;">Follow-up email and welcome series enrollment are live. Admissions team alert is also live — every inquiry is captured and flagged internally.</div></div><div style="text-align:right;"><span class="tag tag-blue">Live</span></div></div>
+        <div style="display:grid;grid-template-columns:28px 1fr 140px;gap:16px;align-items:flex-start;padding:16px 0;"><div style="width:28px;height:28px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white;flex-shrink:0;">5</div><div><div style="font-size:14px;font-weight:600;color:var(--gray-800);margin-bottom:3px;">We're building the final piece of the funnel</div><div style="font-size:13px;color:var(--gray-600);line-height:1.5;">Month 3 completes the picture — the long-term nurture flow that continues guiding families toward an event visit and, ultimately, their Ravenna application.</div></div><div style="text-align:right;"><span class="tag tag-green">Month 3</span></div></div>
+      </div>
+    </div>
+
+    <!-- QUICK WINS -->
+    <div style="background:linear-gradient(135deg,#EEF3FF,#F5F8FF);border:1px solid rgba(30,90,140,0.15);border-radius:12px;padding:24px 28px;">
+      <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--navy);margin-bottom:6px;">Two Quick Wins for March</div>
+      <div style="font-size:13px;color:var(--gray-600);margin-bottom:14px;">Small changes that improve the next campaign immediately — before any of the bigger builds are complete.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="background:white;border-radius:8px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;"><div style="font-size:18px;flex-shrink:0;">✍️</div><div><div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:3px;">Always set preview text</div><div style="font-size:12px;color:var(--gray-600);line-height:1.5;">The Curious Scientists email had no preview text. That short line readers see before opening is a 2-minute fix that meaningfully lifts open rates.</div></div></div>
+        <div style="background:white;border-radius:8px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;"><div style="font-size:18px;flex-shrink:0;">🧹</div><div><div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:3px;">Clean up manual imports</div><div style="font-size:12px;color:var(--gray-600);line-height:1.5;">Some manually added contacts are missing names or have incomplete records. Tidying these keeps emails personal and reports accurate.</div></div></div>
+      </div>
+    </div></template>
+<template id="tpl-database"><div class="section-header">
+      <div class="section-eyebrow">List Management</div>
+      <div class="section-title">Database Health &amp; Sunset Flow</div>
+      <div class="section-desc">A structured process to identify families who are no longer engaging — and give them a genuine chance to stay before we stop emailing them.</div>
+    </div>
+
+    <div style="background:var(--navy);border-radius:12px;padding:28px 32px;margin-bottom:24px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-light);margin-bottom:10px;">Why This Matters for Hiba</div>
+      <div style="font-size:17px;font-weight:600;color:white;line-height:1.5;margin-bottom:12px;">For most businesses, a contact who hasn't opened an email in 90 days is inactive. For a private school, that's not long enough.</div>
+      <div style="font-size:14px;color:rgba(255,255,255,0.7);line-height:1.7;">Private school families typically spend <strong style="color:white;">12 to 18 months</strong> researching before making a decision. A parent who goes quiet over the holidays may come back ready to apply in February. A quiet contact is not a disinterested one. Our sunset flow is built with this in mind: we wait longer, try harder, and only remove contacts we've genuinely exhausted every option to re-engage.</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
+      <div style="background:white;border:1px solid var(--gray-200);border-radius:10px;padding:22px 24px;">
+        <div style="font-size:11px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Standard Ecommerce Sunset</div>
+        <div style="font-size:28px;font-weight:700;font-family:'DM Mono',monospace;color:var(--gray-400);margin-bottom:6px;">90 days</div>
+        <div style="font-size:13px;color:var(--gray-600);line-height:1.5;">Works for repeat-purchase products where buying decisions happen quickly.</div>
+      </div>
+      <div style="background:white;border:2px solid var(--navy);border-radius:10px;padding:22px 24px;">
+        <div style="font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Hiba Academy Sunset</div>
+        <div style="font-size:28px;font-weight:700;font-family:'DM Mono',monospace;color:var(--navy);margin-bottom:6px;">9–12 months</div>
+        <div style="font-size:13px;color:var(--gray-600);line-height:1.5;">Enrollment is a once-a-year, high-stakes decision. Families need more time before we consider them truly disengaged.</div>
+      </div>
+    </div>
+
+    <div style="background:white;border-radius:12px;border:1px solid var(--gray-200);padding:28px 32px;margin-bottom:20px;">
+      <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--navy);margin-bottom:4px;">Who Enters the Sunset Flow</div>
+      <div style="font-size:13px;color:var(--gray-600);margin-bottom:18px;">All four conditions must be true before a profile enters this flow.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div style="background:rgba(200,57,43,0.06);border:1px solid rgba(200,57,43,0.2);border-radius:8px;padding:16px 18px;">
+          <div style="font-size:12px;font-weight:700;color:#C8392B;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px;">Enters Sunset If ALL Are True</div>
+          <div style="display:flex;flex-direction:column;gap:7px;font-size:13px;color:var(--gray-700);">
+            <div>→ No email opens in the last <strong>9 months</strong></div>
+            <div>→ No event registrations (open_house = false, campus_tour = false)</div>
+            <div>→ No Ravenna application started (ravenna = false)</div>
+            <div>→ No site activity logged in Klaviyo</div>
+          </div>
+        </div>
+        <div style="background:var(--green-light);border:1px solid rgba(46,125,79,0.2);border-radius:8px;padding:16px 18px;">
+          <div style="font-size:12px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px;">Always Excluded from Sunset</div>
+          <div style="display:flex;flex-direction:column;gap:7px;font-size:13px;color:var(--gray-700);">
+            <div>✓ Anyone with ravenna = true (applied or in process)</div>
+            <div>✓ Anyone who attended an event in the last 6 months</div>
+            <div>✓ Anyone with start_year = Fall 2026 during active enrollment</div>
+            <div>✓ Manual imports (reviewed separately)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:white;border-radius:12px;border:1px solid var(--gray-200);padding:28px 32px;margin-bottom:20px;">
+      <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--navy);margin-bottom:4px;">The 3-Email Sequence</div>
+      <div style="font-size:13px;color:var(--gray-600);margin-bottom:22px;">Sent over 30 days. Warm in tone, clear in intent. Each email is a genuine invitation to stay — not a sales push.</div>
+      <div style="display:grid;grid-template-columns:40px 1fr;gap:16px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--gray-100);">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px;"><div style="width:34px;height:34px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white;flex-shrink:0;">1</div><div style="width:1px;flex:1;min-height:20px;background:var(--gray-200);"></div></div>
+        <div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;"><div style="font-size:14px;font-weight:600;color:var(--navy);">The Check-In</div><div style="background:var(--blue-light);color:var(--blue);font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;">Day 1</div></div><div style="background:var(--gray-100);border-radius:6px;padding:10px 12px;margin-bottom:8px;font-size:12px;color:var(--navy);font-style:italic;">"Still thinking about Hiba Academy?"</div><div style="font-size:13px;color:var(--gray-600);line-height:1.6;">A soft, human note from Homa. No pressure — just a genuine check-in with one piece of new content. CTA: Book a call or attend an open house.</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px 1fr;gap:16px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--gray-100);">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px;"><div style="width:34px;height:34px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white;flex-shrink:0;">2</div><div style="width:1px;flex:1;min-height:20px;background:var(--gray-200);"></div></div>
+        <div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;"><div style="font-size:14px;font-weight:600;color:var(--navy);">The Value Reminder</div><div style="background:var(--blue-light);color:var(--blue);font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;">Day 14</div></div><div style="background:var(--gray-100);border-radius:6px;padding:10px 12px;margin-bottom:8px;font-size:12px;color:var(--navy);font-style:italic;">"What makes Hiba different — in case you missed it"</div><div style="font-size:13px;color:var(--gray-600);line-height:1.6;">A distillation of what sets Hiba apart. Lead with outcomes for the child. Include a preference update link so families can opt for a lower frequency rather than unsubscribing entirely.</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px 1fr;gap:16px;">
+        <div style="display:flex;flex-direction:column;align-items:center;"><div style="width:34px;height:34px;background:var(--amber);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white;flex-shrink:0;">3</div></div>
+        <div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;"><div style="font-size:14px;font-weight:600;color:var(--navy);">The Final Invite</div><div style="background:var(--amber-light);color:var(--amber);font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;">Day 30</div><div style="background:rgba(200,57,43,0.08);color:#C8392B;font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;">Last email before suppression</div></div><div style="background:var(--gray-100);border-radius:6px;padding:10px 12px;margin-bottom:8px;font-size:12px;color:var(--navy);font-style:italic;">"We'll stop emailing — unless you'd like us to stay in touch"</div><div style="font-size:13px;color:var(--gray-600);line-height:1.6;">Honest and warm. A single CTA: "Yes, keep me updated." Non-responders are suppressed in Klaviyo — not deleted. Profiles are retained and auto-reactivate if the family returns to the site or registers for an event.</div></div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
+      <div style="background:white;border-radius:10px;border:1px solid var(--gray-200);padding:20px 22px;"><div style="font-size:14px;font-weight:600;color:var(--navy);margin-bottom:6px;">If They Click to Stay</div><div style="font-size:13px;color:var(--gray-600);line-height:1.6;">Profile is tagged as re-engaged and moved back into the correct nurture track (A1, A2, or B) based on their start_year and event attendance. They resume the journey as if they never left.</div></div>
+      <div style="background:white;border-radius:10px;border:1px solid var(--gray-200);padding:20px 22px;"><div style="font-size:14px;font-weight:600;color:var(--navy);margin-bottom:6px;">If They Don't Engage</div><div style="font-size:13px;color:var(--gray-600);line-height:1.6;">Profile is suppressed — emails stop, but the record stays in Klaviyo. If they return to the website, fill out a form, or register for an event, suppression lifts automatically.</div></div>
+    </div>
+
+    <div style="background:linear-gradient(135deg,#EEF3FF,#F5F8FF);border:1px solid rgba(30,90,140,0.15);border-radius:12px;padding:24px 28px;">
+      <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--navy);margin-bottom:6px;">When We Run This</div>
+      <div style="font-size:13px;color:var(--gray-600);margin-bottom:14px;">We avoid running sunset flows during peak admissions season.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+        <div style="background:white;border-radius:8px;padding:14px 16px;text-align:center;"><div style="font-size:18px;margin-bottom:6px;">🚫</div><div style="font-size:12px;font-weight:600;color:var(--navy);margin-bottom:3px;">Avoid: Nov – Feb</div><div style="font-size:11px;color:var(--gray-500);line-height:1.4;">Peak admissions season. Silence doesn't mean disinterest.</div></div>
+        <div style="background:white;border-radius:8px;padding:14px 16px;text-align:center;"><div style="font-size:18px;margin-bottom:6px;">✅</div><div style="font-size:12px;font-weight:600;color:var(--navy);margin-bottom:3px;">Run: May – July</div><div style="font-size:11px;color:var(--gray-500);line-height:1.4;">Post-enrollment lull. Families who haven't acted by now are genuinely less engaged.</div></div>
+        <div style="background:white;border-radius:8px;padding:14px 16px;text-align:center;"><div style="font-size:18px;margin-bottom:6px;">🔁</div><div style="font-size:12px;font-weight:600;color:var(--navy);margin-bottom:3px;">Quarterly Review</div><div style="font-size:11px;color:var(--gray-500);line-height:1.4;">Review suppressed profiles quarterly and re-qualify any showing new activity.</div></div>
+      </div>
+    </div></template>
+<template id="tpl-plan"><div class="section-header">
+      <div class="section-eyebrow">Delivery Plan</div>
+      <div class="section-title">Timeline &amp; Q&amp;A</div>
+      <div class="section-desc">The 3-month build schedule and the questions that will shape the final strategy, copy direction, and technical build.</div>
+    </div>
+    <div id="sub-timeline" class="sub-section"><div class="section-header">
+      <div class="section-eyebrow">Production Roadmap</div>
+      <div class="section-title">Build Timeline</div>
+      <div class="section-desc">Phased delivery plan from strategy sign-off through launch and changeover. Timing assumes strategy approval in late March 2026.</div>
+    </div>
+
+    <div class="card" style="overflow-x:auto;">
+      <div style="min-width:700px;">
+
+        <div style="display:flex;margin-bottom:8px;">
+          <div style="width:160px;"></div>
+          <div style="flex:1;display:grid;grid-template-columns:repeat(7,1fr);gap:2px;">
+            <div style="text-align:center;font-size:11px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.06em;">Apr</div>
+            <div style="text-align:center;font-size:11px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.06em;">May</div>
+            <div style="text-align:center;font-size:11px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.06em;">Jun</div>
+            <div style="text-align:center;font-size:11px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.06em;">Jul</div>
+            <div style="text-align:center;font-size:11px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.06em;">Aug</div>
+            <div style="text-align:center;font-size:11px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.06em;">Sep</div>
+            <div style="text-align:center;font-size:11px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.06em;">Oct</div>
+          </div>
+        </div>
+
+        <div class="timeline-phase">
+          <div class="phase-label">Strategy & Brief</div>
+          <div class="phase-bar-container">
+            <div style="flex:2;"></div>
+            <div class="phase-bar strategy" style="flex:1.5;">Strategy Brief</div>
+            <div style="flex:3.5;"></div>
+          </div>
+        </div>
+
+        <div class="timeline-phase">
+          <div class="phase-label">Email Copywriting</div>
+          <div class="phase-bar-container">
+            <div style="flex:2.5;"></div>
+            <div class="phase-bar creative" style="flex:2;">Copy & Creative</div>
+            <div style="flex:2.5;"></div>
+          </div>
+        </div>
+
+        <div class="timeline-phase">
+          <div class="phase-label">Klaviyo Build</div>
+          <div class="phase-bar-container">
+            <div style="flex:3.5;"></div>
+            <div class="phase-bar build" style="flex:2;">Klaviyo Build + QA</div>
+            <div style="flex:1.5;"></div>
+          </div>
+        </div>
+
+        <div class="timeline-phase">
+          <div class="phase-label">Nurture Launch</div>
+          <div class="phase-bar-container">
+            <div style="flex:5;"></div>
+            <div class="phase-bar launch" style="flex:1;">Launch</div>
+            <div style="flex:1;"></div>
+          </div>
+        </div>
+
+        <div class="timeline-phase">
+          <div class="phase-label">Changeover Prep</div>
+          <div class="phase-bar-container">
+            <div style="flex:4.5;"></div>
+            <div class="phase-bar changeover" style="flex:2.5;">Changeover to 2027</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:20px;">
+      <div class="card">
+        <div class="card-title">Phase 1 — Strategy & Brief</div>
+        <div class="card-desc">Client alignment workshop, strategy sign-off, email brief per sequence track. Deliverable: approved strategy doc + email briefs.</div>
+        <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="tag tag-navy">Client workshop</span>
+          <span class="tag tag-navy">Strategy sign-off</span>
+          <span class="tag tag-navy">Email briefs</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Phase 2 — Copy & Creative</div>
+        <div class="card-desc">Full email copy for all 5 welcome emails + 6 nurture emails across Track A1, A2, and B. Client review round included.</div>
+        <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="tag tag-blue">11 emails total</span>
+          <span class="tag tag-blue">1 review round</span>
+          <span class="tag tag-blue">HTML templates</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Phase 3 — Klaviyo Build + QA</div>
+        <div class="card-desc">Build all flows in Klaviyo: welcome series, Track A1, A2, B. Set up conditional splits using Ravenna properties. QA across email clients.</div>
+        <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="tag tag-red">Flow architecture</span>
+          <span class="tag tag-red">Segment setup</span>
+          <span class="tag tag-red">QA + testing</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Phase 4 — Changeover</div>
+        <div class="card-desc">Update forms, welcome series, and nurture flows for Fall 2027 enrollment cycle. Light lift — only year-specific language and triggers need updating.</div>
+        <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="tag tag-gold">Form updates</span>
+          <span class="tag tag-gold">Copy edits</span>
+          <span class="tag tag-gold">Segment refresh</span>
+        </div>
+      </div>
+    </div>
+  </div></div>
+    <div id="sub-questions" class="sub-section"><div class="section-header">
+      <div class="section-eyebrow">Workshop Prep</div>
+      <div class="section-title">Questions for the Client</div>
+      <div class="section-desc">Items that need client input before strategy can be finalized. Bring these to the alignment workshop.</div>
+    </div>
+
+    <div class="notes-container">
+
+      <div class="note-item">
+        <div class="note-icon">📅</div>
+        <div class="note-content">
+          <div class="note-category">Enrollment Calendar</div>
+          <div class="note-question">When does Fall 2026 enrollment officially close?</div>
+          <div class="note-context">We've used July 2026 as a placeholder throughout this doc. The changeover plan, timeline, and urgency language in Track A1/A2 all depend on this date.</div>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="note-icon">📅</div>
+        <div class="note-content">
+          <div class="note-category">Enrollment Calendar</div>
+          <div class="note-question">When does Fall 2027 enrollment officially open?</div>
+          <div class="note-context">Helps us plan the changeover timing and when to start shifting Track B contacts into urgency mode.</div>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="note-icon">🎟</div>
+        <div class="note-content">
+          <div class="note-category">Events</div>
+          <div class="note-question">What is the cadence and format of upcoming admissions events?</div>
+          <div class="note-context">Open houses, campus tours, info sessions — how often, how many seats, virtual vs. in-person? This impacts how aggressively we can push event invites in Track A1.</div>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="note-icon">🔌</div>
+        <div class="note-content">
+          <div class="note-category">Tech / Integration</div>
+          <div class="note-question">Is the Ravenna → Klaviyo integration passing event attendance flags reliably?</div>
+          <div class="note-context">The entire Track A1 → A2 promotion logic depends on open_house and campus_tour booleans firing correctly. Worth a QA pass before building flows.</div>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="note-icon">📊</div>
+        <div class="note-content">
+          <div class="note-category">Current Data</div>
+          <div class="note-question">How many contacts are currently in Klaviyo, and what is the start_year breakdown?</div>
+          <div class="note-context">Understanding the list composition helps size each nurture track and prioritize where to focus first — especially if there's a large Fall 2026 segment that needs urgency now.</div>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="note-icon">✉️</div>
+        <div class="note-content">
+          <div class="note-category">Welcome Series</div>
+          <div class="note-question">Can we review the existing welcome series emails before finalizing the strategy?</div>
+          <div class="note-context">We've mapped the recommended welcome structure based on the strategy brief. Seeing the actual live emails will confirm what's already strong and what needs updating before we build the nurture flows downstream.</div>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="note-icon">📝</div>
+        <div class="note-content">
+          <div class="note-category">Forms</div>
+          <div class="note-question">Who manages the website CMS / form updates?</div>
+          <div class="note-context">Adding the newsletter signup to all footers and updating start_year dropdown values both require website access. Need to know who owns this and what the turnaround time looks like.</div>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="note-icon">🧑‍💼</div>
+        <div class="note-content">
+          <div class="note-category">Content & Voice</div>
+          <div class="note-question">Does Homa want to be personally named / voiced in the nurture emails?</div>
+          <div class="note-context">The strategy recommends a personal from-Homa tone in Track A2 post-event emails. Need to confirm she's comfortable with this and can review copy before it goes live.</div>
+        </div>
+      </div>
+
+    </div>
+  </div></template>
+
+<script>
+  function goTo(page) {
+    var home = document.getElementById('page-home');
+    var content = document.getElementById('page-content');
+    var inner = document.getElementById('page-content-inner');
+
+    if (page === 'home') {
+      home.style.display = 'block';
+      content.style.display = 'none';
+      inner.innerHTML = '';
+    } else {
+      var tpl = document.getElementById('tpl-' + page);
+      if (!tpl) return;
+      inner.innerHTML = tpl.innerHTML;
+      home.style.display = 'none';
+      content.style.display = 'block';
+    }
+    window.scrollTo(0, 0);
+  }
+
+  function toggleEmail(el) {
+    const detail = el.querySelector('.email-detail');
+    if (detail) detail.classList.toggle('open');
+  }
+  function toggleSegment(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.segment-chevron');
+    body.classList.toggle('open');
+    chevron.classList.toggle('open');
+  }
+
+</script>
+</body>
+</html>

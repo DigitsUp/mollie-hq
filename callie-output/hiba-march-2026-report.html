@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hiba Academy Bay Area — Monthly Report — March 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C8392B;
+    --red-light: #E8503F;
+    --gold: #D4A843;
+    --gold-light: #F0C96A;
+    --navy: #1A2744;
+    --navy-mid: #243460;
+    --cream: #FAF7F2;
+    --warm-white: #FFFDF9;
+    --gray-100: #F3F0EB;
+    --gray-200: #E5E1D8;
+    --gray-400: #9B9488;
+    --gray-600: #5C574F;
+    --gray-800: #2E2A25;
+    --green: #2E7D4F;
+    --green-light: #E8F5EE;
+    --amber: #C17D1A;
+    --amber-light: #FFF3DC;
+    --blue: #1E5A8C;
+    --blue-light: #E8F0F8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--gray-800);
+    min-height: 100vh;
+  }
+
+  /* PASSWORD GATE */
+  #password-gate {
+    position: fixed;
+    inset: 0;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+  }
+
+  .gate-card {
+    background: white;
+    border-radius: 16px;
+    padding: 48px 44px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.3);
+  }
+
+  .gate-logo {
+    width: 48px;
+    height: 48px;
+    background: var(--gold);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: var(--navy);
+    font-weight: 700;
+    margin: 0 auto 20px;
+  }
+
+  .gate-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .gate-sub {
+    font-size: 13px;
+    color: var(--gray-400);
+    margin-bottom: 28px;
+    font-weight: 400;
+  }
+
+  .gate-input {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    color: var(--navy);
+    outline: none;
+    margin-bottom: 12px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    transition: border-color 0.2s;
+  }
+
+  .gate-input:focus {
+    border-color: var(--navy);
+  }
+
+  .gate-input.error {
+    border-color: var(--red);
+    background: #FFF5F4;
+  }
+
+  .gate-btn {
+    width: 100%;
+    padding: 13px 16px;
+    background: var(--navy);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .gate-btn:hover {
+    background: var(--navy-mid);
+  }
+
+  .gate-error {
+    font-size: 12px;
+    color: var(--red);
+    margin-top: 10px;
+    display: none;
+  }
+
+  .gate-footer {
+    font-size: 11px;
+    color: var(--gray-400);
+    margin-top: 24px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* REPORT (hidden until unlocked) */
+  #report {
+    display: none;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--navy);
+    padding: 0;
+    box-shadow: 0 2px 20px rgba(26,39,68,0.3);
+  }
+
+  .header-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 22px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .header-logo-mark {
+    width: 36px;
+    height: 36px;
+    background: var(--gold);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--navy);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .header-title {
+    font-family: 'Playfair Display', serif;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .header-sub {
+    color: var(--gold-light);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .header-badge {
+    background: rgba(212,168,67,0.2);
+    border: 1px solid rgba(212,168,67,0.4);
+    color: var(--gold-light);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  /* MAIN */
+  .main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 40px 80px;
+  }
+
+  /* SECTION TITLES */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  /* CALLOUT BOXES */
+  .callout-navy {
+    background: var(--navy);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 28px;
+  }
+
+  .callout-navy .callout-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+  }
+
+  .callout-navy h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .callout-navy p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.75;
+  }
+
+  .callout-navy p strong {
+    color: white;
+  }
+
+  .callout-amber {
+    background: var(--amber-light);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+  }
+
+  .callout-amber .callout-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 6px;
+  }
+
+  .callout-amber p {
+    font-size: 13px;
+    color: var(--gray-800);
+    line-height: 1.6;
+  }
+
+  .callout-blue {
+    background: var(--blue-light);
+    border: 1px solid rgba(30,90,140,0.2);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-top: 20px;
+  }
+
+  .callout-blue p {
+    font-size: 13px;
+    color: var(--blue);
+    line-height: 1.6;
+  }
+
+  /* KPI GRID */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .kpi-card {
+    background: white;
+    border-radius: 10px;
+    border: 1px solid var(--gray-200);
+    padding: 20px 22px;
+    text-align: center;
+  }
+
+  .kpi-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .kpi-label {
+    font-size: 12px;
+    color: var(--gray-400);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+
+  .kpi-sub {
+    font-size: 12px;
+    color: var(--green);
+    font-weight: 500;
+  }
+
+  /* WHITE CARD */
+  .card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--gray-200);
+    padding: 28px 32px;
+    margin-bottom: 20px;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+
+  .card-desc {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.65;
+  }
+
+  /* SECTION DIVIDER */
+  .section-divider {
+    height: 1px;
+    background: var(--gray-200);
+    margin: 40px 0;
+  }
+
+  /* BAR CHART */
+  .bar-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .bar-row {
+    display: grid;
+    grid-template-columns: 90px 1fr 50px;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .bar-month {
+    font-size: 13px;
+    color: var(--gray-600);
+    text-align: right;
+    padding-right: 4px;
+  }
+
+  .bar-track {
+    background: var(--gray-100);
+    border-radius: 4px;
+    height: 28px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    transition: width 1s ease;
+  }
+
+  .bar-fill.highlight {
+    background: var(--blue);
+  }
+
+  .bar-fill.soft {
+    background: var(--gray-400);
+  }
+
+  .bar-fill-label {
+    font-size: 10px;
+    color: rgba(255,255,255,0.85);
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  .bar-count {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* CAMPAIGN CARDS */
+  .campaign-card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--gray-200);
+    padding: 24px 28px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .campaign-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .campaign-card.strong::before { background: var(--green); }
+  .campaign-card.below::before { background: var(--amber); }
+
+  .campaign-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+
+  .campaign-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+
+  .campaign-date {
+    font-size: 11px;
+    color: var(--gray-400);
+    margin-top: 3px;
+  }
+
+  .campaign-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .badge-strong {
+    background: var(--green-light);
+    color: var(--green);
+  }
+
+  .badge-below {
+    background: var(--amber-light);
+    color: var(--amber);
+  }
+
+  .campaign-stats {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 14px;
+    padding: 14px 0;
+    border-top: 1px solid var(--gray-100);
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--navy);
+  }
+
+  .stat-lbl {
+    font-size: 10px;
+    color: var(--gray-400);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 2px;
+  }
+
+  .campaign-note {
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.65;
+    margin-top: 12px;
+    padding: 12px 14px;
+    background: var(--gray-100);
+    border-radius: 6px;
+  }
+
+  /* RAVENNA SECTION */
+  .ravenna-card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid rgba(30,90,140,0.25);
+    border-top: 3px solid var(--blue);
+    padding: 28px 32px;
+    margin-bottom: 20px;
+  }
+
+  .ravenna-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+
+  .ravenna-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .ravenna-badge {
+    background: var(--blue-light);
+    color: var(--blue);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  .ravenna-intro {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .ravenna-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .ravenna-stat {
+    background: var(--blue-light);
+    border-radius: 10px;
+    padding: 16px 18px;
+    text-align: center;
+  }
+
+  .ravenna-stat-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  .ravenna-stat-lbl {
+    font-size: 12px;
+    color: var(--blue);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .ravenna-insight {
+    background: var(--navy);
+    border-radius: 8px;
+    padding: 18px 22px;
+  }
+
+  .ravenna-insight p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.7;
+  }
+
+  .ravenna-insight strong {
+    color: var(--gold-light);
+  }
+
+  /* WELCOME SERIES */
+  .welcome-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .welcome-row {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .welcome-row:last-child {
+    border-bottom: none;
+  }
+
+  .welcome-row-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .welcome-email-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  .welcome-delivered {
+    font-size: 12px;
+    color: var(--gray-400);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .welcome-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .bar-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .bar-lbl {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gray-400);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    width: 60px;
+    flex-shrink: 0;
+  }
+
+  .bar-track-sm {
+    flex: 1;
+    background: var(--gray-100);
+    border-radius: 3px;
+    height: 8px;
+    overflow: hidden;
+  }
+
+  .bar-fill-sm {
+    height: 100%;
+    border-radius: 3px;
+  }
+
+  .bar-fill-sm.open-bar {
+    background: linear-gradient(90deg, var(--navy), var(--blue));
+  }
+
+  .bar-fill-sm.click-bar {
+    background: var(--gold);
+  }
+
+  .bar-val {
+    font-size: 12px;
+    font-weight: 700;
+    font-family: 'DM Mono', monospace;
+    width: 48px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .bar-val.open-val { color: var(--navy); }
+  .bar-val.click-val { color: var(--amber); }
+
+  .welcome-highlight {
+    font-size: 11px;
+    color: var(--green);
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  .welcome-totals {
+    background: var(--gray-100);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-top: 20px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .welcome-total-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .welcome-total-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--navy);
+  }
+
+  .welcome-total-lbl {
+    font-size: 11px;
+    color: var(--gray-400);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* WHAT'S NEXT */
+  .next-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .next-card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--gray-200);
+    padding: 22px 24px;
+  }
+
+  .next-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 14px;
+  }
+
+  .next-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .next-list li {
+    font-size: 13px;
+    color: var(--gray-700);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .next-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 12px;
+  }
+
+  .next-card p {
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.7;
+  }
+
+  /* WATCHING LIST */
+  .watching-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .watching-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .watching-num {
+    width: 26px;
+    height: 26px;
+    background: var(--amber);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .watching-text {
+    font-size: 13px;
+    color: var(--gray-800);
+    line-height: 1.65;
+    flex: 1;
+  }
+
+  .watching-text strong {
+    color: var(--navy);
+  }
+
+  /* FOOTER */
+  .report-footer {
+    background: var(--navy);
+    padding: 24px 40px;
+    text-align: center;
+  }
+
+  .report-footer p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    .main { padding: 24px 20px 60px; }
+    .header-inner { padding: 16px 20px; flex-wrap: wrap; gap: 12px; }
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+    .campaign-stats { grid-template-columns: repeat(3, 1fr); }
+    .ravenna-stats { grid-template-columns: 1fr; }
+    .next-grid { grid-template-columns: 1fr; }
+    .gate-card { padding: 36px 28px; }
+    .bar-row { grid-template-columns: 70px 1fr 40px; }
+  }
+
+  @media (max-width: 480px) {
+    .kpi-grid { grid-template-columns: 1fr; }
+    .campaign-stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="password-gate">
+  <div class="gate-card">
+    <div class="gate-logo">H</div>
+    <div class="gate-title">Monthly Report<br>March 2026</div>
+    <div class="gate-sub">Hiba Academy Bay Area · Prepared by Digitsup</div>
+    <input
+      type="password"
+      class="gate-input"
+      id="pw-input"
+      placeholder="Enter password"
+      autocomplete="off"
+    />
+    <button class="gate-btn" id="pw-btn">View Report</button>
+    <div class="gate-error" id="pw-error">Incorrect password. Please try again.</div>
+    <div class="gate-footer">Confidential — DigitsUp × Hiba Academy</div>
+  </div>
+</div>
+
+<!-- REPORT (hidden until unlocked) -->
+<div id="report">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <div class="header-logo-mark">H</div>
+        <div>
+          <div class="header-title">Monthly Report — March 2026</div>
+          <div class="header-sub">Hiba Academy Bay Area · Prepared by Digitsup</div>
+        </div>
+      </div>
+      <div class="header-badge">April 2026</div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- SECTION 1: THE BIG PICTURE -->
+    <div class="section-label">Overview</div>
+    <div class="callout-navy">
+      <div class="callout-eyebrow">The Big Picture</div>
+      <h2>Your emails are performing well above industry average — and a key metric we flagged in February just proved the work is paying off.</h2>
+      <p>
+        March was a quieter month for list growth — <strong>24 new profiles</strong>, down from February. The most likely reason: fewer events. November and January were packed with open houses, discovery walks, and community events — months when high-intent families show up and sign up. March had less of that, and organic signups reflect it. The website popup was also non-functional for part of the month, which added some headwind, but that's secondary to the event calendar.
+      </p>
+      <p style="margin-top:10px;">
+        The genuine win in March: <strong>the welcome series click rate</strong>. In February, we flagged the click rate as too low at 2.78% and made changes to the flow. March results are proving it out — click rate jumped to <strong>11.32%</strong>. That's a 4× improvement. The work is paying off.
+      </p>
+      <p style="margin-top:10px;">
+        Behind the scenes: <strong>the Ravenna → Klaviyo integration went live</strong>. Applicant data now syncs automatically — no manual uploads, no gaps. This is the technical foundation for everything that comes next. Speaking of which, the <strong>Long-Term Nurture Flow</strong> is the next major build — the three-track system that takes families from welcome series exit all the way to application.
+      </p>
+    </div>
+
+    <!-- SECTION 2: KPI CARDS -->
+    <div class="section-label">Key Metrics — March 2026</div>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-number">883</div>
+        <div class="kpi-label">Email Subscribers</div>
+        <div class="kpi-sub">+24 new profiles in March</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-number">+307%</div>
+        <div class="kpi-label">Welcome Series Clicks</div>
+        <div class="kpi-sub">click rate up from 2.78% → 11.32%</div>
+        <div style="font-size:11px;color:var(--gray-400);margin-top:3px;">Feb → Mar improvement</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-number">44%</div>
+        <div class="kpi-label">Avg Open Rate</div>
+        <div class="kpi-sub">2× industry average</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-number">59.4%</div>
+        <div class="kpi-label">Welcome Series Open</div>
+        <div class="kpi-sub">5-email flow average</div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- SECTION 3: LIST GROWTH -->
+    <div class="section-label">List Growth</div>
+    <div class="section-title">New Profiles Created — Last 6 Months</div>
+
+    <div class="card">
+      <div class="card-desc" style="margin-bottom:20px;">Tracking profile creation counts — the clearest measure of new families entering your world each month.</div>
+
+      <div class="bar-chart">
+        <!-- Header row -->
+        <div class="bar-row" style="margin-bottom:4px;">
+          <div style="font-size:11px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.06em;text-align:right;">Month</div>
+          <div style="font-size:11px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.06em;">Profiles Created</div>
+          <div style="font-size:11px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.06em;text-align:center;">#</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-month">Oct 2025</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:72.7%;">
+              <!-- 80/110 = 72.7% -->
+            </div>
+          </div>
+          <div class="bar-count">80</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-month">Nov 2025</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:67.3%;">
+              <!-- 74/110 = 67.3% -->
+            </div>
+          </div>
+          <div class="bar-count">74</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-month">Dec 2025</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:45.5%;">
+              <!-- 50/110 = 45.5% -->
+            </div>
+          </div>
+          <div class="bar-count">50</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-month">Jan 2026</div>
+          <div class="bar-track">
+            <div class="bar-fill highlight" style="width:100%;">
+              <span class="bar-fill-label">Includes manual imports</span>
+            </div>
+          </div>
+          <div class="bar-count">110</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-month">Feb 2026</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:37.3%;">
+              <!-- 41/110 = 37.3% -->
+            </div>
+          </div>
+          <div class="bar-count">41</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-month">Mar 2026</div>
+          <div class="bar-track">
+            <div class="bar-fill soft" style="width:21.8%;">
+              <!-- 24/110 = 21.8% -->
+            </div>
+          </div>
+          <div class="bar-count">24</div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;padding:12px 14px;background:var(--blue-light);border-radius:6px;font-size:12px;color:var(--blue);line-height:1.5;">
+        <strong>Note on January:</strong> January's spike to 110 included approximately 58 bulk-imported outreach contacts (corporate HR, relocation, and real estate campaign recipients) — not organic family signups. Organic family opt-ins in January were closer to 52.
+      </div>
+    </div>
+
+    <div class="callout-amber">
+      <div class="callout-label">⚠ What Happened in March</div>
+      <p>The website popup was non-functional for most of March — a key organic signup source. This directly impacted new profile growth. The popup has since been fixed, and April is expected to rebound.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- SECTION 4: CAMPAIGN BREAKDOWN -->
+    <div class="section-label">Campaign Performance</div>
+    <div class="section-title">March Campaign Breakdown</div>
+
+    <!-- March Newsletter -->
+    <div class="campaign-card strong">
+      <div class="campaign-header">
+        <div>
+          <div class="campaign-name">March Newsletter</div>
+          <div class="campaign-date">Full list send</div>
+        </div>
+        <div class="campaign-badge badge-strong">Strong ✓</div>
+      </div>
+      <div class="campaign-stats">
+        <div class="stat-item">
+          <div class="stat-num">1,053</div>
+          <div class="stat-lbl">Delivered</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">487</div>
+          <div class="stat-lbl">Opens</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" style="color:var(--green);">46.2%</div>
+          <div class="stat-lbl">Open Rate</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">24</div>
+          <div class="stat-lbl">Clicks</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2.28%</div>
+          <div class="stat-lbl">Click Rate</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Promo Teaser #1 -->
+    <div class="campaign-card below">
+      <div class="campaign-header">
+        <div>
+          <div class="campaign-name">Promo Teaser #1 — "Hiba Academy Bay Area | Classes Coming to Life"</div>
+          <div class="campaign-date">Mar 14 · Sub-list send (567 recipients)</div>
+        </div>
+        <div class="campaign-badge badge-below">Below Hiba Average</div>
+      </div>
+      <div class="campaign-stats">
+        <div class="stat-item">
+          <div class="stat-num">567</div>
+          <div class="stat-lbl">Delivered</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">202</div>
+          <div class="stat-lbl">Opens</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" style="color:var(--amber);">35.6%</div>
+          <div class="stat-lbl">Open Rate</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">16</div>
+          <div class="stat-lbl">Clicks</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2.82%</div>
+          <div class="stat-lbl">Click Rate</div>
+        </div>
+      </div>
+      <div class="campaign-note">
+        <strong style="color:var(--navy);">Why this came in below average:</strong> The subject line led with the brand name rather than an emotional hook — 'Hiba Academy Bay Area | Classes Coming to Life' vs Teaser #2's 'Join the Beginning of Something Special.' Teaser #2 tested the opposite approach and the results validated it. Emotional, personal subject lines outperform brand-first for this audience.
+      </div>
+    </div>
+
+    <!-- Promo Teaser #2 -->
+    <div class="campaign-card strong">
+      <div class="campaign-header">
+        <div>
+          <div class="campaign-name">Promo Teaser #2 — "Join the Beginning of Something Special"</div>
+          <div class="campaign-date">Mar 21 · Full list send (1,041 recipients)</div>
+        </div>
+        <div class="campaign-badge badge-strong">Strong ✓</div>
+      </div>
+      <div class="campaign-stats">
+        <div class="stat-item">
+          <div class="stat-num">1,041</div>
+          <div class="stat-lbl">Delivered</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">518</div>
+          <div class="stat-lbl">Opens</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" style="color:var(--green);">49.8%</div>
+          <div class="stat-lbl">Open Rate</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">37</div>
+          <div class="stat-lbl">Clicks</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" style="color:var(--green);">3.55%</div>
+          <div class="stat-lbl">Click Rate</div>
+        </div>
+      </div>
+      <div class="campaign-note" style="background:var(--green-light);color:var(--gray-700);">
+        <strong style="color:var(--green);">✓ Learning applied:</strong> Emotional, personal subject line outperformed the brand-first approach. Full list send. This validates the subject line direction — applying it to all remaining enrollment campaign emails going forward.
+      </div>
+    </div>
+
+    <!-- Note on remaining 6 -->
+    <div class="callout-blue">
+      <p>
+        <strong style="color:var(--navy);">9 campaigns total sent in March.</strong> The remaining 6 were event-specific reminder and follow-up emails sent to small registered-attendee lists (1–14 recipients). Engagement on those was high — 75–100% open rates — as expected for confirmed attendees.
+      </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- SECTION 5: WELCOME SERIES HEALTH -->
+    <div class="section-label">Automated Flows</div>
+    <div class="section-title">Welcome Series Health</div>
+
+    <div class="card">
+      <div class="card-desc" style="margin-bottom:20px;">Performance across the 5-email welcome sequence — the automated flow every new family receives.</div>
+
+      <div class="welcome-table">
+
+        <div class="welcome-row">
+          <div class="welcome-row-header">
+            <div class="welcome-email-name">Email 1 — Welcome to Hiba Academy</div>
+            <div class="welcome-delivered">24 delivered</div>
+          </div>
+          <div class="welcome-bars">
+            <div class="bar-line">
+              <div class="bar-lbl">Open</div>
+              <div class="bar-track-sm">
+                <div class="bar-fill-sm open-bar" style="width:58.3%;"></div>
+              </div>
+              <div class="bar-val open-val">58.3%</div>
+            </div>
+            <div class="bar-line">
+              <div class="bar-lbl">Click</div>
+              <div class="bar-track-sm">
+                <div class="bar-fill-sm click-bar" style="width:8.33%;"></div>
+              </div>
+              <div class="bar-val click-val">8.33%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="welcome-row">
+          <div class="welcome-row-header">
+            <div class="welcome-email-name">Email 2 — What does bilingual really mean?</div>
+            <div class="welcome-delivered">21 delivered</div>
+          </div>
+          <div class="welcome-bars">
+            <div class="bar-line">
+              <div class="bar-lbl">Open</div>
+              <div class="bar-track-sm">
+                <div class="bar-fill-sm open-bar" style="width:81%;"></div>
+              </div>
+              <div class="bar-val open-val">81.0%</div>
+            </div>
+            <div class="bar-line">
+              <div class="bar-lbl">Click</div>
+              <div class="bar-track-sm">
+                <div class="bar-fill-sm click-bar" style="width:28.57%;"></div>
+              </div>
+              <div class="bar-val click-val">28.57%</div>
+            </div>
+          </div>
+          <div class="welcome-highlight">★ Exceptional — 81% open rate is standout performance</div>
+        </div>
+
+        <div class="welcome-row">
+          <div class="welcome-row-header">
+            <div class="welcome-email-name">Email 3 — We teach the whole child</div>
+            <div class="welcome-delivered">30 delivered</div>
+          </div>
+          <div class="welcome-bars">
+            <div class="bar-line">
+              <div class="bar-lbl">Open</div>
+              <div class="bar-track-sm">
+                <div class="bar-fill-sm open-bar" style="width:43.3%;"></div>
+              </div>
+              <div class="bar-val open-val">43.3%</div>
+            </div>
+            <div class="bar-line">
+              <div class="bar-lbl">Click</div>
+              <div class="bar-track-sm">
+                <div class="bar-fill-sm click-bar" style="width:3.33%;"></div>
+              </div>
+              <div class="bar-val click-val">3.33%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="welcome-row">
+          <div class="welcome-row-header">
+            <div class="welcome-email-name">Email 4 — Admissions at Hiba</div>
+            <div class="welcome-delivered">22 delivered</div>
+          </div>
+          <div class="welcome-bars">
+            <div class="bar-line">
+              <div class="bar-lbl">Open</div>
+              <div class="bar-track-sm">
+                <div class="bar-fill-sm open-bar" style="width:72.7%;"></div>
+              </div>
+              <div class="bar-val open-val">72.7%</div>
+            </div>
+            <div class="bar-line">
+              <div class="bar-lbl">Click</div>
+              <div class="bar-track-sm">
+                <div class="bar-fill-sm click-bar" style="width:13.64%;"></div>
+              </div>
+              <div class="bar-val click-val">13.64%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="welcome-row">
+          <div class="welcome-row-header">
+            <div class="welcome-email-name">Email 5 — See it for yourself</div>
+            <div class="welcome-delivered">9 delivered</div>
+          </div>
+          <div class="welcome-bars">
+            <div class="bar-line">
+              <div class="bar-lbl">Open</div>
+              <div class="bar-track-sm">
+                <div class="bar-fill-sm open-bar" style="width:33.3%;"></div>
+              </div>
+              <div class="bar-val open-val">33.3%</div>
+            </div>
+            <div class="bar-line">
+              <div class="bar-lbl">Click</div>
+              <div class="bar-track-sm">
+                <div class="bar-fill-sm click-bar" style="width:0%;"></div>
+              </div>
+              <div class="bar-val click-val">0%</div>
+            </div>
+          </div>
+          <div style="font-size:11px;color:var(--gray-400);margin-top:4px;">Drop-off at Email 5 is normal — this is the end of the sequence.</div>
+        </div>
+
+      </div>
+
+      <div class="welcome-totals">
+        <div class="welcome-total-item">
+          <div class="welcome-total-num">106</div>
+          <div class="welcome-total-lbl">Total Delivered</div>
+        </div>
+        <div class="welcome-total-item">
+          <div class="welcome-total-num" style="color:var(--navy);">59.4%</div>
+          <div class="welcome-total-lbl">Avg Open Rate</div>
+        </div>
+        <div class="welcome-total-item">
+          <div class="welcome-total-num" style="color:var(--amber);">11.32%</div>
+          <div class="welcome-total-lbl">Avg Click Rate</div>
+        </div>
+        <div style="flex:1;background:var(--green-light);border-radius:6px;padding:10px 14px;margin-left:8px;">
+          <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:3px;">Big Improvement</div>
+          <div style="font-size:12px;color:var(--gray-700);line-height:1.5;">Click rate jumped from <strong>2.78%</strong> in Feb to <strong>11.32%</strong> in March. The welcome series rebuild is working.</div>
+        </div>
+      </div>
+
+      <div class="callout-blue" style="margin-top:20px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;">Next Step: Subject Line Testing</div>
+        <p style="color:var(--gray-800);">Emails 3, 4, and 5 show lower open rates relative to the sequence average. The lever to pull: split test subject lines on these three emails. Small copy changes to subject lines can meaningfully lift open rates for mid-sequence emails where novelty has worn off. We'll propose test variations in April.</p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- SECTION 6: RAVENNA PIPELINE -->
+    <div class="section-label">Integration</div>
+    <div class="ravenna-card">
+      <div class="ravenna-header">
+        <div class="ravenna-title">The Enrollment Funnel — First 90 Days of Live Tracking</div>
+        <div class="ravenna-badge">Integration Live ✓</div>
+      </div>
+      <p class="ravenna-intro">
+        The Ravenna→Klaviyo integration went live at the end of February. For the first time, we can track the full journey — from a family finding Hiba online, to attending an event, to taking that first formal step in the admissions process.
+      </p>
+
+      <!-- Stat card -->
+      <div style="background:var(--blue-light);border-radius:10px;padding:22px 26px;margin-bottom:20px;text-align:center;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;">Ravenna Form Sign-Ups Tracked</div>
+        <div style="font-size:36px;font-weight:800;color:var(--navy);margin-bottom:6px;">Growing</div>
+        <div style="font-size:13px;color:var(--gray-600);font-style:italic;">Integration live since end of February. March was the first month of automated tracking.</div>
+      </div>
+
+      <!-- Baseline callout -->
+      <div class="ravenna-insight">
+        <p>
+          March is a baseline month. The data includes a mix of profiles — some manually imported before the integration, some team test entries, and the first real organic sign-ups flowing through automatically. April will be the first full, clean month of Ravenna data. That's when we'll start tracking meaningful conversion trends: how many families are moving from Klaviyo subscriber → event attendee → Ravenna sign-up.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- SECTION 7: WHAT'S NEXT -->
+    <div class="section-label">Looking Ahead</div>
+    <div class="section-title">What's Next — April &amp; Beyond</div>
+
+    <div class="next-grid">
+      <div class="next-card">
+        <div class="next-card-title">April &amp; May</div>
+        <ul class="next-list">
+          <li>Discovery Walk — Apr 10</li>
+          <li>Discovery Walk — Apr 27</li>
+          <li>Open House — May 1</li>
+          <li>Continued Fall 2026 enrollment campaign emails</li>
+          <li>Popup back online → expect list growth to rebound</li>
+        </ul>
+      </div>
+      <div class="next-card">
+        <div class="next-card-title">Long-Term Nurture Flow</div>
+        <p>
+          The Long-Term Nurture Flow is the next major build. After families complete the welcome series, they'll enter one of three tracks based on start year and event attendance — Track A1 pushes non-event families toward attending, Track A2 moves event attendees toward completing their Ravenna application, and Track B nurtures 2027+ families with a longer-term relationship approach. With the Ravenna integration now live and syncing applicant data automatically, the segmentation to power these tracks is ready.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- SECTION 8: WHAT WE'RE WATCHING -->
+    <div class="section-label">Monitoring</div>
+    <div class="section-title">What We're Watching</div>
+
+    <div style="background:var(--amber-light);border-radius:12px;padding:24px 28px;border-left:4px solid var(--gold);">
+      <div class="watching-list">
+
+        <div class="watching-item">
+          <div class="watching-num">1</div>
+          <div class="watching-text">
+            <strong>Opt-out uptick</strong> — 15 unsubscribes in March vs 9 in February. Not alarming — likely families who've finalized a school decision. Worth watching if it continues into April.
+          </div>
+        </div>
+
+        <div class="watching-item">
+          <div class="watching-num">2</div>
+          <div class="watching-text">
+            <strong>List growth was soft in March</strong> — 24 new profiles, net +4 subscribers. The popup being down is the primary explanation. With it fixed, April should recover. Event registrations (Apr 10, Apr 27, May 1) will drive the next growth pulse.
+          </div>
+        </div>
+
+        <div class="watching-item">
+          <div class="watching-num">3</div>
+          <div class="watching-text">
+            <strong>Subject line learning from Teaser #1</strong> — Brand-first subject lines underperform emotional hooks for this audience. Teaser #2 validated it. Applying this to all remaining enrollment campaign emails.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /main -->
+
+  <!-- FOOTER -->
+  <div class="report-footer">
+    <p>Prepared by Digitsup · April 2026</p>
+  </div>
+
+</div><!-- /report -->
+
+<script>
+  (function() {
+    var CORRECT = 'HIBA2026';
+
+    function unlock() {
+      var input = document.getElementById('pw-input');
+      var error = document.getElementById('pw-error');
+      var val = input.value.trim().toUpperCase();
+
+      if (val === CORRECT) {
+        document.getElementById('password-gate').style.display = 'none';
+        document.getElementById('report').style.display = 'block';
+        window.scrollTo(0, 0);
+      } else {
+        input.classList.add('error');
+        error.style.display = 'block';
+        input.value = '';
+        setTimeout(function() {
+          input.classList.remove('error');
+        }, 1200);
+      }
+    }
+
+    document.getElementById('pw-btn').addEventListener('click', unlock);
+
+    document.getElementById('pw-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') unlock();
+    });
+  })();
+</script>
+
+</body>
+</html>
