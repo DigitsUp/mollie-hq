@@ -779,32 +779,47 @@ function initWorkspace() {
     scene.add(addDesk(-2, 0));
     scene.add(addDesk(2, 0));
 
-    function addChar(x, z, color) {
+    function addChar(x, z, color, hairColor) {
       const g = new THREE.Group();
       const bm = mat(color);
       const sk = mat(0xE8A87A);
-      const dk = mat(0x1a0808);
+      const hm = new THREE.MeshLambertMaterial({ color: hairColor, flatShading: true });
+      const fp = new THREE.MeshLambertMaterial({ color: 0xF5C5A3, flatShading: true });
+      // Legs
       const legL = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.5, 0.18), bm);
       legL.position.set(-0.1, 0.25, 0); g.add(legL);
       const legR = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.5, 0.18), bm);
       legR.position.set(0.1, 0.25, 0); g.add(legR);
-      const torso = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.5, 0.25), bm);
-      torso.position.set(0, 0.75, 0); g.add(torso);
-      const armL = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.4, 0.15), bm);
-      armL.position.set(-0.3, 0.72, 0); armL.rotation.z = 0.3; g.add(armL);
-      const armR = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.4, 0.15), bm);
-      armR.position.set(0.3, 0.72, 0); armR.rotation.z = -0.3; g.add(armR);
+      // Hips / lower torso (wider)
+      const hips = new THREE.Mesh(new THREE.BoxGeometry(0.44, 0.32, 0.34), bm);
+      hips.position.set(0, 0.66, 0); g.add(hips);
+      // Upper torso (narrower)
+      const torso = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.35, 0.32), bm);
+      torso.position.set(0, 0.995, 0); g.add(torso);
+      // Arms (thinner)
+      const armL = new THREE.Mesh(new THREE.BoxGeometry(0.09, 0.32, 0.09), bm);
+      armL.position.set(-0.235, 0.97, 0); armL.rotation.z = 0.3; g.add(armL);
+      const armR = new THREE.Mesh(new THREE.BoxGeometry(0.09, 0.32, 0.09), bm);
+      armR.position.set(0.235, 0.97, 0); armR.rotation.z = -0.3; g.add(armR);
+      // Head
       const head = new THREE.Mesh(new THREE.BoxGeometry(0.35, 0.35, 0.32), sk);
-      head.position.set(0, 1.12, 0); g.add(head);
-      const hair = new THREE.Mesh(new THREE.BoxGeometry(0.37, 0.15, 0.34), dk);
-      hair.position.set(0, 1.27, 0); g.add(hair);
+      head.position.set(0, 1.35, 0); g.add(head);
+      // Face plate (skin tone, front of head)
+      const face = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.2, 0.05), fp);
+      face.position.set(0, 1.35, 0.185); g.add(face);
+      // Hair cap (overhanging slightly at back)
+      const hair = new THREE.Mesh(new THREE.BoxGeometry(0.48, 0.12, 0.42), hm);
+      hair.position.set(0, 1.585, -0.03); g.add(hair);
+      // Ponytail
+      const ponytail = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.22, 0.1), hm);
+      ponytail.position.set(0, 1.42, -0.26); g.add(ponytail);
       g.position.set(x, 0, z);
       return g;
     }
 
-    const mollieChar = addChar(-2, 0.8, 0x2f91c3);
+    const mollieChar = addChar(-2, 0.8, 0x2f91c3, 0x3D2314);
     scene.add(mollieChar);
-    const callieChar = addChar(2, 0.8, 0x9333EA);
+    const callieChar = addChar(2, 0.8, 0x9333EA, 0x1A0A2E);
     scene.add(callieChar);
 
     // Cigarette on Mollie
@@ -819,6 +834,40 @@ function initWorkspace() {
     cigGroup.add(tip);
     cigGroup.position.set(-2, 0, 0.8);
     scene.add(cigGroup);
+
+    // Ashtray on Mollie's desk
+    const ashtrayMat = mat(0x2A2A2A);
+    const ashtray = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.09, 0.03, 8), ashtrayMat);
+    ashtray.position.set(-1.4, 0.835, 0.3);
+    scene.add(ashtray);
+    // Cigarette butt in ashtray
+    const buttMat = mat(0xD4C9A8);
+    const butt = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.06, 6), buttMat);
+    butt.position.set(-1.4, 0.868, 0.3);
+    butt.rotation.z = 0.3;
+    scene.add(butt);
+
+    // Smoke particles from Mollie's cigarette tip
+    const smokeStartX = -2 + 0.26;
+    const smokeStartY = 1.13;
+    const smokeStartZ = 0.8 - 0.12;
+    const smokeParticles = [];
+    for (let i = 0; i < 8; i++) {
+      const smMat = new THREE.MeshBasicMaterial({ color: 0xaaaaaa, transparent: true, opacity: 0.35 });
+      const sm = new THREE.Mesh(new THREE.SphereGeometry(0.018, 4, 4), smMat);
+      const rise = (i / 8) * 0.4;
+      sm.position.set(
+        smokeStartX + (Math.random() - 0.5) * 0.04,
+        smokeStartY + rise,
+        smokeStartZ + (Math.random() - 0.5) * 0.04
+      );
+      sm.userData.speed = 0.003 + Math.random() * 0.002;
+      sm.userData.wobbleX = (Math.random() - 0.5) * 0.002;
+      sm.userData.wobbleZ = (Math.random() - 0.5) * 0.002;
+      sm.material.opacity = rise < 0.001 ? 0.35 : 0.35 * (1 - rise / 0.4);
+      smokeParticles.push(sm);
+      scene.add(sm);
+    }
 
     // Money stacks between desks
     const monMat = mat(0x22c55e, 0x16a34a);
@@ -859,6 +908,25 @@ function initWorkspace() {
       mollieChar.position.y = Math.sin(t * 1.2) * 0.015;
       callieChar.position.y = Math.sin(t * 1.5 + 1) * 0.015;
       cigGroup.position.y = mollieChar.position.y;
+      // Animate smoke particles
+      smokeParticles.forEach(sm => {
+        sm.position.y += sm.userData.speed;
+        sm.position.x += sm.userData.wobbleX;
+        sm.position.z += sm.userData.wobbleZ;
+        const riseAmt = sm.position.y - (smokeStartY + mollieChar.position.y);
+        if (riseAmt >= 0.4) {
+          sm.position.set(
+            smokeStartX + (Math.random() - 0.5) * 0.04,
+            smokeStartY + mollieChar.position.y,
+            smokeStartZ + (Math.random() - 0.5) * 0.04
+          );
+          sm.userData.wobbleX = (Math.random() - 0.5) * 0.002;
+          sm.userData.wobbleZ = (Math.random() - 0.5) * 0.002;
+          sm.material.opacity = 0.35;
+        } else {
+          sm.material.opacity = 0.35 * Math.max(0, 1 - riseAmt / 0.4);
+        }
+      });
       renderer.render(scene, camera);
       const mp = project(mollieAnchor);
       const cp = project(callieAnchor);
