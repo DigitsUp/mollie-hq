@@ -210,6 +210,21 @@ main{position:relative;z-index:5;max-width:var(--max);margin:0 auto;padding:28px
 .mt-24{margin-top:24px;}
 .mt-28{margin-top:28px;}
 
+/* ── TABS ── */
+#tab-nav{position:relative;z-index:10;display:flex;gap:8px;padding:10px 20px;border-bottom:1px solid var(--border);background:rgba(7,16,28,0.94);backdrop-filter:blur(12px);}
+.tab-btn{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;padding:6px 16px;border-radius:99px;border:1px solid var(--border2);background:transparent;color:var(--muted);cursor:pointer;transition:all .2s;}
+.tab-btn.active{background:var(--mdim);border-color:var(--mborder);color:var(--m);}
+#workspace-view{position:relative;height:calc(100vh - 110px);overflow:hidden;}
+#workspace-canvas{position:absolute;inset:0;width:100%!important;height:100%!important;}
+#workspace-overlay{position:absolute;inset:0;pointer-events:none;}
+.char-label{position:absolute;transform:translateX(-50%);background:rgba(7,16,28,0.88);border:1px solid var(--mborder);border-radius:8px;padding:5px 10px;text-align:center;min-width:90px;}
+.char-label.callie{border-color:rgba(147,51,234,0.35);}
+.char-label-name{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;color:var(--text);display:flex;align-items:center;gap:5px;justify-content:center;}
+.char-label-task{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);margin-top:3px;max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.char-dot{width:5px;height:5px;border-radius:50%;display:inline-block;}
+.char-dot.green{background:var(--green);animation:pulse-green 2s ease-in-out infinite;}
+.char-dot.grey{background:var(--muted);}
+
 /* Scrollbar */
 ::-webkit-scrollbar{width:4px;}
 ::-webkit-scrollbar-track{background:transparent;}
@@ -250,6 +265,12 @@ main{position:relative;z-index:5;max-width:var(--max);margin:0 auto;padding:28px
   </div>
 </header>
 
+<nav id="tab-nav">
+  <button class="tab-btn active" data-tab="hq" onclick="switchTab('hq',this)">HQ</button>
+  <button class="tab-btn" data-tab="workspace" onclick="switchTab('workspace',this)">Workspace</button>
+</nav>
+
+<div id="hq-view">
 <!-- ── MAIN ── -->
 <main>
 
@@ -327,6 +348,12 @@ main{position:relative;z-index:5;max-width:var(--max);margin:0 auto;padding:28px
   </div>
 
 </main>
+</div><!-- /#hq-view -->
+
+<div id="workspace-view" style="display:none">
+  <canvas id="workspace-canvas"></canvas>
+  <div id="workspace-overlay"></div>
+</div>
 
 <script>
 // ── CLOCK ──
@@ -380,6 +407,7 @@ async function loadData(){
     renderActivity(d.activity, d.meta);
     renderKanban(d.tasks, d.meta);
     renderDeleg(d.tasks);
+    if (window._wsInit) updateWorkspaceData(d.tasks);
   } catch(e){
     const errHtml='<div class="error-msg">Unable to load data — check back shortly</div>';
     document.getElementById('usage-section').innerHTML=errHtml;
@@ -642,6 +670,237 @@ function anim(ts){
 }
 setState('idle');
 requestAnimationFrame(anim);
+</script>
+
+<script>
+function switchTab(id, btn) {
+  document.getElementById('hq-view').style.display = id==='hq' ? '' : 'none';
+  document.getElementById('workspace-view').style.display = id==='workspace' ? '' : 'none';
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (id === 'workspace' && !window._wsInit) initWorkspace();
+}
+
+function initWorkspace() {
+  window._wsInit = true;
+  const overlay = document.getElementById('workspace-overlay');
+
+  const mollieLabel = document.createElement('div');
+  mollieLabel.className = 'char-label';
+  mollieLabel.innerHTML = '<div class="char-label-name"><span class="char-dot green"></span>Mollie</div><div class="char-label-task" id="ws-mollie-task">Coordinating</div>';
+  overlay.appendChild(mollieLabel);
+
+  const callieLabel = document.createElement('div');
+  callieLabel.className = 'char-label callie';
+  callieLabel.innerHTML = '<div class="char-label-name"><span class="char-dot grey" id="ws-callie-dot"></span>Callie</div><div class="char-label-task" id="ws-callie-task">Standby</div>';
+  overlay.appendChild(callieLabel);
+
+  function loadThree(cb) {
+    if (window.THREE) { cb(); return; }
+    const s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js';
+    s.onload = cb;
+    document.head.appendChild(s);
+  }
+
+  loadThree(function() {
+    const canvas = document.getElementById('workspace-canvas');
+    const container = document.getElementById('workspace-view');
+    const W = container.clientWidth || window.innerWidth;
+    const H = container.clientHeight || (window.innerHeight - 110);
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+    renderer.setSize(W, H);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0x07101C, 1);
+
+    const scene = new THREE.Scene();
+
+    const aspect = W / H;
+    const d = 5;
+    const camera = new THREE.OrthographicCamera(-d * aspect, d * aspect, d, -d, 0.1, 100);
+    camera.position.set(8, 6, 8);
+    camera.lookAt(0, 0, 0);
+
+    scene.add(new THREE.AmbientLight(0x304060, 0.8));
+    const dir = new THREE.DirectionalLight(0xffffff, 0.6);
+    dir.position.set(-5, 8, -3);
+    scene.add(dir);
+
+    function mat(color, emissive) {
+      const opts = { color, flatShading: true };
+      if (emissive !== undefined) { opts.emissive = emissive; opts.emissiveIntensity = 0.3; }
+      return new THREE.MeshLambertMaterial(opts);
+    }
+
+    // Floor
+    const floor = new THREE.Mesh(new THREE.BoxGeometry(9, 0.1, 9), mat(0x0D1A2B));
+    floor.position.set(0, -0.05, 0);
+    scene.add(floor);
+
+    // Back wall (Z-)
+    const wallBack = new THREE.Mesh(new THREE.BoxGeometry(9, 3.5, 0.15), mat(0x122038));
+    wallBack.position.set(0, 1.5, -4.5);
+    scene.add(wallBack);
+
+    // Left wall (X-)
+    const wallLeft = new THREE.Mesh(new THREE.BoxGeometry(0.15, 3.5, 9), mat(0x122038));
+    wallLeft.position.set(-4.5, 1.5, 0);
+    scene.add(wallLeft);
+
+    // Grid
+    const grid = new THREE.GridHelper(9, 9, 0x1a3050, 0x1a3050);
+    grid.position.y = 0.01;
+    scene.add(grid);
+
+    function addDesk(x, z) {
+      const g = new THREE.Group();
+      const desk = new THREE.Mesh(new THREE.BoxGeometry(2.2, 0.12, 1.2), mat(0x1a2e45));
+      desk.position.set(0, 0.76, 0);
+      g.add(desk);
+      [[-0.9,-0.4],[0.9,-0.4],[-0.9,0.4],[0.9,0.4]].forEach(([lx,lz]) => {
+        const leg = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.76, 0.08), mat(0x122038));
+        leg.position.set(lx, 0.38, lz);
+        g.add(leg);
+      });
+      const stand = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.3, 0.08), mat(0x0d1a2b));
+      stand.position.set(0, 0.97, -0.3);
+      g.add(stand);
+      const monBack = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.55, 0.06), mat(0x0d1a2b));
+      monBack.position.set(0, 1.32, -0.33);
+      g.add(monBack);
+      const screen = new THREE.Mesh(new THREE.BoxGeometry(0.82, 0.48, 0.02), mat(0x1a4a7a, 0x2f91c3));
+      screen.position.set(0, 1.32, -0.30);
+      g.add(screen);
+      g.position.set(x, 0, z);
+      return g;
+    }
+
+    scene.add(addDesk(-2, 0));
+    scene.add(addDesk(2, 0));
+
+    function addChar(x, z, color) {
+      const g = new THREE.Group();
+      const bm = mat(color);
+      const sk = mat(0xE8A87A);
+      const dk = mat(0x1a0808);
+      const legL = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.5, 0.18), bm);
+      legL.position.set(-0.1, 0.25, 0); g.add(legL);
+      const legR = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.5, 0.18), bm);
+      legR.position.set(0.1, 0.25, 0); g.add(legR);
+      const torso = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.5, 0.25), bm);
+      torso.position.set(0, 0.75, 0); g.add(torso);
+      const armL = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.4, 0.15), bm);
+      armL.position.set(-0.3, 0.72, 0); armL.rotation.z = 0.3; g.add(armL);
+      const armR = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.4, 0.15), bm);
+      armR.position.set(0.3, 0.72, 0); armR.rotation.z = -0.3; g.add(armR);
+      const head = new THREE.Mesh(new THREE.BoxGeometry(0.35, 0.35, 0.32), sk);
+      head.position.set(0, 1.12, 0); g.add(head);
+      const hair = new THREE.Mesh(new THREE.BoxGeometry(0.37, 0.15, 0.34), dk);
+      hair.position.set(0, 1.27, 0); g.add(hair);
+      g.position.set(x, 0, z);
+      return g;
+    }
+
+    const mollieChar = addChar(-2, 0.8, 0x2f91c3);
+    scene.add(mollieChar);
+    const callieChar = addChar(2, 0.8, 0x9333EA);
+    scene.add(callieChar);
+
+    // Cigarette on Mollie
+    const cigGroup = new THREE.Group();
+    const cigMat = mat(0xf5f5dc);
+    const cig = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.015, 0.22, 6), cigMat);
+    cig.rotation.z = 0.4; cig.position.set(0.18, 1.08, -0.12);
+    cigGroup.add(cig);
+    const tipMat = new THREE.MeshLambertMaterial({ color: 0xff6600, emissive: 0xff4400, emissiveIntensity: 0.8 });
+    const tip = new THREE.Mesh(new THREE.CylinderGeometry(0.018, 0.015, 0.04, 6), tipMat);
+    tip.rotation.z = 0.4; tip.position.set(0.26, 1.13, -0.12);
+    cigGroup.add(tip);
+    cigGroup.position.set(-2, 0, 0.8);
+    scene.add(cigGroup);
+
+    // Money stacks between desks
+    const monMat = mat(0x22c55e, 0x16a34a);
+    [[0, 0.5], [0.12, 0.2], [-0.1, -0.1]].forEach(([sx, sz], si) => {
+      for (let i = 0; i < 3; i++) {
+        const b = new THREE.Mesh(new THREE.BoxGeometry(0.44 - si*0.04, 0.06, 0.3 - si*0.02), monMat);
+        b.position.set(sx, 0.1 + si*0.28 + i*0.065, sz);
+        b.rotation.y = (si + i) * 0.15;
+        scene.add(b);
+      }
+    });
+
+    // Plant in corner
+    const pot = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.14, 0.28, 8), mat(0x6b3d2a));
+    pot.position.set(-3.5, 0.14, -3.5);
+    scene.add(pot);
+    const plant1 = new THREE.Mesh(new THREE.ConeGeometry(0.35, 0.65, 7), mat(0x16a34a));
+    plant1.position.set(-3.5, 0.7, -3.5);
+    scene.add(plant1);
+    const plant2 = new THREE.Mesh(new THREE.ConeGeometry(0.25, 0.48, 7), mat(0x22c55e));
+    plant2.position.set(-3.5, 1.05, -3.5);
+    scene.add(plant2);
+
+    // Anchor points for name labels
+    const mollieAnchor = new THREE.Vector3(-2, 1.6, 0.8);
+    const callieAnchor = new THREE.Vector3(2, 1.6, 0.8);
+
+    function project(v3) {
+      const v = v3.clone().project(camera);
+      const cW = container.clientWidth || W;
+      const cH = container.clientHeight || H;
+      return { x: (v.x * 0.5 + 0.5) * cW, y: (-v.y * 0.5 + 0.5) * cH };
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const t = Date.now() * 0.001;
+      mollieChar.position.y = Math.sin(t * 1.2) * 0.015;
+      callieChar.position.y = Math.sin(t * 1.5 + 1) * 0.015;
+      cigGroup.position.y = mollieChar.position.y;
+      renderer.render(scene, camera);
+      const mp = project(mollieAnchor);
+      const cp = project(callieAnchor);
+      mollieLabel.style.left = mp.x + 'px';
+      mollieLabel.style.top = (mp.y - 64) + 'px';
+      callieLabel.style.left = cp.x + 'px';
+      callieLabel.style.top = (cp.y - 64) + 'px';
+    }
+
+    window.addEventListener('resize', () => {
+      const nW = container.clientWidth;
+      const nH = container.clientHeight;
+      renderer.setSize(nW, nH);
+      const a2 = nW / nH;
+      camera.left = -d * a2; camera.right = d * a2;
+      camera.updateProjectionMatrix();
+    });
+
+    animate();
+  });
+}
+
+function updateWorkspaceData(tasks) {
+  const dot = document.getElementById('ws-callie-dot');
+  const ctask = document.getElementById('ws-callie-task');
+  const mtask = document.getElementById('ws-mollie-task');
+  if (!dot) return;
+  const ca = tasks.find(t => t.col === 'active' && t.agent === 'callie');
+  const ma = tasks.find(t => t.col === 'active');
+  if (ca) {
+    dot.className = 'char-dot green';
+    const n = ca.name || '';
+    ctask.textContent = n.length > 26 ? n.slice(0, 26) + '\u2026' : n;
+  } else {
+    dot.className = 'char-dot grey';
+    ctask.textContent = 'Standby';
+  }
+  if (ma && mtask) {
+    const n = ma.name || '';
+    mtask.textContent = n.length > 26 ? n.slice(0, 26) + '\u2026' : n;
+  }
+}
 </script>
 </body>
 </html>
