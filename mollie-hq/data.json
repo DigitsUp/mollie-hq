@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "lastUpdated": "2026-04-04T11:54:00-07:00",
+    "updatedBy": "Callie"
+  },
+  "usage": {
+    "monthLabel": "April 2026",
+    "mtd": 253.74,
+    "budget": 1000,
+    "today": 7.26,
+    "todayLabel": "Apr 4",
+    "model": "Sonnet 4.6",
+    "dailyCosts": [
+      { "label": "Mar 27", "amount": 0 },
+      { "label": "Mar 28", "amount": 0 },
+      { "label": "Mar 29", "amount": 0 },
+      { "label": "Mar 30", "amount": 7.26 },
+      { "label": "Mar 31", "amount": 134.98 },
+      { "label": "Apr 1", "amount": 51.67 },
+      { "label": "Apr 2", "amount": 30.49 },
+      { "label": "Apr 3", "amount": 22.08 },
+      { "label": "Apr 4", "amount": 7.26 }
+    ],
+    "dailyNote": "Mar 31 spike = pre-Callie era. Trending down ✓"
+  },
+  "activity": [
+    { "dot": "grey",  "text": "HQ refreshed — usage + activity + tasks updated", "time": "Apr 4" },
+    { "dot": "green", "text": "Nightly reflection cron updated — now sends full reflection to Telegram at 11pm", "time": "Apr 4" },
+    { "dot": "green", "text": "Inbox Monitor cron fixed — channel_not_found resolved, auto-files Fathom recaps now", "time": "Apr 3" },
+    { "dot": "green", "text": "All 6 Fathom recaps filed to client meeting folders ✓", "time": "Apr 3" },
+    { "dot": "blue",  "text": "Rho P1 Email 1 — v4 delivered to Michael. Staggered two-column layout, real brand images", "time": "Apr 3 7pm" },
+    { "dot": "green", "text": "AI email design pipeline proved — MJML + Puppeteer renders email mockups autonomously", "time": "Apr 3" }
+  ],
+  "tasks": [
+    { "id": "a1", "name": "Rho Nutrition — AI Email Design Pipeline (P1 Email 1-2-3)", "type": "design",  "due": "2026-04-05", "col": "active",  "agent": "callie" },
+    { "id": "a2", "name": "RVCA — Confirm Tuesday 1pm PT cadence + Klaviyo invites",  "type": "client",  "due": "2026-04-07", "col": "active",  "agent": "mollie" },
+    { "id": "a3", "name": "Riversol — Confirm tier thresholds (USD vs CAD) + Ali SPF 50 decision", "type": "client", "due": "2026-04-07", "col": "active", "agent": "mollie" },
+    { "id": "q1", "name": "SFR Distillery Pre-Call Brief (call Tue Apr 7)",            "type": "brief",   "due": "2026-04-07", "col": "queued",  "agent": "callie" },
+    { "id": "q2", "name": "Hiba March Report — 3 pending fixes verification",          "type": "report",  "due": "2026-04-04", "col": "queued",  "agent": "mollie" },
+    { "id": "q3", "name": "Riversol campaign-ideas.html — Add Sales Strategies section + deploy", "type": "client", "due": "2026-04-05", "col": "queued", "agent": "callie" },
+    { "id": "q4", "name": "DigitsUp Content Hub — Save first content pieces to workspace/content/", "type": "admin", "due": "2026-04-05", "col": "queued", "agent": "mollie" },
+    { "id": "d1", "name": "Rho Nutrition — 6 persona copy docs ✓",                    "type": "brief",   "col": "done",    "agent": "callie" },
+    { "id": "d2", "name": "Fathom recaps filed to all client folders ✓",               "type": "admin",   "col": "done",    "agent": "mollie" },
+    { "id": "d3", "name": "Inbox Monitor cron fixed ✓",                               "type": "admin",   "col": "done",    "agent": "mollie" },
+    { "id": "d4", "name": "RVCA Client Kickoff ✓",                                    "type": "client",  "col": "done",    "agent": "mollie" },
+    { "id": "d5", "name": "Hiba March Report deployed ✓",                             "type": "report",  "col": "done",    "agent": "callie" }
+  ]
+}
