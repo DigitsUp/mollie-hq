@@ -720,7 +720,7 @@ function initWorkspace() {
     const d = 4;
     const camera = new THREE.OrthographicCamera(-d * aspect, d * aspect, d, -d, 0.1, 100);
     camera.position.set(7, 7, 7);
-    camera.lookAt(0, 1, 0);
+    camera.lookAt(-0.8, 0.8, 0);
 
     scene.add(new THREE.AmbientLight(0x304060, 0.8));
     const dir = new THREE.DirectionalLight(0xffffff, 0.6);
