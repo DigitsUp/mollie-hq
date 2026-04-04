@@ -753,7 +753,10 @@ function initWorkspace() {
     grid.position.y = 0.01;
     scene.add(grid);
 
-    function addDesk(x, z) {
+    const mollieScreenBars = [];
+    const callieScreenBars = [];
+
+    function addDesk(x, z, id) {
       const g = new THREE.Group();
       const desk = new THREE.Mesh(new THREE.BoxGeometry(2.2, 0.12, 1.2), mat(0x1a2e45));
       desk.position.set(0, 0.76, 0);
@@ -769,15 +772,58 @@ function initWorkspace() {
       const monBack = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.55, 0.06), mat(0x0d1a2b));
       monBack.position.set(0, 1.32, -0.33);
       g.add(monBack);
-      const screen = new THREE.Mesh(new THREE.BoxGeometry(0.82, 0.48, 0.02), mat(0x1a4a7a, 0x2f91c3));
-      screen.position.set(0, 1.32, -0.30);
-      g.add(screen);
+      // Screen background panel
+      const screenBgColor = id === 'mollie' ? 0x050e1a : 0x030d06;
+      const screenBg = new THREE.Mesh(
+        new THREE.BoxGeometry(0.80, 0.46, 0.01),
+        new THREE.MeshLambertMaterial({ color: screenBgColor, emissive: screenBgColor, emissiveIntensity: 0.4 })
+      );
+      screenBg.position.set(0, 1.32, -0.296);
+      g.add(screenBg);
+      // Animated screen content bars
+      const screenGroup = new THREE.Group();
+      screenGroup.position.set(0, 1.32, -0.289);
+      if (id === 'mollie') {
+        // Chat / task UI — bars scroll downward
+        const mColors = [0x2f91c3, 0x1a3a4a];
+        const mWidths  = [0.18, 0.10, 0.18, 0.10, 0.18, 0.10, 0.18];
+        const mHeights = [0.025, 0.018, 0.025, 0.018, 0.025, 0.018, 0.025];
+        const mXOffs   = [-0.04, 0.08, -0.06, 0.06, -0.03, 0.09, -0.05];
+        for (let i = 0; i < 7; i++) {
+          const col = mColors[i % 2 === 0 ? 0 : 1];
+          const bMesh = new THREE.Mesh(
+            new THREE.BoxGeometry(mWidths[i], mHeights[i], 0.005),
+            new THREE.MeshLambertMaterial({ color: col, emissive: col, emissiveIntensity: 0.5 })
+          );
+          bMesh.position.set(mXOffs[i], 0.20 - i * 0.068, 0);
+          bMesh.userData = { xBase: mXOffs[i] };
+          screenGroup.add(bMesh);
+          mollieScreenBars.push(bMesh);
+        }
+      } else {
+        // Code editor UI — bars scroll upward
+        const cColors = [0x22c55e, 0x566B85, 0xa0b4c8];
+        const cWidths  = [0.18, 0.10, 0.22, 0.12, 0.16, 0.08, 0.20, 0.14];
+        const cXOffs   = [-0.12, -0.10, -0.13, -0.08, -0.11, -0.09, -0.12, -0.10];
+        for (let i = 0; i < 8; i++) {
+          const col = cColors[i % 3];
+          const bMesh = new THREE.Mesh(
+            new THREE.BoxGeometry(cWidths[i], 0.02, 0.005),
+            new THREE.MeshLambertMaterial({ color: col, emissive: col, emissiveIntensity: 0.3 })
+          );
+          bMesh.position.set(cXOffs[i], -0.18 + i * 0.052, 0);
+          bMesh.userData = { xBase: cXOffs[i], colorIdx: i % 3 };
+          screenGroup.add(bMesh);
+          callieScreenBars.push(bMesh);
+        }
+      }
+      g.add(screenGroup);
       g.position.set(x, 0, z);
       return g;
     }
 
-    scene.add(addDesk(-2, 0));
-    scene.add(addDesk(2, 0));
+    scene.add(addDesk(-2, 0, 'mollie'));
+    scene.add(addDesk(2, 0, 'callie'));
 
     function addChar(x, z, color, hairColor) {
       const g = new THREE.Group();
@@ -807,12 +853,9 @@ function initWorkspace() {
       // Face plate (skin tone, front of head)
       const face = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.2, 0.05), fp);
       face.position.set(0, 1.35, 0.185); g.add(face);
-      // Hair cap (overhanging slightly at back)
-      const hair = new THREE.Mesh(new THREE.BoxGeometry(0.48, 0.12, 0.42), hm);
-      hair.position.set(0, 1.585, -0.03); g.add(hair);
-      // Ponytail
-      const ponytail = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.22, 0.1), hm);
-      ponytail.position.set(0, 1.42, -0.26); g.add(ponytail);
+      // Hair cap — wider/deeper for a longer bob silhouette
+      const hair = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.14, 0.55), hm);
+      hair.position.set(0, 1.575, -0.08); g.add(hair);
       g.position.set(x, 0, z);
       return g;
     }
@@ -925,6 +968,30 @@ function initWorkspace() {
           sm.material.opacity = 0.55;
         } else {
           sm.material.opacity = 0.55 * Math.max(0, 1 - riseAmt / 0.5);
+        }
+      });
+      // Mollie screen bars — scroll downward
+      const mScrollColors = [0x2f91c3, 0x1a3a4a];
+      mollieScreenBars.forEach(bar => {
+        bar.position.y -= 0.0003;
+        if (bar.position.y < -0.25) {
+          bar.position.y = 0.23;
+          const col = mScrollColors[Math.random() > 0.6 ? 1 : 0];
+          bar.material.color.setHex(col);
+          bar.material.emissive.setHex(col);
+          bar.position.x = bar.userData.xBase + (Math.random() - 0.5) * 0.06;
+        }
+      });
+      // Callie screen bars — scroll upward
+      const cScrollColors = [0x22c55e, 0x566B85, 0xa0b4c8];
+      callieScreenBars.forEach(bar => {
+        bar.position.y += 0.0002;
+        if (bar.position.y > 0.24) {
+          bar.position.y = -0.23;
+          const col = cScrollColors[Math.floor(Math.random() * 3)];
+          bar.material.color.setHex(col);
+          bar.material.emissive.setHex(col);
+          bar.position.x = bar.userData.xBase + (Math.random() - 0.5) * 0.02;
         }
       });
       renderer.render(scene, camera);
