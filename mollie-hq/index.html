@@ -717,7 +717,7 @@ function initWorkspace() {
     const scene = new THREE.Scene();
 
     const aspect = W / H;
-    const d = 5;
+    const d = 3.5;
     const camera = new THREE.OrthographicCamera(-d * aspect, d * aspect, d, -d, 0.1, 100);
     camera.position.set(8, 6, 8);
     camera.lookAt(0, 0, 0);
@@ -853,8 +853,8 @@ function initWorkspace() {
     const smokeStartZ = 0.8 - 0.12;
     const smokeParticles = [];
     for (let i = 0; i < 8; i++) {
-      const smMat = new THREE.MeshBasicMaterial({ color: 0xaaaaaa, transparent: true, opacity: 0.35 });
-      const sm = new THREE.Mesh(new THREE.SphereGeometry(0.018, 4, 4), smMat);
+      const smMat = new THREE.MeshBasicMaterial({ color: 0xcccccc, transparent: true, opacity: 0.55 });
+      const sm = new THREE.Mesh(new THREE.SphereGeometry(0.055, 5, 5), smMat);
       const rise = (i / 8) * 0.4;
       sm.position.set(
         smokeStartX + (Math.random() - 0.5) * 0.04,
@@ -864,7 +864,7 @@ function initWorkspace() {
       sm.userData.speed = 0.003 + Math.random() * 0.002;
       sm.userData.wobbleX = (Math.random() - 0.5) * 0.002;
       sm.userData.wobbleZ = (Math.random() - 0.5) * 0.002;
-      sm.material.opacity = rise < 0.001 ? 0.35 : 0.35 * (1 - rise / 0.4);
+      sm.material.opacity = rise < 0.001 ? 0.55 : 0.55 * (1 - rise / 0.5);
       smokeParticles.push(sm);
       scene.add(sm);
     }
@@ -922,9 +922,9 @@ function initWorkspace() {
           );
           sm.userData.wobbleX = (Math.random() - 0.5) * 0.002;
           sm.userData.wobbleZ = (Math.random() - 0.5) * 0.002;
-          sm.material.opacity = 0.35;
+          sm.material.opacity = 0.55;
         } else {
-          sm.material.opacity = 0.35 * Math.max(0, 1 - riseAmt / 0.4);
+          sm.material.opacity = 0.55 * Math.max(0, 1 - riseAmt / 0.5);
         }
       });
       renderer.render(scene, camera);
