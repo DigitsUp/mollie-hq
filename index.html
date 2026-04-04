@@ -722,9 +722,21 @@ function initWorkspace() {
     camera.position.set(6, 6, 6);
     camera.lookAt(0.2, 0.9, 0.3);
 
-    scene.add(new THREE.AmbientLight(0x304060, 0.9));
-    const dir = new THREE.DirectionalLight(0xffffff, 0.7);
+    scene.add(new THREE.AmbientLight(0x6080A0, 2.2));
+    const dir = new THREE.DirectionalLight(0xffffff, 1.4);
     dir.position.set(-5, 8, -3);
+    const dir2 = new THREE.DirectionalLight(0xC0D8FF, 0.6);
+    dir2.position.set(5, 6, 5);
+    scene.add(dir2);
+    const ptMollie = new THREE.PointLight(0x4aafd4, 1.8, 5);
+    ptMollie.position.set(-1.2, 2.2, 0.3);
+    scene.add(ptMollie);
+    const ptCallie = new THREE.PointLight(0xA855F7, 1.5, 5);
+    ptCallie.position.set(1.2, 2.2, 0.3);
+    scene.add(ptCallie);
+    const ptRoom = new THREE.PointLight(0x8AABCC, 1.0, 12);
+    ptRoom.position.set(0, 3.5, -1);
+    scene.add(ptRoom);
     scene.add(dir);
 
     function mat(color, emissive) {
@@ -734,19 +746,19 @@ function initWorkspace() {
     }
 
     // Floor
-    const floor = new THREE.Mesh(new THREE.BoxGeometry(9, 0.1, 9), mat(0x0D1A2B));
+    const floor = new THREE.Mesh(new THREE.BoxGeometry(9, 0.1, 9), mat(0x152840));
     floor.position.set(0, -0.05, 0);
     scene.add(floor);
     // Back wall
-    const wallBack = new THREE.Mesh(new THREE.BoxGeometry(9, 3.5, 0.15), mat(0x122038));
+    const wallBack = new THREE.Mesh(new THREE.BoxGeometry(9, 3.5, 0.15), mat(0x1A3050));
     wallBack.position.set(0, 1.5, -4.5);
     scene.add(wallBack);
     // Left wall
-    const wallLeft = new THREE.Mesh(new THREE.BoxGeometry(0.15, 3.5, 9), mat(0x122038));
+    const wallLeft = new THREE.Mesh(new THREE.BoxGeometry(0.15, 3.5, 9), mat(0x1A3050));
     wallLeft.position.set(-4.5, 1.5, 0);
     scene.add(wallLeft);
     // Grid
-    const grid = new THREE.GridHelper(9, 9, 0x1a3050, 0x1a3050);
+    const grid = new THREE.GridHelper(9, 9, 0x2a4a70, 0x2a4a70);
     grid.position.y = 0.01;
     scene.add(grid);
 
@@ -763,7 +775,7 @@ function initWorkspace() {
       desk.position.set(0, 0.76, 0);
       g.add(desk);
       [[-0.55,-0.3],[0.55,-0.3],[-0.55,0.3],[0.55,0.3]].forEach(([lx,lz]) => {
-        const leg = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.76, 0.07), mat(0x122038));
+        const leg = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.76, 0.07), mat(0x1A3050));
         leg.position.set(lx, 0.38, lz);
         g.add(leg);
       });
