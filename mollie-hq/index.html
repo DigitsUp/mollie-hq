@@ -217,7 +217,7 @@ main{position:relative;z-index:5;max-width:var(--max);margin:0 auto;padding:28px
 #workspace-view{position:relative;height:calc(100vh - 110px);overflow:hidden;}
 #workspace-canvas{position:absolute;inset:0;width:100%!important;height:100%!important;}
 #workspace-overlay{position:absolute;inset:0;pointer-events:none;}
-.char-label{position:absolute;transform:translateX(-50%);background:rgba(7,16,28,0.88);border:1px solid var(--mborder);border-radius:8px;padding:5px 10px;text-align:center;min-width:90px;}
+.char-label{position:absolute;transform:translateX(-50%);max-width:130px;background:rgba(7,16,28,0.88);border:1px solid var(--mborder);border-radius:8px;padding:5px 10px;text-align:center;min-width:90px;}
 .char-label.callie{border-color:rgba(147,51,234,0.35);}
 .char-label-name{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;color:var(--text);display:flex;align-items:center;gap:5px;justify-content:center;}
 .char-label-task{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);margin-top:3px;max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
@@ -717,10 +717,10 @@ function initWorkspace() {
     const scene = new THREE.Scene();
 
     const aspect = W / H;
-    const d = 4;
+    const d = 4.8;
     const camera = new THREE.OrthographicCamera(-d * aspect, d * aspect, d, -d, 0.1, 100);
     camera.position.set(7, 7, 7);
-    camera.lookAt(-0.8, 0.8, 0);
+    camera.lookAt(0.8, 0.8, 0.4);
 
     scene.add(new THREE.AmbientLight(0x304060, 0.8));
     const dir = new THREE.DirectionalLight(0xffffff, 0.6);
@@ -822,8 +822,8 @@ function initWorkspace() {
       return g;
     }
 
-    scene.add(addDesk(-2, 0, 'mollie'));
-    scene.add(addDesk(2, 0, 'callie'));
+    scene.add(addDesk(0, 0, 'mollie'));
+    scene.add(addDesk(1.4, 0, 'callie'));
 
     function addChar(x, z, color, hairColor) {
       const g = new THREE.Group();
@@ -860,9 +860,9 @@ function initWorkspace() {
       return g;
     }
 
-    const mollieChar = addChar(-2, 0.8, 0x2f91c3, 0x3D2314);
+    const mollieChar = addChar(0, 0.8, 0x2f91c3, 0x3D2314);
     scene.add(mollieChar);
-    const callieChar = addChar(2, 0.8, 0x9333EA, 0x1A0A2E);
+    const callieChar = addChar(1.4, 0.8, 0x9333EA, 0x1A0A2E);
     scene.add(callieChar);
 
     // Cigarette on Mollie
@@ -875,23 +875,23 @@ function initWorkspace() {
     const tip = new THREE.Mesh(new THREE.CylinderGeometry(0.018, 0.015, 0.04, 6), tipMat);
     tip.rotation.z = 0.4; tip.position.set(0.26, 1.13, -0.12);
     cigGroup.add(tip);
-    cigGroup.position.set(-2, 0, 0.8);
+    cigGroup.position.set(0, 0, 0.8);
     scene.add(cigGroup);
 
     // Ashtray on Mollie's desk
     const ashtrayMat = mat(0x2A2A2A);
     const ashtray = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.09, 0.03, 8), ashtrayMat);
-    ashtray.position.set(-1.4, 0.835, 0.3);
+    ashtray.position.set(0.4, 0.835, 0.3);
     scene.add(ashtray);
     // Cigarette butt in ashtray
     const buttMat = mat(0xD4C9A8);
     const butt = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.06, 6), buttMat);
-    butt.position.set(-1.4, 0.868, 0.3);
+    butt.position.set(0.4, 0.868, 0.3);
     butt.rotation.z = 0.3;
     scene.add(butt);
 
     // Smoke particles from Mollie's cigarette tip
-    const smokeStartX = -2 + 0.26;
+    const smokeStartX = 0 + 0.26;
     const smokeStartY = 1.13;
     const smokeStartZ = 0.8 - 0.12;
     const smokeParticles = [];
@@ -997,9 +997,11 @@ function initWorkspace() {
       renderer.render(scene, camera);
       const mp = project(mollieAnchor);
       const cp = project(callieAnchor);
-      mollieLabel.style.left = mp.x + 'px';
+      const cW2 = container.clientWidth;
+      const labelW = 110;
+      mollieLabel.style.left = Math.min(Math.max(mp.x, labelW/2 + 4), cW2 - labelW/2 - 4) + 'px';
       mollieLabel.style.top = (mp.y - 64) + 'px';
-      callieLabel.style.left = cp.x + 'px';
+      callieLabel.style.left = Math.min(Math.max(cp.x, labelW/2 + 4), cW2 - labelW/2 - 4) + 'px';
       callieLabel.style.top = (cp.y - 64) + 'px';
     }
 
