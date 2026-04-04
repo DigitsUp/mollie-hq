@@ -870,12 +870,13 @@ function initWorkspace() {
       const hairTop = new THREE.Mesh(new THREE.BoxGeometry(0.46, 0.10, 0.32), hm);
       hairTop.position.set(0, 1.52, -0.04); g.add(hairTop);
       g.position.set(x, 0, CHZ);
+      g.rotation.y = Math.PI;
       return g;
     }
 
-    const mollieChar = addChar(MX, 0x2f91c3, 0x3D2314);
+    const mollieChar = addChar(MX, 0x2f91c3, 0xF4C430);
     scene.add(mollieChar);
-    const callieChar = addChar(CX, 0x9333EA, 0x1A0A2E);
+    const callieChar = addChar(CX, 0x9333EA, 0xAA1100);
     scene.add(callieChar);
 
     // Cigarette on Mollie — positioned at her face level
