@@ -717,10 +717,10 @@ function initWorkspace() {
     const scene = new THREE.Scene();
 
     const aspect = W / H;
-    const d = 3.5;
+    const d = 4;
     const camera = new THREE.OrthographicCamera(-d * aspect, d * aspect, d, -d, 0.1, 100);
-    camera.position.set(8, 6, 8);
-    camera.lookAt(0, 0, 0);
+    camera.position.set(7, 7, 7);
+    camera.lookAt(0, 1, 0);
 
     scene.add(new THREE.AmbientLight(0x304060, 0.8));
     const dir = new THREE.DirectionalLight(0xffffff, 0.6);
