@@ -715,15 +715,15 @@ function initWorkspace() {
     renderer.setClearColor(0x07101C, 1);
 
     const scene = new THREE.Scene();
-
     const aspect = W / H;
-    const d = 4.8;
+    // d=3.0 zooms in close; camera looks between both characters
+    const d = 3.5;
     const camera = new THREE.OrthographicCamera(-d * aspect, d * aspect, d, -d, 0.1, 100);
-    camera.position.set(7, 7, 7);
-    camera.lookAt(0.8, 0.8, 0.4);
+    camera.position.set(6, 6, 6);
+    camera.lookAt(0.2, 0.9, 0.3);
 
-    scene.add(new THREE.AmbientLight(0x304060, 0.8));
-    const dir = new THREE.DirectionalLight(0xffffff, 0.6);
+    scene.add(new THREE.AmbientLight(0x304060, 0.9));
+    const dir = new THREE.DirectionalLight(0xffffff, 0.7);
     dir.position.set(-5, 8, -3);
     scene.add(dir);
 
@@ -737,17 +737,14 @@ function initWorkspace() {
     const floor = new THREE.Mesh(new THREE.BoxGeometry(9, 0.1, 9), mat(0x0D1A2B));
     floor.position.set(0, -0.05, 0);
     scene.add(floor);
-
-    // Back wall (Z-)
+    // Back wall
     const wallBack = new THREE.Mesh(new THREE.BoxGeometry(9, 3.5, 0.15), mat(0x122038));
     wallBack.position.set(0, 1.5, -4.5);
     scene.add(wallBack);
-
-    // Left wall (X-)
+    // Left wall
     const wallLeft = new THREE.Mesh(new THREE.BoxGeometry(0.15, 3.5, 9), mat(0x122038));
     wallLeft.position.set(-4.5, 1.5, 0);
     scene.add(wallLeft);
-
     // Grid
     const grid = new THREE.GridHelper(9, 9, 0x1a3050, 0x1a3050);
     grid.position.y = 0.01;
@@ -756,187 +753,179 @@ function initWorkspace() {
     const mollieScreenBars = [];
     const callieScreenBars = [];
 
-    function addDesk(x, z, id) {
+    // MX/CX = character world x positions. MZ/CZ = desk z center.
+    const MX = -1.2, CX = 1.2, DZ = -0.4, CHZ = 0.3;
+
+    function addDesk(x, id) {
+      // Desk top surface at y=0.76, width 1.4, depth 0.85
       const g = new THREE.Group();
-      const desk = new THREE.Mesh(new THREE.BoxGeometry(2.2, 0.12, 1.2), mat(0x1a2e45));
+      const desk = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.1, 0.85), mat(0x1a2e45));
       desk.position.set(0, 0.76, 0);
       g.add(desk);
-      [[-0.9,-0.4],[0.9,-0.4],[-0.9,0.4],[0.9,0.4]].forEach(([lx,lz]) => {
-        const leg = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.76, 0.08), mat(0x122038));
+      [[-0.55,-0.3],[0.55,-0.3],[-0.55,0.3],[0.55,0.3]].forEach(([lx,lz]) => {
+        const leg = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.76, 0.07), mat(0x122038));
         leg.position.set(lx, 0.38, lz);
         g.add(leg);
       });
-      const stand = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.3, 0.08), mat(0x0d1a2b));
-      stand.position.set(0, 0.97, -0.3);
+      // Monitor stand
+      const stand = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.28, 0.07), mat(0x0d1a2b));
+      stand.position.set(0, 0.95, -0.28);
       g.add(stand);
-      const monBack = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.55, 0.06), mat(0x0d1a2b));
-      monBack.position.set(0, 1.32, -0.33);
+      // Monitor back
+      const monBack = new THREE.Mesh(new THREE.BoxGeometry(0.72, 0.48, 0.055), mat(0x0d1a2b));
+      monBack.position.set(0, 1.26, -0.31);
       g.add(monBack);
-      // Screen background panel
-      const screenBgColor = id === 'mollie' ? 0x050e1a : 0x030d06;
+      // Screen background — dark, emissive glow
+      const bgCol = id === 'mollie' ? 0x030a14 : 0x020c04;
       const screenBg = new THREE.Mesh(
-        new THREE.BoxGeometry(0.80, 0.46, 0.01),
-        new THREE.MeshLambertMaterial({ color: screenBgColor, emissive: screenBgColor, emissiveIntensity: 0.4 })
+        new THREE.BoxGeometry(0.62, 0.38, 0.01),
+        new THREE.MeshLambertMaterial({ color: bgCol, emissive: bgCol, emissiveIntensity: 0.6 })
       );
-      screenBg.position.set(0, 1.32, -0.296);
+      screenBg.position.set(0, 1.26, -0.279);
       g.add(screenBg);
-      // Animated screen content bars
+      // Screen content bars — bigger and bright so they're visible at this zoom
       const screenGroup = new THREE.Group();
-      screenGroup.position.set(0, 1.32, -0.289);
+      screenGroup.position.set(0, 1.26, -0.272);
       if (id === 'mollie') {
-        // Chat / task UI — bars scroll downward
-        const mColors = [0x2f91c3, 0x1a3a4a];
-        const mWidths  = [0.18, 0.10, 0.18, 0.10, 0.18, 0.10, 0.18];
-        const mHeights = [0.025, 0.018, 0.025, 0.018, 0.025, 0.018, 0.025];
-        const mXOffs   = [-0.04, 0.08, -0.06, 0.06, -0.03, 0.09, -0.05];
+        // Chat UI: alternating left/right aligned bars, blue tones
+        const cols = [0x2f91c3, 0x5bbae0, 0x1a3a4a, 0x2f91c3, 0x1a3a4a, 0x5bbae0, 0x2f91c3];
+        const widths = [0.22, 0.14, 0.20, 0.12, 0.22, 0.16, 0.18];
+        const xOffs  = [-0.05, 0.07, -0.04, 0.08, -0.06, 0.06, -0.03];
         for (let i = 0; i < 7; i++) {
-          const col = mColors[i % 2 === 0 ? 0 : 1];
-          const bMesh = new THREE.Mesh(
-            new THREE.BoxGeometry(mWidths[i], mHeights[i], 0.005),
-            new THREE.MeshLambertMaterial({ color: col, emissive: col, emissiveIntensity: 0.5 })
+          const bar = new THREE.Mesh(
+            new THREE.BoxGeometry(widths[i], 0.05, 0.004),
+            new THREE.MeshLambertMaterial({ color: cols[i], emissive: cols[i], emissiveIntensity: 0.9 })
           );
-          bMesh.position.set(mXOffs[i], 0.20 - i * 0.068, 0);
-          bMesh.userData = { xBase: mXOffs[i] };
-          screenGroup.add(bMesh);
-          mollieScreenBars.push(bMesh);
+          bar.position.set(xOffs[i], 0.15 - i * 0.052, 0);
+          bar.userData = { xBase: xOffs[i] };
+          screenGroup.add(bar);
+          mollieScreenBars.push(bar);
         }
       } else {
-        // Code editor UI — bars scroll upward
-        const cColors = [0x22c55e, 0x566B85, 0xa0b4c8];
-        const cWidths  = [0.18, 0.10, 0.22, 0.12, 0.16, 0.08, 0.20, 0.14];
-        const cXOffs   = [-0.12, -0.10, -0.13, -0.08, -0.11, -0.09, -0.12, -0.10];
+        // Code editor: left-aligned, green/grey, variable indent
+        const cols = [0x22c55e, 0x566b85, 0xa0b4c8, 0x22c55e, 0x566b85, 0xa0b4c8, 0x22c55e, 0x566b85];
+        const widths = [0.22, 0.14, 0.20, 0.10, 0.18, 0.16, 0.24, 0.12];
+        const xOffs  = [-0.14, -0.10, -0.13, -0.07, -0.12, -0.09, -0.14, -0.08];
         for (let i = 0; i < 8; i++) {
-          const col = cColors[i % 3];
-          const bMesh = new THREE.Mesh(
-            new THREE.BoxGeometry(cWidths[i], 0.02, 0.005),
-            new THREE.MeshLambertMaterial({ color: col, emissive: col, emissiveIntensity: 0.3 })
+          const bar = new THREE.Mesh(
+            new THREE.BoxGeometry(widths[i], 0.04, 0.004),
+            new THREE.MeshLambertMaterial({ color: cols[i], emissive: cols[i], emissiveIntensity: 0.8 })
           );
-          bMesh.position.set(cXOffs[i], -0.18 + i * 0.052, 0);
-          bMesh.userData = { xBase: cXOffs[i], colorIdx: i % 3 };
-          screenGroup.add(bMesh);
-          callieScreenBars.push(bMesh);
+          bar.position.set(xOffs[i], -0.15 + i * 0.044, 0);
+          bar.userData = { xBase: xOffs[i] };
+          screenGroup.add(bar);
+          callieScreenBars.push(bar);
         }
       }
       g.add(screenGroup);
-      g.position.set(x, 0, z);
+      g.position.set(x, 0, DZ);
       return g;
     }
 
-    scene.add(addDesk(0, 0, 'mollie'));
-    scene.add(addDesk(1.4, 0, 'callie'));
+    scene.add(addDesk(MX, 'mollie'));
+    scene.add(addDesk(CX, 'callie'));
 
-    function addChar(x, z, color, hairColor) {
+    function addChar(x, color, hairColor) {
       const g = new THREE.Group();
       const bm = mat(color);
-      const sk = mat(0xE8A87A);
+      const sk = mat(0xE8C49A);
       const hm = new THREE.MeshLambertMaterial({ color: hairColor, flatShading: true });
-      const fp = new THREE.MeshLambertMaterial({ color: 0xF5C5A3, flatShading: true });
       // Legs
-      const legL = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.5, 0.18), bm);
-      legL.position.set(-0.1, 0.25, 0); g.add(legL);
-      const legR = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.5, 0.18), bm);
-      legR.position.set(0.1, 0.25, 0); g.add(legR);
-      // Hips / lower torso (wider)
-      const hips = new THREE.Mesh(new THREE.BoxGeometry(0.44, 0.32, 0.34), bm);
-      hips.position.set(0, 0.66, 0); g.add(hips);
-      // Upper torso (narrower)
-      const torso = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.35, 0.32), bm);
-      torso.position.set(0, 0.995, 0); g.add(torso);
-      // Arms (thinner)
-      const armL = new THREE.Mesh(new THREE.BoxGeometry(0.09, 0.32, 0.09), bm);
-      armL.position.set(-0.235, 0.97, 0); armL.rotation.z = 0.3; g.add(armL);
-      const armR = new THREE.Mesh(new THREE.BoxGeometry(0.09, 0.32, 0.09), bm);
-      armR.position.set(0.235, 0.97, 0); armR.rotation.z = -0.3; g.add(armR);
+      ['left','right'].forEach((s,i) => {
+        const leg = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.48, 0.18), bm);
+        leg.position.set(i===0 ? -0.11 : 0.11, 0.24, 0);
+        g.add(leg);
+      });
+      // Hips (wider)
+      const hips = new THREE.Mesh(new THREE.BoxGeometry(0.44, 0.30, 0.32), bm);
+      hips.position.set(0, 0.63, 0); g.add(hips);
+      // Torso (narrower top)
+      const torso = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.34, 0.30), bm);
+      torso.position.set(0, 0.96, 0); g.add(torso);
+      // Arms
+      ['left','right'].forEach((s,i) => {
+        const arm = new THREE.Mesh(new THREE.BoxGeometry(0.10, 0.30, 0.10), bm);
+        arm.position.set(i===0 ? -0.24 : 0.24, 0.94, 0);
+        arm.rotation.z = i===0 ? 0.25 : -0.25;
+        g.add(arm);
+      });
       // Head
-      const head = new THREE.Mesh(new THREE.BoxGeometry(0.35, 0.35, 0.32), sk);
-      head.position.set(0, 1.35, 0); g.add(head);
-      // Face plate (skin tone, front of head)
-      const face = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.2, 0.05), fp);
-      face.position.set(0, 1.35, 0.185); g.add(face);
-      // Hair cap — wider/deeper for a longer bob silhouette
-      const hair = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.14, 0.55), hm);
-      hair.position.set(0, 1.575, -0.08); g.add(hair);
-      g.position.set(x, 0, z);
+      const head = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.34, 0.30), sk);
+      head.position.set(0, 1.32, 0); g.add(head);
+      // Hair — wide block that hangs behind, reads as bob/long hair
+      const hair = new THREE.Mesh(new THREE.BoxGeometry(0.46, 0.38, 0.12), hm);
+      hair.position.set(0, 1.26, -0.20); g.add(hair);
+      const hairTop = new THREE.Mesh(new THREE.BoxGeometry(0.46, 0.10, 0.32), hm);
+      hairTop.position.set(0, 1.52, -0.04); g.add(hairTop);
+      g.position.set(x, 0, CHZ);
       return g;
     }
 
-    const mollieChar = addChar(0, 0.8, 0x2f91c3, 0x3D2314);
+    const mollieChar = addChar(MX, 0x2f91c3, 0x3D2314);
     scene.add(mollieChar);
-    const callieChar = addChar(1.4, 0.8, 0x9333EA, 0x1A0A2E);
+    const callieChar = addChar(CX, 0x9333EA, 0x1A0A2E);
     scene.add(callieChar);
 
-    // Cigarette on Mollie
+    // Cigarette on Mollie — positioned at her face level
     const cigGroup = new THREE.Group();
-    const cigMat = mat(0xf5f5dc);
-    const cig = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.015, 0.22, 6), cigMat);
-    cig.rotation.z = 0.4; cig.position.set(0.18, 1.08, -0.12);
+    const cig = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.20, 6),
+      new THREE.MeshLambertMaterial({ color: 0xf5f5dc, flatShading: true }));
+    cig.rotation.z = 0.4; cig.position.set(0.17, 1.10, -0.05);
     cigGroup.add(cig);
-    const tipMat = new THREE.MeshLambertMaterial({ color: 0xff6600, emissive: 0xff4400, emissiveIntensity: 0.8 });
-    const tip = new THREE.Mesh(new THREE.CylinderGeometry(0.018, 0.015, 0.04, 6), tipMat);
-    tip.rotation.z = 0.4; tip.position.set(0.26, 1.13, -0.12);
+    const tip = new THREE.Mesh(new THREE.CylinderGeometry(0.017, 0.014, 0.035, 6),
+      new THREE.MeshLambertMaterial({ color: 0xff6600, emissive: 0xff4400, emissiveIntensity: 1.0 }));
+    tip.rotation.z = 0.4; tip.position.set(0.24, 1.14, -0.05);
     cigGroup.add(tip);
-    cigGroup.position.set(0, 0, 0.8);
+    cigGroup.position.set(MX, 0, CHZ);
     scene.add(cigGroup);
 
-    // Ashtray on Mollie's desk
-    const ashtrayMat = mat(0x2A2A2A);
-    const ashtray = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.09, 0.03, 8), ashtrayMat);
-    ashtray.position.set(0.4, 0.835, 0.3);
+    // Ashtray — on Mollie's desk surface
+    const ashtray = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.08, 0.025, 8), mat(0x2A2A2A));
+    ashtray.position.set(MX + 0.35, 0.825, DZ + 0.25);
     scene.add(ashtray);
-    // Cigarette butt in ashtray
-    const buttMat = mat(0xD4C9A8);
-    const butt = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.06, 6), buttMat);
-    butt.position.set(0.4, 0.868, 0.3);
+    const butt = new THREE.Mesh(new THREE.CylinderGeometry(0.007, 0.007, 0.055, 6), mat(0xD4C9A8));
+    butt.position.set(MX + 0.35, 0.855, DZ + 0.25);
     butt.rotation.z = 0.3;
     scene.add(butt);
 
-    // Smoke particles from Mollie's cigarette tip
-    const smokeStartX = 0 + 0.26;
-    const smokeStartY = 1.13;
-    const smokeStartZ = 0.8 - 0.12;
+    // Smoke from Mollie's cigarette tip
+    const smokeX = MX + 0.24, smokeY = 1.14, smokeZ = CHZ - 0.05;
     const smokeParticles = [];
     for (let i = 0; i < 8; i++) {
-      const smMat = new THREE.MeshBasicMaterial({ color: 0xcccccc, transparent: true, opacity: 0.55 });
-      const sm = new THREE.Mesh(new THREE.SphereGeometry(0.055, 5, 5), smMat);
-      const rise = (i / 8) * 0.4;
-      sm.position.set(
-        smokeStartX + (Math.random() - 0.5) * 0.04,
-        smokeStartY + rise,
-        smokeStartZ + (Math.random() - 0.5) * 0.04
-      );
+      const smMat = new THREE.MeshBasicMaterial({ color: 0xcccccc, transparent: true, opacity: 0.5 });
+      const sm = new THREE.Mesh(new THREE.SphereGeometry(0.05, 5, 5), smMat);
+      const rise = (i / 8) * 0.45;
+      sm.position.set(smokeX + (Math.random()-0.5)*0.04, smokeY + rise, smokeZ + (Math.random()-0.5)*0.04);
       sm.userData.speed = 0.003 + Math.random() * 0.002;
-      sm.userData.wobbleX = (Math.random() - 0.5) * 0.002;
-      sm.userData.wobbleZ = (Math.random() - 0.5) * 0.002;
-      sm.material.opacity = rise < 0.001 ? 0.55 : 0.55 * (1 - rise / 0.5);
+      sm.userData.wx = (Math.random()-0.5) * 0.002;
+      sm.userData.wz = (Math.random()-0.5) * 0.002;
+      sm.material.opacity = rise < 0.001 ? 0.5 : 0.5 * (1 - rise / 0.45);
       smokeParticles.push(sm);
       scene.add(sm);
     }
 
-    // Money stacks between desks
+    // Money stacks — between desks, off to the side
     const monMat = mat(0x22c55e, 0x16a34a);
-    [[0, 0.5], [0.12, 0.2], [-0.1, -0.1]].forEach(([sx, sz], si) => {
+    [[-0.2, 1.2], [0.1, 1.0], [-0.1, 0.8]].forEach(([sx, sz], si) => {
       for (let i = 0; i < 3; i++) {
-        const b = new THREE.Mesh(new THREE.BoxGeometry(0.44 - si*0.04, 0.06, 0.3 - si*0.02), monMat);
-        b.position.set(sx, 0.1 + si*0.28 + i*0.065, sz);
-        b.rotation.y = (si + i) * 0.15;
+        const b = new THREE.Mesh(new THREE.BoxGeometry(0.38-si*0.04, 0.055, 0.26-si*0.02), monMat);
+        b.position.set(sx, 0.1 + si*0.22 + i*0.06, sz);
+        b.rotation.y = (si + i) * 0.18;
         scene.add(b);
       }
     });
 
-    // Plant in corner
-    const pot = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.14, 0.28, 8), mat(0x6b3d2a));
-    pot.position.set(-3.5, 0.14, -3.5);
-    scene.add(pot);
-    const plant1 = new THREE.Mesh(new THREE.ConeGeometry(0.35, 0.65, 7), mat(0x16a34a));
-    plant1.position.set(-3.5, 0.7, -3.5);
-    scene.add(plant1);
-    const plant2 = new THREE.Mesh(new THREE.ConeGeometry(0.25, 0.48, 7), mat(0x22c55e));
-    plant2.position.set(-3.5, 1.05, -3.5);
-    scene.add(plant2);
+    // Plant in corner (back-left)
+    const pot = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.13, 0.26, 8), mat(0x6b3d2a));
+    pot.position.set(-3.2, 0.13, -3.2); scene.add(pot);
+    const p1 = new THREE.Mesh(new THREE.ConeGeometry(0.32, 0.60, 7), mat(0x16a34a));
+    p1.position.set(-3.2, 0.65, -3.2); scene.add(p1);
+    const p2 = new THREE.Mesh(new THREE.ConeGeometry(0.22, 0.44, 7), mat(0x22c55e));
+    p2.position.set(-3.2, 1.00, -3.2); scene.add(p2);
 
-    // Anchor points for name labels
-    const mollieAnchor = new THREE.Vector3(-2, 1.6, 0.8);
-    const callieAnchor = new THREE.Vector3(2, 1.6, 0.8);
+    // Label anchor points — exactly match character head positions
+    const mollieAnchor = new THREE.Vector3(MX, 1.65, CHZ);
+    const callieAnchor = new THREE.Vector3(CX, 1.65, CHZ);
 
     function project(v3) {
       const v = v3.clone().project(camera);
@@ -948,61 +937,53 @@ function initWorkspace() {
     function animate() {
       requestAnimationFrame(animate);
       const t = Date.now() * 0.001;
-      mollieChar.position.y = Math.sin(t * 1.2) * 0.015;
-      callieChar.position.y = Math.sin(t * 1.5 + 1) * 0.015;
+      // Gentle idle bob
+      mollieChar.position.y = Math.sin(t * 1.2) * 0.012;
+      callieChar.position.y = Math.sin(t * 1.5 + 1) * 0.012;
       cigGroup.position.y = mollieChar.position.y;
-      // Animate smoke particles
+      // Smoke
       smokeParticles.forEach(sm => {
         sm.position.y += sm.userData.speed;
-        sm.position.x += sm.userData.wobbleX;
-        sm.position.z += sm.userData.wobbleZ;
-        const riseAmt = sm.position.y - (smokeStartY + mollieChar.position.y);
-        if (riseAmt >= 0.4) {
-          sm.position.set(
-            smokeStartX + (Math.random() - 0.5) * 0.04,
-            smokeStartY + mollieChar.position.y,
-            smokeStartZ + (Math.random() - 0.5) * 0.04
-          );
-          sm.userData.wobbleX = (Math.random() - 0.5) * 0.002;
-          sm.userData.wobbleZ = (Math.random() - 0.5) * 0.002;
-          sm.material.opacity = 0.55;
+        sm.position.x += sm.userData.wx;
+        sm.position.z += sm.userData.wz;
+        const rise = sm.position.y - (smokeY + mollieChar.position.y);
+        if (rise >= 0.45) {
+          sm.position.set(smokeX + (Math.random()-0.5)*0.04, smokeY + mollieChar.position.y, smokeZ + (Math.random()-0.5)*0.04);
+          sm.userData.wx = (Math.random()-0.5)*0.002;
+          sm.userData.wz = (Math.random()-0.5)*0.002;
+          sm.material.opacity = 0.5;
         } else {
-          sm.material.opacity = 0.55 * Math.max(0, 1 - riseAmt / 0.5);
+          sm.material.opacity = 0.5 * Math.max(0, 1 - rise / 0.45);
         }
       });
-      // Mollie screen bars — scroll downward
-      const mScrollColors = [0x2f91c3, 0x1a3a4a];
+      // Mollie screen — scroll downward
       mollieScreenBars.forEach(bar => {
-        bar.position.y -= 0.0003;
-        if (bar.position.y < -0.25) {
-          bar.position.y = 0.23;
-          const col = mScrollColors[Math.random() > 0.6 ? 1 : 0];
-          bar.material.color.setHex(col);
-          bar.material.emissive.setHex(col);
-          bar.position.x = bar.userData.xBase + (Math.random() - 0.5) * 0.06;
+        bar.position.y -= 0.0004;
+        if (bar.position.y < -0.20) {
+          bar.position.y = 0.18;
+          const cols = [0x2f91c3, 0x5bbae0, 0x1a3a4a];
+          const c = cols[Math.floor(Math.random()*3)];
+          bar.material.color.setHex(c); bar.material.emissive.setHex(c);
         }
       });
-      // Callie screen bars — scroll upward
-      const cScrollColors = [0x22c55e, 0x566B85, 0xa0b4c8];
+      // Callie screen — scroll upward
       callieScreenBars.forEach(bar => {
-        bar.position.y += 0.0002;
-        if (bar.position.y > 0.24) {
-          bar.position.y = -0.23;
-          const col = cScrollColors[Math.floor(Math.random() * 3)];
-          bar.material.color.setHex(col);
-          bar.material.emissive.setHex(col);
-          bar.position.x = bar.userData.xBase + (Math.random() - 0.5) * 0.02;
+        bar.position.y += 0.0003;
+        if (bar.position.y > 0.19) {
+          bar.position.y = -0.18;
+          const cols = [0x22c55e, 0x566b85, 0xa0b4c8];
+          const c = cols[Math.floor(Math.random()*3)];
+          bar.material.color.setHex(c); bar.material.emissive.setHex(c);
         }
       });
       renderer.render(scene, camera);
+      // Update label positions — anchors match character head positions exactly
       const mp = project(mollieAnchor);
       const cp = project(callieAnchor);
-      const cW2 = container.clientWidth;
-      const labelW = 110;
-      mollieLabel.style.left = Math.min(Math.max(mp.x, labelW/2 + 4), cW2 - labelW/2 - 4) + 'px';
-      mollieLabel.style.top = (mp.y - 64) + 'px';
-      callieLabel.style.left = Math.min(Math.max(cp.x, labelW/2 + 4), cW2 - labelW/2 - 4) + 'px';
-      callieLabel.style.top = (cp.y - 64) + 'px';
+      mollieLabel.style.left = mp.x + 'px';
+      mollieLabel.style.top = (mp.y - 58) + 'px';
+      callieLabel.style.left = cp.x + 'px';
+      callieLabel.style.top = (cp.y - 58) + 'px';
     }
 
     window.addEventListener('resize', () => {
