@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-04-04T11:54:00-07:00",
-    "updatedBy": "Callie"
+    "lastUpdated": "2026-04-04T12:35:00-07:00",
+    "updatedBy": "Mollie"
   },
   "usage": {
     "monthLabel": "April 2026",
@@ -24,11 +24,11 @@
     "dailyNote": "Mar 31 spike = pre-Callie era. Trending down ✓"
   },
   "activity": [
-    { "dot": "grey",  "text": "HQ refreshed — usage + activity + tasks updated", "time": "Apr 4" },
+    { "dot": "blue",  "text": "3D isometric Workspace tab added to HQ — Mollie + Callie office scene live", "time": "Apr 4" },
     { "dot": "green", "text": "Nightly reflection cron updated — now sends full reflection to Telegram at 11pm", "time": "Apr 4" },
     { "dot": "green", "text": "Inbox Monitor cron fixed — channel_not_found resolved, auto-files Fathom recaps now", "time": "Apr 3" },
-    { "dot": "green", "text": "All 6 Fathom recaps filed to client meeting folders ✓", "time": "Apr 3" },
-    { "dot": "blue",  "text": "Rho P1 Email 1 — v4 delivered to Michael. Staggered two-column layout, real brand images", "time": "Apr 3 7pm" },
+    { "dot": "green", "text": "All 6 Fathom recaps filed to client meeting folders", "time": "Apr 3" },
+    { "dot": "blue",  "text": "Rho P1 Email 1 — v4 delivered. Staggered two-column layout, real brand images", "time": "Apr 3" },
     { "dot": "green", "text": "AI email design pipeline proved — MJML + Puppeteer renders email mockups autonomously", "time": "Apr 3" }
   ],
   "tasks": [
@@ -39,10 +39,10 @@
     { "id": "q2", "name": "Hiba March Report — 3 pending fixes verification",          "type": "report",  "due": "2026-04-04", "col": "queued",  "agent": "mollie" },
     { "id": "q3", "name": "Riversol campaign-ideas.html — Add Sales Strategies section + deploy", "type": "client", "due": "2026-04-05", "col": "queued", "agent": "callie" },
     { "id": "q4", "name": "DigitsUp Content Hub — Save first content pieces to workspace/content/", "type": "admin", "due": "2026-04-05", "col": "queued", "agent": "mollie" },
-    { "id": "d1", "name": "Rho Nutrition — 6 persona copy docs ✓",                    "type": "brief",   "col": "done",    "agent": "callie" },
-    { "id": "d2", "name": "Fathom recaps filed to all client folders ✓",               "type": "admin",   "col": "done",    "agent": "mollie" },
-    { "id": "d3", "name": "Inbox Monitor cron fixed ✓",                               "type": "admin",   "col": "done",    "agent": "mollie" },
-    { "id": "d4", "name": "RVCA Client Kickoff ✓",                                    "type": "client",  "col": "done",    "agent": "mollie" },
-    { "id": "d5", "name": "Hiba March Report deployed ✓",                             "type": "report",  "col": "done",    "agent": "callie" }
+    { "id": "d1", "name": "Rho Nutrition — 6 persona copy docs",                       "type": "brief",   "col": "done",    "agent": "callie" },
+    { "id": "d2", "name": "Fathom recaps filed to all client folders",                 "type": "admin",   "col": "done",    "agent": "mollie" },
+    { "id": "d3", "name": "Inbox Monitor cron fixed",                                  "type": "admin",   "col": "done",    "agent": "mollie" },
+    { "id": "d4", "name": "RVCA Client Kickoff",                                       "type": "client",  "col": "done",    "agent": "mollie" },
+    { "id": "d5", "name": "Hiba March Report deployed",                               "type": "report",  "col": "done",    "agent": "callie" }
   ]
 }
