@@ -44,5 +44,26 @@
     { "id": "d3", "name": "Inbox Monitor cron fixed",                                  "type": "admin",   "col": "done",    "agent": "mollie" },
     { "id": "d4", "name": "RVCA Client Kickoff",                                       "type": "client",  "col": "done",    "agent": "mollie" },
     { "id": "d5", "name": "Hiba March Report deployed",                               "type": "report",  "col": "done",    "agent": "callie" }
+  ],
+  "needsYou": [
+    { "text": "Ali (Riversol) offered to share SPF 50 campaign draft — approve or pass?", "chip": "Riversol" },
+    { "text": "RVCA Klaviyo — confirm Shelbie + Kieran invite, and Tuesday 1pm PT cadence", "chip": "RVCA" },
+    { "text": "SFR Distillery pre-call brief — prep together before Apr 7 call", "chip": "SFR Distillery" }
+  ],
+  "watching": [
+    { "dot": "amber", "text": "Arnaud (Riversol) — waiting on reply to Michael's 4 questions" },
+    { "dot": "amber", "text": "Shelbie — Rho copy review, flag Michael when back" },
+    { "dot": "blue",  "text": "RVCA / Clayton Dahl — Thomas sent kickoff follow-up, monitoring" },
+    { "dot": "amber", "text": "Brand Featured — waiting to hear if proposal signed" },
+    { "dot": "blue",  "text": "Ali (Riversol) — SPF 50 draft offer pending Michael's decision" }
+  ],
+  "clients": [
+    { "name": "Liverpool LA",   "status": "active",   "dot": "green", "lastActivity": "Weekly report cadence running" },
+    { "name": "Riversol",       "status": "active",   "dot": "amber", "lastActivity": "SPF 50 campaign + tier thresholds pending" },
+    { "name": "Rho Nutrition",  "status": "active",   "dot": "blue",  "lastActivity": "AI email pipeline — P1 Email 1 v4 delivered" },
+    { "name": "Hiba Academy",   "status": "active",   "dot": "green", "lastActivity": "March report delivered — closed" },
+    { "name": "RVCA",           "status": "active",   "dot": "amber", "lastActivity": "Kickoff follow-up sent — awaiting reply" },
+    { "name": "Brand Featured", "status": "prospect", "dot": "amber", "lastActivity": "Proposal sent — waiting for signature" },
+    { "name": "SFR Distillery", "status": "prospect", "dot": "blue",  "lastActivity": "Pre-call brief in queue — call Apr 7" }
   ]
 }
