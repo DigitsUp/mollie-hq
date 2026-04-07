@@ -176,6 +176,74 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
 /* ── SUBSECTION HEADER ── */
 .sub-title{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.16em;color:var(--accent2);margin-bottom:14px;margin-top:32px;}
 .sub-title:first-child{margin-top:0;}
+
+/* ── FLOW DRILL-DOWN ── */
+.flow-expand-btn{display:flex;align-items:center;justify-content:space-between;padding:8px 0 0;border-top:1px solid var(--border);border-left:none;border-right:none;border-bottom:none;margin-top:10px;cursor:pointer;background:none;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;width:100%;transition:color .2s;text-align:left;}
+.flow-expand-btn:hover{color:var(--accent2);}
+.flow-expand-arrow{transition:transform .3s ease;display:inline-block;font-size:10px;}
+.flow-expand-arrow.open{transform:rotate(180deg);}
+.flow-drilldown{overflow:hidden;max-height:0;transition:max-height .4s ease;}
+.flow-drilldown.open{max-height:4000px;}
+.drilldown-wrap{margin:14px -18px 0;overflow-x:auto;}
+.drilldown-table{width:100%;border-collapse:collapse;min-width:520px;}
+.drilldown-table th{font-family:'IBM Plex Mono',monospace;font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);padding:8px 12px;text-align:left;background:rgba(200,146,106,.08);border-bottom:1px solid var(--border);white-space:nowrap;}
+.drilldown-table td{padding:8px 12px;border-bottom:1px solid rgba(42,42,42,.5);font-size:11px;vertical-align:middle;}
+.drilldown-table tr:last-child td{border-bottom:none;}
+.drilldown-table tr:hover td{background:rgba(255,255,255,.025);}
+.dd-name{font-size:11px;font-weight:600;color:var(--text);}
+.dd-ch{font-family:'IBM Plex Mono',monospace;font-size:8px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;padding:2px 6px;border-radius:2px;white-space:nowrap;}
+.dd-ch.email{background:var(--accent-soft);color:var(--accent);border:1px solid rgba(107,168,200,.2);}
+.dd-ch.sms{background:rgba(200,146,106,.1);color:var(--accent2);border:1px solid rgba(200,146,106,.2);}
+.dd-mono{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);white-space:nowrap;}
+.dd-rev{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:var(--liverpool-cream);white-space:nowrap;}
+.rpr-wrap{display:flex;flex-direction:column;gap:3px;min-width:52px;}
+.rpr-val{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;white-space:nowrap;}
+.rpr-bar{height:2px;border-radius:1px;}
+.rpr-green{color:#4CAF7D;}
+.rpr-amber{color:#C8926A;}
+.rpr-dim{color:var(--dim);}
+
+/* ── TMM AUTOMATIONS FORMAT — WELCOME SERIES ── */
+.wf-card { background: var(--card,#fff); border: 1.5px solid var(--border,#E2E8F0); border-radius: 10px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.05); margin-bottom: 16px; }
+.wf-header { display: flex; align-items: center; gap: 12px; padding: 14px 18px; background: #0A1628; }
+.wf-status-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.wf-status-dot.live { background: #4ADE80; box-shadow: 0 0 0 3px rgba(74,222,128,.25); }
+.wf-status-dot.review { background: #FBBF24; }
+.wf-name { font-size: 13px; font-weight: 700; color: #fff; flex: 1; }
+.wf-trigger { font-size: 10px; color: rgba(255,255,255,.5); }
+.wf-badge { font-size: 9px; font-weight: 700; padding: 3px 8px; border-radius: 4px; white-space: nowrap; }
+.badge-live { background: #DCFCE7; color: #15803D; }
+.badge-review { background: #FEF3C7; color: #92400E; }
+.wf-flow { padding: 20px 18px; overflow-x: auto; }
+.flow-row { display: flex; align-items: flex-start; gap: 0; min-width: max-content; }
+.flow-node { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+.flow-group { display: flex; flex-direction: column; gap: 5px; align-items: center; flex-shrink: 0; }
+.flow-box { border: 1.5px solid; border-radius: 7px; padding: 7px 10px; text-align: center; min-width: 100px; max-width: 120px; }
+.flow-box-title { font-size: 9.5px; font-weight: 700; line-height: 1.3; }
+.flow-box-sub { font-size: 8.5px; color: #64748B; margin-top: 2px; line-height: 1.3; }
+.flow-stats { display: flex; flex-direction: column; gap: 3px; margin-top: 6px; }
+.flow-stat-pill { font-size: 8px; font-weight: 700; border-radius: 3px; padding: 2px 5px; white-space: nowrap; text-align: center; }
+.flow-stat-pill.open { color: #15803D; background: #DCFCE7; }
+.flow-stat-pill.click { color: #1D4ED8; background: #DBEAFE; }
+.flow-stat-pill.sent { color: #6B7280; background: #F3F4F6; }
+.flow-arrow { display: flex; flex-direction: column; align-items: center; padding: 12px 6px 0; flex-shrink: 0; }
+.flow-arrow-line { font-size: 14px; color: #94A3B8; font-weight: 700; line-height: 1; }
+.flow-arrow-delay { font-size: 8px; font-weight: 700; color: #94A3B8; white-space: nowrap; margin-top: 2px; }
+.fb-email { background: #EFF6FF; border-color: #93C5FD; }
+.fb-email .flow-box-title { color: #1D4ED8; }
+.fb-sms { background: #F5F3FF; border-color: #C4B5FD; }
+.fb-sms .flow-box-title { color: #6D28D9; }
+.wf-notes { padding: 10px 18px 12px; background: #F8FAFC; border-top: 1px solid #E2E8F0; font-size: 11px; color: #64748B; line-height: 1.6; }
+.wf-notes strong { color: #1A2236; font-weight: 600; }
+.wf-insights { padding: 10px 18px 14px; background: #F8FAFC; }
+.wf-insights-title { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #94A3B8; margin-bottom: 8px; }
+.wf-insight { display: flex; align-items: flex-start; gap: 7px; font-size: 10.5px; color: #64748B; padding: 3px 0; line-height: 1.5; }
+.wf-insight-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.wf-insight-dot.green { background: #22C55E; }
+.wf-insight-dot.amber { background: #F59E0B; }
+.wf-insight-dot.red { background: #EF4444; }
+.wf-insight-dot.blue { background: #3B82F6; }
+.wf-insight strong { color: #1A2236; font-weight: 600; }
 </style>
 </head>
 <body>
@@ -501,26 +569,97 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
         <div class="sec-title">Flow Stack — Mar 7–Apr 5, 2026 (30 days)</div>
         <div class="flow-grid">
 
-          <div class="flow-card">
-            <div class="flow-card-header">
-              <div class="flow-name">Welcome Series Email 2026</div>
-              <span class="badge badge-live">LIVE</span>
-            </div>
-            <div class="flow-meta">
-              <div class="flow-metric">
-                <div class="flow-metric-label">30d Revenue</div>
-                <div class="flow-metric-val">$39,899</div>
-              </div>
-              <div class="flow-metric">
-                <div class="flow-metric-label">RPR</div>
-                <div class="flow-metric-val mono">$9.87</div>
-              </div>
-            </div>
-            <div style="margin-bottom:10px;"><span class="flow-channel">EMAIL</span></div>
-            <div class="flow-note">#1 flow — compounding with list growth</div>
+          <div class="wf-card" id="flow-UaeNDJ" style="margin-bottom:20px;">
+  <div class="wf-header">
+    <div class="wf-status-dot live"></div>
+    <div class="wf-name">&#x1F4E7; Welcome Series Email 2026</div>
+    <div class="wf-trigger">Trigger: Placed Order (new subscriber) &middot; 30d Revenue: $39,899 &middot; RPR: $9.87</div>
+    <span class="wf-badge badge-live">Live</span>
+  </div>
+  <div class="wf-flow">
+    <div class="flow-row">
+      <!-- Email 1 -->
+      <div class="flow-node">
+        <div class="flow-box fb-email">
+          <div class="flow-box-title">Email 1</div>
+          <div class="flow-box-sub">Welcome to Liverpool</div>
+          <div class="flow-stats">
+            <span class="flow-stat-pill sent">4,036 sent</span>
+            <span class="flow-stat-pill open">&#x2197; 90.5% open</span>
+            <span class="flow-stat-pill click">&#x2316; 14.5% click</span>
+            <span class="flow-stat-pill" style="background:#DCFCE7;color:#15803D;font-weight:700;">$9.78 RPR</span>
           </div>
+        </div>
+      </div>
+      <div class="flow-arrow"><div class="flow-arrow-line">&rarr;</div><div class="flow-arrow-delay">~1&ndash;2 days</div></div>
+      <!-- Email 2 -->
+      <div class="flow-node">
+        <div class="flow-box fb-email">
+          <div class="flow-box-title">Email 2</div>
+          <div class="flow-box-sub">Brand Background</div>
+          <div class="flow-stats">
+            <span class="flow-stat-pill sent">4,747 sent</span>
+            <span class="flow-stat-pill open">&#x2197; 72.8% open</span>
+            <span class="flow-stat-pill click">&#x2316; 4.0% click</span>
+            <span class="flow-stat-pill" style="background:#FEF3C7;color:#92400E;font-weight:700;">$0.50 RPR</span>
+          </div>
+        </div>
+      </div>
+      <div class="flow-arrow"><div class="flow-arrow-line">&rarr;</div><div class="flow-arrow-delay">~2&ndash;3 days</div></div>
+      <!-- Email 4 -->
+      <div class="flow-node">
+        <div class="flow-box fb-email">
+          <div class="flow-box-title">Email 4</div>
+          <div class="flow-box-sub">Bestsellers (Men)</div>
+          <div class="flow-stats">
+            <span class="flow-stat-pill sent">158 sent</span>
+            <span class="flow-stat-pill open">&#x2197; 67.7% open</span>
+            <span class="flow-stat-pill click">&#x2316; 2.5% click</span>
+            <span class="flow-stat-pill" style="background:#FEF3C7;color:#92400E;font-weight:700;">$2.59 RPR</span>
+          </div>
+        </div>
+      </div>
+      <div class="flow-arrow"><div class="flow-arrow-line">&rarr;</div><div class="flow-arrow-delay">~4&ndash;5 days</div></div>
+      <!-- Email 7 -->
+      <div class="flow-node">
+        <div class="flow-box fb-email">
+          <div class="flow-box-title">Email 7</div>
+          <div class="flow-box-sub">Last Chance Incentive</div>
+          <div class="flow-stats">
+            <span class="flow-stat-pill sent">170 sent</span>
+            <span class="flow-stat-pill open">&#x2197; 67.6% open</span>
+            <span class="flow-stat-pill click">&#x2316; 1.2% click</span>
+            <span class="flow-stat-pill" style="background:#F1F5F9;color:#64748B;font-weight:700;">$0.00 RPR</span>
+          </div>
+        </div>
+      </div>
+      <div class="flow-arrow"><div class="flow-arrow-line">&rarr;</div><div class="flow-arrow-delay">~7+ days</div></div>
+      <!-- Email 14 -->
+      <div class="flow-node">
+        <div class="flow-box fb-email">
+          <div class="flow-box-title">Email 14</div>
+          <div class="flow-box-sub">Bestsellers Promo (Both)</div>
+          <div class="flow-stats">
+            <span class="flow-stat-pill sent">114 sent</span>
+            <span class="flow-stat-pill open">&#x2197; 55.3% open</span>
+            <span class="flow-stat-pill click">&#x2316; 2.6% click</span>
+            <span class="flow-stat-pill" style="background:#F1F5F9;color:#64748B;font-weight:700;">$0.00 RPR</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wf-notes"><strong>14+ emails &middot; Multiple split variants</strong> &middot; 30d Revenue: $39,899 &middot; RPR: $9.87 &middot; Most revenue concentrated in Email 1 (new subscriber window).</div>
+  <div class="wf-insights">
+    <div class="wf-insights-title">Insights &amp; Opportunities</div>
+    <div class="wf-insight"><div class="wf-insight-dot green"></div><span><strong>90.5% open on Email 1</strong> &mdash; strongest entry point in the system. Immediate post-opt-in intent is working.</span></div>
+    <div class="wf-insight"><div class="wf-insight-dot red"></div><span><strong>Revenue collapses after Email 1</strong> &mdash; $9.78 RPR drops to $0.50 RPR by Email 2. The tail emails are open-friendly but not converting. Consolidation opportunity.</span></div>
+    <div class="wf-insight"><div class="wf-insight-dot amber"></div><span><strong>14+ email variants running in parallel</strong> &mdash; many unnamed steps create reporting noise. A flow audit should consolidate split variants into a single clean architecture.</span></div>
+    <div class="wf-insight"><div class="wf-insight-dot blue"></div><span><strong>Email 7 and 14 generate $0 revenue</strong> &mdash; consider retiring or radically rewriting the late-sequence emails. High open rates suggest the audience is still there, the offer isn&apos;t landing.</span></div>
+  </div>
+</div>
 
-          <div class="flow-card">
+          <div class="flow-card" id="flow-Sku3EU">
             <div class="flow-card-header">
               <div class="flow-name">Added2Cart 2025</div>
               <span class="badge badge-live">LIVE</span>
@@ -535,11 +674,40 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
                 <div class="flow-metric-val mono">$8.73</div>
               </div>
             </div>
-            <div style="margin-bottom:10px;"><span class="flow-channel">EMAIL</span></div>
+            <div style="margin-bottom:10px;"><span class="flow-channel both">EMAIL/SMS</span></div>
             <div class="flow-note">High-intent, consistent performer</div>
+            <button class="flow-expand-btn" onclick="toggleDrilldown('Sku3EU')">
+              <span id="Sku3EU-label">View messages ↓</span>
+              <span class="flow-expand-arrow" id="Sku3EU-arrow">▲</span>
+            </button>
+            <div class="flow-drilldown" id="Sku3EU-dd">
+              <div class="drilldown-wrap">
+                <table class="drilldown-table">
+                  <thead>
+                    <tr><th>Message</th><th>Ch</th><th>Recip</th><th>Engage%</th><th>Conv%</th><th>Rev (30d)</th><th>RPR</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td class="dd-name">SMS (high conv)</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">954</td><td class="dd-mono">26.1% click</td><td class="dd-mono">4.82%</td><td class="dd-rev">$8,626</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$9.04</span><div class="rpr-bar" style="width:100%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email 1 – Loyalty</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,323</td><td class="dd-mono">95.3% open</td><td class="dd-mono">4.54%</td><td class="dd-rev">$11,198</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$8.46</span><div class="rpr-bar" style="width:94%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">735</td><td class="dd-mono">27.1% click</td><td class="dd-mono">3.27%</td><td class="dd-rev">$4,819</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$6.56</span><div class="rpr-bar" style="width:73%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">651</td><td class="dd-mono">32.9% click</td><td class="dd-mono">3.07%</td><td class="dd-rev">$3,639</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$5.59</span><div class="rpr-bar" style="width:62%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">622</td><td class="dd-mono">31.2% click</td><td class="dd-mono">1.93%</td><td class="dd-rev">$2,390</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$3.84</span><div class="rpr-bar" style="width:49%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">669</td><td class="dd-mono">32.0% click</td><td class="dd-mono">1.49%</td><td class="dd-rev">$2,307</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$3.45</span><div class="rpr-bar" style="width:44%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email (high open)</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,207</td><td class="dd-mono">94.0% open</td><td class="dd-mono">1.74%</td><td class="dd-rev">$4,504</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$3.73</span><div class="rpr-bar" style="width:47%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,150</td><td class="dd-mono">85.0% open</td><td class="dd-mono">0.78%</td><td class="dd-rev">$2,206</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$1.92</span><div class="rpr-bar" style="width:24%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,211</td><td class="dd-mono">83.1% open</td><td class="dd-mono">0.91%</td><td class="dd-rev">$2,469</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$2.04</span><div class="rpr-bar" style="width:26%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email 1 – NCO</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,700</td><td class="dd-mono">84.9% open</td><td class="dd-mono">1.00%</td><td class="dd-rev">$3,195</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$1.88</span><div class="rpr-bar" style="width:24%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email 3 – NCO</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,385</td><td class="dd-mono">75.1% open</td><td class="dd-mono">0.72%</td><td class="dd-rev">$1,739</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$1.26</span><div class="rpr-bar" style="width:16%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email 2 – Generic</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,156</td><td class="dd-mono">83.1% open</td><td class="dd-mono">0.43%</td><td class="dd-rev">$1,174</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$1.02</span><div class="rpr-bar" style="width:13%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email 2 – NCO</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,630</td><td class="dd-mono">77.1% open</td><td class="dd-mono">0.80%</td><td class="dd-rev">$1,518</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.93</span><div class="rpr-bar" style="width:12%;background:#555550;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,192</td><td class="dd-mono">86.5% open</td><td class="dd-mono">0.42%</td><td class="dd-rev">$1,033</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.87</span><div class="rpr-bar" style="width:11%;background:#555550;"></div></div></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
 
-          <div class="flow-card">
+          <div class="flow-card" id="flow-XBuiBy">
             <div class="flow-card-header">
               <div class="flow-name">Abandoned Checkout 2025</div>
               <span class="badge badge-live">LIVE</span>
@@ -554,8 +722,38 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
                 <div class="flow-metric-val mono">$10.04</div>
               </div>
             </div>
-            <div style="margin-bottom:10px;"><span class="flow-channel">EMAIL</span></div>
+            <div style="margin-bottom:10px;"><span class="flow-channel both">EMAIL/SMS</span></div>
             <div class="flow-note">Rebuilt 2025 — outperforming LY at 2x RPR</div>
+            <button class="flow-expand-btn" onclick="toggleDrilldown('XBuiBy')">
+              <span id="XBuiBy-label">View messages ↓</span>
+              <span class="flow-expand-arrow" id="XBuiBy-arrow">▲</span>
+            </button>
+            <div class="flow-drilldown" id="XBuiBy-dd">
+              <div class="drilldown-wrap">
+                <table class="drilldown-table">
+                  <thead>
+                    <tr><th>Message</th><th>Ch</th><th>Recip</th><th>Engage%</th><th>Conv%</th><th>Rev (30d)</th><th>RPR</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td class="dd-name">SMS (high conv)</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">249</td><td class="dd-mono">28.5% click</td><td class="dd-mono">15.26%</td><td class="dd-rev">$6,576</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$26.41</span><div class="rpr-bar" style="width:100%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">208</td><td class="dd-mono">35.1% click</td><td class="dd-mono">11.06%</td><td class="dd-rev">$3,246</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$15.61</span><div class="rpr-bar" style="width:59%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">392</td><td class="dd-mono">47.2% click</td><td class="dd-mono">9.18%</td><td class="dd-rev">$5,492</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$14.01</span><div class="rpr-bar" style="width:53%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">317</td><td class="dd-mono">34.1% click</td><td class="dd-mono">2.84%</td><td class="dd-rev">$2,288</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$7.22</span><div class="rpr-bar" style="width:27%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email 1 – Loyalty</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">686</td><td class="dd-mono">102.9% open</td><td class="dd-mono">6.27%</td><td class="dd-rev">$6,755</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$9.85</span><div class="rpr-bar" style="width:37%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email 1 – NCO</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">609</td><td class="dd-mono">87.0% open</td><td class="dd-mono">4.60%</td><td class="dd-rev">$4,050</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$6.65</span><div class="rpr-bar" style="width:25%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email 1 – Generic</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">387</td><td class="dd-mono">87.9% open</td><td class="dd-mono">3.88%</td><td class="dd-rev">$3,146</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$8.13</span><div class="rpr-bar" style="width:31%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">595</td><td class="dd-mono">92.8% open</td><td class="dd-mono">2.86%</td><td class="dd-rev">$2,821</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$4.74</span><div class="rpr-bar" style="width:47%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email 3 – NCO</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">456</td><td class="dd-mono">69.5% open</td><td class="dd-mono">2.19%</td><td class="dd-rev">$1,724</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$3.78</span><div class="rpr-bar" style="width:38%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">362</td><td class="dd-mono">79.8% open</td><td class="dd-mono">2.76%</td><td class="dd-rev">$1,537</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$4.25</span><div class="rpr-bar" style="width:43%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email 2 – Loyalty</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">574</td><td class="dd-mono">82.4% open</td><td class="dd-mono">1.39%</td><td class="dd-rev">$1,402</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$2.44</span><div class="rpr-bar" style="width:24%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">344</td><td class="dd-mono">82.0% open</td><td class="dd-mono">0.58%</td><td class="dd-rev">$892</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$2.59</span><div class="rpr-bar" style="width:26%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">531</td><td class="dd-mono">71.0% open</td><td class="dd-mono">1.69%</td><td class="dd-rev">$981</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$1.85</span><div class="rpr-bar" style="width:19%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">150</td><td class="dd-mono">24.7% click</td><td class="dd-mono">2.00%</td><td class="dd-rev">$376</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$2.51</span><div class="rpr-bar" style="width:25%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">236</td><td class="dd-mono">50.4% click</td><td class="dd-mono">0.00%</td><td class="dd-rev">$0</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.00</span><div class="rpr-bar" style="width:0%;background:#555550;"></div></div></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
 
           <div class="flow-card">
@@ -615,24 +813,76 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
             <div class="flow-note">Transactional reach, low yield</div>
           </div>
 
-          <div class="flow-card">
-            <div class="flow-card-header">
-              <div class="flow-name">Welcome Series SMS 2026</div>
-              <span class="badge badge-live">LIVE</span>
-            </div>
-            <div class="flow-meta">
-              <div class="flow-metric">
-                <div class="flow-metric-label">30d Revenue</div>
-                <div class="flow-metric-val">$6,767</div>
-              </div>
-              <div class="flow-metric">
-                <div class="flow-metric-label">RPR</div>
-                <div class="flow-metric-val mono">$8.56</div>
-              </div>
-            </div>
-            <div style="margin-bottom:10px;"><span class="flow-channel sms">SMS</span></div>
-            <div class="flow-note">$10.21 RPR this week — strong intake quality</div>
+          <div class="wf-card" id="flow-TTCMYU" style="margin-bottom:20px;">
+  <div class="wf-header">
+    <div class="wf-status-dot live"></div>
+    <div class="wf-name">&#x1F4F1; Welcome Series SMS 2026</div>
+    <div class="wf-trigger">Trigger: Placed Order (SMS consent) &middot; 30d Revenue: $6,767 &middot; RPR: $8.56</div>
+    <span class="wf-badge badge-live">Live</span>
+  </div>
+  <div class="wf-flow">
+    <div class="flow-row">
+      <!-- SMS 1 -->
+      <div class="flow-node">
+        <div class="flow-box fb-sms">
+          <div class="flow-box-title">SMS 1</div>
+          <div class="flow-box-sub">Welcome</div>
+          <div class="flow-stats">
+            <span class="flow-stat-pill sent">2,313 sent</span>
+            <span class="flow-stat-pill click">&#x2316; 20.2% click</span>
+            <span class="flow-stat-pill" style="background:#DCFCE7;color:#15803D;font-weight:700;">$22.50 RPR</span>
           </div>
+        </div>
+      </div>
+      <div class="flow-arrow"><div class="flow-arrow-line">&rarr;</div><div class="flow-arrow-delay">~2 days</div></div>
+      <!-- SMS 2 -->
+      <div class="flow-node">
+        <div class="flow-box fb-sms">
+          <div class="flow-box-title">SMS 2</div>
+          <div class="flow-box-sub">Follow-up</div>
+          <div class="flow-stats">
+            <span class="flow-stat-pill sent">1,600 sent</span>
+            <span class="flow-stat-pill click">&#x2316; 15.8% click</span>
+            <span class="flow-stat-pill" style="background:#FEF3C7;color:#92400E;font-weight:700;">$1.53 RPR</span>
+          </div>
+        </div>
+      </div>
+      <div class="flow-arrow"><div class="flow-arrow-line">&rarr;</div><div class="flow-arrow-delay">~3 days</div></div>
+      <!-- SMS 3 Fast -->
+      <div class="flow-node">
+        <div class="flow-box fb-sms">
+          <div class="flow-box-title">SMS 3 Fast</div>
+          <div class="flow-box-sub">Fast path</div>
+          <div class="flow-stats">
+            <span class="flow-stat-pill sent">740 sent</span>
+            <span class="flow-stat-pill click">&#x2316; 17.2% click</span>
+            <span class="flow-stat-pill" style="background:#F1F5F9;color:#64748B;font-weight:700;">$0.62 RPR</span>
+          </div>
+        </div>
+      </div>
+      <div class="flow-arrow"><div class="flow-arrow-line">&rarr;</div><div class="flow-arrow-delay">~5 days</div></div>
+      <!-- SMS 4 Fast -->
+      <div class="flow-node">
+        <div class="flow-box fb-sms">
+          <div class="flow-box-title">SMS 4 Fast</div>
+          <div class="flow-box-sub">Fast path</div>
+          <div class="flow-stats">
+            <span class="flow-stat-pill sent">683 sent</span>
+            <span class="flow-stat-pill click">&#x2316; 17.7% click</span>
+            <span class="flow-stat-pill" style="background:#F1F5F9;color:#64748B;font-weight:700;">$1.90 RPR</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wf-notes"><strong>6 SMS steps &middot; Fast + Slow path splits</strong> &middot; 30d Revenue: $6,767 &middot; RPR: $8.56 &middot; SMS #1 dominates revenue &mdash; $22.50 RPR vs &lt;$2 for all subsequent steps.</div>
+  <div class="wf-insights">
+    <div class="wf-insights-title">Insights &amp; Opportunities</div>
+    <div class="wf-insight"><div class="wf-insight-dot green"></div><span><strong>$22.50 RPR on SMS 1</strong> &mdash; best-performing SMS in the entire welcome stack. Immediate post-subscribe moment is critical.</span></div>
+    <div class="wf-insight"><div class="wf-insight-dot red"></div><span><strong>RPR drops 93% after SMS 1</strong> &mdash; follow-up messages are barely earning. The SMS cadence needs a content/offer rethink for steps 2&ndash;4.</span></div>
+    <div class="wf-insight"><div class="wf-insight-dot amber"></div><span><strong>Fast/Slow path split adds complexity</strong> &mdash; SMS 3 and 4 run both paths with similar volume. Consolidate if performance difference doesn&apos;t justify the split.</span></div>
+  </div>
+</div>
 
           <div class="flow-card">
             <div class="flow-card-header">
@@ -1111,6 +1361,22 @@ function showTab(name) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
   event.currentTarget.classList.add('active');
+}
+
+function toggleDrilldown(id) {
+  const dd = document.getElementById(id + '-dd');
+  const arrow = document.getElementById(id + '-arrow');
+  const label = document.getElementById(id + '-label');
+  const isOpen = dd.classList.contains('open');
+  if (isOpen) {
+    dd.classList.remove('open');
+    arrow.classList.remove('open');
+    label.textContent = 'View messages \u2193';
+  } else {
+    dd.classList.add('open');
+    arrow.classList.add('open');
+    label.textContent = 'Collapse messages \u2191';
+  }
 }
 </script>
 
