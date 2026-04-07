@@ -176,6 +176,32 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
 /* ── SUBSECTION HEADER ── */
 .sub-title{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.16em;color:var(--accent2);margin-bottom:14px;margin-top:32px;}
 .sub-title:first-child{margin-top:0;}
+
+/* ── FLOW DRILL-DOWN ── */
+.flow-expand-btn{display:flex;align-items:center;justify-content:space-between;padding:8px 0 0;border-top:1px solid var(--border);border-left:none;border-right:none;border-bottom:none;margin-top:10px;cursor:pointer;background:none;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;width:100%;transition:color .2s;text-align:left;}
+.flow-expand-btn:hover{color:var(--accent2);}
+.flow-expand-arrow{transition:transform .3s ease;display:inline-block;font-size:10px;}
+.flow-expand-arrow.open{transform:rotate(180deg);}
+.flow-drilldown{overflow:hidden;max-height:0;transition:max-height .4s ease;}
+.flow-drilldown.open{max-height:4000px;}
+.drilldown-wrap{margin:14px -18px 0;overflow-x:auto;}
+.drilldown-table{width:100%;border-collapse:collapse;min-width:520px;}
+.drilldown-table th{font-family:'IBM Plex Mono',monospace;font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);padding:8px 12px;text-align:left;background:rgba(200,146,106,.08);border-bottom:1px solid var(--border);white-space:nowrap;}
+.drilldown-table td{padding:8px 12px;border-bottom:1px solid rgba(42,42,42,.5);font-size:11px;vertical-align:middle;}
+.drilldown-table tr:last-child td{border-bottom:none;}
+.drilldown-table tr:hover td{background:rgba(255,255,255,.025);}
+.dd-name{font-size:11px;font-weight:600;color:var(--text);}
+.dd-ch{font-family:'IBM Plex Mono',monospace;font-size:8px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;padding:2px 6px;border-radius:2px;white-space:nowrap;}
+.dd-ch.email{background:var(--accent-soft);color:var(--accent);border:1px solid rgba(107,168,200,.2);}
+.dd-ch.sms{background:rgba(200,146,106,.1);color:var(--accent2);border:1px solid rgba(200,146,106,.2);}
+.dd-mono{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);white-space:nowrap;}
+.dd-rev{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:var(--liverpool-cream);white-space:nowrap;}
+.rpr-wrap{display:flex;flex-direction:column;gap:3px;min-width:52px;}
+.rpr-val{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;white-space:nowrap;}
+.rpr-bar{height:2px;border-radius:1px;}
+.rpr-green{color:#4CAF7D;}
+.rpr-amber{color:#C8926A;}
+.rpr-dim{color:var(--dim);}
 </style>
 </head>
 <body>
@@ -501,7 +527,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
         <div class="sec-title">Flow Stack — Mar 7–Apr 5, 2026 (30 days)</div>
         <div class="flow-grid">
 
-          <div class="flow-card">
+          <div class="flow-card" id="flow-UaeNDJ" style="grid-column:1/-1;">
             <div class="flow-card-header">
               <div class="flow-name">Welcome Series Email 2026</div>
               <span class="badge badge-live">LIVE</span>
@@ -518,9 +544,43 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
             </div>
             <div style="margin-bottom:10px;"><span class="flow-channel">EMAIL</span></div>
             <div class="flow-note">#1 flow — compounding with list growth</div>
+            <button class="flow-expand-btn" onclick="toggleDrilldown('UaeNDJ')">
+              <span id="UaeNDJ-label">Collapse messages ↑</span>
+              <span class="flow-expand-arrow open" id="UaeNDJ-arrow">▲</span>
+            </button>
+            <div class="flow-drilldown open" id="UaeNDJ-dd">
+              <div class="drilldown-wrap">
+                <table class="drilldown-table">
+                  <thead>
+                    <tr><th>Message</th><th>Recip</th><th>Open%</th><th>Click%</th><th>Conv%</th><th>Rev (30d)</th><th>RPR</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td class="dd-name">Email #1 Welcome to Liverpool</td><td class="dd-mono">4,036</td><td class="dd-mono">90.5%</td><td class="dd-mono">14.5%</td><td class="dd-mono">6.37%</td><td class="dd-rev">$39,488</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$9.78</span><div class="rpr-bar" style="width:100%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email (high conv)</td><td class="dd-mono">782</td><td class="dd-mono">92.8%</td><td class="dd-mono">13.2%</td><td class="dd-mono">4.86%</td><td class="dd-rev">$6,896</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$8.82</span><div class="rpr-bar" style="width:90%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email #4 Bestsellers (Men)</td><td class="dd-mono">158</td><td class="dd-mono">67.7%</td><td class="dd-mono">2.5%</td><td class="dd-mono">1.27%</td><td class="dd-rev">$409</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$2.59</span><div class="rpr-bar" style="width:32%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td class="dd-mono">181</td><td class="dd-mono">61.9%</td><td class="dd-mono">4.4%</td><td class="dd-mono">0.55%</td><td class="dd-rev">$322</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$1.78</span><div class="rpr-bar" style="width:22%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td class="dd-mono">93</td><td class="dd-mono">62.4%</td><td class="dd-mono">1.1%</td><td class="dd-mono">1.08%</td><td class="dd-rev">$125</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$1.35</span><div class="rpr-bar" style="width:17%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email #2 Give Brand Background</td><td class="dd-mono">4,747</td><td class="dd-mono">72.8%</td><td class="dd-mono">4.0%</td><td class="dd-mono">0.32%</td><td class="dd-rev">$2,385</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.50</span><div class="rpr-bar" style="width:6%;background:#555550;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td class="dd-mono">2,523</td><td class="dd-mono">65.0%</td><td class="dd-mono">4.5%</td><td class="dd-mono">0.48%</td><td class="dd-rev">$2,149</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.85</span><div class="rpr-bar" style="width:11%;background:#555550;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td class="dd-mono">174</td><td class="dd-mono">62.1%</td><td class="dd-mono">3.4%</td><td class="dd-mono">0.57%</td><td class="dd-rev">$157</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.90</span><div class="rpr-bar" style="width:12%;background:#555550;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td class="dd-mono">2,456</td><td class="dd-mono">60.4%</td><td class="dd-mono">5.5%</td><td class="dd-mono">0.20%</td><td class="dd-rev">$1,029</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.42</span><div class="rpr-bar" style="width:5%;background:#555550;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td class="dd-mono">1,566</td><td class="dd-mono">84.3%</td><td class="dd-mono">4.1%</td><td class="dd-mono">0.57%</td><td class="dd-rev">$885</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.57</span><div class="rpr-bar" style="width:7%;background:#555550;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td class="dd-mono">1,249</td><td class="dd-mono">63.7%</td><td class="dd-mono">2.5%</td><td class="dd-mono">0.24%</td><td class="dd-rev">$539</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.43</span><div class="rpr-bar" style="width:6%;background:#555550;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td class="dd-mono">1,438</td><td class="dd-mono">63.4%</td><td class="dd-mono">2.6%</td><td class="dd-mono">0.07%</td><td class="dd-rev">$347</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.24</span><div class="rpr-bar" style="width:3%;background:#555550;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td class="dd-mono">1,257</td><td class="dd-mono">63.6%</td><td class="dd-mono">3.4%</td><td class="dd-mono">0.00%</td><td class="dd-rev">$0</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.00</span><div class="rpr-bar" style="width:0%;background:#555550;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td class="dd-mono">175</td><td class="dd-mono">57.1%</td><td class="dd-mono">3.4%</td><td class="dd-mono">0.00%</td><td class="dd-rev">$0</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.00</span><div class="rpr-bar" style="width:0%;background:#555550;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td class="dd-mono">83</td><td class="dd-mono">61.4%</td><td class="dd-mono">2.4%</td><td class="dd-mono">0.00%</td><td class="dd-rev">$0</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.00</span><div class="rpr-bar" style="width:0%;background:#555550;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td class="dd-mono">95</td><td class="dd-mono">62.1%</td><td class="dd-mono">0.0%</td><td class="dd-mono">0.00%</td><td class="dd-rev">$0</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.00</span><div class="rpr-bar" style="width:0%;background:#555550;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td class="dd-mono">91</td><td class="dd-mono">52.7%</td><td class="dd-mono">1.1%</td><td class="dd-mono">0.00%</td><td class="dd-rev">$0</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.00</span><div class="rpr-bar" style="width:0%;background:#555550;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email #14 Bestsellers Promo (Both)</td><td class="dd-mono">114</td><td class="dd-mono">55.3%</td><td class="dd-mono">2.6%</td><td class="dd-mono">0.00%</td><td class="dd-rev">$0</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.00</span><div class="rpr-bar" style="width:0%;background:#555550;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email #7 Last Chance Incentive</td><td class="dd-mono">170</td><td class="dd-mono">67.6%</td><td class="dd-mono">1.2%</td><td class="dd-mono">0.00%</td><td class="dd-rev">$0</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.00</span><div class="rpr-bar" style="width:0%;background:#555550;"></div></div></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
 
-          <div class="flow-card">
+          <div class="flow-card" id="flow-Sku3EU">
             <div class="flow-card-header">
               <div class="flow-name">Added2Cart 2025</div>
               <span class="badge badge-live">LIVE</span>
@@ -535,11 +595,40 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
                 <div class="flow-metric-val mono">$8.73</div>
               </div>
             </div>
-            <div style="margin-bottom:10px;"><span class="flow-channel">EMAIL</span></div>
+            <div style="margin-bottom:10px;"><span class="flow-channel both">EMAIL/SMS</span></div>
             <div class="flow-note">High-intent, consistent performer</div>
+            <button class="flow-expand-btn" onclick="toggleDrilldown('Sku3EU')">
+              <span id="Sku3EU-label">View messages ↓</span>
+              <span class="flow-expand-arrow" id="Sku3EU-arrow">▲</span>
+            </button>
+            <div class="flow-drilldown" id="Sku3EU-dd">
+              <div class="drilldown-wrap">
+                <table class="drilldown-table">
+                  <thead>
+                    <tr><th>Message</th><th>Ch</th><th>Recip</th><th>Engage%</th><th>Conv%</th><th>Rev (30d)</th><th>RPR</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td class="dd-name">SMS (high conv)</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">954</td><td class="dd-mono">26.1% click</td><td class="dd-mono">4.82%</td><td class="dd-rev">$8,626</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$9.04</span><div class="rpr-bar" style="width:100%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email 1 – Loyalty</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,323</td><td class="dd-mono">95.3% open</td><td class="dd-mono">4.54%</td><td class="dd-rev">$11,198</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$8.46</span><div class="rpr-bar" style="width:94%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">735</td><td class="dd-mono">27.1% click</td><td class="dd-mono">3.27%</td><td class="dd-rev">$4,819</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$6.56</span><div class="rpr-bar" style="width:73%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">651</td><td class="dd-mono">32.9% click</td><td class="dd-mono">3.07%</td><td class="dd-rev">$3,639</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$5.59</span><div class="rpr-bar" style="width:62%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">622</td><td class="dd-mono">31.2% click</td><td class="dd-mono">1.93%</td><td class="dd-rev">$2,390</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$3.84</span><div class="rpr-bar" style="width:49%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">669</td><td class="dd-mono">32.0% click</td><td class="dd-mono">1.49%</td><td class="dd-rev">$2,307</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$3.45</span><div class="rpr-bar" style="width:44%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email (high open)</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,207</td><td class="dd-mono">94.0% open</td><td class="dd-mono">1.74%</td><td class="dd-rev">$4,504</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$3.73</span><div class="rpr-bar" style="width:47%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,150</td><td class="dd-mono">85.0% open</td><td class="dd-mono">0.78%</td><td class="dd-rev">$2,206</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$1.92</span><div class="rpr-bar" style="width:24%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,211</td><td class="dd-mono">83.1% open</td><td class="dd-mono">0.91%</td><td class="dd-rev">$2,469</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$2.04</span><div class="rpr-bar" style="width:26%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email 1 – NCO</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,700</td><td class="dd-mono">84.9% open</td><td class="dd-mono">1.00%</td><td class="dd-rev">$3,195</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$1.88</span><div class="rpr-bar" style="width:24%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email 3 – NCO</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,385</td><td class="dd-mono">75.1% open</td><td class="dd-mono">0.72%</td><td class="dd-rev">$1,739</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$1.26</span><div class="rpr-bar" style="width:16%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email 2 – Generic</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,156</td><td class="dd-mono">83.1% open</td><td class="dd-mono">0.43%</td><td class="dd-rev">$1,174</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$1.02</span><div class="rpr-bar" style="width:13%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email 2 – NCO</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,630</td><td class="dd-mono">77.1% open</td><td class="dd-mono">0.80%</td><td class="dd-rev">$1,518</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.93</span><div class="rpr-bar" style="width:12%;background:#555550;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,192</td><td class="dd-mono">86.5% open</td><td class="dd-mono">0.42%</td><td class="dd-rev">$1,033</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.87</span><div class="rpr-bar" style="width:11%;background:#555550;"></div></div></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
 
-          <div class="flow-card">
+          <div class="flow-card" id="flow-XBuiBy">
             <div class="flow-card-header">
               <div class="flow-name">Abandoned Checkout 2025</div>
               <span class="badge badge-live">LIVE</span>
@@ -554,8 +643,38 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
                 <div class="flow-metric-val mono">$10.04</div>
               </div>
             </div>
-            <div style="margin-bottom:10px;"><span class="flow-channel">EMAIL</span></div>
+            <div style="margin-bottom:10px;"><span class="flow-channel both">EMAIL/SMS</span></div>
             <div class="flow-note">Rebuilt 2025 — outperforming LY at 2x RPR</div>
+            <button class="flow-expand-btn" onclick="toggleDrilldown('XBuiBy')">
+              <span id="XBuiBy-label">View messages ↓</span>
+              <span class="flow-expand-arrow" id="XBuiBy-arrow">▲</span>
+            </button>
+            <div class="flow-drilldown" id="XBuiBy-dd">
+              <div class="drilldown-wrap">
+                <table class="drilldown-table">
+                  <thead>
+                    <tr><th>Message</th><th>Ch</th><th>Recip</th><th>Engage%</th><th>Conv%</th><th>Rev (30d)</th><th>RPR</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td class="dd-name">SMS (high conv)</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">249</td><td class="dd-mono">28.5% click</td><td class="dd-mono">15.26%</td><td class="dd-rev">$6,576</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$26.41</span><div class="rpr-bar" style="width:100%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">208</td><td class="dd-mono">35.1% click</td><td class="dd-mono">11.06%</td><td class="dd-rev">$3,246</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$15.61</span><div class="rpr-bar" style="width:59%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">392</td><td class="dd-mono">47.2% click</td><td class="dd-mono">9.18%</td><td class="dd-rev">$5,492</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$14.01</span><div class="rpr-bar" style="width:53%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">317</td><td class="dd-mono">34.1% click</td><td class="dd-mono">2.84%</td><td class="dd-rev">$2,288</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$7.22</span><div class="rpr-bar" style="width:27%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email 1 – Loyalty</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">686</td><td class="dd-mono">102.9% open</td><td class="dd-mono">6.27%</td><td class="dd-rev">$6,755</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$9.85</span><div class="rpr-bar" style="width:37%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email 1 – NCO</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">609</td><td class="dd-mono">87.0% open</td><td class="dd-mono">4.60%</td><td class="dd-rev">$4,050</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$6.65</span><div class="rpr-bar" style="width:25%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email 1 – Generic</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">387</td><td class="dd-mono">87.9% open</td><td class="dd-mono">3.88%</td><td class="dd-rev">$3,146</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$8.13</span><div class="rpr-bar" style="width:31%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">595</td><td class="dd-mono">92.8% open</td><td class="dd-mono">2.86%</td><td class="dd-rev">$2,821</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$4.74</span><div class="rpr-bar" style="width:47%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email 3 – NCO</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">456</td><td class="dd-mono">69.5% open</td><td class="dd-mono">2.19%</td><td class="dd-rev">$1,724</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$3.78</span><div class="rpr-bar" style="width:38%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">362</td><td class="dd-mono">79.8% open</td><td class="dd-mono">2.76%</td><td class="dd-rev">$1,537</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$4.25</span><div class="rpr-bar" style="width:43%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email 2 – Loyalty</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">574</td><td class="dd-mono">82.4% open</td><td class="dd-mono">1.39%</td><td class="dd-rev">$1,402</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$2.44</span><div class="rpr-bar" style="width:24%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">344</td><td class="dd-mono">82.0% open</td><td class="dd-mono">0.58%</td><td class="dd-rev">$892</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$2.59</span><div class="rpr-bar" style="width:26%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Email</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">531</td><td class="dd-mono">71.0% open</td><td class="dd-mono">1.69%</td><td class="dd-rev">$981</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$1.85</span><div class="rpr-bar" style="width:19%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">150</td><td class="dd-mono">24.7% click</td><td class="dd-mono">2.00%</td><td class="dd-rev">$376</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$2.51</span><div class="rpr-bar" style="width:25%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">236</td><td class="dd-mono">50.4% click</td><td class="dd-mono">0.00%</td><td class="dd-rev">$0</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.00</span><div class="rpr-bar" style="width:0%;background:#555550;"></div></div></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
 
           <div class="flow-card">
@@ -615,7 +734,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
             <div class="flow-note">Transactional reach, low yield</div>
           </div>
 
-          <div class="flow-card">
+          <div class="flow-card" id="flow-TTCMYU">
             <div class="flow-card-header">
               <div class="flow-name">Welcome Series SMS 2026</div>
               <span class="badge badge-live">LIVE</span>
@@ -632,6 +751,28 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
             </div>
             <div style="margin-bottom:10px;"><span class="flow-channel sms">SMS</span></div>
             <div class="flow-note">$10.21 RPR this week — strong intake quality</div>
+            <button class="flow-expand-btn" onclick="toggleDrilldown('TTCMYU')">
+              <span id="TTCMYU-label">View messages ↓</span>
+              <span class="flow-expand-arrow" id="TTCMYU-arrow">▲</span>
+            </button>
+            <div class="flow-drilldown" id="TTCMYU-dd">
+              <div class="drilldown-wrap">
+                <table class="drilldown-table">
+                  <thead>
+                    <tr><th>Message</th><th>Recip</th><th>Click%</th><th>Conv%</th><th>Rev (30d)</th><th>RPR</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td class="dd-name">SMS (high conv)</td><td class="dd-mono">513</td><td class="dd-mono">39.2%</td><td class="dd-mono">15.98%</td><td class="dd-rev">$14,058</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$27.40</span><div class="rpr-bar" style="width:100%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">SMS #1 (Welcome)</td><td class="dd-mono">2,313</td><td class="dd-mono">20.2%</td><td class="dd-mono">14.66%</td><td class="dd-rev">$52,045</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$22.50</span><div class="rpr-bar" style="width:82%;background:#4CAF7D;"></div></div></td></tr>
+                    <tr><td class="dd-name">Welcome Series SMS #4 Fast</td><td class="dd-mono">683</td><td class="dd-mono">17.7%</td><td class="dd-mono">0.88%</td><td class="dd-rev">$1,298</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$1.90</span><div class="rpr-bar" style="width:24%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Welcome Series SMS #2</td><td class="dd-mono">1,600</td><td class="dd-mono">15.8%</td><td class="dd-mono">0.81%</td><td class="dd-rev">$2,441</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$1.53</span><div class="rpr-bar" style="width:20%;background:#C8926A;"></div></div></td></tr>
+                    <tr><td class="dd-name">Welcome Series SMS #3 Fast</td><td class="dd-mono">740</td><td class="dd-mono">17.2%</td><td class="dd-mono">0.27%</td><td class="dd-rev">$456</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.62</span><div class="rpr-bar" style="width:8%;background:#555550;"></div></div></td></tr>
+                    <tr><td class="dd-name">SMS #4 Slow</td><td class="dd-mono">570</td><td class="dd-mono">19.1%</td><td class="dd-mono">0.53%</td><td class="dd-rev">$311</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.55</span><div class="rpr-bar" style="width:7%;background:#555550;"></div></div></td></tr>
+                    <tr><td class="dd-name">Welcome Series SMS #3 Slow</td><td class="dd-mono">650</td><td class="dd-mono">21.5%</td><td class="dd-mono">0.15%</td><td class="dd-rev">$93</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.14</span><div class="rpr-bar" style="width:2%;background:#555550;"></div></div></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
 
           <div class="flow-card">
@@ -1111,6 +1252,22 @@ function showTab(name) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
   event.currentTarget.classList.add('active');
+}
+
+function toggleDrilldown(id) {
+  const dd = document.getElementById(id + '-dd');
+  const arrow = document.getElementById(id + '-arrow');
+  const label = document.getElementById(id + '-label');
+  const isOpen = dd.classList.contains('open');
+  if (isOpen) {
+    dd.classList.remove('open');
+    arrow.classList.remove('open');
+    label.textContent = 'View messages \u2193';
+  } else {
+    dd.classList.add('open');
+    arrow.classList.add('open');
+    label.textContent = 'Collapse messages \u2191';
+  }
 }
 </script>
 
