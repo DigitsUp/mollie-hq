@@ -3,1370 +3,1000 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Liverpool LA — Client Brain v2</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Liverpool LA — Client Brain v3</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --bg:#0D0D0D;
-  --bg2:#1A1A1A;
-  --bg3:#222222;
-  --border:#2A2A2A;
-  --text:#F0EDE8;
-  --muted:#888880;
-  --dim:#555550;
-  --green:#4CAF7D;
-  --red:#E05555;
-  --yellow:#D4A84B;
-  --accent:#6BA8C8;
-  --accent2:#C8926A;
-  --accent-soft:rgba(107,168,200,.12);
-  --accent2-soft:rgba(200,146,106,.12);
-  --liverpool-warm:#B8875A;
-  --liverpool-cream:#F5EFE4;
-  --liverpool-denim:#4A7FA0;
+  --bg:#FFFFFF;--bg2:#F7F7F8;--bg3:#F0F0F2;
+  --border:#E5E5E8;--border-dark:#D0D0D5;
+  --text:#111111;--text-mid:#444444;--text-muted:#888888;--text-dim:#BBBBBB;
+  --green:#16A34A;--green-bg:#DCFCE7;
+  --amber:#B45309;--amber-bg:#FEF3C7;
+  --red:#DC2626;--red-bg:#FEE2E2;
+  --blue:#2563EB;--blue-bg:#EFF6FF;
+  --email-color:#2563EB;--email-bg:#EFF6FF;
+  --sms-color:#7C3AED;--sms-bg:#F5F3FF;
 }
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
 
-body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
-
-/* ── GATE ── */
+/* GATE */
 #gate{position:fixed;inset:0;z-index:999;background:var(--bg);display:flex;align-items:center;justify-content:center;}
-.gi{text-align:center;width:340px;padding:0 24px;}
-.gi-brand-stripe{width:48px;height:3px;background:linear-gradient(90deg,var(--accent2),var(--accent));margin:0 auto 28px;}
-.ge{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);margin-bottom:6px;}
-.gt{font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;color:var(--liverpool-cream);}
-.gt span{color:var(--accent2);}
-.gd2{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:28px;}
-.gdiv{width:40px;height:1px;background:var(--border);margin:0 auto 28px;}
-.gl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;text-align:left;}
-#pwi{width:100%;padding:13px 16px;background:var(--bg2);border:1px solid var(--border);color:var(--text);font-size:14px;font-family:'IBM Plex Mono',monospace;outline:none;border-radius:0;}
-#pwi:focus{border-color:var(--accent);}
-#pwe{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);margin-top:6px;min-height:14px;}
-#pwb{margin-top:12px;width:100%;padding:12px;background:linear-gradient(135deg,var(--accent2),var(--accent));color:#fff;border:none;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;cursor:pointer;transition:opacity .2s;}
-#pwb:hover{opacity:.85;}
-.gcredit{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);margin-top:24px;}
+.gate-card{width:100%;max-width:380px;background:var(--bg);border:1px solid var(--border);border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,.08);padding:40px 36px;}
+.gate-brand{font-family:'Inter',sans-serif;font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--text);margin-bottom:4px;}
+.gate-sub{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);margin-bottom:32px;}
+.gate-label{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-bottom:8px;}
+#pwi{width:100%;padding:12px 14px;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;}
+#pwi:focus{border-color:var(--border-dark);}
+#pwe{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);margin-top:6px;min-height:16px;}
+#pwb{margin-top:12px;width:100%;padding:13px;background:var(--text);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:opacity .2s;}
+#pwb:hover{opacity:.82;}
+.gate-credit{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-dim);margin-top:20px;text-align:center;}
 
-/* ── CONTENT ── */
+/* CONTENT */
 #content{display:none;}
 
-/* ── SITE HEADER ── */
+/* HEADER */
 .site-header{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);}
-.header-brand-bar{height:3px;background:linear-gradient(90deg,var(--accent2) 0%,var(--accent) 60%,transparent 100%);}
-.header-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:54px;}
-.header-logo{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--liverpool-cream);display:flex;align-items:center;gap:10px;}
-.header-logo .brand-pill{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:400;padding:2px 8px;background:var(--accent2-soft);color:var(--accent2);letter-spacing:.08em;border-radius:20px;}
+.header-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:56px;}
+.header-logo{display:flex;align-items:center;gap:10px;}
+.header-brand{font-family:'Inter',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text);}
+.header-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);padding:2px 10px;border:1px solid var(--border);border-radius:20px;}
 .tab-nav{display:flex;gap:0;}
-.tab-btn{padding:0 18px;height:54px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap;}
+.tab-btn{padding:0 16px;height:56px;font-size:12px;font-weight:500;color:var(--text-muted);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:color .15s,border-color .15s;white-space:nowrap;}
 .tab-btn:hover{color:var(--text);}
-.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);}
+.tab-btn.active{color:var(--text);border-bottom-color:var(--text);}
 
-/* ── PAGE ── */
-.page{max-width:1100px;margin:0 auto;padding:40px 24px 72px;}
+/* PAGE */
+.page{max-width:1140px;margin:0 auto;padding:32px 24px 80px;}
 .tab-panel{display:none;}
 .tab-panel.active{display:block;}
+.sec{margin-bottom:40px;}
+.sec-title{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.15em;color:var(--text-muted);margin-bottom:14px;}
+.sub-title{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.15em;color:var(--text-muted);margin-bottom:12px;margin-top:32px;}
+.sub-title:first-child{margin-top:0;}
 
-/* ── SECTION ── */
-.sec{margin-bottom:48px;}
-.sec-title{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.18em;color:var(--muted);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border);}
-
-/* ── STAT CARDS ── */
-.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:16px;}
-.stat-card{background:var(--bg2);border:1px solid var(--border);padding:22px 20px;}
-.stat-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:10px;}
-.stat-value{font-size:26px;font-weight:800;color:var(--liverpool-cream);letter-spacing:-.01em;margin-bottom:6px;}
+/* STAT CARDS */
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:14px;}
+.stat-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px 18px;box-shadow:0 1px 3px rgba(0,0,0,.06);}
+.stat-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--text-muted);margin-bottom:8px;}
+.stat-value{font-size:24px;font-weight:700;color:var(--text);letter-spacing:-.01em;margin-bottom:5px;}
 .stat-change{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;}
 .stat-change.up{color:var(--green);}
 .stat-change.down{color:var(--red);}
-.stat-period{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);margin-top:4px;}
+.stat-period{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text-dim);margin-top:3px;}
+.stat-compare{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);margin-bottom:3px;}
+.mtd-note{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-dim);margin-top:8px;padding:8px 12px;background:var(--bg2);border-radius:8px;border:1px solid var(--border);}
 
-/* ── IN FLIGHT ── */
-.inflight-grid{display:flex;flex-direction:column;gap:8px;}
-.inflight-row{display:flex;align-items:center;justify-content:space-between;background:var(--bg2);border:1px solid var(--border);padding:14px 18px;}
-.inflight-name{font-size:13px;font-weight:600;color:var(--text);}
-.badge{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:.1em;padding:3px 10px;border-radius:2px;}
-.badge-live{background:rgba(76,175,125,.15);color:var(--green);border:1px solid rgba(76,175,125,.3);}
-.badge-build{background:rgba(107,168,200,.12);color:var(--accent);border:1px solid rgba(107,168,200,.25);}
-.badge-due{background:rgba(212,168,75,.12);color:var(--yellow);border:1px solid rgba(212,168,75,.25);}
-.badge-paused{background:rgba(136,136,128,.1);color:var(--muted);border:1px solid rgba(136,136,128,.2);}
-.badge-optimizing{background:rgba(200,146,106,.12);color:var(--accent2);border:1px solid rgba(200,146,106,.25);}
-.badge-reporting{background:rgba(212,168,75,.12);color:var(--yellow);border:1px solid rgba(212,168,75,.25);}
-.badge-strategy{background:rgba(200,146,106,.12);color:var(--accent2);border:1px solid rgba(200,146,106,.25);}
-.badge-complete{background:rgba(76,175,125,.15);color:var(--green);border:1px solid rgba(76,175,125,.3);}
-.badge-planned{background:rgba(136,136,128,.1);color:var(--muted);border:1px solid rgba(136,136,128,.2);}
+/* NEXT CALL */
+.next-call{background:var(--blue-bg);border:1px solid #BFDBFE;border-radius:12px;padding:20px 24px;box-shadow:0 1px 3px rgba(0,0,0,.06);}
+.next-call-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--blue);margin-bottom:8px;}
+.next-call-time{font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.next-call-who{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);margin-bottom:16px;line-height:1.6;}
+.agenda-list{list-style:none;padding:0;}
+.agenda-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #BFDBFE;font-size:13px;color:var(--text);}
+.agenda-item:last-child{border-bottom:none;padding-bottom:0;}
+.agenda-num{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;color:var(--blue);min-width:20px;}
 
-/* ── NEXT CALL ── */
-.next-call{background:var(--accent-soft);border:1px solid rgba(107,168,200,.25);padding:18px 20px;display:flex;align-items:center;gap:16px;}
-.next-call-icon{font-size:20px;}
-.next-call-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:4px;}
-.next-call-time{font-size:13px;font-weight:700;color:var(--liverpool-cream);}
-.next-call-who{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-top:2px;}
+/* BADGES */
+.badge{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;padding:3px 10px;border-radius:20px;white-space:nowrap;}
+.badge-live{background:var(--green-bg);color:var(--green);}
+.badge-build{background:var(--blue-bg);color:var(--blue);}
+.badge-due{background:var(--amber-bg);color:var(--amber);}
+.badge-paused{background:var(--bg3);color:var(--text-muted);}
+.badge-optimizing{background:var(--amber-bg);color:var(--amber);}
+.badge-reporting{background:var(--amber-bg);color:var(--amber);}
+.badge-strategy{background:var(--blue-bg);color:var(--blue);}
+.badge-complete{background:var(--green-bg);color:var(--green);}
+.badge-planned{background:var(--bg3);color:var(--text-muted);}
+.ch-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;padding:2px 9px;border-radius:20px;white-space:nowrap;}
+.ch-email{background:var(--email-bg);color:var(--email-color);border:1px solid #BFDBFE;}
+.ch-sms{background:var(--sms-bg);color:var(--sms-color);border:1px solid #DDD6FE;}
 
-/* ── REPORTING SNAPSHOT ── */
-.snap-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px;}
-.snap-card{background:var(--bg2);border:1px solid var(--border);padding:18px 16px;}
-.snap-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:10px;}
-.snap-value{font-size:22px;font-weight:800;color:var(--liverpool-cream);margin-bottom:6px;}
-.snap-deltas{display:flex;gap:10px;flex-wrap:wrap;}
+/* SNAP CARDS */
+.snap-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;}
+.snap-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:18px 16px;box-shadow:0 1px 3px rgba(0,0,0,.06);}
+.snap-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--text-muted);margin-bottom:8px;}
+.snap-value{font-size:22px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.snap-deltas{display:flex;gap:8px;flex-wrap:wrap;}
 .snap-delta{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;}
 .snap-delta.up{color:var(--green);}
 .snap-delta.down{color:var(--red);}
-.snap-delta span{color:var(--dim);margin-right:2px;}
+.snap-delta span{color:var(--text-dim);margin-right:2px;}
 
-/* ── DATA TABLE ── */
+/* TABLE */
+.table-wrap{background:var(--bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06);}
 .data-table{width:100%;border-collapse:collapse;}
-.data-table th{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);padding:8px 14px;text-align:left;border-bottom:1px solid var(--border);}
-.data-table td{padding:12px 14px;border-bottom:1px solid rgba(42,42,42,.6);font-size:13px;vertical-align:middle;}
+.data-table th{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--text-muted);padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);background:var(--bg2);}
+.data-table td{padding:12px 14px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:middle;color:var(--text);}
 .data-table tr:last-child td{border-bottom:none;}
-.data-table tr:hover td{background:rgba(255,255,255,.02);}
-.data-table .td-name{font-weight:600;color:var(--text);}
-.data-table .td-rev{font-weight:800;font-size:13px;color:var(--liverpool-cream);}
-.data-table .td-mono{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);}
-.table-wrap{background:var(--bg2);border:1px solid var(--border);}
+.data-table tr:hover td{background:var(--bg2);}
+.td-name{font-weight:600;}
+.td-rev{font-weight:700;}
+.td-mono{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);}
 
-/* ── REPORTS LIBRARY ── */
-.report-row{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border);background:var(--bg2);}
+/* REPORTS */
+.report-row{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border);}
 .report-row:last-child{border-bottom:none;}
 .report-week{font-size:13px;font-weight:600;color:var(--text);}
-.report-range{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-top:2px;}
-.report-dl{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:var(--accent-soft);border:1px solid rgba(107,168,200,.25);color:var(--accent);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;text-decoration:none;transition:background .15s;}
-.report-dl:hover{background:rgba(107,168,200,.2);}
+.report-range{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);margin-top:2px;}
+.report-dl{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:var(--blue-bg);border:1px solid #BFDBFE;border-radius:8px;color:var(--blue);font-size:11px;font-weight:600;text-decoration:none;transition:background .15s;}
+.report-dl:hover{background:#DBEAFE;}
 
-/* ── FLOW CARDS ── */
-.flow-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-.flow-card{background:var(--bg2);border:1px solid var(--border);padding:18px;}
-.flow-card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:14px;}
-.flow-name{font-size:12px;font-weight:700;color:var(--text);line-height:1.35;flex:1;}
-.flow-meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
-.flow-metric{background:rgba(255,255,255,.03);padding:8px 10px;}
-.flow-metric-label{font-family:'IBM Plex Mono',monospace;font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin-bottom:4px;}
-.flow-metric-val{font-size:14px;font-weight:800;color:var(--liverpool-cream);}
-.flow-metric-val.mono{font-family:'IBM Plex Mono',monospace;font-size:12px;}
-.flow-note{font-size:11px;color:var(--muted);line-height:1.4;border-top:1px solid var(--border);padding-top:10px;}
-.flow-channel{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.1em;padding:2px 6px;border-radius:2px;background:var(--accent-soft);color:var(--accent);border:1px solid rgba(107,168,200,.2);}
-.flow-channel.sms{background:rgba(200,146,106,.1);color:var(--accent2);border-color:rgba(200,146,106,.2);}
-.flow-channel.both{background:rgba(107,168,200,.08);color:var(--muted);border-color:rgba(107,168,200,.15);}
-
-/* ── KANBAN ── */
+/* KANBAN */
 .kanban{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;}
-.kanban-col{background:var(--bg2);border:1px solid var(--border);}
-.kanban-header{padding:10px 12px;border-bottom:1px solid var(--border);}
-.kanban-col-title{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);}
+.kanban-col{background:var(--bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06);}
+.kanban-header{padding:10px 14px;border-bottom:1px solid var(--border);background:var(--bg2);}
+.kanban-col-title{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--text-muted);}
 .kanban-body{padding:10px;}
-.kanban-card{background:var(--bg);border:1px solid var(--border);padding:12px;margin-bottom:8px;}
+.kanban-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-bottom:8px;}
 .kanban-card:last-child{margin-bottom:0;}
-.kanban-card-name{font-size:11px;font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.35;}
-.kanban-card-note{font-size:10px;color:var(--muted);line-height:1.4;}
-.kanban-col.active-col .kanban-header{border-bottom-color:var(--accent);}
-.kanban-col.active-col .kanban-col-title{color:var(--accent);}
-.kanban-empty{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);padding:8px 0;text-align:center;}
+.kanban-card-name{font-size:11px;font-weight:600;color:var(--text);margin-bottom:4px;line-height:1.35;}
+.kanban-card-note{font-size:10px;color:var(--text-muted);line-height:1.4;}
+.kanban-empty{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-dim);padding:8px 0;text-align:center;}
 
-/* ── CAMPAIGN TABLE ── */
-.campaign-note{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);padding:14px 18px;background:var(--accent2-soft);border:1px solid rgba(200,146,106,.2);margin-bottom:16px;}
+/* CAMPAIGN */
+.campaign-note{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber);padding:12px 16px;background:var(--amber-bg);border:1px solid #FCD34D;border-radius:8px;margin-bottom:16px;line-height:1.6;}
+.promo-pill{font-family:'IBM Plex Mono',monospace;font-size:8px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:3px 9px;background:var(--amber-bg);color:var(--amber);border:1px solid #FCD34D;border-radius:20px;display:inline-block;white-space:nowrap;}
+.today-pill{font-family:'IBM Plex Mono',monospace;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:2px 7px;background:var(--blue);color:#fff;border-radius:20px;margin-left:6px;vertical-align:middle;}
+.cal-past td{opacity:.45;}
 
-/* ── CHANNEL TAGS ── */
-.ch-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 7px;border-radius:2px;}
-.ch-email{background:var(--accent-soft);color:var(--accent);border:1px solid rgba(107,168,200,.2);}
-.ch-sms{background:rgba(200,146,106,.1);color:var(--accent2);border:1px solid rgba(200,146,106,.2);}
-.ch-both{background:rgba(107,168,200,.07);color:var(--muted);border:1px solid rgba(107,168,200,.15);}
+/* AUTOMATIONS */
+.auto-layout{display:flex;gap:20px;align-items:flex-start;}
+.flow-sidebar{width:280px;flex-shrink:0;background:var(--bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06);}
+.sidebar-header{padding:12px 16px;border-bottom:1px solid var(--border);background:var(--bg2);}
+.sidebar-hdr-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.15em;color:var(--text-muted);}
+.sidebar-hdr-note{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text-dim);margin-top:2px;}
+.sf-row{padding:12px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s;display:flex;align-items:center;gap:10px;border-left:3px solid transparent;}
+.sf-row:last-child{border-bottom:none;}
+.sf-row:hover{background:var(--bg2);}
+.sf-row.active{background:var(--bg2);border-left-color:var(--text);}
+.status-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.status-dot.live{background:#16A34A;}
+.status-dot.build{background:#2563EB;}
+.sf-info{flex:1;min-width:0;}
+.sf-name{font-size:12px;font-weight:600;color:var(--text);margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.sf-trigger{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text-muted);background:var(--bg3);padding:1px 7px;border-radius:20px;}
+.sf-right{text-align:right;flex-shrink:0;}
+.sf-rev{font-size:12px;font-weight:600;color:var(--text);}
+.sf-rpr{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);}
+.sf-note{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--amber);}
 
-/* ── OWNER TAG ── */
-.owner-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 7px;background:rgba(136,136,128,.1);color:var(--muted);border:1px solid rgba(136,136,128,.2);border-radius:2px;}
-.owner-du{background:var(--accent-soft);color:var(--accent);border-color:rgba(107,168,200,.2);}
-
-/* ── SUBSECTION HEADER ── */
-.sub-title{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.16em;color:var(--accent2);margin-bottom:14px;margin-top:32px;}
-.sub-title:first-child{margin-top:0;}
-
-/* ── FLOW DRILL-DOWN ── */
-.flow-expand-btn{display:flex;align-items:center;justify-content:space-between;padding:8px 0 0;border-top:1px solid var(--border);border-left:none;border-right:none;border-bottom:none;margin-top:10px;cursor:pointer;background:none;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;width:100%;transition:color .2s;text-align:left;}
-.flow-expand-btn:hover{color:var(--accent2);}
-.flow-expand-arrow{transition:transform .3s ease;display:inline-block;font-size:10px;}
-.flow-expand-arrow.open{transform:rotate(180deg);}
-.flow-drilldown{overflow:hidden;max-height:0;transition:max-height .4s ease;}
-.flow-drilldown.open{max-height:4000px;}
-.drilldown-wrap{margin:14px -18px 0;overflow-x:auto;}
-.drilldown-table{width:100%;border-collapse:collapse;min-width:520px;}
-.drilldown-table th{font-family:'IBM Plex Mono',monospace;font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);padding:8px 12px;text-align:left;background:rgba(200,146,106,.08);border-bottom:1px solid var(--border);white-space:nowrap;}
-.drilldown-table td{padding:8px 12px;border-bottom:1px solid rgba(42,42,42,.5);font-size:11px;vertical-align:middle;}
-.drilldown-table tr:last-child td{border-bottom:none;}
-.drilldown-table tr:hover td{background:rgba(255,255,255,.025);}
-.dd-name{font-size:11px;font-weight:600;color:var(--text);}
-.dd-ch{font-family:'IBM Plex Mono',monospace;font-size:8px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;padding:2px 6px;border-radius:2px;white-space:nowrap;}
-.dd-ch.email{background:var(--accent-soft);color:var(--accent);border:1px solid rgba(107,168,200,.2);}
-.dd-ch.sms{background:rgba(200,146,106,.1);color:var(--accent2);border:1px solid rgba(200,146,106,.2);}
-.dd-mono{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);white-space:nowrap;}
-.dd-rev{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:var(--liverpool-cream);white-space:nowrap;}
-.rpr-wrap{display:flex;flex-direction:column;gap:3px;min-width:52px;}
-.rpr-val{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;white-space:nowrap;}
-.rpr-bar{height:2px;border-radius:1px;}
-.rpr-green{color:#4CAF7D;}
-.rpr-amber{color:#C8926A;}
-.rpr-dim{color:var(--dim);}
-
-/* ── TMM AUTOMATIONS FORMAT — WELCOME SERIES ── */
-.wf-card{background:#fff;border:1.5px solid #E2E8F0;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05);margin-bottom:16px;}
-.wf-header{display:flex;align-items:center;gap:12px;padding:14px 18px;background:#0A1628;}
-.wf-status-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
-.wf-status-dot.live{background:#4ADE80;box-shadow:0 0 0 3px rgba(74,222,128,.25);}
-.wf-name{font-size:13px;font-weight:700;color:#fff;flex:1;}
-.wf-trigger{font-size:10px;color:rgba(255,255,255,.5);}
-.wf-badge{font-size:9px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;}
-.badge-live{background:#DCFCE7;color:#15803D;}
-.wf-flow{padding:20px 18px;overflow-x:auto;}
-.flow-row{display:flex;align-items:flex-start;gap:0;min-width:max-content;}
-.flow-node{display:flex;flex-direction:column;align-items:center;flex-shrink:0;}
-.flow-box{border:1.5px solid;border-radius:7px;padding:7px 10px;text-align:center;min-width:100px;max-width:120px;}
-.flow-box-title{font-size:9.5px;font-weight:700;line-height:1.3;}
-.flow-box-sub{font-size:8.5px;color:#64748B;margin-top:2px;line-height:1.3;}
-.flow-stats{display:flex;flex-direction:column;gap:3px;margin-top:6px;}
-.flow-stat-pill{font-size:8px;font-weight:700;border-radius:3px;padding:2px 5px;white-space:nowrap;text-align:center;background:#F3F4F6;color:#6B7280;}
-.flow-stat-pill.open{color:#15803D;background:#DCFCE7;}
-.flow-stat-pill.click{color:#1D4ED8;background:#DBEAFE;}
-.flow-stat-pill.sent{color:#6B7280;background:#F3F4F6;}
-.flow-arrow{display:flex;flex-direction:column;align-items:center;padding:12px 6px 0;flex-shrink:0;}
-.flow-arrow-line{font-size:14px;color:#94A3B8;font-weight:700;line-height:1;}
-.flow-arrow-delay{font-size:8px;font-weight:700;color:#94A3B8;white-space:nowrap;margin-top:2px;}
-.fb-email{background:#EFF6FF;border-color:#93C5FD;}
-.fb-email .flow-box-title{color:#1D4ED8;}
-.fb-sms{background:#F5F3FF;border-color:#C4B5FD;}
-.fb-sms .flow-box-title{color:#6D28D9;}
-.wf-notes{padding:10px 18px 12px;background:#F8FAFC;border-top:1px solid #E2E8F0;font-size:11px;color:#64748B;line-height:1.6;}
-.wf-notes strong{color:#1A2236;font-weight:600;}
-.wf-insights{padding:10px 18px 14px;background:#F8FAFC;}
-.wf-insights-title{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#94A3B8;margin-bottom:8px;}
-.wf-insight{display:flex;align-items:flex-start;gap:7px;font-size:10.5px;color:#64748B;padding:3px 0;line-height:1.5;}
-.wf-insight-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:5px;}
-.wf-insight-dot.green{background:#22C55E;}
-.wf-insight-dot.amber{background:#F59E0B;}
-.wf-insight-dot.red{background:#EF4444;}
-.wf-insight-dot.blue{background:#3B82F6;}
-.wf-insight strong{color:#1A2236;font-weight:600;}
+/* FLOW DETAIL */
+.flow-detail{flex:1;min-width:0;}
+.fd-header{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px 24px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:14px;}
+.fd-name{font-size:20px;font-weight:700;color:var(--text);margin-bottom:10px;line-height:1.3;}
+.fd-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.fd-trigger{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);}
+.perf-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px;}
+.perf-stat{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:14px 16px;box-shadow:0 1px 3px rgba(0,0,0,.06);}
+.perf-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--text-muted);margin-bottom:6px;}
+.perf-value{font-size:22px;font-weight:700;color:var(--text);}
+.perf-value.rpr-green{color:var(--green);}
+.perf-value.rpr-amber{color:var(--amber);}
+.perf-value.rpr-grey{color:var(--text-muted);}
+.msg-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:14px;}
+.msg-card-hdr{padding:10px 16px;border-bottom:1px solid var(--border);background:var(--bg2);}
+.msg-card-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.15em;color:var(--text-muted);}
+.msg-table{width:100%;border-collapse:collapse;}
+.msg-table th{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);background:var(--bg2);}
+.msg-table td{padding:9px 12px;border-bottom:1px solid var(--border);font-size:12px;vertical-align:middle;}
+.msg-table tr:last-child td{border-bottom:none;}
+.msg-table tr:hover td{background:var(--bg2);}
+.mt-name{font-weight:600;color:var(--text);}
+.mt-mono{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);}
+.rpr-cell{display:flex;flex-direction:column;gap:3px;}
+.rpr-pill{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;display:inline-block;white-space:nowrap;}
+.rpr-pill.g{background:var(--green-bg);color:var(--green);}
+.rpr-pill.a{background:var(--amber-bg);color:var(--amber);}
+.rpr-pill.gr{background:var(--bg3);color:var(--text-muted);}
+.rpr-bar-wrap{height:3px;background:var(--bg3);border-radius:2px;max-width:100px;}
+.rpr-bar-fill{height:3px;border-radius:2px;}
+.rpr-bar-fill.g{background:var(--green);}
+.rpr-bar-fill.a{background:var(--amber);}
+.rpr-bar-fill.gr{background:var(--text-dim);}
+.insights-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:16px 20px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:14px;}
+.insights-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.15em;color:var(--text-muted);margin-bottom:12px;}
+.insight-row{display:flex;align-items:flex-start;gap:8px;padding:4px 0;font-size:12px;color:var(--text-mid);line-height:1.55;}
+.insight-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+.insight-dot.g{background:var(--green);}
+.insight-dot.a{background:#F59E0B;}
+.insight-dot.r{background:var(--red);}
+.insight-dot.b{background:var(--blue);}
+.notes-bar{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);font-style:italic;}
+.no-msg-note{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);margin-bottom:14px;}
 </style>
 </head>
 <body>
 
 <!-- GATE -->
 <div id="gate">
-  <div class="gi">
-    <div class="gi-brand-stripe"></div>
-    <div class="ge">DigitsUp × Liverpool LA</div>
-    <div class="gt">Client <span>Brain</span></div>
-    <div class="gd2">Retention Operating System — v2</div>
-    <div class="gdiv"></div>
-    <div class="gl">Access Code</div>
+  <div class="gate-card">
+    <div class="gate-brand">Liverpool LA</div>
+    <div class="gate-sub">DigitsUp Client Brain</div>
+    <div class="gate-label">Access Code</div>
     <input type="password" id="pwi" placeholder="Enter password" autocomplete="off" />
     <div id="pwe"></div>
-    <button id="pwb" onclick="checkPw()">Enter</button>
-    <div class="gcredit">DigitsUp · Confidential</div>
+    <button id="pwb" onclick="checkPassword()">Enter</button>
+    <div class="gate-credit">DigitsUp · Confidential</div>
   </div>
 </div>
 
 <!-- CONTENT -->
 <div id="content">
 
-  <!-- HEADER -->
-  <div class="site-header">
-    <div class="header-brand-bar"></div>
-    <div class="header-inner">
-      <div class="header-logo">
-        Liverpool LA
-        <span class="brand-pill">Client Brain v2</span>
+<!-- HEADER -->
+<div class="site-header">
+  <div class="header-inner">
+    <div class="header-logo">
+      <span class="header-brand">Liverpool LA</span>
+      <span class="header-label">Client Brain</span>
+    </div>
+    <nav class="tab-nav">
+      <button class="tab-btn active" onclick="showTab('mission',this)">Mission Control</button>
+      <button class="tab-btn" onclick="showTab('automations',this)">Automations</button>
+      <button class="tab-btn" onclick="showTab('reporting',this)">Reporting</button>
+      <button class="tab-btn" onclick="showTab('strategy',this)">Strategy</button>
+      <button class="tab-btn" onclick="showTab('calendar',this)">Campaign Calendar</button>
+    </nav>
+  </div>
+</div>
+
+<!-- PAGES -->
+<div class="page">
+
+<!-- TAB 1: MISSION CONTROL -->
+<div id="tab-mission" class="tab-panel active">
+  <div class="sec">
+    <div class="sec-title">Weekly Snapshot — Mar 30–Apr 5, 2026</div>
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-label">Total Attributed Revenue</div>
+        <div class="stat-value">$129.4K</div>
+        <div class="stat-change up">↑ +86.7% YoY</div>
+        <div class="stat-period">Week of Mar 30–Apr 5</div>
       </div>
-      <nav class="tab-nav">
-        <button class="tab-btn active" onclick="showTab('mission')">Mission Control</button>
-        <button class="tab-btn" onclick="showTab('reporting')">Reporting</button>
-        <button class="tab-btn" onclick="showTab('flows')">Flow Architecture</button>
-        <button class="tab-btn" onclick="showTab('pipeline')">Strategy Pipeline</button>
-        <button class="tab-btn" onclick="showTab('calendar')">Campaign Calendar</button>
-      </nav>
+      <div class="stat-card">
+        <div class="stat-label">Campaign Revenue</div>
+        <div class="stat-value">$79.7K</div>
+        <div class="stat-change up">↑ +129% YoY</div>
+        <div class="stat-period">Email $69K · SMS $10.8K</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Flow Revenue</div>
+        <div class="stat-value">$49.7K</div>
+        <div class="stat-change up">↑ +44% YoY</div>
+        <div class="stat-period">Week of Mar 30–Apr 5</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Last 30d Attributed Revenue</div>
+        <div class="stat-value">$???</div>
+        <div class="stat-change up">↑ Strong growth</div>
+        <div class="stat-period">Mar 7–Apr 5</div>
+      </div>
     </div>
   </div>
 
-  <!-- PAGES -->
-  <div class="page">
+  <div class="sec">
+    <div class="sec-title">MTD Performance — vs LY MTD</div>
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-label">Total Attributed</div>
+        <div class="stat-value">$369.5K</div>
+        <div class="stat-compare">MTD 2025: $332.1K</div>
+        <div class="stat-change up">↑ +11.2% YoY</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Campaigns</div>
+        <div class="stat-value">$168.2K</div>
+        <div class="stat-compare">MTD 2025: $171.5K</div>
+        <div class="stat-change down">↓ -1.9% YoY</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Flows</div>
+        <div class="stat-value">$201.3K</div>
+        <div class="stat-compare">MTD 2025: $160.6K</div>
+        <div class="stat-change up">↑ +25.3% YoY</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Email Revenue</div>
+        <div class="stat-value">+98.1%</div>
+        <div class="stat-compare">Week-to-Date</div>
+        <div class="stat-change up">↑ WTD Growth</div>
+      </div>
+    </div>
+    <div class="mtd-note">30-Day Rolling (MTD proxy — Apr full data pending)</div>
+  </div>
 
-    <!-- ── TAB 1: MISSION CONTROL ── -->
-    <div id="tab-mission" class="tab-panel active">
+  <div class="sec">
+    <div class="sec-title">Today's Call — Apr 7, 11:30am PST</div>
+    <div class="next-call">
+      <div class="next-call-label">Call Details</div>
+      <div class="next-call-time">Apr 7, 2026 · 11:30am PST</div>
+      <div class="next-call-who">Otaner King · Morgan Kairey · Jennifer Rivet · Sonia Echeverria</div>
+      <ul class="agenda-list">
+        <li class="agenda-item"><span class="agenda-num">01</span>Weekly reporting</li>
+        <li class="agenda-item"><span class="agenda-num">02</span>April + May forecast</li>
+        <li class="agenda-item"><span class="agenda-num">03</span>Loyalty Wallet Pass</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-      <div class="sec">
-        <div class="sec-title">Weekly Snapshot — Mar 30–Apr 5, 2026</div>
-        <div class="stat-row">
-          <div class="stat-card">
-            <div class="stat-label">Total Attributed Revenue</div>
-            <div class="stat-value">$129.4K</div>
-            <div class="stat-change up">↑ +86.7% YoY</div>
-            <div class="stat-period">Week of Mar 30–Apr 5</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Campaign Revenue</div>
-            <div class="stat-value">$79.7K</div>
-            <div class="stat-change up">↑ +129% YoY</div>
-            <div class="stat-period">Email $69K · SMS $10.8K</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Flow Revenue</div>
-            <div class="stat-value">$49.7K</div>
-            <div class="stat-change up">↑ +44% YoY</div>
-            <div class="stat-period">Week of Mar 30–Apr 5</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Last 30d Attributed Revenue</div>
-            <div class="stat-value">$???</div>
-            <div class="stat-change up">↑ Strong growth</div>
-            <div class="stat-period">Mar 7–Apr 5</div>
-          </div>
+<!-- TAB 2: AUTOMATIONS -->
+<div id="tab-automations" class="tab-panel">
+  <div class="auto-layout">
+    <div class="flow-sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-hdr-label">Flow Library</div>
+        <div class="sidebar-hdr-note">30d window · Mar 7–Apr 5, 2026</div>
+      </div>
+      <div id="sf-list"></div>
+    </div>
+    <div class="flow-detail" id="fd-panel"></div>
+  </div>
+</div>
+
+<!-- TAB 3: REPORTING -->
+<div id="tab-reporting" class="tab-panel">
+  <div class="sec">
+    <div class="sub-title" style="margin-top:0;">A — Live Klaviyo Snapshot</div>
+    <div class="sec-title">Week of Mar 30–Apr 5, 2026</div>
+    <div class="snap-row">
+      <div class="snap-card">
+        <div class="snap-label">Total Attributed</div>
+        <div class="snap-value">$129.4K</div>
+        <div class="snap-deltas">
+          <div class="snap-delta up"><span>YoY</span>+86.7%</div>
+          <div class="snap-delta up"><span>WoW</span>+85.5%</div>
         </div>
       </div>
-
-      <div class="sec">
-        <div class="sec-title">MTD Performance — vs LY MTD</div>
-        <div class="stat-row">
-          <div class="stat-card">
-            <div class="stat-label">Total Attributed</div>
-            <div class="stat-value">$369.5K</div>
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:4px;">MTD 2025: $332.1K</div>
-            <div class="stat-change up">↑ +11.2% YoY</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Campaigns</div>
-            <div class="stat-value">$168.2K</div>
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:4px;">MTD 2025: $171.5K</div>
-            <div class="stat-change down">↓ -1.9% YoY</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Flows</div>
-            <div class="stat-value">$201.3K</div>
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:4px;">MTD 2025: $160.6K</div>
-            <div class="stat-change up">↑ +25.3% YoY</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Email Revenue</div>
-            <div class="stat-value">+98.1%</div>
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:4px;">Week-to-Date</div>
-            <div class="stat-change up">↑ WTD Growth</div>
-          </div>
-        </div>
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);margin-top:10px;padding:8px 12px;background:rgba(255,255,255,.02);border-left:2px solid var(--border);">30-Day Rolling (MTD proxy — Apr full data pending)</div>
-      </div>
-
-      <div class="sec">
-        <div class="sec-title">Today's Call — Apr 7, 11:30am PST</div>
-        <div style="background:var(--accent2-soft);border:1px solid rgba(200,146,106,.25);padding:20px;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--accent2);margin-bottom:10px;">Call Details</div>
-          <div style="font-size:15px;font-weight:700;color:var(--liverpool-cream);margin-bottom:4px;">Apr 7, 2026 · 11:30am PST</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:14px;line-height:1.6;">Otaner King · Morgan Kairey · Jennifer Rivet · Sonia Echeverria</div>
-          <ol style="list-style:none;padding:0;">
-            <li style="font-size:13px;color:var(--text);padding:7px 0;border-bottom:1px solid rgba(200,146,106,.15);display:flex;align-items:flex-start;gap:10px;"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent2);font-weight:700;min-width:18px;">01</span>Weekly reporting</li>
-            <li style="font-size:13px;color:var(--text);padding:7px 0;border-bottom:1px solid rgba(200,146,106,.15);display:flex;align-items:flex-start;gap:10px;"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent2);font-weight:700;min-width:18px;">02</span>April + May forecast</li>
-            <li style="font-size:13px;color:var(--text);padding:7px 0;display:flex;align-items:flex-start;gap:10px;"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent2);font-weight:700;min-width:18px;">03</span>Loyalty Wallet Pass</li>
-          </ol>
+      <div class="snap-card">
+        <div class="snap-label">Campaigns</div>
+        <div class="snap-value">$79.7K</div>
+        <div class="snap-deltas">
+          <div class="snap-delta up"><span>YoY</span>+129%</div>
+          <div class="snap-delta up"><span>WoW</span>+262%</div>
         </div>
       </div>
-
+      <div class="snap-card">
+        <div class="snap-label">Flows</div>
+        <div class="snap-value">$49.7K</div>
+        <div class="snap-deltas">
+          <div class="snap-delta up"><span>YoY</span>+44%</div>
+          <div class="snap-delta up"><span>WoW</span>+4%</div>
+        </div>
+      </div>
+    </div>
+    <div class="snap-row">
+      <div class="snap-card">
+        <div class="snap-label">Email Recipients</div>
+        <div class="snap-value">1.44M</div>
+        <div class="snap-deltas"><div class="snap-delta up"><span>YoY</span>+139.8%</div></div>
+      </div>
+      <div class="snap-card">
+        <div class="snap-label">Open Rate</div>
+        <div class="snap-value">55%</div>
+        <div class="snap-deltas"><div class="snap-delta up"><span>Week</span>Strong</div></div>
+      </div>
+      <div class="snap-card">
+        <div class="snap-label">Email Conversions</div>
+        <div class="snap-value">372</div>
+        <div class="snap-deltas"><div class="snap-delta up"><span>YoY</span>+85.1%</div></div>
+      </div>
     </div>
 
-    <!-- ── TAB 2: REPORTING ── -->
-    <div id="tab-reporting" class="tab-panel">
+    <div style="margin-bottom:28px;">
+      <div class="sec-title" style="margin-top:24px;">Top 5 Flows — This Week</div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Flow</th><th>Revenue</th><th>Orders</th><th>Recipients</th><th>RPR</th></tr></thead>
+          <tbody>
+            <tr><td class="td-name">Welcome Series Email 2026</td><td class="td-rev">$10,617</td><td class="td-mono">71</td><td class="td-mono">986</td><td class="td-mono">$10.77</td></tr>
+            <tr><td class="td-name">Added2Cart 2025</td><td class="td-rev">$4,157</td><td class="td-mono">19</td><td class="td-mono">447</td><td class="td-mono">$9.30</td></tr>
+            <tr><td class="td-name">Wonderment: Delivered</td><td class="td-rev">$2,125</td><td class="td-mono">22</td><td class="td-mono">1,265</td><td class="td-mono">$1.68</td></tr>
+            <tr><td class="td-name">Welcome Series SMS 2026</td><td class="td-rev">$1,827</td><td class="td-mono">11</td><td class="td-mono">179</td><td class="td-mono">$10.21</td></tr>
+            <tr><td class="td-name">Order Confirmation Standard</td><td class="td-rev">$1,603</td><td class="td-mono">11</td><td class="td-mono">1,692</td><td class="td-mono">$0.95</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-      <div class="sec">
-        <div class="sub-title">A — Live Klaviyo Snapshot</div>
-        <div class="sec-title">Week of Mar 30–Apr 5, 2026</div>
+    <div>
+      <div class="sec-title">Top 5 Campaigns — This Week</div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Campaign</th><th>Revenue</th><th>Orders</th><th>Recipients</th><th>RPR</th></tr></thead>
+          <tbody>
+            <tr><td class="td-name">4/03 Spring Sale Begins</td><td class="td-rev">$21,198</td><td class="td-mono">99</td><td class="td-mono">250K</td><td class="td-mono">$0.085</td></tr>
+            <tr><td class="td-name">4/05 Last Chance AM</td><td class="td-rev">$8,646</td><td class="td-mono">48</td><td class="td-mono">249K</td><td class="td-mono">$0.035</td></tr>
+            <tr><td class="td-name">4/05 Last Chance PM</td><td class="td-rev">$6,842</td><td class="td-mono">45</td><td class="td-mono">186K</td><td class="td-mono">$0.037</td></tr>
+            <tr><td class="td-name">4/02 Spring Sale</td><td class="td-rev">$6,247</td><td class="td-mono">26</td><td class="td-mono">151K</td><td class="td-mono">$0.041</td></tr>
+            <tr><td class="td-name">4/01 One Piece Dress</td><td class="td-rev">$6,162</td><td class="td-mono">34</td><td class="td-mono">232K</td><td class="td-mono">$0.027</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
-        <div class="snap-row">
-          <div class="snap-card">
-            <div class="snap-label">Total Attributed</div>
-            <div class="snap-value">$129.4K</div>
-            <div class="snap-deltas">
-              <div class="snap-delta up"><span>YoY</span>+86.7%</div>
-              <div class="snap-delta up"><span>WoW</span>+85.5%</div>
-            </div>
-          </div>
-          <div class="snap-card">
-            <div class="snap-label">Campaigns</div>
-            <div class="snap-value">$79.7K</div>
-            <div class="snap-deltas">
-              <div class="snap-delta up"><span>YoY</span>+129%</div>
-              <div class="snap-delta up"><span>WoW</span>+262%</div>
-            </div>
-          </div>
-          <div class="snap-card">
-            <div class="snap-label">Flows</div>
-            <div class="snap-value">$49.7K</div>
-            <div class="snap-deltas">
-              <div class="snap-delta up"><span>YoY</span>+44%</div>
-              <div class="snap-delta up"><span>WoW</span>+4%</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="snap-row" style="grid-template-columns:repeat(3,1fr);">
-          <div class="snap-card">
-            <div class="snap-label">Email Recipients</div>
-            <div class="snap-value">1.44M</div>
-            <div class="snap-deltas">
-              <div class="snap-delta up"><span>YoY</span>+139.8%</div>
-            </div>
-          </div>
-          <div class="snap-card">
-            <div class="snap-label">Open Rate</div>
-            <div class="snap-value">55%</div>
-            <div class="snap-deltas">
-              <div class="snap-delta up"><span>Week</span>Strong</div>
-            </div>
-          </div>
-          <div class="snap-card">
-            <div class="snap-label">Email Conversions</div>
-            <div class="snap-value">372</div>
-            <div class="snap-deltas">
-              <div class="snap-delta up"><span>YoY</span>+85.1%</div>
-            </div>
-          </div>
-        </div>
-
-        <div style="margin-bottom:32px;">
-          <div class="sec-title" style="margin-top:24px;">Top 5 Flows — This Week</div>
-          <div class="table-wrap">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Flow</th>
-                  <th>Revenue</th>
-                  <th>Orders</th>
-                  <th>Recipients</th>
-                  <th>RPR</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="td-name">Welcome Series Email 2026</td>
-                  <td class="td-rev">$10,617</td>
-                  <td class="td-mono">71</td>
-                  <td class="td-mono">986</td>
-                  <td class="td-mono">$10.77</td>
-                </tr>
-                <tr>
-                  <td class="td-name">Added2Cart 2025</td>
-                  <td class="td-rev">$4,157</td>
-                  <td class="td-mono">19</td>
-                  <td class="td-mono">447</td>
-                  <td class="td-mono">$9.30</td>
-                </tr>
-                <tr>
-                  <td class="td-name">Wonderment: Delivered</td>
-                  <td class="td-rev">$2,125</td>
-                  <td class="td-mono">22</td>
-                  <td class="td-mono">1,265</td>
-                  <td class="td-mono">$1.68</td>
-                </tr>
-                <tr>
-                  <td class="td-name">Welcome Series SMS 2026</td>
-                  <td class="td-rev">$1,827</td>
-                  <td class="td-mono">11</td>
-                  <td class="td-mono">179</td>
-                  <td class="td-mono">$10.21</td>
-                </tr>
-                <tr>
-                  <td class="td-name">Order Confirmation Standard</td>
-                  <td class="td-rev">$1,603</td>
-                  <td class="td-mono">11</td>
-                  <td class="td-mono">1,692</td>
-                  <td class="td-mono">$0.95</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
+  <div class="sec">
+    <div class="sub-title">B — Reports Library</div>
+    <div class="sec-title">Weekly Decks</div>
+    <div class="table-wrap">
+      <div class="report-row">
         <div>
-          <div class="sec-title">Top 5 Campaigns — This Week</div>
-          <div class="table-wrap">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Campaign</th>
-                  <th>Revenue</th>
-                  <th>Orders</th>
-                  <th>Recipients</th>
-                  <th>RPR</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="td-name">4/03 Spring Sale Begins</td>
-                  <td class="td-rev">$21,198</td>
-                  <td class="td-mono">99</td>
-                  <td class="td-mono">250K</td>
-                  <td class="td-mono">$0.085</td>
-                </tr>
-                <tr>
-                  <td class="td-name">4/05 Last Chance AM</td>
-                  <td class="td-rev">$8,646</td>
-                  <td class="td-mono">48</td>
-                  <td class="td-mono">249K</td>
-                  <td class="td-mono">$0.035</td>
-                </tr>
-                <tr>
-                  <td class="td-name">4/05 Last Chance PM</td>
-                  <td class="td-rev">$6,842</td>
-                  <td class="td-mono">45</td>
-                  <td class="td-mono">186K</td>
-                  <td class="td-mono">$0.037</td>
-                </tr>
-                <tr>
-                  <td class="td-name">4/02 Spring Sale</td>
-                  <td class="td-rev">$6,247</td>
-                  <td class="td-mono">26</td>
-                  <td class="td-mono">151K</td>
-                  <td class="td-mono">$0.041</td>
-                </tr>
-                <tr>
-                  <td class="td-name">4/01 One Piece Dress</td>
-                  <td class="td-rev">$6,162</td>
-                  <td class="td-mono">34</td>
-                  <td class="td-mono">232K</td>
-                  <td class="td-mono">$0.027</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <div class="report-week">Week of Mar 30–Apr 5, 2026</div>
+          <div class="report-range">Mar 30 → Apr 5</div>
         </div>
+        <a class="report-dl" href="https://digitsup.github.io/mollie-hq/projects/liverpool/reports/LPS_Weekly_Mar30_Apr5_2026.pptx" download>↓ Download PPTX</a>
       </div>
-
-      <div class="sec">
-        <div class="sub-title">B — Reports Library</div>
-        <div class="sec-title">Weekly Decks</div>
-        <div class="table-wrap">
-          <div class="report-row">
-            <div>
-              <div class="report-week">Week of Mar 30–Apr 5, 2026</div>
-              <div class="report-range">Mar 30 → Apr 5</div>
-            </div>
-            <a class="report-dl" href="https://digitsup.github.io/mollie-hq/projects/liverpool/reports/LPS_Weekly_Mar30_Apr5_2026.pptx" download>
-              ↓ Download PPTX
-            </a>
-          </div>
-          <div class="report-row">
-            <div>
-              <div class="report-week">Week of Mar 23–29, 2026</div>
-              <div class="report-range">Mar 23 → Mar 29</div>
-            </div>
-            <a class="report-dl" href="https://digitsup.github.io/mollie-hq/projects/liverpool/reports/LPS_Weekly_Mar23_29_2026.pptx" download>
-              ↓ Download PPTX
-            </a>
-          </div>
+      <div class="report-row">
+        <div>
+          <div class="report-week">Week of Mar 23–29, 2026</div>
+          <div class="report-range">Mar 23 → Mar 29</div>
         </div>
-      </div>
-
-    </div>
-
-    <!-- ── TAB 3: FLOW ARCHITECTURE ── -->
-    <div id="tab-flows" class="tab-panel">
-
-      <div class="sec">
-        <div class="sec-title">Flow Stack — Mar 7–Apr 5, 2026 (30 days)</div>
-        <div class="flow-grid">
-
-          <div class="wf-card" id="flow-UaeNDJ" style="grid-column:1/-1;">
-  <div class="wf-header">
-    <div class="wf-status-dot live"></div>
-    <div class="wf-name">&#128231; Welcome Series Email 2026</div>
-    <div class="wf-trigger">Trigger: New subscriber &middot; 30d Revenue: $39,899 &middot; RPR: $9.87</div>
-    <span class="wf-badge badge-live">Live</span>
-  </div>
-  <div class="wf-flow">
-    <div class="flow-row">
-      <div class="flow-node">
-        <div class="flow-box fb-email">
-          <div class="flow-box-title">Email 1</div>
-          <div class="flow-box-sub">Welcome to Liverpool</div>
-          <div class="flow-stats">
-            <span class="flow-stat-pill sent">4,036 sent</span>
-            <span class="flow-stat-pill open">&#8599; 90.5% open</span>
-            <span class="flow-stat-pill click">&#8982; 14.5% click</span>
-            <span class="flow-stat-pill" style="background:#DCFCE7;color:#15803D;">$9.78 RPR</span>
-          </div>
-        </div>
-      </div>
-      <div class="flow-arrow"><div class="flow-arrow-line">&#8594;</div><div class="flow-arrow-delay">~1&ndash;2 days</div></div>
-      <div class="flow-node">
-        <div class="flow-box fb-email">
-          <div class="flow-box-title">Email 2</div>
-          <div class="flow-box-sub">Brand Background</div>
-          <div class="flow-stats">
-            <span class="flow-stat-pill sent">4,747 sent</span>
-            <span class="flow-stat-pill open">&#8599; 72.8% open</span>
-            <span class="flow-stat-pill click">&#8982; 4.0% click</span>
-            <span class="flow-stat-pill" style="background:#FEF3C7;color:#92400E;">$0.50 RPR</span>
-          </div>
-        </div>
-      </div>
-      <div class="flow-arrow"><div class="flow-arrow-line">&#8594;</div><div class="flow-arrow-delay">~2&ndash;3 days</div></div>
-      <div class="flow-node">
-        <div class="flow-box fb-email">
-          <div class="flow-box-title">Email 4</div>
-          <div class="flow-box-sub">Bestsellers (Men)</div>
-          <div class="flow-stats">
-            <span class="flow-stat-pill sent">158 sent</span>
-            <span class="flow-stat-pill open">&#8599; 67.7% open</span>
-            <span class="flow-stat-pill click">&#8982; 2.5% click</span>
-            <span class="flow-stat-pill" style="background:#FEF3C7;color:#92400E;">$2.59 RPR</span>
-          </div>
-        </div>
-      </div>
-      <div class="flow-arrow"><div class="flow-arrow-line">&#8594;</div><div class="flow-arrow-delay">~4&ndash;7 days</div></div>
-      <div class="flow-node">
-        <div class="flow-box fb-email">
-          <div class="flow-box-title">Email 7</div>
-          <div class="flow-box-sub">Last Chance Incentive</div>
-          <div class="flow-stats">
-            <span class="flow-stat-pill sent">170 sent</span>
-            <span class="flow-stat-pill open">&#8599; 67.6% open</span>
-            <span class="flow-stat-pill click">&#8982; 1.2% click</span>
-            <span class="flow-stat-pill" style="background:#F1F5F9;color:#64748B;">$0.00 RPR</span>
-          </div>
-        </div>
-      </div>
-      <div class="flow-arrow"><div class="flow-arrow-line">&#8594;</div><div class="flow-arrow-delay">~7+ days</div></div>
-      <div class="flow-node">
-        <div class="flow-box fb-email">
-          <div class="flow-box-title">Email 14</div>
-          <div class="flow-box-sub">Bestsellers Promo</div>
-          <div class="flow-stats">
-            <span class="flow-stat-pill sent">114 sent</span>
-            <span class="flow-stat-pill open">&#8599; 55.3% open</span>
-            <span class="flow-stat-pill click">&#8982; 2.6% click</span>
-            <span class="flow-stat-pill" style="background:#F1F5F9;color:#64748B;">$0.00 RPR</span>
-          </div>
-        </div>
+        <a class="report-dl" href="https://digitsup.github.io/mollie-hq/projects/liverpool/reports/LPS_Weekly_Mar23_29_2026.pptx" download>↓ Download PPTX</a>
       </div>
     </div>
-  </div>
-  <div class="wf-notes"><strong>14+ email variants &middot; Multiple splits</strong> &middot; 30d Revenue: $39,899 &middot; Most revenue concentrated in Email 1 &mdash; compounding with list growth.</div>
-  <div class="wf-insights">
-    <div class="wf-insights-title">Insights &amp; Opportunities</div>
-    <div class="wf-insight"><div class="wf-insight-dot green"></div><span><strong>90.5% open on Email 1</strong> &mdash; strongest entry point. Immediate post-opt-in intent is firing.</span></div>
-    <div class="wf-insight"><div class="wf-insight-dot red"></div><span><strong>Revenue collapses after Email 1</strong> &mdash; $9.78 RPR drops to $0.50 by Email 2. The tail isn't converting. Consolidation opportunity.</span></div>
-    <div class="wf-insight"><div class="wf-insight-dot amber"></div><span><strong>14+ variants running in parallel</strong> &mdash; unnamed steps create reporting noise. A flow audit would consolidate into a cleaner architecture.</span></div>
-    <div class="wf-insight"><div class="wf-insight-dot blue"></div><span><strong>Emails 7 &amp; 14 generating $0 revenue</strong> &mdash; high open rates mean the audience is there. The offer isn't landing. Rewrite or retire.</span></div>
   </div>
 </div>
 
-          <div class="flow-card" id="flow-Sku3EU">
-            <div class="flow-card-header">
-              <div class="flow-name">Added2Cart 2025</div>
-              <span class="badge badge-live">LIVE</span>
-            </div>
-            <div class="flow-meta">
-              <div class="flow-metric">
-                <div class="flow-metric-label">30d Revenue</div>
-                <div class="flow-metric-val">$11,919</div>
-              </div>
-              <div class="flow-metric">
-                <div class="flow-metric-label">RPR</div>
-                <div class="flow-metric-val mono">$8.73</div>
-              </div>
-            </div>
-            <div style="margin-bottom:10px;"><span class="flow-channel both">EMAIL/SMS</span></div>
-            <div class="flow-note">High-intent, consistent performer</div>
-            <button class="flow-expand-btn" onclick="toggleDrilldown('Sku3EU')">
-              <span id="Sku3EU-label">View messages ↓</span>
-              <span class="flow-expand-arrow" id="Sku3EU-arrow">▲</span>
-            </button>
-            <div class="flow-drilldown" id="Sku3EU-dd">
-              <div class="drilldown-wrap">
-                <table class="drilldown-table">
-                  <thead>
-                    <tr><th>Message</th><th>Ch</th><th>Recip</th><th>Engage%</th><th>Conv%</th><th>Rev (30d)</th><th>RPR</th></tr>
-                  </thead>
-                  <tbody>
-                    <tr><td class="dd-name">SMS (high conv)</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">954</td><td class="dd-mono">26.1% click</td><td class="dd-mono">4.82%</td><td class="dd-rev">$8,626</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$9.04</span><div class="rpr-bar" style="width:100%;background:#4CAF7D;"></div></div></td></tr>
-                    <tr><td class="dd-name">Email 1 – Loyalty</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,323</td><td class="dd-mono">95.3% open</td><td class="dd-mono">4.54%</td><td class="dd-rev">$11,198</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$8.46</span><div class="rpr-bar" style="width:94%;background:#4CAF7D;"></div></div></td></tr>
-                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">735</td><td class="dd-mono">27.1% click</td><td class="dd-mono">3.27%</td><td class="dd-rev">$4,819</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$6.56</span><div class="rpr-bar" style="width:73%;background:#4CAF7D;"></div></div></td></tr>
-                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">651</td><td class="dd-mono">32.9% click</td><td class="dd-mono">3.07%</td><td class="dd-rev">$3,639</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$5.59</span><div class="rpr-bar" style="width:62%;background:#4CAF7D;"></div></div></td></tr>
-                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">622</td><td class="dd-mono">31.2% click</td><td class="dd-mono">1.93%</td><td class="dd-rev">$2,390</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$3.84</span><div class="rpr-bar" style="width:49%;background:#C8926A;"></div></div></td></tr>
-                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">669</td><td class="dd-mono">32.0% click</td><td class="dd-mono">1.49%</td><td class="dd-rev">$2,307</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$3.45</span><div class="rpr-bar" style="width:44%;background:#C8926A;"></div></div></td></tr>
-                    <tr><td class="dd-name">Email (high open)</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,207</td><td class="dd-mono">94.0% open</td><td class="dd-mono">1.74%</td><td class="dd-rev">$4,504</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$3.73</span><div class="rpr-bar" style="width:47%;background:#C8926A;"></div></div></td></tr>
-                    <tr><td class="dd-name">Email</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,150</td><td class="dd-mono">85.0% open</td><td class="dd-mono">0.78%</td><td class="dd-rev">$2,206</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$1.92</span><div class="rpr-bar" style="width:24%;background:#C8926A;"></div></div></td></tr>
-                    <tr><td class="dd-name">Email</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,211</td><td class="dd-mono">83.1% open</td><td class="dd-mono">0.91%</td><td class="dd-rev">$2,469</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$2.04</span><div class="rpr-bar" style="width:26%;background:#C8926A;"></div></div></td></tr>
-                    <tr><td class="dd-name">Email 1 – NCO</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,700</td><td class="dd-mono">84.9% open</td><td class="dd-mono">1.00%</td><td class="dd-rev">$3,195</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$1.88</span><div class="rpr-bar" style="width:24%;background:#C8926A;"></div></div></td></tr>
-                    <tr><td class="dd-name">Email 3 – NCO</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,385</td><td class="dd-mono">75.1% open</td><td class="dd-mono">0.72%</td><td class="dd-rev">$1,739</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$1.26</span><div class="rpr-bar" style="width:16%;background:#C8926A;"></div></div></td></tr>
-                    <tr><td class="dd-name">Email 2 – Generic</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,156</td><td class="dd-mono">83.1% open</td><td class="dd-mono">0.43%</td><td class="dd-rev">$1,174</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$1.02</span><div class="rpr-bar" style="width:13%;background:#C8926A;"></div></div></td></tr>
-                    <tr><td class="dd-name">Email 2 – NCO</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,630</td><td class="dd-mono">77.1% open</td><td class="dd-mono">0.80%</td><td class="dd-rev">$1,518</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.93</span><div class="rpr-bar" style="width:12%;background:#555550;"></div></div></td></tr>
-                    <tr><td class="dd-name">Email</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">1,192</td><td class="dd-mono">86.5% open</td><td class="dd-mono">0.42%</td><td class="dd-rev">$1,033</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.87</span><div class="rpr-bar" style="width:11%;background:#555550;"></div></div></td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+<!-- TAB 4: STRATEGY -->
+<div id="tab-strategy" class="tab-panel">
+  <div class="sec">
+    <div class="sec-title">Active Projects — Kanban View</div>
+    <div class="kanban">
+      <div class="kanban-col">
+        <div class="kanban-header"><div class="kanban-col-title">Strategy</div></div>
+        <div class="kanban-body">
+          <div class="kanban-card">
+            <div class="kanban-card-name">Campaign Calendar Build</div>
+            <div class="kanban-card-note">Full campaign ownership proposal in progress</div>
           </div>
-
-          <div class="flow-card" id="flow-XBuiBy">
-            <div class="flow-card-header">
-              <div class="flow-name">Abandoned Checkout 2025</div>
-              <span class="badge badge-live">LIVE</span>
-            </div>
-            <div class="flow-meta">
-              <div class="flow-metric">
-                <div class="flow-metric-label">30d Revenue</div>
-                <div class="flow-metric-val">$11,513</div>
-              </div>
-              <div class="flow-metric">
-                <div class="flow-metric-label">RPR</div>
-                <div class="flow-metric-val mono">$10.04</div>
-              </div>
-            </div>
-            <div style="margin-bottom:10px;"><span class="flow-channel both">EMAIL/SMS</span></div>
-            <div class="flow-note">Rebuilt 2025 — outperforming LY at 2x RPR</div>
-            <button class="flow-expand-btn" onclick="toggleDrilldown('XBuiBy')">
-              <span id="XBuiBy-label">View messages ↓</span>
-              <span class="flow-expand-arrow" id="XBuiBy-arrow">▲</span>
-            </button>
-            <div class="flow-drilldown" id="XBuiBy-dd">
-              <div class="drilldown-wrap">
-                <table class="drilldown-table">
-                  <thead>
-                    <tr><th>Message</th><th>Ch</th><th>Recip</th><th>Engage%</th><th>Conv%</th><th>Rev (30d)</th><th>RPR</th></tr>
-                  </thead>
-                  <tbody>
-                    <tr><td class="dd-name">SMS (high conv)</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">249</td><td class="dd-mono">28.5% click</td><td class="dd-mono">15.26%</td><td class="dd-rev">$6,576</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$26.41</span><div class="rpr-bar" style="width:100%;background:#4CAF7D;"></div></div></td></tr>
-                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">208</td><td class="dd-mono">35.1% click</td><td class="dd-mono">11.06%</td><td class="dd-rev">$3,246</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$15.61</span><div class="rpr-bar" style="width:59%;background:#4CAF7D;"></div></div></td></tr>
-                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">392</td><td class="dd-mono">47.2% click</td><td class="dd-mono">9.18%</td><td class="dd-rev">$5,492</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$14.01</span><div class="rpr-bar" style="width:53%;background:#4CAF7D;"></div></div></td></tr>
-                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">317</td><td class="dd-mono">34.1% click</td><td class="dd-mono">2.84%</td><td class="dd-rev">$2,288</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$7.22</span><div class="rpr-bar" style="width:27%;background:#4CAF7D;"></div></div></td></tr>
-                    <tr><td class="dd-name">Email 1 – Loyalty</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">686</td><td class="dd-mono">102.9% open</td><td class="dd-mono">6.27%</td><td class="dd-rev">$6,755</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$9.85</span><div class="rpr-bar" style="width:37%;background:#4CAF7D;"></div></div></td></tr>
-                    <tr><td class="dd-name">Email 1 – NCO</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">609</td><td class="dd-mono">87.0% open</td><td class="dd-mono">4.60%</td><td class="dd-rev">$4,050</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$6.65</span><div class="rpr-bar" style="width:25%;background:#4CAF7D;"></div></div></td></tr>
-                    <tr><td class="dd-name">Email 1 – Generic</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">387</td><td class="dd-mono">87.9% open</td><td class="dd-mono">3.88%</td><td class="dd-rev">$3,146</td><td><div class="rpr-wrap"><span class="rpr-val rpr-green">$8.13</span><div class="rpr-bar" style="width:31%;background:#4CAF7D;"></div></div></td></tr>
-                    <tr><td class="dd-name">Email</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">595</td><td class="dd-mono">92.8% open</td><td class="dd-mono">2.86%</td><td class="dd-rev">$2,821</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$4.74</span><div class="rpr-bar" style="width:47%;background:#C8926A;"></div></div></td></tr>
-                    <tr><td class="dd-name">Email 3 – NCO</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">456</td><td class="dd-mono">69.5% open</td><td class="dd-mono">2.19%</td><td class="dd-rev">$1,724</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$3.78</span><div class="rpr-bar" style="width:38%;background:#C8926A;"></div></div></td></tr>
-                    <tr><td class="dd-name">Email</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">362</td><td class="dd-mono">79.8% open</td><td class="dd-mono">2.76%</td><td class="dd-rev">$1,537</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$4.25</span><div class="rpr-bar" style="width:43%;background:#C8926A;"></div></div></td></tr>
-                    <tr><td class="dd-name">Email 2 – Loyalty</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">574</td><td class="dd-mono">82.4% open</td><td class="dd-mono">1.39%</td><td class="dd-rev">$1,402</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$2.44</span><div class="rpr-bar" style="width:24%;background:#C8926A;"></div></div></td></tr>
-                    <tr><td class="dd-name">Email</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">344</td><td class="dd-mono">82.0% open</td><td class="dd-mono">0.58%</td><td class="dd-rev">$892</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$2.59</span><div class="rpr-bar" style="width:26%;background:#C8926A;"></div></div></td></tr>
-                    <tr><td class="dd-name">Email</td><td><span class="dd-ch email">EMAIL</span></td><td class="dd-mono">531</td><td class="dd-mono">71.0% open</td><td class="dd-mono">1.69%</td><td class="dd-rev">$981</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$1.85</span><div class="rpr-bar" style="width:19%;background:#C8926A;"></div></div></td></tr>
-                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">150</td><td class="dd-mono">24.7% click</td><td class="dd-mono">2.00%</td><td class="dd-rev">$376</td><td><div class="rpr-wrap"><span class="rpr-val rpr-amber">$2.51</span><div class="rpr-bar" style="width:25%;background:#C8926A;"></div></div></td></tr>
-                    <tr><td class="dd-name">SMS</td><td><span class="dd-ch sms">SMS</span></td><td class="dd-mono">236</td><td class="dd-mono">50.4% click</td><td class="dd-mono">0.00%</td><td class="dd-rev">$0</td><td><div class="rpr-wrap"><span class="rpr-val rpr-dim">$0.00</span><div class="rpr-bar" style="width:0%;background:#555550;"></div></div></td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+          <div class="kanban-card">
+            <div class="kanban-card-name">Loyalty Wallet Pass</div>
+            <div class="kanban-card-note">On today's call agenda — new initiative</div>
           </div>
-
-          <div class="flow-card">
-            <div class="flow-card-header">
-              <div class="flow-name">Wonderment: Delivered</div>
-              <span class="badge badge-live">LIVE</span>
-            </div>
-            <div class="flow-meta">
-              <div class="flow-metric">
-                <div class="flow-metric-label">30d Revenue</div>
-                <div class="flow-metric-val">$7,147</div>
-              </div>
-              <div class="flow-metric">
-                <div class="flow-metric-label">RPR</div>
-                <div class="flow-metric-val mono">$1.35</div>
-              </div>
-            </div>
-            <div style="margin-bottom:10px;"><span class="flow-channel">EMAIL</span></div>
-            <div class="flow-note">High volume, low conversion — optimization candidate</div>
-          </div>
-
-          <div class="flow-card">
-            <div class="flow-card-header">
-              <div class="flow-name">Browse Abandonment</div>
-              <span class="badge badge-live">LIVE</span>
-            </div>
-            <div class="flow-meta">
-              <div class="flow-metric">
-                <div class="flow-metric-label">30d Revenue</div>
-                <div class="flow-metric-val">$5,438</div>
-              </div>
-              <div class="flow-metric">
-                <div class="flow-metric-label">RPR</div>
-                <div class="flow-metric-val mono">$0.59</div>
-              </div>
-            </div>
-            <div style="margin-bottom:10px;"><span class="flow-channel">EMAIL</span></div>
-            <div class="flow-note">Strong volume — content refinement opportunity</div>
-          </div>
-
-          <div class="flow-card">
-            <div class="flow-card-header">
-              <div class="flow-name">Order Confirmation Standard</div>
-              <span class="badge badge-live">LIVE</span>
-            </div>
-            <div class="flow-meta">
-              <div class="flow-metric">
-                <div class="flow-metric-label">30d Revenue</div>
-                <div class="flow-metric-val">$5,048</div>
-              </div>
-              <div class="flow-metric">
-                <div class="flow-metric-label">RPR</div>
-                <div class="flow-metric-val mono">$0.83</div>
-              </div>
-            </div>
-            <div style="margin-bottom:10px;"><span class="flow-channel">EMAIL</span></div>
-            <div class="flow-note">Transactional reach, low yield</div>
-          </div>
-
-          <div class="wf-card" id="flow-TTCMYU">
-  <div class="wf-header">
-    <div class="wf-status-dot live"></div>
-    <div class="wf-name">&#128241; Welcome Series SMS 2026</div>
-    <div class="wf-trigger">Trigger: New SMS subscriber &middot; 30d Revenue: $6,767 &middot; RPR: $8.56</div>
-    <span class="wf-badge badge-live">Live</span>
-  </div>
-  <div class="wf-flow">
-    <div class="flow-row">
-      <div class="flow-node">
-        <div class="flow-box fb-sms">
-          <div class="flow-box-title">SMS 1</div>
-          <div class="flow-box-sub">Welcome</div>
-          <div class="flow-stats">
-            <span class="flow-stat-pill sent">2,313 sent</span>
-            <span class="flow-stat-pill click">&#8982; 20.2% click</span>
-            <span class="flow-stat-pill" style="background:#DCFCE7;color:#15803D;">$22.50 RPR</span>
+          <div class="kanban-card">
+            <div class="kanban-card-name">Campaign Ownership Upgrade</div>
+            <div class="kanban-card-note">Proposal in progress — LPS Upgrade Doc shared Apr 7</div>
           </div>
         </div>
       </div>
-      <div class="flow-arrow"><div class="flow-arrow-line">&#8594;</div><div class="flow-arrow-delay">~2 days</div></div>
-      <div class="flow-node">
-        <div class="flow-box fb-sms">
-          <div class="flow-box-title">SMS 2</div>
-          <div class="flow-box-sub">Follow-up</div>
-          <div class="flow-stats">
-            <span class="flow-stat-pill sent">1,600 sent</span>
-            <span class="flow-stat-pill click">&#8982; 15.8% click</span>
-            <span class="flow-stat-pill" style="background:#FEF3C7;color:#92400E;">$1.53 RPR</span>
+      <div class="kanban-col">
+        <div class="kanban-header"><div class="kanban-col-title">Brief</div></div>
+        <div class="kanban-body"><div class="kanban-empty">—</div></div>
+      </div>
+      <div class="kanban-col">
+        <div class="kanban-header"><div class="kanban-col-title">Copy</div></div>
+        <div class="kanban-body"><div class="kanban-empty">—</div></div>
+      </div>
+      <div class="kanban-col">
+        <div class="kanban-header"><div class="kanban-col-title">Design</div></div>
+        <div class="kanban-body"><div class="kanban-empty">—</div></div>
+      </div>
+      <div class="kanban-col">
+        <div class="kanban-header"><div class="kanban-col-title" style="color:var(--blue);">Build</div></div>
+        <div class="kanban-body">
+          <div class="kanban-card">
+            <div class="kanban-card-name">Win-back 2026 Rebuild</div>
+            <div class="kanban-card-note">3-lane: sample takers / 1-order lapsed / 2+ order lapsed</div>
+          </div>
+          <div class="kanban-card">
+            <div class="kanban-card-name">April + May Forecast</div>
+            <div class="kanban-card-note">In progress — on today's call agenda</div>
+          </div>
+          <div class="kanban-card">
+            <div class="kanban-card-name">Client Brain v3 — Flow Drill-Down</div>
+            <div class="kanban-card-note">In build — click-expand flows to see trigger/delays/email perf</div>
           </div>
         </div>
       </div>
-      <div class="flow-arrow"><div class="flow-arrow-line">&#8594;</div><div class="flow-arrow-delay">~3 days</div></div>
-      <div class="flow-node">
-        <div class="flow-box fb-sms">
-          <div class="flow-box-title">SMS 3 Fast</div>
-          <div class="flow-box-sub">Fast path</div>
-          <div class="flow-stats">
-            <span class="flow-stat-pill sent">740 sent</span>
-            <span class="flow-stat-pill click">&#8982; 17.2% click</span>
-            <span class="flow-stat-pill" style="background:#F1F5F9;color:#64748B;">$0.62 RPR</span>
-          </div>
-        </div>
+      <div class="kanban-col">
+        <div class="kanban-header"><div class="kanban-col-title">Live</div></div>
+        <div class="kanban-body"><div class="kanban-empty">—</div></div>
       </div>
-      <div class="flow-arrow"><div class="flow-arrow-line">&#8594;</div><div class="flow-arrow-delay">~5 days</div></div>
-      <div class="flow-node">
-        <div class="flow-box fb-sms">
-          <div class="flow-box-title">SMS 4 Fast</div>
-          <div class="flow-box-sub">Fast path</div>
-          <div class="flow-stats">
-            <span class="flow-stat-pill sent">683 sent</span>
-            <span class="flow-stat-pill click">&#8982; 17.7% click</span>
-            <span class="flow-stat-pill" style="background:#F1F5F9;color:#64748B;">$1.90 RPR</span>
+    </div>
+
+    <div style="margin-top:20px;">
+      <div class="kanban-col" style="display:block;">
+        <div class="kanban-header" style="display:flex;justify-content:space-between;align-items:center;border-radius:12px 12px 0 0;">
+          <div class="kanban-col-title" style="color:var(--amber);">Reporting</div>
+          <span class="badge badge-due">Due Apr 14</span>
+        </div>
+        <div class="kanban-body" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div class="kanban-card">
+            <div class="kanban-card-name">Q1 2026 Quarterly Report</div>
+            <div class="kanban-card-note">Due Apr 14 — Q1 totals need pulling</div>
+          </div>
+          <div class="kanban-card">
+            <div class="kanban-card-name">Weekly Reporting</div>
+            <div class="kanban-card-note">On today's call — Mar 30–Apr 5 deck</div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="wf-notes"><strong>6 SMS steps &middot; Fast + Slow path splits</strong> &middot; 30d Revenue: $6,767 &middot; SMS #1 dominates at $22.50 RPR &mdash; all follow-up steps below $2.</div>
-  <div class="wf-insights">
-    <div class="wf-insights-title">Insights &amp; Opportunities</div>
-    <div class="wf-insight"><div class="wf-insight-dot green"></div><span><strong>$22.50 RPR on SMS 1</strong> &mdash; best-performing SMS in the welcome stack. Immediate post-subscribe window is the key moment.</span></div>
-    <div class="wf-insight"><div class="wf-insight-dot red"></div><span><strong>RPR drops 93% after SMS 1</strong> &mdash; follow-up messages earning almost nothing. Steps 2&ndash;4 need a content and offer rethink.</span></div>
-    <div class="wf-insight"><div class="wf-insight-dot amber"></div><span><strong>Fast/Slow path split adds complexity</strong> &mdash; SMS 3 and 4 run both paths at similar volume. Consolidate if the performance gap doesn't justify it.</span></div>
   </div>
 </div>
 
-          <div class="flow-card">
-            <div class="flow-card-header">
-              <div class="flow-name">Win-back 2026</div>
-              <span class="badge badge-build">IN BUILD</span>
-            </div>
-            <div class="flow-meta">
-              <div class="flow-metric">
-                <div class="flow-metric-label">30d Revenue</div>
-                <div class="flow-metric-val" style="color:var(--dim);">—</div>
-              </div>
-              <div class="flow-metric">
-                <div class="flow-metric-label">RPR</div>
-                <div class="flow-metric-val" style="color:var(--dim);">—</div>
-              </div>
-            </div>
-            <div style="margin-bottom:10px;"><span class="flow-channel">EMAIL</span></div>
-            <div class="flow-note">Replacing 2025 winback segment</div>
-          </div>
-
-          <div class="flow-card">
-            <div class="flow-card-header">
-              <div class="flow-name">Post-Purchase Optimization</div>
-              <span class="badge badge-live">LIVE</span>
-            </div>
-            <div class="flow-meta">
-              <div class="flow-metric">
-                <div class="flow-metric-label">30d Revenue</div>
-                <div class="flow-metric-val">$3,702</div>
-              </div>
-              <div class="flow-metric">
-                <div class="flow-metric-label">RPR</div>
-                <div class="flow-metric-val mono">$1.70</div>
-              </div>
-            </div>
-            <div style="margin-bottom:10px;"><span class="flow-channel">EMAIL</span></div>
-            <div class="flow-note">30d solid — audit opportunity</div>
-          </div>
-
-          <div class="flow-card">
-            <div class="flow-card-header">
-              <div class="flow-name">Birthday Series — Toki</div>
-              <span class="badge badge-live">LIVE</span>
-            </div>
-            <div class="flow-meta">
-              <div class="flow-metric">
-                <div class="flow-metric-label">30d Revenue</div>
-                <div class="flow-metric-val" style="color:var(--dim);">—</div>
-              </div>
-              <div class="flow-metric">
-                <div class="flow-metric-label">RPR</div>
-                <div class="flow-metric-val" style="color:var(--dim);">—</div>
-              </div>
-            </div>
-            <div style="margin-bottom:10px;"><span class="flow-channel">EMAIL</span></div>
-            <div class="flow-note">Loyalty trigger</div>
-          </div>
-
-          <div class="flow-card">
-            <div class="flow-card-header">
-              <div class="flow-name">Toki Tier Earned + Referral</div>
-              <span class="badge badge-live">LIVE</span>
-            </div>
-            <div class="flow-meta">
-              <div class="flow-metric">
-                <div class="flow-metric-label">30d Revenue</div>
-                <div class="flow-metric-val" style="color:var(--dim);">—</div>
-              </div>
-              <div class="flow-metric">
-                <div class="flow-metric-label">RPR</div>
-                <div class="flow-metric-val" style="color:var(--dim);">—</div>
-              </div>
-            </div>
-            <div style="margin-bottom:10px;"><span class="flow-channel both">EMAIL/SMS</span></div>
-            <div class="flow-note">Loyalty milestone</div>
-          </div>
-
-          <div class="flow-card">
-            <div class="flow-card-header">
-              <div class="flow-name">Rewards Monthly Update</div>
-              <span class="badge badge-live">LIVE</span>
-            </div>
-            <div class="flow-meta">
-              <div class="flow-metric">
-                <div class="flow-metric-label">30d Revenue</div>
-                <div class="flow-metric-val" style="color:var(--dim);">—</div>
-              </div>
-              <div class="flow-metric">
-                <div class="flow-metric-label">RPR</div>
-                <div class="flow-metric-val" style="color:var(--dim);">—</div>
-              </div>
-            </div>
-            <div style="margin-bottom:10px;"><span class="flow-channel">EMAIL</span></div>
-            <div class="flow-note">Down 46.6% WoW — monitor</div>
-          </div>
-
-          <div class="flow-card">
-            <div class="flow-card-header">
-              <div class="flow-name">Back In Stock VIP/Non-VIP</div>
-              <span class="badge badge-live">LIVE</span>
-            </div>
-            <div class="flow-meta">
-              <div class="flow-metric">
-                <div class="flow-metric-label">30d Revenue</div>
-                <div class="flow-metric-val" style="color:var(--dim);">—</div>
-              </div>
-              <div class="flow-metric">
-                <div class="flow-metric-label">RPR</div>
-                <div class="flow-metric-val" style="color:var(--dim);">—</div>
-              </div>
-            </div>
-            <div style="margin-bottom:10px;"><span class="flow-channel">EMAIL</span></div>
-            <div class="flow-note">+499% YoY 30d — confirm all restocks trigger</div>
-          </div>
-
-        </div>
-      </div>
-
+<!-- TAB 5: CAMPAIGN CALENDAR -->
+<div id="tab-calendar" class="tab-panel">
+  <div class="sec">
+    <div class="sec-title">Campaign Calendar — April 2026</div>
+    <div class="campaign-note">⚠ Campaign ownership upgrade pending — all campaigns currently client-owned. DigitsUp co-ownership proposal in progress (LPS Upgrade Doc shared Apr 7).</div>
+    <div class="table-wrap" style="overflow-x:auto;">
+      <table class="data-table" style="min-width:700px;">
+        <thead>
+          <tr>
+            <th style="width:140px;">Promo</th>
+            <th style="width:44px;">Day</th>
+            <th style="width:80px;">Date</th>
+            <th>Email Campaign</th>
+            <th>SMS Campaign</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="cal-past"><td></td><td class="td-mono">Wed</td><td class="td-mono">Apr 1</td><td>Ad Hoc - Point Redemption (Dollar Amount)</td><td style="color:var(--text-dim);">—</td></tr>
+          <tr class="cal-past" style="background:var(--bg2);"><td></td><td class="td-mono">Thu</td><td class="td-mono">Apr 2</td><td>EASTER FLASH SALE Teaser</td><td style="color:var(--text-dim);">—</td></tr>
+          <tr class="cal-past"><td><span class="promo-pill">25% OFF FLASH SALE</span></td><td class="td-mono">Fri</td><td class="td-mono">Apr 3</td><td>Easter Flash Sale - 25% Off Select Jackets &amp; Spring Layers w/ Promo Code</td><td>Ad Hoc - Flash Sale Launch SMS</td></tr>
+          <tr class="cal-past" style="background:var(--bg2);"><td><span class="promo-pill">25% OFF FLASH SALE</span></td><td class="td-mono">Sat</td><td class="td-mono">Apr 4</td><td>Easter Flash Sale - 25% Off Select Jackets &amp; Spring Layers w/ Promo Code</td><td>Ad Hoc - Flash Sale Last Chance SMS</td></tr>
+          <tr class="cal-past"><td><span class="promo-pill">EASTER / 25% OFF</span></td><td class="td-mono">Sun</td><td class="td-mono">Apr 5</td><td>Easter Flash Sale - 25% Off (AM + PM Send)</td><td>Ad Hoc - Flash Sale Ends Today SMS</td></tr>
+          <tr class="cal-past" style="background:var(--bg2);"><td></td><td class="td-mono">Mon</td><td class="td-mono">Apr 6</td><td style="color:var(--text-dim);">—</td><td style="color:var(--text-dim);">—</td></tr>
+          <tr style="background:var(--blue-bg);"><td></td><td class="td-mono">Tue</td><td class="td-mono">Apr 7 <span class="today-pill">TODAY</span></td><td>Wild at Heart: 3 Flares You Need</td><td style="color:var(--text-dim);">—</td></tr>
+          <tr style="background:var(--bg2);"><td></td><td class="td-mono">Wed</td><td class="td-mono">Apr 8</td><td style="color:var(--text-dim);">—</td><td>Ad Hoc - Top Trending Denim SMS (Full Audience)</td></tr>
+          <tr><td></td><td class="td-mono">Thu</td><td class="td-mono">Apr 9</td><td>Wild at Heart: 3 Flutter Sleeve Tops/Woven Tops</td><td style="color:var(--text-dim);">—</td></tr>
+          <tr style="background:var(--bg2);"><td></td><td class="td-mono">Fri</td><td class="td-mono">Apr 10</td><td style="color:var(--text-dim);">—</td><td>Ad Hoc - Upgrade Your/His Rotation SMS (Men's + Men's Purchasers)</td></tr>
+          <tr><td></td><td class="td-mono">Sat</td><td class="td-mono">Apr 11</td><td>Petite New Arrivals</td><td style="color:var(--text-dim);">—</td></tr>
+          <tr style="background:var(--bg2);"><td></td><td class="td-mono">Sun</td><td class="td-mono">Apr 12</td><td style="color:var(--text-dim);">—</td><td>Ad Hoc - Best Selling Spring Layers SMS (Full Audience)</td></tr>
+          <tr><td></td><td class="td-mono">Mon</td><td class="td-mono">Apr 13</td><td>Lotus Rising Collection Highlight</td><td style="color:var(--text-dim);">—</td></tr>
+          <tr style="background:var(--bg2);"><td></td><td class="td-mono">Tue</td><td class="td-mono">Apr 14</td><td style="color:var(--text-dim);">—</td><td>Ad Hoc - New Collection Drop SMS (Past Collection Clicks, No Purchase)</td></tr>
+          <tr><td><span class="promo-pill">TAX DAY</span></td><td class="td-mono">Wed</td><td class="td-mono">Apr 15</td><td>Lotus Rising: Paisley + Citron Greens</td><td style="color:var(--text-dim);">—</td></tr>
+          <tr style="background:var(--bg2);"><td></td><td class="td-mono">Thu</td><td class="td-mono">Apr 16</td><td style="color:var(--text-dim);">—</td><td>Ad Hoc - Deja Vu Day - 20% off + free ship SMS (One-Hit Wonders)</td></tr>
+          <tr><td></td><td class="td-mono">Fri</td><td class="td-mono">Apr 17</td><td>Lotus Rising: White with Hints of Blue: Embroidery Tops + Cream Blue Multi Stripe Set</td><td style="color:var(--text-dim);">—</td></tr>
+          <tr style="background:var(--bg2);"><td></td><td class="td-mono">Sat</td><td class="td-mono">Apr 18</td><td style="color:var(--text-dim);">—</td><td style="color:var(--text-dim);">—</td></tr>
+          <tr><td></td><td class="td-mono">Sun</td><td class="td-mono">Apr 19</td><td>Men's: Denim for Him - Selvedge Style Spotlight</td><td style="color:var(--text-dim);">—</td></tr>
+          <tr style="background:var(--bg2);"><td></td><td class="td-mono">Mon</td><td class="td-mono">Apr 20</td><td style="color:var(--text-dim);">—</td><td>Ad Hoc - Mother's Day Collection SMS (Full Audience)</td></tr>
+          <tr><td></td><td class="td-mono">Tue</td><td class="td-mono">Apr 21</td><td style="color:var(--text-dim);">—</td><td style="color:var(--text-dim);">—</td></tr>
+          <tr style="background:var(--bg2);"><td><span class="promo-pill">EARTH DAY</span></td><td class="td-mono">Wed</td><td class="td-mono">Apr 22</td><td>Lotus Rising: Tencel Focus: Tops, One Piece, Dress</td><td>Ad Hoc - Bottom + Top Purchasers SMS TBD</td></tr>
+          <tr><td></td><td class="td-mono">Thu</td><td class="td-mono">Apr 23</td><td style="color:var(--text-dim);">—</td><td style="color:var(--text-dim);">—</td></tr>
+          <tr style="background:var(--bg2);"><td></td><td class="td-mono">Fri</td><td class="td-mono">Apr 24</td><td>Mother's Day - Thoughtful Style, From the Heart</td><td>Ad Hoc - SMS Exclusive - 15% off ex. dresses (Dress Browsers)</td></tr>
+          <tr><td></td><td class="td-mono">Sat</td><td class="td-mono">Apr 25</td><td style="color:var(--text-dim);">—</td><td style="color:var(--text-dim);">—</td></tr>
+          <tr style="background:var(--bg2);"><td></td><td class="td-mono">Sun</td><td class="td-mono">Apr 26</td><td>Lotus Rising: Dresses</td><td style="color:var(--text-dim);">—</td></tr>
+          <tr><td></td><td class="td-mono">Mon</td><td class="td-mono">Apr 27</td><td style="color:var(--text-dim);">—</td><td style="color:var(--text-dim);">—</td></tr>
+          <tr style="background:var(--bg2);"><td></td><td class="td-mono">Tue</td><td class="td-mono">Apr 28</td><td>Men's + Women's: Summer Style - Valyn in Dress in Kitchen</td><td>Ad Hoc - NCO SMS</td></tr>
+          <tr><td></td><td class="td-mono">Wed</td><td class="td-mono">Apr 29</td><td style="color:var(--text-dim);">—</td><td style="color:var(--text-dim);">—</td></tr>
+          <tr style="background:var(--bg2);"><td></td><td class="td-mono">Thu</td><td class="td-mono">Apr 30</td><td>Golden Glow Collection Highlight</td><td>Ad Hoc - Referral GWP Test SMS (Loyalty Audience)</td></tr>
+        </tbody>
+      </table>
     </div>
+  </div>
+</div>
 
-    <!-- ── TAB 4: STRATEGY PIPELINE ── -->
-    <div id="tab-pipeline" class="tab-panel">
-
-      <div class="sec">
-        <div class="sec-title">Active Projects — Kanban View</div>
-        <div class="kanban">
-
-          <div class="kanban-col">
-            <div class="kanban-header"><div class="kanban-col-title">Strategy</div></div>
-            <div class="kanban-body">
-              <div class="kanban-card">
-                <div class="kanban-card-name">Campaign Calendar Build</div>
-                <div class="kanban-card-note">Full campaign ownership proposal in progress</div>
-              </div>
-              <div class="kanban-card">
-                <div class="kanban-card-name">Loyalty Wallet Pass</div>
-                <div class="kanban-card-note">On today's call agenda — new initiative</div>
-              </div>
-              <div class="kanban-card">
-                <div class="kanban-card-name">Campaign Ownership Upgrade</div>
-                <div class="kanban-card-note">Proposal in progress — LPS Upgrade Doc shared Apr 7</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="kanban-col">
-            <div class="kanban-header"><div class="kanban-col-title">Brief</div></div>
-            <div class="kanban-body">
-              <div class="kanban-empty">—</div>
-            </div>
-          </div>
-
-          <div class="kanban-col">
-            <div class="kanban-header"><div class="kanban-col-title">Copy</div></div>
-            <div class="kanban-body">
-              <div class="kanban-empty">—</div>
-            </div>
-          </div>
-
-          <div class="kanban-col">
-            <div class="kanban-header"><div class="kanban-col-title">Design</div></div>
-            <div class="kanban-body">
-              <div class="kanban-empty">—</div>
-            </div>
-          </div>
-
-          <div class="kanban-col active-col">
-            <div class="kanban-header"><div class="kanban-col-title">Build</div></div>
-            <div class="kanban-body">
-              <div class="kanban-card">
-                <div class="kanban-card-name">Win-back 2026 Rebuild</div>
-                <div class="kanban-card-note">3-lane: sample takers / 1-order lapsed / 2+ order lapsed</div>
-              </div>
-              <div class="kanban-card">
-                <div class="kanban-card-name">April + May Forecast</div>
-                <div class="kanban-card-note">In progress — on today's call agenda</div>
-              </div>
-              <div class="kanban-card">
-                <div class="kanban-card-name">Client Brain v3 — Flow Drill-Down</div>
-                <div class="kanban-card-note">In build — click-expand flows to see trigger/delays/email perf</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="kanban-col">
-            <div class="kanban-header"><div class="kanban-col-title">Live</div></div>
-            <div class="kanban-body">
-              <div class="kanban-empty">—</div>
-            </div>
-          </div>
-
-        </div>
-
-        <div style="margin-top:24px;">
-          <div class="kanban" style="grid-template-columns:1fr;">
-            <div class="kanban-col" style="background:var(--bg2);">
-              <div class="kanban-header" style="display:flex;justify-content:space-between;align-items:center;">
-                <div class="kanban-col-title" style="color:var(--yellow);">Reporting</div>
-                <span class="badge badge-due" style="font-size:9px;">DUE APR 14</span>
-              </div>
-              <div class="kanban-body">
-                <div class="kanban-card" style="background:var(--bg3);">
-                  <div class="kanban-card-name">Q1 2026 Quarterly Report</div>
-                  <div class="kanban-card-note">Due Apr 14 — Q1 totals need pulling</div>
-                </div>
-                <div class="kanban-card" style="background:var(--bg3);">
-                  <div class="kanban-card-name">Weekly Reporting</div>
-                  <div class="kanban-card-note">On today's call — Mar 30–Apr 5 deck</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- ── TAB 5: CAMPAIGN CALENDAR ── -->
-    <div id="tab-calendar" class="tab-panel">
-
-      <div class="sec">
-        <div class="sec-title">Campaign Calendar — April 2026</div>
-        <div class="campaign-note">⚠ Campaign ownership upgrade pending — all campaigns currently client-owned. DigitsUp co-ownership proposal in progress (LPS Upgrade Doc shared Apr 7).</div>
-        <div class="table-wrap" style="overflow-x:auto;">
-          <table class="data-table" style="min-width:700px;">
-            <thead>
-              <tr>
-                <th style="width:140px;">Promo</th>
-                <th style="width:44px;">Day</th>
-                <th style="width:80px;">Date</th>
-                <th>Email Campaign</th>
-                <th>SMS Campaign</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr style="opacity:.4;">
-                <td></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Wed</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 1</td>
-                <td style="font-size:12px;">Ad Hoc - Point Redemption (Dollar Amount)</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-              </tr>
-              <tr style="opacity:.4;">
-                <td></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Thu</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 2</td>
-                <td style="font-size:12px;">EASTER FLASH SALE Teaser</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-              </tr>
-              <tr style="opacity:.4;background:rgba(255,255,255,.018);">
-                <td><span style="font-family:'IBM Plex Mono',monospace;font-size:8px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;background:var(--accent2-soft);color:var(--accent2);border:1px solid rgba(200,146,106,.3);border-radius:2px;display:inline-block;white-space:nowrap;">25% OFF FLASH SALE</span></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Fri</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 3</td>
-                <td style="font-size:12px;">Easter Flash Sale - 25% Off Select Jackets &amp; Spring Layers w/ Promo Code</td>
-                <td style="font-size:12px;">Ad Hoc - Flash Sale Launch SMS</td>
-              </tr>
-              <tr style="opacity:.4;background:rgba(255,255,255,.018);">
-                <td><span style="font-family:'IBM Plex Mono',monospace;font-size:8px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;background:var(--accent2-soft);color:var(--accent2);border:1px solid rgba(200,146,106,.3);border-radius:2px;display:inline-block;white-space:nowrap;">25% OFF FLASH SALE</span></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Sat</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 4</td>
-                <td style="font-size:12px;">Easter Flash Sale - 25% Off Select Jackets &amp; Spring Layers w/ Promo Code</td>
-                <td style="font-size:12px;">Ad Hoc - Flash Sale Last Chance SMS</td>
-              </tr>
-              <tr style="opacity:.4;background:rgba(255,255,255,.018);">
-                <td><span style="font-family:'IBM Plex Mono',monospace;font-size:8px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;background:var(--accent2-soft);color:var(--accent2);border:1px solid rgba(200,146,106,.3);border-radius:2px;display:inline-block;white-space:nowrap;">EASTER / 25% OFF</span></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Sun</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 5</td>
-                <td style="font-size:12px;">Easter Flash Sale - 25% Off (AM + PM Send)</td>
-                <td style="font-size:12px;">Ad Hoc - Flash Sale Ends Today SMS</td>
-              </tr>
-              <tr style="opacity:.4;">
-                <td></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Mon</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 6</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-              </tr>
-              <tr style="background:rgba(107,168,200,.07);">
-                <td></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Tue</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 7 <span style="font-family:'IBM Plex Mono',monospace;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:2px 7px;background:var(--accent);color:#fff;border-radius:2px;margin-left:6px;vertical-align:middle;">TODAY</span></td>
-                <td style="font-size:12px;">Wild at Heart: 3 Flares You Need</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-              </tr>
-              <tr style="background:rgba(255,255,255,.018);">
-                <td></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Wed</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 8</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-                <td style="font-size:12px;">Ad Hoc - Top Trending Denim SMS (Full Audience)</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Thu</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 9</td>
-                <td style="font-size:12px;">Wild at Heart: 3 Flutter Sleeve Tops/Woven Tops</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-              </tr>
-              <tr style="background:rgba(255,255,255,.018);">
-                <td></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Fri</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 10</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-                <td style="font-size:12px;">Ad Hoc - Upgrade Your/His Rotation SMS (Men's + Men's Purchasers)</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Sat</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 11</td>
-                <td style="font-size:12px;">Petite New Arrivals</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-              </tr>
-              <tr style="background:rgba(255,255,255,.018);">
-                <td></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Sun</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 12</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-                <td style="font-size:12px;">Ad Hoc - Best Selling Spring Layers SMS (Full Audience)</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Mon</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 13</td>
-                <td style="font-size:12px;">Lotus Rising Collection Highlight</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-              </tr>
-              <tr style="background:rgba(255,255,255,.018);">
-                <td></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Tue</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 14</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-                <td style="font-size:12px;">Ad Hoc - New Collection Drop SMS (Past Collection Clicks, No Purchase)</td>
-              </tr>
-              <tr>
-                <td><span style="font-family:'IBM Plex Mono',monospace;font-size:8px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;background:var(--accent2-soft);color:var(--accent2);border:1px solid rgba(200,146,106,.3);border-radius:2px;display:inline-block;white-space:nowrap;">TAX DAY</span></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Wed</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 15</td>
-                <td style="font-size:12px;">Lotus Rising: Paisley + Citron Greens</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-              </tr>
-              <tr style="background:rgba(255,255,255,.018);">
-                <td></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Thu</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 16</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-                <td style="font-size:12px;">Ad Hoc - Deja Vu Day - 20% off + free ship SMS (One-Hit Wonders)</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Fri</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 17</td>
-                <td style="font-size:12px;">Lotus Rising: White with Hints of Blue: Embroidery Tops + Cream Blue Multi Stripe Set</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Sat</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 18</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Sun</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 19</td>
-                <td style="font-size:12px;">Men's: Denim for Him - Selvedge Style Spotlight</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-              </tr>
-              <tr style="background:rgba(255,255,255,.018);">
-                <td></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Mon</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 20</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-                <td style="font-size:12px;">Ad Hoc - Mother's Day Collection SMS (Full Audience)</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Tue</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 21</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-              </tr>
-              <tr style="background:rgba(255,255,255,.018);">
-                <td><span style="font-family:'IBM Plex Mono',monospace;font-size:8px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;background:var(--accent2-soft);color:var(--accent2);border:1px solid rgba(200,146,106,.3);border-radius:2px;display:inline-block;white-space:nowrap;">EARTH DAY</span></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Wed</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 22</td>
-                <td style="font-size:12px;">Lotus Rising: Tencel Focus: Tops, One Piece, Dress</td>
-                <td style="font-size:12px;">Ad Hoc - Bottom + Top Purchasers SMS TBD</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Thu</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 23</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-              </tr>
-              <tr style="background:rgba(255,255,255,.018);">
-                <td></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Fri</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 24</td>
-                <td style="font-size:12px;">Mother's Day - Thoughtful Style, From the Heart</td>
-                <td style="font-size:12px;">Ad Hoc - SMS Exclusive - 15% off ex. dresses (Dress Browsers)</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Sat</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 25</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Sun</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 26</td>
-                <td style="font-size:12px;">Lotus Rising: Dresses</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Mon</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 27</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-              </tr>
-              <tr style="background:rgba(255,255,255,.018);">
-                <td></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Tue</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 28</td>
-                <td style="font-size:12px;">Men's + Women's: Summer Style - Valyn in Dress in Kitchen</td>
-                <td style="font-size:12px;">Ad Hoc - NCO SMS</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Wed</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 29</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-                <td style="font-size:12px;color:var(--dim);">—</td>
-              </tr>
-              <tr style="background:rgba(255,255,255,.018);">
-                <td></td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Thu</td>
-                <td style="font-family:'IBM Plex Mono',monospace;font-size:11px;">Apr 30</td>
-                <td style="font-size:12px;">Golden Glow Collection Highlight</td>
-                <td style="font-size:12px;">Ad Hoc - Referral GWP Test SMS (Loyalty Audience)</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-    </div>
-
-  </div><!-- /page -->
-
+</div><!-- /page -->
 </div><!-- /content -->
 
 <script>
-function checkPw() {
+// PASSWORD
+function checkPassword() {
   const val = document.getElementById('pwi').value;
   if (val === 'Liverpool2026') {
     document.getElementById('gate').style.display = 'none';
     document.getElementById('content').style.display = 'block';
+    initAutomations();
   } else {
-    document.getElementById('pwe').textContent = 'Incorrect password.';
+    document.getElementById('pwe').textContent = 'Incorrect password';
     document.getElementById('pwi').value = '';
     document.getElementById('pwi').focus();
   }
 }
+document.getElementById('pwi').addEventListener('keydown', function(e){ if(e.key==='Enter') checkPassword(); });
 
-document.getElementById('pwi').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') checkPw();
-});
-
-function showTab(name) {
+// TAB SWITCHING
+function showTab(name, btn) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
-  event.currentTarget.classList.add('active');
+  btn.classList.add('active');
+  if (name === 'automations') initAutomations();
 }
 
-function toggleDrilldown(id) {
-  const dd = document.getElementById(id + '-dd');
-  const arrow = document.getElementById(id + '-arrow');
-  const label = document.getElementById(id + '-label');
-  const isOpen = dd.classList.contains('open');
-  if (isOpen) {
-    dd.classList.remove('open');
-    arrow.classList.remove('open');
-    label.textContent = 'View messages \u2193';
-  } else {
-    dd.classList.add('open');
-    arrow.classList.add('open');
-    label.textContent = 'Collapse messages \u2191';
+// FLOW DATA
+const FLOWS = [
+  {
+    id: 'welcome-email',
+    name: 'Welcome Series Email 2026',
+    trigger: 'New subscriber',
+    channels: ['EMAIL'],
+    status: 'live',
+    rev: '$39,899',
+    rpr: '$9.87',
+    rprNum: 9.87,
+    note: null,
+    steps: null,
+    messages: [
+      { name:'Email 1 – Welcome to Liverpool', ch:'EMAIL', recip:'4,036', engage:'90.5% open', conv:'—', rev:'$39,528 (dominant)', rpr:9.78, rprDisp:'$9.78' },
+      { name:'Email 2 – Brand Background', ch:'EMAIL', recip:'4,747', engage:'72.8% open', conv:'—', rev:'—', rpr:0.50, rprDisp:'$0.50' },
+      { name:'Email 4 – Bestsellers (Men)', ch:'EMAIL', recip:'158', engage:'67.7% open', conv:'—', rev:'—', rpr:2.59, rprDisp:'$2.59' },
+      { name:'Email 7 – Last Chance Incentive', ch:'EMAIL', recip:'170', engage:'67.6% open', conv:'—', rev:'—', rpr:0.00, rprDisp:'$0.00' },
+      { name:'Email 14 – Bestsellers Promo', ch:'EMAIL', recip:'114', engage:'55.3% open', conv:'—', rev:'—', rpr:0.00, rprDisp:'$0.00' },
+    ],
+    maxRpr: 9.78,
+    insights: [
+      { dot:'g', text:'<strong>90.5% open on Email 1</strong> — strongest entry point. Immediate post-opt-in intent is firing.' },
+      { dot:'r', text:'<strong>Revenue collapses after Email 1</strong> — $9.78 RPR drops to $0.50 by Email 2. The tail isn\'t converting. Consolidation opportunity.' },
+      { dot:'a', text:'<strong>14+ variants running in parallel</strong> — unnamed steps create reporting noise. A flow audit would consolidate into a cleaner architecture.' },
+      { dot:'b', text:'<strong>Emails 7 &amp; 14 generating $0 revenue</strong> — high open rates mean the audience is there. The offer isn\'t landing. Rewrite or retire.' },
+    ],
+    notesText: '14+ email variants · Multiple splits · Most revenue concentrated in Email 1'
+  },
+  {
+    id: 'welcome-sms',
+    name: 'Welcome Series SMS 2026',
+    trigger: 'New SMS subscriber',
+    channels: ['SMS'],
+    status: 'live',
+    rev: '$6,767',
+    rpr: '$8.56',
+    rprNum: 8.56,
+    note: null,
+    steps: null,
+    messages: [
+      { name:'SMS 1 – Welcome', ch:'SMS', recip:'2,313', engage:'20.2% click', conv:'—', rev:'$52,065 (dominant)', rpr:22.50, rprDisp:'$22.50' },
+      { name:'SMS 2 – Follow-up', ch:'SMS', recip:'1,600', engage:'15.8% click', conv:'—', rev:'—', rpr:1.53, rprDisp:'$1.53' },
+      { name:'SMS 3 Fast – Fast path', ch:'SMS', recip:'740', engage:'17.2% click', conv:'—', rev:'—', rpr:0.62, rprDisp:'$0.62' },
+      { name:'SMS 4 Fast – Fast path', ch:'SMS', recip:'683', engage:'17.7% click', conv:'—', rev:'—', rpr:1.90, rprDisp:'$1.90' },
+    ],
+    maxRpr: 22.50,
+    insights: [
+      { dot:'g', text:'<strong>$22.50 RPR on SMS 1</strong> — best-performing SMS in the welcome stack. Immediate post-subscribe window is the key moment.' },
+      { dot:'r', text:'<strong>RPR drops 93% after SMS 1</strong> — follow-up messages earning almost nothing. Steps 2–4 need a content and offer rethink.' },
+      { dot:'a', text:'<strong>Fast/Slow path split adds complexity</strong> — SMS 3 and 4 run both paths at similar volume. Consolidate if the performance gap doesn\'t justify it.' },
+    ],
+    notesText: '6 SMS steps · Fast + Slow path splits · SMS #1 dominates at $22.50 RPR — all follow-up steps below $2'
+  },
+  {
+    id: 'added2cart',
+    name: 'Added2Cart 2025',
+    trigger: 'Add to cart',
+    channels: ['EMAIL','SMS'],
+    status: 'live',
+    rev: '$11,919',
+    rpr: '$8.73',
+    rprNum: 8.73,
+    note: null,
+    steps: null,
+    messages: [
+      { name:'SMS (high conv)', ch:'SMS', recip:'954', engage:'26.1% click', conv:'4.82%', rev:'$8,626', rpr:9.04, rprDisp:'$9.04' },
+      { name:'Email 1 – Loyalty', ch:'EMAIL', recip:'1,323', engage:'95.3% open', conv:'4.54%', rev:'$11,198', rpr:8.46, rprDisp:'$8.46' },
+      { name:'SMS', ch:'SMS', recip:'735', engage:'27.1% click', conv:'3.27%', rev:'$4,819', rpr:6.56, rprDisp:'$6.56' },
+      { name:'SMS', ch:'SMS', recip:'651', engage:'32.9% click', conv:'3.07%', rev:'$3,639', rpr:5.59, rprDisp:'$5.59' },
+      { name:'SMS', ch:'SMS', recip:'622', engage:'31.2% click', conv:'1.93%', rev:'$2,390', rpr:3.84, rprDisp:'$3.84' },
+      { name:'SMS', ch:'SMS', recip:'669', engage:'32.0% click', conv:'1.49%', rev:'$2,307', rpr:3.45, rprDisp:'$3.45' },
+      { name:'Email (high open)', ch:'EMAIL', recip:'1,207', engage:'94.0% open', conv:'1.74%', rev:'$4,504', rpr:3.73, rprDisp:'$3.73' },
+      { name:'Email', ch:'EMAIL', recip:'1,150', engage:'85.0% open', conv:'0.78%', rev:'$2,206', rpr:1.92, rprDisp:'$1.92' },
+      { name:'Email', ch:'EMAIL', recip:'1,211', engage:'83.1% open', conv:'0.91%', rev:'$2,469', rpr:2.04, rprDisp:'$2.04' },
+      { name:'Email 1 – NCO', ch:'EMAIL', recip:'1,700', engage:'84.9% open', conv:'1.00%', rev:'$3,195', rpr:1.88, rprDisp:'$1.88' },
+      { name:'Email 3 – NCO', ch:'EMAIL', recip:'1,385', engage:'75.1% open', conv:'0.72%', rev:'$1,739', rpr:1.26, rprDisp:'$1.26' },
+      { name:'Email 2 – Generic', ch:'EMAIL', recip:'1,156', engage:'83.1% open', conv:'0.43%', rev:'$1,174', rpr:1.02, rprDisp:'$1.02' },
+      { name:'Email 2 – NCO', ch:'EMAIL', recip:'1,630', engage:'77.1% open', conv:'0.80%', rev:'$1,518', rpr:0.93, rprDisp:'$0.93' },
+      { name:'Email', ch:'EMAIL', recip:'1,192', engage:'86.5% open', conv:'0.42%', rev:'$1,033', rpr:0.87, rprDisp:'$0.87' },
+    ],
+    maxRpr: 9.04,
+    insights: [],
+    notesText: 'High-intent, consistent performer · Email/SMS combined flow · Multiple A/B splits'
+  },
+  {
+    id: 'abandoned-checkout',
+    name: 'Abandoned Checkout 2025',
+    trigger: 'Checkout abandoned',
+    channels: ['EMAIL','SMS'],
+    status: 'live',
+    rev: '$11,513',
+    rpr: '$10.04',
+    rprNum: 10.04,
+    note: null,
+    steps: null,
+    messages: [
+      { name:'SMS (high conv)', ch:'SMS', recip:'249', engage:'28.5% click', conv:'15.26%', rev:'$6,576', rpr:26.41, rprDisp:'$26.41' },
+      { name:'SMS', ch:'SMS', recip:'208', engage:'35.1% click', conv:'11.06%', rev:'$3,246', rpr:15.61, rprDisp:'$15.61' },
+      { name:'SMS', ch:'SMS', recip:'392', engage:'47.2% click', conv:'9.18%', rev:'$5,492', rpr:14.01, rprDisp:'$14.01' },
+      { name:'SMS', ch:'SMS', recip:'317', engage:'34.1% click', conv:'2.84%', rev:'$2,288', rpr:7.22, rprDisp:'$7.22' },
+      { name:'Email 1 – Loyalty', ch:'EMAIL', recip:'686', engage:'102.9% open', conv:'6.27%', rev:'$6,755', rpr:9.85, rprDisp:'$9.85' },
+      { name:'Email 1 – NCO', ch:'EMAIL', recip:'609', engage:'87.0% open', conv:'4.60%', rev:'$4,050', rpr:6.65, rprDisp:'$6.65' },
+      { name:'Email 1 – Generic', ch:'EMAIL', recip:'387', engage:'87.9% open', conv:'3.88%', rev:'$3,146', rpr:8.13, rprDisp:'$8.13' },
+      { name:'Email', ch:'EMAIL', recip:'595', engage:'92.8% open', conv:'2.86%', rev:'$2,821', rpr:4.74, rprDisp:'$4.74' },
+      { name:'Email 3 – NCO', ch:'EMAIL', recip:'456', engage:'69.5% open', conv:'2.19%', rev:'$1,724', rpr:3.78, rprDisp:'$3.78' },
+      { name:'Email', ch:'EMAIL', recip:'362', engage:'79.8% open', conv:'2.76%', rev:'$1,537', rpr:4.25, rprDisp:'$4.25' },
+      { name:'Email 2 – Loyalty', ch:'EMAIL', recip:'574', engage:'82.4% open', conv:'1.39%', rev:'$1,402', rpr:2.44, rprDisp:'$2.44' },
+      { name:'Email', ch:'EMAIL', recip:'344', engage:'82.0% open', conv:'0.58%', rev:'$892', rpr:2.59, rprDisp:'$2.59' },
+      { name:'Email', ch:'EMAIL', recip:'531', engage:'71.0% open', conv:'1.69%', rev:'$981', rpr:1.85, rprDisp:'$1.85' },
+      { name:'SMS', ch:'SMS', recip:'150', engage:'24.7% click', conv:'2.00%', rev:'$376', rpr:2.51, rprDisp:'$2.51' },
+      { name:'SMS', ch:'SMS', recip:'236', engage:'50.4% click', conv:'0.00%', rev:'$0', rpr:0.00, rprDisp:'$0.00' },
+    ],
+    maxRpr: 26.41,
+    insights: [],
+    notesText: 'Rebuilt 2025 — outperforming LY at 2x RPR · SMS rows dominate top positions'
+  },
+  {
+    id: 'browse-abandon',
+    name: 'Browse Abandonment',
+    trigger: 'Product browsed',
+    channels: ['EMAIL'],
+    status: 'live',
+    rev: '$5,438',
+    rpr: '$0.59',
+    rprNum: 0.59,
+    note: null,
+    steps: null,
+    messages: null,
+    maxRpr: null,
+    insights: [],
+    notesText: 'Strong volume — content refinement opportunity'
+  },
+  {
+    id: 'wonderment',
+    name: 'Wonderment: Delivered',
+    trigger: 'Order delivered',
+    channels: ['EMAIL'],
+    status: 'live',
+    rev: '$7,147',
+    rpr: '$1.35',
+    rprNum: 1.35,
+    note: null,
+    steps: null,
+    messages: null,
+    maxRpr: null,
+    insights: [],
+    notesText: 'High volume, low conversion — optimization candidate'
+  },
+  {
+    id: 'order-confirm',
+    name: 'Order Confirmation Standard',
+    trigger: 'Order placed',
+    channels: ['EMAIL'],
+    status: 'live',
+    rev: '$5,048',
+    rpr: '$0.83',
+    rprNum: 0.83,
+    note: null,
+    steps: null,
+    messages: null,
+    maxRpr: null,
+    insights: [],
+    notesText: 'Transactional reach, low yield'
+  },
+  {
+    id: 'post-purchase',
+    name: 'Post-Purchase Optimization',
+    trigger: 'Order placed',
+    channels: ['EMAIL'],
+    status: 'live',
+    rev: '$3,702',
+    rpr: '$1.70',
+    rprNum: 1.70,
+    note: null,
+    steps: null,
+    messages: null,
+    maxRpr: null,
+    insights: [],
+    notesText: '30d solid — audit opportunity'
+  },
+  {
+    id: 'winback',
+    name: 'Win-back 2026',
+    trigger: 'Lapsed customer',
+    channels: ['EMAIL'],
+    status: 'build',
+    rev: null,
+    rpr: null,
+    rprNum: null,
+    note: null,
+    steps: null,
+    messages: null,
+    maxRpr: null,
+    insights: [],
+    notesText: 'Replacing 2025 winback segment · 3-lane: sample takers / 1-order lapsed / 2+ order lapsed'
+  },
+  {
+    id: 'birthday',
+    name: 'Birthday Series – Toki',
+    trigger: 'Birthday',
+    channels: ['EMAIL'],
+    status: 'live',
+    rev: null,
+    rpr: null,
+    rprNum: null,
+    note: null,
+    steps: null,
+    messages: null,
+    maxRpr: null,
+    insights: [],
+    notesText: 'Loyalty trigger'
+  },
+  {
+    id: 'toki-tier',
+    name: 'Toki Tier Earned + Referral',
+    trigger: 'Loyalty milestone',
+    channels: ['EMAIL','SMS'],
+    status: 'live',
+    rev: null,
+    rpr: null,
+    rprNum: null,
+    note: null,
+    steps: null,
+    messages: null,
+    maxRpr: null,
+    insights: [],
+    notesText: 'Loyalty milestone'
+  },
+  {
+    id: 'rewards-monthly',
+    name: 'Rewards Monthly Update',
+    trigger: 'Monthly trigger',
+    channels: ['EMAIL'],
+    status: 'live',
+    rev: null,
+    rpr: null,
+    rprNum: null,
+    note: 'Down 46.6% WoW',
+    steps: null,
+    messages: null,
+    maxRpr: null,
+    insights: [],
+    notesText: 'Down 46.6% WoW — monitor'
+  },
+  {
+    id: 'back-in-stock',
+    name: 'Back In Stock VIP/Non-VIP',
+    trigger: 'Back in stock',
+    channels: ['EMAIL'],
+    status: 'live',
+    rev: null,
+    rpr: null,
+    rprNum: null,
+    note: '+499% YoY 30d',
+    steps: null,
+    messages: null,
+    maxRpr: null,
+    insights: [],
+    notesText: '+499% YoY 30d — confirm all restocks trigger'
   }
+];
+
+let activeFlowId = FLOWS[0].id;
+let initialized = false;
+
+function initAutomations() {
+  if (initialized) return;
+  initialized = true;
+  renderSidebar();
+  renderDetail(FLOWS[0]);
+}
+
+function rprClass(rpr) {
+  if (rpr === null || rpr === undefined) return 'gr';
+  if (rpr >= 5) return 'g';
+  if (rpr >= 1) return 'a';
+  return 'gr';
+}
+
+function chBadge(ch) {
+  if (ch === 'EMAIL') return '<span class="ch-tag ch-email">EMAIL</span>';
+  if (ch === 'SMS') return '<span class="ch-tag ch-sms">SMS</span>';
+  return '';
+}
+
+function renderSidebar() {
+  const list = document.getElementById('sf-list');
+  list.innerHTML = FLOWS.map(f => {
+    const dot = f.status === 'build' ? 'build' : 'live';
+    const revHtml = f.rev ? `<div class="sf-rev">${f.rev}</div><div class="sf-rpr">${f.rpr} RPR</div>` : `<div class="sf-rpr">${f.status === 'build' ? 'In Build' : '—'}</div>`;
+    const noteHtml = f.note ? `<div class="sf-note">${f.note}</div>` : '';
+    const active = f.id === activeFlowId ? ' active' : '';
+    return `<div class="sf-row${active}" data-id="${f.id}" onclick="selectFlow('${f.id}')">
+      <div class="status-dot ${dot}"></div>
+      <div class="sf-info">
+        <div class="sf-name">${f.name}</div>
+        <span class="sf-trigger">${f.trigger}</span>
+      </div>
+      <div class="sf-right">${revHtml}${noteHtml}</div>
+    </div>`;
+  }).join('');
+}
+
+function selectFlow(id) {
+  activeFlowId = id;
+  document.querySelectorAll('.sf-row').forEach(r => {
+    r.classList.toggle('active', r.dataset.id === id);
+  });
+  const flow = FLOWS.find(f => f.id === id);
+  renderDetail(flow);
+}
+
+function renderDetail(flow) {
+  const panel = document.getElementById('fd-panel');
+  const statusBadge = flow.status === 'build'
+    ? '<span class="badge badge-build">In Build</span>'
+    : '<span class="badge badge-live">Live</span>';
+  const chBadges = flow.channels.map(c => chBadge(c)).join(' ');
+
+  // Perf bar
+  const revDisplay = flow.rev || '—';
+  const rprDisplay = flow.rpr || '—';
+  const rprCls = flow.rprNum ? 'perf-value rpr-' + (flow.rprNum >= 5 ? 'green' : flow.rprNum >= 1 ? 'amber' : 'grey') : 'perf-value rpr-grey';
+  const msgCount = flow.messages ? flow.messages.length : (flow.steps || '—');
+
+  let perfBar = `<div class="perf-bar">
+    <div class="perf-stat">
+      <div class="perf-label">30d Revenue</div>
+      <div class="perf-value">${revDisplay}</div>
+    </div>
+    <div class="perf-stat">
+      <div class="perf-label">RPR</div>
+      <div class="${rprCls}">${rprDisplay}</div>
+    </div>
+    <div class="perf-stat">
+      <div class="perf-label">Messages / Steps</div>
+      <div class="perf-value">${msgCount}</div>
+    </div>
+  </div>`;
+
+  // Message table
+  let msgSection = '';
+  if (flow.messages && flow.messages.length > 0) {
+    const maxRpr = flow.maxRpr || Math.max(...flow.messages.map(m => m.rpr));
+    const rows = flow.messages.map(m => {
+      const cls = rprClass(m.rpr);
+      const barW = maxRpr > 0 ? Math.round((m.rpr / maxRpr) * 100) : 0;
+      return `<tr>
+        <td class="mt-name">${m.name}</td>
+        <td>${chBadge(m.ch)}</td>
+        <td class="mt-mono">${m.recip}</td>
+        <td class="mt-mono">${m.engage}</td>
+        <td class="mt-mono">${m.conv}</td>
+        <td class="mt-mono" style="font-weight:600;color:var(--text);">${m.rev}</td>
+        <td><div class="rpr-cell"><span class="rpr-pill ${cls}">${m.rprDisp}</span><div class="rpr-bar-wrap"><div class="rpr-bar-fill ${cls}" style="width:${barW}%"></div></div></div></td>
+      </tr>`;
+    }).join('');
+    msgSection = `<div class="msg-card">
+      <div class="msg-card-hdr"><div class="msg-card-label">Message Timeline</div></div>
+      <table class="msg-table">
+        <thead><tr><th>Message</th><th>Channel</th><th>Recipients</th><th>Engagement</th><th>Conv%</th><th>Revenue</th><th>RPR</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+  } else {
+    msgSection = `<div class="no-msg-note">Message-level data not yet loaded. Summary metrics shown above.</div>`;
+  }
+
+  // Insights
+  let insightsSection = '';
+  if (flow.insights && flow.insights.length > 0) {
+    const iRows = flow.insights.map(i => `<div class="insight-row"><div class="insight-dot ${i.dot}"></div><span>${i.text}</span></div>`).join('');
+    insightsSection = `<div class="insights-card">
+      <div class="insights-label">Insights &amp; Opportunities</div>
+      ${iRows}
+    </div>`;
+  }
+
+  // Notes
+  const notesSection = flow.notesText ? `<div class="notes-bar">${flow.notesText}</div>` : '';
+
+  panel.innerHTML = `
+    <div class="fd-header">
+      <div class="fd-name">${flow.name}</div>
+      <div class="fd-meta">
+        <span class="fd-trigger">Trigger: ${flow.trigger}</span>
+        ${chBadges}
+        ${statusBadge}
+      </div>
+    </div>
+    ${perfBar}
+    ${msgSection}
+    ${insightsSection}
+    ${notesSection}
+  `;
 }
 </script>
-
 </body>
 </html>
