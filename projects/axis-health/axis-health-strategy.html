@@ -720,7 +720,7 @@
       <ul>
         <li><strong>Welcome → Browse Abandonment → Checkout Abandonment</strong> all exist in the pre-purchase funnel. They suppress on purchase.</li>
         <li><strong>Purchase triggers Post-Purchase.</strong> All pre-purchase flows immediately suppress when the first purchase is confirmed.</li>
-        <li><strong>Post-Purchase flows through Day 14.</strong> On Day 30, the replenishment flow starts — there is a clean gap between the last post-purchase email (Day 14) and the first replenishment email (Day 30).</li>
+        <li><strong>Post-Purchase flows through Day 14.</strong> The replenishment flow fires relative to the customer's supply end date. R1 sends 7 days before the supply end date, R2 sends on the supply end date. There is a clean gap between the last post-purchase email and the replenishment window with no overlap.</li>
         <li><strong>Replenishment → Winback handoff:</strong> If the 2-email replenishment flow completes and the customer still hasn't repurchased, they enter Winback after a 14-day gap. If they repurchase during replenishment, the cycle restarts from the next replenishment trigger.</li>
         <li><strong>No flow overlaps.</strong> A customer can only be in one active flow at a time. Purchase events always take precedence and exit/suppress all active flows.</li>
       </ul>
@@ -755,7 +755,7 @@
       </tr>
       <tr>
         <td><strong>Replenishment</strong></td>
-        <td>Day 30 after first purchase</td>
+        <td>supply_end_date trigger (R1: 7 days before end date; R2: on end date)</td>
         <td>Repurchases, unsubscribes, or 2-email sequence completes</td>
       </tr>
       <tr>
@@ -850,7 +850,7 @@
         <li><strong>Subscription framing converts best for GLP-1</strong> where it's clearly a long-term treatment — but needs to be positioned as "ongoing support" rather than a subscription box.</li>
         <li><strong>Single-refill framing converts better for men's health</strong> — subscription feels like commitment men aren't ready for. "Keep your supply ready" is a more comfortable ask.</li>
         <li><strong>Subject lines that reference supply depletion</strong> (e.g., "Your supply is running low") significantly outperform generic "reorder now" subject lines in telehealth categories.</li>
-        <li><strong>2-email replenishment sequences</strong> keep the approach clean and focused — an upcoming reminder (Day 30) and the replenishment email (Day 35). Winback flow handles recovery for non-converters after the replenishment window closes.</li>
+        <li><strong>2-email replenishment sequences</strong> keep the approach clean and focused. R1 sends 7 days before the supply end date (upcoming reminder), R2 sends on the supply end date (the main conversion ask). Winback flow handles recovery for non-converters after the replenishment window closes.</li>
       </ul>
     </div>
   </section>
@@ -926,7 +926,7 @@
       <p>The post-purchase flow is <strong>not</strong> a sales flow. It's a retention and onboarding flow. All three emails are patient-focused:</p>
       <ul>
         <li><strong>E1, E2, and E3 have zero sales CTAs.</strong> If a patient repurchases organically during this window (they liked it, they want more), the flow suppresses — but we're not selling during the first 30 days.</li>
-        <li>The dedicated Replenishment flow (Day 30) takes over for all conversion-focused messaging.</li>
+        <li>The dedicated Replenishment flow (triggered by supply end date) takes over for all conversion-focused messaging.</li>
       </ul>
     </div>
   </section>
@@ -939,10 +939,10 @@
     <hr class="divider" />
 
     <div class="decision-box">
-      <h3>Decision: Separate Replenishment Flow. Triggered at Day 30.</h3>
+      <h3>Decision: Separate Replenishment Flow. Triggered by Supply End Date.</h3>
       <p><strong>Why separate?</strong> The post-purchase and replenishment flows have different jobs and different emotional registers. Post-purchase is onboarding — building trust, managing expectations, normalizing the experience. Replenishment is conversion — getting the customer to act before their supply runs out. Running them as one long flow blurs both goals.</p>
       <p>A standalone replenishment flow also gives us clean performance data. We need to know which emails drive reorders, not guess at it inside a larger flow.</p>
-      <p><strong>Trigger:</strong> Time-based at Day 30 post-first-purchase. This aligns with a standard 30-day supply. If Axis Health sells different supply lengths, the trigger date should adjust accordingly — this strategy assumes 30-day supply as baseline.</p>
+      <p><strong>Trigger:</strong> Date-based, tied to the customer's <code>supply_end_date</code> profile property passed from Axis Health's system to Klaviyo. R1 fires 7 days before the supply end date. R2 fires on the supply end date. This works across all supply lengths (monthly, 3-month, 6-month, 12-month) with no flow changes required.</p>
     </div>
 
     <h2>Replenishment Flow Architecture</h2>
@@ -950,18 +950,18 @@
       <table style="margin-bottom:0;">
         <tr>
           <th>Email</th>
-          <th>Timing (from Day 30 trigger)</th>
+          <th>Timing (relative to supply end date)</th>
           <th>Mission</th>
         </tr>
         <tr>
           <td><strong>R1 — Upcoming Reminder</strong></td>
-          <td>Day 30 (immediately on trigger)</td>
-          <td>Your supply is running low — refill time is coming. Friendly, zero pressure. Warm and onboarding-adjacent.</td>
+          <td>7 days before supply end date</td>
+          <td>Your supply is almost out. Here's how to stay on track. Friendly, zero pressure. Warm and onboarding-adjacent.</td>
         </tr>
         <tr>
           <td><strong>R2 — Replenishment</strong></td>
-          <td>Day 35 (+5 days)</td>
-          <td>It's time to refill — don't let your plan lapse. Clear CTA, direct framing. If they haven't reordered, this is the closer.</td>
+          <td>On supply end date</td>
+          <td>Today's the day. Don't let the plan lapse. Clear CTA, direct framing. If they haven't reordered, this is the closer.</td>
         </tr>
       </table>
     </div>
@@ -994,7 +994,7 @@
     <div class="card">
       <ul>
         <li>Any repurchase event during the replenishment flow (Days 30–35) immediately suppresses all remaining replenishment emails.</li>
-        <li>The cycle resets: a new replenishment trigger fires 30 days from that repurchase date.</li>
+        <li>The cycle resets: a new replenishment trigger is set based on the <code>supply_end_date</code> property from the new purchase.</li>
         <li>After 3 consecutive repurchase cycles, consider whether this customer should be flagged as a VIP/loyalty segment for future flows (outside this scope, but flag for Michael).</li>
       </ul>
     </div>
@@ -1233,17 +1233,17 @@
       <div class="email-item">
         <div class="email-item-header">
           <span class="email-number">R-W1</span>
-          <span class="email-name">Your supply is running low — refill time is coming</span>
-          <span class="email-timing">Day 30 (Trigger Day)</span>
+          <span class="email-name">Your supply is almost out — here's how to stay on track</span>
+          <span class="email-timing">7 Days Before Supply End Date</span>
         </div>
         <div class="email-grid">
           <div>
             <div class="email-field-label">Subject Line Direction</div>
-            <div class="email-field-value"><em>"Your supply is running low — here's what's coming."</em> or <em>"Heads up — refill time is almost here."</em> Friendly, low-pressure, informational.</div>
+            <div class="email-field-value"><em>"Your supply is almost out. Here's how to stay on track."</em> or <em>"Heads up, your refill window is coming."</em> Friendly, low-pressure, informational. Fires 7 days before supply end date.</div>
           </div>
           <div>
             <div class="email-field-label">Core Message</div>
-            <div class="email-field-value">Heads-up reminder that their supply is running low and refill time is approaching. Acknowledge what they've accomplished in month one. GLP-1 works best as a long-term program — frame this as a natural next step, not a sales push. Zero pressure. Give them the heads-up with plenty of lead time.</div>
+            <div class="email-field-value">Heads-up reminder that supply ends in 7 days and refill time is approaching. Acknowledge what they've accomplished so far. GLP-1 works best as a long-term program, frame this as a natural next step, not a sales push. Zero pressure. Fires with enough lead time for the customer to decide without being rushed.</div>
           </div>
           <div>
             <div class="email-field-label">Emotional Goal</div>
@@ -1263,17 +1263,17 @@
       <div class="email-item">
         <div class="email-item-header">
           <span class="email-number">R-W2</span>
-          <span class="email-name">It's time to refill — don't let your plan lapse</span>
-          <span class="email-timing">Day 35 (+5 days)</span>
+          <span class="email-name">Today's the day — don't let your plan lapse</span>
+          <span class="email-timing">On Supply End Date</span>
         </div>
         <div class="email-grid">
           <div>
             <div class="email-field-label">Subject Line Direction</div>
-            <div class="email-field-value"><em>"It's time to refill — don't let your plan lapse."</em> Or: <em>"Your supply is running out — refill today."</em> Direct, clear, confident.</div>
+            <div class="email-field-value"><em>"Today's the day. Don't let your plan lapse."</em> Or: <em>"Your supply ends today. Refill now."</em> Direct, clear, confident. Fires on the supply end date itself.</div>
           </div>
           <div>
             <div class="email-field-label">Core Message</div>
-            <div class="email-field-value">The main replenishment ask. It's time to refill — don't let the plan lapse. Surface the medical reality: stopping GLP-1 mid-program can lead to weight return. This isn't fear-mongering — it's useful clinical information that empowers the decision. Most people also stop seeing results if they pause. Social proof: "Most of our members continue through month two and beyond." Make the path to yes completely frictionless.</div>
+            <div class="email-field-value">The main replenishment ask. Fires on the supply end date: the plan ends today unless they refill. Surface the reality: stopping GLP-1 mid-program can reverse progress. This isn't fear, it's useful information that empowers the decision. Most people stop seeing results if they pause. Social proof: "Most members who continue past their first supply reach their goals." Make the path to yes completely frictionless.</div>
           </div>
           <div>
             <div class="email-field-label">Emotional Goal</div>
@@ -1300,17 +1300,17 @@
       <div class="email-item">
         <div class="email-item-header">
           <span class="email-number">R-M1</span>
-          <span class="email-name">Your supply is running low — refill time is coming</span>
-          <span class="email-timing">Day 30 (Trigger Day)</span>
+          <span class="email-name">Your supply is almost out — here's how to stay on track</span>
+          <span class="email-timing">7 Days Before Supply End Date</span>
         </div>
         <div class="email-grid">
           <div>
             <div class="email-field-label">Subject Line Direction</div>
-            <div class="email-field-value"><em>"Heads up — your supply is running low."</em> Direct, short, practical. Informational, not urgent.</div>
+            <div class="email-field-value"><em>"Heads up, your supply ends in a week."</em> Direct, short, practical. Informational, not urgent. Fires 7 days before supply end date.</div>
           </div>
           <div>
             <div class="email-field-label">Core Message</div>
-            <div class="email-field-value">Upcoming reminder — your supply is running low and refill time is approaching. Practical, brief, low-pressure. This isn't the closer — it's the heads-up that gives the customer time to decide. One or two sentences max. Men in this category appreciate efficiency — no emotional content needed.</div>
+            <div class="email-field-value">Heads-up: supply ends in 7 days. Practical, brief, low-pressure. This isn't the closer, it's the advance notice that gives the customer time to decide without rushing. One or two sentences max. Men in this category appreciate efficiency, no emotional content needed.</div>
           </div>
           <div>
             <div class="email-field-label">Emotional Goal</div>
@@ -1330,13 +1330,13 @@
       <div class="email-item">
         <div class="email-item-header">
           <span class="email-number">R-M2</span>
-          <span class="email-name">It's time to refill — don't let your supply run dry</span>
-          <span class="email-timing">Day 35 (+5 days)</span>
+          <span class="email-name">Today's the day — don't let your plan lapse</span>
+          <span class="email-timing">On Supply End Date</span>
         </div>
         <div class="email-grid">
           <div>
             <div class="email-field-label">Subject Line Direction</div>
-            <div class="email-field-value"><em>"Time to refill — don't get caught short."</em> Or: <em>"Your supply is out — top up today."</em> Direct, discreet, practical.</div>
+            <div class="email-field-value"><em>"Today's the day. Don't let your plan lapse."</em> Or: <em>"Your supply ends today. Top up now."</em> Direct, discreet, practical. Fires on the supply end date.</div>
           </div>
           <div>
             <div class="email-field-label">Core Message</div>
@@ -1396,9 +1396,9 @@
       <ul>
         <li><strong>Purchase event (any):</strong> Immediately suppresses all active pre-purchase flows (Welcome, Browse Abandonment, Abandoned Checkout) and triggers Post-Purchase entry.</li>
         <li><strong>Repurchase during Post-Purchase:</strong> Suppresses remaining Post-Purchase emails. Replenishment timer resets from the new purchase date.</li>
-        <li><strong>Repurchase during Replenishment:</strong> Immediately suppresses all remaining Replenishment emails. New replenishment trigger set for 30 days from repurchase.</li>
+        <li><strong>Repurchase during Replenishment:</strong> Immediately suppresses all remaining Replenishment emails. New replenishment trigger is set based on the <code>supply_end_date</code> property from the new purchase.</li>
         <li><strong>Unsubscribe:</strong> Exits all active flows globally. No further email contact until explicit re-consent.</li>
-        <li><strong>No simultaneous flows:</strong> A customer should never be in Post-Purchase and Replenishment at the same time. The Day 30 replenishment trigger fires after the post-purchase sequence (Days 0/5/14) completes, ensuring a clean handoff with no overlap.</li>
+        <li><strong>No simultaneous flows:</strong> A customer should never be in Post-Purchase and Replenishment at the same time. The replenishment flow (triggered by supply_end_date) fires after the post-purchase sequence (Days 0/5/14) completes, ensuring a clean handoff with no overlap.</li>
       </ul>
     </div>
 
@@ -1410,23 +1410,29 @@
       </tr>
       <tr>
         <td>PP flow completes normally (Day 14), no repurchase</td>
-        <td>Replenishment flow triggers at Day 30. Clean gap of 16 days between PP-W/M3 and R-W/M1.</td>
+        <td>Replenishment flow fires relative to <code>supply_end_date</code>. R1 sends 7 days before end date, R2 sends on end date. Clean gap between PP completion and replenishment window with no overlap.</td>
       </tr>
       <tr>
         <td>Customer repurchases during PP flow (Day 5 or 14)</td>
-        <td>Remaining PP emails suppressed. Replenishment timer starts from repurchase date (Day 30 from that date).</td>
+        <td>Remaining PP emails suppressed. Replenishment timer resets based on <code>supply_end_date</code> from the new purchase.</td>
       </tr>
       <tr>
-        <td>Customer repurchases during Replenishment (Day 30–35)</td>
-        <td>All replenishment emails suppressed. New replenishment cycle starts 30 days from new purchase.</td>
+        <td>Customer repurchases during Replenishment window</td>
+        <td>All replenishment emails suppressed. New replenishment cycle begins, triggered by <code>supply_end_date</code> from the new purchase.</td>
       </tr>
       <tr>
-        <td>Replenishment completes with no repurchase (Day 35)</td>
-        <td>14-day pause. Winback flow triggers at Day 49 from original purchase.</td>
+        <td>Replenishment completes with no repurchase (R2 sent)</td>
+        <td>14-day pause after R2. Winback flow activates.</td>
       </tr>
     </table>
 
-    <h2>Lane Switching</h2>
+    <h2>Data Requirement — Action Item for Axis Health</h2>
+    <div class="callout" style="border-left-color: var(--rose); background: var(--rose-faint);">
+      <p><strong>Axis Health must pass a <code>supply_end_date</code> date property to each Klaviyo profile for the replenishment flow to trigger correctly.</strong> This is the date-based trigger that drives both R1 (7 days before supply end) and R2 (on supply end date). Without it, the replenishment flow cannot fire accurately across different supply lengths.</p>
+      <p style="margin-top:8px;">This property should be set at the time of purchase and updated with each renewal or new order. It must be passed as a <strong>Klaviyo profile property</strong>, not an event property, so it can be used as a time-based flow trigger. Flag this to Axis Health's technical team as a prerequisite before the replenishment flow goes live.</p>
+    </div>
+
+        <h2>Lane Switching</h2>
     <div class="card">
       <p>If a customer purchases across both lanes (e.g., a household with products from both the Women's Weight Loss and Men's Health lines), each purchase triggers its own independent flow for that product category. They should not be combined or crossed. The Axis Health team should ensure lane identification is product-level, not account-level.</p>
     </div>
