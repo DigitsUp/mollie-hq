@@ -3,29 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Liverpool LA — Client Brain</title>
+<title>Liverpool LA — Client Brain v2</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  /* DigitsUp dark base */
   --bg:#0D0D0D;
-  --bg2:#141414;
-  --bg3:#1C1C1C;
+  --bg2:#1A1A1A;
+  --bg3:#222222;
   --border:#2A2A2A;
   --text:#F0EDE8;
   --muted:#888880;
   --dim:#555550;
   --green:#4CAF7D;
   --red:#E05555;
-
-  /* Liverpool brand overlay — warm denim + California editorial */
-  --accent:#6BA8C8;          /* faded denim blue, replaces cold #3D9EFF */
-  --accent2:#C8926A;         /* terracotta / warm sand — Liverpool warmth */
+  --yellow:#D4A84B;
+  --accent:#6BA8C8;
+  --accent2:#C8926A;
   --accent-soft:rgba(107,168,200,.12);
-  --liverpool-warm:#B8875A;  /* warm bronze for brand mark */
-  --liverpool-cream:#F5EFE4; /* warm cream, matches their editorial feel */
-  --liverpool-denim:#4A7FA0; /* deeper denim for active states */
+  --accent2-soft:rgba(200,146,106,.12);
+  --liverpool-warm:#B8875A;
+  --liverpool-cream:#F5EFE4;
+  --liverpool-denim:#4A7FA0;
 }
 
 body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
@@ -33,1279 +32,868 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);
 /* ── GATE ── */
 #gate{position:fixed;inset:0;z-index:999;background:var(--bg);display:flex;align-items:center;justify-content:center;}
 .gi{text-align:center;width:340px;padding:0 24px;}
-.gi-brand-stripe{width:48px;height:3px;background:linear-gradient(90deg,var(--accent2),var(--accent));margin:0 auto 24px;}
+.gi-brand-stripe{width:48px;height:3px;background:linear-gradient(90deg,var(--accent2),var(--accent));margin:0 auto 28px;}
 .ge{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);margin-bottom:6px;}
-.gt{font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px;color:var(--liverpool-cream);}
+.gt{font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;color:var(--liverpool-cream);}
 .gt span{color:var(--accent2);}
-.gd2{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:24px;}
-.gdiv{width:40px;height:1px;background:var(--border);margin:0 auto 24px;}
-.gl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;}
-#pwi{width:100%;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);color:var(--text);font-size:14px;font-family:'IBM Plex Mono',monospace;outline:none;border-radius:0;}
+.gd2{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:28px;}
+.gdiv{width:40px;height:1px;background:var(--border);margin:0 auto 28px;}
+.gl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;text-align:left;}
+#pwi{width:100%;padding:13px 16px;background:var(--bg2);border:1px solid var(--border);color:var(--text);font-size:14px;font-family:'IBM Plex Mono',monospace;outline:none;border-radius:0;}
 #pwi:focus{border-color:var(--accent);}
 #pwe{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);margin-top:6px;min-height:14px;}
-#pwb{margin-top:12px;width:100%;padding:11px;background:linear-gradient(135deg,var(--accent2),var(--accent));color:#fff;border:none;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;cursor:pointer;transition:opacity .2s;}
+#pwb{margin-top:12px;width:100%;padding:12px;background:linear-gradient(135deg,var(--accent2),var(--accent));color:#fff;border:none;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;cursor:pointer;transition:opacity .2s;}
 #pwb:hover{opacity:.85;}
-.gcredit{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);margin-top:20px;}
+.gcredit{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);margin-top:24px;}
 
 /* ── CONTENT ── */
 #content{display:none;}
 
 /* ── SITE HEADER ── */
-.site-header{
-  position:sticky;top:0;z-index:100;
-  background:var(--bg);
-  border-bottom:1px solid var(--border);
-}
-.header-brand-bar{
-  height:3px;
-  background:linear-gradient(90deg,var(--accent2) 0%,var(--accent) 60%,transparent 100%);
-}
-.header-inner{
-  max-width:1100px;margin:0 auto;
-  padding:0 24px;
-  display:flex;align-items:center;justify-content:space-between;
-  height:52px;
-}
-.header-logo{
-  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
-  color:var(--liverpool-cream);
-  display:flex;align-items:center;gap:10px;
-}
-.header-logo .brand-pill{
-  font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:400;
-  padding:2px 8px;background:rgba(200,146,106,.15);color:var(--accent2);
-  letter-spacing:.08em;border-radius:20px;
-}
+.site-header{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);}
+.header-brand-bar{height:3px;background:linear-gradient(90deg,var(--accent2) 0%,var(--accent) 60%,transparent 100%);}
+.header-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:54px;}
+.header-logo{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--liverpool-cream);display:flex;align-items:center;gap:10px;}
+.header-logo .brand-pill{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:400;padding:2px 8px;background:var(--accent2-soft);color:var(--accent2);letter-spacing:.08em;border-radius:20px;}
 .tab-nav{display:flex;gap:0;}
-.tab-btn{
-  padding:0 18px;height:52px;
-  font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;
-  color:var(--muted);background:none;border:none;cursor:pointer;
-  border-bottom:2px solid transparent;
-  transition:color .15s,border-color .15s;
-  white-space:nowrap;
-}
+.tab-btn{padding:0 18px;height:54px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap;}
 .tab-btn:hover{color:var(--text);}
 .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);}
 
 /* ── PAGE ── */
-.page{max-width:1100px;margin:0 auto;padding:36px 24px 60px;}
+.page{max-width:1100px;margin:0 auto;padding:40px 24px 72px;}
 .tab-panel{display:none;}
 .tab-panel.active{display:block;}
 
 /* ── SECTION ── */
-.sec{margin-bottom:40px;}
-.sec-title{
-  font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;
-  letter-spacing:.18em;color:var(--muted);
-  margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border);
-}
-
-/* ── CLIENT HEADER (Overview) ── */
-.client-header{
-  background:var(--bg2);
-  border:1px solid var(--border);
-  border-top:3px solid var(--accent2);
-  padding:24px 28px 20px;
-  margin-bottom:28px;
-  position:relative;
-  overflow:hidden;
-}
-.client-header::before{
-  content:'';
-  position:absolute;top:0;right:0;
-  width:200px;height:100%;
-  background:linear-gradient(135deg,transparent 60%,rgba(200,146,106,.04));
-  pointer-events:none;
-}
-.ch-eyebrow{
-  font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;
-  letter-spacing:.18em;color:var(--accent2);margin-bottom:8px;
-}
-.ch-name{font-size:26px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--liverpool-cream);margin-bottom:4px;}
-.ch-meta{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:14px;}
-.ch-meta span{color:var(--dim);}
-.badges{display:flex;gap:6px;flex-wrap:wrap;}
-.badge{font-family:'IBM Plex Mono',monospace;font-size:9px;padding:3px 10px;border-radius:20px;font-weight:500;}
-.badge-warm{background:rgba(200,146,106,.15);color:var(--accent2);}
-.badge-blue{background:rgba(107,168,200,.12);color:var(--accent);}
-.badge-green{background:rgba(76,175,125,.12);color:var(--green);}
-.badge-gray{background:var(--bg3);color:var(--muted);}
-.badge-orange{background:rgba(184,135,90,.15);color:var(--liverpool-warm);}
+.sec{margin-bottom:48px;}
+.sec-title{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.18em;color:var(--muted);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border);}
 
 /* ── STAT CARDS ── */
-.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
-@media(max-width:680px){.sgrid{grid-template-columns:1fr 1fr;}}
-.sc{background:var(--bg2);border:1px solid var(--border);padding:16px 18px;}
-.sc.primary{border-top:2px solid var(--accent);}
-.sc.warm{border-top:2px solid var(--accent2);}
-.sl{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:10px;}
-.sv{font-size:24px;font-weight:700;margin-bottom:6px;}
-.sv.denim{color:var(--accent);}
-.sv.warm{color:var(--accent2);}
-.changes{display:flex;flex-direction:column;gap:3px;}
-.ch{font-family:'IBM Plex Mono',monospace;font-size:10px;}
-.up{color:var(--green);}
-.dn{color:var(--red);}
-.nt{color:var(--muted);}
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:16px;}
+.stat-card{background:var(--bg2);border:1px solid var(--border);padding:22px 20px;}
+.stat-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:10px;}
+.stat-value{font-size:26px;font-weight:800;color:var(--liverpool-cream);letter-spacing:-.01em;margin-bottom:6px;}
+.stat-change{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;}
+.stat-change.up{color:var(--green);}
+.stat-change.down{color:var(--red);}
+.stat-period{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);margin-top:4px;}
 
-/* ── STORY BULLETS ── */
-.story-card{background:var(--bg2);border:1px solid var(--border);padding:20px 22px;margin-bottom:10px;}
-.story-card-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;}
-.story-card-title.g{color:var(--green);}
-.story-card-title.r{color:var(--red);}
-.story-card-title.b{color:var(--accent);}
-.story-card-title.w{color:var(--accent2);}
-.story-bullets{list-style:none;display:flex;flex-direction:column;gap:8px;}
-.story-bullets li{font-size:13px;line-height:1.65;padding-left:18px;position:relative;color:var(--text);}
-.story-bullets.good li::before{content:"▲";position:absolute;left:0;top:3px;color:var(--green);font-size:8px;}
-.story-bullets.bad li::before{content:"▼";position:absolute;left:0;top:3px;color:var(--red);font-size:8px;}
-.story-bullets.act li::before{content:"→";position:absolute;left:0;color:var(--accent);}
-.story-bullets.note li::before{content:"◆";position:absolute;left:0;top:3px;color:var(--accent2);font-size:7px;}
-.story-bullets li strong{color:var(--liverpool-cream);}
+/* ── IN FLIGHT ── */
+.inflight-grid{display:flex;flex-direction:column;gap:8px;}
+.inflight-row{display:flex;align-items:center;justify-content:space-between;background:var(--bg2);border:1px solid var(--border);padding:14px 18px;}
+.inflight-name{font-size:13px;font-weight:600;color:var(--text);}
+.badge{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:.1em;padding:3px 10px;border-radius:2px;}
+.badge-live{background:rgba(76,175,125,.15);color:var(--green);border:1px solid rgba(76,175,125,.3);}
+.badge-build{background:rgba(107,168,200,.12);color:var(--accent);border:1px solid rgba(107,168,200,.25);}
+.badge-due{background:rgba(212,168,75,.12);color:var(--yellow);border:1px solid rgba(212,168,75,.25);}
+.badge-paused{background:rgba(136,136,128,.1);color:var(--muted);border:1px solid rgba(136,136,128,.2);}
+.badge-optimizing{background:rgba(200,146,106,.12);color:var(--accent2);border:1px solid rgba(200,146,106,.25);}
+.badge-reporting{background:rgba(212,168,75,.12);color:var(--yellow);border:1px solid rgba(212,168,75,.25);}
+.badge-strategy{background:rgba(200,146,106,.12);color:var(--accent2);border:1px solid rgba(200,146,106,.25);}
+.badge-complete{background:rgba(76,175,125,.15);color:var(--green);border:1px solid rgba(76,175,125,.3);}
+.badge-planned{background:rgba(136,136,128,.1);color:var(--muted);border:1px solid rgba(136,136,128,.2);}
 
-/* ── QUICK LINKS ── */
-.ql-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
-@media(max-width:680px){.ql-grid{grid-template-columns:1fr;}}
-.ql-card{background:var(--bg2);border:1px solid var(--border);padding:14px 16px;text-decoration:none;display:flex;align-items:center;gap:12px;transition:border-color .15s;}
-.ql-card:hover{border-color:var(--accent);}
-.ql-icon{font-size:16px;flex-shrink:0;}
-.ql-label{font-size:12px;font-weight:600;color:var(--text);display:block;margin-bottom:2px;}
-.ql-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);}
+/* ── NEXT CALL ── */
+.next-call{background:var(--accent-soft);border:1px solid rgba(107,168,200,.25);padding:18px 20px;display:flex;align-items:center;gap:16px;}
+.next-call-icon{font-size:20px;}
+.next-call-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:4px;}
+.next-call-time{font-size:13px;font-weight:700;color:var(--liverpool-cream);}
+.next-call-who{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-top:2px;}
 
-/* ── PIPELINE STATUS ── */
-.pipeline-row{display:flex;gap:10px;flex-wrap:wrap;}
-.pipeline-item{flex:1;min-width:180px;background:var(--bg2);border:1px solid var(--border);padding:14px 16px;}
-.pipeline-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:8px;}
-.pipeline-val{font-size:12px;font-weight:600;color:var(--text);line-height:1.5;}
-.pipeline-badge{display:inline-block;margin-top:6px;}
-
-/* ── METRICS TABLE ── */
-.mt{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:20px;}
-.mt th{padding:8px 12px;font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--bg3);white-space:nowrap;}
-.mt th:first-child{text-align:left;}
-.mt th:not(:first-child){text-align:right;}
-.mt td{padding:9px 12px;border-bottom:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:11px;}
-.mt td:first-child{text-align:left;font-family:'Montserrat',sans-serif;font-weight:500;font-size:12px;color:var(--text);}
-.mt td:not(:first-child){text-align:right;}
-.mt .muted{color:var(--muted);}
-.mt tr:last-child td{border-bottom:none;}
-.mt .bold-row td{font-weight:700;}
-.mt .bold-row td:first-child{color:var(--liverpool-cream);}
+/* ── REPORTING SNAPSHOT ── */
+.snap-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px;}
+.snap-card{background:var(--bg2);border:1px solid var(--border);padding:18px 16px;}
+.snap-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:10px;}
+.snap-value{font-size:22px;font-weight:800;color:var(--liverpool-cream);margin-bottom:6px;}
+.snap-deltas{display:flex;gap:10px;flex-wrap:wrap;}
+.snap-delta{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;}
+.snap-delta.up{color:var(--green);}
+.snap-delta.down{color:var(--red);}
+.snap-delta span{color:var(--dim);margin-right:2px;}
 
 /* ── DATA TABLE ── */
-.dt{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:20px;}
-.dt th{text-align:left;padding:8px 12px;font-size:9px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--bg2);white-space:nowrap;}
-.dt td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:middle;}
-.dt tr:last-child td{border-bottom:none;}
-.dt tr:hover td{background:rgba(107,168,200,.03);}
-.name-cell{font-weight:600;font-size:12px;max-width:280px;color:var(--text);}
-.accent-val{font-weight:700;color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:11px;}
-.warm-val{font-weight:700;color:var(--accent2);font-family:'IBM Plex Mono',monospace;font-size:11px;}
-.dt td:not(.name-cell):not(.accent-val):not(.warm-val){font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);}
-.rank-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);width:24px;}
-.sub-title{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:22px 0 10px;display:flex;align-items:center;gap:8px;}
-.sub-title::after{content:'';flex:1;height:1px;background:var(--border);}
-
-/* ── JOURNEY MAP ── */
-.journey-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-  margin-bottom:20px;
-}
-@media(max-width:800px){.journey-grid{grid-template-columns:repeat(2,1fr);}}
-.journey-card{
-  background:var(--bg2);
-  border:1px solid var(--border);
-  padding:14px 16px;
-  position:relative;
-}
-.journey-card.live{border-left:3px solid var(--green);}
-.journey-card.inbuild{border-left:3px solid var(--accent);}
-.journey-card.planned{border-left:3px solid var(--dim);}
-.journey-stage{
-  font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;
-  letter-spacing:.12em;color:var(--muted);margin-bottom:6px;
-}
-.journey-name{font-size:12px;font-weight:700;color:var(--text);line-height:1.35;margin-bottom:8px;}
-.journey-status{
-  font-family:'IBM Plex Mono',monospace;font-size:9px;
-  padding:2px 8px;border-radius:20px;display:inline-block;margin-bottom:10px;
-}
-.status-live{background:rgba(76,175,125,.15);color:var(--green);}
-.status-inbuild{background:rgba(107,168,200,.15);color:var(--accent);}
-.status-planned{background:var(--bg3);color:var(--dim);}
-.journey-stats{border-top:1px solid var(--border);padding-top:8px;display:flex;flex-direction:column;gap:3px;}
-.journey-stat{font-family:'IBM Plex Mono',monospace;font-size:10px;display:flex;justify-content:space-between;}
-.journey-stat .label{color:var(--dim);}
-.journey-stat .val{color:var(--text);}
-.journey-stat .val.green{color:var(--green);}
+.data-table{width:100%;border-collapse:collapse;}
+.data-table th{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);padding:8px 14px;text-align:left;border-bottom:1px solid var(--border);}
+.data-table td{padding:12px 14px;border-bottom:1px solid rgba(42,42,42,.6);font-size:13px;vertical-align:middle;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:hover td{background:rgba(255,255,255,.02);}
+.data-table .td-name{font-weight:600;color:var(--text);}
+.data-table .td-rev{font-weight:800;font-size:13px;color:var(--liverpool-cream);}
+.data-table .td-mono{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);}
+.table-wrap{background:var(--bg2);border:1px solid var(--border);}
 
 /* ── REPORTS LIBRARY ── */
-.report-table{width:100%;border-collapse:collapse;}
-.report-table th{text-align:left;padding:8px 16px;font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--bg2);}
-.report-table td{padding:13px 16px;border-bottom:1px solid var(--border);font-size:13px;}
-.report-table tr:last-child td{border-bottom:none;}
-.report-table tr:hover td{background:rgba(255,255,255,.02);}
-.report-period{font-weight:600;color:var(--text);}
-.report-date{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);}
-.report-link a{color:var(--accent);text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:11px;}
-.report-link a:hover{color:var(--liverpool-cream);}
-.badge-current{background:rgba(107,168,200,.15);color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:9px;padding:3px 10px;border-radius:20px;}
-.badge-past{background:var(--bg3);color:var(--dim);font-family:'IBM Plex Mono',monospace;font-size:9px;padding:3px 10px;border-radius:20px;}
-.badge-upcoming{background:rgba(200,146,106,.12);color:var(--accent2);font-family:'IBM Plex Mono',monospace;font-size:9px;padding:3px 10px;border-radius:20px;}
-.section-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);padding:10px 16px;background:var(--bg3);border-bottom:1px solid var(--border);}
+.report-row{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border);background:var(--bg2);}
+.report-row:last-child{border-bottom:none;}
+.report-week{font-size:13px;font-weight:600;color:var(--text);}
+.report-range{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-top:2px;}
+.report-dl{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:var(--accent-soft);border:1px solid rgba(107,168,200,.25);color:var(--accent);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;text-decoration:none;transition:background .15s;}
+.report-dl:hover{background:rgba(107,168,200,.2);}
 
-/* ── DATA NOTE BANNER ── */
-.data-note{
-  background:rgba(200,146,106,.08);
-  border:1px solid rgba(200,146,106,.25);
-  border-left:3px solid var(--accent2);
-  padding:10px 16px;
-  margin-bottom:20px;
-  font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent2);
-  line-height:1.5;
-}
-.data-note strong{color:var(--liverpool-cream);}
+/* ── FLOW CARDS ── */
+.flow-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.flow-card{background:var(--bg2);border:1px solid var(--border);padding:18px;}
+.flow-card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:14px;}
+.flow-name{font-size:12px;font-weight:700;color:var(--text);line-height:1.35;flex:1;}
+.flow-meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+.flow-metric{background:rgba(255,255,255,.03);padding:8px 10px;}
+.flow-metric-label{font-family:'IBM Plex Mono',monospace;font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin-bottom:4px;}
+.flow-metric-val{font-size:14px;font-weight:800;color:var(--liverpool-cream);}
+.flow-metric-val.mono{font-family:'IBM Plex Mono',monospace;font-size:12px;}
+.flow-note{font-size:11px;color:var(--muted);line-height:1.4;border-top:1px solid var(--border);padding-top:10px;}
+.flow-channel{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.1em;padding:2px 6px;border-radius:2px;background:var(--accent-soft);color:var(--accent);border:1px solid rgba(107,168,200,.2);}
+.flow-channel.sms{background:rgba(200,146,106,.1);color:var(--accent2);border-color:rgba(200,146,106,.2);}
+.flow-channel.both{background:rgba(107,168,200,.08);color:var(--muted);border-color:rgba(107,168,200,.15);}
 
-/* ── FOOTER ── */
-footer{
-  border-top:1px solid var(--border);
-  padding-top:20px;margin-top:48px;
-  display:flex;justify-content:space-between;align-items:center;
-  flex-wrap:wrap;gap:10px;
-}
-.fb{font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent2);}
-.fn{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);}
+/* ── KANBAN ── */
+.kanban{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;}
+.kanban-col{background:var(--bg2);border:1px solid var(--border);}
+.kanban-header{padding:10px 12px;border-bottom:1px solid var(--border);}
+.kanban-col-title{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);}
+.kanban-body{padding:10px;}
+.kanban-card{background:var(--bg);border:1px solid var(--border);padding:12px;margin-bottom:8px;}
+.kanban-card:last-child{margin-bottom:0;}
+.kanban-card-name{font-size:11px;font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.35;}
+.kanban-card-note{font-size:10px;color:var(--muted);line-height:1.4;}
+.kanban-col.active-col .kanban-header{border-bottom-color:var(--accent);}
+.kanban-col.active-col .kanban-col-title{color:var(--accent);}
+.kanban-empty{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);padding:8px 0;text-align:center;}
+
+/* ── CAMPAIGN TABLE ── */
+.campaign-note{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);padding:14px 18px;background:var(--accent2-soft);border:1px solid rgba(200,146,106,.2);margin-bottom:16px;}
+
+/* ── CHANNEL TAGS ── */
+.ch-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 7px;border-radius:2px;}
+.ch-email{background:var(--accent-soft);color:var(--accent);border:1px solid rgba(107,168,200,.2);}
+.ch-sms{background:rgba(200,146,106,.1);color:var(--accent2);border:1px solid rgba(200,146,106,.2);}
+.ch-both{background:rgba(107,168,200,.07);color:var(--muted);border:1px solid rgba(107,168,200,.15);}
+
+/* ── OWNER TAG ── */
+.owner-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 7px;background:rgba(136,136,128,.1);color:var(--muted);border:1px solid rgba(136,136,128,.2);border-radius:2px;}
+.owner-du{background:var(--accent-soft);color:var(--accent);border-color:rgba(107,168,200,.2);}
+
+/* ── SUBSECTION HEADER ── */
+.sub-title{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.16em;color:var(--accent2);margin-bottom:14px;margin-top:32px;}
+.sub-title:first-child{margin-top:0;}
 </style>
 </head>
 <body>
 
-<!-- ── GATE ── -->
+<!-- GATE -->
 <div id="gate">
   <div class="gi">
     <div class="gi-brand-stripe"></div>
-    <div class="ge">DigitsUp · Client Intelligence</div>
-    <div class="gt">Liverpool <span>LA</span></div>
-    <div class="gd2">Client Brain · v1 · Apr 2026</div>
+    <div class="ge">DigitsUp × Liverpool LA</div>
+    <div class="gt">Client <span>Brain</span></div>
+    <div class="gd2">Retention Operating System — v2</div>
     <div class="gdiv"></div>
-    <div class="gl">Password Required</div>
-    <input type="password" id="pwi" placeholder="••••••••" autocomplete="current-password">
+    <div class="gl">Access Code</div>
+    <input type="password" id="pwi" placeholder="Enter password" autocomplete="off" />
     <div id="pwe"></div>
-    <button id="pwb">Unlock</button>
-    <div class="gcredit">Prepared by DigitsUp · Powered by Mollie</div>
+    <button id="pwb" onclick="checkPw()">Enter</button>
+    <div class="gcredit">DigitsUp · Confidential</div>
   </div>
 </div>
 
-<!-- ── CONTENT ── -->
+<!-- CONTENT -->
 <div id="content">
 
-  <!-- STICKY HEADER + TABS -->
+  <!-- HEADER -->
   <div class="site-header">
     <div class="header-brand-bar"></div>
     <div class="header-inner">
       <div class="header-logo">
         Liverpool LA
-        <span class="brand-pill">Client Brain</span>
+        <span class="brand-pill">Client Brain v2</span>
       </div>
       <nav class="tab-nav">
-        <button class="tab-btn active" data-tab="overview">Overview</button>
-        <button class="tab-btn" data-tab="campaigns">Campaigns</button>
-        <button class="tab-btn" data-tab="automations">Automations</button>
-        <button class="tab-btn" data-tab="reports">Reports Library</button>
+        <button class="tab-btn active" onclick="showTab('mission')">Mission Control</button>
+        <button class="tab-btn" onclick="showTab('reporting')">Reporting</button>
+        <button class="tab-btn" onclick="showTab('flows')">Flow Architecture</button>
+        <button class="tab-btn" onclick="showTab('pipeline')">Strategy Pipeline</button>
+        <button class="tab-btn" onclick="showTab('calendar')">Campaign Calendar</button>
       </nav>
     </div>
   </div>
 
-  <!-- ════════════════════════════════════════════════════
-       TAB 1: OVERVIEW
-  ════════════════════════════════════════════════════ -->
+  <!-- PAGES -->
   <div class="page">
-  <div id="tab-overview" class="tab-panel active">
 
-    <!-- Client Header -->
-    <div class="client-header">
-      <div class="ch-eyebrow">Active Client · Retention Marketing · Email + SMS</div>
-      <div class="ch-name">Liverpool Los Angeles</div>
-      <div class="ch-meta">Klaviyo Account: JeMYJL &nbsp;<span>·</span>&nbsp; Since ~2024 &nbsp;<span>·</span>&nbsp; Shopify · Klaviyo Native</div>
-      <div class="badges">
-        <span class="badge badge-green">Active</span>
-        <span class="badge badge-blue">Email</span>
-        <span class="badge badge-blue">SMS</span>
-        <span class="badge badge-warm">Lifecycle Build</span>
-        <span class="badge badge-orange">~2 Years</span>
-      </div>
-    </div>
+    <!-- ── TAB 1: MISSION CONTROL ── -->
+    <div id="tab-mission" class="tab-panel active">
 
-    <!-- Week at a Glance -->
-    <div class="sec">
-      <div class="sec-title">Week at a Glance — Mar 30–Apr 5, 2026</div>
-      <div class="sgrid">
-        <div class="sc primary">
-          <div class="sl">Attributed Revenue</div>
-          <div class="sv denim">$166.1K</div>
-          <div class="changes">
-            <span class="ch up">+WoW n/a</span>
-            <span class="ch up">+64.4% YoY</span>
+      <div class="sec">
+        <div class="sec-title">Weekly Snapshot — Mar 30–Apr 5, 2026</div>
+        <div class="stat-row">
+          <div class="stat-card">
+            <div class="stat-label">Total Attributed Revenue</div>
+            <div class="stat-value">$129.4K</div>
+            <div class="stat-change up">↑ +86.7% YoY</div>
+            <div class="stat-period">Week of Mar 30–Apr 5</div>
           </div>
-        </div>
-        <div class="sc warm">
-          <div class="sl">Campaign Revenue</div>
-          <div class="sv">$79.7K</div>
-          <div class="changes">
-            <span class="ch nt">—</span>
-            <span class="ch up">+90.6% YoY</span>
+          <div class="stat-card">
+            <div class="stat-label">Campaign Revenue</div>
+            <div class="stat-value">$79.7K</div>
+            <div class="stat-change up">↑ +129% YoY</div>
+            <div class="stat-period">Email $69K · SMS $10.8K</div>
           </div>
-        </div>
-        <div class="sc">
-          <div class="sl">Flow Revenue</div>
-          <div class="sv">$86.4K</div>
-          <div class="changes">
-            <span class="ch up">+6.0% WoW</span>
-            <span class="ch up">+45.9% YoY</span>
+          <div class="stat-card">
+            <div class="stat-label">Flow Revenue</div>
+            <div class="stat-value">$49.7K</div>
+            <div class="stat-change up">↑ +44% YoY</div>
+            <div class="stat-period">Week of Mar 30–Apr 5</div>
           </div>
-        </div>
-      </div>
-      <div class="sgrid">
-        <div class="sc">
-          <div class="sl">Email Recipients</div>
-          <div class="sv" style="font-size:18px;">1.44M</div>
-          <div class="changes">
-            <span class="ch up">+140% YoY vs 600K</span>
-          </div>
-        </div>
-        <div class="sc">
-          <div class="sl">Email Open Rate</div>
-          <div class="sv" style="font-size:18px;">55.0%</div>
-          <div class="changes"><span class="ch up">Strong engagement</span></div>
-        </div>
-        <div class="sc">
-          <div class="sl">Email Conversions</div>
-          <div class="sv" style="font-size:18px;">431</div>
-          <div class="changes">
-            <span class="ch up">+79.6% YoY vs 240</span>
+          <div class="stat-card">
+            <div class="stat-label">Last 30d Attributed Revenue</div>
+            <div class="stat-value">$???</div>
+            <div class="stat-change up">↑ Strong growth</div>
+            <div class="stat-period">Mar 7–Apr 5</div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- The Story -->
-    <div class="sec">
-      <div class="sec-title">The Story</div>
-      <div class="story-card">
-        <div class="story-card-title g">What's Working</div>
-        <ul class="story-bullets good">
-          <li><strong>Total attributed revenue up +64.4% YoY</strong> — $166.1K vs $101.0K same week last year. Biggest number we've seen from this account. Both campaigns and flows are up YoY — a clean sweep.</li>
-          <li><strong>Campaign revenue nearly doubled YoY</strong> — $79.7K vs $41.8K LY (+90.6%). Email list reach grew from 600K to 1.44M recipients — the list build is paying off. Send volume + quality = win.</li>
-          <li><strong>Flows up +45.9% YoY</strong> — $86.4K this week vs $59.2K same week LY. TTCMYU (Toki loyalty) and Welcome Series are the two biggest movers. Retention engine is firing.</li>
-          <li><strong>55.0% email open rate</strong> — above industry average for apparel and up from last week. 16 email campaigns deployed this week with strong engagement across the board.</li>
-        </ul>
+      <div class="sec">
+        <div class="sec-title">What's In Flight</div>
+        <div class="inflight-grid">
+          <div class="inflight-row">
+            <div class="inflight-name">Welcome Series 2026</div>
+            <span class="badge badge-live">LIVE</span>
+          </div>
+          <div class="inflight-row">
+            <div class="inflight-name">Abandoned Checkout 2025</div>
+            <span class="badge badge-live">LIVE</span>
+          </div>
+          <div class="inflight-row">
+            <div class="inflight-name">Win-back 2026</div>
+            <span class="badge badge-build">IN BUILD</span>
+          </div>
+          <div class="inflight-row">
+            <div class="inflight-name">Browse Abandonment</div>
+            <span class="badge badge-live">LIVE</span>
+          </div>
+          <div class="inflight-row">
+            <div class="inflight-name">Q1 2026 Quarterly Report</div>
+            <span class="badge badge-due">DUE APR 14</span>
+          </div>
+          <div class="inflight-row">
+            <div class="inflight-name">RVCA-style Client Brain rebuild</div>
+            <span class="badge badge-build">IN BUILD</span>
+          </div>
+        </div>
       </div>
-      <div class="story-card">
-        <div class="story-card-title r">What Needs Attention</div>
-        <ul class="story-bullets bad">
-          <li><strong>Campaign RPR is diluted at scale</strong> — top email campaign (01KN31F, $21.2K) sent to 250K recipients with only 99 conversions (0.04% CVR). High volume, low conversion rate. Suggests broad untargeted sending vs. surgical sends LY. May be worth A/B testing a high-intent segment.</li>
-          <li><strong>SMS revenue is still modest</strong> — $10.8K on 178K recipients. Click-through is strong (20K+ clicks) but conversions are only 59. SMS is driving traffic but not closing. Consider a dedicated SMS promo or offer to lift conversion.</li>
-          <li><strong>Flows WoW +6.0%</strong> — healthy, but the TTCMYU loyalty flow is carrying a disproportionate share ($14.9K). If that flow has a promotional push baked in, the underlying baseline may be softer. Worth isolating TTCMYU to understand organic vs triggered cadence.</li>
-        </ul>
-      </div>
-      <div class="story-card">
-        <div class="story-card-title b">Recommended Actions</div>
-        <ul class="story-bullets act">
-          <li>Lead the call with the +64.4% YoY total attributed revenue — $166.1K is the strongest week on record for this account. That's the headline.</li>
-          <li>Investigate TTCMYU loyalty flow performance ($14.9K this week) — confirm if this is evergreen or event-triggered. If evergreen, it's a model for expanding loyalty touchpoints.</li>
-          <li>Review campaign RPR — 16 emails sent with $69K revenue is good, but the top sender (250K recips, $21.2K) converted at just 0.04%. A segmented send to high-intent shoppers on the same creative may lift CVR meaningfully.</li>
-          <li>Win-back 2026 is in build — prioritize launch. With flows already at $86.4K/week, adding a healthy winback layer could push weekly attribution north of $200K.</li>
-        </ul>
-      </div>
-    </div>
 
-    <!-- Quick Links -->
-    <div class="sec">
-      <div class="sec-title">Quick Links</div>
-      <div class="ql-grid">
-        <a href="https://www.klaviyo.com/dashboard" target="_blank" class="ql-card">
-          <div class="ql-icon">📊</div>
+      <div class="sec">
+        <div class="sec-title">Next Call</div>
+        <div class="next-call">
+          <div class="next-call-icon">📞</div>
           <div>
-            <span class="ql-label">Klaviyo Dashboard</span>
-            <span class="ql-meta">Account: JeMYJL</span>
+            <div class="next-call-label">Upcoming</div>
+            <div class="next-call-time">Tuesday 11:30am PST</div>
+            <div class="next-call-who">Otaner King · Morgan Kairey</div>
           </div>
-        </a>
-        <a href="#" class="ql-card" onclick="return false;">
-          <div class="ql-icon">📄</div>
-          <div>
-            <span class="ql-label">Strategy Doc</span>
-            <span class="ql-meta">Placeholder — link pending</span>
-          </div>
-        </a>
-        <a href="#" class="ql-card" onclick="return false;">
-          <div class="ql-icon">📞</div>
-          <div>
-            <span class="ql-label">Weekly Call</span>
-            <span class="ql-meta">Tuesdays · 11:30am</span>
-          </div>
-        </a>
-      </div>
-    </div>
-
-    <!-- Pipeline State -->
-    <div class="sec">
-      <div class="sec-title">Current Pipeline State</div>
-      <div class="pipeline-row">
-        <div class="pipeline-item">
-          <div class="pipeline-label">What's Live</div>
-          <div class="pipeline-val">Welcome Series 2026 · Abandoned Checkout · Browse Abandonment · Post-Purchase · Wonderment Shipping Suite · Winback 2025</div>
-          <span class="pipeline-badge badge badge-green">6 core flows active</span>
-        </div>
-        <div class="pipeline-item">
-          <div class="pipeline-label">In Build</div>
-          <div class="pipeline-val">Win-back 2026 — in progress, replaces 2025 version</div>
-          <span class="pipeline-badge badge badge-blue">1 in build</span>
-        </div>
-        <div class="pipeline-item">
-          <div class="pipeline-label">What's Next</div>
-          <div class="pipeline-val">Q1 2026 quarterly report (Apr 14) · Campaign calendar audit · List growth review</div>
-          <span class="pipeline-badge badge badge-warm">Q2 priorities</span>
         </div>
       </div>
+
     </div>
 
-    <footer>
-      <div class="fb">Liverpool Los Angeles</div>
-      <div class="fn">DigitsUp · Client Brain v1 · Apr 2026 · Powered by Mollie</div>
-    </footer>
-  </div>
+    <!-- ── TAB 2: REPORTING ── -->
+    <div id="tab-reporting" class="tab-panel">
 
-  <!-- ════════════════════════════════════════════════════
-       TAB 2: CAMPAIGNS
-  ════════════════════════════════════════════════════ -->
-  <div id="tab-campaigns" class="tab-panel">
+      <div class="sec">
+        <div class="sub-title">A — Live Klaviyo Snapshot</div>
+        <div class="sec-title">Week of Mar 30–Apr 5, 2026</div>
 
-    <!-- Top-line metrics -->
-    <div class="sec">
-      <div class="sec-title">Campaign Summary — Mar 30–Apr 5, 2026</div>
-      <table class="mt">
-        <thead>
-          <tr>
-            <th>Metric</th>
-            <th>This Week</th>
-            <th>Last Week</th>
-            <th>WoW</th>
-            <th>Same Wk LY</th>
-            <th>YoY</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Email Recipients</td><td>1.44M</td><td class="muted">—</td><td class="muted">—</td><td class="muted">600K</td><td class="up">+140%</td></tr>
-          <tr><td>Email Open Rate</td><td>55.0%</td><td class="muted">—</td><td class="muted">—</td><td class="muted">~55%</td><td class="muted">—</td></tr>
-          <tr><td>Email Clicks</td><td>21.6K</td><td class="muted">—</td><td class="muted">—</td><td class="muted">96.6K</td><td class="muted">—</td></tr>
-          <tr><td>Email Conversions</td><td>372</td><td class="muted">—</td><td class="muted">—</td><td class="muted">201</td><td class="up">+85.1%</td></tr>
-          <tr class="bold-row"><td>Email Campaign Revenue</td><td>$69.0K</td><td class="muted">—</td><td class="muted">—</td><td class="muted">$34.8K</td><td class="up">+98.3%</td></tr>
-          <tr><td>SMS Recipients</td><td>178.5K</td><td class="muted">—</td><td class="muted">—</td><td class="muted">44.2K</td><td class="up">+304%</td></tr>
-          <tr><td>SMS Conversions</td><td>59</td><td class="muted">—</td><td class="muted">—</td><td class="muted">39</td><td class="up">+51.3%</td></tr>
-          <tr class="bold-row"><td>SMS Revenue</td><td>$10.8K</td><td class="muted">—</td><td class="muted">—</td><td class="muted">$7.0K</td><td class="up">+53.6%</td></tr>
-          <tr class="bold-row"><td>Total Campaign Revenue</td><td>$79.7K</td><td class="muted">—</td><td class="muted">—</td><td class="muted">$41.8K</td><td class="up">+90.6%</td></tr>
-        </tbody>
-      </table>
-    </div>
+        <div class="snap-row">
+          <div class="snap-card">
+            <div class="snap-label">Total Attributed</div>
+            <div class="snap-value">$129.4K</div>
+            <div class="snap-deltas">
+              <div class="snap-delta up"><span>YoY</span>+86.7%</div>
+              <div class="snap-delta up"><span>WoW</span>+85.5%</div>
+            </div>
+          </div>
+          <div class="snap-card">
+            <div class="snap-label">Campaigns</div>
+            <div class="snap-value">$79.7K</div>
+            <div class="snap-deltas">
+              <div class="snap-delta up"><span>YoY</span>+129%</div>
+              <div class="snap-delta up"><span>WoW</span>+262%</div>
+            </div>
+          </div>
+          <div class="snap-card">
+            <div class="snap-label">Flows</div>
+            <div class="snap-value">$49.7K</div>
+            <div class="snap-deltas">
+              <div class="snap-delta up"><span>YoY</span>+44%</div>
+              <div class="snap-delta up"><span>WoW</span>+4%</div>
+            </div>
+          </div>
+        </div>
 
-    <!-- Top Email Campaigns TW -->
-    <div class="sec">
-      <div class="sec-title">Top Email Campaigns — Mar 30–Apr 5, 2026</div>
-      <table class="dt">
-        <thead>
-          <tr>
-            <th style="width:28px;">#</th>
-            <th>Campaign</th>
-            <th>Recipients</th>
-            <th>Open Rate</th>
-            <th>Orders</th>
-            <th>Revenue</th>
-            <th>RPR</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="rank-num">1</td>
-            <td class="name-cell" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">01KN31FZ2DHWEYRMK282CBVTXD</td>
-            <td>250.4K</td>
-            <td>49.6%</td>
-            <td>99</td>
-            <td class="accent-val">$21.2K</td>
-            <td>$0.085</td>
-          </tr>
-          <tr>
-            <td class="rank-num">2</td>
-            <td class="name-cell" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">01KN348SJ1V028JRYEBF26FFR3</td>
-            <td>248.8K</td>
-            <td>47.6%</td>
-            <td>48</td>
-            <td class="accent-val">$8.6K</td>
-            <td>$0.035</td>
-          </tr>
-          <tr>
-            <td class="rank-num">3</td>
-            <td class="name-cell" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">01KN352Z80Y434W70FSV69Z871</td>
-            <td>185.7K</td>
-            <td>61.4%</td>
-            <td>45</td>
-            <td class="accent-val">$6.8K</td>
-            <td>$0.037</td>
-          </tr>
-          <tr>
-            <td class="rank-num">4</td>
-            <td class="name-cell" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">01KN2YMCJW38B71ZHTB1VC1C1S</td>
-            <td>150.6K</td>
-            <td>59.8%</td>
-            <td>26</td>
-            <td class="accent-val">$6.2K</td>
-            <td>$0.041</td>
-          </tr>
-          <tr>
-            <td class="rank-num">5</td>
-            <td class="name-cell" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">01KN2AY2X6E98MCP2GZZEGYD93</td>
-            <td>231.9K</td>
-            <td>50.6%</td>
-            <td>34</td>
-            <td class="accent-val">$6.2K</td>
-            <td>$0.027</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+        <div class="snap-row" style="grid-template-columns:repeat(3,1fr);">
+          <div class="snap-card">
+            <div class="snap-label">Email Recipients</div>
+            <div class="snap-value">1.44M</div>
+            <div class="snap-deltas">
+              <div class="snap-delta up"><span>YoY</span>+139.8%</div>
+            </div>
+          </div>
+          <div class="snap-card">
+            <div class="snap-label">Open Rate</div>
+            <div class="snap-value">55%</div>
+            <div class="snap-deltas">
+              <div class="snap-delta up"><span>Week</span>Strong</div>
+            </div>
+          </div>
+          <div class="snap-card">
+            <div class="snap-label">Email Conversions</div>
+            <div class="snap-value">372</div>
+            <div class="snap-deltas">
+              <div class="snap-delta up"><span>YoY</span>+85.1%</div>
+            </div>
+          </div>
+        </div>
 
-    <!-- Top Email Campaigns LY -->
-    <div class="sec">
-      <div class="sec-title">Top Email Campaigns — Same Week Last Year (Mar 30–Apr 5, 2025)</div>
-      <table class="dt">
-        <thead>
-          <tr>
-            <th style="width:28px;">#</th>
-            <th>Campaign</th>
-            <th>Recipients</th>
-            <th>Open Rate</th>
-            <th>Orders</th>
-            <th>Revenue</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="rank-num">1</td>
-            <td class="name-cell" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">01JQ756MSSY9SRNAP74VQSGTEW</td>
-            <td>239.7K</td>
-            <td>58.3%</td>
-            <td>85</td>
-            <td class="warm-val">$15.1K</td>
-          </tr>
-          <tr>
-            <td class="rank-num">2</td>
-            <td class="name-cell" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">01JQEW8KTZ6GB8XKQ8PN4GTCCM</td>
-            <td>168.0K</td>
-            <td>71.8%</td>
-            <td>62</td>
-            <td class="warm-val">$9.7K</td>
-          </tr>
-          <tr>
-            <td class="rank-num">3</td>
-            <td class="name-cell" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">01JQFG60G3XJCST6HV0QFB0BYY</td>
-            <td>179.3K</td>
-            <td>68.3%</td>
-            <td>50</td>
-            <td class="warm-val">$9.3K</td>
-          </tr>
-          <tr>
-            <td class="rank-num">4</td>
-            <td class="name-cell" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">01JQW6CV7V2P9KR1MKRN103T4C</td>
-            <td>9.4K</td>
-            <td>56.7%</td>
-            <td>3</td>
-            <td class="warm-val">$0.5K</td>
-          </tr>
-          <tr>
-            <td class="rank-num">5</td>
-            <td class="name-cell" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">01JQW6JWDJYRJZFACS59R65SW1</td>
-            <td>2.9K</td>
-            <td>58.7%</td>
-            <td>1</td>
-            <td class="warm-val">$0.1K</td>
-          </tr>
-        </tbody>
-      </table>
-      <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);margin-top:-10px;">Note: LY campaign names not stored in Klaviyo history — IDs shown. Names will be visible in the Klaviyo campaigns dashboard filtered to Mar–Apr 2025.</p>
-    </div>
+        <div style="margin-bottom:32px;">
+          <div class="sec-title" style="margin-top:24px;">Top 5 Flows — This Week</div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Flow</th>
+                  <th>Revenue</th>
+                  <th>Orders</th>
+                  <th>Recipients</th>
+                  <th>RPR</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="td-name">Welcome Series Email 2026</td>
+                  <td class="td-rev">$10,617</td>
+                  <td class="td-mono">71</td>
+                  <td class="td-mono">986</td>
+                  <td class="td-mono">$10.77</td>
+                </tr>
+                <tr>
+                  <td class="td-name">Added2Cart 2025</td>
+                  <td class="td-rev">$4,157</td>
+                  <td class="td-mono">19</td>
+                  <td class="td-mono">447</td>
+                  <td class="td-mono">$9.30</td>
+                </tr>
+                <tr>
+                  <td class="td-name">Wonderment: Delivered</td>
+                  <td class="td-rev">$2,125</td>
+                  <td class="td-mono">22</td>
+                  <td class="td-mono">1,265</td>
+                  <td class="td-mono">$1.68</td>
+                </tr>
+                <tr>
+                  <td class="td-name">Welcome Series SMS 2026</td>
+                  <td class="td-rev">$1,827</td>
+                  <td class="td-mono">11</td>
+                  <td class="td-mono">179</td>
+                  <td class="td-mono">$10.21</td>
+                </tr>
+                <tr>
+                  <td class="td-name">Order Confirmation Standard</td>
+                  <td class="td-rev">$1,603</td>
+                  <td class="td-mono">11</td>
+                  <td class="td-mono">1,692</td>
+                  <td class="td-mono">$0.95</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-    <!-- Top SMS Campaigns -->
-    <div class="sec">
-      <div class="sec-title">Top SMS Campaigns — This Week</div>
-      <table class="dt">
-        <thead>
-          <tr>
-            <th style="width:28px;">#</th>
-            <th>Campaign</th>
-            <th>Recipients</th>
-            <th>Click Rate</th>
-            <th>Orders</th>
-            <th>Revenue</th>
-            <th>RPR</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="rank-num">1</td>
-            <td class="name-cell" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">01KN5W1NRAM615SVVG7VNHASPA</td>
-            <td>37.6K</td>
-            <td>23.3%</td>
-            <td>23</td>
-            <td class="accent-val">$4.1K</td>
-            <td>$0.109</td>
-          </tr>
-          <tr>
-            <td class="rank-num">2</td>
-            <td class="name-cell" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">01KN5K206C4KH5T6SK2NFTE3E3</td>
-            <td>70.4K</td>
-            <td>9.3%</td>
-            <td>20</td>
-            <td class="accent-val">$4.0K</td>
-            <td>$0.057</td>
-          </tr>
-          <tr>
-            <td class="rank-num">3</td>
-            <td class="name-cell" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">01KN5XB4AMWBKAZZQT2DMA0VHE</td>
-            <td>70.5K</td>
-            <td>8.8%</td>
-            <td>16</td>
-            <td class="accent-val">$2.6K</td>
-            <td>$0.038</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Campaign Commentary -->
-    <div class="sec">
-      <div class="sec-title">Campaign Commentary</div>
-      <div class="story-card">
-        <div class="story-card-title g">What's Working</div>
-        <ul class="story-bullets good">
-          <li><strong>Campaign revenue nearly doubled YoY.</strong> $79.7K vs $41.8K same week 2025 — a +90.6% improvement. More sends, more recipients (1.44M vs 600K), and the cadence is working. Q2 is off to a strong start.</li>
-          <li><strong>Top email (01KN31F) drove $21.2K alone.</strong> 250K recipients, 49.6% open rate, 99 conversions. Best single-email output this account has seen. Whatever creative and segment was behind this deserves a repeat.</li>
-          <li><strong>Open rates are exceptional.</strong> Three emails above 49% open rate in the same week. The send cadence is well-calibrated — no fatigue signal visible yet.</li>
-        </ul>
+        <div>
+          <div class="sec-title">Top 5 Campaigns — This Week</div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Campaign</th>
+                  <th>Revenue</th>
+                  <th>Orders</th>
+                  <th>Recipients</th>
+                  <th>RPR</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="td-name">4/03 Spring Sale Begins</td>
+                  <td class="td-rev">$21,198</td>
+                  <td class="td-mono">99</td>
+                  <td class="td-mono">250K</td>
+                  <td class="td-mono">$0.085</td>
+                </tr>
+                <tr>
+                  <td class="td-name">4/05 Last Chance AM</td>
+                  <td class="td-rev">$8,646</td>
+                  <td class="td-mono">48</td>
+                  <td class="td-mono">249K</td>
+                  <td class="td-mono">$0.035</td>
+                </tr>
+                <tr>
+                  <td class="td-name">4/05 Last Chance PM</td>
+                  <td class="td-rev">$6,842</td>
+                  <td class="td-mono">45</td>
+                  <td class="td-mono">186K</td>
+                  <td class="td-mono">$0.037</td>
+                </tr>
+                <tr>
+                  <td class="td-name">4/02 Spring Sale</td>
+                  <td class="td-rev">$6,247</td>
+                  <td class="td-mono">26</td>
+                  <td class="td-mono">151K</td>
+                  <td class="td-mono">$0.041</td>
+                </tr>
+                <tr>
+                  <td class="td-name">4/01 One Piece Dress</td>
+                  <td class="td-rev">$6,162</td>
+                  <td class="td-mono">34</td>
+                  <td class="td-mono">232K</td>
+                  <td class="td-mono">$0.027</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-      <div class="story-card">
-        <div class="story-card-title r">What's Not</div>
-        <ul class="story-bullets bad">
-          <li><strong>Email CVR is still thin at scale.</strong> Top email (01KN31F): 99 conversions on 250K sends = 0.04% CVR. LY top email got 85 convs on 240K sends (0.04%). Volume is up but per-send conversion rate is flat. Suggest testing a high-intent segment version of the top-performing send.</li>
-          <li><strong>SMS RPR lags email.</strong> Best SMS ($0.109 RPR on 01KN5W) is good for SMS, but the email top performer ($21.2K / 250K = $0.085 RPR) is not far behind despite being broadcast. SMS list quality may be the constraint.</li>
-        </ul>
+
+      <div class="sec">
+        <div class="sub-title">B — Reports Library</div>
+        <div class="sec-title">Weekly Decks</div>
+        <div class="table-wrap">
+          <div class="report-row">
+            <div>
+              <div class="report-week">Week of Mar 30–Apr 5, 2026</div>
+              <div class="report-range">Mar 30 → Apr 5</div>
+            </div>
+            <a class="report-dl" href="https://digitsup.github.io/mollie-hq/projects/liverpool/reports/LPS_Weekly_Mar30_Apr5_2026.pptx" download>
+              ↓ Download PPTX
+            </a>
+          </div>
+          <div class="report-row">
+            <div>
+              <div class="report-week">Week of Mar 23–29, 2026</div>
+              <div class="report-range">Mar 23 → Mar 29</div>
+            </div>
+            <a class="report-dl" href="https://digitsup.github.io/mollie-hq/projects/liverpool/reports/LPS_Weekly_Mar23_29_2026.pptx" download>
+              ↓ Download PPTX
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="story-card">
-        <div class="story-card-title b">Action Item</div>
-        <ul class="story-bullets act">
-          <li>Identify and preserve the creative/segment behind 01KN31F — $21.2K from a single email is a playbook moment. Replicate the approach for April sends.</li>
-          <li>Consider a dedicated high-intent segment send on top email creative. If 5% of 250K were in an "engaged buyer" segment and converted at 0.5%, that's $5–8K in incremental revenue from one resend.</li>
-        </ul>
-      </div>
+
     </div>
 
-    <footer>
-      <div class="fb">Liverpool Los Angeles</div>
-      <div class="fn">DigitsUp · Client Brain v1 · Apr 2026 · Powered by Mollie</div>
-    </footer>
-  </div>
+    <!-- ── TAB 3: FLOW ARCHITECTURE ── -->
+    <div id="tab-flows" class="tab-panel">
 
-  <!-- ════════════════════════════════════════════════════
-       TAB 3: AUTOMATIONS
-  ════════════════════════════════════════════════════ -->
-  <div id="tab-automations" class="tab-panel">
+      <div class="sec">
+        <div class="sec-title">Flow Stack — Mar 7–Apr 5, 2026 (30 days)</div>
+        <div class="flow-grid">
 
-    <!-- Customer Journey Map -->
-    <div class="sec">
-      <div class="sec-title">Customer Journey Map — Full Flow Architecture</div>
-      <div class="journey-grid">
-
-        <!-- Acquisition -->
-        <div class="journey-card live">
-          <div class="journey-stage">Acquisition</div>
-          <div class="journey-name">Back In Stock Flow<br>VIP vs. Non-VIP</div>
-          <span class="journey-status status-live">Live</span>
-          <div class="journey-stats">
-            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">MxcX8m</span></div>
-            <div class="journey-stat"><span class="label">Trigger</span><span class="val">Back in stock alert</span></div>
+          <div class="flow-card">
+            <div class="flow-card-header">
+              <div class="flow-name">Welcome Series Email 2026</div>
+              <span class="badge badge-live">LIVE</span>
+            </div>
+            <div class="flow-meta">
+              <div class="flow-metric">
+                <div class="flow-metric-label">30d Revenue</div>
+                <div class="flow-metric-val">$39,899</div>
+              </div>
+              <div class="flow-metric">
+                <div class="flow-metric-label">RPR</div>
+                <div class="flow-metric-val mono">$9.87</div>
+              </div>
+            </div>
+            <div style="margin-bottom:10px;"><span class="flow-channel">EMAIL</span></div>
+            <div class="flow-note">#1 flow — compounding with list growth</div>
           </div>
-        </div>
 
-        <!-- Welcome -->
-        <div class="journey-card live">
-          <div class="journey-stage">Welcome — Primary</div>
-          <div class="journey-name">Welcome Series — Email 2026</div>
-          <span class="journey-status status-live">Live</span>
-          <div class="journey-stats">
-            <div class="journey-stat"><span class="label">Recipients TW</span><span class="val">986</span></div>
-            <div class="journey-stat"><span class="label">Revenue TW</span><span class="val green">$10.6K</span></div>
-            <div class="journey-stat"><span class="label">CVR</span><span class="val green">7.20%</span></div>
+          <div class="flow-card">
+            <div class="flow-card-header">
+              <div class="flow-name">Added2Cart 2025</div>
+              <span class="badge badge-live">LIVE</span>
+            </div>
+            <div class="flow-meta">
+              <div class="flow-metric">
+                <div class="flow-metric-label">30d Revenue</div>
+                <div class="flow-metric-val">$11,919</div>
+              </div>
+              <div class="flow-metric">
+                <div class="flow-metric-label">RPR</div>
+                <div class="flow-metric-val mono">$8.73</div>
+              </div>
+            </div>
+            <div style="margin-bottom:10px;"><span class="flow-channel">EMAIL</span></div>
+            <div class="flow-note">High-intent, consistent performer</div>
           </div>
-        </div>
 
-        <!-- Welcome Legacy -->
-        <div class="journey-card live">
-          <div class="journey-stage">Welcome — Ecom</div>
-          <div class="journey-name">Welcome Series — Liverpool Ecom Customers</div>
-          <span class="journey-status status-live">Live</span>
-          <div class="journey-stats">
-            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">TFmENC</span></div>
-            <div class="journey-stat"><span class="label">Segment</span><span class="val">Ecom buyers</span></div>
+          <div class="flow-card">
+            <div class="flow-card-header">
+              <div class="flow-name">Abandoned Checkout 2025</div>
+              <span class="badge badge-live">LIVE</span>
+            </div>
+            <div class="flow-meta">
+              <div class="flow-metric">
+                <div class="flow-metric-label">30d Revenue</div>
+                <div class="flow-metric-val">$11,513</div>
+              </div>
+              <div class="flow-metric">
+                <div class="flow-metric-label">RPR</div>
+                <div class="flow-metric-val mono">$10.04</div>
+              </div>
+            </div>
+            <div style="margin-bottom:10px;"><span class="flow-channel">EMAIL</span></div>
+            <div class="flow-note">Rebuilt 2025 — outperforming LY at 2x RPR</div>
           </div>
-        </div>
 
-        <!-- Browse -->
-        <div class="journey-card live">
-          <div class="journey-stage">Browse</div>
-          <div class="journey-name">Browse Abandonment</div>
-          <span class="journey-status status-live">Live</span>
-          <div class="journey-stats">
-            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">U9NPLQ</span></div>
-            <div class="journey-stat"><span class="label">30-day Rev</span><span class="val">$5.2K</span></div>
+          <div class="flow-card">
+            <div class="flow-card-header">
+              <div class="flow-name">Wonderment: Delivered</div>
+              <span class="badge badge-live">LIVE</span>
+            </div>
+            <div class="flow-meta">
+              <div class="flow-metric">
+                <div class="flow-metric-label">30d Revenue</div>
+                <div class="flow-metric-val">$7,147</div>
+              </div>
+              <div class="flow-metric">
+                <div class="flow-metric-label">RPR</div>
+                <div class="flow-metric-val mono">$1.35</div>
+              </div>
+            </div>
+            <div style="margin-bottom:10px;"><span class="flow-channel">EMAIL</span></div>
+            <div class="flow-note">High volume, low conversion — optimization candidate</div>
           </div>
-        </div>
 
-        <!-- Cart -->
-        <div class="journey-card live">
-          <div class="journey-stage">Cart Abandonment</div>
-          <div class="journey-name">Added2Cart 2025</div>
-          <span class="journey-status status-live">Live</span>
-          <div class="journey-stats">
-            <div class="journey-stat"><span class="label">Recipients TW</span><span class="val">270</span></div>
-            <div class="journey-stat"><span class="label">Revenue TW</span><span class="val green">$2.6K</span></div>
-            <div class="journey-stat"><span class="label">CVR</span><span class="val green">5.19%</span></div>
+          <div class="flow-card">
+            <div class="flow-card-header">
+              <div class="flow-name">Browse Abandonment</div>
+              <span class="badge badge-live">LIVE</span>
+            </div>
+            <div class="flow-meta">
+              <div class="flow-metric">
+                <div class="flow-metric-label">30d Revenue</div>
+                <div class="flow-metric-val">$5,438</div>
+              </div>
+              <div class="flow-metric">
+                <div class="flow-metric-label">RPR</div>
+                <div class="flow-metric-val mono">$0.59</div>
+              </div>
+            </div>
+            <div style="margin-bottom:10px;"><span class="flow-channel">EMAIL</span></div>
+            <div class="flow-note">Strong volume — content refinement opportunity</div>
           </div>
-        </div>
 
-        <!-- Checkout -->
-        <div class="journey-card live">
-          <div class="journey-stage">Checkout Abandonment</div>
-          <div class="journey-name">Abandoned Checkout 2025</div>
-          <span class="journey-status status-live">Live</span>
-          <div class="journey-stats">
-            <div class="journey-stat"><span class="label">Recipients TW</span><span class="val">853</span></div>
-            <div class="journey-stat"><span class="label">Revenue TW</span><span class="val green">$10.2K</span></div>
-            <div class="journey-stat"><span class="label">CVR</span><span class="val green">7.15%</span></div>
+          <div class="flow-card">
+            <div class="flow-card-header">
+              <div class="flow-name">Order Confirmation Standard</div>
+              <span class="badge badge-live">LIVE</span>
+            </div>
+            <div class="flow-meta">
+              <div class="flow-metric">
+                <div class="flow-metric-label">30d Revenue</div>
+                <div class="flow-metric-val">$5,048</div>
+              </div>
+              <div class="flow-metric">
+                <div class="flow-metric-label">RPR</div>
+                <div class="flow-metric-val mono">$0.83</div>
+              </div>
+            </div>
+            <div style="margin-bottom:10px;"><span class="flow-channel">EMAIL</span></div>
+            <div class="flow-note">Transactional reach, low yield</div>
           </div>
-        </div>
 
-        <!-- Post-Purchase -->
-        <div class="journey-card live">
-          <div class="journey-stage">Post-Purchase</div>
-          <div class="journey-name">Post-Purchase Optimization</div>
-          <span class="journey-status status-live">Live</span>
-          <div class="journey-stats">
-            <div class="journey-stat"><span class="label">Recipients TW</span><span class="val">511</span></div>
-            <div class="journey-stat"><span class="label">Revenue TW</span><span class="val green">$1.5K</span></div>
-            <div class="journey-stat"><span class="label">CVR</span><span class="val">1.96%</span></div>
+          <div class="flow-card">
+            <div class="flow-card-header">
+              <div class="flow-name">Welcome Series SMS 2026</div>
+              <span class="badge badge-live">LIVE</span>
+            </div>
+            <div class="flow-meta">
+              <div class="flow-metric">
+                <div class="flow-metric-label">30d Revenue</div>
+                <div class="flow-metric-val">$6,767</div>
+              </div>
+              <div class="flow-metric">
+                <div class="flow-metric-label">RPR</div>
+                <div class="flow-metric-val mono">$8.56</div>
+              </div>
+            </div>
+            <div style="margin-bottom:10px;"><span class="flow-channel sms">SMS</span></div>
+            <div class="flow-note">$10.21 RPR this week — strong intake quality</div>
           </div>
-        </div>
 
-        <!-- Order Confirmation -->
-        <div class="journey-card live">
-          <div class="journey-stage">Post-Purchase</div>
-          <div class="journey-name">Order Confirmation — Standard</div>
-          <span class="journey-status status-live">Live</span>
-          <div class="journey-stats">
-            <div class="journey-stat"><span class="label">Recipients TW</span><span class="val">1,692</span></div>
-            <div class="journey-stat"><span class="label">Revenue TW</span><span class="val">$1.6K</span></div>
-            <div class="journey-stat"><span class="label">CVR</span><span class="val">0.65%</span></div>
+          <div class="flow-card">
+            <div class="flow-card-header">
+              <div class="flow-name">Win-back 2026</div>
+              <span class="badge badge-build">IN BUILD</span>
+            </div>
+            <div class="flow-meta">
+              <div class="flow-metric">
+                <div class="flow-metric-label">30d Revenue</div>
+                <div class="flow-metric-val" style="color:var(--dim);">—</div>
+              </div>
+              <div class="flow-metric">
+                <div class="flow-metric-label">RPR</div>
+                <div class="flow-metric-val" style="color:var(--dim);">—</div>
+              </div>
+            </div>
+            <div style="margin-bottom:10px;"><span class="flow-channel">EMAIL</span></div>
+            <div class="flow-note">Replacing 2025 winback segment</div>
           </div>
-        </div>
 
-        <!-- Wonderment Suite -->
-        <div class="journey-card live">
-          <div class="journey-stage">Shipping — Delivered</div>
-          <div class="journey-name">Wonderment: Delivered</div>
-          <span class="journey-status status-live">Live</span>
-          <div class="journey-stats">
-            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">V9LLVS</span></div>
-            <div class="journey-stat"><span class="label">30-day Rev</span><span class="val">$9.3K</span></div>
+          <div class="flow-card">
+            <div class="flow-card-header">
+              <div class="flow-name">Post-Purchase Optimization</div>
+              <span class="badge badge-live">LIVE</span>
+            </div>
+            <div class="flow-meta">
+              <div class="flow-metric">
+                <div class="flow-metric-label">30d Revenue</div>
+                <div class="flow-metric-val">$3,702</div>
+              </div>
+              <div class="flow-metric">
+                <div class="flow-metric-label">RPR</div>
+                <div class="flow-metric-val mono">$1.70</div>
+              </div>
+            </div>
+            <div style="margin-bottom:10px;"><span class="flow-channel">EMAIL</span></div>
+            <div class="flow-note">30d solid — audit opportunity</div>
           </div>
-        </div>
 
-        <div class="journey-card live">
-          <div class="journey-stage">Shipping — Out for Delivery</div>
-          <div class="journey-name">Wonderment: Out for Delivery</div>
-          <span class="journey-status status-live">Live</span>
-          <div class="journey-stats">
-            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">UViKZR</span></div>
-            <div class="journey-stat"><span class="label">30-day Rev</span><span class="val">$4.9K</span></div>
+          <div class="flow-card">
+            <div class="flow-card-header">
+              <div class="flow-name">Birthday Series — Toki</div>
+              <span class="badge badge-live">LIVE</span>
+            </div>
+            <div class="flow-meta">
+              <div class="flow-metric">
+                <div class="flow-metric-label">30d Revenue</div>
+                <div class="flow-metric-val" style="color:var(--dim);">—</div>
+              </div>
+              <div class="flow-metric">
+                <div class="flow-metric-label">RPR</div>
+                <div class="flow-metric-val" style="color:var(--dim);">—</div>
+              </div>
+            </div>
+            <div style="margin-bottom:10px;"><span class="flow-channel">EMAIL</span></div>
+            <div class="flow-note">Loyalty trigger</div>
           </div>
-        </div>
 
-        <div class="journey-card live">
-          <div class="journey-stage">Shipping — Carrier Pickup</div>
-          <div class="journey-name">Wonderment: Carrier Picked Up</div>
-          <span class="journey-status status-live">Live</span>
-          <div class="journey-stats">
-            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">TsNDQA</span></div>
+          <div class="flow-card">
+            <div class="flow-card-header">
+              <div class="flow-name">Toki Tier Earned + Referral</div>
+              <span class="badge badge-live">LIVE</span>
+            </div>
+            <div class="flow-meta">
+              <div class="flow-metric">
+                <div class="flow-metric-label">30d Revenue</div>
+                <div class="flow-metric-val" style="color:var(--dim);">—</div>
+              </div>
+              <div class="flow-metric">
+                <div class="flow-metric-label">RPR</div>
+                <div class="flow-metric-val" style="color:var(--dim);">—</div>
+              </div>
+            </div>
+            <div style="margin-bottom:10px;"><span class="flow-channel both">EMAIL/SMS</span></div>
+            <div class="flow-note">Loyalty milestone</div>
           </div>
-        </div>
 
-        <div class="journey-card live">
-          <div class="journey-stage">Shipping — Stalled</div>
-          <div class="journey-name">Wonderment: Stalled Shipment</div>
-          <span class="journey-status status-live">Live</span>
-          <div class="journey-stats">
-            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">WKSDBN</span></div>
+          <div class="flow-card">
+            <div class="flow-card-header">
+              <div class="flow-name">Rewards Monthly Update</div>
+              <span class="badge badge-live">LIVE</span>
+            </div>
+            <div class="flow-meta">
+              <div class="flow-metric">
+                <div class="flow-metric-label">30d Revenue</div>
+                <div class="flow-metric-val" style="color:var(--dim);">—</div>
+              </div>
+              <div class="flow-metric">
+                <div class="flow-metric-label">RPR</div>
+                <div class="flow-metric-val" style="color:var(--dim);">—</div>
+              </div>
+            </div>
+            <div style="margin-bottom:10px;"><span class="flow-channel">EMAIL</span></div>
+            <div class="flow-note">Down 46.6% WoW — monitor</div>
           </div>
-        </div>
 
-        <!-- SMS Post Purchase -->
-        <div class="journey-card live">
-          <div class="journey-stage">Post-Purchase — SMS</div>
-          <div class="journey-name">SMS Post Purchase</div>
-          <span class="journey-status status-live">Live</span>
-          <div class="journey-stats">
-            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">VJhbbJ</span></div>
-            <div class="journey-stat"><span class="label">Channel</span><span class="val">SMS</span></div>
+          <div class="flow-card">
+            <div class="flow-card-header">
+              <div class="flow-name">Back In Stock VIP/Non-VIP</div>
+              <span class="badge badge-live">LIVE</span>
+            </div>
+            <div class="flow-meta">
+              <div class="flow-metric">
+                <div class="flow-metric-label">30d Revenue</div>
+                <div class="flow-metric-val" style="color:var(--dim);">—</div>
+              </div>
+              <div class="flow-metric">
+                <div class="flow-metric-label">RPR</div>
+                <div class="flow-metric-val" style="color:var(--dim);">—</div>
+              </div>
+            </div>
+            <div style="margin-bottom:10px;"><span class="flow-channel">EMAIL</span></div>
+            <div class="flow-note">+499% YoY 30d — confirm all restocks trigger</div>
           </div>
-        </div>
 
-        <!-- Loyalty -->
-        <div class="journey-card live">
-          <div class="journey-stage">Loyalty — Rewards</div>
-          <div class="journey-name">Rewards Monthly Update</div>
-          <span class="journey-status status-live">Live</span>
-          <div class="journey-stats">
-            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">Ybbjin</span></div>
-            <div class="journey-stat"><span class="label">Trigger</span><span class="val">Monthly, post-order</span></div>
-          </div>
         </div>
-
-        <div class="journey-card live">
-          <div class="journey-stage">Loyalty — Birthday</div>
-          <div class="journey-name">Birthday Series 2025 — Toki</div>
-          <span class="journey-status status-live">Live</span>
-          <div class="journey-stats">
-            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">R4BczB</span></div>
-            <div class="journey-stat"><span class="label">Partner</span><span class="val">Toki</span></div>
-          </div>
-        </div>
-
-        <div class="journey-card planned">
-          <div class="journey-stage">Loyalty — Toki Tiers</div>
-          <div class="journey-name">Toki Tier Earned + Referral Rewards</div>
-          <span class="journey-status status-planned">Planned / Monitor</span>
-          <div class="journey-stats">
-            <div class="journey-stat"><span class="label">Flows</span><span class="val">SVQrRs, VQkRVm</span></div>
-          </div>
-        </div>
-
-        <!-- Loyalty - Yotpo -->
-        <div class="journey-card planned">
-          <div class="journey-stage">Loyalty — Referral</div>
-          <div class="journey-name">Yotpo Referral Share + Reminder</div>
-          <span class="journey-status status-planned">Planned / Monitor</span>
-          <div class="journey-stats">
-            <div class="journey-stat"><span class="label">Flows</span><span class="val">SYDD59, Svtm39</span></div>
-          </div>
-        </div>
-
-        <!-- Loyalty Expiry -->
-        <div class="journey-card planned">
-          <div class="journey-stage">Loyalty — Expiry</div>
-          <div class="journey-name">Rewards Expiry Alert</div>
-          <span class="journey-status status-planned">Planned</span>
-          <div class="journey-stats">
-            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">SCT6eu</span></div>
-          </div>
-        </div>
-
-        <!-- Price Drop -->
-        <div class="journey-card planned">
-          <div class="journey-stage">Behavioral — Price</div>
-          <div class="journey-name">Price Drop Notification</div>
-          <span class="journey-status status-planned">Planned</span>
-          <div class="journey-stats">
-            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">VuHP8F</span></div>
-          </div>
-        </div>
-
-        <!-- Winback -->
-        <div class="journey-card live">
-          <div class="journey-stage">Winback</div>
-          <div class="journey-name">Winback 2025 — Segment</div>
-          <span class="journey-status status-live">Live</span>
-          <div class="journey-stats">
-            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">WyqBDf</span></div>
-          </div>
-        </div>
-
-        <div class="journey-card inbuild">
-          <div class="journey-stage">Winback — 2026</div>
-          <div class="journey-name">Win-back 2026</div>
-          <span class="journey-status status-inbuild">In Build</span>
-          <div class="journey-stats">
-            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">XwcDKX</span></div>
-            <div class="journey-stat"><span class="label">Status</span><span class="val" style="color:var(--accent);">Priority</span></div>
-          </div>
-        </div>
-
       </div>
+
     </div>
 
-    <!-- Top Flows This Week -->
-    <div class="sec">
-      <div class="sec-title">Flow Performance — Mar 30–Apr 5, 2026</div>
-      <div class="sub-title">Top Flows This Week</div>
-      <table class="dt">
-        <thead>
-          <tr>
-            <th style="width:28px;">#</th>
-            <th>Flow Name</th>
-            <th>ID</th>
-            <th>Recipients</th>
-            <th>Orders</th>
-            <th>CVR</th>
-            <th>Revenue</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="rank-num">1</td>
-            <td class="name-cell">TTCMYU — Toki Loyalty SMS</td>
-            <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);">TTCMYU</td>
-            <td>1,666</td>
-            <td>108</td>
-            <td class="up">6.48%</td>
-            <td class="accent-val">$14.9K</td>
-          </tr>
-          <tr>
-            <td class="rank-num">2</td>
-            <td class="name-cell">Welcome Series — Email 2026</td>
-            <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);">UaeNDJ</td>
-            <td>986</td>
-            <td>91</td>
-            <td class="up">9.23%</td>
-            <td class="accent-val">$14.1K</td>
-          </tr>
-          <tr>
-            <td class="rank-num">3</td>
-            <td class="name-cell">Added2Cart 2025</td>
-            <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);">Sku3EU</td>
-            <td>4,327</td>
-            <td>64</td>
-            <td class="up">1.48%</td>
-            <td class="accent-val">$12.1K</td>
-          </tr>
-          <tr>
-            <td class="rank-num">4</td>
-            <td class="name-cell">Abandoned Checkout 2025</td>
-            <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);">XBuiBy</td>
-            <td>1,854</td>
-            <td>61</td>
-            <td class="up">3.29%</td>
-            <td class="accent-val">$10.2K</td>
-          </tr>
-          <tr>
-            <td class="rank-num">5</td>
-            <td class="name-cell">Back In Stock (MxcX8m)</td>
-            <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);">MxcX8m</td>
-            <td>858</td>
-            <td>35</td>
-            <td class="up">4.08%</td>
-            <td class="accent-val">$6.9K</td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- ── TAB 4: STRATEGY PIPELINE ── -->
+    <div id="tab-pipeline" class="tab-panel">
 
-      <div class="sub-title">Top Flows Last Week (Mar 23–29, 2026)</div>
-      <table class="dt">
-        <thead>
-          <tr>
-            <th style="width:28px;">#</th>
-            <th>Flow Name</th>
-            <th>ID</th>
-            <th>Recipients</th>
-            <th>Orders</th>
-            <th>CVR</th>
-            <th>Revenue</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="rank-num">1</td>
-            <td class="name-cell">TTCMYU — Toki Loyalty SMS</td>
-            <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);">TTCMYU</td>
-            <td>1,503</td>
-            <td>102</td>
-            <td class="up">6.79%</td>
-            <td class="accent-val">$17.0K</td>
-          </tr>
-          <tr>
-            <td class="rank-num">2</td>
-            <td class="name-cell">Welcome Series — Email 2026</td>
-            <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);">UaeNDJ</td>
-            <td>928</td>
-            <td>57</td>
-            <td class="up">6.14%</td>
-            <td class="accent-val">$11.5K</td>
-          </tr>
-          <tr>
-            <td class="rank-num">3</td>
-            <td class="name-cell">Added2Cart 2025</td>
-            <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);">Sku3EU</td>
-            <td>3,804</td>
-            <td>57</td>
-            <td>1.50%</td>
-            <td class="accent-val">$9.9K</td>
-          </tr>
-          <tr>
-            <td class="rank-num">4</td>
-            <td class="name-cell">Abandoned Checkout 2025</td>
-            <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);">XBuiBy</td>
-            <td>1,297</td>
-            <td>53</td>
-            <td>4.09%</td>
-            <td class="accent-val">$8.5K</td>
-          </tr>
-          <tr>
-            <td class="rank-num">5</td>
-            <td class="name-cell">Wonderment: Delivered</td>
-            <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);">V9LLVS</td>
-            <td>1,226</td>
-            <td>23</td>
-            <td>1.88%</td>
-            <td class="accent-val">$1.4K</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="sec">
+        <div class="sec-title">Active Projects — Kanban View</div>
+        <div class="kanban">
 
-      <div class="sub-title">Top Flows — Last 30 Days</div>
-      <table class="dt">
-        <thead>
-          <tr>
-            <th style="width:28px;">#</th>
-            <th>Flow Name</th>
-            <th>Recipients</th>
-            <th>Orders</th>
-            <th>CVR</th>
-            <th>Revenue</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="rank-num">1</td>
-            <td class="name-cell">Welcome Series — Email 2026</td>
-            <td>3,973</td>
-            <td>236</td>
-            <td class="up">5.99%</td>
-            <td class="accent-val">$36.2K</td>
-          </tr>
-          <tr>
-            <td class="rank-num">2</td>
-            <td class="name-cell">Added2Cart 2025</td>
-            <td>1,240</td>
-            <td>57</td>
-            <td class="up">4.29%</td>
-            <td class="accent-val">$9.8K</td>
-          </tr>
-          <tr>
-            <td class="rank-num">3</td>
-            <td class="name-cell">Wonderment: Delivered</td>
-            <td>5,436</td>
-            <td>118</td>
-            <td>2.12%</td>
-            <td class="accent-val">$9.3K</td>
-          </tr>
-          <tr>
-            <td class="rank-num">4</td>
-            <td class="name-cell">Abandoned Checkout 2025</td>
-            <td>561</td>
-            <td>42</td>
-            <td class="up">7.49%</td>
-            <td class="accent-val">$8.3K</td>
-          </tr>
-          <tr>
-            <td class="rank-num">5</td>
-            <td class="name-cell">Browse Abandonment</td>
-            <td>8,888</td>
-            <td>35</td>
-            <td>0.39%</td>
-            <td class="accent-val">$5.2K</td>
-          </tr>
-          <tr>
-            <td class="rank-num">6</td>
-            <td class="name-cell">Wonderment: Out for Delivery</td>
-            <td>5,020</td>
-            <td>40</td>
-            <td>0.78%</td>
-            <td class="accent-val">$4.9K</td>
-          </tr>
-          <tr>
-            <td class="rank-num">7</td>
-            <td class="name-cell">Post-Purchase Optimization</td>
-            <td>2,152</td>
-            <td>37</td>
-            <td>1.72%</td>
-            <td class="accent-val">$4.9K</td>
-          </tr>
-          <tr>
-            <td class="rank-num">8</td>
-            <td class="name-cell">Order Confirmation — Standard</td>
-            <td>5,665</td>
-            <td>34</td>
-            <td>0.60%</td>
-            <td class="accent-val">$4.5K</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+          <div class="kanban-col">
+            <div class="kanban-header"><div class="kanban-col-title">Strategy</div></div>
+            <div class="kanban-body">
+              <div class="kanban-card">
+                <div class="kanban-card-name">Campaign Calendar Build</div>
+                <div class="kanban-card-note">Full campaign ownership proposal in progress</div>
+              </div>
+            </div>
+          </div>
 
-    <!-- Flow Commentary -->
-    <div class="sec">
-      <div class="sec-title">Flow Commentary</div>
-      <div class="story-card">
-        <div class="story-card-title g">What's Driving Revenue</div>
-        <ul class="story-bullets good">
-          <li><strong>TTCMYU (Toki Loyalty SMS) is the surprise #1 flow</strong> — $14.9K this week on 1,666 recipients at a 6.48% CVR. This is a loyalty-triggered SMS flow generating outsized revenue. It was also #1 last week at $17.0K. This is a best-in-class loyalty mechanic.</li>
-          <li><strong>Welcome Series 2026 (UaeNDJ) drove $14.1K this week</strong> — 91 conversions on 986 recipients = 9.23% CVR. Up from last week's $11.5K. The welcome sequence is at peak performance — don't touch it.</li>
-          <li><strong>Flow revenue +45.9% YoY</strong> — $86.4K this week vs $59.2K same week LY. The automation engine is compounding. More flows, better sequences, deeper coverage of the customer journey.</li>
-          <li><strong>Added2Cart (Sku3EU) generated $12.1K</strong> — 64 conversions on 4,327 recipients (1.48% CVR). Healthy signal that the cart recovery sequence is well-optimized across both email and SMS.</li>
-        </ul>
+          <div class="kanban-col">
+            <div class="kanban-header"><div class="kanban-col-title">Brief</div></div>
+            <div class="kanban-body">
+              <div class="kanban-empty">—</div>
+            </div>
+          </div>
+
+          <div class="kanban-col">
+            <div class="kanban-header"><div class="kanban-col-title">Copy</div></div>
+            <div class="kanban-body">
+              <div class="kanban-empty">—</div>
+            </div>
+          </div>
+
+          <div class="kanban-col">
+            <div class="kanban-header"><div class="kanban-col-title">Design</div></div>
+            <div class="kanban-body">
+              <div class="kanban-empty">—</div>
+            </div>
+          </div>
+
+          <div class="kanban-col active-col">
+            <div class="kanban-header"><div class="kanban-col-title">Build</div></div>
+            <div class="kanban-body">
+              <div class="kanban-card">
+                <div class="kanban-card-name">Win-back 2026 Rebuild</div>
+                <div class="kanban-card-note">3-lane strategy: sample takers, 1-order lapsed, 2+ order lapsed</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="kanban-col">
+            <div class="kanban-header"><div class="kanban-col-title">Live</div></div>
+            <div class="kanban-body">
+              <div class="kanban-empty">—</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="margin-top:24px;">
+          <div class="kanban" style="grid-template-columns:1fr;">
+            <div class="kanban-col" style="background:var(--bg2);">
+              <div class="kanban-header" style="display:flex;justify-content:space-between;align-items:center;">
+                <div class="kanban-col-title" style="color:var(--yellow);">Reporting</div>
+                <span class="badge badge-due" style="font-size:9px;">DUE APR 14</span>
+              </div>
+              <div class="kanban-body">
+                <div class="kanban-card" style="background:var(--bg3);">
+                  <div class="kanban-card-name">Q1 2026 Quarterly Report</div>
+                  <div class="kanban-card-note">Due Apr 14 — Q1 totals need pulling</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="story-card">
-        <div class="story-card-title r">What Needs Attention</div>
-        <ul class="story-bullets bad">
-          <li><strong>TTCMYU concentration risk</strong> — $14.9K of $86.4K total flow revenue (17%) is coming from one loyalty SMS flow. If this is triggered by a promotional mechanic, it may not recur reliably. Worth confirming the trigger logic.</li>
-          <li><strong>Win-back 2026 still in build</strong> — XwcDKX (Win-back 2026) is processing but $2.7K on 3,376 recipients suggests it's live but not yet optimized. The messaging or timing may need a review pass.</li>
-          <li><strong>Browse Abandonment (U9NPLQ) at 0.35% CVR</strong> — 8,520 recipients, $4.2K. The volume is there; the conversion rate is not. This flow likely needs a creative refresh or urgency mechanic (low stock, limited time).</li>
-        </ul>
+
+    </div>
+
+    <!-- ── TAB 5: CAMPAIGN CALENDAR ── -->
+    <div id="tab-calendar" class="tab-panel">
+
+      <div class="sec">
+        <div class="sec-title">Campaign Schedule — Liverpool LA</div>
+        <div class="campaign-note">Full campaign calendar available once campaign ownership upgrade is confirmed.</div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Campaign</th>
+                <th>Channel</th>
+                <th>Owner</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-mono">Apr 2026</td>
+                <td class="td-name">Spring Saving Sale</td>
+                <td><span class="ch-tag ch-both">Email + SMS</span></td>
+                <td><span class="owner-tag">Client</span></td>
+                <td><span class="badge badge-complete">COMPLETE</span></td>
+              </tr>
+              <tr>
+                <td class="td-mono">TBD</td>
+                <td class="td-name" style="color:var(--muted);">Next campaign</td>
+                <td><span class="ch-tag" style="background:rgba(136,136,128,.08);color:var(--dim);border-color:transparent;">TBD</span></td>
+                <td><span class="owner-tag">TBD</span></td>
+                <td><span class="badge badge-planned">PLANNED</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
+
     </div>
 
-    <footer>
-      <div class="fb">Liverpool Los Angeles</div>
-      <div class="fn">DigitsUp · Client Brain v1 · Apr 2026 · Powered by Mollie</div>
-    </footer>
-  </div>
-
-  <!-- ════════════════════════════════════════════════════
-       TAB 4: REPORTS LIBRARY
-  ════════════════════════════════════════════════════ -->
-  <div id="tab-reports" class="tab-panel">
-
-    <div class="sec">
-      <div class="sec-title">Reports Library — Liverpool Los Angeles</div>
-
-      <!-- Weekly Reports -->
-      <div class="section-label">Weekly Reports</div>
-      <table class="report-table" style="margin-bottom:24px;">
-        <thead>
-          <tr>
-            <th>Period</th>
-            <th>Date Published</th>
-            <th>Link</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <div class="report-period">Mar 30 – Apr 5, 2026</div>
-              <div class="report-date">Week 14 · Q2 2026</div>
-            </td>
-            <td class="report-date">Apr 7, 2026</td>
-            <td class="report-link"><a href="https://digitsup.github.io/mollie-hq/projects/liverpool/liverpool-report-mar30-apr5.html" target="_blank">Open Report →</a></td>
-            <td><span class="badge-current">Current</span></td>
-          </tr>
-          <tr>
-            <td>
-              <div class="report-period">Mar 23 – 29, 2026</div>
-              <div class="report-date">Week 13 · Q1 2026</div>
-            </td>
-            <td class="report-date">Mar 30, 2026</td>
-            <td class="report-link"><a href="https://digitsup.github.io/mollie-hq/projects/liverpool/liverpool-report-mar23-29-v2.html" target="_blank">Open Report →</a></td>
-            <td><span class="badge-past">Past</span></td>
-          </tr>
-        </tbody>
-      </table>
-
-      <!-- Quarterly Reports -->
-      <div class="section-label">Quarterly Reports</div>
-      <table class="report-table">
-        <thead>
-          <tr>
-            <th>Quarter</th>
-            <th>Period</th>
-            <th>Date Published</th>
-            <th>Link</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <div class="report-period">Q1 2026</div>
-            </td>
-            <td class="report-date">Jan 1 – Mar 31, 2026</td>
-            <td class="report-date">Coming Apr 14, 2026</td>
-            <td class="report-link" style="color:var(--dim);font-family:'IBM Plex Mono',monospace;font-size:11px;">—</td>
-            <td><span class="badge-upcoming">Upcoming</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- About this hub -->
-    <div class="sec">
-      <div class="sec-title">About This Hub</div>
-      <div class="story-card">
-        <div class="story-card-title w">What This Is</div>
-        <ul class="story-bullets note">
-          <li>This is the Liverpool LA Client Brain — built by DigitsUp, powered by Mollie. It's the single URL Michael opens before every client call, brief, or build decision.</li>
-          <li>Data is pulled live from Klaviyo where possible. When the reporting API is unavailable, the last successful pull is used and noted clearly.</li>
-          <li>Flow names are resolved via the Klaviyo Flows API and kept current. Last resolved: Apr 6, 2026.</li>
-          <li>This page will be updated weekly with each new report publish. The Reports Library tab is the canonical archive.</li>
-        </ul>
-      </div>
-    </div>
-
-    <footer>
-      <div class="fb">Liverpool Los Angeles</div>
-      <div class="fn">DigitsUp · Client Brain v1 · Apr 2026 · Powered by Mollie</div>
-    </footer>
-  </div>
   </div><!-- /page -->
 
 </div><!-- /content -->
 
 <script>
-// ── Gate ──
-function unlock(){
-  var v=document.getElementById('pwi').value;
-  if(v==='Liverpool2026'){
-    document.getElementById('gate').style.display='none';
-    document.getElementById('content').style.display='block';
+function checkPw() {
+  const val = document.getElementById('pwi').value;
+  if (val === 'Liverpool2026') {
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
   } else {
-    document.getElementById('pwe').textContent='Incorrect password.';
-    setTimeout(function(){document.getElementById('pwe').textContent='';},2500);
-    document.getElementById('pwi').value='';
+    document.getElementById('pwe').textContent = 'Incorrect password.';
+    document.getElementById('pwi').value = '';
     document.getElementById('pwi').focus();
   }
 }
-document.getElementById('pwb').addEventListener('click',unlock);
-document.getElementById('pwi').addEventListener('keydown',function(e){if(e.key==='Enter')unlock();});
 
-// ── Tabs ──
-var tabs = document.querySelectorAll('.tab-btn');
-var panels = document.querySelectorAll('.tab-panel');
-tabs.forEach(function(btn){
-  btn.addEventListener('click',function(){
-    var target = this.getAttribute('data-tab');
-    tabs.forEach(function(b){b.classList.remove('active');});
-    panels.forEach(function(p){p.classList.remove('active');});
-    this.classList.add('active');
-    document.getElementById('tab-'+target).classList.add('active');
-  });
+document.getElementById('pwi').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') checkPw();
 });
+
+function showTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
 </script>
+
 </body>
 </html>
