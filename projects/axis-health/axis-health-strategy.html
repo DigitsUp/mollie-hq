@@ -639,7 +639,7 @@
     </div>
     <div class="hero-meta-item">
       <span class="hero-meta-label">Total Emails</span>
-      <span class="hero-meta-value">16 (8 per lane)</span>
+      <span class="hero-meta-value">10 (5 per lane)</span>
     </div>
     <div class="hero-meta-item">
       <span class="hero-meta-label">Status</span>
@@ -698,13 +698,13 @@
         <div class="flow-box new-flow">
           <div class="badge new">New · This Scope</div>
           <div class="flow-box-title">Post-Purchase Flow</div>
-          <div class="flow-box-desc">4 emails · Men &amp; Women · Onboarding, expectation-setting, early retention</div>
+          <div class="flow-box-desc">3 emails · Men &amp; Women · Onboarding, expectation-setting, early retention</div>
         </div>
         <div class="flow-arrow">→</div>
         <div class="flow-box new-flow">
           <div class="badge new">New · This Scope</div>
           <div class="flow-box-title">Replenishment Flow</div>
-          <div class="flow-box-desc">4 emails · Men &amp; Women · Triggered by supply window, drives reorder</div>
+          <div class="flow-box-desc">2 emails · Men &amp; Women · Triggered by supply window, drives reorder</div>
         </div>
         <div class="flow-arrow">→</div>
         <div class="flow-box">
@@ -720,8 +720,8 @@
       <ul>
         <li><strong>Welcome → Browse Abandonment → Checkout Abandonment</strong> all exist in the pre-purchase funnel. They suppress on purchase.</li>
         <li><strong>Purchase triggers Post-Purchase.</strong> All pre-purchase flows immediately suppress when the first purchase is confirmed.</li>
-        <li><strong>Post-Purchase flows for 30 days.</strong> On Day 30, the replenishment flow starts — regardless of whether the post-purchase sequence has completed (it will have, by then).</li>
-        <li><strong>Replenishment → Winback handoff:</strong> If a replenishment flow runs to completion and the customer still hasn't repurchased, they enter Winback after a 14-day gap. If they repurchase during replenishment, the cycle restarts from the next replenishment trigger.</li>
+        <li><strong>Post-Purchase flows through Day 14.</strong> On Day 30, the replenishment flow starts — there is a clean gap between the last post-purchase email (Day 14) and the first replenishment email (Day 30).</li>
+        <li><strong>Replenishment → Winback handoff:</strong> If the 2-email replenishment flow completes and the customer still hasn't repurchased, they enter Winback after a 14-day gap. If they repurchase during replenishment, the cycle restarts from the next replenishment trigger.</li>
         <li><strong>No flow overlaps.</strong> A customer can only be in one active flow at a time. Purchase events always take precedence and exit/suppress all active flows.</li>
       </ul>
     </div>
@@ -751,12 +751,12 @@
       <tr>
         <td><strong>Post-Purchase</strong></td>
         <td>Confirmed first purchase</td>
-        <td>Repurchases (early), unsubscribes, or sequence completes</td>
+        <td>Repurchases (early), unsubscribes, or 3-email sequence completes (by Day 14)</td>
       </tr>
       <tr>
         <td><strong>Replenishment</strong></td>
         <td>Day 30 after first purchase</td>
-        <td>Repurchases, unsubscribes, or sequence completes</td>
+        <td>Repurchases, unsubscribes, or 2-email sequence completes</td>
       </tr>
       <tr>
         <td><strong>Winback</strong></td>
@@ -850,7 +850,7 @@
         <li><strong>Subscription framing converts best for GLP-1</strong> where it's clearly a long-term treatment — but needs to be positioned as "ongoing support" rather than a subscription box.</li>
         <li><strong>Single-refill framing converts better for men's health</strong> — subscription feels like commitment men aren't ready for. "Keep your supply ready" is a more comfortable ask.</li>
         <li><strong>Subject lines that reference supply depletion</strong> (e.g., "Your supply is running low") significantly outperform generic "reorder now" subject lines in telehealth categories.</li>
-        <li><strong>3-email replenishment sequences</strong> are the industry standard for this category — a heads-up (Day 28), an urgency email (Day 35), and a "last chance before you run out" (Day 40). Adding a 4th email with a gentle winback framing improves recovery rates.</li>
+        <li><strong>2-email replenishment sequences</strong> keep the approach clean and focused — an upcoming reminder (Day 30) and the replenishment email (Day 35). Winback flow handles recovery for non-converters after the replenishment window closes.</li>
       </ul>
     </div>
   </section>
@@ -863,8 +863,8 @@
     <hr class="divider" />
 
     <div class="decision-box">
-      <h3>Strategic Recommendation: 4 Emails Per Lane, 30-Day Arc</h3>
-      <p>The post-purchase window for both lanes is <strong>30 days</strong>. That's when the supply runs low and the replenishment trigger fires. Within that window, 4 emails is the right volume — enough to support the patient through the critical early stages without feeling like a bombardment from a brand they just trusted with a sensitive purchase.</p>
+      <h3>Strategic Recommendation: 3 Emails Per Lane, 30-Day Arc</h3>
+      <p>The post-purchase window for both lanes is <strong>30 days</strong>. That's when the supply runs low and the replenishment trigger fires. Within that window, 3 emails is the right volume — enough to support the patient through the critical early stages without feeling like a bombardment from a brand they just trusted with a sensitive purchase.</p>
       <p>The arc is: <strong>Welcome → Address doubt → Reinforce commitment → Prep for refill.</strong> Both lanes follow this arc, but the emotional color of each email is entirely different.</p>
     </div>
 
@@ -890,11 +890,7 @@
         <td>Day 14</td>
         <td>Two weeks in. Some early results may be visible (reduced appetite for women, confidence building for men). This is the right moment to celebrate the decision without overselling results. Also: day 14 is exactly when wavering patients are deciding whether to continue. This email needs to get there first.</td>
       </tr>
-      <tr>
-        <td><strong>E4 — Pre-Replenishment Bridge</strong></td>
-        <td>Day 25</td>
-        <td>Five days before the replenishment flow starts. This email transitions the tone from "patient onboarding" to "this is your ongoing routine." Plants the seed for refill without being pushy. By day 25, the patient has enough experience to make a confident refill decision — they just need a nudge in the right direction.</td>
-      </tr>
+
     </table>
 
     <h2>How the Lanes Differ</h2>
@@ -927,11 +923,10 @@
 
     <h2>When and How to Introduce Replenishment CTA</h2>
     <div class="card">
-      <p>The post-purchase flow is <strong>not</strong> a sales flow. It's a retention and onboarding flow. That said — the replenishment CTA appears in exactly one email before the dedicated replenishment flow starts:</p>
+      <p>The post-purchase flow is <strong>not</strong> a sales flow. It's a retention and onboarding flow. All three emails are patient-focused:</p>
       <ul>
-        <li><strong>E4 (Day 25)</strong> introduces the idea of refilling — soft, not urgent. "Your supply is coming to an end soon" framed as helpful information, not a hard push.</li>
-        <li>The primary CTA in E4 is still patient-focused (check in with progress, ask a question to the care team) — but a secondary CTA or postscript can introduce refill.</li>
-        <li>E1, E2, and E3 have <strong>zero sales CTAs.</strong> If a patient repurchases organically during this window (they liked it, they want more), the flow suppresses — but we're not selling in the first 21 days.</li>
+        <li><strong>E1, E2, and E3 have zero sales CTAs.</strong> If a patient repurchases organically during this window (they liked it, they want more), the flow suppresses — but we're not selling during the first 30 days.</li>
+        <li>The dedicated Replenishment flow (Day 30) takes over for all conversion-focused messaging.</li>
       </ul>
     </div>
   </section>
@@ -959,24 +954,14 @@
           <th>Mission</th>
         </tr>
         <tr>
-          <td><strong>R1 — Heads-Up</strong></td>
+          <td><strong>R1 — Upcoming Reminder</strong></td>
           <td>Day 30 (immediately on trigger)</td>
-          <td>Friendly reminder that supply is running low. No urgency. Still warm, still onboarding-adjacent.</td>
+          <td>Your supply is running low — refill time is coming. Friendly, zero pressure. Warm and onboarding-adjacent.</td>
         </tr>
         <tr>
-          <td><strong>R2 — Urgency</strong></td>
+          <td><strong>R2 — Replenishment</strong></td>
           <td>Day 35 (+5 days)</td>
-          <td>Escalate to clear urgency. "Most customers reorder around now." Social proof + specific CTA to reorder.</td>
-        </tr>
-        <tr>
-          <td><strong>R3 — Last Chance</strong></td>
-          <td>Day 38 (+3 days)</td>
-          <td>Running out tonight/this week. Remove friction to reorder. Address common hesitation points (cost, do I still need it).</td>
-        </tr>
-        <tr>
-          <td><strong>R4 — Recovery / Bridge</strong></td>
-          <td>Day 45 (+7 days)</td>
-          <td>Soft winback before formal Winback flow triggers. "It's not too late to get back on track." Gentle. No guilt.</td>
+          <td>It's time to refill — don't let your plan lapse. Clear CTA, direct framing. If they haven't reordered, this is the closer.</td>
         </tr>
       </table>
     </div>
@@ -1008,7 +993,7 @@
     <h2>Replenishment: If Customer Repurchases</h2>
     <div class="card">
       <ul>
-        <li>Any repurchase event during the replenishment flow immediately suppresses all remaining replenishment emails.</li>
+        <li>Any repurchase event during the replenishment flow (Days 30–35) immediately suppresses all remaining replenishment emails.</li>
         <li>The cycle resets: a new replenishment trigger fires 30 days from that repurchase date.</li>
         <li>After 3 consecutive repurchase cycles, consider whether this customer should be flagged as a VIP/loyalty segment for future flows (outside this scope, but flag for Michael).</li>
       </ul>
@@ -1025,7 +1010,7 @@
     <!-- POST-PURCHASE: WOMEN -->
     <h2>Post-Purchase Flow — Women's Weight Loss</h2>
     <div class="email-sequence">
-      <div class="email-sequence-title women">Women's Weight Loss · Post-Purchase · 4 Emails</div>
+      <div class="email-sequence-title women">Women's Weight Loss · Post-Purchase · 3 Emails</div>
 
       <div class="email-item">
         <div class="email-item-header">
@@ -1129,45 +1114,12 @@
         </div>
       </div>
 
-      <div class="email-item">
-        <div class="email-item-header">
-          <span class="email-number">PP-W4</span>
-          <span class="email-name">You're almost through your first supply — what's next</span>
-          <span class="email-timing">Day 25</span>
-        </div>
-        <div class="email-grid">
-          <div>
-            <div class="email-field-label">Subject Line Direction</div>
-            <div class="email-field-value"><em>"Your first month is almost up — here's what that means"</em> or <em>"Don't let month two sneak up on you."</em></div>
-          </div>
-          <div>
-            <div class="email-field-label">Core Message</div>
-            <div class="email-field-value">Transition email — bridges post-purchase to replenishment. Acknowledge progress (they've made it through the hardest part). Introduce the concept of continuing — GLP-1 is a long-term treatment, not a one-month fix. Softly prepare them for the refill decision coming in the next week. Address the "do I still need this?" question before they ask.</div>
-          </div>
-          <div>
-            <div class="email-field-label">Emotional Goal</div>
-            <div class="email-field-value">Plant the seed for refill with no pressure. Establish continued use as the logical, recommended next step — not a sales pitch.</div>
-          </div>
-          <div>
-            <div class="email-field-label">CTA Direction</div>
-            <div class="email-field-value">Primary: "Talk to your doctor about your progress." Secondary (soft): "Ready to continue? Your next supply can be on its way before you run out." Keep CTA low-pressure.</div>
-          </div>
-          <div>
-            <div class="email-field-label">Design Notes for Marl</div>
-            <div class="email-field-value">Clean and calm. Could use a simple "Your program overview" layout — what happened in month 1, what happens in months 2–3. Not a hard sell graphic — informational.</div>
-          </div>
-          <div>
-            <div class="email-field-label">Suppression</div>
-            <div class="email-field-value"><span class="suppress-tag">Unsubscribe</span> <span class="suppress-tag">Second purchase (triggers replenishment reset)</span></div>
-          </div>
-        </div>
-      </div>
     </div>
 
     <!-- POST-PURCHASE: MEN -->
     <h2>Post-Purchase Flow — Men's Health</h2>
     <div class="email-sequence">
-      <div class="email-sequence-title men">Men's Health · Post-Purchase · 4 Emails</div>
+      <div class="email-sequence-title men">Men's Health · Post-Purchase · 3 Emails</div>
 
       <div class="email-item">
         <div class="email-item-header">
@@ -1271,68 +1223,35 @@
         </div>
       </div>
 
-      <div class="email-item">
-        <div class="email-item-header">
-          <span class="email-number">PP-M4</span>
-          <span class="email-name">Your supply is winding down — a heads up</span>
-          <span class="email-timing">Day 25</span>
-        </div>
-        <div class="email-grid">
-          <div>
-            <div class="email-field-label">Subject Line Direction</div>
-            <div class="email-field-value"><em>"Heads up — you're about a week out from needing more."</em> Practical, direct, no euphemisms.</div>
-          </div>
-          <div>
-            <div class="email-field-label">Core Message</div>
-            <div class="email-field-value">Practical supply awareness. "Your supply will run low in about a week — wanted to give you time to decide without rushing." No pressure. Mention that reordering early means no gap in coverage. For men, running out mid-cycle is specifically stressful — frame the refill as removing that risk.</div>
-          </div>
-          <div>
-            <div class="email-field-label">Emotional Goal</div>
-            <div class="email-field-value">Remove friction from the refill decision before urgency makes it uncomfortable.</div>
-          </div>
-          <div>
-            <div class="email-field-label">CTA Direction</div>
-            <div class="email-field-value">"Reorder now before you run out" — clean, simple button. Single CTA. Could also offer: "Set up automatic refill so you never have to think about it."</div>
-          </div>
-          <div>
-            <div class="email-field-label">Design Notes for Marl</div>
-            <div class="email-field-value">First email with a hard CTA button. Keep it clean. The CTA should be the main visual event of the email — don't bury it. Otherwise minimal design.</div>
-          </div>
-          <div>
-            <div class="email-field-label">Suppression</div>
-            <div class="email-field-value"><span class="suppress-tag">Unsubscribe</span> <span class="suppress-tag">Second purchase (triggers replenishment reset)</span></div>
-          </div>
-        </div>
-      </div>
     </div>
 
     <!-- REPLENISHMENT: WOMEN -->
     <h2>Replenishment Flow — Women's Weight Loss</h2>
     <div class="email-sequence">
-      <div class="email-sequence-title women">Women's Weight Loss · Replenishment · 4 Emails</div>
+      <div class="email-sequence-title women">Women's Weight Loss · Replenishment · 2 Emails</div>
 
       <div class="email-item">
         <div class="email-item-header">
           <span class="email-number">R-W1</span>
-          <span class="email-name">Your next step is ready when you are</span>
+          <span class="email-name">Your supply is running low — refill time is coming</span>
           <span class="email-timing">Day 30 (Trigger Day)</span>
         </div>
         <div class="email-grid">
           <div>
             <div class="email-field-label">Subject Line Direction</div>
-            <div class="email-field-value"><em>"Your supply is nearly done — here's what's next."</em> or <em>"Month one is done. Don't slow your momentum now."</em></div>
+            <div class="email-field-value"><em>"Your supply is running low — here's what's coming."</em> or <em>"Heads up — refill time is almost here."</em> Friendly, low-pressure, informational.</div>
           </div>
           <div>
             <div class="email-field-label">Core Message</div>
-            <div class="email-field-value">Month one celebration + practical heads-up. Acknowledge what they've done. GLP-1 works best as a long-term program — month two is where many people start seeing more consistent results. Gentle, zero pressure. Give them the information to make an easy "yes."</div>
+            <div class="email-field-value">Heads-up reminder that their supply is running low and refill time is approaching. Acknowledge what they've accomplished in month one. GLP-1 works best as a long-term program — frame this as a natural next step, not a sales push. Zero pressure. Give them the heads-up with plenty of lead time.</div>
           </div>
           <div>
             <div class="email-field-label">Emotional Goal</div>
-            <div class="email-field-value">Momentum. They've done the hard first month — continuing feels like winning, not spending.</div>
+            <div class="email-field-value">Anticipation without pressure. "Your supply is almost done — here's what's coming next." Gives the customer time to think and decide before urgency arrives.</div>
           </div>
           <div>
             <div class="email-field-label">CTA Direction</div>
-            <div class="email-field-value">"Continue my program" — button. Soft and positive framing over "reorder" or "buy now."</div>
+            <div class="email-field-value">"Start my refill now" — soft button for early movers. Low-pressure framing. Or a secondary: "I'll wait until next email." No hard push — this is a reminder, not a conversion email.</div>
           </div>
           <div>
             <div class="email-field-label">Suppression</div>
@@ -1344,21 +1263,21 @@
       <div class="email-item">
         <div class="email-item-header">
           <span class="email-number">R-W2</span>
-          <span class="email-name">Running low — your progress is worth protecting</span>
+          <span class="email-name">It's time to refill — don't let your plan lapse</span>
           <span class="email-timing">Day 35 (+5 days)</span>
         </div>
         <div class="email-grid">
           <div>
             <div class="email-field-label">Subject Line Direction</div>
-            <div class="email-field-value"><em>"Your supply is running low — don't break your streak."</em> Or: <em>"A few days left — when are you reordering?"</em></div>
+            <div class="email-field-value"><em>"It's time to refill — don't let your plan lapse."</em> Or: <em>"Your supply is running out — refill today."</em> Direct, clear, confident.</div>
           </div>
           <div>
             <div class="email-field-label">Core Message</div>
-            <div class="email-field-value">Clear urgency now. Surface the medical reality: stopping GLP-1 can lead to weight return. This isn't fear-mongering — it's useful clinical information that empowers the customer to make a good decision. Most people also stop seeing results if they pause. Social proof: "Most of our members continue through month two and beyond."</div>
+            <div class="email-field-value">The main replenishment ask. It's time to refill — don't let the plan lapse. Surface the medical reality: stopping GLP-1 mid-program can lead to weight return. This isn't fear-mongering — it's useful clinical information that empowers the decision. Most people also stop seeing results if they pause. Social proof: "Most of our members continue through month two and beyond." Make the path to yes completely frictionless.</div>
           </div>
           <div>
             <div class="email-field-label">Emotional Goal</div>
-            <div class="email-field-value">Protective urgency. "You've invested a month — protect that investment." Not guilt.</div>
+            <div class="email-field-value">Conversion. This is the closer. "It's time — don't let your plan lapse." Protective urgency without guilt. You've invested a month — protect that investment.</div>
           </div>
           <div>
             <div class="email-field-label">CTA Direction</div>
@@ -1366,99 +1285,40 @@
           </div>
           <div>
             <div class="email-field-label">Suppression</div>
-            <div class="email-field-value"><span class="suppress-tag">Repurchase</span> <span class="suppress-tag">Unsubscribe</span></div>
+            <div class="email-field-value"><span class="suppress-tag">Repurchase</span> <span class="suppress-tag">Unsubscribe</span> — After this email, Winback flow activates 14 days later</div>
           </div>
         </div>
       </div>
 
-      <div class="email-item">
-        <div class="email-item-header">
-          <span class="email-number">R-W3</span>
-          <span class="email-name">Last chance before your supply runs out</span>
-          <span class="email-timing">Day 38 (+3 days)</span>
-        </div>
-        <div class="email-grid">
-          <div>
-            <div class="email-field-label">Subject Line Direction</div>
-            <div class="email-field-value"><em>"This is your last reminder before you run out."</em> Honest, not alarmist.</div>
-          </div>
-          <div>
-            <div class="email-field-label">Core Message</div>
-            <div class="email-field-value">Final nudge before gap. Address the most common hesitations head-on: cost (is there a loyalty offer here?), uncertainty about whether to continue (brief, empowering: "your progress is real, your body has adapted"), logistics (how fast can they get the next supply). Make the path to "yes" completely frictionless.</div>
-          </div>
-          <div>
-            <div class="email-field-label">Emotional Goal</div>
-            <div class="email-field-value">Remove every obstacle between the customer and clicking "reorder."</div>
-          </div>
-          <div>
-            <div class="email-field-label">CTA Direction</div>
-            <div class="email-field-value">Single clear CTA. "Reorder today." If Axis has a loyalty or discount offer — this is where to deploy it. Don't save it for winback.</div>
-          </div>
-          <div>
-            <div class="email-field-label">Suppression</div>
-            <div class="email-field-value"><span class="suppress-tag">Repurchase</span> <span class="suppress-tag">Unsubscribe</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="email-item">
-        <div class="email-item-header">
-          <span class="email-number">R-W4</span>
-          <span class="email-name">It's not too late to pick back up</span>
-          <span class="email-timing">Day 45 (+7 days)</span>
-        </div>
-        <div class="email-grid">
-          <div>
-            <div class="email-field-label">Subject Line Direction</div>
-            <div class="email-field-value"><em>"Still thinking about it? Here's a gentle nudge."</em> or <em>"Your program is still here — whenever you're ready."</em></div>
-          </div>
-          <div>
-            <div class="email-field-label">Core Message</div>
-            <div class="email-field-value">Bridge email before Winback flow kicks in. Soft, no guilt. Acknowledge life gets busy. Remind them the door is open. For GLP-1, note that restarting is possible and their doctor is available to help. Zero judgment.</div>
-          </div>
-          <div>
-            <div class="email-field-label">Emotional Goal</div>
-            <div class="email-field-value">Keep the relationship warm. "We haven't given up on you." Last chance before Winback takes over.</div>
-          </div>
-          <div>
-            <div class="email-field-label">CTA Direction</div>
-            <div class="email-field-value">"Restart my program" or "Talk to my care team about next steps." Low-pressure.</div>
-          </div>
-          <div>
-            <div class="email-field-label">Suppression</div>
-            <div class="email-field-value"><span class="suppress-tag">Repurchase</span> <span class="suppress-tag">Unsubscribe</span> — After this email, Winback flow activates at Day 59 (14 days later)</div>
-          </div>
-        </div>
-      </div>
     </div>
 
     <!-- REPLENISHMENT: MEN -->
     <h2>Replenishment Flow — Men's Health</h2>
     <div class="email-sequence">
-      <div class="email-sequence-title men">Men's Health · Replenishment · 4 Emails</div>
+      <div class="email-sequence-title men">Men's Health · Replenishment · 2 Emails</div>
 
       <div class="email-item">
         <div class="email-item-header">
           <span class="email-number">R-M1</span>
-          <span class="email-name">Your supply is winding down</span>
+          <span class="email-name">Your supply is running low — refill time is coming</span>
           <span class="email-timing">Day 30 (Trigger Day)</span>
         </div>
         <div class="email-grid">
           <div>
             <div class="email-field-label">Subject Line Direction</div>
-            <div class="email-field-value"><em>"Heads up — time to top up."</em> Direct, short, practical.</div>
+            <div class="email-field-value"><em>"Heads up — your supply is running low."</em> Direct, short, practical. Informational, not urgent.</div>
           </div>
           <div>
             <div class="email-field-label">Core Message</div>
-            <div class="email-field-value">Simple, practical, brief. Your supply is nearly done. Reordering takes X minutes. Here's the link. No emotional content needed — men in this category appreciate efficiency. One or two sentences of "don't run out before the weekend" practical framing is sufficient.</div>
+            <div class="email-field-value">Upcoming reminder — your supply is running low and refill time is approaching. Practical, brief, low-pressure. This isn't the closer — it's the heads-up that gives the customer time to decide. One or two sentences max. Men in this category appreciate efficiency — no emotional content needed.</div>
           </div>
           <div>
             <div class="email-field-label">Emotional Goal</div>
-            <div class="email-field-value">Reduce friction. This is a utility email — treat it like one. Make reordering feel like a 30-second task.</div>
+            <div class="email-field-value">Anticipation without pressure. "Your supply is almost done — refill time is coming." Gives the customer a heads-up with enough lead time to decide without rushing.</div>
           </div>
           <div>
             <div class="email-field-label">CTA Direction</div>
-            <div class="email-field-value">"Reorder now" — single CTA, prominent button. Also: "Set up auto-refill" as a secondary option.</div>
+            <div class="email-field-value">"Top up early" — available for early movers, but not the primary push. Keep the tone informational. The real conversion ask comes in R-M2.</div>
           </div>
           <div>
             <div class="email-field-label">Suppression</div>
@@ -1470,92 +1330,33 @@
       <div class="email-item">
         <div class="email-item-header">
           <span class="email-number">R-M2</span>
-          <span class="email-name">Don't run out at the wrong moment</span>
+          <span class="email-name">It's time to refill — don't let your supply run dry</span>
           <span class="email-timing">Day 35 (+5 days)</span>
         </div>
         <div class="email-grid">
           <div>
             <div class="email-field-label">Subject Line Direction</div>
-            <div class="email-field-value"><em>"Running low — top up before you need it."</em></div>
+            <div class="email-field-value"><em>"Time to refill — don't get caught short."</em> Or: <em>"Your supply is out — top up today."</em> Direct, discreet, practical.</div>
           </div>
           <div>
             <div class="email-field-label">Core Message</div>
-            <div class="email-field-value">The moment-of-need angle. Not "you need medication" — but "having it when you want it is the whole point." Running out introduces exactly the kind of stress that can undermine what the medication is for. This email can be slightly more direct and persuasive than R-M1. Still short, still discreet.</div>
+            <div class="email-field-value">The replenishment email. It's time to refill — don't let the supply run dry. Not "you need medication" — but "having it when you want it is the whole point." Running out introduces exactly the kind of stress the medication is designed to remove. Direct, persuasive, still short and discreet. Single clear ask: reorder now.</div>
           </div>
           <div>
             <div class="email-field-label">Emotional Goal</div>
-            <div class="email-field-value">Frame the purchase as removing future stress. "Be ready when it matters."</div>
+            <div class="email-field-value">Conversion. "It's time to refill — don't let your plan lapse." Frame the purchase as removing future stress. Be ready when it matters. This is the closer for the replenishment cycle.</div>
           </div>
           <div>
             <div class="email-field-label">CTA Direction</div>
-            <div class="email-field-value">"Top up my supply." Could also offer: "Switch to monthly auto-refill and never think about it again."</div>
+            <div class="email-field-value">"Reorder now" — single CTA, prominent button. Could also offer: "Switch to monthly auto-refill and never think about it again." Keep it friction-free.</div>
           </div>
           <div>
             <div class="email-field-label">Suppression</div>
-            <div class="email-field-value"><span class="suppress-tag">Repurchase</span> <span class="suppress-tag">Unsubscribe</span></div>
+            <div class="email-field-value"><span class="suppress-tag">Repurchase</span> <span class="suppress-tag">Unsubscribe</span> — After this email, Winback flow activates 14 days later</div>
           </div>
         </div>
       </div>
 
-      <div class="email-item">
-        <div class="email-item-header">
-          <span class="email-number">R-M3</span>
-          <span class="email-name">Last call before your supply is gone</span>
-          <span class="email-timing">Day 38 (+3 days)</span>
-        </div>
-        <div class="email-grid">
-          <div>
-            <div class="email-field-label">Subject Line Direction</div>
-            <div class="email-field-value"><em>"Almost out — last call."</em> Two-word urgency, discreet.</div>
-          </div>
-          <div>
-            <div class="email-field-label">Core Message</div>
-            <div class="email-field-value">Hard last chance. Very short email. "Your supply is essentially gone. If you want to stay covered, now's the time." No long copy. Just: state of affairs → CTA → done. If Axis Health has an offer to deploy, this is where it goes.</div>
-          </div>
-          <div>
-            <div class="email-field-label">Emotional Goal</div>
-            <div class="email-field-value">Make it easy to say yes right now. Eliminate all friction.</div>
-          </div>
-          <div>
-            <div class="email-field-label">CTA Direction</div>
-            <div class="email-field-value">Single CTA. "Reorder in 60 seconds." Or with discount: "Save [X%] — reorder today."</div>
-          </div>
-          <div>
-            <div class="email-field-label">Suppression</div>
-            <div class="email-field-value"><span class="suppress-tag">Repurchase</span> <span class="suppress-tag">Unsubscribe</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="email-item">
-        <div class="email-item-header">
-          <span class="email-number">R-M4</span>
-          <span class="email-name">Still here when you're ready</span>
-          <span class="email-timing">Day 45 (+7 days)</span>
-        </div>
-        <div class="email-grid">
-          <div>
-            <div class="email-field-label">Subject Line Direction</div>
-            <div class="email-field-value"><em>"Whenever you're ready — we've got you covered."</em></div>
-          </div>
-          <div>
-            <div class="email-field-label">Core Message</div>
-            <div class="email-field-value">No pressure. No guilt. Just an open door. For men, this email should be brief and understated — a single paragraph at most. "Life gets busy. Your account and care team are still here. When you're ready to reorder, it's a quick process." Keep the tone matter-of-fact and zero-judgment.</div>
-          </div>
-          <div>
-            <div class="email-field-label">Emotional Goal</div>
-            <div class="email-field-value">Maintain the relationship. Prevent the permanent drop-off that happens when customers feel pressured and pull away.</div>
-          </div>
-          <div>
-            <div class="email-field-label">CTA Direction</div>
-            <div class="email-field-value">"Reorder anytime" — passive, low-pressure button. Not urgent language.</div>
-          </div>
-          <div>
-            <div class="email-field-label">Suppression</div>
-            <div class="email-field-value"><span class="suppress-tag">Repurchase</span> <span class="suppress-tag">Unsubscribe</span> — After this, Winback flow activates 14 days later</div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -1597,7 +1398,7 @@
         <li><strong>Repurchase during Post-Purchase:</strong> Suppresses remaining Post-Purchase emails. Replenishment timer resets from the new purchase date.</li>
         <li><strong>Repurchase during Replenishment:</strong> Immediately suppresses all remaining Replenishment emails. New replenishment trigger set for 30 days from repurchase.</li>
         <li><strong>Unsubscribe:</strong> Exits all active flows globally. No further email contact until explicit re-consent.</li>
-        <li><strong>No simultaneous flows:</strong> A customer should never be in Post-Purchase and Replenishment at the same time. The 5-day gap at Day 25 (PP-W/M4) and the Day 30 replenishment trigger ensures clean handoff.</li>
+        <li><strong>No simultaneous flows:</strong> A customer should never be in Post-Purchase and Replenishment at the same time. The Day 30 replenishment trigger fires after the post-purchase sequence (Days 0/5/14) completes, ensuring a clean handoff with no overlap.</li>
       </ul>
     </div>
 
@@ -1608,20 +1409,20 @@
         <th>What happens</th>
       </tr>
       <tr>
-        <td>PP flow completes normally (Day 25), no repurchase</td>
-        <td>Replenishment flow triggers at Day 30. Clean gap = 5 days between PP-W/M4 and R-W/M1.</td>
+        <td>PP flow completes normally (Day 14), no repurchase</td>
+        <td>Replenishment flow triggers at Day 30. Clean gap of 16 days between PP-W/M3 and R-W/M1.</td>
       </tr>
       <tr>
-        <td>Customer repurchases during PP flow (Day 5, 14, or 25)</td>
+        <td>Customer repurchases during PP flow (Day 5 or 14)</td>
         <td>Remaining PP emails suppressed. Replenishment timer starts from repurchase date (Day 30 from that date).</td>
       </tr>
       <tr>
-        <td>Customer repurchases during Replenishment (Day 30–45)</td>
+        <td>Customer repurchases during Replenishment (Day 30–35)</td>
         <td>All replenishment emails suppressed. New replenishment cycle starts 30 days from new purchase.</td>
       </tr>
       <tr>
-        <td>Replenishment completes with no repurchase (Day 45)</td>
-        <td>14-day pause. Winback flow triggers at Day 59 from original purchase.</td>
+        <td>Replenishment completes with no repurchase (Day 35)</td>
+        <td>14-day pause. Winback flow triggers at Day 49 from original purchase.</td>
       </tr>
     </table>
 
@@ -1647,7 +1448,7 @@
       </div>
       <div class="kpi-card">
         <div class="kpi-value">28–38%</div>
-        <div class="kpi-label">Open Rate (E2–E4)</div>
+        <div class="kpi-label">Open Rate (E2–E3)</div>
         <div class="kpi-note">Telehealth category, engaged audience</div>
       </div>
       <div class="kpi-card">
@@ -1655,11 +1456,7 @@
         <div class="kpi-label">Click Rate (E1–E3)</div>
         <div class="kpi-note">Educational content clicks, not sales</div>
       </div>
-      <div class="kpi-card">
-        <div class="kpi-value">6–12%</div>
-        <div class="kpi-label">Click Rate (E4)</div>
-        <div class="kpi-note">First soft replenishment CTA, higher intent</div>
-      </div>
+
       <div class="kpi-card">
         <div class="kpi-value">&lt;0.3%</div>
         <div class="kpi-label">Unsubscribe Rate</div>
@@ -1680,24 +1477,20 @@
         <div class="kpi-note">Supply-aware customers, high relevance</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-value">8–15%</div>
-        <div class="kpi-label">Repurchase Rate (R1–R3)</div>
-        <div class="kpi-note">Combined 3-email conversion target</div>
+        <div class="kpi-value">8–18%</div>
+        <div class="kpi-label">Repurchase Rate (R1–R2)</div>
+        <div class="kpi-note">Combined 2-email conversion target</div>
       </div>
-      <div class="kpi-card">
-        <div class="kpi-value">3–6%</div>
-        <div class="kpi-label">Repurchase Rate (R4)</div>
-        <div class="kpi-note">Recovery email — lower but valuable</div>
-      </div>
+
       <div class="kpi-card">
         <div class="kpi-value">60–75%</div>
         <div class="kpi-label">Flow Completion Rate</div>
-        <div class="kpi-note">Aim for 60–75% suppression before R3 (repurchased)</div>
+        <div class="kpi-note">Aim for 60–75% suppression before R2 (repurchased early in R1)</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-value">R2 vs R3</div>
+        <div class="kpi-value">R1 vs R2</div>
         <div class="kpi-label">A/B Test Priority</div>
-        <div class="kpi-note">Test urgency framing — clinical vs emotional vs practical</div>
+        <div class="kpi-note">Test R2 framing — clinical vs emotional vs practical</div>
       </div>
       <div class="kpi-card">
         <div class="kpi-value">6 months</div>
@@ -1726,9 +1519,9 @@
         <td>A/B test subject line; check sender reputation</td>
       </tr>
       <tr>
-        <td>Unsubscribe rate on R3 exceeds 0.5%</td>
+        <td>Unsubscribe rate on R2 exceeds 0.5%</td>
         <td>Urgency framing too aggressive for the category</td>
-        <td>Soften R3 copy; test less pressured angle</td>
+        <td>Soften R2 copy; test less pressured angle</td>
       </tr>
       <tr>
         <td>R1 click rate below 4%</td>
@@ -1738,7 +1531,7 @@
       <tr>
         <td>90-day retention below 35%</td>
         <td>Flows are not driving meaningful LTV lift</td>
-        <td>Full copy review; consider adding an E5 to post-purchase at Day 21</td>
+        <td>Full copy review; consider adding a Day 21 email to post-purchase between E2 and E3 to provide additional support</td>
       </tr>
     </table>
 
@@ -1747,8 +1540,8 @@
       <ol>
         <li><strong>Launch with no tests.</strong> Let all emails run for 6–8 weeks to establish baseline performance before splitting.</li>
         <li><strong>First test: Subject lines on PP-W2 and PP-M2</strong> — the highest-stakes emotional emails. Test "practical" vs "empathetic" subject line approaches.</li>
-        <li><strong>Second test: R2 urgency framing</strong> — clinical angle ("stopping GLP-1 can affect your results") vs. emotional angle ("don't lose what you've gained") vs. practical angle ("3 days of supply left").</li>
-        <li><strong>Third test: R3 with vs. without incentive</strong> — does adding a discount convert more customers, or does it erode margin with people who would have reordered anyway?</li>
+        <li><strong>Second test: R2 (replenishment email) framing</strong> — clinical angle ("stopping GLP-1 can affect your results") vs. emotional angle ("don't lose what you've gained") vs. practical angle ("it's time to refill").</li>
+        <li><strong>Third test: R2 with vs. without incentive</strong> — does adding a discount convert more customers, or does it erode margin with people who would have reordered anyway?</li>
         <li><strong>Ongoing:</strong> Track and report per-flow at 30/60/90 days.</li>
       </ol>
     </div>
