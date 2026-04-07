@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Liverpool LA — Client Brain</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  /* DigitsUp dark base */
+  --bg:#0D0D0D;
+  --bg2:#141414;
+  --bg3:#1C1C1C;
+  --border:#2A2A2A;
+  --text:#F0EDE8;
+  --muted:#888880;
+  --dim:#555550;
+  --green:#4CAF7D;
+  --red:#E05555;
+
+  /* Liverpool brand overlay — warm denim + California editorial */
+  --accent:#6BA8C8;          /* faded denim blue, replaces cold #3D9EFF */
+  --accent2:#C8926A;         /* terracotta / warm sand — Liverpool warmth */
+  --accent-soft:rgba(107,168,200,.12);
+  --liverpool-warm:#B8875A;  /* warm bronze for brand mark */
+  --liverpool-cream:#F5EFE4; /* warm cream, matches their editorial feel */
+  --liverpool-denim:#4A7FA0; /* deeper denim for active states */
+}
+
+body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* ── GATE ── */
+#gate{position:fixed;inset:0;z-index:999;background:var(--bg);display:flex;align-items:center;justify-content:center;}
+.gi{text-align:center;width:340px;padding:0 24px;}
+.gi-brand-stripe{width:48px;height:3px;background:linear-gradient(90deg,var(--accent2),var(--accent));margin:0 auto 24px;}
+.ge{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);margin-bottom:6px;}
+.gt{font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px;color:var(--liverpool-cream);}
+.gt span{color:var(--accent2);}
+.gd2{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:24px;}
+.gdiv{width:40px;height:1px;background:var(--border);margin:0 auto 24px;}
+.gl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;}
+#pwi{width:100%;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);color:var(--text);font-size:14px;font-family:'IBM Plex Mono',monospace;outline:none;border-radius:0;}
+#pwi:focus{border-color:var(--accent);}
+#pwe{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);margin-top:6px;min-height:14px;}
+#pwb{margin-top:12px;width:100%;padding:11px;background:linear-gradient(135deg,var(--accent2),var(--accent));color:#fff;border:none;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;cursor:pointer;transition:opacity .2s;}
+#pwb:hover{opacity:.85;}
+.gcredit{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);margin-top:20px;}
+
+/* ── CONTENT ── */
+#content{display:none;}
+
+/* ── SITE HEADER ── */
+.site-header{
+  position:sticky;top:0;z-index:100;
+  background:var(--bg);
+  border-bottom:1px solid var(--border);
+}
+.header-brand-bar{
+  height:3px;
+  background:linear-gradient(90deg,var(--accent2) 0%,var(--accent) 60%,transparent 100%);
+}
+.header-inner{
+  max-width:1100px;margin:0 auto;
+  padding:0 24px;
+  display:flex;align-items:center;justify-content:space-between;
+  height:52px;
+}
+.header-logo{
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--liverpool-cream);
+  display:flex;align-items:center;gap:10px;
+}
+.header-logo .brand-pill{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:400;
+  padding:2px 8px;background:rgba(200,146,106,.15);color:var(--accent2);
+  letter-spacing:.08em;border-radius:20px;
+}
+.tab-nav{display:flex;gap:0;}
+.tab-btn{
+  padding:0 18px;height:52px;
+  font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--muted);background:none;border:none;cursor:pointer;
+  border-bottom:2px solid transparent;
+  transition:color .15s,border-color .15s;
+  white-space:nowrap;
+}
+.tab-btn:hover{color:var(--text);}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);}
+
+/* ── PAGE ── */
+.page{max-width:1100px;margin:0 auto;padding:36px 24px 60px;}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+/* ── SECTION ── */
+.sec{margin-bottom:40px;}
+.sec-title{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;
+  letter-spacing:.18em;color:var(--muted);
+  margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border);
+}
+
+/* ── CLIENT HEADER (Overview) ── */
+.client-header{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-top:3px solid var(--accent2);
+  padding:24px 28px 20px;
+  margin-bottom:28px;
+  position:relative;
+  overflow:hidden;
+}
+.client-header::before{
+  content:'';
+  position:absolute;top:0;right:0;
+  width:200px;height:100%;
+  background:linear-gradient(135deg,transparent 60%,rgba(200,146,106,.04));
+  pointer-events:none;
+}
+.ch-eyebrow{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;
+  letter-spacing:.18em;color:var(--accent2);margin-bottom:8px;
+}
+.ch-name{font-size:26px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--liverpool-cream);margin-bottom:4px;}
+.ch-meta{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:14px;}
+.ch-meta span{color:var(--dim);}
+.badges{display:flex;gap:6px;flex-wrap:wrap;}
+.badge{font-family:'IBM Plex Mono',monospace;font-size:9px;padding:3px 10px;border-radius:20px;font-weight:500;}
+.badge-warm{background:rgba(200,146,106,.15);color:var(--accent2);}
+.badge-blue{background:rgba(107,168,200,.12);color:var(--accent);}
+.badge-green{background:rgba(76,175,125,.12);color:var(--green);}
+.badge-gray{background:var(--bg3);color:var(--muted);}
+.badge-orange{background:rgba(184,135,90,.15);color:var(--liverpool-warm);}
+
+/* ── STAT CARDS ── */
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
+@media(max-width:680px){.sgrid{grid-template-columns:1fr 1fr;}}
+.sc{background:var(--bg2);border:1px solid var(--border);padding:16px 18px;}
+.sc.primary{border-top:2px solid var(--accent);}
+.sc.warm{border-top:2px solid var(--accent2);}
+.sl{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:10px;}
+.sv{font-size:24px;font-weight:700;margin-bottom:6px;}
+.sv.denim{color:var(--accent);}
+.sv.warm{color:var(--accent2);}
+.changes{display:flex;flex-direction:column;gap:3px;}
+.ch{font-family:'IBM Plex Mono',monospace;font-size:10px;}
+.up{color:var(--green);}
+.dn{color:var(--red);}
+.nt{color:var(--muted);}
+
+/* ── STORY BULLETS ── */
+.story-card{background:var(--bg2);border:1px solid var(--border);padding:20px 22px;margin-bottom:10px;}
+.story-card-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;}
+.story-card-title.g{color:var(--green);}
+.story-card-title.r{color:var(--red);}
+.story-card-title.b{color:var(--accent);}
+.story-card-title.w{color:var(--accent2);}
+.story-bullets{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.story-bullets li{font-size:13px;line-height:1.65;padding-left:18px;position:relative;color:var(--text);}
+.story-bullets.good li::before{content:"▲";position:absolute;left:0;top:3px;color:var(--green);font-size:8px;}
+.story-bullets.bad li::before{content:"▼";position:absolute;left:0;top:3px;color:var(--red);font-size:8px;}
+.story-bullets.act li::before{content:"→";position:absolute;left:0;color:var(--accent);}
+.story-bullets.note li::before{content:"◆";position:absolute;left:0;top:3px;color:var(--accent2);font-size:7px;}
+.story-bullets li strong{color:var(--liverpool-cream);}
+
+/* ── QUICK LINKS ── */
+.ql-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+@media(max-width:680px){.ql-grid{grid-template-columns:1fr;}}
+.ql-card{background:var(--bg2);border:1px solid var(--border);padding:14px 16px;text-decoration:none;display:flex;align-items:center;gap:12px;transition:border-color .15s;}
+.ql-card:hover{border-color:var(--accent);}
+.ql-icon{font-size:16px;flex-shrink:0;}
+.ql-label{font-size:12px;font-weight:600;color:var(--text);display:block;margin-bottom:2px;}
+.ql-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);}
+
+/* ── PIPELINE STATUS ── */
+.pipeline-row{display:flex;gap:10px;flex-wrap:wrap;}
+.pipeline-item{flex:1;min-width:180px;background:var(--bg2);border:1px solid var(--border);padding:14px 16px;}
+.pipeline-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:8px;}
+.pipeline-val{font-size:12px;font-weight:600;color:var(--text);line-height:1.5;}
+.pipeline-badge{display:inline-block;margin-top:6px;}
+
+/* ── METRICS TABLE ── */
+.mt{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:20px;}
+.mt th{padding:8px 12px;font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--bg3);white-space:nowrap;}
+.mt th:first-child{text-align:left;}
+.mt th:not(:first-child){text-align:right;}
+.mt td{padding:9px 12px;border-bottom:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:11px;}
+.mt td:first-child{text-align:left;font-family:'Montserrat',sans-serif;font-weight:500;font-size:12px;color:var(--text);}
+.mt td:not(:first-child){text-align:right;}
+.mt .muted{color:var(--muted);}
+.mt tr:last-child td{border-bottom:none;}
+.mt .bold-row td{font-weight:700;}
+.mt .bold-row td:first-child{color:var(--liverpool-cream);}
+
+/* ── DATA TABLE ── */
+.dt{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:20px;}
+.dt th{text-align:left;padding:8px 12px;font-size:9px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--bg2);white-space:nowrap;}
+.dt td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.dt tr:last-child td{border-bottom:none;}
+.dt tr:hover td{background:rgba(107,168,200,.03);}
+.name-cell{font-weight:600;font-size:12px;max-width:280px;color:var(--text);}
+.accent-val{font-weight:700;color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:11px;}
+.warm-val{font-weight:700;color:var(--accent2);font-family:'IBM Plex Mono',monospace;font-size:11px;}
+.dt td:not(.name-cell):not(.accent-val):not(.warm-val){font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);}
+.rank-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);width:24px;}
+.sub-title{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:22px 0 10px;display:flex;align-items:center;gap:8px;}
+.sub-title::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* ── JOURNEY MAP ── */
+.journey-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-bottom:20px;
+}
+@media(max-width:800px){.journey-grid{grid-template-columns:repeat(2,1fr);}}
+.journey-card{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  padding:14px 16px;
+  position:relative;
+}
+.journey-card.live{border-left:3px solid var(--green);}
+.journey-card.inbuild{border-left:3px solid var(--accent);}
+.journey-card.planned{border-left:3px solid var(--dim);}
+.journey-stage{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;
+  letter-spacing:.12em;color:var(--muted);margin-bottom:6px;
+}
+.journey-name{font-size:12px;font-weight:700;color:var(--text);line-height:1.35;margin-bottom:8px;}
+.journey-status{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;
+  padding:2px 8px;border-radius:20px;display:inline-block;margin-bottom:10px;
+}
+.status-live{background:rgba(76,175,125,.15);color:var(--green);}
+.status-inbuild{background:rgba(107,168,200,.15);color:var(--accent);}
+.status-planned{background:var(--bg3);color:var(--dim);}
+.journey-stats{border-top:1px solid var(--border);padding-top:8px;display:flex;flex-direction:column;gap:3px;}
+.journey-stat{font-family:'IBM Plex Mono',monospace;font-size:10px;display:flex;justify-content:space-between;}
+.journey-stat .label{color:var(--dim);}
+.journey-stat .val{color:var(--text);}
+.journey-stat .val.green{color:var(--green);}
+
+/* ── REPORTS LIBRARY ── */
+.report-table{width:100%;border-collapse:collapse;}
+.report-table th{text-align:left;padding:8px 16px;font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--bg2);}
+.report-table td{padding:13px 16px;border-bottom:1px solid var(--border);font-size:13px;}
+.report-table tr:last-child td{border-bottom:none;}
+.report-table tr:hover td{background:rgba(255,255,255,.02);}
+.report-period{font-weight:600;color:var(--text);}
+.report-date{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);}
+.report-link a{color:var(--accent);text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:11px;}
+.report-link a:hover{color:var(--liverpool-cream);}
+.badge-current{background:rgba(107,168,200,.15);color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:9px;padding:3px 10px;border-radius:20px;}
+.badge-past{background:var(--bg3);color:var(--dim);font-family:'IBM Plex Mono',monospace;font-size:9px;padding:3px 10px;border-radius:20px;}
+.badge-upcoming{background:rgba(200,146,106,.12);color:var(--accent2);font-family:'IBM Plex Mono',monospace;font-size:9px;padding:3px 10px;border-radius:20px;}
+.section-label{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);padding:10px 16px;background:var(--bg3);border-bottom:1px solid var(--border);}
+
+/* ── DATA NOTE BANNER ── */
+.data-note{
+  background:rgba(200,146,106,.08);
+  border:1px solid rgba(200,146,106,.25);
+  border-left:3px solid var(--accent2);
+  padding:10px 16px;
+  margin-bottom:20px;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent2);
+  line-height:1.5;
+}
+.data-note strong{color:var(--liverpool-cream);}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--border);
+  padding-top:20px;margin-top:48px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:10px;
+}
+.fb{font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent2);}
+.fn{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);}
+</style>
+</head>
+<body>
+
+<!-- ── GATE ── -->
+<div id="gate">
+  <div class="gi">
+    <div class="gi-brand-stripe"></div>
+    <div class="ge">DigitsUp · Client Intelligence</div>
+    <div class="gt">Liverpool <span>LA</span></div>
+    <div class="gd2">Client Brain · v1 · Apr 2026</div>
+    <div class="gdiv"></div>
+    <div class="gl">Password Required</div>
+    <input type="password" id="pwi" placeholder="••••••••" autocomplete="current-password">
+    <div id="pwe"></div>
+    <button id="pwb">Unlock</button>
+    <div class="gcredit">Prepared by DigitsUp · Powered by Mollie</div>
+  </div>
+</div>
+
+<!-- ── CONTENT ── -->
+<div id="content">
+
+  <!-- STICKY HEADER + TABS -->
+  <div class="site-header">
+    <div class="header-brand-bar"></div>
+    <div class="header-inner">
+      <div class="header-logo">
+        Liverpool LA
+        <span class="brand-pill">Client Brain</span>
+      </div>
+      <nav class="tab-nav">
+        <button class="tab-btn active" data-tab="overview">Overview</button>
+        <button class="tab-btn" data-tab="campaigns">Campaigns</button>
+        <button class="tab-btn" data-tab="automations">Automations</button>
+        <button class="tab-btn" data-tab="reports">Reports Library</button>
+      </nav>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════
+       TAB 1: OVERVIEW
+  ════════════════════════════════════════════════════ -->
+  <div class="page">
+  <div id="tab-overview" class="tab-panel active">
+
+    <!-- Client Header -->
+    <div class="client-header">
+      <div class="ch-eyebrow">Active Client · Retention Marketing · Email + SMS</div>
+      <div class="ch-name">Liverpool Los Angeles</div>
+      <div class="ch-meta">Klaviyo Account: JeMYJL &nbsp;<span>·</span>&nbsp; Since ~2024 &nbsp;<span>·</span>&nbsp; Shopify · Klaviyo Native</div>
+      <div class="badges">
+        <span class="badge badge-green">Active</span>
+        <span class="badge badge-blue">Email</span>
+        <span class="badge badge-blue">SMS</span>
+        <span class="badge badge-warm">Lifecycle Build</span>
+        <span class="badge badge-orange">~2 Years</span>
+      </div>
+    </div>
+
+    <!-- Data Note -->
+    <div class="data-note">
+      <strong>Data Note:</strong> Klaviyo reporting API (campaign-values-report / flow-values-report) returned 404 on Apr 6 pull — endpoints unavailable for this revision. Data below reflects the week of <strong>Mar 23–29, 2026</strong> from the last successful pull. Next week's report will include the Mar 30–Apr 5 actuals once API access is restored.
+    </div>
+
+    <!-- Week at a Glance -->
+    <div class="sec">
+      <div class="sec-title">Week at a Glance — Mar 23–29, 2026</div>
+      <div class="sgrid">
+        <div class="sc primary">
+          <div class="sl">Attributed Revenue</div>
+          <div class="sv denim">$79.0K</div>
+          <div class="changes">
+            <span class="ch up">+42.5% WoW</span>
+            <span class="ch up">+73.0% YoY</span>
+          </div>
+        </div>
+        <div class="sc warm">
+          <div class="sl">Campaign Revenue</div>
+          <div class="sv">$30.3K</div>
+          <div class="changes">
+            <span class="ch up">+264.4% WoW</span>
+            <span class="ch dn">−33.6% YoY</span>
+          </div>
+        </div>
+        <div class="sc">
+          <div class="sl">Flow Revenue</div>
+          <div class="sv">$48.6K</div>
+          <div class="changes">
+            <span class="ch up">+3.3% WoW</span>
+            <span class="ch nt">YoY — (no LY flow data)</span>
+          </div>
+        </div>
+      </div>
+      <div class="sgrid">
+        <div class="sc">
+          <div class="sl">Email Recipients</div>
+          <div class="sv" style="font-size:18px;">634K</div>
+          <div class="changes">
+            <span class="ch dn">−22.9% YoY vs 822K</span>
+          </div>
+        </div>
+        <div class="sc">
+          <div class="sl">Email Open Rate</div>
+          <div class="sv" style="font-size:18px;">52.1%</div>
+          <div class="changes"><span class="ch nt">Strong engagement</span></div>
+        </div>
+        <div class="sc">
+          <div class="sl">Email Conversions</div>
+          <div class="sv" style="font-size:18px;">132</div>
+          <div class="changes">
+            <span class="ch dn">−43.6% YoY vs 234</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Story -->
+    <div class="sec">
+      <div class="sec-title">The Story</div>
+      <div class="story-card">
+        <div class="story-card-title g">What's Working</div>
+        <ul class="story-bullets good">
+          <li><strong>Total attributed revenue up +73% YoY</strong> — $79K vs $45.7K same week last year. The flow engine is doing the heavy lifting and the week-over-week recovery (+42.5%) shows momentum building into Q2.</li>
+          <li><strong>Flows are the revenue spine</strong> — $48.6K of $79K total is automated. Welcome Series 2026 alone drove $9.1K this week at a 6.2% CVR. That's a best-in-class welcome sequence.</li>
+          <li><strong>52.1% open rate</strong> — well above industry average for apparel. Engaged list, relevant sends. The Spring send cadence (Superbloom, Getaway Looks, Best Tops) is landing.</li>
+        </ul>
+      </div>
+      <div class="story-card">
+        <div class="story-card-title r">What Needs Attention</div>
+        <ul class="story-bullets bad">
+          <li><strong>Email campaign conversions down 43.6% YoY</strong> (132 vs 234). Recipients are down 22.9% — smaller list reach is the likely primary driver. Worth reviewing send-list qualification criteria.</li>
+          <li><strong>Email campaign revenue down 33.6% YoY</strong> ($23.3K vs $45.7K LY). The send volume gap accounts for some of this — but the 30-day campaign revenue trend (−84.9% YoY over 30 days) is the bigger concern to address in Q2 strategy.</li>
+          <li><strong>30-day attributed revenue −34% YoY</strong> ($235.6K vs $356.8K LY). Flows are actually up +24.8% over 30 days — but campaigns are carrying a -84.9% YoY deficit that's dragging the total.</li>
+        </ul>
+      </div>
+      <div class="story-card">
+        <div class="story-card-title b">Recommended Actions</div>
+        <ul class="story-bullets act">
+          <li>Lead the call with the +73% YoY attributed revenue win — that's the headline, and it's real.</li>
+          <li>Audit the campaign list qualification approach — fewer recipients but same send frequency could signal over-suppression or aggressive smart-sending thresholds.</li>
+          <li>Win-back 2026 is in build — prioritize launch. The winback layer is the fastest path to closing the 30-day YoY gap without increasing send volume.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="sec">
+      <div class="sec-title">Quick Links</div>
+      <div class="ql-grid">
+        <a href="https://www.klaviyo.com/dashboard" target="_blank" class="ql-card">
+          <div class="ql-icon">📊</div>
+          <div>
+            <span class="ql-label">Klaviyo Dashboard</span>
+            <span class="ql-meta">Account: JeMYJL</span>
+          </div>
+        </a>
+        <a href="#" class="ql-card" onclick="return false;">
+          <div class="ql-icon">📄</div>
+          <div>
+            <span class="ql-label">Strategy Doc</span>
+            <span class="ql-meta">Placeholder — link pending</span>
+          </div>
+        </a>
+        <a href="#" class="ql-card" onclick="return false;">
+          <div class="ql-icon">📞</div>
+          <div>
+            <span class="ql-label">Weekly Call</span>
+            <span class="ql-meta">Tuesdays · 11:30am</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Pipeline State -->
+    <div class="sec">
+      <div class="sec-title">Current Pipeline State</div>
+      <div class="pipeline-row">
+        <div class="pipeline-item">
+          <div class="pipeline-label">What's Live</div>
+          <div class="pipeline-val">Welcome Series 2026 · Abandoned Checkout · Browse Abandonment · Post-Purchase · Wonderment Shipping Suite · Winback 2025</div>
+          <span class="pipeline-badge badge badge-green">6 core flows active</span>
+        </div>
+        <div class="pipeline-item">
+          <div class="pipeline-label">In Build</div>
+          <div class="pipeline-val">Win-back 2026 — in progress, replaces 2025 version</div>
+          <span class="pipeline-badge badge badge-blue">1 in build</span>
+        </div>
+        <div class="pipeline-item">
+          <div class="pipeline-label">What's Next</div>
+          <div class="pipeline-val">Q1 2026 quarterly report (Apr 14) · Campaign calendar audit · List growth review</div>
+          <span class="pipeline-badge badge badge-warm">Q2 priorities</span>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="fb">Liverpool Los Angeles</div>
+      <div class="fn">DigitsUp · Client Brain v1 · Apr 2026 · Powered by Mollie</div>
+    </footer>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════
+       TAB 2: CAMPAIGNS
+  ════════════════════════════════════════════════════ -->
+  <div id="tab-campaigns" class="tab-panel">
+
+    <div class="data-note">
+      <strong>Data Note:</strong> Week shown is Mar 23–29, 2026 (last successful API pull). Mar 30–Apr 5 data will be added when reporting endpoints are restored.
+    </div>
+
+    <!-- Top-line metrics -->
+    <div class="sec">
+      <div class="sec-title">Campaign Summary — Mar 23–29, 2026</div>
+      <table class="mt">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>This Week</th>
+            <th>Last Week</th>
+            <th>WoW</th>
+            <th>Same Wk LY</th>
+            <th>YoY</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Email Recipients</td><td>634K</td><td class="muted">—</td><td class="muted">—</td><td class="muted">822K</td><td class="dn">−22.9%</td></tr>
+          <tr><td>Email Open Rate</td><td>52.1%</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td></tr>
+          <tr><td>Email Clicks</td><td>12K</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td></tr>
+          <tr><td>Email Conversions</td><td>132</td><td class="muted">—</td><td class="muted">—</td><td class="muted">234</td><td class="dn">−43.6%</td></tr>
+          <tr class="bold-row"><td>Email Campaign Revenue</td><td>$23.3K</td><td class="muted">$8.3K</td><td class="up">+180.7%</td><td class="muted">$45.7K</td><td class="dn">−49.0%</td></tr>
+          <tr><td>SMS Recipients</td><td>82K</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td></tr>
+          <tr><td>SMS Conversions</td><td>39</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td></tr>
+          <tr class="bold-row"><td>SMS Revenue</td><td>$7.1K</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td></tr>
+          <tr class="bold-row"><td>Total Campaign Revenue</td><td>$30.3K</td><td class="muted">$8.3K</td><td class="up">+264.4%</td><td class="muted">$45.7K</td><td class="dn">−33.6%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Top Email Campaigns TW -->
+    <div class="sec">
+      <div class="sec-title">Top Email Campaigns — This Week</div>
+      <table class="dt">
+        <thead>
+          <tr>
+            <th style="width:28px;">#</th>
+            <th>Campaign</th>
+            <th>Recipients</th>
+            <th>Open Rate</th>
+            <th>Orders</th>
+            <th>Revenue</th>
+            <th>RPR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rank-num">1</td>
+            <td class="name-cell">3/24 BEST TOPS OF THE SEASON</td>
+            <td>152K</td>
+            <td>45.3%</td>
+            <td>42</td>
+            <td class="accent-val">$7.9K</td>
+            <td>$0.05</td>
+          </tr>
+          <tr>
+            <td class="rank-num">2</td>
+            <td class="name-cell">3/28 GETAWAY LOOKS</td>
+            <td>194K</td>
+            <td>38.5%</td>
+            <td>34</td>
+            <td class="accent-val">$6.5K</td>
+            <td>$0.03</td>
+          </tr>
+          <tr>
+            <td class="rank-num">3</td>
+            <td class="name-cell">3/26 A SUPERBLOOM OF STYLE</td>
+            <td>238K</td>
+            <td>39.8%</td>
+            <td>34</td>
+            <td class="accent-val">$6.2K</td>
+            <td>$0.03</td>
+          </tr>
+          <tr>
+            <td class="rank-num">4</td>
+            <td class="name-cell">3/27 NCO Welcome Offer</td>
+            <td>48K</td>
+            <td>42.1%</td>
+            <td>21</td>
+            <td class="accent-val">$2.7K</td>
+            <td>$0.06</td>
+          </tr>
+          <tr>
+            <td class="rank-num">5</td>
+            <td class="name-cell">3/26 WHOLESALE: LPLA × OMAHA, NE</td>
+            <td>2K</td>
+            <td>33.7%</td>
+            <td>1</td>
+            <td class="accent-val">$0.1K</td>
+            <td>$0.08</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Top Email Campaigns LY -->
+    <div class="sec">
+      <div class="sec-title">Top Email Campaigns — Same Week Last Year (Mar 30–Apr 5, 2025)</div>
+      <table class="dt">
+        <thead>
+          <tr>
+            <th style="width:28px;">#</th>
+            <th>Campaign</th>
+            <th>Recipients</th>
+            <th>Open Rate</th>
+            <th>Orders</th>
+            <th>Revenue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rank-num">1</td>
+            <td class="name-cell" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">01JPNC6DPRB4JSP9838137YXT8</td>
+            <td>243K</td>
+            <td>43.7%</td>
+            <td>59</td>
+            <td class="warm-val">$13.7K</td>
+          </tr>
+          <tr>
+            <td class="rank-num">2</td>
+            <td class="name-cell" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">01JPXC5GWQAFM4DJXDBM744ZV7</td>
+            <td>178K</td>
+            <td>54.2%</td>
+            <td>49</td>
+            <td class="warm-val">$10.3K</td>
+          </tr>
+          <tr>
+            <td class="rank-num">3</td>
+            <td class="name-cell" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">01JPR1DG93TCCTKHXKEG9BRC2G</td>
+            <td>167K</td>
+            <td>56.5%</td>
+            <td>41</td>
+            <td class="warm-val">$7.2K</td>
+          </tr>
+          <tr>
+            <td class="rank-num">4</td>
+            <td class="name-cell" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">01JPB1WMMW8XYV71VYJBYAZ3VZ</td>
+            <td>175K</td>
+            <td>54.1%</td>
+            <td>43</td>
+            <td class="warm-val">$6.9K</td>
+          </tr>
+          <tr>
+            <td class="rank-num">5</td>
+            <td class="name-cell" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">01JPN8VGR6P2F6DWQ1XGJG603A</td>
+            <td>28K</td>
+            <td>44.0%</td>
+            <td>28</td>
+            <td class="warm-val">$6.1K</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);margin-top:-10px;">Note: LY campaign names not stored in Klaviyo history — IDs shown. Names will be visible in the Klaviyo campaigns dashboard filtered to Mar–Apr 2025.</p>
+    </div>
+
+    <!-- Top SMS Campaigns -->
+    <div class="sec">
+      <div class="sec-title">Top SMS Campaigns — This Week</div>
+      <table class="dt">
+        <thead>
+          <tr>
+            <th style="width:28px;">#</th>
+            <th>Campaign</th>
+            <th>Recipients</th>
+            <th>Click Rate</th>
+            <th>Orders</th>
+            <th>Revenue</th>
+            <th>RPR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rank-num">1</td>
+            <td class="name-cell">3/25 SMS: SPRING PRINT EDIT</td>
+            <td>53.7K</td>
+            <td>11.6%</td>
+            <td>16</td>
+            <td class="accent-val">$2.7K</td>
+            <td>$0.05</td>
+          </tr>
+          <tr>
+            <td class="rank-num">2</td>
+            <td class="name-cell">3/29 Loyalty Points — Bronze Tier</td>
+            <td>15.7K</td>
+            <td>11.4%</td>
+            <td>13</td>
+            <td class="accent-val">$2.3K</td>
+            <td>$0.15</td>
+          </tr>
+          <tr>
+            <td class="rank-num">3</td>
+            <td class="name-cell">3/29 Loyalty Double Points — Silver Tier</td>
+            <td>1.5K</td>
+            <td>11.9%</td>
+            <td>5</td>
+            <td class="accent-val">$1.5K</td>
+            <td>$1.02</td>
+          </tr>
+          <tr>
+            <td class="rank-num">4</td>
+            <td class="name-cell">3/27 SMS Ad Hoc Plus</td>
+            <td>5.2K</td>
+            <td>15.7%</td>
+            <td>3</td>
+            <td class="accent-val">$0.4K</td>
+            <td>$0.08</td>
+          </tr>
+          <tr>
+            <td class="rank-num">5</td>
+            <td class="name-cell">3/27 SMS Ad Hoc Petite</td>
+            <td>5.5K</td>
+            <td>15.7%</td>
+            <td>2</td>
+            <td class="accent-val">$0.2K</td>
+            <td>$0.03</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Campaign Commentary -->
+    <div class="sec">
+      <div class="sec-title">Campaign Commentary</div>
+      <div class="story-card">
+        <div class="story-card-title g">What's Working</div>
+        <ul class="story-bullets good">
+          <li><strong>Spring sends are converting.</strong> Best Tops of the Season led with 42 orders and a 45.3% open rate — highest conversion count in the email stack. The editorial naming ("Superbloom", "Getaway Looks") is on-brand and performing.</li>
+          <li><strong>Loyalty SMS is punching above its weight.</strong> Silver Tier Double Points drove $1.02 RPR — the best RPR in any channel this week. Small list, surgical targeting.</li>
+        </ul>
+      </div>
+      <div class="story-card">
+        <div class="story-card-title r">What's Not</div>
+        <ul class="story-bullets bad">
+          <li><strong>Email volume gap vs LY.</strong> Top LY campaign (01JPNC) had 243K recipients and $13.7K revenue — this week's top was 238K and $7.9K. Open rates were actually higher LY (43–56% vs 38–45%). Either the list was larger or quality was higher. Worth investigating.</li>
+        </ul>
+      </div>
+      <div class="story-card">
+        <div class="story-card-title b">Action Item</div>
+        <ul class="story-bullets act">
+          <li>Pull Q1 campaign calendar and compare sends-per-week vs Q1 2025. Hypothesis: LY had more campaign sends in this window. If confirmed, build a campaign frequency plan for Q2.</li>
+        </ul>
+      </div>
+    </div>
+
+    <footer>
+      <div class="fb">Liverpool Los Angeles</div>
+      <div class="fn">DigitsUp · Client Brain v1 · Apr 2026 · Powered by Mollie</div>
+    </footer>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════
+       TAB 3: AUTOMATIONS
+  ════════════════════════════════════════════════════ -->
+  <div id="tab-automations" class="tab-panel">
+
+    <div class="data-note">
+      <strong>Data Note:</strong> Performance stats reflect Mar 23–29, 2026 (last successful pull). Flow names fully resolved via Klaviyo API on Apr 6, 2026.
+    </div>
+
+    <!-- Customer Journey Map -->
+    <div class="sec">
+      <div class="sec-title">Customer Journey Map — Full Flow Architecture</div>
+      <div class="journey-grid">
+
+        <!-- Acquisition -->
+        <div class="journey-card live">
+          <div class="journey-stage">Acquisition</div>
+          <div class="journey-name">Back In Stock Flow<br>VIP vs. Non-VIP</div>
+          <span class="journey-status status-live">Live</span>
+          <div class="journey-stats">
+            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">MxcX8m</span></div>
+            <div class="journey-stat"><span class="label">Trigger</span><span class="val">Back in stock alert</span></div>
+          </div>
+        </div>
+
+        <!-- Welcome -->
+        <div class="journey-card live">
+          <div class="journey-stage">Welcome — Primary</div>
+          <div class="journey-name">Welcome Series — Email 2026</div>
+          <span class="journey-status status-live">Live</span>
+          <div class="journey-stats">
+            <div class="journey-stat"><span class="label">Recipients TW</span><span class="val">928</span></div>
+            <div class="journey-stat"><span class="label">Revenue TW</span><span class="val green">$9.1K</span></div>
+            <div class="journey-stat"><span class="label">CVR</span><span class="val green">6.20%</span></div>
+          </div>
+        </div>
+
+        <!-- Welcome Legacy -->
+        <div class="journey-card live">
+          <div class="journey-stage">Welcome — Ecom</div>
+          <div class="journey-name">Welcome Series — Liverpool Ecom Customers</div>
+          <span class="journey-status status-live">Live</span>
+          <div class="journey-stats">
+            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">TFmENC</span></div>
+            <div class="journey-stat"><span class="label">Segment</span><span class="val">Ecom buyers</span></div>
+          </div>
+        </div>
+
+        <!-- Browse -->
+        <div class="journey-card live">
+          <div class="journey-stage">Browse</div>
+          <div class="journey-name">Browse Abandonment</div>
+          <span class="journey-status status-live">Live</span>
+          <div class="journey-stats">
+            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">U9NPLQ</span></div>
+            <div class="journey-stat"><span class="label">30-day Rev</span><span class="val">$5.2K</span></div>
+          </div>
+        </div>
+
+        <!-- Cart -->
+        <div class="journey-card live">
+          <div class="journey-stage">Cart Abandonment</div>
+          <div class="journey-name">Added2Cart 2025</div>
+          <span class="journey-status status-live">Live</span>
+          <div class="journey-stats">
+            <div class="journey-stat"><span class="label">Recipients TW</span><span class="val">270</span></div>
+            <div class="journey-stat"><span class="label">Revenue TW</span><span class="val green">$2.6K</span></div>
+            <div class="journey-stat"><span class="label">CVR</span><span class="val green">5.19%</span></div>
+          </div>
+        </div>
+
+        <!-- Checkout -->
+        <div class="journey-card live">
+          <div class="journey-stage">Checkout Abandonment</div>
+          <div class="journey-name">Abandoned Checkout 2025</div>
+          <span class="journey-status status-live">Live</span>
+          <div class="journey-stats">
+            <div class="journey-stat"><span class="label">Recipients TW</span><span class="val">108</span></div>
+            <div class="journey-stat"><span class="label">Revenue TW</span><span class="val green">$2.7K</span></div>
+            <div class="journey-stat"><span class="label">CVR</span><span class="val green">13.89%</span></div>
+          </div>
+        </div>
+
+        <!-- Post-Purchase -->
+        <div class="journey-card live">
+          <div class="journey-stage">Post-Purchase</div>
+          <div class="journey-name">Post-Purchase Optimization</div>
+          <span class="journey-status status-live">Live</span>
+          <div class="journey-stats">
+            <div class="journey-stat"><span class="label">Recipients TW</span><span class="val">519</span></div>
+            <div class="journey-stat"><span class="label">Revenue TW</span><span class="val green">$2.0K</span></div>
+            <div class="journey-stat"><span class="label">CVR</span><span class="val">2.31%</span></div>
+          </div>
+        </div>
+
+        <!-- Order Confirmation -->
+        <div class="journey-card live">
+          <div class="journey-stage">Post-Purchase</div>
+          <div class="journey-name">Order Confirmation — Standard</div>
+          <span class="journey-status status-live">Live</span>
+          <div class="journey-stats">
+            <div class="journey-stat"><span class="label">Recipients TW</span><span class="val">1,226</span></div>
+            <div class="journey-stat"><span class="label">Revenue TW</span><span class="val">$1.9K</span></div>
+            <div class="journey-stat"><span class="label">CVR</span><span class="val">2.20%</span></div>
+          </div>
+        </div>
+
+        <!-- Wonderment Suite -->
+        <div class="journey-card live">
+          <div class="journey-stage">Shipping — Delivered</div>
+          <div class="journey-name">Wonderment: Delivered</div>
+          <span class="journey-status status-live">Live</span>
+          <div class="journey-stats">
+            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">V9LLVS</span></div>
+            <div class="journey-stat"><span class="label">30-day Rev</span><span class="val">$9.3K</span></div>
+          </div>
+        </div>
+
+        <div class="journey-card live">
+          <div class="journey-stage">Shipping — Out for Delivery</div>
+          <div class="journey-name">Wonderment: Out for Delivery</div>
+          <span class="journey-status status-live">Live</span>
+          <div class="journey-stats">
+            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">UViKZR</span></div>
+            <div class="journey-stat"><span class="label">30-day Rev</span><span class="val">$4.9K</span></div>
+          </div>
+        </div>
+
+        <div class="journey-card live">
+          <div class="journey-stage">Shipping — Carrier Pickup</div>
+          <div class="journey-name">Wonderment: Carrier Picked Up</div>
+          <span class="journey-status status-live">Live</span>
+          <div class="journey-stats">
+            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">TsNDQA</span></div>
+          </div>
+        </div>
+
+        <div class="journey-card live">
+          <div class="journey-stage">Shipping — Stalled</div>
+          <div class="journey-name">Wonderment: Stalled Shipment</div>
+          <span class="journey-status status-live">Live</span>
+          <div class="journey-stats">
+            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">WKSDBN</span></div>
+          </div>
+        </div>
+
+        <!-- SMS Post Purchase -->
+        <div class="journey-card live">
+          <div class="journey-stage">Post-Purchase — SMS</div>
+          <div class="journey-name">SMS Post Purchase</div>
+          <span class="journey-status status-live">Live</span>
+          <div class="journey-stats">
+            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">VJhbbJ</span></div>
+            <div class="journey-stat"><span class="label">Channel</span><span class="val">SMS</span></div>
+          </div>
+        </div>
+
+        <!-- Loyalty -->
+        <div class="journey-card live">
+          <div class="journey-stage">Loyalty — Rewards</div>
+          <div class="journey-name">Rewards Monthly Update</div>
+          <span class="journey-status status-live">Live</span>
+          <div class="journey-stats">
+            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">Ybbjin</span></div>
+            <div class="journey-stat"><span class="label">Trigger</span><span class="val">Monthly, post-order</span></div>
+          </div>
+        </div>
+
+        <div class="journey-card live">
+          <div class="journey-stage">Loyalty — Birthday</div>
+          <div class="journey-name">Birthday Series 2025 — Toki</div>
+          <span class="journey-status status-live">Live</span>
+          <div class="journey-stats">
+            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">R4BczB</span></div>
+            <div class="journey-stat"><span class="label">Partner</span><span class="val">Toki</span></div>
+          </div>
+        </div>
+
+        <div class="journey-card planned">
+          <div class="journey-stage">Loyalty — Toki Tiers</div>
+          <div class="journey-name">Toki Tier Earned + Referral Rewards</div>
+          <span class="journey-status status-planned">Planned / Monitor</span>
+          <div class="journey-stats">
+            <div class="journey-stat"><span class="label">Flows</span><span class="val">SVQrRs, VQkRVm</span></div>
+          </div>
+        </div>
+
+        <!-- Loyalty - Yotpo -->
+        <div class="journey-card planned">
+          <div class="journey-stage">Loyalty — Referral</div>
+          <div class="journey-name">Yotpo Referral Share + Reminder</div>
+          <span class="journey-status status-planned">Planned / Monitor</span>
+          <div class="journey-stats">
+            <div class="journey-stat"><span class="label">Flows</span><span class="val">SYDD59, Svtm39</span></div>
+          </div>
+        </div>
+
+        <!-- Loyalty Expiry -->
+        <div class="journey-card planned">
+          <div class="journey-stage">Loyalty — Expiry</div>
+          <div class="journey-name">Rewards Expiry Alert</div>
+          <span class="journey-status status-planned">Planned</span>
+          <div class="journey-stats">
+            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">SCT6eu</span></div>
+          </div>
+        </div>
+
+        <!-- Price Drop -->
+        <div class="journey-card planned">
+          <div class="journey-stage">Behavioral — Price</div>
+          <div class="journey-name">Price Drop Notification</div>
+          <span class="journey-status status-planned">Planned</span>
+          <div class="journey-stats">
+            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">VuHP8F</span></div>
+          </div>
+        </div>
+
+        <!-- Winback -->
+        <div class="journey-card live">
+          <div class="journey-stage">Winback</div>
+          <div class="journey-name">Winback 2025 — Segment</div>
+          <span class="journey-status status-live">Live</span>
+          <div class="journey-stats">
+            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">WyqBDf</span></div>
+          </div>
+        </div>
+
+        <div class="journey-card inbuild">
+          <div class="journey-stage">Winback — 2026</div>
+          <div class="journey-name">Win-back 2026</div>
+          <span class="journey-status status-inbuild">In Build</span>
+          <div class="journey-stats">
+            <div class="journey-stat"><span class="label">Flow ID</span><span class="val">XwcDKX</span></div>
+            <div class="journey-stat"><span class="label">Status</span><span class="val" style="color:var(--accent);">Priority</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Top Flows This Week -->
+    <div class="sec">
+      <div class="sec-title">Flow Performance — Mar 23–29, 2026</div>
+      <div class="sub-title">Top Flows This Week</div>
+      <table class="dt">
+        <thead>
+          <tr>
+            <th style="width:28px;">#</th>
+            <th>Flow Name</th>
+            <th>ID</th>
+            <th>Recipients</th>
+            <th>Orders</th>
+            <th>CVR</th>
+            <th>Revenue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rank-num">1</td>
+            <td class="name-cell">Welcome Series — Email 2026</td>
+            <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);">UaeNDJ</td>
+            <td>928</td>
+            <td>57</td>
+            <td class="up">6.20%</td>
+            <td class="accent-val">$9.1K</td>
+          </tr>
+          <tr>
+            <td class="rank-num">2</td>
+            <td class="name-cell">Abandoned Checkout 2025</td>
+            <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);">XBuiBy</td>
+            <td>108</td>
+            <td>15</td>
+            <td class="up">13.89%</td>
+            <td class="accent-val">$2.7K</td>
+          </tr>
+          <tr>
+            <td class="rank-num">3</td>
+            <td class="name-cell">Added2Cart 2025</td>
+            <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);">—</td>
+            <td>270</td>
+            <td>17</td>
+            <td class="up">5.19%</td>
+            <td class="accent-val">$2.6K</td>
+          </tr>
+          <tr>
+            <td class="rank-num">4</td>
+            <td class="name-cell">Post-Purchase Optimization</td>
+            <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);">Txm9QN</td>
+            <td>519</td>
+            <td>12</td>
+            <td>2.31%</td>
+            <td class="accent-val">$2.0K</td>
+          </tr>
+          <tr>
+            <td class="rank-num">5</td>
+            <td class="name-cell">Wonderment: Delivered</td>
+            <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);">V9LLVS</td>
+            <td>1,226</td>
+            <td>27</td>
+            <td>2.20%</td>
+            <td class="accent-val">$1.9K</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="sub-title">Top Flows Last Week (Mar 16–22)</div>
+      <table class="dt">
+        <thead>
+          <tr>
+            <th style="width:28px;">#</th>
+            <th>Flow Name</th>
+            <th>ID</th>
+            <th>Recipients</th>
+            <th>Orders</th>
+            <th>CVR</th>
+            <th>Revenue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rank-num">1</td>
+            <td class="name-cell">Welcome Series — Email 2026</td>
+            <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);">UaeNDJ</td>
+            <td>878</td>
+            <td>55</td>
+            <td class="up">6.32%</td>
+            <td class="accent-val">$8.9K</td>
+          </tr>
+          <tr>
+            <td class="rank-num">2</td>
+            <td class="name-cell">Added2Cart 2025</td>
+            <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);">—</td>
+            <td>277</td>
+            <td>9</td>
+            <td>3.26%</td>
+            <td class="accent-val">$2.1K</td>
+          </tr>
+          <tr>
+            <td class="rank-num">3</td>
+            <td class="name-cell">Wonderment: Delivered</td>
+            <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);">V9LLVS</td>
+            <td>1,268</td>
+            <td>28</td>
+            <td>2.06%</td>
+            <td class="accent-val">$2.1K</td>
+          </tr>
+          <tr>
+            <td class="rank-num">4</td>
+            <td class="name-cell">Order Confirmation — Standard</td>
+            <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);">W7qbs5</td>
+            <td>1,289</td>
+            <td>11</td>
+            <td>0.86%</td>
+            <td class="accent-val">$1.5K</td>
+          </tr>
+          <tr>
+            <td class="rank-num">5</td>
+            <td class="name-cell">Browse Abandonment</td>
+            <td style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);">U9NPLQ</td>
+            <td>2,301</td>
+            <td>8</td>
+            <td>0.35%</td>
+            <td class="accent-val">$1.5K</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="sub-title">Top Flows — Last 30 Days</div>
+      <table class="dt">
+        <thead>
+          <tr>
+            <th style="width:28px;">#</th>
+            <th>Flow Name</th>
+            <th>Recipients</th>
+            <th>Orders</th>
+            <th>CVR</th>
+            <th>Revenue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rank-num">1</td>
+            <td class="name-cell">Welcome Series — Email 2026</td>
+            <td>3,973</td>
+            <td>236</td>
+            <td class="up">5.99%</td>
+            <td class="accent-val">$36.2K</td>
+          </tr>
+          <tr>
+            <td class="rank-num">2</td>
+            <td class="name-cell">Added2Cart 2025</td>
+            <td>1,240</td>
+            <td>57</td>
+            <td class="up">4.29%</td>
+            <td class="accent-val">$9.8K</td>
+          </tr>
+          <tr>
+            <td class="rank-num">3</td>
+            <td class="name-cell">Wonderment: Delivered</td>
+            <td>5,436</td>
+            <td>118</td>
+            <td>2.12%</td>
+            <td class="accent-val">$9.3K</td>
+          </tr>
+          <tr>
+            <td class="rank-num">4</td>
+            <td class="name-cell">Abandoned Checkout 2025</td>
+            <td>561</td>
+            <td>42</td>
+            <td class="up">7.49%</td>
+            <td class="accent-val">$8.3K</td>
+          </tr>
+          <tr>
+            <td class="rank-num">5</td>
+            <td class="name-cell">Browse Abandonment</td>
+            <td>8,888</td>
+            <td>35</td>
+            <td>0.39%</td>
+            <td class="accent-val">$5.2K</td>
+          </tr>
+          <tr>
+            <td class="rank-num">6</td>
+            <td class="name-cell">Wonderment: Out for Delivery</td>
+            <td>5,020</td>
+            <td>40</td>
+            <td>0.78%</td>
+            <td class="accent-val">$4.9K</td>
+          </tr>
+          <tr>
+            <td class="rank-num">7</td>
+            <td class="name-cell">Post-Purchase Optimization</td>
+            <td>2,152</td>
+            <td>37</td>
+            <td>1.72%</td>
+            <td class="accent-val">$4.9K</td>
+          </tr>
+          <tr>
+            <td class="rank-num">8</td>
+            <td class="name-cell">Order Confirmation — Standard</td>
+            <td>5,665</td>
+            <td>34</td>
+            <td>0.60%</td>
+            <td class="accent-val">$4.5K</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Flow Commentary -->
+    <div class="sec">
+      <div class="sec-title">Flow Commentary</div>
+      <div class="story-card">
+        <div class="story-card-title g">What's Driving Revenue</div>
+        <ul class="story-bullets good">
+          <li><strong>Welcome Series 2026 is the #1 revenue driver</strong> — $36.2K in 30 days at a 5.99% CVR. This is exceptional for apparel. The sequence is clearly well-built and well-timed. Protect it.</li>
+          <li><strong>Abandoned Checkout CVR is 13.89% this week</strong> — best-in-class. 108 recipients converted 15 orders. This flow is doing exactly what it should.</li>
+          <li><strong>Wonderment suite is earning its keep</strong> — Delivered + Out for Delivery = $14.2K in 30 days. Transactional flows generating real revenue is a strong signal.</li>
+        </ul>
+      </div>
+      <div class="story-card">
+        <div class="story-card-title r">What Needs Attention</div>
+        <ul class="story-bullets bad">
+          <li><strong>Browse Abandonment CVR is low (0.35–0.39%)</strong> — 8,888 recipients over 30 days generating $5.2K. The volume is there but the sequence isn't converting. Likely needs a creative refresh or incentive test.</li>
+          <li><strong>Win-back 2026 is in build</strong> — this gap is costing revenue. With a solid winback segment, even a 1% CVR on lapsed buyers would move the YoY number meaningfully.</li>
+        </ul>
+      </div>
+    </div>
+
+    <footer>
+      <div class="fb">Liverpool Los Angeles</div>
+      <div class="fn">DigitsUp · Client Brain v1 · Apr 2026 · Powered by Mollie</div>
+    </footer>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════
+       TAB 4: REPORTS LIBRARY
+  ════════════════════════════════════════════════════ -->
+  <div id="tab-reports" class="tab-panel">
+
+    <div class="sec">
+      <div class="sec-title">Reports Library — Liverpool Los Angeles</div>
+
+      <!-- Weekly Reports -->
+      <div class="section-label">Weekly Reports</div>
+      <table class="report-table" style="margin-bottom:24px;">
+        <thead>
+          <tr>
+            <th>Period</th>
+            <th>Date Published</th>
+            <th>Link</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="report-period">Mar 30 – Apr 5, 2026</div>
+              <div class="report-date">Week 14 · Q2 2026</div>
+            </td>
+            <td class="report-date">Apr 7, 2026</td>
+            <td class="report-link"><a href="https://digitsup.github.io/mollie-hq/projects/liverpool/liverpool-report-mar30-apr5.html" target="_blank">Open Report →</a></td>
+            <td><span class="badge-current">Current</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="report-period">Mar 23 – 29, 2026</div>
+              <div class="report-date">Week 13 · Q1 2026</div>
+            </td>
+            <td class="report-date">Mar 30, 2026</td>
+            <td class="report-link"><a href="https://digitsup.github.io/mollie-hq/projects/liverpool/liverpool-report-mar23-29-v2.html" target="_blank">Open Report →</a></td>
+            <td><span class="badge-past">Past</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Quarterly Reports -->
+      <div class="section-label">Quarterly Reports</div>
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>Quarter</th>
+            <th>Period</th>
+            <th>Date Published</th>
+            <th>Link</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="report-period">Q1 2026</div>
+            </td>
+            <td class="report-date">Jan 1 – Mar 31, 2026</td>
+            <td class="report-date">Coming Apr 14, 2026</td>
+            <td class="report-link" style="color:var(--dim);font-family:'IBM Plex Mono',monospace;font-size:11px;">—</td>
+            <td><span class="badge-upcoming">Upcoming</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- About this hub -->
+    <div class="sec">
+      <div class="sec-title">About This Hub</div>
+      <div class="story-card">
+        <div class="story-card-title w">What This Is</div>
+        <ul class="story-bullets note">
+          <li>This is the Liverpool LA Client Brain — built by DigitsUp, powered by Mollie. It's the single URL Michael opens before every client call, brief, or build decision.</li>
+          <li>Data is pulled live from Klaviyo where possible. When the reporting API is unavailable, the last successful pull is used and noted clearly.</li>
+          <li>Flow names are resolved via the Klaviyo Flows API and kept current. Last resolved: Apr 6, 2026.</li>
+          <li>This page will be updated weekly with each new report publish. The Reports Library tab is the canonical archive.</li>
+        </ul>
+      </div>
+    </div>
+
+    <footer>
+      <div class="fb">Liverpool Los Angeles</div>
+      <div class="fn">DigitsUp · Client Brain v1 · Apr 2026 · Powered by Mollie</div>
+    </footer>
+  </div>
+  </div><!-- /page -->
+
+</div><!-- /content -->
+
+<script>
+// ── Gate ──
+function unlock(){
+  var v=document.getElementById('pwi').value;
+  if(v==='Liverpool2026'){
+    document.getElementById('gate').style.display='none';
+    document.getElementById('content').style.display='block';
+  } else {
+    document.getElementById('pwe').textContent='Incorrect password.';
+    setTimeout(function(){document.getElementById('pwe').textContent='';},2500);
+    document.getElementById('pwi').value='';
+    document.getElementById('pwi').focus();
+  }
+}
+document.getElementById('pwb').addEventListener('click',unlock);
+document.getElementById('pwi').addEventListener('keydown',function(e){if(e.key==='Enter')unlock();});
+
+// ── Tabs ──
+var tabs = document.querySelectorAll('.tab-btn');
+var panels = document.querySelectorAll('.tab-panel');
+tabs.forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var target = this.getAttribute('data-tab');
+    tabs.forEach(function(b){b.classList.remove('active');});
+    panels.forEach(function(p){p.classList.remove('active');});
+    this.classList.add('active');
+    document.getElementById('tab-'+target).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
