@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>RVCA — Client Brain · DigitsUp</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#101820;
+  --bg2:#161f2a;
+  --bg3:#1d2839;
+  --border:#25323f;
+  --text:#F5F3EF;
+  --muted:#7a8b99;
+  --dim:#415060;
+  --blue:#1782C5;
+  --blue-soft:rgba(23,130,197,.13);
+  --green:#3da876;
+  --green-soft:rgba(61,168,118,.12);
+  --red:#e05555;
+  --red-soft:rgba(224,85,85,.12);
+}
+
+body{
+  font-family:'Roboto',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ─── GATE ─── */
+#gate{
+  position:fixed;inset:0;z-index:999;
+  background:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+}
+.gate-inner{
+  text-align:center;width:340px;padding:0 24px;
+}
+.gate-va{
+  font-family:'Roboto Condensed',sans-serif;
+  font-weight:700;font-size:56px;
+  letter-spacing:-4px;
+  color:var(--blue);
+  line-height:1;
+  margin-bottom:8px;
+  opacity:.9;
+}
+.gate-wordmark{
+  font-family:'Roboto Condensed',sans-serif;
+  font-weight:700;font-size:13px;
+  letter-spacing:.3em;text-transform:uppercase;
+  color:var(--text);margin-bottom:4px;
+}
+.gate-sub{
+  font-size:11px;color:var(--muted);
+  letter-spacing:.05em;margin-bottom:28px;
+}
+.gate-div{width:40px;height:1px;background:var(--border);margin:0 auto 24px;}
+.gate-label{
+  font-size:10px;text-transform:uppercase;letter-spacing:.14em;
+  color:var(--muted);margin-bottom:10px;
+}
+#pw-input{
+  width:100%;padding:11px 14px;
+  background:var(--bg2);border:1px solid var(--border);
+  color:var(--text);font-size:14px;font-family:'Roboto',sans-serif;
+  outline:none;border-radius:2px;
+  transition:border-color .2s;
+}
+#pw-input:focus{border-color:var(--blue);}
+#pw-err{font-size:11px;color:var(--red);margin-top:6px;min-height:14px;}
+#pw-btn{
+  margin-top:12px;width:100%;padding:11px;
+  background:var(--blue);color:#fff;
+  border:none;font-family:'Roboto Condensed',sans-serif;font-weight:700;
+  font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+  cursor:pointer;border-radius:2px;
+  transition:opacity .2s;
+}
+#pw-btn:hover{opacity:.85;}
+.gate-credit{font-size:10px;color:var(--dim);margin-top:20px;letter-spacing:.05em;}
+
+/* ─── CONTENT ─── */
+#content{display:none;}
+
+/* ─── HEADER ─── */
+.site-header{
+  position:sticky;top:0;z-index:100;
+  background:var(--bg);
+  border-bottom:1px solid var(--border);
+}
+.header-stripe{
+  height:3px;
+  background:linear-gradient(90deg,var(--blue) 0%,rgba(23,130,197,.3) 60%,transparent 100%);
+}
+.header-inner{
+  max-width:1100px;margin:0 auto;
+  padding:0 24px;
+  display:flex;align-items:center;justify-content:space-between;
+  height:52px;
+}
+.header-logo{
+  font-family:'Roboto Condensed',sans-serif;font-weight:700;
+  font-size:14px;letter-spacing:.25em;text-transform:uppercase;
+  color:var(--text);
+  display:flex;align-items:center;gap:10px;
+}
+.header-logo .va-mark{
+  color:var(--blue);letter-spacing:-2px;font-size:18px;
+}
+.header-logo .sep{color:var(--dim);}
+.header-logo .du-mark{color:var(--muted);font-size:11px;letter-spacing:.18em;}
+.tab-nav{display:flex;gap:0;}
+.tab-btn{
+  padding:0 18px;height:52px;
+  font-family:'Roboto Condensed',sans-serif;font-weight:700;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);background:none;border:none;cursor:pointer;
+  border-bottom:2px solid transparent;
+  transition:color .15s,border-color .15s;
+  white-space:nowrap;
+}
+.tab-btn:hover{color:var(--text);}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue);}
+
+/* ─── PAGE ─── */
+.page{max-width:1100px;margin:0 auto;padding:36px 24px 72px;}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+/* ─── SECTION HEADER ─── */
+.sec{margin-bottom:40px;}
+.sec-label{
+  font-family:'Roboto Condensed',sans-serif;font-weight:700;
+  font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:8px;
+}
+.sec-label::before{content:'Λ';color:var(--blue);font-size:10px;}
+
+/* ─── CLIENT HEADER ─── */
+.client-header{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-top:3px solid var(--blue);
+  padding:24px 28px 22px;
+  margin-bottom:28px;
+  position:relative;overflow:hidden;
+}
+.client-header::after{
+  content:'RVCA';
+  position:absolute;right:-8px;top:50%;transform:translateY(-50%);
+  font-family:'Roboto Condensed',sans-serif;font-weight:700;
+  font-size:88px;letter-spacing:-4px;text-transform:uppercase;
+  color:rgba(23,130,197,.06);pointer-events:none;line-height:1;
+}
+.ch-eyebrow{
+  font-size:9px;letter-spacing:.2em;text-transform:uppercase;
+  font-family:'Roboto Condensed',sans-serif;
+  color:var(--blue);margin-bottom:8px;
+}
+.ch-name{
+  font-family:'Roboto Condensed',sans-serif;font-weight:700;
+  font-size:28px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--text);margin-bottom:4px;
+}
+.ch-meta{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6;}
+.badges{display:flex;gap:6px;flex-wrap:wrap;}
+.badge{
+  font-family:'Roboto Condensed',sans-serif;font-weight:700;
+  font-size:9px;padding:3px 10px;border-radius:2px;
+  letter-spacing:.12em;text-transform:uppercase;
+}
+.badge-blue{background:var(--blue-soft);color:var(--blue);}
+.badge-green{background:var(--green-soft);color:var(--green);}
+.badge-dim{background:var(--bg3);color:var(--muted);}
+.badge-amber{background:rgba(255,170,50,.12);color:#ffaa32;}
+
+/* ─── PROGRAM GOAL ─── */
+.goal-card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-left:3px solid var(--blue);
+  padding:18px 22px;margin-bottom:16px;
+  display:flex;align-items:center;gap:16px;
+}
+.goal-lambda{
+  font-family:'Roboto Condensed',sans-serif;font-weight:700;
+  font-size:32px;color:var(--blue);flex-shrink:0;line-height:1;
+}
+.goal-text{font-size:16px;font-weight:500;line-height:1.5;color:var(--text);}
+.goal-text strong{color:var(--blue);}
+
+/* ─── STATUS CARD ─── */
+.status-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
+  margin-bottom:28px;
+}
+@media(max-width:640px){.status-grid{grid-template-columns:1fr 1fr;}}
+.stat-card{
+  background:var(--bg2);border:1px solid var(--border);
+  padding:16px 18px;
+}
+.stat-card.blue-top{border-top:2px solid var(--blue);}
+.stat-card.green-top{border-top:2px solid var(--green);}
+.stat-label{
+  font-family:'Roboto Condensed',sans-serif;font-weight:700;
+  font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:10px;
+}
+.stat-val{font-size:24px;font-weight:700;margin-bottom:4px;line-height:1;}
+.stat-val.blue{color:var(--blue);}
+.stat-val.green{color:var(--green);}
+.stat-val.red{color:var(--red);}
+.stat-note{font-size:11px;color:var(--muted);line-height:1.4;}
+
+/* ─── CRITICAL ISSUES ─── */
+.crit-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:28px;}
+@media(max-width:640px){.crit-grid{grid-template-columns:1fr;}}
+.crit-card{
+  background:var(--red-soft);border:1px solid rgba(224,85,85,.25);
+  border-left:3px solid var(--red);padding:16px 18px;
+}
+.crit-title{
+  font-family:'Roboto Condensed',sans-serif;font-weight:700;
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--red);margin-bottom:8px;
+  display:flex;align-items:center;gap:6px;
+}
+.crit-title::before{content:'!';font-size:9px;border:1px solid var(--red);border-radius:50%;width:14px;height:14px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;}
+.crit-body{font-size:13px;line-height:1.6;color:var(--text);}
+.crit-body strong{color:var(--red);}
+
+/* ─── ROADMAP ─── */
+.roadmap-grid{display:flex;flex-direction:column;gap:0;}
+.roadmap-row{
+  display:grid;grid-template-columns:90px 1fr;
+  border:1px solid var(--border);
+  border-bottom:none;
+}
+.roadmap-row:first-child{border-radius:2px 2px 0 0;}
+.roadmap-row:last-child{border-bottom:1px solid var(--border);border-radius:0 0 2px 2px;}
+.roadmap-row.current{background:rgba(23,130,197,.06);border-color:rgba(23,130,197,.3);}
+.rm-month{
+  padding:14px 16px;
+  border-right:1px solid var(--border);
+  background:var(--bg2);
+  display:flex;flex-direction:column;justify-content:center;
+  align-items:center;text-align:center;
+}
+.rm-num{
+  font-family:'Roboto Condensed',sans-serif;font-weight:700;
+  font-size:20px;color:var(--blue);letter-spacing:.05em;
+}
+.rm-label{font-size:10px;color:var(--muted);}
+.rm-body{padding:14px 18px;}
+.rm-phase{
+  font-family:'Roboto Condensed',sans-serif;font-weight:700;
+  font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text);margin-bottom:6px;
+}
+.rm-detail{font-size:12px;color:var(--muted);line-height:1.6;}
+.rm-detail strong{color:var(--text);}
+.rm-badge{
+  display:inline-block;margin-top:8px;
+  font-family:'Roboto Condensed',sans-serif;font-weight:700;
+  font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  padding:2px 8px;border-radius:2px;
+}
+.rm-badge.active{background:var(--blue-soft);color:var(--blue);}
+.rm-badge.upcoming{background:var(--bg3);color:var(--dim);}
+
+/* ─── KPI STATS (4-col) ─── */
+.kpi-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
+  margin-bottom:28px;
+}
+@media(max-width:860px){.kpi-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:480px){.kpi-grid{grid-template-columns:1fr;}}
+.kpi-card{
+  background:var(--bg2);border:1px solid var(--border);padding:16px 18px;
+}
+.kpi-label{
+  font-family:'Roboto Condensed',sans-serif;font-weight:700;
+  font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:10px;
+}
+.kpi-val{font-size:22px;font-weight:700;margin-bottom:4px;}
+.kpi-val.blue{color:var(--blue);}
+.kpi-val.red{color:var(--red);}
+.kpi-val.amber{color:#ffaa32;}
+.kpi-context{font-size:11px;color:var(--muted);line-height:1.4;}
+
+/* ─── FLOW CARDS (Automations) ─── */
+.priority-header{
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:12px;margin-top:32px;
+}
+.priority-header:first-of-type{margin-top:0;}
+.p-icon{font-size:18px;}
+.p-title{
+  font-family:'Roboto Condensed',sans-serif;font-weight:700;
+  font-size:13px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--text);
+}
+.p-sub{font-size:12px;color:var(--muted);margin-left:auto;}
+
+.flow-card{
+  background:var(--bg2);border:1px solid var(--border);
+  margin-bottom:10px;overflow:hidden;
+}
+.flow-header{
+  padding:14px 18px;
+  display:flex;align-items:center;gap:12px;
+  cursor:pointer;
+  transition:background .15s;
+  user-select:none;
+}
+.flow-header:hover{background:var(--bg3);}
+.flow-name{
+  font-family:'Roboto Condensed',sans-serif;font-weight:700;
+  font-size:15px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text);flex:1;
+}
+.flow-meta{
+  display:flex;align-items:center;gap:10px;
+}
+.flow-trigger{font-size:11px;color:var(--muted);}
+.flow-count{font-size:11px;color:var(--dim);}
+.flow-toggle{color:var(--dim);font-size:12px;transition:transform .2s;}
+.flow-card.open .flow-toggle{transform:rotate(180deg);}
+.flow-body{
+  display:none;
+  padding:0 18px 18px;
+  border-top:1px solid var(--border);
+}
+.flow-card.open .flow-body{display:block;}
+.flow-desc{font-size:13px;color:var(--muted);margin:12px 0 16px;line-height:1.6;}
+.flow-desc strong{color:var(--text);}
+.flow-desc .critical{color:var(--red);}
+.email-sequence{display:flex;flex-direction:column;gap:8px;}
+.email-item{
+  background:var(--bg3);border:1px solid var(--border);
+  padding:12px 14px;
+  display:grid;grid-template-columns:64px 1fr;gap:12px;
+  align-items:start;
+}
+.email-timing{
+  font-family:'Roboto Condensed',sans-serif;font-weight:700;
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--blue);padding-top:2px;
+}
+.email-content .email-name{
+  font-weight:700;font-size:12px;color:var(--text);margin-bottom:4px;
+}
+.email-content .email-desc{font-size:12px;color:var(--muted);line-height:1.5;}
+.lane-split{
+  margin-top:8px;
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;
+}
+.lane{background:var(--bg2);border:1px solid var(--border);padding:8px 10px;}
+.lane-label{
+  font-family:'Roboto Condensed',sans-serif;font-weight:700;
+  font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:4px;
+}
+.lane-text{font-size:11px;color:var(--muted);line-height:1.5;}
+
+/* ─── STATUS BADGES ─── */
+.sb{
+  font-family:'Roboto Condensed',sans-serif;font-weight:700;
+  font-size:9px;padding:3px 9px;border-radius:2px;
+  letter-spacing:.12em;text-transform:uppercase;flex-shrink:0;
+}
+.sb-build{background:var(--blue-soft);color:var(--blue);}
+.sb-planned{background:var(--bg3);color:var(--muted);}
+.sb-live{background:var(--green-soft);color:var(--green);}
+
+/* ─── REPORTS ─── */
+.placeholder-card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-left:3px solid var(--dim);
+  padding:28px 24px;text-align:center;
+  margin-bottom:20px;
+}
+.placeholder-lambda{
+  font-family:'Roboto Condensed',sans-serif;font-weight:700;
+  font-size:40px;color:var(--dim);margin-bottom:12px;
+}
+.placeholder-title{
+  font-family:'Roboto Condensed',sans-serif;font-weight:700;
+  font-size:16px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:8px;
+}
+.placeholder-body{font-size:13px;color:var(--dim);line-height:1.6;max-width:480px;margin:0 auto;}
+.baseline-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px;}
+@media(max-width:640px){.baseline-grid{grid-template-columns:1fr;}}
+
+/* ─── REPORTS LIBRARY ─── */
+.rlib-table{width:100%;border-collapse:collapse;}
+.rlib-table th{
+  text-align:left;padding:8px 14px;
+  font-family:'Roboto Condensed',sans-serif;font-weight:700;
+  font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);border-bottom:1px solid var(--border);
+  background:var(--bg2);
+}
+.rlib-table td{padding:12px 14px;border-bottom:1px solid var(--border);font-size:13px;color:var(--muted);}
+.rlib-table tr:last-child td{border-bottom:none;}
+.rlib-table td.strong{font-weight:600;color:var(--text);}
+.rlib-section-row td{
+  background:var(--bg3);
+  font-family:'Roboto Condensed',sans-serif;font-weight:700;
+  font-size:9px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);padding:8px 14px;
+  border-bottom:1px solid var(--border);
+}
+
+/* ─── FOOTER ─── */
+footer{
+  border-top:1px solid var(--border);
+  padding-top:20px;margin-top:48px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:10px;
+}
+.footer-brand{
+  font-family:'Roboto Condensed',sans-serif;font-weight:700;
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);
+}
+.footer-note{font-size:10px;color:var(--dim);}
+</style>
+</head>
+<body>
+
+<!-- ─── GATE ─── -->
+<div id="gate">
+  <div class="gate-inner">
+    <div class="gate-va">VA</div>
+    <div class="gate-wordmark">RVCA</div>
+    <div class="gate-sub">Client Brain · DigitsUp · Apr 2026</div>
+    <div class="gate-div"></div>
+    <div class="gate-label">Password Required</div>
+    <input type="password" id="pw-input" placeholder="••••••••" autocomplete="current-password">
+    <div id="pw-err"></div>
+    <button id="pw-btn">Unlock</button>
+    <div class="gate-credit">Prepared by DigitsUp · Powered by Mollie</div>
+  </div>
+</div>
+
+<!-- ─── CONTENT ─── -->
+<div id="content">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-stripe"></div>
+    <div class="header-inner">
+      <div class="header-logo">
+        <span class="va-mark">VA</span>
+        <span class="sep">·</span>
+        RVCA
+        <span class="sep">×</span>
+        <span class="du-mark">DigitsUp</span>
+      </div>
+      <nav class="tab-nav">
+        <button class="tab-btn active" data-tab="overview">Overview</button>
+        <button class="tab-btn" data-tab="automations">Automations</button>
+        <button class="tab-btn" data-tab="reports">Reports</button>
+        <button class="tab-btn" data-tab="library">Reports Library</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ─── TAB 1: OVERVIEW ─── -->
+  <div id="tab-overview" class="tab-panel active">
+    <div class="page">
+
+      <!-- CLIENT HEADER -->
+      <div class="client-header">
+        <div class="ch-eyebrow">DigitsUp · Active Client · Ethos Brands</div>
+        <div class="ch-name">RVCA</div>
+        <div class="ch-meta">
+          Account Contact: Clayton Dahl · Ethos Brands &nbsp;|&nbsp; Start Date: April 2026 &nbsp;|&nbsp; Channel: Email Only
+        </div>
+        <div class="badges">
+          <span class="badge badge-blue">Onboarding — Month 1</span>
+          <span class="badge badge-green">API Connected</span>
+          <span class="badge badge-dim">Email Only</span>
+          <span class="badge badge-amber">Klaviyo Read Access</span>
+        </div>
+      </div>
+
+      <!-- PROGRAM GOAL -->
+      <div class="sec">
+        <div class="sec-label">Program Goal</div>
+        <div class="goal-card">
+          <div class="goal-lambda">Λ</div>
+          <div class="goal-text">
+            Move Klaviyo from <strong>8% → 25%+</strong> of total store revenue in 6 months.
+          </div>
+        </div>
+      </div>
+
+      <!-- CURRENT STATUS -->
+      <div class="sec">
+        <div class="sec-label">Current Status</div>
+        <div class="status-grid">
+          <div class="stat-card blue-top">
+            <div class="stat-label">Month</div>
+            <div class="stat-val blue">Month 1</div>
+            <div class="stat-note">April 2026 · of 6-month program</div>
+          </div>
+          <div class="stat-card blue-top">
+            <div class="stat-label">Active Phase</div>
+            <div class="stat-val" style="font-size:14px;line-height:1.3;padding-top:4px;color:var(--text);">Core Abandonment Suite</div>
+            <div class="stat-note">In Build · Priority 1</div>
+          </div>
+          <div class="stat-card green-top">
+            <div class="stat-label">API Status</div>
+            <div class="stat-val green">Connected</div>
+            <div class="stat-note">Read-only · Full admin pending</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KEY ACCOUNT STATS -->
+      <div class="sec">
+        <div class="sec-label">Key Account Stats · From Audit</div>
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-label">Subscribed Profiles</div>
+            <div class="kpi-val blue">403,890</div>
+            <div class="kpi-context">673K+ total including suppressed</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">One-Hit Wonders</div>
+            <div class="kpi-val amber">163K</div>
+            <div class="kpi-context">~40% of customers · Bought once, stopped</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Klaviyo Rev Share</div>
+            <div class="kpi-val red">8%</div>
+            <div class="kpi-context">30-day · 10% over 90 days · Target: 25%+</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Flow Placed Order Rate</div>
+            <div class="kpi-val red">0.39%</div>
+            <div class="kpi-context">Poor · Open 57.79% / Click 9.20% (Excellent — architecture failing)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CRITICAL ISSUES -->
+      <div class="sec">
+        <div class="sec-label">Critical Issues · Immediate Action</div>
+        <div class="crit-grid">
+          <div class="crit-card">
+            <div class="crit-title">Cart Split Error</div>
+            <div class="crit-body">
+              A logic error in the cart abandonment flow is <strong>excluding ~70% of multi-item buyers</strong> — the highest-value segment. These customers are receiving no follow-up at all. Fixing this is Day 1 work; revenue is being left on the floor every hour this runs broken.
+            </div>
+          </div>
+          <div class="crit-card">
+            <div class="crit-title">Checkout Abandonment Gap</div>
+            <div class="crit-body">
+              Klaviyo's dedicated checkout abandonment flow is <strong>not live</strong>. This is a complete gap at the highest-intent funnel point — customers who reached checkout and left are receiving zero recovery emails. Must be activated in Shopify before the flow can go live.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BUILD ROADMAP -->
+      <div class="sec">
+        <div class="sec-label">6-Month Build Roadmap</div>
+        <div class="roadmap-grid">
+          <div class="roadmap-row current">
+            <div class="rm-month">
+              <div class="rm-num">1</div>
+              <div class="rm-label">April</div>
+            </div>
+            <div class="rm-body">
+              <div class="rm-phase">Audit &amp; Foundation</div>
+              <div class="rm-detail">Fix the cart split error. Activate checkout abandonment in Shopify. Confirm attribution vs GA/Shopify. Design system and template framework established. Month 1 broadcast calendar drafted.</div>
+              <div class="rm-badge active">Active Now</div>
+            </div>
+          </div>
+          <div class="roadmap-row">
+            <div class="rm-month">
+              <div class="rm-num">2</div>
+              <div class="rm-label">May</div>
+            </div>
+            <div class="rm-body">
+              <div class="rm-phase">Core Flow Build</div>
+              <div class="rm-detail"><strong>Abandoned suite first</strong> — all 3 flows × New/Returning lanes live. Then Welcome Series rebuild (4 world lanes: Surf/Skate/Art/Sport) + popup form with first name field and world-preference routing. <em>Note: Abandoned suite deliberately precedes Welcome — highest revenue recovery comes first.</em></div>
+              <div class="rm-badge upcoming">Upcoming</div>
+            </div>
+          </div>
+          <div class="roadmap-row">
+            <div class="rm-month">
+              <div class="rm-num">3</div>
+              <div class="rm-label">June</div>
+            </div>
+            <div class="rm-body">
+              <div class="rm-phase">Campaign Activation</div>
+              <div class="rm-detail">Campaign calendar live. SMS evaluation (go/no-go decision). List growth strategy and segmentation refinement. First quarterly review prep.</div>
+              <div class="rm-badge upcoming">Upcoming</div>
+            </div>
+          </div>
+          <div class="roadmap-row">
+            <div class="rm-month">
+              <div class="rm-num">4</div>
+              <div class="rm-label">July</div>
+            </div>
+            <div class="rm-body">
+              <div class="rm-phase">Optimization &amp; Testing</div>
+              <div class="rm-detail">A/B roadmap launched. Segmentation refinement. Klaviyo CDP evaluation for cross-sell intelligence. Post-purchase flow build begins.</div>
+              <div class="rm-badge upcoming">Upcoming</div>
+            </div>
+          </div>
+          <div class="roadmap-row">
+            <div class="rm-month">
+              <div class="rm-num">5</div>
+              <div class="rm-label">Aug</div>
+            </div>
+            <div class="rm-body">
+              <div class="rm-phase">Advanced Automation</div>
+              <div class="rm-detail">Browse abandonment expansion. Post-purchase full build (category split: Surf/Swim · Skate/Street · Sport · Collection). Winback series begins.</div>
+              <div class="rm-badge upcoming">Upcoming</div>
+            </div>
+          </div>
+          <div class="roadmap-row">
+            <div class="rm-month">
+              <div class="rm-num">6</div>
+              <div class="rm-label">Sept</div>
+            </div>
+            <div class="rm-body">
+              <div class="rm-phase">Full Program · Renewal Review</div>
+              <div class="rm-detail">All flows live and optimized. Sunset/winback complete. Quarterly review. Renewal conversation and next-phase planning.</div>
+              <div class="rm-badge upcoming">Upcoming</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <span class="footer-brand">RVCA × DigitsUp</span>
+        <span class="footer-note">Client Brain v1 · April 2026 · Prepared by Callie via Mollie</span>
+      </footer>
+
+    </div>
+  </div><!-- /tab-overview -->
+
+  <!-- ─── TAB 2: AUTOMATIONS ─── -->
+  <div id="tab-automations" class="tab-panel">
+    <div class="page">
+
+      <div class="sec">
+        <div class="sec-label">Flow Architecture · Build Strategy</div>
+
+        <!-- PRIORITY 1 -->
+        <div class="priority-header">
+          <span class="p-icon">🔴</span>
+          <span class="p-title">Priority 1 — Abandonment Suite</span>
+          <span class="p-sub">Months 1–2 · Building First · Highest Revenue Recovery</span>
+        </div>
+
+        <!-- Browse Abandonment -->
+        <div class="flow-card" id="flow-browse">
+          <div class="flow-header" onclick="toggleFlow('flow-browse')">
+            <div class="flow-name">Browse Abandonment</div>
+            <div class="flow-meta">
+              <span class="flow-trigger">Trigger: Viewed product · 2h delay</span>
+              <span class="flow-count">3 emails</span>
+              <span class="sb sb-build">In Build</span>
+              <span class="flow-toggle">▼</span>
+            </div>
+          </div>
+          <div class="flow-body">
+            <div class="flow-desc">
+              <strong>Trigger:</strong> Viewed product, no add-to-cart, exit after 2 hours.<br>
+              <strong>Audience split:</strong> New (never purchased) vs Returning (has purchased).<br>
+              Sequence: 3 emails. New lane gets a quiet 15% offer on Email 3 only — not a banner, a gesture.
+            </div>
+            <div class="email-sequence">
+              <div class="email-item">
+                <div class="email-timing">+2h</div>
+                <div class="email-content">
+                  <div class="email-name">Email 1 — Recognition</div>
+                  <div class="email-desc">Surface the product, no pressure. Show it in context.</div>
+                  <div class="lane-split">
+                    <div class="lane"><div class="lane-label">New</div><div class="lane-text">Product + returns/exchange reassurance. Lower barrier, signal safety.</div></div>
+                    <div class="lane"><div class="lane-label">Returning</div><div class="lane-text">Product + clean CTA. No warmup needed — they know the brand.</div></div>
+                  </div>
+                </div>
+              </div>
+              <div class="email-item">
+                <div class="email-timing">+24h</div>
+                <div class="email-content">
+                  <div class="email-name">Email 2 — The World</div>
+                  <div class="email-desc">Pull back to lifestyle context and brand pull. Atmosphere over urgency.</div>
+                  <div class="lane-split">
+                    <div class="lane"><div class="lane-label">New</div><div class="lane-text">Social proof. Community signal. Who else is in this world.</div></div>
+                    <div class="lane"><div class="lane-label">Returning</div><div class="lane-text">Identity reinforcement. This is already you — take it home.</div></div>
+                  </div>
+                </div>
+              </div>
+              <div class="email-item">
+                <div class="email-timing">+72h</div>
+                <div class="email-content">
+                  <div class="email-name">Email 3 — Gentle Final</div>
+                  <div class="email-desc">Low-pressure close. New lane only gets the offer — one quiet line, not a banner.</div>
+                  <div class="lane-split">
+                    <div class="lane"><div class="lane-label">New Only</div><div class="lane-text">15% offer — one line, gestural, 24h expiry. No countdown, no urgency language.</div></div>
+                    <div class="lane"><div class="lane-label">Returning</div><div class="lane-text">No offer. Simple product reminder + CTA. Trust the brand to close.</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cart Abandonment -->
+        <div class="flow-card" id="flow-cart">
+          <div class="flow-header" onclick="toggleFlow('flow-cart')">
+            <div class="flow-name">Cart Abandonment</div>
+            <div class="flow-meta">
+              <span class="flow-trigger">Trigger: Added to cart · 1h delay</span>
+              <span class="flow-count">3 emails</span>
+              <span class="sb sb-build">In Build</span>
+              <span class="flow-toggle">▼</span>
+            </div>
+          </div>
+          <div class="flow-body">
+            <div class="flow-desc">
+              <strong class="critical">⚠ Critical fix required:</strong> Remove split logic that currently excludes multi-item buyers — ~70% of high-value customers. This must be resolved before anything else.<br><br>
+              <strong>Trigger:</strong> Added to cart, no checkout initiated, 1 hour.<br>
+              <strong>Audience split:</strong> New vs Returning.
+            </div>
+            <div class="email-sequence">
+              <div class="email-item">
+                <div class="email-timing">+1h</div>
+                <div class="email-content">
+                  <div class="email-name">Email 1 — Just the Cart</div>
+                  <div class="email-desc">Product, cart summary, CTA. Nothing else.</div>
+                  <div class="lane-split">
+                    <div class="lane"><div class="lane-label">New</div><div class="lane-text">Returns snippet. Reduce friction. One line of reassurance.</div></div>
+                    <div class="lane"><div class="lane-label">Returning</div><div class="lane-text">Zero warmup. They know RVCA. Just the cart and CTA.</div></div>
+                  </div>
+                </div>
+              </div>
+              <div class="email-item">
+                <div class="email-timing">+24h</div>
+                <div class="email-content">
+                  <div class="email-name">Email 2 — Brand + Trust</div>
+                  <div class="email-desc">Pull the brand in. Why this, why RVCA. Let the world speak.</div>
+                  <div class="lane-split">
+                    <div class="lane"><div class="lane-label">New</div><div class="lane-text">Returns + social proof. Remove objections, build credibility.</div></div>
+                    <div class="lane"><div class="lane-label">Returning</div><div class="lane-text">Identity reinforcement. No trust signals needed — identity only.</div></div>
+                  </div>
+                </div>
+              </div>
+              <div class="email-item">
+                <div class="email-timing">+72h</div>
+                <div class="email-content">
+                  <div class="email-name">Email 3 — Final Touch</div>
+                  <div class="email-desc">Last chance. Simple and clean. Offer is lane-specific.</div>
+                  <div class="lane-split">
+                    <div class="lane"><div class="lane-label">New Only</div><div class="lane-text">15% — gesture not banner. Quiet line with 24h expiry. No countdown.</div></div>
+                    <div class="lane"><div class="lane-label">Returning</div><div class="lane-text">No offer. Brand owns the close. Trust the relationship.</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checkout Abandonment -->
+        <div class="flow-card" id="flow-checkout">
+          <div class="flow-header" onclick="toggleFlow('flow-checkout')">
+            <div class="flow-name">Checkout Abandonment</div>
+            <div class="flow-meta">
+              <span class="flow-trigger">Trigger: Checkout initiated · 1h delay</span>
+              <span class="flow-count">3 emails</span>
+              <span class="sb sb-planned">Planned</span>
+              <span class="flow-toggle">▼</span>
+            </div>
+          </div>
+          <div class="flow-body">
+            <div class="flow-desc">
+              <strong class="critical">⚠ Complete gap — must activate in Shopify first.</strong> Klaviyo's dedicated checkout flow cannot run until Shopify checkout abandonment is enabled. Highest-intent funnel point with zero recovery currently.<br><br>
+              <strong>Trigger:</strong> Checkout initiated (personal info entered), no purchase, 1 hour.<br>
+              <strong>Audience split:</strong> New vs Returning. Suppressed by purchase or cart-to-checkout progression.
+            </div>
+            <div class="email-sequence">
+              <div class="email-item">
+                <div class="email-timing">+1h</div>
+                <div class="email-content">
+                  <div class="email-name">Email 1 — Just the Path Back</div>
+                  <div class="email-desc">Direct. Minimal. Get them back to checkout in one click.</div>
+                  <div class="lane-split">
+                    <div class="lane"><div class="lane-label">New</div><div class="lane-text">Two trust signals: returns + secure checkout. Remove last-moment hesitation.</div></div>
+                    <div class="lane"><div class="lane-label">Returning</div><div class="lane-text">One line, direct CTA. No friction, no explanation.</div></div>
+                  </div>
+                </div>
+              </div>
+              <div class="email-item">
+                <div class="email-timing">+24h</div>
+                <div class="email-content">
+                  <div class="email-name">Email 2 — Commitment + Reassurance</div>
+                  <div class="email-desc">Identity reinforcement. Why they chose this. Remind them what they were about to do.</div>
+                  <div class="lane-split">
+                    <div class="lane"><div class="lane-label">New</div><div class="lane-text">Brand story angle. RVCA is the real thing — who wears it, what it means.</div></div>
+                    <div class="lane"><div class="lane-label">Returning</div><div class="lane-text">Pure identity. You've been here before. Pick up where you left off.</div></div>
+                  </div>
+                </div>
+              </div>
+              <div class="email-item">
+                <div class="email-timing">+72h</div>
+                <div class="email-content">
+                  <div class="email-name">Email 3 — Final</div>
+                  <div class="email-desc">Cart summary. Simple CTA. Offer pending approval.</div>
+                  <div class="lane-split">
+                    <div class="lane"><div class="lane-label">New Only</div><div class="lane-text">15% if approved. Same approach: quiet line, not a banner, 24h expiry.</div></div>
+                    <div class="lane"><div class="lane-label">Returning</div><div class="lane-text">No offer. Cart summary and direct CTA only.</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRIORITY 2 -->
+        <div class="priority-header">
+          <span class="p-icon">🟡</span>
+          <span class="p-title">Priority 2 — Welcome Series + Popup</span>
+          <span class="p-sub">Month 2 · Scheduled After Abandonment Suite</span>
+        </div>
+
+        <!-- Popup -->
+        <div class="flow-card" id="flow-popup">
+          <div class="flow-header" onclick="toggleFlow('flow-popup')">
+            <div class="flow-name">Popup / Signup Form — Rebuild</div>
+            <div class="flow-meta">
+              <span class="flow-trigger">Entry point for Welcome Series</span>
+              <span class="sb sb-planned">Planned</span>
+              <span class="flow-toggle">▼</span>
+            </div>
+          </div>
+          <div class="flow-body">
+            <div class="flow-desc">
+              <strong>Current state:</strong> Basic email capture with no first name field. Generic entry with no personalization capability.<br><br>
+              <strong>Rebuild plan:</strong> Add first name field (unlocks personalization across all flows). Add four world-preference lanes at signup: <strong>Surf / Skate / Art / Sport</strong> (or "All of it"). World preference routes the subscriber directly into the matching Welcome Series lane — every new subscriber starts a personalized journey from email 1.
+            </div>
+          </div>
+        </div>
+
+        <!-- Welcome Series -->
+        <div class="flow-card" id="flow-welcome">
+          <div class="flow-header" onclick="toggleFlow('flow-welcome')">
+            <div class="flow-name">Welcome Series — Rebuild</div>
+            <div class="flow-meta">
+              <span class="flow-trigger">Trigger: Signup via rebuilt popup</span>
+              <span class="flow-count">4–5 emails · 4 lanes</span>
+              <span class="sb sb-planned">Planned</span>
+              <span class="flow-toggle">▼</span>
+            </div>
+          </div>
+          <div class="flow-body">
+            <div class="flow-desc">
+              <strong>Current state:</strong> 2 emails with a 3-day delay — "a missed handshake." Basic product grid with almost no copy. RVCA's rich brand voice is completely absent.<br><br>
+              <strong>Rebuild:</strong> 4–5 emails across 4 world lanes (Surf / Skate / Art / Sport). Each lane follows the same arc but is differentiated by brand story, team/ANP context, and product angle.<br><br>
+              <strong>Arc per lane:</strong> Brand story → ANP/team context for that world → Product intro → Offer email (timed, lane-specific)
+            </div>
+            <div class="email-sequence">
+              <div class="email-item">
+                <div class="email-timing">Day 0</div>
+                <div class="email-content">
+                  <div class="email-name">Email 1 — Welcome to RVCA</div>
+                  <div class="email-desc">Brand story. What RVCA is. What "Balance of Opposites" means for this world. Personalized to their lane.</div>
+                </div>
+              </div>
+              <div class="email-item">
+                <div class="email-timing">Day 2</div>
+                <div class="email-content">
+                  <div class="email-name">Email 2 — The Community</div>
+                  <div class="email-desc">ANP artists (Art lane) / team surfers (Surf) / pro skaters (Skate) / fighters (Sport). Who else lives in this world. Real practitioners, not catalog faces.</div>
+                </div>
+              </div>
+              <div class="email-item">
+                <div class="email-timing">Day 4</div>
+                <div class="email-content">
+                  <div class="email-name">Email 3 — Product Intro</div>
+                  <div class="email-desc">Lane-specific hero products. Lifestyle imagery. In-context, not flat-lay.</div>
+                </div>
+              </div>
+              <div class="email-item">
+                <div class="email-timing">Day 7</div>
+                <div class="email-content">
+                  <div class="email-name">Email 4 — The Offer</div>
+                  <div class="email-desc">Welcome offer. Quiet, gestural. Not a sale announcement — a welcome gift. Unique code, time-limited.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRIORITY 3 -->
+        <div class="priority-header">
+          <span class="p-icon">🔵</span>
+          <span class="p-title">Priority 3 — Post-Purchase</span>
+          <span class="p-sub">Months 3–4 · 163K One-Hit Wonders Waiting</span>
+        </div>
+
+        <!-- Post-Purchase -->
+        <div class="flow-card" id="flow-pp">
+          <div class="flow-header" onclick="toggleFlow('flow-pp')">
+            <div class="flow-name">Post-Purchase Flow</div>
+            <div class="flow-meta">
+              <span class="flow-trigger">Trigger: First purchase · Category split</span>
+              <span class="flow-count">3 phases · 60 days</span>
+              <span class="sb sb-planned">Planned</span>
+              <span class="flow-toggle">▼</span>
+            </div>
+          </div>
+          <div class="flow-body">
+            <div class="flow-desc">
+              163K one-hit wonders in the account. Post-purchase is the mechanism that converts single buyers into loyal customers. Category split on purchase category routes to the right sequence.<br><br>
+              <strong>Category lanes:</strong> Surf/Swim · Skate/Street · Sport · Collection
+            </div>
+            <div class="email-sequence">
+              <div class="email-item">
+                <div class="email-timing">Day 1–7</div>
+                <div class="email-content">
+                  <div class="email-name">Phase 1 — The Immediate Window</div>
+                  <div class="email-desc">Brand reinforcement. Care instructions. Community welcome. Confirm they made the right call — don't just confirm the order.</div>
+                </div>
+              </div>
+              <div class="email-item">
+                <div class="email-timing">Day 8–30</div>
+                <div class="email-content">
+                  <div class="email-name">Phase 2 — Deepen the Relationship</div>
+                  <div class="email-desc">ANP content and team stories relevant to their category. Cross-sell opportunities with genuine behavioral signal. The world, not just the product.</div>
+                </div>
+              </div>
+              <div class="email-item">
+                <div class="email-timing">Day 31–60</div>
+                <div class="email-content">
+                  <div class="email-name">Phase 3 — Re-Engagement</div>
+                  <div class="email-desc">New arrivals in their category. Loyalty nudge (if loyalty program live). Referral ask from a warm customer who's had time to love the product.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FUTURE -->
+        <div class="priority-header">
+          <span class="p-icon">⚪</span>
+          <span class="p-title">Future — Winback + Sunset</span>
+          <span class="p-sub">Months 5–6</span>
+        </div>
+
+        <div class="flow-card" id="flow-winback">
+          <div class="flow-header" onclick="toggleFlow('flow-winback')">
+            <div class="flow-name">Winback Flow</div>
+            <div class="flow-meta">
+              <span class="flow-trigger">Trigger: Lapsed purchaser · 90–180d</span>
+              <span class="sb sb-planned">Planned</span>
+              <span class="flow-toggle">▼</span>
+            </div>
+          </div>
+          <div class="flow-body">
+            <div class="flow-desc">
+              Re-engagement series for customers who bought but haven't returned. Sequence and offer strategy TBD based on purchase history and segment analysis at Month 5. Anchor: identity re-connection before any offer.
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-card" id="flow-sunset">
+          <div class="flow-header" onclick="toggleFlow('flow-sunset')">
+            <div class="flow-name">Sunset Flow</div>
+            <div class="flow-meta">
+              <span class="flow-trigger">Trigger: Engaged >180d with no action</span>
+              <span class="sb sb-planned">Planned</span>
+              <span class="flow-toggle">▼</span>
+            </div>
+          </div>
+          <div class="flow-body">
+            <div class="flow-desc">
+              Remove true inactives from the active billing count. Final re-permission ask before suppression. Keeps the list healthy and improves deliverability for engaged subscribers.
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /sec -->
+
+      <footer>
+        <span class="footer-brand">RVCA × DigitsUp</span>
+        <span class="footer-note">Automations Strategy · v1 · April 2026</span>
+      </footer>
+
+    </div>
+  </div><!-- /tab-automations -->
+
+  <!-- ─── TAB 3: REPORTS ─── -->
+  <div id="tab-reports" class="tab-panel">
+    <div class="page">
+
+      <div class="sec">
+        <div class="sec-label">Performance Reports</div>
+        <div class="placeholder-card">
+          <div class="placeholder-lambda">Λ</div>
+          <div class="placeholder-title">Reports Coming Month 2</div>
+          <div class="placeholder-body">
+            Reports will appear here as the program matures. Current status: Month 1 — no baseline yet. First performance data will populate here once the abandonment suite is live and has run for a minimum of 2 weeks.
+          </div>
+        </div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-label">Audit Baseline · What We Know Now</div>
+        <div class="baseline-grid">
+          <div class="stat-card blue-top">
+            <div class="stat-label">Flow Open Rate · 90-Day</div>
+            <div class="stat-val blue">57.79%</div>
+            <div class="stat-note">Excellent · +22.61% vs benchmark. Audience is engaged when they receive email.</div>
+          </div>
+          <div class="stat-card blue-top">
+            <div class="stat-label">Flow Click Rate · 90-Day</div>
+            <div class="stat-val blue">9.20%</div>
+            <div class="stat-note">Excellent · +238.59% vs benchmark. High engagement signal across existing flows.</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Placed Order Rate · 90-Day</div>
+            <div class="stat-val red">0.39%</div>
+            <div class="stat-note" style="color:var(--red);opacity:.8;">Poor. Engagement not converting — architecture failing, not audience quality.</div>
+          </div>
+        </div>
+        <p style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:14px;padding:12px 14px;background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--blue);">
+          <strong style="color:var(--text);">The read:</strong> Open and click rates are genuinely excellent — the audience responds when RVCA emails them. The conversion gap is entirely structural: broken cart flow (70% excluded), no checkout abandonment, and flows that don't close the loop. Fix the architecture and the revenue follows.
+        </p>
+      </div>
+
+      <footer>
+        <span class="footer-brand">RVCA × DigitsUp</span>
+        <span class="footer-note">Reports · Live data from Month 2 · April 2026</span>
+      </footer>
+
+    </div>
+  </div><!-- /tab-reports -->
+
+  <!-- ─── TAB 4: REPORTS LIBRARY ─── -->
+  <div id="tab-library" class="tab-panel">
+    <div class="page">
+
+      <div class="sec">
+        <div class="sec-label">Weekly Reports</div>
+        <table class="rlib-table">
+          <thead>
+            <tr>
+              <th>Period</th>
+              <th>Published</th>
+              <th>Status</th>
+              <th>Report</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="rlib-section-row"><td colspan="4">2026 — Weekly</td></tr>
+            <tr>
+              <td class="strong">Week 1 · Apr 7–13</td>
+              <td style="color:var(--dim);">—</td>
+              <td><span class="badge badge-amber" style="font-size:9px;">Upcoming</span></td>
+              <td style="color:var(--dim);font-size:12px;">First weekly report — Month 2</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sec">
+        <div class="sec-label">Quarterly Reports</div>
+        <table class="rlib-table">
+          <thead>
+            <tr>
+              <th>Quarter</th>
+              <th>Period</th>
+              <th>Status</th>
+              <th>Report</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="rlib-section-row"><td colspan="4">2026 — Quarterly</td></tr>
+            <tr>
+              <td class="strong">Q2 2026</td>
+              <td>April – June 2026</td>
+              <td><span class="badge badge-amber" style="font-size:9px;">Upcoming</span></td>
+              <td style="color:var(--dim);font-size:12px;">First quarterly review — end of June 2026</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <footer>
+        <span class="footer-brand">RVCA × DigitsUp</span>
+        <span class="footer-note">Reports Library · v1 · April 2026</span>
+      </footer>
+
+    </div>
+  </div><!-- /tab-library -->
+
+</div><!-- /content -->
+
+<script>
+// ── GATE ──
+const PW = 'RVCA2026';
+const input = document.getElementById('pw-input');
+const errEl = document.getElementById('pw-err');
+
+function tryUnlock() {
+  if (input.value === PW) {
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+  } else {
+    errEl.textContent = 'Incorrect password.';
+    input.value = '';
+    input.focus();
+  }
+}
+
+document.getElementById('pw-btn').addEventListener('click', tryUnlock);
+input.addEventListener('keydown', e => { if (e.key === 'Enter') tryUnlock(); });
+input.focus();
+
+// ── TABS ──
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.tab;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + target).classList.add('active');
+  });
+});
+
+// ── FLOW CARDS ──
+function toggleFlow(id) {
+  const card = document.getElementById(id);
+  card.classList.toggle('open');
+}
+</script>
+</body>
+</html>
