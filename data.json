@@ -1,68 +1,45 @@
 {
   "meta": {
-    "lastUpdated": "2026-04-05T17:08:00-07:00",
+    "lastUpdated": "2026-04-12T09:20:00-07:00",
     "updatedBy": "Mollie"
   },
   "usage": {
     "monthLabel": "April 2026",
-    "mtd": 253.74,
+    "mtd": 260.07,
     "budget": 1000,
-    "today": 0,
-    "todayLabel": "Apr 5",
+    "today": 0.10,
+    "todayLabel": "Apr 12",
     "model": "Sonnet 4.6",
     "dailyCosts": [
-      { "label": "Mar 30", "amount": 7.26 },
-      { "label": "Mar 31", "amount": 134.98 },
-      { "label": "Apr 1", "amount": 51.67 },
-      { "label": "Apr 2", "amount": 30.49 },
-      { "label": "Apr 3", "amount": 22.08 },
-      { "label": "Apr 4", "amount": 7.26 },
-      { "label": "Apr 5", "amount": 0 }
+      { "label": "Apr 6",  "amount": 11.72 },
+      { "label": "Apr 7",  "amount": 63.66 },
+      { "label": "Apr 8",  "amount": 13.15 },
+      { "label": "Apr 9",  "amount": 11.24 },
+      { "label": "Apr 10", "amount": 8.28 },
+      { "label": "Apr 11", "amount": 5.58 },
+      { "label": "Apr 12", "amount": 0.10 }
     ],
-    "dailyNote": "Mar 31 spike = pre-Callie era. Trending down"
+    "dailyNote": "Apr 7 spike = 72 Callie spawns. Max 5/day rule now enforced. Trending down ↓"
   },
   "activity": [
-    { "dot": "green", "text": "Notion cleanup — archived 94 tasks (43 OBG, 51 TMM). 140 unassigned tasks mapped.", "time": "Apr 5" },
-    { "dot": "blue",  "text": "Full Notion audit completed — client-by-client triage queued for tomorrow", "time": "Apr 5" },
-    { "dot": "blue",  "text": "3D isometric Workspace tab added to HQ", "time": "Apr 4" },
-    { "dot": "green", "text": "Nightly reflection cron updated — sends full reflection to Telegram at 11pm", "time": "Apr 4" },
-    { "dot": "green", "text": "Inbox Monitor cron fixed — auto-files Fathom recaps now", "time": "Apr 3" },
-    { "dot": "blue",  "text": "18 Rho email mockups built across 6 personas — P1 review tomorrow", "time": "Apr 3" }
+    { "dot": "blue",  "text": "HQ data.json updated — April MTD $260.07, daily chart Apr 6–12", "time": "Apr 12 · 9:20 AM" },
+    { "dot": "green", "text": "RVCA copy v2 sent to mike@ — Browse, Cart, Checkout docs ready to build", "time": "Apr 12" },
+    { "dot": "blue",  "text": "Email triage complete — 25 unread. Brand Featured reply sent. SFR call confirmed Thu Apr 16 9am.", "time": "Apr 12" },
+    { "dot": "grey",  "text": "1st Phorm — all 6 copy docs sent to Meaghan Apr 10. Awaiting review.", "time": "Apr 10" },
+    { "dot": "grey",  "text": "Darcy McGuire / Attentive — booked Tuesday. Needs Michael's confirmation.", "time": "Apr 9" },
+    { "dot": "amber", "text": "⚠ Apr 7 cost spike — $63.66 (72 Callie spawns). Max 5/day rule enforced going forward.", "time": "Apr 7" }
   ],
   "tasks": [
-    { "id": "a1", "name": "Notion triage — client-by-client (Riversol → RVCA → Rho → LP → Axis)", "type": "admin", "due": "2026-04-06", "col": "active", "agent": "mollie" },
-    { "id": "a2", "name": "SFR Distillery — call logistics (Thu Apr 9, 10am PST / 1pm ET — Michael East Coast)", "type": "client", "due": "2026-04-06", "col": "active", "agent": "mollie" },
-    { "id": "a3", "name": "Rho Nutrition — P1 email review (email 1-2-3, then scale P2–P6)", "type": "design", "due": "2026-04-06", "col": "active", "agent": "callie" },
-    { "id": "q1", "name": "RVCA — Confirm cadence + Klaviyo invites (Shelbie + Kieran)", "type": "client", "due": "2026-04-07", "col": "queued", "agent": "mollie" },
-    { "id": "q2", "name": "Riversol — Ali SPF 50 decision + Arnaud reply watch", "type": "client", "due": "2026-04-07", "col": "queued", "agent": "mollie" },
-    { "id": "q3", "name": "Debbie — weekly Notion hygiene SOP", "type": "admin", "due": "2026-04-07", "col": "queued", "agent": "mollie" },
-    { "id": "q4", "name": "Riversol campaign-ideas.html — Add Sales Strategies + deploy", "type": "client", "due": "2026-04-07", "col": "queued", "agent": "callie" },
-    { "id": "d1", "name": "Notion audit — OBG + TMM archived (94 tasks closed)", "type": "admin", "col": "done", "agent": "mollie" },
-    { "id": "d2", "name": "HQ Homepage v5 — shipped", "type": "admin", "col": "done", "agent": "callie" },
-    { "id": "d3", "name": "Rho — 18 email mockups built across all 6 personas", "type": "design", "col": "done", "agent": "callie" },
-    { "id": "d4", "name": "Hiba March Report deployed", "type": "report", "col": "done", "agent": "callie" },
-    { "id": "d5", "name": "RVCA Client Kickoff", "type": "client", "col": "done", "agent": "mollie" }
-  ],
-  "needsYou": [
-    { "text": "SFR Distillery — call is Thu Apr 9, 10am PST / 1pm ET. You'll be East Coast. Move it or find a spot?", "chip": "SFR Distillery" },
-    { "text": "Ali (Riversol) offered to share SPF 50 campaign draft — approve or pass?", "chip": "Riversol" },
-    { "text": "Notion triage — 140 unassigned tasks ready to review client-by-client tomorrow", "chip": "Notion" }
-  ],
-  "watching": [
-    { "dot": "amber", "text": "Arnaud (Riversol) — waiting on reply to Michael's 4 questions" },
-    { "dot": "amber", "text": "Shelbie — Rho copy review, flag Michael when back" },
-    { "dot": "blue",  "text": "RVCA / Clayton Dahl — Thomas sent kickoff follow-up, monitoring" },
-    { "dot": "amber", "text": "Brand Featured — waiting to hear if proposal signed" },
-    { "dot": "blue",  "text": "Ali (Riversol) — SPF 50 draft offer pending Michael's decision" }
-  ],
-  "clients": [
-    { "name": "Liverpool LA",   "status": "active",   "dot": "green", "lastActivity": "37 unassigned tasks — triage tomorrow" },
-    { "name": "Riversol",       "status": "active",   "dot": "amber", "lastActivity": "SPF 50 pending + Arnaud reply outstanding" },
-    { "name": "Rho Nutrition",  "status": "active",   "dot": "blue",  "lastActivity": "P1 emails built — review + iterate tomorrow" },
-    { "name": "Hiba Academy",   "status": "active",   "dot": "green", "lastActivity": "March report delivered — monitoring" },
-    { "name": "RVCA",           "status": "active",   "dot": "amber", "lastActivity": "29 tasks, zero dates — triage this week" },
-    { "name": "Axis Health",    "status": "active",   "dot": "amber", "lastActivity": "8 tasks, all stale — needs decision" },
-    { "name": "Brand Featured", "status": "prospect", "dot": "amber", "lastActivity": "Proposal sent — waiting for signature" },
-    { "name": "SFR Distillery", "status": "prospect", "dot": "blue",  "lastActivity": "Call Thu Apr 9, 10am PST — logistics TBD" }
+    { "id": "a1", "name": "Liverpool Q1 Report — due Mon Apr 14 before 11:30am call", "type": "report", "due": "2026-04-14", "col": "queued", "agent": "callie" },
+    { "id": "a2", "name": "Rho Nutrition copy — ready for design/Marl", "type": "brief", "due": "2026-04-14", "col": "active", "agent": "mollie" },
+    { "id": "a3", "name": "RVCA copy v2 — Browse, Cart, Checkout (with mike@)", "type": "campaign", "due": "2026-04-13", "col": "active", "agent": "mollie" },
+    { "id": "a4", "name": "Attentive / Darcy McGuire — confirm Tuesday call", "type": "client", "due": "2026-04-13", "col": "queued", "agent": "mollie" },
+    { "id": "a5", "name": "1st Phorm copy — awaiting Meaghan review", "type": "brief", "due": "2026-04-14", "col": "review", "agent": "mollie" },
+    { "id": "a6", "name": "Riversol call — Wed Apr 15 (Q1 + SMS + winback)", "type": "client", "due": "2026-04-15", "col": "queued", "agent": "mollie" },
+    { "id": "a7", "name": "SFR Distillery intro call — Thu Apr 16 9am PST", "type": "client", "due": "2026-04-16", "col": "queued", "agent": "mollie" },
+    { "id": "d1", "name": "Rho Nutrition — 6 persona copy docs ✓", "type": "brief", "col": "done", "agent": "callie" },
+    { "id": "d2", "name": "RVCA Client Kickoff ✓", "type": "client", "col": "done", "agent": "mollie" },
+    { "id": "d3", "name": "Hiba March Report deployed ✓", "type": "report", "col": "done", "agent": "callie" },
+    { "id": "d4", "name": "SFR Distillery call scheduled ✓ — Apr 16", "type": "client", "col": "done", "agent": "mollie" }
   ]
 }
