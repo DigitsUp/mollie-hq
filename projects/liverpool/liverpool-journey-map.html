@@ -7,998 +7,677 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg:              #0d1117;
-      --bg-card:         #161b27;
-      --bg-card-hover:   #1e2535;
-      --border:          rgba(255,255,255,0.08);
-
-      --welcome:         #8b5cf6;
-      --welcome-bg:      rgba(139,92,246,0.12);
-      --welcome-border:  rgba(139,92,246,0.28);
-
-      --browse:          #f59e0b;
-      --browse-bg:       rgba(245,158,11,0.12);
-      --browse-border:   rgba(245,158,11,0.28);
-
-      --cart:            #3b82f6;
-      --cart-bg:         rgba(59,130,246,0.12);
-      --cart-border:     rgba(59,130,246,0.28);
-
-      --checkout:        #f97316;
-      --checkout-bg:     rgba(249,115,22,0.12);
-      --checkout-border: rgba(249,115,22,0.28);
-
-      --post:            #22c55e;
-      --post-bg:         rgba(34,197,94,0.12);
-      --post-border:     rgba(34,197,94,0.28);
-
-      --wonder:          #6b7280;
-      --wonder-bg:       rgba(107,114,128,0.12);
-      --wonder-border:   rgba(107,114,128,0.28);
-
-      --collision:       #ef4444;
+      --bg: #0d1117;
+      --bg-card: #161b27;
+      --bg-card-hover: #1e2535;
+      --border: rgba(255,255,255,0.08);
+      --welcome: #8b5cf6;
+      --welcome-bg: rgba(139,92,246,0.12);
+      --welcome-border: rgba(139,92,246,0.3);
+      --browse: #f59e0b;
+      --browse-bg: rgba(245,158,11,0.12);
+      --browse-border: rgba(245,158,11,0.3);
+      --cart: #3b82f6;
+      --cart-bg: rgba(59,130,246,0.12);
+      --cart-border: rgba(59,130,246,0.3);
+      --checkout: #f97316;
+      --checkout-bg: rgba(249,115,22,0.12);
+      --checkout-border: rgba(249,115,22,0.3);
+      --post: #22c55e;
+      --post-bg: rgba(34,197,94,0.12);
+      --post-border: rgba(34,197,94,0.3);
+      --wonder: #6b7280;
+      --wonder-bg: rgba(107,114,128,0.12);
+      --wonder-border: rgba(107,114,128,0.3);
+      --collision: #ef4444;
+      --leak: rgba(239,68,68,0.12);
+      --leak-border: rgba(239,68,68,0.35);
+      --suppress: rgba(34,197,94,0.1);
+      --suppress-border: rgba(34,197,94,0.3);
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Inter', sans-serif;
       background: var(--bg);
       color: #e2e8f0;
       min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
     }
 
-    /* ─── PASSWORD GATE ─────────────────────────────────────── */
+    /* PASSWORD GATE */
     #gate {
-      position: fixed; inset: 0;
-      background: var(--bg);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 28px; z-index: 1000;
+      position: fixed; inset: 0; background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9999; flex-direction: column; gap: 16px;
     }
-    .gate-logo { text-align: center; }
-    .gate-logo .eyebrow {
-      font-size: 11px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 2px;
-      color: #4a5568; margin-bottom: 10px;
-    }
-    .gate-logo h1 {
-      font-size: 34px; font-weight: 800;
-      letter-spacing: -1px; color: #e2e8f0;
-    }
-    .gate-logo .sub {
-      font-size: 16px; color: #8b5cf6;
-      font-weight: 500; margin-top: 4px;
-    }
-    .gate-divider {
-      width: 200px; height: 1px;
-      background: linear-gradient(to right, transparent, rgba(139,92,246,0.4), transparent);
-    }
-    #gate-form {
-      display: flex; flex-direction: column;
-      gap: 10px; width: 280px;
-    }
-    #gate-input {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px 16px;
-      color: #e2e8f0;
-      font-size: 15px;
-      font-family: inherit;
+    #gate h2 { font-size: 1.4rem; color: #fff; }
+    #gate p { font-size: 0.85rem; color: #64748b; }
+    #gate input {
+      padding: 10px 16px; border-radius: 8px; border: 1px solid #334155;
+      background: #1e2535; color: #fff; font-size: 1rem; width: 220px; text-align: center;
       outline: none;
-      transition: border-color 0.2s;
-      text-align: center; letter-spacing: 1px;
     }
-    #gate-input:focus { border-color: var(--welcome); }
-    #gate-btn {
-      background: var(--welcome);
-      color: #fff; border: none;
-      border-radius: 8px; padding: 12px 16px;
-      font-size: 14px; font-weight: 600;
-      cursor: pointer; font-family: inherit;
-      transition: opacity 0.2s;
+    #gate input:focus { border-color: var(--welcome); }
+    #gate button {
+      padding: 10px 28px; border-radius: 8px; background: var(--welcome);
+      color: #fff; border: none; cursor: pointer; font-weight: 600; font-size: 0.95rem;
     }
-    #gate-btn:hover { opacity: 0.85; }
-    #gate-error {
-      color: var(--collision); font-size: 13px;
-      text-align: center; display: none;
-    }
+    #gate .err { color: var(--collision); font-size: 0.8rem; min-height: 16px; }
 
-    /* ─── MAIN APP ──────────────────────────────────────────── */
+    /* MAIN CONTENT */
     #app { display: none; }
-    #app.visible { display: block; }
 
-    /* ─── HEADER ────────────────────────────────────────────── */
-    .site-header {
-      background: rgba(13,17,23,0.96);
+    /* HEADER */
+    .header {
+      background: #0d1117;
       border-bottom: 1px solid var(--border);
-      padding: 18px 40px;
-      display: flex; align-items: center;
-      justify-content: space-between;
+      padding: 18px 32px;
+      display: flex; align-items: center; justify-content: space-between;
       position: sticky; top: 0; z-index: 100;
-      backdrop-filter: blur(12px);
     }
-    .header-title {
-      font-size: 18px; font-weight: 700;
-      letter-spacing: -0.3px;
-    }
-    .header-title .dim { color: #4a5568; font-weight: 400; }
-    .header-sub { font-size: 12px; color: #374151; margin-top: 2px; }
-    .header-badges { display: flex; gap: 8px; align-items: center; }
-    .badge {
-      font-size: 11px; padding: 4px 10px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 20px; color: #4a5568;
-    }
-
-    /* ─── LEGEND ────────────────────────────────────────────── */
+    .header h1 { font-size: 1.1rem; font-weight: 700; color: #fff; }
+    .header .sub { font-size: 0.75rem; color: #64748b; margin-top: 2px; }
     .legend {
-      padding: 14px 40px;
-      background: var(--bg-card);
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: center;
-      gap: 20px; flex-wrap: wrap;
-    }
-    .legend-label {
-      font-size: 10px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.8px;
-      color: #374151;
+      display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
     }
     .legend-item {
-      display: flex; align-items: center;
-      gap: 7px; font-size: 12px; color: #94a3b8;
+      display: flex; align-items: center; gap: 5px; font-size: 0.72rem; color: #94a3b8;
     }
-    .ldot {
-      width: 10px; height: 10px;
-      border-radius: 2px; flex-shrink: 0;
+    .legend-dot {
+      width: 9px; height: 9px; border-radius: 50%;
     }
 
-    /* ─── JOURNEY OUTER WRAPPER ─────────────────────────────── */
-    .journey-wrap {
-      max-width: 1640px; margin: 0 auto;
-      padding: 36px 40px 24px;
+    /* PAGE LAYOUT */
+    .page { padding: 40px 32px 80px; max-width: 1400px; margin: 0 auto; }
+
+    /* SECTION HEADERS */
+    .section-label {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #475569; margin-bottom: 12px;
     }
 
-    /* ─── ENTRY POINT ───────────────────────────────────────── */
-    .entry-point {
-      display: flex; justify-content: center;
-      margin-bottom: 0;
+    /* ── ENTRY POINT ── */
+    .entry-block {
+      text-align: center; margin-bottom: 8px;
     }
-    .entry-card {
-      background: linear-gradient(135deg, #1a2030, #0d1117);
-      border: 2px solid rgba(255,255,255,0.14);
-      border-radius: 12px;
-      padding: 20px 48px;
-      text-align: center;
+    .entry-pill {
+      display: inline-block; padding: 14px 32px;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 12px; font-size: 1rem; font-weight: 700; color: #fff;
     }
-    .entry-card .eyebrow {
-      font-size: 10px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 1px;
-      color: #374151; margin-bottom: 8px;
-    }
-    .entry-card .main-text {
-      font-size: 16px; font-weight: 700; color: #e2e8f0;
-    }
-    .entry-card .sub-text {
-      font-size: 12px; color: #4a5568; margin-top: 4px;
-    }
+    .entry-pill .sub { font-size: 0.75rem; color: #64748b; font-weight: 400; margin-top: 4px; }
 
-    /* ─── VERTICAL CONNECTOR ────────────────────────────────── */
+    /* ── BRANCH SPLIT ── */
+    .split-row {
+      display: flex; gap: 0; justify-content: center; margin: 0;
+    }
+    .split-line {
+      display: flex; flex-direction: column; align-items: center;
+    }
     .v-line {
-      display: flex; justify-content: center;
-      height: 28px;
+      width: 2px; background: rgba(255,255,255,0.12); flex: 1; min-height: 20px;
     }
-    .v-line::after {
-      content: '';
-      width: 2px; height: 100%;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.15), rgba(255,255,255,0.04));
+    .h-branch {
+      display: flex; align-items: flex-start;
+    }
+    .h-line { height: 2px; background: rgba(255,255,255,0.12); width: 80px; margin-top: 20px; }
+    .h-line-long { width: 160px; }
+
+    /* ── BRANCH HEADERS ── */
+    .branch-header {
+      text-align: center; padding: 10px 20px; border-radius: 8px;
+      font-size: 0.78rem; font-weight: 700; margin-bottom: 6px;
+      white-space: nowrap;
+    }
+    .branch-a { background: rgba(100,116,139,0.15); border: 1px solid rgba(100,116,139,0.3); color: #94a3b8; }
+    .branch-b { background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.25); color: #a78bfa; }
+
+    /* ── EMAIL CARD ── */
+    .email-card {
+      border-radius: 10px; padding: 12px 14px; margin-bottom: 6px;
+      border: 1px solid; position: relative;
+    }
+    .email-card .day-label {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; opacity: 0.7; margin-bottom: 4px;
+    }
+    .email-card .email-name {
+      font-size: 0.82rem; font-weight: 600; color: #fff; margin-bottom: 2px;
+    }
+    .email-card .email-subject {
+      font-size: 0.72rem; color: #94a3b8; font-style: italic;
+    }
+    .email-card .note {
+      font-size: 0.68rem; color: #64748b; margin-top: 4px;
+    }
+    .collision-badge {
+      position: absolute; top: 8px; right: 8px;
+      background: var(--collision); color: #fff;
+      font-size: 0.6rem; font-weight: 700; padding: 2px 6px; border-radius: 4px;
     }
 
-    /* ─── SPLIT LABEL ───────────────────────────────────────── */
-    .split-label {
-      display: flex; justify-content: center;
-      margin-bottom: 18px;
-    }
-    .split-chip {
-      font-size: 11px; color: #4a5568;
-      background: var(--bg-card);
-      padding: 4px 14px;
-      border-radius: 4px;
-      border: 1px solid var(--border);
+    .card-welcome  { background: var(--welcome-bg);  border-color: var(--welcome-border);  }
+    .card-browse   { background: var(--browse-bg);   border-color: var(--browse-border);   }
+    .card-cart     { background: var(--cart-bg);     border-color: var(--cart-border);     }
+    .card-checkout { background: var(--checkout-bg); border-color: var(--checkout-border); }
+    .card-post     { background: var(--post-bg);     border-color: var(--post-border);     }
+    .card-wonder   { background: var(--wonder-bg);   border-color: var(--wonder-border);   }
+    .card-leak     { background: var(--leak);        border-color: var(--leak-border);     }
+    .card-suppress { background: var(--suppress);    border-color: var(--suppress-border); }
+
+    /* ── FLOW KILL BADGE ── */
+    .kill-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 0.68rem; font-weight: 700; color: var(--collision);
+      background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.25);
+      border-radius: 6px; padding: 5px 10px; margin: 4px 0 8px;
     }
 
-    /* ─── MAIN BRANCHES GRID ────────────────────────────────── */
-    .branches-grid {
+    /* ── DECISION TREE LAYOUT ── */
+    .tree { display: flex; flex-direction: column; align-items: center; width: 100%; }
+
+    /* Top-level 2-column split: Customer | Lead */
+    .top-split {
       display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 20px;
+      grid-template-columns: 340px 1fr;
+      gap: 32px;
+      width: 100%;
+      margin-top: 0;
+      align-items: start;
     }
 
-    /* ─── BRANCH COLUMN SHELL ───────────────────────────────── */
     .branch-col { display: flex; flex-direction: column; }
 
-    .col-head {
-      padding: 10px 14px;
-      border-radius: 8px 8px 0 0;
-      font-size: 10px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.6px;
-      text-align: center;
-      border: 1px solid; border-bottom: none;
-    }
-    .col-body {
-      flex: 1;
-      border: 1px solid; border-top: none;
-      border-radius: 0 0 8px 8px;
-      padding: 8px;
-      display: flex; flex-direction: column; gap: 5px;
+    /* Lead funnel: nested decision branches */
+    .lead-funnel {
+      display: flex; flex-direction: column; gap: 0;
     }
 
-    /* Customer column */
-    .col-customer .col-head { background: rgba(139,92,246,0.14); border-color: rgba(139,92,246,0.24); color: #a78bfa; }
-    .col-customer .col-body { background: rgba(139,92,246,0.03); border-color: rgba(139,92,246,0.16); }
-
-    /* Welcome column */
-    .col-welcome .col-head { background: var(--welcome-bg); border-color: var(--welcome-border); color: #c4b5fd; }
-    .col-welcome .col-body { background: rgba(139,92,246,0.025); border-color: var(--welcome-border); }
-
-    /* Browse column */
-    .col-browse .col-head { background: var(--browse-bg); border-color: var(--browse-border); color: #fcd34d; }
-    .col-browse .col-body { background: rgba(245,158,11,0.025); border-color: var(--browse-border); }
-
-    /* Cart column */
-    .col-cart .col-head { background: var(--cart-bg); border-color: var(--cart-border); color: #93c5fd; }
-    .col-cart .col-body { background: rgba(59,130,246,0.025); border-color: var(--cart-border); }
-
-    /* Checkout column */
-    .col-checkout .col-head { background: var(--checkout-bg); border-color: var(--checkout-border); color: #fdba74; }
-    .col-checkout .col-body { background: rgba(249,115,22,0.025); border-color: var(--checkout-border); }
-
-    /* Purchase column */
-    .col-purchase .col-head { background: var(--post-bg); border-color: var(--post-border); color: #86efac; }
-    .col-purchase .col-body { background: rgba(34,197,94,0.025); border-color: var(--post-border); }
-
-    /* ─── BRANCH B OUTER SHELL ──────────────────────────────── */
-    .branch-b-shell {
-      display: flex; flex-direction: column;
-    }
-    .branch-b-head {
-      background: rgba(59,130,246,0.07);
-      border: 1px solid rgba(59,130,246,0.14);
-      border-bottom: none;
-      border-radius: 8px 8px 0 0;
-      padding: 10px 16px;
-      font-size: 10px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.6px;
-      color: #60a5fa; text-align: center;
-    }
-    .branch-b-body {
-      flex: 1;
-      border: 1px solid rgba(59,130,246,0.1);
-      border-top: none;
-      border-radius: 0 0 8px 8px;
-      padding: 12px;
-      background: rgba(59,130,246,0.015);
+    /* Welcome backbone sits on the left, decision branches nest to the right */
+    .funnel-level {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 10px;
+      gap: 16px;
+      align-items: start;
+      margin-bottom: 0;
     }
 
-    /* ─── EMAIL CARD ────────────────────────────────────────── */
-    .ecard {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 9px 11px;
-      position: relative;
-      transition: background 0.15s;
-    }
-    .ecard:hover { background: var(--bg-card-hover); }
+    /* Each level: welcome column + action column */
+    .fl-1 { grid-template-columns: 220px 1fr; }
+    .fl-2 { grid-template-columns: 220px 220px 1fr; }
+    .fl-3 { grid-template-columns: 220px 220px 220px 1fr; }
+    .fl-4 { grid-template-columns: 220px 220px 220px 220px; }
 
-    .ecard .day-tag {
-      display: inline-block;
-      font-size: 9px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.4px;
-      padding: 2px 6px; border-radius: 3px;
-      margin-bottom: 5px; border: 1px solid;
-    }
-    .ecard .ename {
-      font-size: 12px; font-weight: 600;
-      color: #e2e8f0; line-height: 1.35;
-    }
-    .ecard .esub {
-      font-size: 11px; color: #6b7280;
-      margin-top: 3px; font-style: italic;
-      line-height: 1.3;
-    }
-    .ecard .enote {
-      font-size: 10px; color: #374151;
-      margin-top: 4px; line-height: 1.3;
-    }
-    .ecard .enote.warn { color: #f87171; }
-    .ecard .enote.good { color: #4ade80; }
+    .flow-col { display: flex; flex-direction: column; }
 
-    /* Day tag variants */
-    .dt-welcome  { background: rgba(139,92,246,0.15); color: #c4b5fd; border-color: rgba(139,92,246,0.3); }
-    .dt-browse   { background: rgba(245,158,11,0.15); color: #fcd34d; border-color: rgba(245,158,11,0.3); }
-    .dt-cart     { background: rgba(59,130,246,0.15); color: #93c5fd; border-color: rgba(59,130,246,0.3); }
-    .dt-checkout { background: rgba(249,115,22,0.15); color: #fdba74; border-color: rgba(249,115,22,0.3); }
-    .dt-post     { background: rgba(34,197,94,0.15);  color: #86efac; border-color: rgba(34,197,94,0.3); }
-    .dt-wonder   { background: rgba(107,114,128,0.15);color: #9ca3af; border-color: rgba(107,114,128,0.3); }
+    .flow-col-header {
+      padding: 7px 12px; border-radius: 7px; font-size: 0.72rem; font-weight: 700;
+      text-align: center; margin-bottom: 8px; white-space: nowrap;
+    }
+    .fch-welcome  { background: var(--welcome-bg);  border: 1px solid var(--welcome-border);  color: #c4b5fd; }
+    .fch-browse   { background: var(--browse-bg);   border: 1px solid var(--browse-border);   color: #fcd34d; }
+    .fch-cart     { background: var(--cart-bg);     border: 1px solid var(--cart-border);     color: #93c5fd; }
+    .fch-checkout { background: var(--checkout-bg); border: 1px solid var(--checkout-border); color: #fdba74; }
+    .fch-purchase { background: var(--post-bg);     border: 1px solid var(--post-border);     color: #86efac; }
 
-    /* Collision badge */
-    .cbadge {
-      position: absolute; top: -8px; right: -7px;
-      font-size: 14px; line-height: 1;
-      filter: drop-shadow(0 0 5px rgba(239,68,68,0.65));
+    .trigger-label {
+      font-size: 0.68rem; color: #64748b; text-align: center;
+      padding: 4px 8px; background: rgba(255,255,255,0.03);
+      border-radius: 6px; margin-bottom: 8px; border: 1px dashed rgba(255,255,255,0.07);
     }
 
-    /* Suppressed card variant */
-    .ecard.suppressed {
-      background: rgba(34,197,94,0.04);
-      border-color: rgba(34,197,94,0.18);
-      opacity: 0.85;
+    .connector {
+      display: flex; align-items: center; gap: 8px;
+      margin: 10px 0; color: #475569; font-size: 0.68rem; font-weight: 600;
     }
-    /* Leak card variant */
-    .ecard.leak {
-      border-color: rgba(239,68,68,0.3);
-      background: rgba(239,68,68,0.05);
+    .connector-line { flex: 1; height: 1px; background: rgba(255,255,255,0.07); }
+    .connector-arrow { font-size: 0.8rem; }
+
+    .suppression-note {
+      font-size: 0.68rem; color: #f87171;
+      background: rgba(239,68,68,0.07); border: 1px solid rgba(239,68,68,0.18);
+      border-radius: 6px; padding: 6px 10px; margin-top: 6px; text-align: center;
     }
 
-    /* A/B wrapper */
-    .ab-wrap { position: relative; }
-    .ab-badge {
-      position: absolute; top: -6px; left: 8px;
-      font-size: 8px; font-weight: 700;
-      letter-spacing: 0.5px;
-      background: rgba(139,92,246,0.3);
-      color: #c4b5fd; padding: 1px 5px;
-      border-radius: 3px; z-index: 1;
+    /* ── CALLOUT BOXES ── */
+    .callout-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px; margin-top: 48px;
     }
-    .ab-wrap .ecard { padding-top: 14px; }
-
-    /* Micro-cards */
-    .info-chip {
-      background: rgba(255,255,255,0.02);
-      border: 1px dashed rgba(255,255,255,0.07);
-      border-radius: 5px; padding: 7px 9px;
-      font-size: 10px; color: #374151;
-      text-align: center;
+    .callout-box {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px;
     }
-    .suppr-chip {
-      display: flex; align-items: center; gap: 6px;
-      font-size: 10px; color: #f59e0b;
-      background: rgba(245,158,11,0.06);
-      border: 1px solid rgba(245,158,11,0.14);
-      border-radius: 4px; padding: 5px 8px;
+    .callout-box h3 {
+      font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: #64748b; margin-bottom: 14px;
     }
-    .flag-chip {
-      background: rgba(245,158,11,0.07);
-      border: 1px solid rgba(245,158,11,0.18);
-      border-radius: 5px; padding: 8px 10px;
-      font-size: 10px; color: #fbbf24;
-      line-height: 1.4;
+    .callout-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
+    .callout-table th {
+      text-align: left; color: #475569; font-weight: 600;
+      padding: 0 8px 8px 0; border-bottom: 1px solid var(--border);
     }
-    .exit-chip {
-      background: rgba(239,68,68,0.05);
-      border: 1px solid rgba(239,68,68,0.15);
-      border-radius: 5px; padding: 8px 10px;
-      text-align: center; font-size: 12px;
-      font-weight: 600; color: #f87171;
+    .callout-table td {
+      padding: 8px 8px 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+      color: #cbd5e1; vertical-align: top;
     }
-    .ok-chip {
-      background: rgba(34,197,94,0.05);
-      border: 1px solid rgba(34,197,94,0.15);
-      border-radius: 4px; padding: 5px 8px;
-      font-size: 10px; color: #4ade80;
-    }
-
-    /* Card connector line */
-    .cc { display: flex; justify-content: center; height: 8px; }
-    .cc::after { content: ''; width: 1px; height: 100%; background: rgba(255,255,255,0.07); }
-
-    /* ─── BOTTOM SECTION ────────────────────────────────────── */
-    .bottom-wrap {
-      max-width: 1640px; margin: 0 auto;
-      padding: 20px 40px 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-    .info-box {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px; overflow: hidden;
-    }
-    .ibox-head {
-      padding: 13px 20px;
-      font-size: 12px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.7px;
-      border-bottom: 1px solid var(--border);
-    }
-    .ibox-head.red   { background: rgba(239,68,68,0.09); color: #f87171; }
-    .ibox-head.green { background: rgba(34,197,94,0.07);  color: #4ade80; }
-    .ibox-body { padding: 14px 20px; }
-
-    /* Collision rows */
-    .coll-row {
-      display: flex; align-items: flex-start;
-      gap: 12px; padding: 10px 0;
+    .severity-high { color: #f87171; font-weight: 700; }
+    .severity-med  { color: #fbbf24; font-weight: 700; }
+    .fix-item {
+      display: flex; gap: 10px; padding: 8px 0;
       border-bottom: 1px solid rgba(255,255,255,0.04);
-      font-size: 12px;
+      font-size: 0.75rem; color: #cbd5e1;
     }
-    .coll-row:last-child { border-bottom: none; }
-    .coll-day  { min-width: 96px; font-weight: 600; color: #94a3b8; flex-shrink: 0; }
-    .coll-desc { flex: 1; color: #cbd5e1; line-height: 1.4; }
-    .coll-count {
-      font-size: 11px; font-weight: 700;
-      padding: 2px 9px; border-radius: 10px;
-      flex-shrink: 0; white-space: nowrap;
-    }
-    .cc-warn { background: rgba(245,158,11,0.14); color: #fbbf24; }
-    .cc-crit { background: rgba(239,68,68,0.14);  color: #f87171; }
-
-    /* Fix rows */
-    .fix-row {
-      display: flex; align-items: flex-start;
-      gap: 12px; padding: 10px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-      font-size: 12px;
-    }
-    .fix-row:last-child { border-bottom: none; }
     .fix-num {
-      width: 22px; height: 22px; border-radius: 50%;
-      background: rgba(34,197,94,0.14);
-      border: 1px solid rgba(34,197,94,0.28);
-      color: #4ade80; font-size: 11px; font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; margin-top: 1px;
-    }
-    .fix-text { color: #94a3b8; line-height: 1.5; }
-    .fix-text strong { color: #e2e8f0; }
-
-    /* ─── FOOTER ────────────────────────────────────────────── */
-    .site-footer {
-      text-align: center; padding: 36px 40px;
-      color: #374151; font-size: 12px;
-      border-top: 1px solid var(--border);
-      margin-top: 36px;
-    }
-    .site-footer .footer-divider {
-      width: 60px; height: 1px;
-      background: rgba(255,255,255,0.05);
-      margin: 10px auto;
+      width: 20px; height: 20px; border-radius: 50%; background: var(--welcome);
+      color: #fff; font-size: 0.65rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
 
-    /* ─── MOBILE ────────────────────────────────────────────── */
-    @media (max-width: 1100px) {
-      .branch-b-body { grid-template-columns: repeat(3, 1fr); }
+    /* connector arrows between branch columns */
+    .branch-arrow {
+      display: flex; align-items: center; color: #334155;
+      font-size: 0.7rem; padding: 0 4px;
     }
-    @media (max-width: 860px) {
-      .site-header { padding: 14px 16px; flex-direction: column; gap: 8px; align-items: flex-start; }
-      .legend { padding: 12px 16px; gap: 12px; }
-      .journey-wrap, .bottom-wrap { padding-left: 16px; padding-right: 16px; }
-      .branches-grid { grid-template-columns: 1fr; }
-      .branch-b-body { grid-template-columns: 1fr 1fr; }
-      .bottom-wrap { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 540px) {
-      .branch-b-body { grid-template-columns: 1fr; }
+
+    .divider { height: 1px; background: var(--border); margin: 32px 0; }
+
+    footer {
+      text-align: center; color: #334155; font-size: 0.72rem; padding: 24px;
+      border-top: 1px solid var(--border); margin-top: 40px;
     }
   </style>
 </head>
 <body>
 
-<!-- ─── PASSWORD GATE ──────────────────────────────────────── -->
+<!-- PASSWORD GATE -->
 <div id="gate">
-  <div class="gate-logo">
-    <div class="eyebrow">Internal Strategy Document</div>
-    <h1>Liverpool LA</h1>
-    <div class="sub">Lead Journey Map</div>
-  </div>
-  <div class="gate-divider"></div>
-  <form id="gate-form" onsubmit="checkPassword(event)">
-    <input id="gate-input" type="password" placeholder="Enter password" autocomplete="off" autofocus>
-    <button id="gate-btn" type="submit">Access Document</button>
-    <div id="gate-error">Incorrect password. Try again.</div>
-  </form>
+  <h2>Liverpool LA</h2>
+  <p>Lead Journey Map · Internal Use Only</p>
+  <input type="password" id="pw" placeholder="Enter password" />
+  <button onclick="checkPw()">Enter</button>
+  <div class="err" id="err"></div>
 </div>
 
-<!-- ─── MAIN APP ───────────────────────────────────────────── -->
 <div id="app">
 
   <!-- HEADER -->
-  <header class="site-header">
+  <div class="header">
     <div>
-      <div class="header-title">Liverpool LA <span class="dim">— Lead Journey Map</span></div>
-      <div class="header-sub">Internal strategy document · DigitsUp</div>
+      <div class="h1">Liverpool LA — Lead Journey Map</div>
+      <div class="sub">Email funnel · behavioral decision tree · April 2026</div>
     </div>
-    <div class="header-badges">
-      <span class="badge">🔒 Password protected</span>
-      <span class="badge">April 2026</span>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--welcome)"></div> Welcome</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--browse)"></div> Browse</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--cart)"></div> Cart</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--checkout)"></div> Checkout</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--post)"></div> Post-Purchase</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--wonder)"></div> Wonderment</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--collision)"></div> ⚠️ Collision</div>
     </div>
-  </header>
-
-  <!-- LEGEND -->
-  <div class="legend">
-    <span class="legend-label">Flow key:</span>
-    <div class="legend-item"><div class="ldot" style="background:#8b5cf6"></div>Welcome Series</div>
-    <div class="legend-item"><div class="ldot" style="background:#f59e0b"></div>Browse Abandonment</div>
-    <div class="legend-item"><div class="ldot" style="background:#3b82f6"></div>Add to Cart</div>
-    <div class="legend-item"><div class="ldot" style="background:#f97316"></div>Abandoned Checkout</div>
-    <div class="legend-item"><div class="ldot" style="background:#22c55e"></div>Post-Purchase / Order Confirm</div>
-    <div class="legend-item"><div class="ldot" style="background:#6b7280"></div>Wonderment (Shipping)</div>
-    <div class="legend-item" style="color:#f87171"><div class="ldot" style="background:#ef4444"></div>⚠️ Collision Warning</div>
   </div>
 
-  <!-- JOURNEY -->
-  <div class="journey-wrap">
+  <div class="page">
 
-    <!-- ENTRY POINT -->
-    <div class="entry-point">
-      <div class="entry-card">
-        <div class="eyebrow">Entry Point</div>
-        <div class="main-text">📧 Opts into Liverpool email list</div>
-        <div class="sub-text">Pop-up, footer form, checkout, etc.</div>
+    <!-- ENTRY -->
+    <div class="entry-block">
+      <div class="entry-pill">
+        📧 Opts into Liverpool email list
+        <div class="sub">Pop-up, footer form, checkout, etc.</div>
       </div>
     </div>
 
-    <div class="v-line"></div>
-
-    <!-- SPLIT LABEL -->
-    <div class="split-label">
-      <div class="split-chip">Klaviyo segments on: Has placed order?</div>
+    <div style="text-align:center;margin:8px 0 4px;font-size:0.75rem;color:#475569;">
+      ▼ &nbsp; First check: has this person ever placed an order?
     </div>
 
-    <!-- MAIN BRANCHES -->
-    <div class="branches-grid">
+    <div class="divider" style="margin:12px 0;"></div>
 
-      <!-- ─── BRANCH A: CUSTOMER ─────────────────────────────── -->
-      <div class="branch-col col-customer">
-        <div class="col-head">
-          ← Branch A: Customer
-          <div style="font-size:9px;font-weight:400;color:#6d5fa0;text-transform:none;letter-spacing:0;margin-top:3px">Has placed ≥1 order ever</div>
+    <!-- TOP SPLIT: CUSTOMER vs LEAD -->
+    <div class="top-split">
+
+      <!-- BRANCH A: CUSTOMER -->
+      <div class="branch-col">
+        <div class="branch-header branch-a">🛍 Branch A — Existing Customer</div>
+        <div class="trigger-label">Has placed ≥ 1 order ever</div>
+
+        <div class="email-card card-welcome">
+          <div class="day-label">Day 0 — Immediate</div>
+          <div class="email-name">Welcome #1 — No Offer</div>
+          <div class="email-subject">"Welcome to Liverpool Los Angeles"</div>
+          <div class="note">No discount. They already bought.</div>
         </div>
-        <div class="col-body">
 
-          <div class="ecard">
-            <div class="day-tag dt-welcome">Day 0 — Immediate</div>
-            <div class="ename">Welcome #1 — No Offer</div>
-            <div class="esub">"Welcome to Liverpool Los Angeles"</div>
-            <div class="enote">No discount — customer already bought</div>
-          </div>
+        <div class="email-card card-welcome">
+          <div class="day-label">Day 2</div>
+          <div class="email-name">Email #3 — Set Your Preferences</div>
+          <div class="email-subject">(Preferences email)</div>
+          <div class="note">Customers only, delayed 2 days.</div>
+        </div>
 
-          <div class="cc"></div>
+        <div class="suppression-note" style="color:#fbbf24;background:rgba(251,191,36,0.07);border-color:rgba(251,191,36,0.2);">
+          ⚠️ Heads up: this preferences email belongs in Post-Purchase, not Welcome. Workaround for now.
+        </div>
 
-          <div class="ecard" style="position:relative">
-            <div class="day-tag dt-welcome">Day 2</div>
-            <div class="ename">Email #3 — Set Your Preferences</div>
-            <div class="esub">(Preferences email)</div>
-            <div class="enote">Customers only, delayed</div>
-            <span class="cbadge">⚠️</span>
-          </div>
-
-          <div class="flag-chip">⚠️ "Set Your Preferences" belongs in Post-Purchase flow — currently lives in Welcome as a workaround</div>
-
-          <div class="exit-chip">EXIT — Series ends here for customers</div>
-
+        <div style="margin-top:12px;padding:10px 12px;background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.2);border-radius:8px;font-size:0.72rem;color:#86efac;text-align:center;">
+          ✅ EXIT — Series ends here for customers
         </div>
       </div>
 
-      <!-- ─── BRANCH B: LEAD ─────────────────────────────────── -->
-      <div class="branch-b-shell">
-        <div class="branch-b-head">
-          Branch B: Lead →
-          <span style="font-size:9px;font-weight:400;color:#3a5878;text-transform:none;letter-spacing:0;display:block;margin-top:3px">Never purchased · Welcome backbone always runs · Behavioral flows fire in parallel based on action</span>
-        </div>
-        <div class="branch-b-body">
+      <!-- BRANCH B: LEAD FUNNEL -->
+      <div class="branch-col">
+        <div class="branch-header branch-b">🎯 Branch B — Lead (Never Purchased)</div>
+        <div class="trigger-label">No orders ever · Welcome backbone always runs · Behavioral flows layer in based on action</div>
 
-          <!-- COL: WELCOME BACKBONE -->
-          <div class="branch-col col-welcome">
-            <div class="col-head">
-              🟣 Welcome Series
-              <div style="font-size:9px;font-weight:400;color:#5c4a8a;text-transform:none;letter-spacing:0;margin-top:3px">Backbone — always running</div>
+        <!-- LEVEL 0: Welcome always + "no action" path -->
+        <div style="display:grid;grid-template-columns:220px 1fr;gap:16px;align-items:start;margin-bottom:16px;">
+
+          <!-- Welcome backbone column -->
+          <div class="flow-col">
+            <div class="flow-col-header fch-welcome">🟣 Welcome Series<br><span style="font-weight:400;font-size:0.65rem;">Always running</span></div>
+            <div class="email-card card-welcome">
+              <div class="day-label">Day 0 — Immediate</div>
+              <div class="email-name">Welcome #1 — With Offer</div>
+              <div class="email-subject">"Welcome to Liverpool Los Angeles"</div>
+              <div class="note">20% off discount included.</div>
             </div>
-            <div class="col-body">
+            <div class="email-card card-welcome">
+              <div class="day-label">Day 1</div>
+              <div class="email-name">Email #2 — Brand Background</div>
+              <div class="email-subject">"Why We Design the Way We Do"</div>
+              <div class="note" style="color:#f87171;">⚠️ No order filter — fires even after purchase</div>
+            </div>
+            <div class="email-card card-welcome">
+              <div class="day-label">Day 3</div>
+              <div class="email-name">Email #4 — Bestsellers</div>
+              <div class="email-subject">"Find Your New Go-To Fit"</div>
+              <div class="note" style="color:#86efac;">✅ Skip if placed order</div>
+            </div>
+            <div class="email-card card-welcome">
+              <div class="day-label">Day 4</div>
+              <div class="email-name">Email #5 — Incentive Reminder</div>
+              <div class="email-subject">"Your 20% Off Ends Soon"</div>
+              <div class="note" style="color:#f87171;">⚠️ No order filter — fires even after purchase</div>
+            </div>
+            <div class="email-card card-welcome" style="border-style:dashed;">
+              <div class="day-label">Day 5 — A/B Test</div>
+              <div class="email-name">Email #6A or #6B</div>
+              <div class="email-subject">6A: "Life's Too Short for Bad Denim"<br>6B: "The Reviews Are In"</div>
+              <div class="note" style="color:#86efac;">✅ Skip if placed order</div>
+            </div>
+            <div class="email-card card-welcome">
+              <div class="day-label">Day 6</div>
+              <div class="email-name">Email #7 — Last Chance</div>
+              <div class="email-subject">"48 Hours Left to Save 20%"</div>
+              <div class="note" style="color:#86efac;">✅ Skip if placed order</div>
+            </div>
+            <div class="email-card card-welcome">
+              <div class="day-label">Day 8+</div>
+              <div class="email-name">Email #14 — Evergreen Bestsellers</div>
+              <div class="email-subject">"Find Your New Go-To Fit"</div>
+              <div class="note">Evergreen.</div>
+            </div>
+          </div>
 
-              <div class="ecard">
-                <div class="day-tag dt-welcome">Day 0 — Immediate</div>
-                <div class="ename">Welcome #1 — With Offer</div>
-                <div class="esub">"Welcome to Liverpool Los Angeles"</div>
-                <div class="enote">20% off discount included</div>
+          <!-- Decision tree column -->
+          <div class="flow-col">
+            <div style="font-size:0.72rem;color:#475569;text-align:center;margin-bottom:12px;">
+              What does the lead do after opting in?
+            </div>
+
+            <!-- PATH A: No action -->
+            <div style="background:rgba(255,255,255,0.03);border:1px dashed rgba(255,255,255,0.08);border-radius:10px;padding:12px;margin-bottom:16px;">
+              <div style="font-size:0.72rem;font-weight:700;color:#475569;margin-bottom:6px;">↓ No action taken</div>
+              <div style="font-size:0.72rem;color:#64748b;">Welcome series runs on its own. No additional flows. Lead receives Emails #1–7, then evergreen.</div>
+            </div>
+
+            <!-- PATH B: Views product -->
+            <div style="background:var(--browse-bg);border:1px solid var(--browse-border);border-radius:10px;padding:12px;margin-bottom:16px;">
+              <div style="font-size:0.72rem;font-weight:700;color:#fcd34d;margin-bottom:8px;">👁 Views a product page</div>
+
+              <div class="email-card card-browse" style="margin-bottom:6px;">
+                <div class="day-label">+1hr after browse</div>
+                <div class="email-name">Browse #1</div>
+                <div class="email-subject">Browse Abandonment</div>
+                <div class="collision-badge">⚠️ DAY 0</div>
+                <div class="note" style="color:#fbbf24;">Same day as Welcome #1</div>
+              </div>
+              <div class="email-card card-browse" style="margin-bottom:6px;">
+                <div class="day-label">Day 3</div>
+                <div class="email-name">Browse #2</div>
+                <div class="email-subject">Browse Abandonment</div>
+                <div class="note">Runs parallel to Welcome #4</div>
+              </div>
+              <div class="email-card card-browse" style="margin-bottom:8px;">
+                <div class="day-label">Day 5</div>
+                <div class="email-name">Browse #3</div>
+                <div class="email-subject">Browse Abandonment</div>
+                <div class="note">Runs parallel to Welcome #6</div>
               </div>
 
-              <div class="ecard">
-                <div class="day-tag dt-welcome">Day 1</div>
-                <div class="ename">Email #2 — Brand Background</div>
-                <div class="esub">"Why We Design the Way We Do"</div>
-                <div class="enote good">Skip if placed order ✅</div>
-              </div>
+              <!-- Decision: adds to cart? -->
+              <div style="margin-top:4px;padding-top:10px;border-top:1px solid rgba(245,158,11,0.2);">
+                <div style="font-size:0.68rem;font-weight:700;color:#475569;margin-bottom:8px;">↓ Then adds to cart?</div>
+                <div class="suppression-note" style="margin-bottom:8px;">🚫 Browse flow STOPS — Cart takes over</div>
 
-              <div class="ecard">
-                <div class="day-tag dt-welcome">Day 3</div>
-                <div class="ename">Email #4 — Bestsellers</div>
-                <div class="esub">"Find Your New Go-To Fit"</div>
-                <div class="enote good">Skip if placed order ✅</div>
-              </div>
+                <div style="background:var(--cart-bg);border:1px solid var(--cart-border);border-radius:8px;padding:10px;">
+                  <div style="font-size:0.72rem;font-weight:700;color:#93c5fd;margin-bottom:8px;">🛒 Adds to Cart</div>
 
-              <div class="ecard">
-                <div class="day-tag dt-welcome">Day 4</div>
-                <div class="ename">Email #5 — Incentive Reminder</div>
-                <div class="esub">"Your 20% Off Ends Soon"</div>
-                <div class="enote good">Skip if placed order ✅</div>
-              </div>
+                  <div class="email-card card-cart" style="margin-bottom:6px;">
+                    <div class="day-label">+35min after add</div>
+                    <div class="email-name">Cart #1</div>
+                    <div class="email-subject">Added2Cart</div>
+                    <div class="collision-badge">⚠️ DAY 0</div>
+                    <div class="note" style="color:#93c5fd;">Same day as Welcome #1</div>
+                  </div>
+                  <div class="email-card card-cart" style="margin-bottom:6px;">
+                    <div class="day-label">Day 1</div>
+                    <div class="email-name">Cart #2</div>
+                    <div class="email-subject">Added2Cart</div>
+                    <div class="note">Same day as Welcome #2</div>
+                  </div>
+                  <div class="email-card card-cart" style="margin-bottom:6px;">
+                    <div class="day-label">Day 2</div>
+                    <div class="email-name">Cart #3</div>
+                    <div class="email-subject">Added2Cart</div>
+                  </div>
+                  <div class="email-card card-cart" style="margin-bottom:8px;">
+                    <div class="day-label">Day 4+</div>
+                    <div class="email-name">Cart #4+</div>
+                    <div class="email-subject">Added2Cart continues</div>
+                  </div>
 
-              <div class="ab-wrap">
-                <span class="ab-badge">A/B TEST</span>
-                <div class="ecard">
-                  <div class="day-tag dt-welcome">Day 5</div>
-                  <div class="ename">Email #6A — Version A</div>
-                  <div class="esub">"Life's Too Short for Bad Denim"</div>
-                  <div class="enote good">Skip if placed order ✅</div>
+                  <!-- Decision: starts checkout? -->
+                  <div style="padding-top:10px;border-top:1px solid rgba(59,130,246,0.2);">
+                    <div style="font-size:0.68rem;font-weight:700;color:#475569;margin-bottom:8px;">↓ Then starts checkout?</div>
+                    <div class="suppression-note" style="margin-bottom:8px;">🚫 Cart flow STOPS — Checkout takes over</div>
+
+                    <div style="background:var(--checkout-bg);border:1px solid var(--checkout-border);border-radius:8px;padding:10px;">
+                      <div style="font-size:0.72rem;font-weight:700;color:#fdba74;margin-bottom:8px;">💳 Starts Checkout</div>
+
+                      <div class="email-card card-checkout" style="margin-bottom:6px;">
+                        <div class="day-label">+35min after start</div>
+                        <div class="email-name">Checkout #1</div>
+                        <div class="email-subject">Abandoned Checkout</div>
+                        <div class="collision-badge">⚠️ DAY 0</div>
+                        <div class="note" style="color:#fdba74;">Same day as Welcome #1</div>
+                      </div>
+                      <div class="email-card card-checkout" style="margin-bottom:6px;">
+                        <div class="day-label">Day 1</div>
+                        <div class="email-name">Checkout #2</div>
+                        <div class="email-subject">Abandoned Checkout</div>
+                        <div class="note">Same day as Welcome #2</div>
+                      </div>
+                      <div class="email-card card-checkout" style="margin-bottom:6px;">
+                        <div class="day-label">Day 3</div>
+                        <div class="email-name">Checkout #3</div>
+                        <div class="email-subject">Abandoned Checkout</div>
+                      </div>
+                      <div class="email-card card-checkout" style="margin-bottom:8px;">
+                        <div class="day-label">Day 4+</div>
+                        <div class="email-name">Checkout #4+</div>
+                        <div class="email-subject">Continues</div>
+                      </div>
+
+                      <!-- Decision: purchases? -->
+                      <div style="padding-top:10px;border-top:1px solid rgba(249,115,22,0.2);">
+                        <div style="font-size:0.68rem;font-weight:700;color:#475569;margin-bottom:8px;">↓ Then purchases?</div>
+                        <div class="suppression-note" style="margin-bottom:8px;">🚫 Checkout flow STOPS — Purchase path begins</div>
+
+                        <div style="background:var(--post-bg);border:1px solid var(--post-border);border-radius:8px;padding:10px;">
+                          <div style="font-size:0.72rem;font-weight:700;color:#86efac;margin-bottom:8px;">✅ Purchases!</div>
+
+                          <div class="email-card card-post" style="margin-bottom:4px;">
+                            <div class="day-label">Day 0 — Immediate</div>
+                            <div class="email-name">Order Confirmation #1, #2, #3</div>
+                            <div class="email-subject">Order Confirm flow (3 emails)</div>
+                            <div class="collision-badge">⚠️ DAY 0</div>
+                            <div class="note">Collides with Welcome #1 on Day 0.</div>
+                          </div>
+                          <div class="email-card card-wonder" style="margin-bottom:4px;">
+                            <div class="day-label">Day 0 → Day 1</div>
+                            <div class="email-name">Wonderment: Shipment → Delivered</div>
+                            <div class="email-subject">Shipment Created · Carrier Picked Up · Out for Delivery · Delivered</div>
+                          </div>
+                          <div class="email-card card-leak" style="margin-bottom:4px;">
+                            <div class="day-label">Day 1</div>
+                            <div class="email-name">⚠️ Welcome #2 — Leaks Through</div>
+                            <div class="email-subject">"Why We Design the Way We Do"</div>
+                            <div class="note" style="color:#f87171;">No order filter set. Fires after purchase.</div>
+                          </div>
+                          <div class="email-card card-suppress" style="margin-bottom:4px;">
+                            <div class="day-label">Day 3</div>
+                            <div class="email-name">✅ Welcome #4 — Correctly Suppressed</div>
+                            <div class="email-subject">"Find Your New Go-To Fit"</div>
+                            <div class="note" style="color:#86efac;">Order filter in place. Skipped.</div>
+                          </div>
+                          <div class="email-card card-leak" style="margin-bottom:4px;">
+                            <div class="day-label">Day 4</div>
+                            <div class="email-name">⚠️ Welcome #5 — Leaks Through</div>
+                            <div class="email-subject">"Your 20% Off Ends Soon"</div>
+                            <div class="note" style="color:#f87171;">No order filter. Buyer gets discount reminder.</div>
+                          </div>
+                          <div class="email-card card-post" style="margin-bottom:4px;">
+                            <div class="day-label">Day 7</div>
+                            <div class="email-name">Review Request</div>
+                            <div class="email-subject">Email + SMS</div>
+                          </div>
+                          <div class="email-card card-post" style="margin-bottom:4px;">
+                            <div class="day-label">Day 10</div>
+                            <div class="email-name">Post-Purchase Batch 2</div>
+                            <div class="email-subject">Multiple emails</div>
+                          </div>
+                          <div class="email-card card-post">
+                            <div class="day-label">Day 24</div>
+                            <div class="email-name">Post-Purchase Batch 3</div>
+                            <div class="email-subject">Multiple emails</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-
-              <div class="ecard">
-                <div class="day-tag dt-welcome">Day 5</div>
-                <div class="ename">Email #6B — Version B</div>
-                <div class="esub">"The Reviews Are In"</div>
-                <div class="enote good">Skip if placed order ✅</div>
-              </div>
-
-              <div class="ecard">
-                <div class="day-tag dt-welcome">Day 6</div>
-                <div class="ename">Email #7 — Last Chance</div>
-                <div class="esub">"48 Hours Left to Save 20%"</div>
-                <div class="enote good">Skip if placed order ✅</div>
-              </div>
-
-              <div class="ecard">
-                <div class="day-tag dt-welcome">Day 8+</div>
-                <div class="ename">Email #14 — Evergreen Bestsellers</div>
-                <div class="esub">"Find Your New Go-To Fit"</div>
-                <div class="enote">Evergreen send</div>
-              </div>
-
             </div>
+
           </div>
-
-          <!-- COL: BROWSE ABANDONMENT -->
-          <div class="branch-col col-browse">
-            <div class="col-head">
-              🟡 Browse Abandonment
-              <div style="font-size:9px;font-weight:400;color:#7a5e1a;text-transform:none;letter-spacing:0;margin-top:3px">Views product, no cart added</div>
-            </div>
-            <div class="col-body">
-
-              <div class="info-chip">Triggers on product page view</div>
-
-              <div class="ecard" style="position:relative">
-                <div class="day-tag dt-browse">+1hr after browse</div>
-                <div class="ename">Browse #1</div>
-                <div class="esub">Browse Abandonment</div>
-                <div class="enote warn">Same day as Welcome #1</div>
-                <span class="cbadge">⚠️</span>
-              </div>
-
-              <div class="ecard">
-                <div class="day-tag dt-browse">Day 3</div>
-                <div class="ename">Browse #2</div>
-                <div class="esub">Browse Abandonment</div>
-                <div class="enote">Parallel to Welcome #4</div>
-              </div>
-
-              <div class="ecard">
-                <div class="day-tag dt-browse">Day 5</div>
-                <div class="ename">Browse #3</div>
-                <div class="esub">Browse Abandonment</div>
-                <div class="enote">Parallel to Welcome #6</div>
-              </div>
-
-              <div class="suppr-chip">🚫 STOPS if lead adds to cart</div>
-
-            </div>
-          </div>
-
-          <!-- COL: ADD TO CART -->
-          <div class="branch-col col-cart">
-            <div class="col-head">
-              🔵 Add to Cart
-              <div style="font-size:9px;font-weight:400;color:#1e3a5c;text-transform:none;letter-spacing:0;margin-top:3px">Adds to cart, no checkout</div>
-            </div>
-            <div class="col-body">
-
-              <div class="info-chip">Triggers on cart add event</div>
-
-              <div class="ecard" style="position:relative">
-                <div class="day-tag dt-cart">+35min after add</div>
-                <div class="ename">Cart #1</div>
-                <div class="esub">Added2Cart</div>
-                <div class="enote warn">Same day as Welcome #1</div>
-                <span class="cbadge">⚠️</span>
-              </div>
-
-              <div class="ecard" style="position:relative">
-                <div class="day-tag dt-cart">Day 1</div>
-                <div class="ename">Cart #2</div>
-                <div class="esub">Added2Cart</div>
-                <div class="enote warn">Same day as Welcome #2</div>
-                <span class="cbadge">⚠️</span>
-              </div>
-
-              <div class="ecard">
-                <div class="day-tag dt-cart">Day 2</div>
-                <div class="ename">Cart #3</div>
-                <div class="esub">Added2Cart</div>
-              </div>
-
-              <div class="ecard">
-                <div class="day-tag dt-cart">Day 4+</div>
-                <div class="ename">Cart #4+</div>
-                <div class="esub">Added2Cart</div>
-                <div class="enote">Continues</div>
-              </div>
-
-              <div class="suppr-chip">🚫 Browse suppressed. STOPS if checkout starts</div>
-
-            </div>
-          </div>
-
-          <!-- COL: ABANDONED CHECKOUT -->
-          <div class="branch-col col-checkout">
-            <div class="col-head">
-              🟠 Abandoned Checkout
-              <div style="font-size:9px;font-weight:400;color:#6a3010;text-transform:none;letter-spacing:0;margin-top:3px">Starts checkout, no purchase</div>
-            </div>
-            <div class="col-body">
-
-              <div class="info-chip">Triggers on checkout initiation</div>
-
-              <div class="ecard" style="position:relative">
-                <div class="day-tag dt-checkout">+35min after start</div>
-                <div class="ename">Checkout #1</div>
-                <div class="esub">Abandoned Checkout</div>
-                <div class="enote warn">Same day as Welcome #1</div>
-                <span class="cbadge">⚠️</span>
-              </div>
-
-              <div class="ecard" style="position:relative">
-                <div class="day-tag dt-checkout">Day 1</div>
-                <div class="ename">Checkout #2</div>
-                <div class="esub">Abandoned Checkout</div>
-                <div class="enote warn">Same day as Welcome #2</div>
-                <span class="cbadge">⚠️</span>
-              </div>
-
-              <div class="ecard">
-                <div class="day-tag dt-checkout">Day 3</div>
-                <div class="ename">Checkout #3</div>
-                <div class="esub">Abandoned Checkout</div>
-              </div>
-
-              <div class="ecard">
-                <div class="day-tag dt-checkout">Day 4+</div>
-                <div class="ename">Checkout #4+</div>
-                <div class="esub">Abandoned Checkout</div>
-                <div class="enote">Continues</div>
-              </div>
-
-              <div class="suppr-chip">🚫 Browse + Cart suppressed. STOPS at purchase</div>
-
-            </div>
-          </div>
-
-          <!-- COL: PURCHASE PATH -->
-          <div class="branch-col col-purchase">
-            <div class="col-head">
-              🟢 Purchase Path
-              <div style="font-size:9px;font-weight:400;color:#1a4a2a;text-transform:none;letter-spacing:0;margin-top:3px">Lead converts — post-purchase journey</div>
-            </div>
-            <div class="col-body">
-
-              <div class="ok-chip">✅ Conversion · Welcome partially suppressed*</div>
-
-              <div class="ecard" style="position:relative">
-                <div class="day-tag dt-post">Day 0 — Immediate</div>
-                <div class="ename">Order Confirmation #1</div>
-                <div class="esub">Order Confirm flow</div>
-                <div class="enote warn">⚠️ Collides with Welcome #1</div>
-                <span class="cbadge">⚠️</span>
-              </div>
-
-              <div class="ecard">
-                <div class="day-tag dt-post">Day 0 — Immediate</div>
-                <div class="ename">Order Confirmation #2</div>
-                <div class="esub">Order Confirm flow</div>
-              </div>
-
-              <div class="ecard">
-                <div class="day-tag dt-post">Day 0 — Immediate</div>
-                <div class="ename">Order Confirmation #3</div>
-                <div class="esub">Order Confirm flow</div>
-              </div>
-
-              <div class="ecard">
-                <div class="day-tag dt-wonder">Day 0</div>
-                <div class="ename">Wonderment: Shipment Created</div>
-                <div class="esub">Shipping notification</div>
-              </div>
-
-              <div class="ecard">
-                <div class="day-tag dt-wonder">Day 0–1</div>
-                <div class="ename">Wonderment: Carrier Picked Up</div>
-                <div class="esub">Shipping notification</div>
-              </div>
-
-              <div class="ecard">
-                <div class="day-tag dt-wonder">Day 0–1</div>
-                <div class="ename">Wonderment: Out for Delivery</div>
-                <div class="esub">Shipping notification</div>
-              </div>
-
-              <div class="ecard">
-                <div class="day-tag dt-wonder">Day 1</div>
-                <div class="ename">Wonderment: Delivered</div>
-                <div class="esub">Delivery confirmation</div>
-              </div>
-
-              <div class="ecard leak" style="position:relative">
-                <div class="day-tag dt-welcome">Day 1</div>
-                <div class="ename">Welcome #2 — STILL FIRES</div>
-                <div class="esub">No order filter set</div>
-                <div class="enote warn">⚠️ Fires post-purchase — no filter</div>
-                <span class="cbadge">⚠️</span>
-              </div>
-
-              <div class="ecard suppressed">
-                <div class="day-tag dt-post">Day 3</div>
-                <div class="ename">Welcome #4 — SKIPPED ✅</div>
-                <div class="esub">Has order filter</div>
-                <div class="enote good">Correctly suppressed</div>
-              </div>
-
-              <div class="ecard leak" style="position:relative">
-                <div class="day-tag dt-welcome">Day 3</div>
-                <div class="ename">Welcome #5 — STILL FIRES</div>
-                <div class="esub">No order filter set</div>
-                <div class="enote warn">⚠️ Fires post-purchase — no filter</div>
-                <span class="cbadge">⚠️</span>
-              </div>
-
-              <div class="ecard">
-                <div class="day-tag dt-post">Day 7</div>
-                <div class="ename">Review Request</div>
-                <div class="esub">Email + SMS</div>
-              </div>
-
-              <div class="ecard">
-                <div class="day-tag dt-post">Day 10</div>
-                <div class="ename">Post-Purchase Batch 2</div>
-                <div class="esub">Multiple emails</div>
-              </div>
-
-              <div class="ecard">
-                <div class="day-tag dt-post">Day 24</div>
-                <div class="ename">Post-Purchase Batch 3</div>
-                <div class="esub">Multiple emails</div>
-              </div>
-
-            </div>
-          </div>
-
-        </div><!-- end branch-b-body -->
-      </div><!-- end branch-b-shell -->
-
-    </div><!-- end branches-grid -->
-  </div><!-- end journey-wrap -->
-
-  <!-- ─── BOTTOM: COLLISION + FIXES ─────────────────────────── -->
-  <div class="bottom-wrap">
-
-    <!-- COLLISION SUMMARY -->
-    <div class="info-box">
-      <div class="ibox-head red">⚠️ Collision Summary — Emails Landing Same Day</div>
-      <div class="ibox-body">
-
-        <div class="coll-row">
-          <div class="coll-day">Day 0 · Lead + Browse</div>
-          <div class="coll-desc">Welcome #1 + Browse #1</div>
-          <div class="coll-count cc-warn">2 emails</div>
         </div>
-
-        <div class="coll-row">
-          <div class="coll-day">Day 0 · Lead + Cart</div>
-          <div class="coll-desc">Welcome #1 + Cart #1</div>
-          <div class="coll-count cc-warn">2 emails</div>
-        </div>
-
-        <div class="coll-row">
-          <div class="coll-day">Day 0 · Lead + Checkout</div>
-          <div class="coll-desc">Welcome #1 + Checkout #1</div>
-          <div class="coll-count cc-warn">2 emails</div>
-        </div>
-
-        <div class="coll-row">
-          <div class="coll-day">Day 0 · Purchase</div>
-          <div class="coll-desc">Welcome #1 + Order Confirm ×3 + Wonderment ×1</div>
-          <div class="coll-count cc-crit">5 emails 🔴</div>
-        </div>
-
-        <div class="coll-row">
-          <div class="coll-day">Day 1 · Post-Purchase</div>
-          <div class="coll-desc">Wonderment (Delivered) + Welcome #2 (no order filter — still fires)</div>
-          <div class="coll-count cc-warn">2 emails</div>
-        </div>
-
-        <div class="coll-row">
-          <div class="coll-day">Day 3 · Post-Purchase</div>
-          <div class="coll-desc">Welcome #5 still fires — no order filter set</div>
-          <div class="coll-count cc-warn">+1 email</div>
-        </div>
-
       </div>
     </div>
 
-    <!-- RECOMMENDED FIXES -->
-    <div class="info-box">
-      <div class="ibox-head green">✅ Recommended Fixes</div>
-      <div class="ibox-body">
+    <!-- CALLOUT BOXES -->
+    <div class="callout-row">
+      <div class="callout-box">
+        <h3>⚠️ Collision Summary</h3>
+        <table class="callout-table">
+          <thead>
+            <tr>
+              <th>Day</th>
+              <th>Path</th>
+              <th>Emails</th>
+              <th>Severity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Day 0</td>
+              <td>Lead → Purchases</td>
+              <td>Welcome #1 + Order Confirm ×3 + Wonderment = 5+ emails</td>
+              <td class="severity-high">🔴 High</td>
+            </tr>
+            <tr>
+              <td>Day 0</td>
+              <td>Lead → Browse</td>
+              <td>Welcome #1 + Browse #1 (+1hr)</td>
+              <td class="severity-med">🟡 Med</td>
+            </tr>
+            <tr>
+              <td>Day 0</td>
+              <td>Lead → Cart</td>
+              <td>Welcome #1 + Cart #1 (+35min)</td>
+              <td class="severity-med">🟡 Med</td>
+            </tr>
+            <tr>
+              <td>Day 0</td>
+              <td>Lead → Checkout</td>
+              <td>Welcome #1 + Checkout #1 (+35min)</td>
+              <td class="severity-med">🟡 Med</td>
+            </tr>
+            <tr>
+              <td>Day 1</td>
+              <td>Post-purchase</td>
+              <td>Wonderment Delivered + Welcome #2 (no order filter)</td>
+              <td class="severity-med">🟡 Med</td>
+            </tr>
+            <tr>
+              <td>Day 4</td>
+              <td>Post-purchase</td>
+              <td>Welcome #5 fires — buyer gets "20% Off Ends Soon"</td>
+              <td class="severity-med">🟡 Med</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-        <div class="fix-row">
+      <div class="callout-box">
+        <h3>🔧 Recommended Fixes</h3>
+        <div class="fix-item">
           <div class="fix-num">1</div>
-          <div class="fix-text">Suppress Browse/Cart flow for <strong>2–4 hours after welcome send</strong> — Day 0 deduplication window</div>
+          <div>Suppress Browse/Cart flows for 2–4hrs after welcome send on Day 0 to prevent double-hitting new leads.</div>
         </div>
-
-        <div class="fix-row">
+        <div class="fix-item">
           <div class="fix-num">2</div>
-          <div class="fix-text">Add <strong>order filter to Welcome #2 and #5</strong> — both currently fire post-purchase with zero suppression</div>
+          <div>Add order filter to Welcome #2 and #5 — buyers shouldn't get brand intros or discount reminders post-purchase.</div>
         </div>
-
-        <div class="fix-row">
+        <div class="fix-item">
           <div class="fix-num">3</div>
-          <div class="fix-text">Move <strong>"Set Your Preferences"</strong> email out of Welcome and into the Post-Purchase flow where it belongs</div>
+          <div>Move "Set Your Preferences" email (currently Welcome #3 customer path) into Post-Purchase flow where it belongs.</div>
         </div>
-
-        <div class="fix-row">
+        <div class="fix-item">
           <div class="fix-num">4</div>
-          <div class="fix-text">Cap sale sends to leads <strong>&lt;21 days old / 0 orders — max 2 per sale event</strong></div>
+          <div>Cap campaign sends to leads &lt;21 days / 0 orders at max 2 per sale event — no AM+PM double sends.</div>
         </div>
-
       </div>
     </div>
 
-  </div><!-- end bottom-wrap -->
+  </div>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div>Liverpool LA — Lead Journey Map</div>
-    <div class="footer-divider"></div>
-    <div>Internal strategy document · DigitsUp · Last updated: April 2026</div>
-  </footer>
-
-</div><!-- end app -->
+  <footer>Liverpool LA — Internal Strategy Use Only · DigitsUp · April 2026</footer>
+</div>
 
 <script>
-  function checkPassword(e) {
-    e.preventDefault();
-    var input = document.getElementById('gate-input');
-    var error = document.getElementById('gate-error');
-    if (input.value === 'Liverpool2026') {
+  function checkPw() {
+    const v = document.getElementById('pw').value.trim();
+    if (v === 'Liverpool2026') {
       document.getElementById('gate').style.display = 'none';
-      var app = document.getElementById('app');
-      app.classList.add('visible');
+      document.getElementById('app').style.display = 'block';
     } else {
-      error.style.display = 'block';
-      input.value = '';
-      input.focus();
-      setTimeout(function() { error.style.display = 'none'; }, 3000);
+      document.getElementById('err').textContent = 'Incorrect password.';
+      document.getElementById('pw').value = '';
     }
   }
+  document.getElementById('pw').addEventListener('keydown', e => {
+    if (e.key === 'Enter') checkPw();
+  });
 </script>
-
 </body>
 </html>
