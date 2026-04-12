@@ -616,24 +616,31 @@
     <div class="findings">
       <ul>
         <li>
-          <div class="finding-icon">🔴</div>
+          <div class="finding-icon">✅</div>
           <div class="finding-text">
-            <strong>Welcome Email #1 is the #1 flow unsub driver (4x)</strong>
-            <p>Most likely driven by Day 1 collision — new subscribers getting Welcome + Browse Abandonment + possibly PP #1 in the same few hours. The welcome email itself is fine; the context it lands in isn't. Fix the Day 1 collision and this number should drop significantly.</p>
+            <strong>Welcome Email #1 (offer version) is NOT the problem — it's the collision context</strong>
+            <p>Normalized unsub rate: 4 unsubs / 4,005 sends = <strong>0.10%</strong>. The no-offer variant had 0 unsubs from 770 sends but that's a volume difference, not a content signal. All 4 unsubs happened on Day 0 — same session as signup. The email is fine. The problem is Browse Abandonment and/or Cart flows firing in the same session. Fix the Day 1 collision window, not the welcome email.</p>
           </div>
         </li>
         <li>
           <div class="finding-icon">🔴</div>
           <div class="finding-text">
-            <strong>Bronze loyalty email unsubs 2 new customers fast</strong>
-            <p>The loyalty "Email #1 Bronze" is firing for brand-new customers before they've established any relationship. An unsub on this email signals the timing is wrong — they don't feel like a loyalty member yet. Fix: Add a minimum days-since-first-purchase delay (suggest 14+ days) before Bronze flow entry.</p>
+            <strong>Bronze loyalty email is firing too early — 2 unsubs on Day 2</strong>
+            <p>New customers entering the Bronze loyalty flow within days of their first purchase don't feel like loyalty members yet. Both unsubs happened on Day 2. Fix: Add a minimum 14-day delay post-first-purchase before Bronze flow entry.</p>
           </div>
         </li>
         <li>
           <div class="finding-icon">🔴</div>
           <div class="finding-text">
-            <strong>The April sale run burned 7 new customers in 5 days</strong>
-            <p>Daily sale emails Apr 1–5 (plus an AM+PM double-send on Apr 5) drove 7 of 11 campaign unsubs from new customers. These are people who hadn't purchased yet and were still in their welcome journey. Fix: Suppress new customers (created &lt;30 days) from sale campaign sends, or limit to 2 sends max during a sale window.</p>
+            <strong>Campaign unsubs: 100% were non-purchasers — your exclusion logic has a gap</strong>
+            <p>All 11 campaign unsubs came from profiles with zero orders. Your current 24-day exclusion is order-triggered — it only protects buyers. Non-purchasers in an active welcome or abandoned checkout flow keep receiving every campaign blast with no suppression. The April 1–5 sale (5 daily sends + AM/PM double on Apr 5) hit these people hard — 7 of 11 campaign unsubs came from that single window. Fix: Add a segment suppressing profiles created &lt;21 days with 0 orders from campaign sends. Or at minimum cap to 2 sends per week for this group.</p>
+          </div>
+        </li>
+        <li>
+          <div class="finding-icon">✅</div>
+          <div class="finding-text">
+            <strong>Post-purchase flow is not a meaningful unsub driver</strong>
+            <p>Only 2 PP unsubs from new customers in 30 days. PP Email #1 unsub was Day 0 collision (not the email's fault). PP Email #3 Loyalty Rewards Reminder was Day 18 — low-level content fatigue, not a structural problem. No action needed on PP flow for now.</p>
           </div>
         </li>
       </ul>
