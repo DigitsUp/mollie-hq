@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liverpool LA — Flow Map</title>
+<style>
+  :root {
+    --bg: #0f0f0f;
+    --bg2: #181818;
+    --bg3: #222222;
+    --bg4: #2a2a2a;
+    --gold: #c8a96e;
+    --gold-dim: #a08550;
+    --gold-bg: rgba(200,169,110,0.08);
+    --gold-border: rgba(200,169,110,0.25);
+    --text: #e8e8e8;
+    --text-dim: #999;
+    --text-muted: #666;
+    --warn: #e8944a;
+    --warn-bg: rgba(232,148,74,0.1);
+    --warn-border: rgba(232,148,74,0.3);
+    --red: #d9534f;
+    --green: #5cb85c;
+    --border: #2a2a2a;
+
+    /* Category colors */
+    --cat-welcome: #7b9fc8;
+    --cat-abandon: #e07b7b;
+    --cat-pp: #7bc87b;
+    --cat-trans: #9b8fc8;
+    --cat-review: #c8c87b;
+    --cat-loyalty: #c8a96e;
+    --cat-winback: #e07b9b;
+    --cat-utility: #7bbac8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--gold-border);
+    padding: 24px 32px 20px;
+  }
+  .header-top {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .brand {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .header-sep {
+    color: var(--gold-dim);
+    font-size: 18px;
+  }
+  .header-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .header-count {
+    margin-left: auto;
+    background: var(--gold-bg);
+    border: 1px solid var(--gold-border);
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 32px;
+    display: flex;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    padding: 6px 24px 6px 0;
+    margin-right: 24px;
+    border-right: 1px solid var(--border);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-label {
+    font-size: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 2px;
+  }
+  .stat-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+  .stat-sub {
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  .stat-warn .stat-value { color: var(--warn); }
+
+  /* ── CONTROLS ── */
+  .controls {
+    padding: 20px 32px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 16px;
+  }
+  .filter-tabs {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .tab {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+    user-select: none;
+  }
+  .tab:hover { border-color: var(--gold-dim); color: var(--text); }
+  .tab.active {
+    background: var(--gold-bg);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+  .tab .count {
+    background: var(--bg4);
+    color: var(--text-muted);
+    border-radius: 10px;
+    padding: 0 6px;
+    font-size: 10px;
+    margin-left: 4px;
+  }
+  .tab.active .count {
+    background: rgba(200,169,110,0.2);
+    color: var(--gold-dim);
+  }
+
+  .search-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .search-wrap {
+    position: relative;
+    flex: 1;
+    max-width: 360px;
+  }
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 14px;
+    pointer-events: none;
+  }
+  .search-input {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 12px 8px 34px;
+    border-radius: 8px;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .search-input:focus { border-color: var(--gold-dim); }
+  .search-input::placeholder { color: var(--text-muted); }
+
+  .result-count {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* ── GRID ── */
+  .grid-wrap {
+    padding: 24px 32px 48px;
+  }
+  .flow-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 1100px) { .flow-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px)  { .flow-grid { grid-template-columns: 1fr; } }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-color 0.15s, transform 0.1s;
+    position: relative;
+    overflow: hidden;
+  }
+  .card:hover {
+    border-color: var(--gold-border);
+    transform: translateY(-1px);
+  }
+  .card.has-warning {
+    border-left: 3px solid var(--warn);
+  }
+  .card-hidden { display: none !important; }
+
+  /* category top stripe */
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--cat-color, var(--gold));
+    opacity: 0.6;
+  }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    justify-content: space-between;
+  }
+  .card-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+    flex: 1;
+  }
+  .cat-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* ── WARNING BADGE ── */
+  .warn-badge {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-border);
+    border-radius: 6px;
+    padding: 7px 10px;
+    font-size: 11px;
+    color: var(--warn);
+    line-height: 1.4;
+  }
+  .warn-icon { flex-shrink: 0; font-size: 12px; margin-top: 1px; }
+
+  /* ── META ROW ── */
+  .meta-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 3px 8px;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  .meta-pill .icon { font-size: 10px; }
+
+  /* ── EMAIL BAR ── */
+  .email-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .email-bar-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    min-width: 64px;
+  }
+  .email-bar-track {
+    flex: 1;
+    height: 5px;
+    background: var(--bg4);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .email-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: var(--cat-color, var(--gold));
+    opacity: 0.7;
+    min-width: 2px;
+  }
+  .email-bar-count {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text);
+    min-width: 20px;
+    text-align: right;
+  }
+
+  /* complexity badge */
+  .complexity {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 2px 7px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+  .cx-low    { background: rgba(92,184,92,0.12); color: #5cb85c; border: 1px solid rgba(92,184,92,0.25); }
+  .cx-med    { background: rgba(200,169,110,0.12); color: var(--gold); border: 1px solid var(--gold-border); }
+  .cx-high   { background: rgba(232,148,74,0.12); color: var(--warn); border: 1px solid var(--warn-border); }
+  .cx-vhigh  { background: rgba(217,83,79,0.12); color: var(--red); border: 1px solid rgba(217,83,79,0.3); }
+
+  /* ── CARD FOOTER ── */
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+  }
+  .flow-id {
+    font-size: 10px;
+    color: var(--text-muted);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    letter-spacing: 0.05em;
+  }
+  .trigger-label {
+    font-size: 10px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* ── EMPTY STATE ── */
+  .empty-state {
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+  }
+  .empty-state .big { font-size: 36px; margin-bottom: 12px; }
+  .empty-state p { font-size: 14px; }
+
+  /* ── SECTION DIVIDERS ── */
+  .section-header {
+    grid-column: 1/-1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0 4px;
+    margin-top: 8px;
+  }
+  .section-header:first-child { margin-top: 0; }
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg2); }
+  ::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--gold-dim); }
+
+  /* no results */
+  .no-results { display: none; }
+  .no-results.visible { display: block; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <span class="brand">Liverpool LA</span>
+    <span class="header-sep">|</span>
+    <span class="header-title">Flow Map</span>
+    <span class="header-count">35 Active Flows</span>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-label">Total Live Flows</div>
+    <div class="stat-value">35</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Total Emails</div>
+    <div class="stat-value">200+</div>
+    <div class="stat-sub">across all flows</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Highest Complexity</div>
+    <div class="stat-value" style="font-size:13px;padding-top:3px;">Rewards Monthly Update</div>
+    <div class="stat-sub">48 emails · 48 delays</div>
+  </div>
+  <div class="stat stat-warn">
+    <div class="stat-label">Collision Risk Flows</div>
+    <div class="stat-value">7</div>
+    <div class="stat-sub">flagged for review</div>
+  </div>
+</div>
+
+<!-- CONTROLS -->
+<div class="controls">
+  <div class="filter-tabs" id="filterTabs">
+    <div class="tab active" data-cat="all">All <span class="count" id="cnt-all">35</span></div>
+    <div class="tab" data-cat="welcome">Welcome <span class="count" id="cnt-welcome">3</span></div>
+    <div class="tab" data-cat="abandonment">Abandonment <span class="count" id="cnt-abandonment">4</span></div>
+    <div class="tab" data-cat="post-purchase">Post-Purchase <span class="count" id="cnt-post-purchase">3</span></div>
+    <div class="tab" data-cat="transactional">Transactional <span class="count" id="cnt-transactional">8</span></div>
+    <div class="tab" data-cat="reviews">Reviews <span class="count" id="cnt-reviews">2</span></div>
+    <div class="tab" data-cat="loyalty">Loyalty <span class="count" id="cnt-loyalty">12</span></div>
+    <div class="tab" data-cat="winback">Winback <span class="count" id="cnt-winback">1</span></div>
+    <div class="tab" data-cat="utility">Utility <span class="count" id="cnt-utility">1</span></div>
+  </div>
+  <div class="search-row">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input class="search-input" id="searchInput" type="text" placeholder="Search flows...">
+    </div>
+    <span class="result-count" id="resultCount">Showing 35 flows</span>
+  </div>
+</div>
+
+<!-- GRID -->
+<div class="grid-wrap">
+  <div class="flow-grid" id="flowGrid">
+    <!-- Populated by JS -->
+  </div>
+</div>
+
+<script>
+const MAX_EMAILS = 48; // for bar scaling
+
+const CATEGORY_STYLES = {
+  'welcome':      { color: '#7b9fc8', label: 'Welcome',       bg: 'rgba(123,159,200,0.12)', border: 'rgba(123,159,200,0.3)' },
+  'abandonment':  { color: '#e07b7b', label: 'Abandonment',   bg: 'rgba(224,123,123,0.12)', border: 'rgba(224,123,123,0.3)' },
+  'post-purchase':{ color: '#7bc87b', label: 'Post-Purchase',  bg: 'rgba(123,200,123,0.12)', border: 'rgba(123,200,123,0.3)' },
+  'transactional':{ color: '#9b8fc8', label: 'Transactional', bg: 'rgba(155,143,200,0.12)', border: 'rgba(155,143,200,0.3)' },
+  'reviews':      { color: '#c8c87b', label: 'Reviews',        bg: 'rgba(200,200,123,0.12)', border: 'rgba(200,200,123,0.3)' },
+  'loyalty':      { color: '#c8a96e', label: 'Loyalty',        bg: 'rgba(200,169,110,0.12)', border: 'rgba(200,169,110,0.3)' },
+  'winback':      { color: '#e07b9b', label: 'Winback',        bg: 'rgba(224,123,155,0.12)', border: 'rgba(224,123,155,0.3)' },
+  'utility':      { color: '#7bbac8', label: 'Utility',        bg: 'rgba(123,186,200,0.12)', border: 'rgba(123,186,200,0.3)' },
+};
+
+const TRIGGER_ICONS = {
+  'Added to List': '📋',
+  'Metric': '⚡',
+  'Date Based': '📅',
+  'Price Drop': '💲',
+};
+
+function complexityClass(emails, branches, delays) {
+  const score = emails + (branches * 1.5) + delays;
+  if (emails >= 40 || score >= 60) return { cls: 'cx-vhigh', label: 'V.High' };
+  if (emails >= 13 || score >= 35) return { cls: 'cx-high',  label: 'High' };
+  if (emails >= 5  || score >= 12) return { cls: 'cx-med',   label: 'Medium' };
+  return { cls: 'cx-low', label: 'Low' };
+}
+
+const flows = [
+  // ── WELCOME ──
+  {
+    id: 'UaeNDJ', name: 'Welcome Series - Email 2026', cat: 'welcome',
+    trigger: 'Added to List', emails: 19, delays: 14, branches: 8,
+    note: 'PRIMARY active welcome flow',
+    warning: 'Day 1 collision risk: fires same session as Browse + Cart flows',
+    primary: true,
+  },
+  {
+    id: 'TFmENC', name: 'Welcome Series - Liverpool Ecommerce Customers', cat: 'welcome',
+    trigger: 'Added to List', emails: 5, delays: 2, branches: 2,
+  },
+  {
+    id: 'TTCMYU', name: 'Welcome Series - SMS 2026', cat: 'welcome',
+    trigger: 'Added to List', emails: 0, delays: 5, branches: 4,
+    note: 'SMS only (0 emails)',
+  },
+
+  // ── ABANDONMENT ──
+  {
+    id: 'XBuiBy', name: 'Abandoned Checkout 2025', cat: 'abandonment',
+    trigger: 'Metric', emails: 15, delays: 19, branches: 11,
+    warning: 'Day 1 collision risk: overlaps with welcome on Day 1',
+  },
+  {
+    id: 'Sku3EU', name: 'Added2Cart 2025', cat: 'abandonment',
+    trigger: 'Metric', emails: 17, delays: 18, branches: 13,
+    warning: 'Day 1 collision risk: overlaps with welcome email on Day 1-2',
+  },
+  {
+    id: 'U9NPLQ', name: 'Browse Abandonment', cat: 'abandonment',
+    trigger: 'Metric', emails: 8, delays: 11, branches: 10,
+    warning: 'Day 1 collision risk: fires same session as welcome',
+  },
+  {
+    id: 'RMV7GT', name: 'Abandoned Site - Concierge', cat: 'abandonment',
+    trigger: 'Metric', emails: 7, delays: 8, branches: 13,
+  },
+
+  // ── POST-PURCHASE ──
+  {
+    id: 'Txm9QN', name: 'Post-Purchase Optimization', cat: 'post-purchase',
+    trigger: 'Metric', emails: 13, delays: 20, branches: 16,
+    note: 'PRIMARY PP flow · Placed Order',
+    warning: 'PP Email #1 Day 0 collision with order confirm + shipment',
+    primary: true,
+  },
+  {
+    id: 'W7qbs5', name: 'Order Confirmation - Standard', cat: 'post-purchase',
+    trigger: 'Metric', emails: 3, delays: 0, branches: 0,
+  },
+  {
+    id: 'VJhbbJ', name: 'SMS Post Purchase', cat: 'post-purchase',
+    trigger: 'Metric', emails: 1, delays: 2, branches: 3,
+    note: 'SMS + 1 email',
+  },
+
+  // ── TRANSACTIONAL ──
+  {
+    id: 'UmGySz', name: '01 Wonderment - Shipment Created', cat: 'transactional',
+    trigger: 'Metric', emails: 1, delays: 0, branches: 0,
+  },
+  {
+    id: 'TsNDQA', name: '02 Wonderment - Carrier Picked Up', cat: 'transactional',
+    trigger: 'Metric', emails: 1, delays: 0, branches: 0,
+  },
+  {
+    id: 'UViKZR', name: '03 Wonderment - Out for Delivery', cat: 'transactional',
+    trigger: 'Metric', emails: 1, delays: 1, branches: 0,
+  },
+  {
+    id: 'V9LLVS', name: '04 Wonderment - Delivered', cat: 'transactional',
+    trigger: 'Metric', emails: 1, delays: 0, branches: 0,
+  },
+  {
+    id: 'WKSDBN', name: '05 Wonderment - Stalled Shipment', cat: 'transactional',
+    trigger: 'Metric', emails: 1, delays: 1, branches: 0,
+  },
+  {
+    id: 'UPrVib', name: '06 Wonderment - Attempted Delivery', cat: 'transactional',
+    trigger: 'Metric', emails: 1, delays: 1, branches: 0,
+  },
+  {
+    id: 'TxnPUq', name: '07 Wonderment - Returned to Sender', cat: 'transactional',
+    trigger: 'Metric', emails: 0, delays: 0, branches: 0,
+  },
+  {
+    id: 'W9Q6fv', name: '00 Wonderment - Delayed Fulfillment', cat: 'transactional',
+    trigger: 'Metric', emails: 1, delays: 1, branches: 0,
+  },
+
+  // ── REVIEWS ──
+  {
+    id: 'U2dLmh', name: 'Review Request (email + SMS)', cat: 'reviews',
+    trigger: 'Metric', emails: 2, delays: 1, branches: 1,
+  },
+  {
+    id: 'UnqAh2', name: 'Review Follow-up', cat: 'reviews',
+    trigger: 'Metric', emails: 2, delays: 0, branches: 3,
+  },
+
+  // ── LOYALTY ──
+  {
+    id: 'SVQrRs', name: 'Toki - Tier Earned - Points Reward', cat: 'loyalty',
+    trigger: 'Metric', emails: 3, delays: 5, branches: 7,
+    warning: 'Fires too early for new customers (Day 2 unsub driver)',
+  },
+  {
+    id: 'T6CDDw', name: 'Toki - Referral Share', cat: 'loyalty',
+    trigger: 'Metric', emails: 1, delays: 0, branches: 1,
+  },
+  {
+    id: 'VQkRVm', name: 'Toki - Referral Completed - Points Reward', cat: 'loyalty',
+    trigger: 'Metric', emails: 2, delays: 0, branches: 1,
+  },
+  {
+    id: 'SRnA4P', name: 'Toki - Leave a Review', cat: 'loyalty',
+    trigger: 'Metric', emails: 0, delays: 0, branches: 0,
+  },
+  {
+    id: 'TuAi3T', name: 'Rewards Point Reminder', cat: 'loyalty',
+    trigger: 'Added to List', emails: 7, delays: 5, branches: 9,
+  },
+  {
+    id: 'RrYn5s', name: 'Rewards Expiry - Toki', cat: 'loyalty',
+    trigger: 'Date Based', emails: 3, delays: 2, branches: 5,
+  },
+  {
+    id: 'Ybbjin', name: 'Rewards Monthly Update - Ordered', cat: 'loyalty',
+    trigger: 'Metric', emails: 48, delays: 48, branches: 5,
+    warning: '48-email flow: review for redundancy',
+  },
+  {
+    id: 'X6yG6M', name: 'VIP $500+ Series', cat: 'loyalty',
+    trigger: 'Metric', emails: 4, delays: 6, branches: 4,
+  },
+  {
+    id: 'MxcX8m', name: 'Back In Stock Flow - VIP vs. Non-VIP', cat: 'loyalty',
+    trigger: 'Metric', emails: 7, delays: 7, branches: 9,
+  },
+  {
+    id: 'VuHP8F', name: 'Price Drop Notification', cat: 'loyalty',
+    trigger: 'Price Drop', emails: 3, delays: 4, branches: 5,
+  },
+  {
+    id: 'UkgyH8', name: 'Wish List Toki', cat: 'loyalty',
+    trigger: 'Metric', emails: 4, delays: 3, branches: 0,
+  },
+  {
+    id: 'R4BczB', name: 'Birthday Series 2025 - Toki', cat: 'loyalty',
+    trigger: 'Date Based', emails: 9, delays: 6, branches: 14,
+  },
+  {
+    id: 'TTZnxD', name: 'Birthday - PostPilot Webhook', cat: 'loyalty',
+    trigger: 'Date Based', emails: 0, delays: 0, branches: 0,
+  },
+
+  // ── WINBACK ──
+  {
+    id: 'XwcDKX', name: 'Win-back 2026', cat: 'winback',
+    trigger: 'Added to List', emails: 16, delays: 27, branches: 26,
+  },
+
+  // ── UTILITY ──
+  {
+    id: 'Siebhr', name: 'Email Pause Flow', cat: 'utility',
+    trigger: 'Added to List', emails: 0, delays: 2, branches: 1,
+  },
+];
+
+function buildCard(flow) {
+  const cat = CATEGORY_STYLES[flow.cat] || CATEGORY_STYLES['utility'];
+  const cx = complexityClass(flow.emails, flow.branches, flow.delays);
+  const triggerIcon = TRIGGER_ICONS[flow.trigger] || '🔗';
+  const barPct = Math.min(100, Math.round((flow.emails / MAX_EMAILS) * 100));
+
+  const warnHtml = flow.warning
+    ? `<div class="warn-badge"><span class="warn-icon">⚠️</span><span>${flow.warning}</span></div>`
+    : '';
+
+  const noteHtml = flow.note
+    ? `<div style="font-size:10px;color:#888;padding:2px 0;">${flow.note}</div>`
+    : '';
+
+  const card = document.createElement('div');
+  card.className = `card${flow.warning ? ' has-warning' : ''}`;
+  card.dataset.cat = flow.cat;
+  card.dataset.name = flow.name.toLowerCase();
+  card.style.setProperty('--cat-color', cat.color);
+
+  card.innerHTML = `
+    <div class="card-top">
+      <div class="card-name">${flow.name}</div>
+      <span class="cat-badge" style="background:${cat.bg};border:1px solid ${cat.border};color:${cat.color};">${cat.label}</span>
+    </div>
+    ${noteHtml}
+    ${warnHtml}
+    <div class="email-bar-wrap">
+      <div class="email-bar-label">✉️ Emails</div>
+      <div class="email-bar-track">
+        <div class="email-bar-fill" style="width:${barPct}%"></div>
+      </div>
+      <div class="email-bar-count">${flow.emails}</div>
+    </div>
+    <div class="meta-row">
+      <div class="meta-pill"><span class="icon">⏳</span>${flow.delays} delays</div>
+      <div class="meta-pill"><span class="icon">🔀</span>${flow.branches} branches</div>
+      <span class="complexity ${cx.cls}">${cx.label}</span>
+    </div>
+    <div class="card-footer">
+      <div class="flow-id">ID: ${flow.id}</div>
+      <div class="trigger-label">${triggerIcon} ${flow.trigger}</div>
+    </div>
+  `;
+  return card;
+}
+
+// Group flows by category for section headers
+const SECTIONS = [
+  { key: 'welcome',       label: 'Welcome / Acquisition' },
+  { key: 'abandonment',   label: 'Abandonment' },
+  { key: 'post-purchase', label: 'Post-Purchase' },
+  { key: 'transactional', label: 'Transactional / Shipping (Wonderment)' },
+  { key: 'reviews',       label: 'Reviews' },
+  { key: 'loyalty',       label: 'Loyalty / Rewards (Toki)' },
+  { key: 'winback',       label: 'Winback / Retention' },
+  { key: 'utility',       label: 'Utility' },
+];
+
+const grid = document.getElementById('flowGrid');
+const cardEls = [];
+
+function buildGrid() {
+  grid.innerHTML = '';
+  SECTIONS.forEach(sec => {
+    const catStyle = CATEGORY_STYLES[sec.key];
+    const secEl = document.createElement('div');
+    secEl.className = 'section-header';
+    secEl.dataset.section = sec.key;
+    secEl.innerHTML = `
+      <div class="section-line"></div>
+      <div class="section-label" style="color:${catStyle.color}">${sec.label}</div>
+      <div class="section-line"></div>
+    `;
+    grid.appendChild(secEl);
+
+    flows.filter(f => f.cat === sec.key).forEach(flow => {
+      const card = buildCard(flow);
+      grid.appendChild(card);
+      cardEls.push({ el: card, flow });
+    });
+  });
+
+  // empty state
+  const emptyEl = document.createElement('div');
+  emptyEl.className = 'empty-state no-results';
+  emptyEl.id = 'emptyState';
+  emptyEl.innerHTML = '<div class="big">🔍</div><p>No flows match your search.</p>';
+  grid.appendChild(emptyEl);
+}
+
+buildGrid();
+
+// ── FILTERING ──
+let activeFilter = 'all';
+let searchQuery = '';
+
+function applyFilters() {
+  let visible = 0;
+  let sectionHasVisible = {};
+
+  cardEls.forEach(({ el, flow }) => {
+    const catMatch = activeFilter === 'all' || flow.cat === activeFilter;
+    const nameMatch = !searchQuery || flow.name.toLowerCase().includes(searchQuery);
+    const show = catMatch && nameMatch;
+    el.classList.toggle('card-hidden', !show);
+    if (show) {
+      visible++;
+      sectionHasVisible[flow.cat] = true;
+    }
+  });
+
+  // show/hide section headers
+  document.querySelectorAll('.section-header').forEach(sec => {
+    const key = sec.dataset.section;
+    sec.style.display = sectionHasVisible[key] ? '' : 'none';
+  });
+
+  const emptyState = document.getElementById('emptyState');
+  emptyState.classList.toggle('visible', visible === 0);
+  emptyState.style.display = visible === 0 ? 'block' : 'none';
+
+  document.getElementById('resultCount').textContent =
+    `Showing ${visible} flow${visible !== 1 ? 's' : ''}`;
+}
+
+// Tab clicks
+document.getElementById('filterTabs').addEventListener('click', e => {
+  const tab = e.target.closest('.tab');
+  if (!tab) return;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  activeFilter = tab.dataset.cat;
+  applyFilters();
+});
+
+// Search
+document.getElementById('searchInput').addEventListener('input', e => {
+  searchQuery = e.target.value.trim().toLowerCase();
+  applyFilters();
+});
+
+applyFilters();
+</script>
+</body>
+</html>
