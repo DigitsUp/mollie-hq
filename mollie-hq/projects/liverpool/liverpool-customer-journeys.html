@@ -406,6 +406,178 @@
     font-size: 11px; color: var(--text3);
   }
 
+  /* ─── SUBSCRIPTION BADGES ─────────────────────────── */
+  .sub-badge {
+    display: inline-flex; align-items: center;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.08em;
+    border-radius: 4px; padding: 2px 6px;
+    margin-left: 8px; vertical-align: middle;
+    cursor: default; white-space: nowrap;
+  }
+  .sub-badge.subscribed {
+    background: rgba(34,197,94,0.15); color: #4ade80;
+    border: 1px solid rgba(34,197,94,0.3);
+  }
+  .sub-badge.never-subscribed {
+    background: rgba(245,158,11,0.15); color: #fbbf24;
+    border: 1px solid rgba(245,158,11,0.3);
+  }
+
+  /* ─── PROFILE NOTE ───────────────────────────────── */
+  .profile-note {
+    margin: 0 20px 14px;
+    background: rgba(239,68,68,0.06);
+    border: 1px solid rgba(239,68,68,0.2);
+    border-left: 3px solid var(--red);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 12px; color: var(--text2); line-height: 1.55;
+  }
+  .profile-note strong { color: var(--text); }
+
+  /* ─── TRACK DIVIDER ROW ──────────────────────────── */
+  .track-divider-row td {
+    background: rgba(249,115,22,0.08) !important;
+    border-top: 2px dashed rgba(249,115,22,0.45) !important;
+    border-bottom: 2px dashed rgba(249,115,22,0.45) !important;
+    padding: 9px 12px;
+    text-align: center;
+  }
+  .track-divider-label {
+    font-size: 11px; font-weight: 700;
+    color: #fb923c; letter-spacing: 0.03em;
+  }
+
+  /* ─── CUSTOMER JOURNEY SECTION ───────────────────── */
+  .journey-section {
+    margin-bottom: 40px;
+  }
+  .journey-section .section-title {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--text3); margin-bottom: 8px;
+    padding-bottom: 8px; border-bottom: 1px solid var(--border);
+  }
+  .journey-headline {
+    font-size: 18px; font-weight: 700; color: var(--text);
+    margin-bottom: 6px;
+  }
+  .journey-desc {
+    font-size: 13px; color: var(--text2); margin-bottom: 22px; line-height: 1.6;
+  }
+
+  /* Phase strip */
+  .journey-phases {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    overflow-x: auto;
+    margin-bottom: 14px;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+  }
+  .journey-phase {
+    flex: 1; min-width: 200px;
+    background: var(--phase-bg);
+    border: 1px solid var(--phase-border);
+    border-radius: 12px;
+    padding: 16px 14px;
+  }
+  .phase-num {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--phase-c); margin-bottom: 3px;
+  }
+  .phase-title {
+    font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 2px;
+    line-height: 1.2;
+  }
+  .phase-timing {
+    font-size: 10px; color: var(--text3); margin-bottom: 12px; line-height: 1.4;
+    border-bottom: 1px solid var(--phase-border); padding-bottom: 8px;
+  }
+  .phase-steps {
+    list-style: none; padding: 0; display: flex; flex-direction: column; gap: 5px;
+  }
+  .phase-steps li {
+    font-size: 11px; color: var(--text2); line-height: 1.4;
+    display: flex; gap: 6px; align-items: flex-start;
+  }
+  .step-day {
+    font-size: 9px; font-weight: 700; color: var(--phase-c);
+    border-radius: 3px; padding: 1px 5px;
+    white-space: nowrap; flex-shrink: 0; margin-top: 1px;
+    border: 1px solid var(--phase-border);
+  }
+  .step-note {
+    font-size: 10px; color: var(--text3); font-style: italic;
+    display: block; margin-top: 3px; line-height: 1.4;
+  }
+  .step-exit {
+    font-size: 10px; font-weight: 700; color: #fb923c;
+    background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.25);
+    border-radius: 4px; padding: 5px 8px; margin-top: 6px;
+    display: flex; align-items: center; gap: 4px;
+  }
+
+  /* Phase connector arrow */
+  .phase-connector {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    flex-shrink: 0; width: 36px; gap: 4px; padding: 0 2px;
+  }
+  .connector-arrow {
+    font-size: 16px; color: var(--border2); line-height: 1;
+  }
+  .connector-label {
+    font-size: 9px; color: var(--text3); text-align: center;
+    writing-mode: vertical-rl; transform: rotate(180deg);
+    white-space: nowrap; letter-spacing: 0.05em;
+  }
+
+  /* Campaign eligibility Gantt */
+  .journey-gantt-wrap {
+    margin-bottom: 16px;
+  }
+  .gantt-label {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--text3); margin-bottom: 6px;
+  }
+  .gantt-bars {
+    display: flex; gap: 3px; height: 32px;
+  }
+  .gantt-bar {
+    border-radius: 4px; padding: 0 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 600; text-align: center;
+    white-space: nowrap; overflow: hidden;
+    min-width: 0;
+  }
+  .gantt-bar span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .gantt-suppressed-partial {
+    background: rgba(203,213,225,0.07); border: 1px solid rgba(203,213,225,0.15);
+    color: var(--text3); flex: 7;
+  }
+  .gantt-suppressed-hard {
+    background: var(--red-dim); border: 1px solid rgba(239,68,68,0.3);
+    color: var(--red); flex: 3;
+  }
+  .gantt-eligible-limited {
+    background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2);
+    color: #4ade80; flex: 5;
+  }
+  .gantt-eligible-full {
+    background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.35);
+    color: #4ade80; flex: 15;
+  }
+
+  /* Journey legend */
+  .journey-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 18px;
+    font-size: 11px; color: var(--text2);
+    padding: 12px 0 0;
+  }
+  .jleg-item { display: flex; align-items: center; gap: 5px; }
+  .jleg-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+  .jleg-box { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
   /* ─── RESPONSIVE ─────────────────────────────────────── */
   @media (max-width: 600px) {
     .container { padding: 16px; }
@@ -413,6 +585,16 @@
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
     .profile-email { font-size: 12px; }
     .gate-box { padding: 36px 24px; margin: 16px; }
+  }
+  @media (max-width: 768px) {
+    .journey-phases { flex-direction: column; }
+    .phase-connector { flex-direction: row; width: 100%; height: 28px; }
+    .connector-arrow { writing-mode: horizontal-tb; transform: none; font-size: 14px; }
+    .connector-label { writing-mode: horizontal-tb; transform: none; }
+    .gantt-bars { flex-direction: column; height: auto; }
+    .gantt-bar { height: 28px; flex: none !important; }
+    .gantt-suppressed-partial, .gantt-suppressed-hard,
+    .gantt-eligible-limited, .gantt-eligible-full { flex: none; }
   }
 </style>
 </head>
@@ -495,6 +677,16 @@
         <div class="stat-value" style="font-size:14px;color:var(--text)">PP + Wonderment</div>
         <div class="stat-note">Fire independently · no cap between them</div>
       </div>
+      <div class="stat-card">
+        <div class="stat-label">Still Subscribed</div>
+        <div class="stat-value ok">8 / 10</div>
+        <div class="stat-note">susanneff5 + jbee57 are NEVER_SUBSCRIBED</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Track Overlap Issues</div>
+        <div class="stat-value alert">2 profiles</div>
+        <div class="stat-note">cforce + maura: Order 1 &amp; Order 2 PP tracks ran simultaneously</div>
+      </div>
     </div>
 
     <!-- Key Finding Bar -->
@@ -520,6 +712,8 @@
           <li><strong>Apr 5 double-send visible</strong> — both leads received AM + PM sends on the same day during the sale event.</li>
           <li><strong>Loyalty Tier duplicate</strong> — andreakmcdaniels received Email #2 Silver twice on Day 2 (flow trigger bug).</li>
           <li><strong>SMS Recruiter fires mid-PP series</strong> — adds 1–2 emails at Days 14–15 when customer is still in active post-purchase nurture.</li>
+          <li><strong>Track overlap: New Customer PP track doesn't exit on 2nd purchase</strong> — cforce received emails from BOTH the New Customer PP series AND the Returning Customer series after her Day 11 order. She got New Customer PP #2, #3, #4 (Days 18, 23, 28) while also receiving Returning Customer PP emails. Same pattern for maura (2nd order Day 1). Recommended fix: when a customer places a 2nd order, suppress remaining emails in the New Customer PP track and let the Order 2 track take over completely.</li>
+          <li><strong>2 profiles flagged NEVER_SUBSCRIBED</strong> — susanneff5 and jbee57 received emails but never formally opted in. Data quality flag that warrants a Klaviyo audit of opt-in source.</li>
         </ol>
       </div>
       <div class="callout callout-recs">
@@ -530,11 +724,155 @@
           <li><strong>Fix Loyalty Tier duplicate trigger</strong> — andreakmcdaniels received Silver tier email twice on Day 2.</li>
           <li><strong>Consolidate Review request + reminder</strong> — currently fires as separate standalone emails across 2 different days; combine into a single 2-touch mini-flow.</li>
           <li><strong>Delay SMS Recruiter until after PP series completes</strong> — move to Day 30+ so it doesn't stack mid-nurture.</li>
+          <li><strong>Exit New Customer PP track on 2nd purchase</strong> — when a customer places a 2nd order, immediately suppress remaining sends in the New Customer PP track (Order = 1). The Order 2 track should take over completely. Running both tracks simultaneously creates inbox overlap and sends conflicting messages (e.g., "Come Back" incentive while they're already back and buying). Klaviyo implementation: add a flow filter to New Customer PP — "Number of Orders = 1" checked at send time, not just at entry.</li>
+          <li><strong>Track architecture clarity — 3 distinct tracks, 3 distinct audiences</strong> — Liverpool has 3 PP tracks: Order 1 (new customers), Order 2 (returning), Order 2+ (repeat buyers). These should be mutually exclusive at all times. Add Klaviyo flow filters so each track checks order count at every send step, not just at flow entry. This prevents stale flows from continuing after a customer's behavior changes.</li>
         </ol>
       </div>
     </div>
 
-  </div>
+    <!-- ─── MOCK CUSTOMER JOURNEY ─────────────────────── -->
+    <div class="journey-section">
+      <div class="section-title">Ideal Customer Journey</div>
+      <div class="journey-headline">The Ideal Customer Journey — How It Should Flow</div>
+      <div class="journey-desc">This is what a well-architected Liverpool LA lifecycle looks like — from first signup to loyal repeat buyer. Tracks are mutually exclusive. Exits fire on behavior. Campaign frequency adapts to where the customer is in their journey.</div>
+
+      <!-- Phase strip -->
+      <div class="journey-phases">
+
+        <!-- Phase 1 -->
+        <div class="journey-phase" style="--phase-c:#8b5cf6;--phase-bg:rgba(139,92,246,0.07);--phase-border:rgba(139,92,246,0.2)">
+          <div class="phase-num">Phase 1</div>
+          <div class="phase-title">Pre-Purchase</div>
+          <div class="phase-timing">Day 0–7 · Trigger: Email signup (no order yet)</div>
+          <ul class="phase-steps">
+            <li><span class="step-day">D0</span><span>Welcome Email #1 (offer or no-offer variant by signup source)</span></li>
+            <li><span class="step-day">D0+2h</span><span>Browse flow eligible <span class="step-note">Suppress if welcome sent within 2h</span></span></li>
+            <li><span class="step-day">D1</span><span>Welcome Email #2</span></li>
+            <li><span class="step-day">D3</span><span>Welcome Email #3 <span class="step-note">If no purchase yet. Campaigns eligible from D3, max 2/week. Sale events: max 2 total for profiles &lt;14 days, 0 orders.</span></span></li>
+            <li><span class="step-day">D5</span><span>Welcome reminder <span class="step-note">If no purchase</span></span></li>
+            <li><span class="step-day">D7</span><span>Last chance incentive <span class="step-note">If no purchase. Cart abandonment eligible immediately — suppress if welcome sent within 1h.</span></span></li>
+          </ul>
+        </div>
+
+        <div class="phase-connector">
+          <div class="connector-arrow">→</div>
+          <div class="connector-label">1st Order</div>
+        </div>
+
+        <!-- Phase 2 -->
+        <div class="journey-phase" style="--phase-c:#f97316;--phase-bg:rgba(249,115,22,0.07);--phase-border:rgba(249,115,22,0.2)">
+          <div class="phase-num">Phase 2</div>
+          <div class="phase-title">First Purchase</div>
+          <div class="phase-timing">Day 0 of order · Trigger: First order placed</div>
+          <ul class="phase-steps">
+            <li><span class="step-day">D0</span><span>Order Confirmation <span class="step-note">Transactional — always sends</span></span></li>
+            <li><span class="step-day">D0</span><span>Welcome flow EXITS <span class="step-note">Suppress remaining welcome emails</span></span></li>
+            <li><span class="step-day">D0</span><span>Wonderment // Shipment Created <span class="step-note">When label printed</span></span></li>
+            <li><span class="step-day">+2d</span><span>Wonderment updates <span class="step-note">Carrier Pickup → Out for Delivery → Delivered. Cap: 3 Wonderment emails per order.</span></span></li>
+            <li><span class="step-day">+2d</span><span>PP Email #1 — Thank You + Fit Confidence <span class="step-note">New Customer track begins</span></span></li>
+            <li><span class="step-day">+2d+24h</span><span>Loyalty Bronze email <span class="step-note">If enrolled. 24h delay after PP #1.</span></span></li>
+          </ul>
+          <div class="step-exit">⏸ Campaigns PAUSED Days 0–14. Resume D15+ at max 2/week.</div>
+        </div>
+
+        <div class="phase-connector">
+          <div class="connector-arrow">→</div>
+          <div class="connector-label">PP Nurture</div>
+        </div>
+
+        <!-- Phase 3 -->
+        <div class="journey-phase" style="--phase-c:#22c55e;--phase-bg:rgba(34,197,94,0.07);--phase-border:rgba(34,197,94,0.2)">
+          <div class="phase-num">Phase 3</div>
+          <div class="phase-title">Post-Purchase Nurture</div>
+          <div class="phase-timing">Days 1–30 · Flow: Order 1 track · Exit: 2nd order placed</div>
+          <ul class="phase-steps">
+            <li><span class="step-day">D0</span><span>PP #1 — Thank You + Fit Confidence</span></li>
+            <li><span class="step-day">D12</span><span>PP #2 — Come Back Incentive <span class="step-note">Check: still Order 1 at send time</span></span></li>
+            <li><span class="step-day">D14</span><span>SMS Recruiter <span class="step-note">Delay to D21+ recommended</span></span></li>
+            <li><span class="step-day">D17</span><span>PP #3 — Loyalty Rewards Reminder <span class="step-note">Check order count at send</span></span></li>
+            <li><span class="step-day">D20</span><span>Points Reminder #1 <span class="step-note">Currently D16 — delay recommended</span></span></li>
+            <li><span class="step-day">D22</span><span>PP #4 — Social Connect + Giveaway <span class="step-note">Check order count</span></span></li>
+            <li><span class="step-day">D24</span><span>Review Request <span class="step-note">Consolidate request + reminder into single send</span></span></li>
+            <li><span class="step-day">D26</span><span>PP #5 — Come Back Incentive Reminder <span class="step-note">Check order count — if repurchased, skip</span></span></li>
+            <li><span class="step-day">D29</span><span>Rewards Recap Month 1</span></li>
+          </ul>
+          <div class="step-exit">🔄 2nd order placed? → Immediately exit Order 1 track → Enter Phase 4</div>
+        </div>
+
+        <div class="phase-connector">
+          <div class="connector-arrow">→</div>
+          <div class="connector-label">2nd Order</div>
+        </div>
+
+        <!-- Phase 4 -->
+        <div class="journey-phase" style="--phase-c:#3b82f6;--phase-bg:rgba(59,130,246,0.07);--phase-border:rgba(59,130,246,0.2)">
+          <div class="phase-num">Phase 4</div>
+          <div class="phase-title">Second Purchase</div>
+          <div class="phase-timing">Day 0 of 2nd order · Flow: Order 2 track · Replaces Order 1 completely</div>
+          <ul class="phase-steps">
+            <li><span class="step-day">D0</span><span>Order Confirmation <span class="step-note">Transactional</span></span></li>
+            <li><span class="step-day">D0</span><span>Wonderment // Shipment Created</span></li>
+            <li><span class="step-day">+1d</span><span>PP #1 — "Back for Seconds" Thank You <span class="step-note">Returning Customer track</span></span></li>
+            <li><span class="step-day">+13d</span><span>PP #2 — Cross-Sell + Style Pairing</span></li>
+            <li><span class="step-day">+20d</span><span>PP #3 — New Arrivals (Returning Customer)</span></li>
+            <li><span class="step-day">+10d</span><span>Review request for this order <span class="step-note">10 days after delivery</span></span></li>
+          </ul>
+          <div class="step-exit" style="color:#60a5fa;background:rgba(59,130,246,0.1);border-color:rgba(59,130,246,0.25)">✅ Campaigns resume at normal cadence — returning customers have demonstrated intent.</div>
+        </div>
+
+        <div class="phase-connector">
+          <div class="connector-arrow">→</div>
+          <div class="connector-label">Order 3+</div>
+        </div>
+
+        <!-- Phase 5 -->
+        <div class="journey-phase" style="--phase-c:#c9a84c;--phase-bg:rgba(201,168,76,0.07);--phase-border:rgba(201,168,76,0.22)">
+          <div class="phase-num">Phase 5</div>
+          <div class="phase-title">Repeat Buyer / Loyal</div>
+          <div class="phase-timing">Order 3+ · Flow: Order 2+ track · Goal: LTV</div>
+          <ul class="phase-steps">
+            <li><span class="step-day">Each order</span><span>Wonderment flow per order <span class="step-note">3 email cap maintained</span></span></li>
+            <li><span class="step-day">PP</span><span>Loyalty, VIP perks, referral focused sequence</span></li>
+            <li><span class="step-day">Points</span><span>Reminders only if points unclaimed 30+ days</span></li>
+            <li><span class="step-day">Tier emails</span><span>Silver / Gold as earned</span></li>
+            <li><span class="step-day">Campaigns</span><span>Full eligibility — no suppression</span></li>
+          </ul>
+          <div class="step-exit" style="color:var(--gold);background:rgba(201,168,76,0.1);border-color:rgba(201,168,76,0.3)">⭐ These customers are advocates. No frequency caps — they've opted in with their wallet.</div>
+        </div>
+
+      </div><!-- end journey-phases -->
+
+      <!-- Campaign Eligibility Gantt -->
+      <div class="journey-gantt-wrap">
+        <div class="gantt-label">Campaign Eligibility Timeline</div>
+        <div class="gantt-bars">
+          <div class="gantt-bar gantt-suppressed-hard" title="Days 0–14: Campaigns suppressed for new customers">
+            <span>🚫 D0–14 Suppressed (New Customer)</span>
+          </div>
+          <div class="gantt-bar gantt-eligible-limited" title="Days 15–29: Eligible, max 2/week. Sale events: max 2 total.">
+            <span>⚡ D15–29 Limited (2/wk)</span>
+          </div>
+          <div class="gantt-bar gantt-eligible-full" title="Day 30+: Full eligibility for returning customers">
+            <span>✅ D30+ Full Eligibility (Returning)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Journey Legend -->
+      <div class="journey-legend">
+        <div class="jleg-item"><span class="jleg-box" style="background:rgba(139,92,246,0.3);border:1px solid rgba(139,92,246,0.4)"></span> Phase 1: Pre-Purchase</div>
+        <div class="jleg-item"><span class="jleg-box" style="background:rgba(249,115,22,0.3);border:1px solid rgba(249,115,22,0.4)"></span> Phase 2: First Purchase</div>
+        <div class="jleg-item"><span class="jleg-box" style="background:rgba(34,197,94,0.3);border:1px solid rgba(34,197,94,0.4)"></span> Phase 3: New Customer PP Nurture</div>
+        <div class="jleg-item"><span class="jleg-box" style="background:rgba(59,130,246,0.3);border:1px solid rgba(59,130,246,0.4)"></span> Phase 4: Returning Customer</div>
+        <div class="jleg-item"><span class="jleg-box" style="background:rgba(201,168,76,0.3);border:1px solid rgba(201,168,76,0.4)"></span> Phase 5: Loyal Repeat Buyer</div>
+        <div class="jleg-item"><span style="background:var(--red-dim);color:var(--red);border:1px solid rgba(239,68,68,0.3);border-radius:3px;padding:1px 6px;font-size:10px;font-weight:600">🚫</span> Campaign suppressed</div>
+        <div class="jleg-item"><span style="background:rgba(34,197,94,0.15);color:#4ade80;border:1px solid rgba(34,197,94,0.3);border-radius:3px;padding:1px 6px;font-size:10px;font-weight:600">✅</span> Campaign eligible</div>
+        <div class="jleg-item"><span style="color:#fb923c;font-size:11px">🔄</span> Track exit trigger (behavior-based)</div>
+      </div>
+
+    </div><!-- end journey-section -->
+
+  </div><!-- end container -->
 
   <div class="page-footer">
     Liverpool LA · Customer Journey Audit · DigitsUp · 2026-04-12
@@ -579,6 +917,29 @@ function flowLabel(flow) {
     campaign:'Campaign', other:'Other'
   };
   return labels[cls] || 'Other';
+}
+
+// ─── SUBSCRIPTION STATUS ────────────────────────────────
+const subStatus = {
+  'sharon.bpatio@comcast.net':    'SUBSCRIBED',
+  'susanneff5@gmail.com':         'NEVER_SUBSCRIBED',
+  'cforce@nc.rr.com':             'SUBSCRIBED',
+  'vacantlott34@gmail.com':       'SUBSCRIBED',
+  'andreakmcdaniels@gmail.com':   'SUBSCRIBED',
+  'maura.smith511@gmail.com':     'SUBSCRIBED',
+  'sfabry74@gmail.com':           'SUBSCRIBED',
+  'godfreydenise@yahoo.com':      'SUBSCRIBED',
+  'tinarx87@gmail.com':           'SUBSCRIBED',
+  'jbee57@att.net':               'NEVER_SUBSCRIBED',
+};
+
+function subBadgeHtml(email) {
+  const status = subStatus[email] || 'SUBSCRIBED';
+  if (status === 'SUBSCRIBED') {
+    return `<span class="sub-badge subscribed">✅ SUBSCRIBED</span>`;
+  } else {
+    return `<span class="sub-badge never-subscribed" title="Received emails but never formally opted in — data quality flag">⚠️ NEVER_SUBSCRIBED</span>`;
+  }
 }
 
 // ─── PROFILE DATA ──────────────────────────────────────
@@ -651,7 +1012,7 @@ const profiles = [
     ]
   },
 
-  // CUSTOMER 3
+  // CUSTOMER 3 — cforce (track overlap profile)
   {
     id: 'cforce',
     email: 'cforce@nc.rr.com',
@@ -660,6 +1021,8 @@ const profiles = [
     orders: ['2026-03-18','2026-03-24'],
     totalEmails: 32,
     breakdown: 'Wonderment×8, Post-Purchase×6, Welcome×4, Other Flow×4, Review×4, Browse×2, Order Confirm×2, Campaign×1, Loyalty Tier×1',
+    profileNote: 'Placed 2nd order Day 11 → entered Returning Customer PP track. Still receiving New Customer PP emails simultaneously (PP #2, #3, #4 visible below Day 18). This is the overlap problem — both tracks running in parallel.',
+    trackDividerAfterDate: '2026-03-24', // Day 11 — show divider before Day 12
     emails: [
       {day:0,  date:'2026-03-13', flow:'Welcome',         subject:'Email #1 Welcome to Liverpool'},
       {day:0,  date:'2026-03-13', flow:'Browse',          subject:'Browse Email 01 - General (A)'},
@@ -678,6 +1041,7 @@ const profiles = [
       {day:10, date:'2026-03-23', flow:'Other Flow',      subject:'Welcome to the Restock List - Returning Customers'},
       {day:10, date:'2026-03-23', flow:'Other Flow',      subject:'VIP Early Access'},
       {day:11, date:'2026-03-24', flow:'Order Confirm',   subject:'Order Confirmation'},
+      {day:11, date:'2026-03-24', flow:'_DIVIDER_',       subject:''},
       {day:12, date:'2026-03-25', flow:'Post-Purchase',   subject:'PP Email #1 - Thank You "Back for Seconds" (Returning)'},
       {day:12, date:'2026-03-25', flow:'Wonderment',      subject:'Wonderment // Shipment Created'},
       {day:13, date:'2026-03-26', flow:'Wonderment',      subject:'Wonderment // Carrier Picked Up'},
@@ -757,7 +1121,7 @@ const profiles = [
     ]
   },
 
-  // CUSTOMER 6
+  // CUSTOMER 6 — maura (track overlap profile)
   {
     id: 'maura',
     email: 'maura.smith511@gmail.com',
@@ -766,6 +1130,7 @@ const profiles = [
     orders: ['2026-03-13','2026-03-14'],
     totalEmails: 28,
     breakdown: 'Post-Purchase×7, Wonderment×7, Review×4, Order Confirm×2, Other Flow×2, Points Reminder×2, Rewards Monthly×2, Loyalty Tier×1, Campaign×1',
+    profileNote: 'Placed 2nd order Day 1 (Mar 14) → entered Returning Customer PP track the next day. Continued receiving New Customer PP emails simultaneously (PP #2, #3, #4 visible at Days 12, 17, 22). Both Order 1 and Order 2 tracks ran in parallel — same overlap issue as cforce.',
     emails: [
       {day:0,  date:'2026-03-13', flow:'Order Confirm',   subject:'Order Confirmation'},
       {day:0,  date:'2026-03-13', flow:'Post-Purchase',   subject:'PP Email #1 - Thank You + Fit Confidence (New Customer)'},
@@ -773,6 +1138,7 @@ const profiles = [
       {day:0,  date:'2026-03-13', flow:'Wonderment',      subject:'Wonderment // Carrier Picked Up'},
       {day:1,  date:'2026-03-14', flow:'Order Confirm',   subject:'Order Confirmation'},
       {day:1,  date:'2026-03-14', flow:'Post-Purchase',   subject:'PP Email #1 - Thank You "Back for Seconds" (Returning)'},
+      {day:1,  date:'2026-03-14', flow:'_DIVIDER_',       subject:''},
       {day:2,  date:'2026-03-15', flow:'Other Flow',      subject:'Email #1 Bronze — Loyalty Tier'},
       {day:3,  date:'2026-03-16', flow:'Wonderment',      subject:'Wonderment // Delivered'},
       {day:4,  date:'2026-03-17', flow:'Wonderment',      subject:'Wonderment // Shipment Created'},
@@ -907,11 +1273,20 @@ const profiles = [
 function groupByDay(emails) {
   const map = new Map();
   for (const e of emails) {
+    if (e.flow === '_DIVIDER_') continue; // handled separately
     const key = e.day + '|' + e.date;
     if (!map.has(key)) map.set(key, { day: e.day, date: e.date, emails: [] });
     map.get(key).emails.push(e);
   }
   return [...map.values()].sort((a,b) => a.day - b.day);
+}
+
+function getDividerDays(emails) {
+  const days = new Set();
+  for (const e of emails) {
+    if (e.flow === '_DIVIDER_') days.add(e.day);
+  }
+  return days;
 }
 
 function formatDate(d) {
@@ -927,6 +1302,7 @@ function renderCards() {
   for (const p of profiles) {
     const orderSet = new Set(p.orders);
     const days = groupByDay(p.emails);
+    const dividerDays = getDividerDays(p.emails);
     const isHigh = p.totalEmails > 15;
 
     // Build breakdown chips
@@ -934,12 +1310,18 @@ function renderCards() {
       `<span class="breakdown-chip">${chip}</span>`
     ).join('');
 
+    // Profile note (cforce / maura)
+    const noteHtml = p.profileNote
+      ? `<div class="profile-note">⚠️ <strong>Track Overlap:</strong> ${p.profileNote}</div>`
+      : '';
+
     // Build timeline rows
     let timelineHtml = '';
     for (const dayGroup of days) {
       const cnt = dayGroup.emails.length;
       const isOrder = orderSet.has(dayGroup.date);
       const isVolume = cnt >= 4;
+      const showDivider = dividerDays.has(dayGroup.day);
 
       // Day header row
       timelineHtml += `<tr class="day-row">
@@ -961,6 +1343,15 @@ function renderCards() {
           <td style="color:var(--text3);font-size:11px;white-space:nowrap">${escHtml(e.flow)}</td>
         </tr>`;
       }
+
+      // Show track divider after this day group if flagged
+      if (showDivider) {
+        timelineHtml += `<tr class="track-divider-row">
+          <td colspan="3">
+            <span class="track-divider-label">🔄 2nd Order — Entered Returning Customer PP Track (Order 2)</span>
+          </td>
+        </tr>`;
+      }
     }
 
     html += `
@@ -969,7 +1360,7 @@ function renderCards() {
         <div class="profile-left">
           <span class="profile-type-badge ${p.type}">${p.type === 'customer' ? '🛍 Customer' : '👤 Lead'}</span>
           <div>
-            <div class="profile-email">${p.email}</div>
+            <div class="profile-email">${p.email}${subBadgeHtml(p.email)}</div>
             <div class="profile-meta">
               Opted in ${formatDate(p.optedIn)}
               ${p.orders.length ? ` · Orders: ${p.orders.map(formatDate).join(', ')}` : ' · No orders'}
@@ -984,6 +1375,7 @@ function renderCards() {
         </div>
       </div>
       <div class="breakdown-row">${chips}</div>
+      ${noteHtml}
       <div class="timeline-wrap">
         <table class="timeline-table">
           <thead>
