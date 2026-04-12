@@ -1,48 +1,45 @@
 {
   "meta": {
-    "lastUpdated": "2026-04-04T12:35:00-07:00",
+    "lastUpdated": "2026-04-12T09:20:00-07:00",
     "updatedBy": "Mollie"
   },
   "usage": {
     "monthLabel": "April 2026",
-    "mtd": 253.74,
+    "mtd": 260.07,
     "budget": 1000,
-    "today": 7.26,
-    "todayLabel": "Apr 4",
+    "today": 0.10,
+    "todayLabel": "Apr 12",
     "model": "Sonnet 4.6",
     "dailyCosts": [
-      { "label": "Mar 27", "amount": 0 },
-      { "label": "Mar 28", "amount": 0 },
-      { "label": "Mar 29", "amount": 0 },
-      { "label": "Mar 30", "amount": 7.26 },
-      { "label": "Mar 31", "amount": 134.98 },
-      { "label": "Apr 1", "amount": 51.67 },
-      { "label": "Apr 2", "amount": 30.49 },
-      { "label": "Apr 3", "amount": 22.08 },
-      { "label": "Apr 4", "amount": 7.26 }
+      { "label": "Apr 6",  "amount": 11.72 },
+      { "label": "Apr 7",  "amount": 63.66 },
+      { "label": "Apr 8",  "amount": 13.15 },
+      { "label": "Apr 9",  "amount": 11.24 },
+      { "label": "Apr 10", "amount": 8.28 },
+      { "label": "Apr 11", "amount": 5.58 },
+      { "label": "Apr 12", "amount": 0.10 }
     ],
-    "dailyNote": "Mar 31 spike = pre-Callie era. Trending down"
+    "dailyNote": "Apr 7 spike = 72 Callie spawns. Max 5/day rule now enforced. Trending down ↓"
   },
   "activity": [
-    { "dot": "blue",  "text": "3D isometric Workspace tab added to HQ", "time": "Apr 4" },
-    { "dot": "green", "text": "Nightly reflection cron updated — sends full reflection to Telegram at 11pm", "time": "Apr 4" },
-    { "dot": "green", "text": "Inbox Monitor cron fixed — auto-files Fathom recaps now", "time": "Apr 3" },
-    { "dot": "green", "text": "All 6 Fathom recaps filed to client meeting folders", "time": "Apr 3" },
-    { "dot": "blue",  "text": "Rho P1 Email 1 v4 delivered — staggered two-column layout, real brand images", "time": "Apr 3" },
-    { "dot": "green", "text": "AI email design pipeline proved — MJML + Puppeteer renders mockups autonomously", "time": "Apr 3" }
+    { "dot": "blue",  "text": "HQ data.json updated — April MTD $260.07, daily chart Apr 6–12", "time": "Apr 12 · 9:20 AM" },
+    { "dot": "green", "text": "RVCA copy v2 sent to mike@ — Browse, Cart, Checkout docs ready to build", "time": "Apr 12" },
+    { "dot": "blue",  "text": "Email triage complete — 25 unread. Brand Featured reply sent. SFR call confirmed Thu Apr 16 9am.", "time": "Apr 12" },
+    { "dot": "grey",  "text": "1st Phorm — all 6 copy docs sent to Meaghan Apr 10. Awaiting review.", "time": "Apr 10" },
+    { "dot": "grey",  "text": "Darcy McGuire / Attentive — booked Tuesday. Needs Michael's confirmation.", "time": "Apr 9" },
+    { "dot": "amber", "text": "⚠ Apr 7 cost spike — $63.66 (72 Callie spawns). Max 5/day rule enforced going forward.", "time": "Apr 7" }
   ],
   "tasks": [
-    { "id": "a1", "name": "Rho Nutrition — AI Email Design Pipeline (P1 Email 1-2-3)", "type": "design",  "due": "2026-04-05", "col": "active",  "agent": "callie" },
-    { "id": "a2", "name": "RVCA — Confirm Tuesday 1pm PT cadence + Klaviyo invites",  "type": "client",  "due": "2026-04-07", "col": "active",  "agent": "mollie" },
-    { "id": "a3", "name": "Riversol — Confirm tier thresholds + Ali SPF 50 decision", "type": "client", "due": "2026-04-07", "col": "active", "agent": "mollie" },
-    { "id": "q1", "name": "SFR Distillery Pre-Call Brief (call Tue Apr 7)",            "type": "brief",   "due": "2026-04-07", "col": "queued",  "agent": "callie" },
-    { "id": "q2", "name": "Hiba March Report — 3 pending fixes verification",          "type": "report",  "due": "2026-04-04", "col": "queued",  "agent": "mollie" },
-    { "id": "q3", "name": "Riversol campaign-ideas.html — Add Sales Strategies + deploy", "type": "client", "due": "2026-04-05", "col": "queued", "agent": "callie" },
-    { "id": "q4", "name": "DigitsUp Content Hub — Save first content pieces", "type": "admin", "due": "2026-04-05", "col": "queued", "agent": "mollie" },
-    { "id": "d1", "name": "Rho Nutrition — 6 persona copy docs",                       "type": "brief",   "col": "done",    "agent": "callie" },
-    { "id": "d2", "name": "Fathom recaps filed to all client folders",                 "type": "admin",   "col": "done",    "agent": "mollie" },
-    { "id": "d3", "name": "Inbox Monitor cron fixed",                                  "type": "admin",   "col": "done",    "agent": "mollie" },
-    { "id": "d4", "name": "RVCA Client Kickoff",                                       "type": "client",  "col": "done",    "agent": "mollie" },
-    { "id": "d5", "name": "Hiba March Report deployed",                               "type": "report",  "col": "done",    "agent": "callie" }
+    { "id": "a1", "name": "Liverpool Q1 Report — due Mon Apr 14 before 11:30am call", "type": "report", "due": "2026-04-14", "col": "queued", "agent": "callie" },
+    { "id": "a2", "name": "Rho Nutrition copy — ready for design/Marl", "type": "brief", "due": "2026-04-14", "col": "active", "agent": "mollie" },
+    { "id": "a3", "name": "RVCA copy v2 — Browse, Cart, Checkout (with mike@)", "type": "campaign", "due": "2026-04-13", "col": "active", "agent": "mollie" },
+    { "id": "a4", "name": "Attentive / Darcy McGuire — confirm Tuesday call", "type": "client", "due": "2026-04-13", "col": "queued", "agent": "mollie" },
+    { "id": "a5", "name": "1st Phorm copy — awaiting Meaghan review", "type": "brief", "due": "2026-04-14", "col": "review", "agent": "mollie" },
+    { "id": "a6", "name": "Riversol call — Wed Apr 15 (Q1 + SMS + winback)", "type": "client", "due": "2026-04-15", "col": "queued", "agent": "mollie" },
+    { "id": "a7", "name": "SFR Distillery intro call — Thu Apr 16 9am PST", "type": "client", "due": "2026-04-16", "col": "queued", "agent": "mollie" },
+    { "id": "d1", "name": "Rho Nutrition — 6 persona copy docs ✓", "type": "brief", "col": "done", "agent": "callie" },
+    { "id": "d2", "name": "RVCA Client Kickoff ✓", "type": "client", "col": "done", "agent": "mollie" },
+    { "id": "d3", "name": "Hiba March Report deployed ✓", "type": "report", "col": "done", "agent": "callie" },
+    { "id": "d4", "name": "SFR Distillery call scheduled ✓ — Apr 16", "type": "client", "col": "done", "agent": "mollie" }
   ]
 }
