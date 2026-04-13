@@ -325,40 +325,47 @@
     <div class="slide-hero">
       <div class="flow-index">Flow 05 · Suppression</div>
       <div class="flow-name"><em>Sunset</em></div>
-      <div class="flow-subtitle">When the win-back flow ends without re-engagement, contacts are tagged <strong>sunset</strong> and enter this final sequence. One last attempt at re-engagement — and if it fails, a clean suppression. List hygiene is a revenue decision.</div>
+      <div class="flow-subtitle">5-email sequence targeting contacts dormant 180 days — no open, no click, no site activity. Triggers after win-back exits without re-engagement. Contacts have 60 days to click a single CTA and confirm they want to stay. No purchase required. No response by Day 61 → suppress.</div>
     </div>
     <div class="trigger-banner">
       <span class="label">Trigger</span>
-      Tag added: <strong>sunset</strong> (applied at end of win-back flow) · No purchase in 12+ months
+      No email open · No email click · No site activity in 180 days · Contacts that exited win-back without re-engaging
     </div>
     <div style="margin-bottom:14px;">
-      <div class="cadence-row">
-        <div class="cadence-step"><div class="cadence-dot email">E</div><div class="cadence-label">Day 0</div><div class="cadence-sub">"Still with us?"</div></div>
-        <div class="cadence-step"><div class="cadence-dot sms">S</div><div class="cadence-label">Day 5</div><div class="cadence-sub">Last chance SMS</div></div>
-        <div class="cadence-step"><div class="cadence-dot email">E</div><div class="cadence-label">Day 10</div><div class="cadence-sub">Final email</div></div>
-        <div class="cadence-step"><div class="cadence-dot" style="border-color:#e05c5c; color:#e05c5c;">⊘</div><div class="cadence-label">Day 11</div><div class="cadence-sub">Suppress</div></div>
+      <div class="cadence-row" style="gap:0;">
+        <div class="cadence-step"><div class="cadence-dot email">E</div><div class="cadence-label">Day 0</div><div class="cadence-sub">List Cleaning</div></div>
+        <div class="cadence-step"><div class="cadence-dot email">E</div><div class="cadence-label">Day 20</div><div class="cadence-sub">Still Have Time</div></div>
+        <div class="cadence-step"><div class="cadence-dot email">E</div><div class="cadence-label">Day 40</div><div class="cadence-sub">Coming to End</div></div>
+        <div class="cadence-step"><div class="cadence-dot email" style="border-color:var(--gold); color:var(--gold); background:rgba(201,168,76,0.1);">E</div><div class="cadence-label">Day 57</div><div class="cadence-sub">72-Hour Final Call</div></div>
+        <div class="cadence-step"><div class="cadence-dot email">E</div><div class="cadence-label">Day 60</div><div class="cadence-sub">Removal Notice</div></div>
+        <div class="cadence-step"><div class="cadence-dot" style="border-color:#e05c5c; color:#e05c5c;">⊘</div><div class="cadence-label">Day 61</div><div class="cadence-sub">Suppress</div></div>
       </div>
     </div>
-    <div class="cards-grid">
+    <div class="cards-grid cols-5">
       <div class="card">
-        <div class="card-label">Tone</div>
-        <div class="card-title">No Hard Sell</div>
-        <div class="card-body">This isn't a promo blast. It's a soft goodbye. "We haven't heard from you in a while — are you still interested?" Give them a clear opt-out path alongside the re-engage CTA.</div>
+        <div class="card-label">Email 1 — Day 0</div>
+        <div class="card-title">List Cleaning</div>
+        <div class="card-body">Warm, honest tone. "We're doing some housekeeping — click below to stay on the list." No offer. No sell. Just a friendly heads-up.<br><br><strong>CTA:</strong> "Yes, keep me on the list"</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Emails 2 &amp; 3 — Days 20 &amp; 40</div>
+        <div class="card-title">Building Urgency</div>
+        <div class="card-body">Day 20: Soft nudge — "You've still got time." Day 40: Window closing — "20 days left, we don't want to lose you." Urgency builds but stays respectful.<br><br><strong>CTA:</strong> "I'm still here" → "Confirm I'm still in"</div>
       </div>
       <div class="card highlight">
-        <div class="card-label">Re-Engage Offer</div>
-        <div class="card-title gold">Industry-Relevant Hook</div>
-        <div class="card-body">Tailor to Liverpool LA's product story — new arrivals, seasonal drop, or community moment. Not a generic discount. Make it feel worth coming back for.</div>
-      </div>
-      <div class="card teal">
-        <div class="card-label">Exit Condition</div>
-        <div class="card-title teal">Any Click or Purchase</div>
-        <div class="card-body">Any positive signal (click, open + 60 sec, purchase) exits the flow and removes sunset tag. Re-enters standard active customer lifecycle.</div>
+        <div class="card-label">Email 4 — Day 57</div>
+        <div class="card-title gold">72-Hour Last Call</div>
+        <div class="card-body">Explicit deadline in copy and CTA. "You have 72 hours." Direct and clear — one click keeps the sub. This is the highest-urgency moment in the sequence.<br><br><strong>CTA:</strong> "Keep me subscribed — I'm in"</div>
       </div>
       <div class="card">
-        <div class="card-label">On No Response</div>
-        <div class="card-title">Suppress Cleanly</div>
-        <div class="card-body">No engagement after final email → mark suppressed in Klaviyo, remove from active segments. Tag as <em>sunset_suppressed</em>. Clean list = better deliverability for everyone else.</div>
+        <div class="card-label">Email 5 — Day 60</div>
+        <div class="card-title">Graceful Exit Notice</div>
+        <div class="card-body">Honest, respectful closure. "We'll be removing you within 24 hours — you can always resubscribe." No blame. Leaves the door open.<br><br><strong>CTA:</strong> Small text link — "Actually, keep me subscribed"</div>
+      </div>
+      <div class="card teal">
+        <div class="card-label">Exit &amp; Suppression Logic</div>
+        <div class="card-title teal">Click or Buy = Exit</div>
+        <div class="card-body">Any CTA click or purchase → exit flow immediately, remove sunset tag, re-enter active lifecycle.<br><br>No response by Day 61 → suppress in Klaviyo, tag <em>sunset_suppressed</em>, remove from active segments.</div>
       </div>
     </div>
   </div>
