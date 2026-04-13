@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Riversol — Sample → Purchase Journey</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f1117;
+      --bg-card: #181c27;
+      --bg-card-hover: #1e2333;
+      --bg-inset: #141720;
+      --border: #252a3a;
+      --border-light: #2e3448;
+      --text-primary: #e8eaf0;
+      --text-secondary: #8a92a6;
+      --text-muted: #5a6177;
+      --accent-purple: #a78bfa;
+      --accent-purple-bg: rgba(167,139,250,0.12);
+      --accent-green: #34d399;
+      --accent-green-bg: rgba(52,211,153,0.12);
+      --accent-blue: #60a5fa;
+      --accent-blue-bg: rgba(96,165,250,0.12);
+      --accent-cyan: #22d3ee;
+      --accent-cyan-bg: rgba(34,211,238,0.1);
+      --accent-grey: #6b7280;
+      --accent-grey-bg: rgba(107,114,128,0.12);
+      --accent-orange: #fb923c;
+      --accent-orange-bg: rgba(251,146,60,0.12);
+      --tag-existing: rgba(100,116,139,0.2);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    /* ── PASSWORD GATE ── */
+    #gate {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+    }
+    #gate.hidden { display: none; }
+    .gate-box {
+      text-align: center;
+      max-width: 360px; width: 90%;
+    }
+    .gate-logo {
+      font-size: 13px; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+    .gate-logo span { color: var(--accent-purple); }
+    .gate-title {
+      font-size: 22px; font-weight: 700; color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .gate-sub {
+      font-size: 13px; color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+    .gate-input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 15px;
+      padding: 13px 16px;
+      outline: none;
+      text-align: center;
+      letter-spacing: 0.12em;
+      transition: border-color .2s;
+      margin-bottom: 12px;
+    }
+    .gate-input:focus { border-color: var(--accent-purple); }
+    .gate-input.error { border-color: #f87171; }
+    .gate-btn {
+      width: 100%; padding: 13px;
+      background: var(--accent-purple);
+      color: #fff; font-family: inherit;
+      font-size: 14px; font-weight: 600;
+      border: none; border-radius: 10px;
+      cursor: pointer; transition: opacity .2s;
+    }
+    .gate-btn:hover { opacity: 0.88; }
+    .gate-err {
+      font-size: 12px; color: #f87171;
+      margin-top: 8px; min-height: 16px;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    #app { display: none; }
+    #app.visible { display: block; }
+
+    .page-header {
+      border-bottom: 1px solid var(--border);
+      padding: 28px 0 24px;
+      margin-bottom: 0;
+    }
+    .header-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 24px;
+      display: flex; align-items: flex-start; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .header-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .header-title {
+      font-size: 26px; font-weight: 800; color: var(--text-primary);
+      line-height: 1.2;
+    }
+    .header-title span { color: var(--accent-purple); }
+    .header-meta {
+      font-size: 13px; color: var(--text-muted);
+      margin-top: 6px;
+    }
+    .header-badge {
+      background: var(--accent-green-bg);
+      color: var(--accent-green);
+      font-size: 12px; font-weight: 600;
+      padding: 5px 12px; border-radius: 20px;
+      border: 1px solid rgba(52,211,153,0.25);
+      white-space: nowrap;
+      align-self: center;
+    }
+
+    /* ── CONTAINER ── */
+    .container {
+      max-width: 1100px; margin: 0 auto;
+      padding: 32px 24px 60px;
+    }
+
+    /* ── STATS GRID ── */
+    .stats-section { margin-bottom: 32px; }
+    .section-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+    }
+    .stat-label {
+      font-size: 11px; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+    .stat-value {
+      font-size: 22px; font-weight: 700; color: var(--text-primary);
+      line-height: 1.1;
+    }
+    .stat-value.green { color: var(--accent-green); }
+    .stat-value.purple { color: var(--accent-purple); }
+    .stat-value.orange { color: var(--accent-orange); }
+    .stat-value.cyan { color: var(--accent-cyan); }
+    .stat-sub {
+      font-size: 11px; color: var(--text-muted); margin-top: 3px;
+    }
+    .stats-note {
+      font-size: 12px; color: var(--text-muted);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent-purple);
+      border-radius: 0 8px 8px 0;
+      padding: 10px 14px;
+    }
+
+    /* ── INSIGHTS ── */
+    .insights-section { margin-bottom: 36px; }
+    .insights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 10px;
+    }
+    .insight-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex; gap: 12px; align-items: flex-start;
+    }
+    .insight-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent-purple);
+      margin-top: 5px; flex-shrink: 0;
+    }
+    .insight-text {
+      font-size: 13px; color: var(--text-secondary); line-height: 1.55;
+    }
+    .insight-text strong { color: var(--text-primary); font-weight: 600; }
+
+    /* ── PROFILE CARDS ── */
+    .profiles-section {}
+    .profiles-list {
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .profile-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+    .profile-card:hover { border-color: var(--border-light); }
+    .profile-card.open { border-color: var(--border-light); }
+
+    .profile-header {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 20px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .profile-header:hover { background: var(--bg-card-hover); }
+
+    .profile-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 700; flex-shrink: 0;
+      background: var(--accent-purple-bg);
+      color: var(--accent-purple);
+      border: 1px solid rgba(167,139,250,0.2);
+    }
+    .profile-avatar.green {
+      background: var(--accent-green-bg);
+      color: var(--accent-green);
+      border-color: rgba(52,211,153,0.2);
+    }
+
+    .profile-info { flex: 1; min-width: 0; }
+    .profile-name-row {
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+      margin-bottom: 2px;
+    }
+    .profile-name {
+      font-size: 15px; font-weight: 600; color: var(--text-primary);
+    }
+    .tag-existing {
+      font-size: 10px; font-weight: 500; letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--tag-existing); color: var(--text-muted);
+      padding: 2px 8px; border-radius: 20px;
+      border: 1px solid rgba(100,116,139,0.3);
+    }
+    .profile-email {
+      font-size: 12px; color: var(--text-muted);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+
+    .profile-meta {
+      display: flex; align-items: center; gap: 16px;
+      flex-wrap: wrap;
+    }
+    .profile-meta-item {
+      font-size: 12px; color: var(--text-muted);
+      display: flex; align-items: center; gap: 4px;
+    }
+    .profile-meta-item span { color: var(--text-secondary); }
+
+    .profile-right {
+      display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+    }
+    .conv-badge {
+      font-size: 12px; font-weight: 600;
+      padding: 4px 11px; border-radius: 20px;
+      white-space: nowrap;
+    }
+    .conv-badge.converted {
+      background: var(--accent-green-bg);
+      color: var(--accent-green);
+      border: 1px solid rgba(52,211,153,0.25);
+    }
+    .conv-badge.not-yet {
+      background: var(--accent-orange-bg);
+      color: var(--accent-orange);
+      border: 1px solid rgba(251,146,60,0.25);
+    }
+    .revenue-chip {
+      font-size: 13px; font-weight: 700; color: var(--accent-green);
+    }
+    .days-chip {
+      font-size: 12px; color: var(--text-muted);
+      background: var(--bg-inset);
+      padding: 3px 9px; border-radius: 6px;
+    }
+    .chevron {
+      font-size: 12px; color: var(--text-muted);
+      transition: transform .2s; flex-shrink: 0;
+    }
+    .profile-card.open .chevron { transform: rotate(180deg); }
+
+    /* ── TIMELINE ── */
+    .timeline-wrap {
+      display: none;
+      border-top: 1px solid var(--border);
+      padding: 20px 20px 20px;
+      background: var(--bg-inset);
+    }
+    .profile-card.open .timeline-wrap { display: block; }
+
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px; top: 6px; bottom: 6px;
+      width: 2px;
+      background: var(--border);
+      border-radius: 2px;
+    }
+
+    .tl-event {
+      position: relative;
+      margin-bottom: 14px;
+    }
+    .tl-event:last-child { margin-bottom: 0; }
+
+    .tl-dot {
+      position: absolute;
+      left: -24px; top: 6px;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      border: 2px solid var(--bg-inset);
+      flex-shrink: 0;
+    }
+    .tl-dot.purple { background: var(--accent-purple); }
+    .tl-dot.green  { background: var(--accent-green); }
+    .tl-dot.blue   { background: var(--accent-blue); }
+    .tl-dot.cyan   { background: var(--accent-cyan); }
+    .tl-dot.grey   { background: var(--accent-grey); }
+
+    .tl-marker {
+      position: relative;
+      margin-bottom: 14px;
+      margin-left: -28px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .tl-marker-line {
+      height: 1px; flex: 1; background: currentColor; opacity: 0.3;
+    }
+    .tl-marker-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 3px 10px;
+      border-radius: 20px; white-space: nowrap;
+    }
+    .tl-marker.sample { color: var(--accent-purple); }
+    .tl-marker.sample .tl-marker-label {
+      background: var(--accent-purple-bg);
+      color: var(--accent-purple);
+    }
+    .tl-marker.purchase { color: var(--accent-green); }
+    .tl-marker.purchase .tl-marker-label {
+      background: var(--accent-green-bg);
+      color: var(--accent-green);
+    }
+
+    .tl-chip {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+    }
+    .tl-chip.purple { background: var(--accent-purple-bg); border-color: rgba(167,139,250,0.15); }
+    .tl-chip.green  { background: var(--accent-green-bg);  border-color: rgba(52,211,153,0.15); }
+    .tl-chip.blue   { background: var(--accent-blue-bg);   border-color: rgba(96,165,250,0.15); }
+    .tl-chip.cyan   { background: var(--accent-cyan-bg);   border-color: rgba(34,211,238,0.1); }
+    .tl-chip.grey   { background: var(--accent-grey-bg);   border-color: rgba(107,114,128,0.15); }
+
+    .tl-icon { font-size: 14px; margin-top: 1px; flex-shrink: 0; }
+    .tl-body { flex: 1; min-width: 0; }
+    .tl-title {
+      font-size: 13px; font-weight: 500; color: var(--text-primary);
+      line-height: 1.4;
+    }
+    .tl-sub {
+      font-size: 11px; color: var(--text-muted); margin-top: 3px;
+    }
+    .tl-items {
+      margin-top: 6px; display: flex; flex-wrap: wrap; gap: 5px;
+    }
+    .tl-item-tag {
+      font-size: 11px; background: rgba(255,255,255,0.05);
+      color: var(--text-secondary); padding: 2px 8px;
+      border-radius: 4px; border: 1px solid var(--border-light);
+    }
+    .tl-value {
+      font-size: 13px; font-weight: 700; color: var(--accent-green);
+      white-space: nowrap; margin-top: 1px;
+    }
+
+    .not-yet-note {
+      background: var(--accent-orange-bg);
+      border: 1px solid rgba(251,146,60,0.2);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 12px;
+      color: var(--accent-orange);
+      margin-bottom: 16px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .header-title { font-size: 20px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .insights-grid { grid-template-columns: 1fr; }
+      .profile-header { padding: 14px 16px; gap: 10px; }
+      .profile-avatar { width: 32px; height: 32px; font-size: 12px; }
+      .profile-right { gap: 8px; }
+      .days-chip { display: none; }
+      .timeline-wrap { padding: 14px 14px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="gate">
+  <div class="gate-box">
+    <div class="gate-logo">DigitsUp · <span>Riversol</span></div>
+    <div class="gate-title">Sample Journey Report</div>
+    <div class="gate-sub">Enter the password to view this report.</div>
+    <input type="password" id="pw-input" class="gate-input" placeholder="Password" autocomplete="off" />
+    <button class="gate-btn" onclick="checkPw()">Unlock Report</button>
+    <div class="gate-err" id="pw-err"></div>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app">
+
+  <header class="page-header">
+    <div class="header-inner">
+      <div>
+        <div class="header-label">DigitsUp · Riversol</div>
+        <div class="header-title">Sample → <span>Purchase</span> Journey</div>
+        <div class="header-meta">20 profiles · Feb–Apr 2026 · Compiled April 13, 2026</div>
+      </div>
+      <div class="header-badge">19/20 Converted ✅</div>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- SUMMARY STATS -->
+    <div class="stats-section">
+      <div class="section-label">Summary</div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Profiles Analyzed</div>
+          <div class="stat-value">20</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Converted to Paid</div>
+          <div class="stat-value green">19 / 20</div>
+          <div class="stat-sub">95% conversion rate</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Brand New Customers</div>
+          <div class="stat-value">18 / 20</div>
+          <div class="stat-sub">No prior orders</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Post-Sample Revenue</div>
+          <div class="stat-value green">$3,116.78</div>
+          <div class="stat-sub">Total across all 19</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Avg Days to Purchase</div>
+          <div class="stat-value purple">20 days</div>
+          <div class="stat-sub">Sample → first paid order</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Fastest Conversion</div>
+          <div class="stat-value cyan">9 days</div>
+          <div class="stat-sub">Brenda McAdam, Radia Benabdallah, Thao Ly</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Slowest (New Customer)</div>
+          <div class="stat-value">24 days</div>
+          <div class="stat-sub">Shelly NeVille / Deepti Malhan</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Avg First Order (New)</div>
+          <div class="stat-value orange">~$152</div>
+          <div class="stat-sub">New customers only</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Highest First Order</div>
+          <div class="stat-value green">$304.62</div>
+          <div class="stat-sub">Lilia Angeles · 7 items</div>
+        </div>
+      </div>
+      <div class="stats-note">
+        ℹ️ 2 profiles were existing Riversol customers before their sample. 1 of the 2 also converted post-sample (Wendy McHale). The other (lyne perrier) received her sample on Mar 23 — it only shipped Apr 10, so she's still in the conversion window.
+      </div>
+    </div>
+
+    <!-- KEY INSIGHTS -->
+    <div class="insights-section">
+      <div class="section-label">Key Insights</div>
+      <div class="insights-grid">
+        <div class="insight-item">
+          <div class="insight-dot"></div>
+          <div class="insight-text"><strong>95% conversion rate</strong> — 19 of 20 sample recipients made a paid purchase afterward.</div>
+        </div>
+        <div class="insight-item">
+          <div class="insight-dot"></div>
+          <div class="insight-text"><strong>The typical window is 20 days</strong> — most conversions happen between day 9 and day 24. Build your flow with this in mind.</div>
+        </div>
+        <div class="insight-item">
+          <div class="insight-dot"></div>
+          <div class="insight-text"><strong>New customers go big</strong> — avg first order ~$152, with several over $200. The sample de-risks a significant first purchase.</div>
+        </div>
+        <div class="insight-item">
+          <div class="insight-dot"></div>
+          <div class="insight-text"><strong>Anti-Aging Trio is the #1 first buy</strong> — appears in 10+ of the 19 first orders, often bundled with the FREE Retinol Neck Cream offer.</div>
+        </div>
+        <div class="insight-item">
+          <div class="insight-dot"></div>
+          <div class="insight-text"><strong>The "FREE Retinol Neck Cream" offer is a conversion driver</strong> — appears in ~12 of 19 first orders. This incentive is likely closing the deal.</div>
+        </div>
+        <div class="insight-item">
+          <div class="insight-dot"></div>
+          <div class="insight-text"><strong>3 customers converted in just 9 days</strong> — Brenda McAdam, Radia Benabdallah, and Thao Ly. Fast movers and high-intent signals.</div>
+        </div>
+        <div class="insight-item">
+          <div class="insight-dot"></div>
+          <div class="insight-text"><strong>Lilia Angeles spent $304 on her first order</strong> — bought 7 items including Sunscreen SPF 50+. Top LTV potential from day one.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILE CARDS -->
+    <div class="profiles-section">
+      <div class="section-label">Customer Profiles <span id="profile-count" style="font-weight:400;color:var(--text-muted)"></span></div>
+      <div class="profiles-list" id="profiles-list"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ── PASSWORD ──
+const PASS = 'RIVERS';
+function checkPw() {
+  const v = document.getElementById('pw-input').value.trim().toUpperCase();
+  const err = document.getElementById('pw-err');
+  const inp = document.getElementById('pw-input');
+  if (v === PASS) {
+    document.getElementById('gate').classList.add('hidden');
+    document.getElementById('app').classList.add('visible');
+    renderProfiles();
+  } else {
+    inp.classList.add('error');
+    err.textContent = 'Incorrect password. Try again.';
+    setTimeout(() => inp.classList.remove('error'), 1200);
+  }
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !document.getElementById('gate').classList.contains('hidden')) checkPw();
+});
+
+// ── DATA ──
+const DATA = [{"name":"Wendy McHale","email":"wlmchale@gmail.com","sample_date":"2026-02-13","is_existing_customer":true,"pre_sample_revenue":538.85,"converted":true,"days_to_first_purchase":53,"post_sample_orders":[{"date":"2026-04-07","value":21.28,"items":["Riversol Membership"]}],"post_sample_revenue":21.28,"total_post_orders":1,"email_opens":[{"date":"2026-04-13T14:45:53+00:00","subject":"☀️ The sunscreen you'll actually want to wear all season"},{"date":"2026-04-09T15:23:43+00:00","subject":"Ends at midnight. ⏰"},{"date":"2026-04-07T15:39:26+00:00","subject":"You received your store credit!"},{"date":"2026-04-03T15:55:26+00:00","subject":"Dull Skin? Brighten With Vitamin C ✨"},{"date":"2026-03-31T15:19:05+00:00","subject":"🌷 Up to 26% off"},{"date":"2026-03-17T14:51:08+00:00","subject":"The Calm Edit: March Edition"},{"date":"2026-03-12T16:18:44+00:00","subject":"Don't miss 20% OFF + free shipping 🌷"},{"date":"2026-03-11T16:06:55+00:00","subject":"🌸 20% Off + Free Shipping: Spring Skin Event"}],"email_clicks":[{"date":"2026-04-07T15:07:01+00:00","subject":"☀️ The sunscreen you'll actually want to wear all season"},{"date":"2026-02-10T18:09:05+00:00","subject":"Ready to make your purchase?"},{"date":"2026-02-10T15:25:00+00:00","subject":"You have store credit to spend!"}]},{"name":"Tina McDonald","email":"mcdonald.tina65@gmail.com","sample_date":"2026-03-05","is_existing_customer":false,"pre_sample_revenue":0,"converted":true,"days_to_first_purchase":17,"post_sample_orders":[{"date":"2026-03-22","value":231.43,"items":["Anti-Aging Trio with Eye Repair Treatment","Exfoliating Glycolic Peel (20 Percent Off)","Microfibre Makeup Removal Facecloth"]}],"post_sample_revenue":231.43,"total_post_orders":1,"email_opens":[{"date":"2026-04-07T17:56:16+00:00","subject":"☀️ The sunscreen you'll actually want to wear all season"},{"date":"2026-03-29T14:08:23+00:00","subject":"Get more out of your routine"},{"date":"2026-03-28T13:16:21+00:00","subject":"💡 How to use Eye Repair Treatment"},{"date":"2026-03-23T15:07:44+00:00","subject":"You get more this way"}],"email_clicks":[{"date":"2026-03-27T11:38:46+00:00","subject":"Your Riversol order has shipped!"},{"date":"2026-03-25T15:26:51+00:00","subject":"Your Riversol order has shipped!"}]},{"name":"Karoline Fowler","email":"fowlersinca@yahoo.com","sample_date":"2026-03-05","is_existing_customer":false,"pre_sample_revenue":0,"converted":true,"days_to_first_purchase":20,"post_sample_orders":[{"date":"2026-03-25","value":122.07,"items":["FREE Retinol Neck Cream","Redness Control Trio Bundle","Daily Moisturizing Cream"]}],"post_sample_revenue":122.07,"total_post_orders":1,"email_opens":[{"date":"2026-04-07T13:20:13+00:00","subject":"You're already earning!"},{"date":"2026-04-02T05:36:56+00:00","subject":"Get more out of your routine"},{"date":"2026-03-31T22:57:56+00:00","subject":"💙 How to use your Retinol Neck Cream"},{"date":"2026-03-28T04:28:47+00:00","subject":"You're part of the family"},{"date":"2026-03-27T20:45:50+00:00","subject":"Did your skin analyzer results feel right?"},{"date":"2026-03-27T05:01:44+00:00","subject":"You get more this way"}],"email_clicks":[{"date":"2026-03-31T14:28:28+00:00","subject":"Your Riversol order has shipped!"}]},{"name":"Yvonne Warren","email":"bcjt48@hotmail.com","sample_date":"2026-03-05","is_existing_customer":false,"pre_sample_revenue":0,"converted":true,"days_to_first_purchase":23,"post_sample_orders":[{"date":"2026-03-28","value":130.18,"items":["FREE Retinol Neck Cream","Anti-Aging Trio Bundle"]}],"post_sample_revenue":130.18,"total_post_orders":1,"email_opens":[{"date":"2026-04-08T19:58:06+00:00","subject":"💙 How to use your Retinol Neck Cream"},{"date":"2026-04-04T03:33:03+00:00","subject":"Get more out of your routine"},{"date":"2026-03-29T03:55:12+00:00","subject":"You get more this way"},{"date":"2026-03-28T02:51:31+00:00","subject":"Your cart's expiring soon!"},{"date":"2026-03-27T02:14:08+00:00","subject":"We saved your order"},{"date":"2026-03-15T15:39:51+00:00","subject":"Before day one: what to know about your new routine"},{"date":"2026-03-06T15:13:38+00:00","subject":"Welcome — thank you for trying Riversol"}],"email_clicks":[{"date":"2026-03-28T02:51:53+00:00","subject":"Your cart's expiring soon!"},{"date":"2026-03-26T15:33:23+00:00","subject":"Your Riversol order status"}]},{"name":"Maria Antoine","email":"betcheantoine@charter.net","sample_date":"2026-03-05","is_existing_customer":false,"pre_sample_revenue":0,"converted":true,"days_to_first_purchase":23,"post_sample_orders":[{"date":"2026-03-28","value":129.04,"items":["FREE Retinol Neck Cream","Anti-Aging Trio Bundle"]}],"post_sample_revenue":129.04,"total_post_orders":1,"email_opens":[{"date":"2026-04-12T20:50:49+00:00","subject":"Get more out of your routine"},{"date":"2026-04-05T19:52:58+00:00","subject":"💙 How to use your Retinol Neck Cream"},{"date":"2026-04-01T14:59:18+00:00","subject":"You're part of the family"},{"date":"2026-03-31T01:17:26+00:00","subject":"Your sample kit should be arriving soon"},{"date":"2026-03-29T22:25:51+00:00","subject":"You get more this way"},{"date":"2026-03-28T17:06:22+00:00","subject":"You're part of the family"}],"email_clicks":[{"date":"2026-04-05T19:55:14+00:00","subject":"💙 How to use your Retinol Neck Cream"},{"date":"2026-03-29T17:28:56+00:00","subject":"You get more this way"},{"date":"2026-03-28T17:01:42+00:00","subject":"Your sample kit should be arriving soon"}]},{"name":"Brenda McAdam","email":"bmcadam3@gmail.com","sample_date":"2026-03-17","is_existing_customer":false,"pre_sample_revenue":0,"converted":true,"days_to_first_purchase":9,"post_sample_orders":[{"date":"2026-03-26","value":174.02,"items":["FREE Retinol Neck Cream","Anti-Aging Trio with Peel"]},{"date":"2026-03-28","value":102.84,"items":["FREE Retinol Neck Cream","Refreshing Gel Cleanser","Micellar Water Makeup Remover","The Corrector V2"]}],"post_sample_revenue":276.86,"total_post_orders":2,"email_opens":[{"date":"2026-04-13T14:58:22+00:00","subject":"We saved your skincare routine"},{"date":"2026-04-08T20:00:41+00:00","subject":"You get more this way"},{"date":"2026-04-07T23:29:16+00:00","subject":"💙 How to use your Retinol Neck Cream"},{"date":"2026-04-02T00:04:42+00:00","subject":"Welcome — thank you for trying Riversol"},{"date":"2026-03-29T19:26:51+00:00","subject":"You get more this way"},{"date":"2026-03-28T14:54:35+00:00","subject":"Your order is confirmed"},{"date":"2026-03-28T01:22:51+00:00","subject":"You get more this way"}],"email_clicks":[{"date":"2026-04-08T20:00:55+00:00","subject":"You get more this way"},{"date":"2026-04-07T23:30:01+00:00","subject":"Your Riversol order has shipped!"},{"date":"2026-04-02T00:03:24+00:00","subject":"You get more this way"}]},{"name":"Radia Benabdallah","email":"rbenabdallah39@gmail.com","sample_date":"2026-03-06","is_existing_customer":false,"pre_sample_revenue":0,"converted":true,"days_to_first_purchase":9,"post_sample_orders":[{"date":"2026-03-15","value":52.66,"items":["Reusable Skincare Spatula","Revive & Renew Two-Step Restorative Treatment Pack","Hand Balm"]},{"date":"2026-03-31","value":124.29,"items":["Riversol Membership","Anti-Redness Serum","Exfoliating Glycolic Peel"]}],"post_sample_revenue":176.95,"total_post_orders":2,"email_opens":[{"date":"2026-04-05T23:32:40+00:00","subject":"Got questions? We've got your answers"},{"date":"2026-04-05T19:58:04+00:00","subject":"Top picks for your skin"},{"date":"2026-04-05T19:58:00+00:00","subject":"You're in! Welcome to Riversol+"},{"date":"2026-04-05T19:56:38+00:00","subject":"Free Retinol Neck Cream Ends Tonight 🕚"}],"email_clicks":[{"date":"2026-04-05T23:32:15+00:00","subject":"Got questions? We've got your answers"},{"date":"2026-04-05T19:58:29+00:00","subject":"Your Riversol order status"},{"date":"2026-04-04T17:35:44+00:00","subject":"Your Riversol order has shipped!"}]},{"name":"Shelley Devins","email":"smdevins@yahoo.com","sample_date":"2026-03-06","is_existing_customer":false,"pre_sample_revenue":0,"converted":true,"days_to_first_purchase":19,"post_sample_orders":[{"date":"2026-03-25","value":127.81,"items":["Anti-Aging Trio Bundle"]}],"post_sample_revenue":127.81,"total_post_orders":1,"email_opens":[{"date":"2026-04-13T22:33:56+00:00","subject":"Analyze your skin in minutes, for FREE."},{"date":"2026-04-06T21:01:17+00:00","subject":"Get more out of your routine"},{"date":"2026-03-29T18:47:38+00:00","subject":"Your Riversol order has shipped!"},{"date":"2026-03-26T21:49:29+00:00","subject":"Before day one: what to know about your new routine"}],"email_clicks":[{"date":"2026-03-29T18:48:21+00:00","subject":"Your order is confirmed"},{"date":"2026-03-25T00:20:45+00:00","subject":"Your order is confirmed"}]},{"name":"Shelly NeVille","email":"shellyneville1@gmail.com","sample_date":"2026-03-06","is_existing_customer":false,"pre_sample_revenue":0,"converted":true,"days_to_first_purchase":24,"post_sample_orders":[{"date":"2026-03-30","value":152.32,"items":["FREE Retinol Neck Cream","Retinol Neck Cream","Daily Moisturizing Cream"]}],"post_sample_revenue":152.32,"total_post_orders":1,"email_opens":[{"date":"2026-04-10T01:38:29+00:00","subject":"Don't stop at moisturizer"},{"date":"2026-03-31T18:19:09+00:00","subject":"Your sample kit should be arriving soon"},{"date":"2026-03-31T18:16:46+00:00","subject":"You're part of the family"},{"date":"2026-03-31T18:10:35+00:00","subject":"You get more this way"},{"date":"2026-03-30T01:14:51+00:00","subject":"You're part of the family"},{"date":"2026-03-27T01:51:38+00:00","subject":"Before day one: what to know about your new routine"},{"date":"2026-03-17T22:52:17+00:00","subject":"Before day one: what to know about your new routine"}],"email_clicks":[]},{"name":"Lilia Angeles","email":"liliabaldon@yahoo.com","sample_date":"2026-03-07","is_existing_customer":false,"pre_sample_revenue":0,"converted":true,"days_to_first_purchase":22,"post_sample_orders":[{"date":"2026-03-29","value":304.62,"items":["Eye Repair Treatment","Reusable Skincare Spatula","Microfibre Makeup Removal Facecloth","Micellar Water Makeup Remover","Daily Glow Mineral Sunscreen SPF 50+","FREE Retinol Neck Cream","Anti-Aging Trio with Peel"]}],"post_sample_revenue":304.62,"total_post_orders":1,"email_opens":[{"date":"2026-04-11T18:19:41+00:00","subject":"You're already earning!"},{"date":"2026-04-06T15:17:47+00:00","subject":"Get more out of your routine"},{"date":"2026-03-30T17:48:33+00:00","subject":"You get more this way"},{"date":"2026-03-28T07:53:44+00:00","subject":"Still thinking it over?"},{"date":"2026-03-28T06:33:43+00:00","subject":"Your cart's expiring soon!"},{"date":"2026-03-28T06:06:19+00:00","subject":"We saved your order"},{"date":"2026-03-28T05:27:39+00:00","subject":"Your Riversol order status"},{"date":"2026-03-16T05:33:26+00:00","subject":"Before day one: what to know about your new routine"},{"date":"2026-03-10T15:51:25+00:00","subject":"Welcome — thank you for trying Riversol"}],"email_clicks":[{"date":"2026-04-01T03:26:34+00:00","subject":"Your Riversol order has shipped!"},{"date":"2026-03-30T17:48:46+00:00","subject":"You get more this way"}]},{"name":"Deepti Malhan","email":"deeptimalhan7@gmail.com","sample_date":"2026-03-07","is_existing_customer":false,"pre_sample_revenue":0,"converted":true,"days_to_first_purchase":24,"post_sample_orders":[{"date":"2026-03-31","value":146.73,"items":["Exfoliating and Moisturizing Duo","FREE Retinol Neck Cream","Anti-Aging Serum","Hydrating Cream Cleanser"]}],"post_sample_revenue":146.73,"total_post_orders":1,"email_opens":[{"date":"2026-04-07T16:20:34+00:00","subject":"Get more out of your routine"},{"date":"2026-04-01T11:32:34+00:00","subject":"You get more this way"},{"date":"2026-03-31T13:11:25+00:00","subject":"You're part of the family"},{"date":"2026-03-30T17:26:20+00:00","subject":"Your Riversol order status"},{"date":"2026-03-30T13:12:24+00:00","subject":"Your sample kit should be arriving soon"},{"date":"2026-03-16T05:28:42+00:00","subject":"Before day one: what to know about your new routine"}],"email_clicks":[{"date":"2026-04-03T03:31:11+00:00","subject":"Your Riversol order has shipped!"},{"date":"2026-03-30T13:12:48+00:00","subject":"Your sample kit should be arriving soon"}]},{"name":"Thao Ly","email":"lymaithao94@gmail.com","sample_date":"2026-03-08","is_existing_customer":false,"pre_sample_revenue":0,"converted":true,"days_to_first_purchase":9,"post_sample_orders":[{"date":"2026-03-17","value":134.47,"items":["Anti-Aging Serum and Moisturizer Duo"]}],"post_sample_revenue":134.47,"total_post_orders":1,"email_opens":[{"date":"2026-04-10T13:13:35+00:00","subject":"Analyze your skin in minutes, for FREE."},{"date":"2026-04-09T13:55:55+00:00","subject":"Ends at midnight. ⏰"},{"date":"2026-04-07T21:15:27+00:00","subject":"☀️ The sunscreen you'll actually want to wear all season"},{"date":"2026-03-24T13:34:36+00:00","subject":"Get more out of your routine"},{"date":"2026-03-18T13:25:11+00:00","subject":"You get more this way"}],"email_clicks":[{"date":"2026-03-17T15:57:09+00:00","subject":"Your Riversol order has shipped!"}]},{"name":"Mary Cruz","email":"marian.dcruz19@gmail.com","sample_date":"2026-03-08","is_existing_customer":false,"pre_sample_revenue":0,"converted":true,"days_to_first_purchase":23,"post_sample_orders":[{"date":"2026-03-31","value":161.70,"items":["FREE Retinol Neck Cream","Anti-Aging Trio with Peel","Riversol Membership"]}],"post_sample_revenue":161.70,"total_post_orders":1,"email_opens":[{"date":"2026-04-12T18:22:30+00:00","subject":"You're already earning!"},{"date":"2026-04-05T21:01:32+00:00","subject":"Got questions? We've got your answers"},{"date":"2026-04-02T19:28:45+00:00","subject":"Your Riversol+ perks are live"},{"date":"2026-04-01T16:05:34+00:00","subject":"Your Riversol order has shipped!"},{"date":"2026-03-31T18:50:52+00:00","subject":"You're in! Welcome to Riversol+"},{"date":"2026-03-31T18:49:45+00:00","subject":"Your Skin Quiz Results"}],"email_clicks":[{"date":"2026-04-01T16:05:43+00:00","subject":"Your Riversol order has shipped!"},{"date":"2026-03-31T18:55:00+00:00","subject":"You're in! Welcome to Riversol+"}]},{"name":"Jennifer Blackwell","email":"blackwelljennifer543@yahoo.com","sample_date":"2026-03-08","is_existing_customer":false,"pre_sample_revenue":0,"converted":true,"days_to_first_purchase":23,"post_sample_orders":[{"date":"2026-03-31","value":204.93,"items":["FREE Retinol Neck Cream","Anti-Aging Trio with Peel","Eye Repair Treatment (20 Percent Off)"]}],"post_sample_revenue":204.93,"total_post_orders":1,"email_opens":[{"date":"2026-04-08T03:46:05+00:00","subject":"💡 How to use Eye Repair Treatment"},{"date":"2026-04-06T22:19:15+00:00","subject":"💙 How to use your Retinol Neck Cream"},{"date":"2026-04-01T04:01:13+00:00","subject":"You get more this way"},{"date":"2026-03-31T04:18:46+00:00","subject":"You're part of the family"},{"date":"2026-03-12T16:38:40+00:00","subject":"Before day one: what to know about your new routine"}],"email_clicks":[{"date":"2026-04-02T21:31:20+00:00","subject":"Your Riversol order has shipped!"},{"date":"2026-03-31T04:20:24+00:00","subject":"You're part of the family"}]},{"name":"Lily Gill","email":"lilygill@tbaytel.net","sample_date":"2026-03-08","is_existing_customer":false,"pre_sample_revenue":0,"converted":true,"days_to_first_purchase":21,"post_sample_orders":[{"date":"2026-03-29","value":194.81,"items":["FREE Retinol Neck Cream","Anti-Aging Trio with Eye Repair Treatment","Daily Moisturizing Cream"]}],"post_sample_revenue":194.81,"total_post_orders":1,"email_opens":[{"date":"2026-04-10T15:19:47+00:00","subject":"💡 How to use Eye Repair Treatment"},{"date":"2026-04-09T21:24:54+00:00","subject":"💙 How to use your Retinol Neck Cream"},{"date":"2026-04-03T15:09:43+00:00","subject":"Your Riversol order has shipped!"},{"date":"2026-03-31T20:49:45+00:00","subject":"Your order is confirmed"},{"date":"2026-03-29T13:33:46+00:00","subject":"Your order is confirmed"},{"date":"2026-03-18T19:50:51+00:00","subject":"Your sample order has shipped"}],"email_clicks":[{"date":"2026-04-08T15:19:42+00:00","subject":"Your Riversol order has shipped!"},{"date":"2026-04-03T13:10:18+00:00","subject":"Your Riversol order has shipped!"},{"date":"2026-03-31T22:17:05+00:00","subject":"Your Riversol order has shipped!"}]},{"name":"Kimberley Hayman","email":"khayman1862@outlook.com","sample_date":"2026-03-11","is_existing_customer":false,"pre_sample_revenue":0,"converted":true,"days_to_first_purchase":14,"post_sample_orders":[{"date":"2026-03-25","value":179.67,"items":["Exfoliating Glycolic Peel","Anti-Aging Trio Bundle","FREE Retinol Neck Cream","Eye Renewal Serum - Trial"]}],"post_sample_revenue":179.67,"total_post_orders":1,"email_opens":[{"date":"2026-03-25T12:39:35+00:00","subject":"Free Retinol Neck Cream on $110+"},{"date":"2026-03-12T11:53:31+00:00","subject":"Welcome — thank you for trying Riversol"}],"email_clicks":[{"date":"2026-03-25T12:39:57+00:00","subject":"Free Retinol Neck Cream on $110+"}]},{"name":"Cindy Needler","email":"cindyneedler@gmail.com","sample_date":"2026-03-11","is_existing_customer":false,"pre_sample_revenue":0,"converted":true,"days_to_first_purchase":18,"post_sample_orders":[{"date":"2026-03-29","value":176.18,"items":["Hydrating Body Lotion","FREE Retinol Neck Cream","Anti-Aging Trio Bundle","Micellar Water Makeup Remover"]}],"post_sample_revenue":176.18,"total_post_orders":1,"email_opens":[{"date":"2026-04-11T20:50:53+00:00","subject":"💙 How to use your Retinol Neck Cream"},{"date":"2026-04-05T12:42:03+00:00","subject":"Get more out of your routine"},{"date":"2026-03-30T23:05:28+00:00","subject":"Your order is confirmed"},{"date":"2026-03-30T23:05:25+00:00","subject":"You get more this way"},{"date":"2026-03-29T12:13:40+00:00","subject":"You're part of the family"},{"date":"2026-03-15T13:57:03+00:00","subject":"Before day one: what to know about your new routine"}],"email_clicks":[{"date":"2026-03-29T12:13:52+00:00","subject":"You're part of the family"},{"date":"2026-03-15T13:58:47+00:00","subject":"Before day one: what to know about your new routine"}]},{"name":"Betty Dominguez","email":"dominguezbettycam@yahoo.com","sample_date":"2026-03-12","is_existing_customer":false,"pre_sample_revenue":0,"converted":true,"days_to_first_purchase":12,"post_sample_orders":[{"date":"2026-03-24","value":68.15,"items":["Moisturizing Concentrate","Hydrating Cream Cleanser"]}],"post_sample_revenue":68.15,"total_post_orders":1,"email_opens":[{"date":"2026-03-31T19:20:37+00:00","subject":"Your Riversol order has shipped!"},{"date":"2026-03-21T14:27:54+00:00","subject":"Before day one: what to know about your new routine"}],"email_clicks":[{"date":"2026-03-31T19:20:39+00:00","subject":"Your Riversol order has shipped!"},{"date":"2026-03-21T14:28:50+00:00","subject":"Before day one: what to know about your new routine"}]},{"name":"Susan Johnson","email":"smuirbiggs@yahoo.com","sample_date":"2026-03-12","is_existing_customer":false,"pre_sample_revenue":0,"converted":true,"days_to_first_purchase":17,"post_sample_orders":[{"date":"2026-03-29","value":177.58,"items":["FREE Retinol Neck Cream","Cleansing and Moisturizing Duo","Daily Glow Mineral Sunscreen SPF 50+","Hydrating Body Lotion","Hand Balm","Daily Moisturizing Cream"]}],"post_sample_revenue":177.58,"total_post_orders":1,"email_opens":[{"date":"2026-04-06T02:41:17+00:00","subject":"How to get the most out of your new sunscreen!"},{"date":"2026-04-04T23:04:47+00:00","subject":"💙 How to use your Retinol Neck Cream"},{"date":"2026-04-04T04:13:30+00:00","subject":"You're part of the family"},{"date":"2026-03-31T20:12:42+00:00","subject":"Did your skin analyzer results feel right?"},{"date":"2026-03-31T05:27:23+00:00","subject":"You get more this way"}],"email_clicks":[{"date":"2026-04-04T14:22:43+00:00","subject":"Your Riversol order has shipped!"},{"date":"2026-04-01T00:42:15+00:00","subject":"Your Riversol order has shipped!"}]},{"name":"lyne perrier","email":"lyne.perrier25@gmail.com","sample_date":"2026-03-23","is_existing_customer":true,"pre_sample_revenue":44.30,"converted":false,"days_to_first_purchase":null,"post_sample_orders":[],"post_sample_revenue":0,"total_post_orders":0,"email_opens":[{"date":"2026-04-13T18:27:55+00:00","subject":"We saved your skincare routine"},{"date":"2026-04-10T17:26:37+00:00","subject":"Your sample order has shipped"},{"date":"2026-04-10T17:25:14+00:00","subject":"Welcome to Riversol!"},{"date":"2026-04-10T12:39:02+00:00","subject":"Analyze your skin in minutes, for FREE."},{"date":"2026-04-09T12:15:56+00:00","subject":"Ends at midnight. ⏰"},{"date":"2026-04-07T15:30:58+00:00","subject":"☀️ The sunscreen you'll actually want to wear all season"},{"date":"2026-04-05T14:55:33+00:00","subject":"🌷 Ready for a Spring Skin Reset?"},{"date":"2026-04-04T20:46:49+00:00","subject":"You're already earning!"}],"email_clicks":[{"date":"2026-04-12T12:39:37+00:00","subject":"Review your last purchase"},{"date":"2026-03-30T13:14:08+00:00","subject":"You're already earning!"},{"date":"2026-03-19T14:25:37+00:00","subject":"Your Riversol order has shipped!"}]}];
+
+// ── HELPERS ──
+function obfuscateEmail(email) {
+  const [local, domain] = email.split('@');
+  if (local.length <= 2) return email;
+  return local[0] + '****' + local[local.length - 1] + '@' + domain;
+}
+
+function initials(name) {
+  return name.trim().split(/\s+/).map(p => p[0]).join('').toUpperCase().slice(0, 2);
+}
+
+function fmtDate(dateStr) {
+  const d = new Date(dateStr);
+  return d.toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+function fmtDateShort(dateStr) {
+  const d = new Date(dateStr);
+  return d.toLocaleDateString('en-CA', { month: 'short', day: 'numeric' });
+}
+
+function fmtCurrency(v) {
+  return '$' + Number(v).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+// ── SORT: converted first by days asc, then non-converters ──
+function sortedData(data) {
+  const converted = data.filter(p => p.converted).sort((a, b) => a.days_to_first_purchase - b.days_to_first_purchase);
+  const notYet = data.filter(p => !p.converted);
+  return [...converted, ...notYet];
+}
+
+// ── BUILD TIMELINE EVENTS ──
+function buildTimelineEvents(profile) {
+  const events = [];
+  const sampleDt = new Date(profile.sample_date + 'T12:00:00Z');
+
+  // Sample order event
+  events.push({ type: 'sample', date: sampleDt, label: 'Sample Order', sub: 'Free sample — ' + fmtDate(profile.sample_date) });
+
+  // Paid orders
+  profile.post_sample_orders.forEach((order, i) => {
+    events.push({
+      type: 'order',
+      date: new Date(order.date + 'T12:00:00Z'),
+      label: i === 0 ? 'First Paid Order' : 'Repeat Order',
+      value: order.value,
+      items: order.items,
+      isFirst: i === 0
+    });
+  });
+
+  // Email opens
+  profile.email_opens.forEach(e => {
+    events.push({ type: 'open', date: new Date(e.date), subject: e.subject });
+  });
+
+  // Email clicks
+  profile.email_clicks.forEach(e => {
+    events.push({ type: 'click', date: new Date(e.date), subject: e.subject });
+  });
+
+  // Sort ascending
+  events.sort((a, b) => a.date - b.date);
+  return events;
+}
+
+// ── RENDER TIMELINE ──
+function renderTimeline(profile) {
+  const events = buildTimelineEvents(profile);
+  const sampleDate = new Date(profile.sample_date + 'T12:00:00Z');
+  const firstPurchaseDate = profile.converted && profile.post_sample_orders.length > 0
+    ? new Date(profile.post_sample_orders[0].date + 'T12:00:00Z') : null;
+
+  let sampleMarked = false;
+  let purchaseMarked = false;
+  let html = '<div class="timeline">';
+
+  events.forEach(ev => {
+    // Insert sample marker before first event on/after sample date
+    if (!sampleMarked && ev.type !== 'sample' && ev.date >= sampleDate) {
+      sampleMarked = true;
+      html += `<div class="tl-marker sample"><div class="tl-marker-line"></div><div class="tl-marker-label">↑ Sample ordered · ${fmtDateShort(profile.sample_date)}</div><div class="tl-marker-line"></div></div>`;
+    }
+    // Insert purchase marker before first paid order
+    if (firstPurchaseDate && !purchaseMarked && ev.type === 'order' && ev.isFirst) {
+      purchaseMarked = true;
+      html += `<div class="tl-marker purchase"><div class="tl-marker-line"></div><div class="tl-marker-label">↑ First Purchase · Day ${profile.days_to_first_purchase}</div><div class="tl-marker-line"></div></div>`;
+    }
+
+    if (ev.type === 'sample') {
+      html += `<div class="tl-event">
+        <div class="tl-dot purple"></div>
+        <div class="tl-chip purple">
+          <span class="tl-icon">📦</span>
+          <div class="tl-body">
+            <div class="tl-title">Sample Order</div>
+            <div class="tl-sub">${fmtDate(profile.sample_date)} · Free sample</div>
+          </div>
+        </div>
+      </div>`;
+      sampleMarked = true;
+    } else if (ev.type === 'order') {
+      const itemsHtml = ev.items.slice(0, 5).map(item => `<span class="tl-item-tag">${item}</span>`).join('') +
+        (ev.items.length > 5 ? `<span class="tl-item-tag">+${ev.items.length - 5} more</span>` : '');
+      html += `<div class="tl-event">
+        <div class="tl-dot green"></div>
+        <div class="tl-chip green">
+          <span class="tl-icon">💳</span>
+          <div class="tl-body">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
+              <div class="tl-title">${ev.label}</div>
+              <div class="tl-value">${fmtCurrency(ev.value)}</div>
+            </div>
+            <div class="tl-sub">${fmtDate(ev.date)}</div>
+            ${ev.items.length ? `<div class="tl-items">${itemsHtml}</div>` : ''}
+          </div>
+        </div>
+      </div>`;
+    } else if (ev.type === 'open') {
+      html += `<div class="tl-event">
+        <div class="tl-dot blue"></div>
+        <div class="tl-chip blue">
+          <span class="tl-icon">📧</span>
+          <div class="tl-body">
+            <div class="tl-title">${ev.subject}</div>
+            <div class="tl-sub">${fmtDate(ev.date)} · Opened</div>
+          </div>
+        </div>
+      </div>`;
+    } else if (ev.type === 'click') {
+      html += `<div class="tl-event">
+        <div class="tl-dot cyan"></div>
+        <div class="tl-chip cyan">
+          <span class="tl-icon">🖱</span>
+          <div class="tl-body">
+            <div class="tl-title">${ev.subject}</div>
+            <div class="tl-sub">${fmtDate(ev.date)} · Clicked</div>
+          </div>
+        </div>
+      </div>`;
+    }
+  });
+
+  html += '</div>';
+  return html;
+}
+
+// ── RENDER PROFILES ──
+function renderProfiles() {
+  const sorted = sortedData(DATA);
+  const list = document.getElementById('profiles-list');
+  document.getElementById('profile-count').textContent = `(${sorted.length})`;
+
+  sorted.forEach((profile, idx) => {
+    const card = document.createElement('div');
+    card.className = 'profile-card';
+
+    const init = initials(profile.name);
+    const avatarClass = profile.converted ? 'green' : '';
+    const existingTag = profile.is_existing_customer ? '<span class="tag-existing">Existing Customer</span>' : '';
+    const badgeHtml = profile.converted
+      ? `<span class="conv-badge converted">Converted ✅</span>`
+      : `<span class="conv-badge not-yet">Not Yet ⏳</span>`;
+    const revenueHtml = profile.converted
+      ? `<span class="revenue-chip">${fmtCurrency(profile.post_sample_revenue)}</span>` : '';
+    const daysHtml = profile.converted && profile.days_to_first_purchase
+      ? `<span class="days-chip">Day ${profile.days_to_first_purchase}</span>` : '';
+    const sampleDateFmt = fmtDate(profile.sample_date);
+
+    const notYetNote = !profile.converted && profile.name.toLowerCase().includes('lyne')
+      ? `<div class="not-yet-note">⏳ Sample shipped Apr 10 — only 3 days ago. Still in the conversion window. Not a loss yet.</div>` : '';
+
+    const timelineHtml = renderTimeline(profile);
+
+    card.innerHTML = `
+      <div class="profile-header" onclick="toggleCard(this)">
+        <div class="profile-avatar ${avatarClass}">${init}</div>
+        <div class="profile-info">
+          <div class="profile-name-row">
+            <span class="profile-name">${profile.name}</span>
+            ${existingTag}
+          </div>
+          <div class="profile-email">${obfuscateEmail(profile.email)}</div>
+        </div>
+        <div class="profile-meta">
+          <div class="profile-meta-item">Sample <span>${sampleDateFmt}</span></div>
+          ${profile.total_post_orders > 1 ? `<div class="profile-meta-item"><span>${profile.total_post_orders} orders</span></div>` : ''}
+        </div>
+        <div class="profile-right">
+          ${daysHtml}
+          ${revenueHtml}
+          ${badgeHtml}
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="timeline-wrap">
+        ${notYetNote}
+        ${timelineHtml}
+      </div>
+    `;
+
+    list.appendChild(card);
+  });
+}
+
+function toggleCard(header) {
+  const card = header.closest('.profile-card');
+  card.classList.toggle('open');
+}
+</script>
+</body>
+</html>
