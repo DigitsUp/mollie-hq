@@ -9,31 +9,40 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0f1117;
-      --surface: #161b27;
-      --surface2: #1c2333;
-      --border: #2a3347;
-      --text: #e2e8f0;
-      --text-muted: #8892a4;
-      --text-dim: #4a5568;
-      --purple: #7c3aed;
-      --purple-bg: #2d1b69;
-      --purple-light: #a78bfa;
-      --green: #059669;
-      --green-bg: #064e3b;
-      --green-light: #34d399;
-      --grey: #4b5563;
-      --grey-bg: #1f2937;
-      --grey-light: #9ca3af;
-      --blue: #1d4ed8;
-      --blue-bg: #1e3a5f;
-      --blue-light: #60a5fa;
-      --cyan: #0e7490;
-      --cyan-bg: #164e63;
-      --cyan-light: #22d3ee;
-      --accent: #f59e0b;
-      --accent-bg: #451a03;
-      --accent-light: #fbbf24;
+      /* ── Riversol Brand Palette ── */
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --surface2: #f9fafb;
+      --border: #d8d8d8;
+      --text: #333333;
+      --text-muted: #666666;
+      --text-dim: #999999;
+      /* Teal — sample / primary (maps to old "purple" slots) */
+      --purple: #108474;
+      --purple-bg: #e6f4f2;
+      --purple-light: #108474;
+      /* Green — product purchase */
+      --green: #2e7d32;
+      --green-bg: #e8f5e9;
+      --green-light: #1b5e20;
+      /* Grey — membership renewal */
+      --grey: #d8d8d8;
+      --grey-bg: #f5f5f5;
+      --grey-light: #666666;
+      /* Blue — email open */
+      --blue: #107c96;
+      --blue-bg: #e3f2fd;
+      --blue-light: #0d47a1;
+      /* Cyan — email click */
+      --cyan: #107c96;
+      --cyan-bg: #e0f7fa;
+      --cyan-light: #006064;
+      /* Coral — highlight moments (maps to old "accent" slots) */
+      --accent: #eb637d;
+      --accent-bg: #fce4ec;
+      --accent-light: #eb637d;
+      /* Dark teal — headings */
+      --heading: #06303a;
     }
 
     body {
@@ -49,7 +58,7 @@
     #gate {
       position: fixed;
       inset: 0;
-      background: var(--bg);
+      background: var(--surface2);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -72,7 +81,7 @@
     .gate-title {
       font-size: 22px;
       font-weight: 700;
-      color: var(--text);
+      color: var(--heading);
       text-align: center;
     }
 
@@ -85,14 +94,15 @@
     .gate-box {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 32px;
+      border-radius: 14px;
+      padding: 36px 32px;
       width: 100%;
       max-width: 380px;
       display: flex;
       flex-direction: column;
       gap: 16px;
       text-align: center;
+      box-shadow: 0 4px 24px rgba(6, 48, 58, 0.08);
     }
 
     .gate-lock {
@@ -107,20 +117,23 @@
       padding: 12px 16px;
       font-size: 16px;
       font-family: inherit;
-      color: var(--text);
+      color: var(--heading);
       text-align: center;
       letter-spacing: 0.15em;
       font-weight: 600;
       width: 100%;
       outline: none;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
 
-    .gate-input:focus { border-color: var(--purple-light); }
-    .gate-input.error { border-color: #ef4444; }
+    .gate-input:focus {
+      border-color: #108474;
+      box-shadow: 0 0 0 3px rgba(16, 132, 116, 0.15);
+    }
+    .gate-input.error { border-color: #eb637d; }
 
     .gate-btn {
-      background: var(--purple);
+      background: #108474;
       color: #fff;
       border: none;
       border-radius: 8px;
@@ -131,13 +144,14 @@
       cursor: pointer;
       transition: background 0.2s;
       width: 100%;
+      letter-spacing: 0.01em;
     }
 
-    .gate-btn:hover { background: #6d28d9; }
+    .gate-btn:hover { background: #0a6a5c; }
 
     .gate-error {
       font-size: 13px;
-      color: #f87171;
+      color: #eb637d;
       min-height: 18px;
     }
 
@@ -163,14 +177,14 @@
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: #108474;
       margin-bottom: 10px;
     }
 
     .report-title {
       font-size: 28px;
       font-weight: 700;
-      color: var(--text);
+      color: var(--heading);
       margin-bottom: 8px;
       line-height: 1.3;
     }
@@ -180,9 +194,9 @@
       color: var(--text-muted);
     }
 
-    /* ── SUMMARY TABLE ── */
+    /* ── SUMMARY STATS ── */
     .section-title {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -200,28 +214,30 @@
     .stat-card {
       background: var(--surface);
       border: 1px solid var(--border);
+      border-top: 3px solid #108474;
       border-radius: 10px;
       padding: 18px 20px;
+      box-shadow: 0 1px 6px rgba(6, 48, 58, 0.06);
     }
 
     .stat-label {
       font-size: 12px;
       color: var(--text-muted);
       font-weight: 500;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       line-height: 1.4;
     }
 
     .stat-value {
       font-size: 22px;
       font-weight: 700;
-      color: var(--text);
+      color: var(--heading);
       line-height: 1.2;
     }
 
-    .stat-value.green { color: var(--green-light); }
-    .stat-value.purple { color: var(--purple-light); }
-    .stat-value.accent { color: var(--accent-light); }
+    .stat-value.green { color: #2e7d32; }
+    .stat-value.purple { color: #108474; }
+    .stat-value.accent { color: #06303a; }
 
     .summary-note {
       font-size: 12px;
@@ -229,8 +245,8 @@
       font-style: italic;
       margin-top: 10px;
       padding: 10px 14px;
-      background: var(--surface);
-      border-left: 3px solid var(--border);
+      background: var(--surface2);
+      border-left: 3px solid #108474;
       border-radius: 0 6px 6px 0;
     }
 
@@ -238,10 +254,11 @@
     .insights-box {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-left: 4px solid var(--purple-light);
+      border-left: 4px solid #108474;
       border-radius: 10px;
       padding: 22px 24px;
       margin-bottom: 40px;
+      box-shadow: 0 1px 6px rgba(6, 48, 58, 0.06);
     }
 
     .insights-box .section-title { margin-bottom: 14px; }
@@ -265,11 +282,11 @@
       content: '→';
       position: absolute;
       left: 0;
-      color: var(--purple-light);
+      color: #108474;
       font-weight: 700;
     }
 
-    .insights-list li strong { color: var(--text); font-weight: 600; }
+    .insights-list li strong { color: var(--heading); font-weight: 600; }
 
     /* ── PROFILE CARDS ── */
     .profiles-section { margin-bottom: 20px; }
@@ -280,11 +297,15 @@
       border-radius: 12px;
       margin-bottom: 10px;
       overflow: hidden;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 1px 4px rgba(6, 48, 58, 0.05);
     }
 
-    .profile-card:hover { border-color: #3a4560; }
-    .profile-card.open { border-color: var(--purple); }
+    .profile-card:hover {
+      border-color: #108474;
+      box-shadow: 0 2px 12px rgba(16, 132, 116, 0.1);
+    }
+    .profile-card.open { border-color: #108474; border-left: 3px solid #108474; }
 
     .profile-header {
       display: flex;
@@ -302,22 +323,25 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
       flex-shrink: 0;
-      background: var(--purple-bg);
-      color: var(--purple-light);
+      background: #e6f4f2;
+      color: #06303a;
       letter-spacing: 0;
     }
 
-    .profile-avatar.membership { background: var(--grey-bg); color: var(--grey-light); }
+    .profile-avatar.membership {
+      background: #f5f5f5;
+      color: #666666;
+    }
 
     .profile-info { flex: 1; min-width: 0; }
 
     .profile-name {
       font-size: 15px;
       font-weight: 600;
-      color: var(--text);
+      color: var(--heading);
       text-transform: capitalize;
       line-height: 1.3;
     }
@@ -348,15 +372,15 @@
     }
 
     .badge.converted {
-      background: var(--green-bg);
-      color: var(--green-light);
-      border: 1px solid #065f46;
+      background: #fce4ec;
+      color: #c0395a;
+      border: 1px solid #eb637d;
     }
 
     .badge.membership-only {
-      background: var(--grey-bg);
-      color: var(--grey-light);
-      border: 1px solid #374151;
+      background: #f5f5f5;
+      color: #666666;
+      border: 1px solid #d8d8d8;
     }
 
     .stat-pill {
@@ -364,14 +388,15 @@
       color: var(--text-muted);
       padding: 3px 8px;
       background: var(--surface2);
+      border: 1px solid var(--border);
       border-radius: 6px;
       white-space: nowrap;
     }
 
-    .stat-pill.revenue { color: var(--accent-light); }
+    .stat-pill.revenue { color: #06303a; font-weight: 600; }
 
     .profile-chevron {
-      color: var(--text-dim);
+      color: #108474;
       font-size: 14px;
       transition: transform 0.2s;
       flex-shrink: 0;
@@ -384,6 +409,7 @@
       display: none;
       padding: 0 20px 20px 20px;
       border-top: 1px solid var(--border);
+      background: var(--surface2);
     }
 
     .profile-card.open .timeline { display: block; }
@@ -400,7 +426,7 @@
       top: 16px;
       bottom: 16px;
       width: 2px;
-      background: var(--border);
+      background: #d8d8d8;
       border-radius: 2px;
     }
 
@@ -418,14 +444,14 @@
       width: 14px;
       height: 14px;
       border-radius: 50%;
-      border: 2px solid var(--bg);
+      border: 2px solid var(--surface2);
     }
 
-    .timeline-dot.purple { background: var(--purple-light); }
-    .timeline-dot.green { background: var(--green-light); }
-    .timeline-dot.grey { background: var(--grey-light); }
-    .timeline-dot.blue { background: var(--blue-light); }
-    .timeline-dot.cyan { background: var(--cyan-light); }
+    .timeline-dot.purple { background: #108474; }
+    .timeline-dot.green { background: #2e7d32; }
+    .timeline-dot.grey { background: #aaaaaa; }
+    .timeline-dot.blue { background: #0d47a1; }
+    .timeline-dot.cyan { background: #006064; }
 
     .timeline-date {
       font-size: 11px;
@@ -445,17 +471,22 @@
       line-height: 1.4;
     }
 
-    .timeline-chip.purple { background: var(--purple-bg); color: var(--purple-light); border: 1px solid #3d2580; }
-    .timeline-chip.green { background: var(--green-bg); color: var(--green-light); border: 1px solid #065f46; }
-    .timeline-chip.grey { background: var(--grey-bg); color: var(--grey-light); border: 1px solid #374151; }
-    .timeline-chip.blue { background: var(--blue-bg); color: var(--blue-light); border: 1px solid #1e3a8a; }
-    .timeline-chip.cyan { background: var(--cyan-bg); color: var(--cyan-light); border: 1px solid #155e75; }
+    /* 📦 Sample order */
+    .timeline-chip.purple { background: #e6f4f2; color: #06303a; border: 1px solid #108474; }
+    /* 💳 Product purchase */
+    .timeline-chip.green { background: #e8f5e9; color: #1b5e20; border: 1px solid #2e7d32; }
+    /* 🔄 Membership renewal */
+    .timeline-chip.grey { background: #f5f5f5; color: #666666; border: 1px solid #d8d8d8; }
+    /* 📧 Email open */
+    .timeline-chip.blue { background: #e3f2fd; color: #0d47a1; border: 1px solid #107c96; }
+    /* 🖱 Email click */
+    .timeline-chip.cyan { background: #e0f7fa; color: #006064; border: 1px solid #107c96; }
 
     .timeline-chip-icon { font-size: 14px; }
 
     .timeline-chip-body { display: flex; flex-direction: column; gap: 2px; }
     .timeline-chip-label { font-weight: 600; }
-    .timeline-chip-detail { font-size: 11px; opacity: 0.8; }
+    .timeline-chip-detail { font-size: 11px; opacity: 0.85; }
 
     .timeline-marker {
       display: inline-flex;
@@ -465,9 +496,9 @@
       font-weight: 600;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      color: var(--accent-light);
-      background: var(--accent-bg);
-      border: 1px solid #78350f;
+      color: #c0395a;
+      background: #fce4ec;
+      border: 1px solid #eb637d;
       padding: 3px 10px;
       border-radius: 20px;
       margin-top: 4px;
