@@ -268,6 +268,7 @@ main{position:relative;z-index:5;max-width:var(--max);margin:0 auto;padding:28px
 <nav id="tab-nav">
   <button class="tab-btn active" data-tab="hq" onclick="switchTab('hq',this)">HQ</button>
   <button class="tab-btn" data-tab="workspace" onclick="switchTab('workspace',this)">Workspace</button>
+  <button class="tab-btn" data-tab="pipeline" onclick="switchTab('pipeline',this)">Pipeline</button>
 </nav>
 
 <div id="hq-view">
@@ -349,6 +350,10 @@ main{position:relative;z-index:5;max-width:var(--max);margin:0 auto;padding:28px
 
 </main>
 </div><!-- /#hq-view -->
+
+<div id="pipeline-view" style="display:none;height:calc(100vh - 110px);">
+  <iframe id="pipeline-iframe" src="" style="width:100%;height:100%;border:none;"></iframe>
+</div>
 
 <div id="workspace-view" style="display:none">
   <canvas id="workspace-canvas"></canvas>
@@ -676,6 +681,11 @@ requestAnimationFrame(anim);
 function switchTab(id, btn) {
   document.getElementById('hq-view').style.display = id==='hq' ? '' : 'none';
   document.getElementById('workspace-view').style.display = id==='workspace' ? '' : 'none';
+  document.getElementById('pipeline-view').style.display = id==='pipeline' ? '' : 'none';
+  if (id === 'pipeline') {
+    const f = document.getElementById('pipeline-iframe');
+    if (!f.src || f.src === window.location.href) f.src = './pipeline.html?authed=1';
+  }
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   if (id === 'workspace' && !window._wsInit) initWorkspace();
