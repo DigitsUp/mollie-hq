@@ -2101,6 +2101,7 @@ body {
       <button class="hub-tab-btn" id="htab-campaigns" onclick="hubSwitchTab('campaigns')">Campaign Ideas</button>
       <button class="hub-tab-btn" id="htab-winback" onclick="hubSwitchTab('winback')">Win-Back Strategy</button>
       <button class="hub-tab-btn" id="htab-journey" onclick="hubSwitchTab('journey')">Sample Journey</button>
+      <button class="hub-tab-btn" id="htab-segment-insights" onclick="hubSwitchTab('segment-insights')">Segment Insights</button>
     </div>
   </div>
 
@@ -5080,6 +5081,780 @@ body {
 </div>
 
 
+
+  </div>
+
+
+  <div id="pane-segment-insights" class="hub-pane">
+<style>
+  /* ── Segment Insights Tab – Scoped Styles ─────────────────────────────── */
+  #tab-segment-insights {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: #1c2422;
+    color: #e8eeec;
+    padding: 32px 24px 48px;
+    box-sizing: border-box;
+  }
+
+  /* Hero */
+  #tab-segment-insights .si-hero {
+    background: linear-gradient(135deg, #2a3b38 0%, #1f3330 100%);
+    border: 1px solid #3d8b8b44;
+    border-left: 4px solid #3d8b8b;
+    border-radius: 10px;
+    padding: 28px 32px;
+    margin-bottom: 36px;
+  }
+  #tab-segment-insights .si-hero-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #3d8b8b;
+    margin-bottom: 10px;
+  }
+  #tab-segment-insights .si-hero h2 {
+    margin: 0 0 10px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.3;
+  }
+  #tab-segment-insights .si-hero-stat {
+    display: inline-block;
+    font-size: 42px;
+    font-weight: 800;
+    color: #3d8b8b;
+    letter-spacing: -1px;
+    margin-right: 12px;
+  }
+  #tab-segment-insights .si-hero p {
+    margin: 12px 0 0;
+    font-size: 15px;
+    color: #a8bfbb;
+    line-height: 1.6;
+    max-width: 680px;
+  }
+
+  /* Section headers */
+  #tab-segment-insights .si-section-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #3d8b8b;
+    margin: 0 0 18px;
+  }
+
+  /* ── Visual Breakdown ──────────────────────────────────────────────────── */
+  #tab-segment-insights .si-breakdown {
+    margin-bottom: 40px;
+  }
+  #tab-segment-insights .si-stacked-bar-wrap {
+    margin-bottom: 20px;
+  }
+  #tab-segment-insights .si-stacked-bar {
+    display: flex;
+    height: 28px;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  #tab-segment-insights .si-bar-seg {
+    height: 100%;
+    transition: opacity 0.2s;
+    position: relative;
+  }
+  #tab-segment-insights .si-bar-seg:hover {
+    opacity: 0.85;
+  }
+  /* Segment colors */
+  #tab-segment-insights .color-se  { background: #3d8b8b; }
+  #tab-segment-insights .color-si  { background: #2d6b6b; }
+  #tab-segment-insights .color-ci  { background: #6b9e5e; }
+  #tab-segment-insights .color-ce  { background: #4a7e6b; }
+  #tab-segment-insights .color-le  { background: #8b7d3d; }
+  #tab-segment-insights .color-li  { background: #6b5e2d; }
+
+  /* Legend */
+  #tab-segment-insights .si-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    margin-bottom: 24px;
+  }
+  #tab-segment-insights .si-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #c5d8d4;
+  }
+  #tab-segment-insights .si-legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  #tab-segment-insights .si-legend-count {
+    font-weight: 700;
+    color: #ffffff;
+  }
+  #tab-segment-insights .si-legend-pct {
+    color: #7fa8a2;
+    font-size: 12px;
+  }
+
+  /* Segment cards grid */
+  #tab-segment-insights .si-seg-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  @media (max-width: 800px) {
+    #tab-segment-insights .si-seg-cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 520px) {
+    #tab-segment-insights .si-seg-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+  #tab-segment-insights .si-seg-card {
+    background: #2a3b38;
+    border-radius: 8px;
+    padding: 16px 18px;
+    border-top: 3px solid transparent;
+    position: relative;
+    overflow: hidden;
+  }
+  #tab-segment-insights .si-seg-card.border-se { border-top-color: #3d8b8b; }
+  #tab-segment-insights .si-seg-card.border-si { border-top-color: #2d6b6b; }
+  #tab-segment-insights .si-seg-card.border-ci { border-top-color: #6b9e5e; }
+  #tab-segment-insights .si-seg-card.border-ce { border-top-color: #4a7e6b; }
+  #tab-segment-insights .si-seg-card.border-le { border-top-color: #8b7d3d; }
+  #tab-segment-insights .si-seg-card.border-li { border-top-color: #6b5e2d; }
+
+  #tab-segment-insights .si-seg-card .seg-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #7fa8a2;
+    margin-bottom: 4px;
+  }
+  #tab-segment-insights .si-seg-card .seg-count {
+    font-size: 28px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+  #tab-segment-insights .si-seg-card .seg-pct {
+    font-size: 13px;
+    color: #7fa8a2;
+    margin-bottom: 10px;
+  }
+  #tab-segment-insights .si-seg-card .seg-bar {
+    height: 4px;
+    background: #1c2422;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  #tab-segment-insights .si-seg-card .seg-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+  }
+  #tab-segment-insights .si-seg-card.border-se .seg-bar-fill { background: #3d8b8b; width: 63.5%; }
+  #tab-segment-insights .si-seg-card.border-si .seg-bar-fill { background: #2d6b6b; width: 18.7%; }
+  #tab-segment-insights .si-seg-card.border-ci .seg-bar-fill { background: #6b9e5e; width: 10.3%; }
+  #tab-segment-insights .si-seg-card.border-ce .seg-bar-fill { background: #4a7e6b; width: 4.9%; }
+  #tab-segment-insights .si-seg-card.border-le .seg-bar-fill { background: #8b7d3d; width: 1.9%; }
+  #tab-segment-insights .si-seg-card.border-li .seg-bar-fill { background: #6b5e2d; width: 0.8%; }
+
+  #tab-segment-insights .si-seg-card .seg-badge-big {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: #3d8b8b22;
+    color: #3d8b8b;
+    border: 1px solid #3d8b8b55;
+    border-radius: 4px;
+    padding: 2px 7px;
+  }
+
+  /* ── Gameplan Cards ────────────────────────────────────────────────────── */
+  #tab-segment-insights .si-gameplan {
+    margin-bottom: 40px;
+  }
+  #tab-segment-insights .si-gp-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 680px) {
+    #tab-segment-insights .si-gp-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  #tab-segment-insights .si-gp-card {
+    background: #2a3b38;
+    border-radius: 10px;
+    padding: 22px 24px;
+    border: 1px solid #3a4f4b;
+    position: relative;
+  }
+  #tab-segment-insights .si-gp-card.featured {
+    grid-column: 1 / -1;
+    border-color: #3d8b8b55;
+    background: linear-gradient(135deg, #2d4440 0%, #2a3b38 100%);
+  }
+  #tab-segment-insights .si-gp-card .gp-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    gap: 12px;
+  }
+  #tab-segment-insights .si-gp-card .gp-title-wrap {}
+  #tab-segment-insights .si-gp-card .gp-segment-type {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+  #tab-segment-insights .si-gp-card .gp-segment-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+  }
+  #tab-segment-insights .si-gp-card .gp-count-badge {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  #tab-segment-insights .si-gp-card .gp-count-num {
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1;
+  }
+  #tab-segment-insights .si-gp-card .gp-count-pct {
+    font-size: 11px;
+    color: #7fa8a2;
+    margin-top: 2px;
+  }
+  #tab-segment-insights .si-gp-card .gp-divider {
+    height: 1px;
+    background: #3a4f4b;
+    margin-bottom: 14px;
+  }
+  #tab-segment-insights .si-gp-card .gp-row {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 4px 12px;
+    margin-bottom: 8px;
+    align-items: baseline;
+  }
+  #tab-segment-insights .si-gp-card .gp-row-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #7fa8a2;
+    padding-top: 1px;
+  }
+  #tab-segment-insights .si-gp-card .gp-row-val {
+    font-size: 13px;
+    color: #d0e4e0;
+    line-height: 1.5;
+  }
+  #tab-segment-insights .si-gp-card .gp-subject {
+    margin-top: 14px;
+    background: #1c2422;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #ffffff;
+    border-left: 3px solid;
+  }
+  #tab-segment-insights .si-gp-card .gp-subject-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  #tab-segment-insights .si-gp-card .gp-priority-badge {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    padding: 3px 8px;
+  }
+
+  /* Per-segment color theming */
+  #tab-segment-insights .theme-se .gp-segment-type,
+  #tab-segment-insights .theme-se .gp-count-num { color: #3d8b8b; }
+  #tab-segment-insights .theme-se .gp-subject { border-left-color: #3d8b8b; }
+  #tab-segment-insights .theme-se .gp-subject-label { color: #3d8b8b; }
+  #tab-segment-insights .theme-se .gp-priority-badge { background: #3d8b8b22; color: #3d8b8b; border: 1px solid #3d8b8b55; }
+
+  #tab-segment-insights .theme-si .gp-segment-type,
+  #tab-segment-insights .theme-si .gp-count-num { color: #4da8a8; }
+  #tab-segment-insights .theme-si .gp-subject { border-left-color: #4da8a8; }
+  #tab-segment-insights .theme-si .gp-subject-label { color: #4da8a8; }
+
+  #tab-segment-insights .theme-ci .gp-segment-type,
+  #tab-segment-insights .theme-ci .gp-count-num { color: #7dbf6f; }
+  #tab-segment-insights .theme-ci .gp-subject { border-left-color: #7dbf6f; }
+  #tab-segment-insights .theme-ci .gp-subject-label { color: #7dbf6f; }
+  #tab-segment-insights .theme-ci .gp-priority-badge { background: #6b9e5e22; color: #7dbf6f; border: 1px solid #7dbf6f55; }
+
+  #tab-segment-insights .theme-ce .gp-segment-type,
+  #tab-segment-insights .theme-ce .gp-count-num { color: #5d9e88; }
+  #tab-segment-insights .theme-ce .gp-subject { border-left-color: #5d9e88; }
+  #tab-segment-insights .theme-ce .gp-subject-label { color: #5d9e88; }
+  #tab-segment-insights .theme-ce .gp-priority-badge { background: #4a7e6b22; color: #5d9e88; border: 1px solid #5d9e8855; }
+
+  #tab-segment-insights .theme-le .gp-segment-type,
+  #tab-segment-insights .theme-le .gp-count-num { color: #c4b45a; }
+  #tab-segment-insights .theme-le .gp-subject { border-left-color: #c4b45a; }
+  #tab-segment-insights .theme-le .gp-subject-label { color: #c4b45a; }
+
+  #tab-segment-insights .theme-li .gp-segment-type,
+  #tab-segment-insights .theme-li .gp-count-num { color: #9e8b44; }
+  #tab-segment-insights .theme-li .gp-subject { border-left-color: #9e8b44; }
+  #tab-segment-insights .theme-li .gp-subject-label { color: #9e8b44; }
+
+  /* ── Closing Note ──────────────────────────────────────────────────────── */
+  #tab-segment-insights .si-closing {
+    background: #2a3b38;
+    border: 1px solid #3d8b8b44;
+    border-radius: 10px;
+    padding: 22px 28px;
+  }
+  #tab-segment-insights .si-closing h3 {
+    margin: 0 0 14px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #3d8b8b;
+  }
+  #tab-segment-insights .si-priority-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  #tab-segment-insights .si-priority-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #1c2422;
+    border-radius: 8px;
+    padding: 12px 16px;
+    flex: 1;
+    min-width: 180px;
+  }
+  #tab-segment-insights .si-priority-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  #tab-segment-insights .si-priority-num.p1 { background: #3d8b8b; color: #fff; }
+  #tab-segment-insights .si-priority-num.p2 { background: #6b9e5e; color: #fff; }
+  #tab-segment-insights .si-priority-num.p3 { background: #4a7e6b; color: #fff; }
+  #tab-segment-insights .si-priority-text strong {
+    display: block;
+    font-size: 13px;
+    color: #ffffff;
+    margin-bottom: 2px;
+  }
+  #tab-segment-insights .si-priority-text span {
+    font-size: 11px;
+    color: #7fa8a2;
+  }
+</style>
+
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<!--  SEGMENT INSIGHTS TAB PANE                                            -->
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<div id="tab-segment-insights" role="tabpanel">
+
+  <!-- ── 1. HERO ──────────────────────────────────────────────────────── -->
+  <div class="si-hero">
+    <div class="si-hero-label">Not Received Analysis · Q1 2026 Benchmark</div>
+    <div>
+      <span class="si-hero-stat">42,247</span>
+    </div>
+    <h2>Subscribers who received emails in Q1 2025 — but zero in Q1 2026.</h2>
+    <p>
+      These contacts were opted in and reachable last year. Something changed. This analysis breaks them into six actionable segments and maps out exactly how to reach each one — from your biggest conversion opportunity down to the final goodbye.
+    </p>
+  </div>
+
+  <!-- ── 2. VISUAL BREAKDOWN ───────────────────────────────────────────── -->
+  <div class="si-breakdown">
+    <div class="si-section-title">Segment Breakdown</div>
+
+    <!-- Stacked bar -->
+    <div class="si-stacked-bar-wrap">
+      <div class="si-stacked-bar">
+        <div class="si-bar-seg color-se" style="width:63.5%" title="Sampler - Engaged: 26,805 (63.5%)"></div>
+        <div class="si-bar-seg color-si" style="width:18.7%" title="Sampler - Inactive: 7,895 (18.7%)"></div>
+        <div class="si-bar-seg color-ci" style="width:10.3%" title="Customer - Inactive: 4,348 (10.3%)"></div>
+        <div class="si-bar-seg color-ce" style="width:4.9%"  title="Customer - Engaged: 2,074 (4.9%)"></div>
+        <div class="si-bar-seg color-le" style="width:1.9%"  title="Leads - Engaged: 803 (1.9%)"></div>
+        <div class="si-bar-seg color-li" style="width:0.6%"  title="Leads - Inactive: 322 (0.8%)"></div>
+      </div>
+      <!-- Legend -->
+      <div class="si-legend">
+        <div class="si-legend-item"><div class="si-legend-dot color-se"></div> Sampler – Engaged <span class="si-legend-count">&nbsp;26,805</span><span class="si-legend-pct">&nbsp;63.5%</span></div>
+        <div class="si-legend-item"><div class="si-legend-dot color-si"></div> Sampler – Inactive <span class="si-legend-count">&nbsp;7,895</span><span class="si-legend-pct">&nbsp;18.7%</span></div>
+        <div class="si-legend-item"><div class="si-legend-dot color-ci"></div> Customer – Inactive <span class="si-legend-count">&nbsp;4,348</span><span class="si-legend-pct">&nbsp;10.3%</span></div>
+        <div class="si-legend-item"><div class="si-legend-dot color-ce"></div> Customer – Engaged <span class="si-legend-count">&nbsp;2,074</span><span class="si-legend-pct">&nbsp;4.9%</span></div>
+        <div class="si-legend-item"><div class="si-legend-dot color-le"></div> Leads – Engaged <span class="si-legend-count">&nbsp;803</span><span class="si-legend-pct">&nbsp;1.9%</span></div>
+        <div class="si-legend-item"><div class="si-legend-dot color-li"></div> Leads – Inactive <span class="si-legend-count">&nbsp;322</span><span class="si-legend-pct">&nbsp;0.8%</span></div>
+      </div>
+    </div>
+
+    <!-- 6 mini segment cards -->
+    <div class="si-seg-cards">
+      <div class="si-seg-card border-se">
+        <div class="seg-badge-big">THE BIG ONE</div>
+        <div class="seg-label">Sampler · Engaged</div>
+        <div class="seg-count">26,805</div>
+        <div class="seg-pct">63.5% of segment</div>
+        <div class="seg-bar"><div class="seg-bar-fill"></div></div>
+      </div>
+      <div class="si-seg-card border-si">
+        <div class="seg-label">Sampler · Inactive</div>
+        <div class="seg-count">7,895</div>
+        <div class="seg-pct">18.7% of segment</div>
+        <div class="seg-bar"><div class="seg-bar-fill"></div></div>
+      </div>
+      <div class="si-seg-card border-ci">
+        <div class="seg-label">Customer · Inactive</div>
+        <div class="seg-count">4,348</div>
+        <div class="seg-pct">10.3% of segment</div>
+        <div class="seg-bar"><div class="seg-bar-fill"></div></div>
+      </div>
+      <div class="si-seg-card border-ce">
+        <div class="seg-label">Customer · Engaged</div>
+        <div class="seg-count">2,074</div>
+        <div class="seg-pct">4.9% of segment</div>
+        <div class="seg-bar"><div class="seg-bar-fill"></div></div>
+      </div>
+      <div class="si-seg-card border-le">
+        <div class="seg-label">Leads · Engaged</div>
+        <div class="seg-count">803</div>
+        <div class="seg-pct">1.9% of segment</div>
+        <div class="seg-bar"><div class="seg-bar-fill"></div></div>
+      </div>
+      <div class="si-seg-card border-li">
+        <div class="seg-label">Leads · Inactive</div>
+        <div class="seg-count">322</div>
+        <div class="seg-pct">0.8% of segment</div>
+        <div class="seg-bar"><div class="seg-bar-fill"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 3. GAMEPLAN CARDS ─────────────────────────────────────────────── -->
+  <div class="si-gameplan">
+    <div class="si-section-title">Segment Gameplan</div>
+    <div class="si-gp-grid">
+
+      <!-- Sampler - Engaged (FEATURED) -->
+      <div class="si-gp-card featured theme-se">
+        <div class="gp-priority-badge">Priority #1 · Biggest Opportunity</div>
+        <div class="gp-header">
+          <div class="gp-title-wrap">
+            <div class="gp-segment-type">Sampler</div>
+            <div class="gp-segment-name">Sampler – Engaged</div>
+          </div>
+          <div class="gp-count-badge">
+            <div class="gp-count-num">26,805</div>
+            <div class="gp-count-pct">63.5% of total</div>
+          </div>
+        </div>
+        <div class="gp-divider"></div>
+        <div class="gp-row">
+          <div class="gp-row-label">Goal</div>
+          <div class="gp-row-val">Convert trial-takers who are still paying attention</div>
+        </div>
+        <div class="gp-row">
+          <div class="gp-row-label">Tone</div>
+          <div class="gp-row-val">Confident, warm — "we know you tried us" energy. Not desperate.</div>
+        </div>
+        <div class="gp-row">
+          <div class="gp-row-label">Angle</div>
+          <div class="gp-row-val">Trial-to-routine story. Address the hesitation (price? results took longer? forgot?). Real customer social proof from people who felt the same.</div>
+        </div>
+        <div class="gp-row">
+          <div class="gp-row-label">Offer</div>
+          <div class="gp-row-val">20% off first full-size OR free shipping on first order</div>
+        </div>
+        <div class="gp-row">
+          <div class="gp-row-label">Cadence</div>
+          <div class="gp-row-val">3-email sequence · 5 days apart</div>
+        </div>
+        <div class="gp-subject">
+          <div class="gp-subject-label">Subject Line Example</div>
+          "You tried it. Here's why thousands came back."
+        </div>
+      </div>
+
+      <!-- Sampler - Inactive -->
+      <div class="si-gp-card theme-si">
+        <div class="gp-header">
+          <div class="gp-title-wrap">
+            <div class="gp-segment-type">Sampler</div>
+            <div class="gp-segment-name">Sampler – Inactive</div>
+          </div>
+          <div class="gp-count-badge">
+            <div class="gp-count-num">7,895</div>
+            <div class="gp-count-pct">18.7% of total</div>
+          </div>
+        </div>
+        <div class="gp-divider"></div>
+        <div class="gp-row">
+          <div class="gp-row-label">Goal</div>
+          <div class="gp-row-val">Re-spark interest or confirm they're done</div>
+        </div>
+        <div class="gp-row">
+          <div class="gp-row-label">Tone</div>
+          <div class="gp-row-val">Honest and direct. No fluff.</div>
+        </div>
+        <div class="gp-row">
+          <div class="gp-row-label">Angle</div>
+          <div class="gp-row-val">What's changed since their trial. Give them a reason to look again.</div>
+        </div>
+        <div class="gp-row">
+          <div class="gp-row-label">Offer</div>
+          <div class="gp-row-val">New sample at reduced cost OR 15% off code, time-limited</div>
+        </div>
+        <div class="gp-row">
+          <div class="gp-row-label">Cadence</div>
+          <div class="gp-row-val">2 emails · 7 days apart · Suppress if no open/click</div>
+        </div>
+        <div class="gp-subject">
+          <div class="gp-subject-label">Subject Line Example</div>
+          "A lot has changed since your sample."
+        </div>
+      </div>
+
+      <!-- Customer - Inactive -->
+      <div class="si-gp-card theme-ci">
+        <div class="gp-priority-badge">Priority #2 · Highest LTV Risk</div>
+        <div class="gp-header">
+          <div class="gp-title-wrap">
+            <div class="gp-segment-type">Customer</div>
+            <div class="gp-segment-name">Customer – Inactive</div>
+          </div>
+          <div class="gp-count-badge">
+            <div class="gp-count-num">4,348</div>
+            <div class="gp-count-pct">10.3% of total</div>
+          </div>
+        </div>
+        <div class="gp-divider"></div>
+        <div class="gp-row">
+          <div class="gp-row-label">Goal</div>
+          <div class="gp-row-val">Winback loyal customers before they churn permanently</div>
+        </div>
+        <div class="gp-row">
+          <div class="gp-row-label">Tone</div>
+          <div class="gp-row-val">Respectful, not needy. "You've been with us" energy.</div>
+        </div>
+        <div class="gp-row">
+          <div class="gp-row-label">Angle</div>
+          <div class="gp-row-val">What's new since they last bought. Loyalty status reminder.</div>
+        </div>
+        <div class="gp-row">
+          <div class="gp-row-label">Offer</div>
+          <div class="gp-row-val">Loyalty points reminder / bonus event OR reorder nudge with free shipping. No blanket discount.</div>
+        </div>
+        <div class="gp-row">
+          <div class="gp-row-label">Cadence</div>
+          <div class="gp-row-val">3 emails · 10 days apart · Last email = sunset warning</div>
+        </div>
+        <div class="gp-subject">
+          <div class="gp-subject-label">Subject Line Example</div>
+          "Your Bronze status is waiting. So are we."
+        </div>
+      </div>
+
+      <!-- Customer - Engaged -->
+      <div class="si-gp-card theme-ce">
+        <div class="gp-priority-badge">Priority #3 · Easiest Win</div>
+        <div class="gp-header">
+          <div class="gp-title-wrap">
+            <div class="gp-segment-type">Customer</div>
+            <div class="gp-segment-name">Customer – Engaged</div>
+          </div>
+          <div class="gp-count-badge">
+            <div class="gp-count-num">2,074</div>
+            <div class="gp-count-pct">4.9% of total</div>
+          </div>
+        </div>
+        <div class="gp-divider"></div>
+        <div class="gp-row">
+          <div class="gp-row-label">Goal</div>
+          <div class="gp-row-val">Re-engage and retain — these people want to hear from you</div>
+        </div>
+        <div class="gp-row">
+          <div class="gp-row-label">Tone</div>
+          <div class="gp-row-val">Warm, VIP-adjacent. "You're one of our best."</div>
+        </div>
+        <div class="gp-row">
+          <div class="gp-row-label">Angle</div>
+          <div class="gp-row-val">Early access, insider content, behind-the-scenes.</div>
+        </div>
+        <div class="gp-row">
+          <div class="gp-row-label">Offer</div>
+          <div class="gp-row-val">Early access to new product or promotion. Loyalty points event. No discount needed.</div>
+        </div>
+        <div class="gp-row">
+          <div class="gp-row-label">Cadence</div>
+          <div class="gp-row-val">1–2 emails · Already warm — don't over-email</div>
+        </div>
+        <div class="gp-subject">
+          <div class="gp-subject-label">Subject Line Example</div>
+          "You're in the inner circle. Here's what's coming."
+        </div>
+      </div>
+
+      <!-- Leads - Engaged -->
+      <div class="si-gp-card theme-le">
+        <div class="gp-header">
+          <div class="gp-title-wrap">
+            <div class="gp-segment-type">Lead</div>
+            <div class="gp-segment-name">Leads – Engaged</div>
+          </div>
+          <div class="gp-count-badge">
+            <div class="gp-count-num">803</div>
+            <div class="gp-count-pct">1.9% of total</div>
+          </div>
+        </div>
+        <div class="gp-divider"></div>
+        <div class="gp-row">
+          <div class="gp-row-label">Goal</div>
+          <div class="gp-row-val">Convert fence-sitters who clearly like the brand</div>
+        </div>
+        <div class="gp-row">
+          <div class="gp-row-label">Tone</div>
+          <div class="gp-row-val">Educational, gentle urgency.</div>
+        </div>
+        <div class="gp-row">
+          <div class="gp-row-label">Angle</div>
+          <div class="gp-row-val">Address the barrier. Guide them to the right first product.</div>
+        </div>
+        <div class="gp-row">
+          <div class="gp-row-label">Offer</div>
+          <div class="gp-row-val">Trial sample kit at low cost — lowest barrier to entry</div>
+        </div>
+        <div class="gp-row">
+          <div class="gp-row-label">Cadence</div>
+          <div class="gp-row-val">2 emails · 5 days apart · Follow with trial flow if they convert</div>
+        </div>
+        <div class="gp-subject">
+          <div class="gp-subject-label">Subject Line Example</div>
+          "Not sure where to start? We'll make it easy."
+        </div>
+      </div>
+
+      <!-- Leads - Inactive -->
+      <div class="si-gp-card theme-li">
+        <div class="gp-header">
+          <div class="gp-title-wrap">
+            <div class="gp-segment-type">Lead</div>
+            <div class="gp-segment-name">Leads – Inactive</div>
+          </div>
+          <div class="gp-count-badge">
+            <div class="gp-count-num">322</div>
+            <div class="gp-count-pct">0.8% of total</div>
+          </div>
+        </div>
+        <div class="gp-divider"></div>
+        <div class="gp-row">
+          <div class="gp-row-label">Goal</div>
+          <div class="gp-row-val">One last re-engagement attempt, then sunset</div>
+        </div>
+        <div class="gp-row">
+          <div class="gp-row-label">Tone</div>
+          <div class="gp-row-val">Brief, honest, no pressure.</div>
+        </div>
+        <div class="gp-row">
+          <div class="gp-row-label">Angle</div>
+          <div class="gp-row-val">Simple "still interested?" email. Easy out OR one compelling reason to stay.</div>
+        </div>
+        <div class="gp-row">
+          <div class="gp-row-label">Offer</div>
+          <div class="gp-row-val">One-time trial offer. If no response in 14 days, suppress.</div>
+        </div>
+        <div class="gp-row">
+          <div class="gp-row-label">Cadence</div>
+          <div class="gp-row-val">1 email · Suppress after 14 days no response</div>
+        </div>
+        <div class="gp-subject">
+          <div class="gp-subject-label">Subject Line Example</div>
+          "Should we say goodbye?"
+        </div>
+      </div>
+
+    </div><!-- /.si-gp-grid -->
+  </div><!-- /.si-gameplan -->
+
+  <!-- ── 4. CLOSING / PRIORITY NOTE ───────────────────────────────────── -->
+  <div class="si-closing">
+    <h3>Recommended Priority Order</h3>
+    <ul class="si-priority-list">
+      <li>
+        <div class="si-priority-num p1">1</div>
+        <div class="si-priority-text">
+          <strong>Sampler – Engaged</strong>
+          <span>Biggest opportunity · 26,805 contacts</span>
+        </div>
+      </li>
+      <li>
+        <div class="si-priority-num p2">2</div>
+        <div class="si-priority-text">
+          <strong>Customer – Inactive</strong>
+          <span>Highest LTV risk · 4,348 contacts</span>
+        </div>
+      </li>
+      <li>
+        <div class="si-priority-num p3">3</div>
+        <div class="si-priority-text">
+          <strong>Customer – Engaged</strong>
+          <span>Easiest win · 2,074 contacts</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</div><!-- /#tab-segment-insights -->
 
   </div>
 
