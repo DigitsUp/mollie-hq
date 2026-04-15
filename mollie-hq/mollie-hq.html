@@ -116,7 +116,7 @@ body::after{
 
 /* ── HEADER ── */
 header{
-  position:relative;z-index:10;
+  position:sticky;top:0;z-index:10;
   display:flex;align-items:center;justify-content:space-between;
   padding:12px 20px;
   border-bottom:1px solid var(--border);
@@ -644,6 +644,44 @@ main{
 ::-webkit-scrollbar{width:4px;}
 ::-webkit-scrollbar-track{background:transparent;}
 ::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:99px;}
+
+/* ── TAB BAR ── */
+#tabbar{
+  position:sticky;top:0;z-index:9;
+  background:#0D1A2B;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  padding:0 20px;
+  display:none;
+  gap:4px;
+}
+.tab-item{
+  padding:12px 20px;
+  font-family:'DM Sans',sans-serif;
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:.04em;
+  color:#566B85;
+  cursor:pointer;
+  border-bottom:2px solid transparent;
+  transition:color .15s,border-color .15s;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;
+}
+.tab-item.active{
+  color:#2f91c3;
+  border-bottom:2px solid #2f91c3;
+}
+.tab-item:hover:not(.active){
+  color:#8aafc8;
+}
+
+/* ── PIPELINE IFRAME ── */
+#pipeline-frame{
+  display:none;
+  width:100%;
+  border:none;
+  height:calc(100vh - 54px - 44px);
+}
 </style>
 </head>
 <body>
@@ -679,6 +717,15 @@ main{
     </div>
   </div>
 </header>
+
+<!-- ── TAB BAR ── -->
+<div id="tabbar">
+  <div class="tab-item active" id="tab-hq" onclick="switchTab('hq')">HQ</div>
+  <div class="tab-item" id="tab-pipeline" onclick="switchTab('pipeline')">Pipeline</div>
+</div>
+
+<!-- ── PIPELINE IFRAME ── -->
+<iframe id="pipeline-frame" src=""></iframe>
 
 <!-- ── MAIN ── -->
 <main>
@@ -957,6 +1004,7 @@ async function unlock(){
   if(h===PH){
     document.getElementById('gate').style.display='none';
     sessionStorage.setItem('mhq_auth','1');
+    onUnlocked();
   } else {
     document.getElementById('pwe').textContent='Incorrect password.';
     const inp=document.getElementById('pwi');
@@ -969,6 +1017,29 @@ async function unlock(){
 }
 if(sessionStorage.getItem('mhq_auth')==='1'){
   document.getElementById('gate').style.display='none';
+  onUnlocked();
+}
+function onUnlocked(){
+  document.getElementById('tabbar').style.display='flex';
+  document.getElementById('pipeline-frame').src='./pipeline.html';
+}
+
+function switchTab(tab){
+  const mainEl=document.querySelector('main');
+  const iframe=document.getElementById('pipeline-frame');
+  const tabHq=document.getElementById('tab-hq');
+  const tabPl=document.getElementById('tab-pipeline');
+  if(tab==='hq'){
+    mainEl.style.display='';
+    iframe.style.display='none';
+    tabHq.classList.add('active');
+    tabPl.classList.remove('active');
+  } else {
+    mainEl.style.display='none';
+    iframe.style.display='block';
+    tabHq.classList.remove('active');
+    tabPl.classList.add('active');
+  }
 }
 
 // ── PIXEL ART AVATAR (Mollie) ──
