@@ -374,6 +374,13 @@ let dragCardId   = null;
 let dragSection  = null;
 
 // ── PASSWORD GATE ─────────────────────────────────────────────────────────────
+// Skip gate if loaded from HQ iframe
+if (new URLSearchParams(window.location.search).get('authed') === '1') {
+  document.getElementById('gate').classList.add('hidden');
+  document.getElementById('main-nav').style.display = 'flex';
+  document.getElementById('main-board').style.display = 'block';
+  loadFromGitHub();
+}
 document.getElementById('pw-btn').addEventListener('click', tryLogin);
 document.getElementById('pw-input').addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
 function tryLogin() {
