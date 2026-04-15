@@ -1,0 +1,137 @@
+{
+  "lastUpdated": "2026-04-15T17:10:00Z",
+  "cards": [
+    {
+      "id": "sales-001",
+      "title": "The LAB / Good Life",
+      "client": "The LAB / Good Life",
+      "section": "sales",
+      "column": "proposal-sent",
+      "owner": "Michael",
+      "dueDate": "",
+      "commsFlag": "waiting-on-them",
+      "notes": "Thursday 9:30am PST call with Travis + Chip"
+    },
+    {
+      "id": "sales-002",
+      "title": "Handetizer",
+      "client": "Handetizer",
+      "section": "sales",
+      "column": "proposal-sent",
+      "owner": "Michael",
+      "dueDate": "",
+      "commsFlag": "waiting-on-them",
+      "notes": "Intro sent Apr 15. Follow up Monday Apr 20 if no reply."
+    },
+    {
+      "id": "sales-003",
+      "title": "Young Darling Style",
+      "client": "Young Darling Style",
+      "section": "sales",
+      "column": "outreach",
+      "owner": "Michael",
+      "dueDate": "",
+      "commsFlag": "reply-needed",
+      "notes": "Proposal needed. Dinner Friday."
+    },
+    {
+      "id": "sales-004",
+      "title": "SFR Distillery",
+      "client": "SFR Distillery",
+      "section": "sales",
+      "column": "outreach",
+      "owner": "Michael",
+      "dueDate": "",
+      "commsFlag": "none",
+      "notes": "Call Apr 16"
+    },
+    {
+      "id": "prod-001",
+      "title": "Liverpool Sunset Flow",
+      "client": "Liverpool LA",
+      "section": "production",
+      "column": "briefs",
+      "owner": "Mollie",
+      "dueDate": "",
+      "commsFlag": "none",
+      "notes": "Client approved strategy. Briefs + copy to Meaghan."
+    },
+    {
+      "id": "prod-002",
+      "title": "RVCA Welcome Series",
+      "client": "RVCA",
+      "section": "production",
+      "column": "briefs",
+      "owner": "Team",
+      "dueDate": "",
+      "commsFlag": "none",
+      "notes": "Welcome series + popup scope"
+    },
+    {
+      "id": "prod-003",
+      "title": "RVCA Wonderment Emails",
+      "client": "RVCA",
+      "section": "production",
+      "column": "parking-lot",
+      "owner": "Team",
+      "dueDate": "",
+      "commsFlag": "none",
+      "notes": "Order confirmation, flip Shopify off, Klaviyo on"
+    },
+    {
+      "id": "prod-004",
+      "title": "Rho Day 8 + Day 21 Copy",
+      "client": "Rho Nutrition",
+      "section": "production",
+      "column": "parking-lot",
+      "owner": "Team",
+      "dueDate": "",
+      "commsFlag": "none",
+      "notes": "Day 3 live. Day 8 + 21 not started."
+    },
+    {
+      "id": "prod-005",
+      "title": "Hiba Long-Term Nurture",
+      "client": "Hiba Academy",
+      "section": "production",
+      "column": "copy",
+      "owner": "Team",
+      "dueDate": "",
+      "commsFlag": "none",
+      "notes": "Ready for internal review Apr 16 with Shelbie"
+    },
+    {
+      "id": "prod-006",
+      "title": "Axis Health Creative",
+      "client": "Axis Health",
+      "section": "production",
+      "column": "design",
+      "owner": "Team",
+      "dueDate": "",
+      "commsFlag": "none",
+      "notes": "In design. Due Thu, client Fri."
+    },
+    {
+      "id": "prod-007",
+      "title": "1st Phorm Design",
+      "client": "1st Phorm",
+      "section": "production",
+      "column": "design",
+      "owner": "Team",
+      "dueDate": "",
+      "commsFlag": "none",
+      "notes": "Meaghan approved copy. Moving to design."
+    },
+    {
+      "id": "prod-008",
+      "title": "Riversol Win-Back Flow",
+      "client": "Riversol Skincare",
+      "section": "production",
+      "column": "strategy",
+      "owner": "Michael",
+      "dueDate": "",
+      "commsFlag": "reply-needed",
+      "notes": "Q1 summary + win-back segments to Una + James today"
+    }
+  ]
+}
