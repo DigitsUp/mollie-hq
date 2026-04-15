@@ -1,45 +1,170 @@
 {
   "meta": {
-    "lastUpdated": "2026-04-12T09:20:00-07:00",
+    "lastUpdated": "2026-04-15T12:06:00-07:00",
     "updatedBy": "Mollie"
   },
   "usage": {
     "monthLabel": "April 2026",
-    "mtd": 260.07,
-    "budget": 1000,
-    "today": 0.10,
-    "todayLabel": "Apr 12",
+    "mtd": 284,
+    "budget": 500,
+    "today": 12.5,
+    "todayLabel": "Apr 15 (est, in progress)",
     "model": "Sonnet 4.6",
     "dailyCosts": [
-      { "label": "Apr 6",  "amount": 11.72 },
-      { "label": "Apr 7",  "amount": 63.66 },
-      { "label": "Apr 8",  "amount": 13.15 },
-      { "label": "Apr 9",  "amount": 11.24 },
-      { "label": "Apr 10", "amount": 8.28 },
-      { "label": "Apr 11", "amount": 5.58 },
-      { "label": "Apr 12", "amount": 0.10 }
+      {
+        "label": "Apr 9",
+        "amount": 11.24
+      },
+      {
+        "label": "Apr 10",
+        "amount": 8.28
+      },
+      {
+        "label": "Apr 11",
+        "amount": 5.58
+      },
+      {
+        "label": "Apr 12",
+        "amount": 32.29
+      },
+      {
+        "label": "Apr 13",
+        "amount": 8.13
+      },
+      {
+        "label": "Apr 14",
+        "amount": 4.0
+      },
+      {
+        "label": "Apr 15",
+        "amount": 12.5
+      }
     ],
-    "dailyNote": "Apr 7 spike = 72 Callie spawns. Max 5/day rule now enforced. Trending down ↓"
+    "dailyNote": "Apr 12 spike = long session across 8 topics. Apr 15 in progress \u2014 session 2 ran hot (187k ctx). Budget $500."
   },
   "activity": [
-    { "dot": "blue",  "text": "HQ data.json updated — April MTD $260.07, daily chart Apr 6–12", "time": "Apr 12 · 9:20 AM" },
-    { "dot": "green", "text": "RVCA copy v2 sent to mike@ — Browse, Cart, Checkout docs ready to build", "time": "Apr 12" },
-    { "dot": "blue",  "text": "Email triage complete — 25 unread. Brand Featured reply sent. SFR call confirmed Thu Apr 16 9am.", "time": "Apr 12" },
-    { "dot": "grey",  "text": "1st Phorm — all 6 copy docs sent to Meaghan Apr 10. Awaiting review.", "time": "Apr 10" },
-    { "dot": "grey",  "text": "Darcy McGuire / Attentive — booked Tuesday. Needs Michael's confirmation.", "time": "Apr 9" },
-    { "dot": "amber", "text": "⚠ Apr 7 cost spike — $63.66 (72 Callie spawns). Max 5/day rule enforced going forward.", "time": "Apr 7" }
+    {
+      "dot": "green",
+      "text": "Riversol Q1 Hub live \u2014 digitsup.github.io/riversol/q1-hub.html (pw: RIVERS)",
+      "time": "Apr 15 \u00b7 11:50 AM"
+    },
+    {
+      "dot": "green",
+      "text": "Pipeline Kanban built and live on HQ",
+      "time": "Apr 15 \u00b7 9:00 AM"
+    },
+    {
+      "dot": "blue",
+      "text": "Liverpool Sunset Flow \u2014 brief + copy sent to Meaghan + Debbie",
+      "time": "Apr 15 \u00b7 9:30 AM"
+    },
+    {
+      "dot": "blue",
+      "text": "RVCA Klaviyo support ticket submitted \u2014 Added to Cart event issues",
+      "time": "Apr 15 \u00b7 8:45 AM"
+    },
+    {
+      "dot": "grey",
+      "text": "Good Life / The LAB call confirmed \u2014 Thu Apr 17 9:30am PST",
+      "time": "Apr 15 \u00b7 8:30 AM"
+    },
+    {
+      "dot": "grey",
+      "text": "Handetizer intro sent \u2014 follow up Mon Apr 20 if no reply",
+      "time": "Apr 15 \u00b7 8:00 AM"
+    }
   ],
   "tasks": [
-    { "id": "a1", "name": "Liverpool Q1 Report — due Mon Apr 14 before 11:30am call", "type": "report", "due": "2026-04-14", "col": "queued", "agent": "callie" },
-    { "id": "a2", "name": "Rho Nutrition copy — ready for design/Marl", "type": "brief", "due": "2026-04-14", "col": "active", "agent": "mollie" },
-    { "id": "a3", "name": "RVCA copy v2 — Browse, Cart, Checkout (with mike@)", "type": "campaign", "due": "2026-04-13", "col": "active", "agent": "mollie" },
-    { "id": "a4", "name": "Attentive / Darcy McGuire — confirm Tuesday call", "type": "client", "due": "2026-04-13", "col": "queued", "agent": "mollie" },
-    { "id": "a5", "name": "1st Phorm copy — awaiting Meaghan review", "type": "brief", "due": "2026-04-14", "col": "review", "agent": "mollie" },
-    { "id": "a6", "name": "Riversol call — Wed Apr 15 (Q1 + SMS + winback)", "type": "client", "due": "2026-04-15", "col": "queued", "agent": "mollie" },
-    { "id": "a7", "name": "SFR Distillery intro call — Thu Apr 16 9am PST", "type": "client", "due": "2026-04-16", "col": "queued", "agent": "mollie" },
-    { "id": "d1", "name": "Rho Nutrition — 6 persona copy docs ✓", "type": "brief", "col": "done", "agent": "callie" },
-    { "id": "d2", "name": "RVCA Client Kickoff ✓", "type": "client", "col": "done", "agent": "mollie" },
-    { "id": "d3", "name": "Hiba March Report deployed ✓", "type": "report", "col": "done", "agent": "callie" },
-    { "id": "d4", "name": "SFR Distillery call scheduled ✓ — Apr 16", "type": "client", "col": "done", "agent": "mollie" }
+    {
+      "id": "a1",
+      "name": "Liverpool Sunset Flow \u2014 briefs need building (Meaghan has copy)",
+      "type": "brief",
+      "due": "2026-04-17",
+      "col": "active",
+      "agent": "callie"
+    },
+    {
+      "id": "a2",
+      "name": "Hiba nurture \u2014 internal review Michael + Shelbie (Apr 16)",
+      "type": "brief",
+      "due": "2026-04-16",
+      "col": "review",
+      "agent": "mollie"
+    },
+    {
+      "id": "a3",
+      "name": "Rho complete \u2014 internal review Michael + Shelbie (Apr 16)",
+      "type": "brief",
+      "due": "2026-04-16",
+      "col": "review",
+      "agent": "mollie"
+    },
+    {
+      "id": "a4",
+      "name": "RVCA \u2014 Meaghan reviewing Clay's abandoned inspo + welcome series scoping",
+      "type": "campaign",
+      "due": "2026-04-17",
+      "col": "active",
+      "agent": "mollie"
+    },
+    {
+      "id": "a5",
+      "name": "1st Phorm \u2014 moving to design (Debbie + Marl)",
+      "type": "brief",
+      "due": "2026-04-17",
+      "col": "active",
+      "agent": "mollie"
+    },
+    {
+      "id": "a6",
+      "name": "Axis Health \u2014 in design with Marl",
+      "type": "brief",
+      "due": "2026-04-18",
+      "col": "active",
+      "agent": "mollie"
+    },
+    {
+      "id": "a7",
+      "name": "Liverpool footwear audit \u2014 Kieran in progress",
+      "type": "client",
+      "due": "2026-04-18",
+      "col": "active",
+      "agent": "mollie"
+    },
+    {
+      "id": "a8",
+      "name": "April MTD reflection \u2014 newsletter format (still pending)",
+      "type": "report",
+      "col": "queued",
+      "agent": "callie"
+    },
+    {
+      "id": "d1",
+      "name": "Riversol Q1 Hub done \u2014 live at digitsup.github.io/riversol/q1-hub.html",
+      "type": "report",
+      "col": "done",
+      "agent": "callie"
+    },
+    {
+      "id": "d2",
+      "name": "Pipeline Kanban board done \u2014 live on HQ",
+      "type": "report",
+      "col": "done",
+      "agent": "callie"
+    },
+    {
+      "id": "d3",
+      "name": "Liverpool Sunset copy + brief done \u2014 sent to Meaghan + Debbie",
+      "type": "brief",
+      "col": "done",
+      "agent": "callie"
+    },
+    {
+      "id": "d4",
+      "name": "Liverpool naming convention done",
+      "type": "client",
+      "col": "done",
+      "agent": "mollie"
+    }
   ]
 }
