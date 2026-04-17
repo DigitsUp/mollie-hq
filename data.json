@@ -3,6 +3,34 @@
     "lastUpdated": "2026-04-17T12:00:00-07:00",
     "updatedBy": "Inbox Monitor"
   },
+  "calendar": [
+    { "time": "9:00 AM", "title": "YDS - Meghan Ross (rescheduled Mon Apr 21)" },
+    { "time": "2:00 PM", "title": "Riversol - Campaign Strategy + Winback" }
+  ],
+  "inbox": {
+    "summary": "Scanning...",
+    "lastChecked": "2026-04-17T13:00:00-07:00"
+  },
+  "reminders": [],
+  "watching": [
+    { "client": "Liverpool", "item": "Meaghan to approve Sunset Flow v2", "since": "Apr 16" },
+    { "client": "RVCA", "item": "Shelbie + Meaghan feedback on v5 + welcome series", "since": "Apr 17" },
+    { "client": "SFR Distillery", "item": "Will Rogers to review proposal", "since": "Apr 17" },
+    { "client": "Brand Featured", "item": "Lawrence to send contract", "since": "Apr 17" },
+    { "client": "Rho Nutrition", "item": "Outersignal Figma feedback from Dov", "since": "Apr 17" }
+  ],
+  "pulse": [
+    { "client": "Liverpool", "status": "Sunset Flow v2 with Meaghan for review", "dot": "yellow" },
+    { "client": "RVCA", "status": "Abandoned suite v5 + welcome series with Shelbie/Meaghan", "dot": "yellow" },
+    { "client": "Riversol", "status": "Mon 2pm campaign strategy call set", "dot": "green" },
+    { "client": "Rho Nutrition", "status": "Client happy. Figma review with Dov pending.", "dot": "yellow" },
+    { "client": "Hiba Academy", "status": "Loved nurture flow. Comments coming next week.", "dot": "green" },
+    { "client": "Brand Featured", "status": "NEW. Contract pending. Start Apr 27.", "dot": "yellow" },
+    { "client": "SFR Distillery", "status": "Proposal out. Waiting on Will Rogers.", "dot": "yellow" },
+    { "client": "YDS", "status": "Vision proposal sent. Call Mon 9am.", "dot": "green" },
+    { "client": "1st Phorm", "status": "In design with Marl. Due Monday.", "dot": "yellow" },
+    { "client": "Axis Health", "status": "In design with Marl.", "dot": "yellow" }
+  ],
   "usage": {
     "monthLabel": "April 2026",
     "mtd": 419.19,
@@ -11,46 +39,16 @@
     "todayLabel": "Apr 16",
     "model": "Sonnet 4.6",
     "dailyCosts": [
-      {
-        "label": "Apr 7",
-        "amount": 63.66
-      },
-      {
-        "label": "Apr 8",
-        "amount": 13.15
-      },
-      {
-        "label": "Apr 9",
-        "amount": 11.24
-      },
-      {
-        "label": "Apr 10",
-        "amount": 8.28
-      },
-      {
-        "label": "Apr 11",
-        "amount": 5.58
-      },
-      {
-        "label": "Apr 12",
-        "amount": 22.45
-      },
-      {
-        "label": "Apr 13",
-        "amount": 32.29
-      },
-      {
-        "label": "Apr 14",
-        "amount": 20.16
-      },
-      {
-        "label": "Apr 15",
-        "amount": 47.02
-      },
-      {
-        "label": "Apr 16",
-        "amount": 30.72
-      }
+      { "label": "Apr 7", "amount": 63.66 },
+      { "label": "Apr 8", "amount": 13.15 },
+      { "label": "Apr 9", "amount": 11.24 },
+      { "label": "Apr 10", "amount": 8.28 },
+      { "label": "Apr 11", "amount": 5.58 },
+      { "label": "Apr 12", "amount": 22.45 },
+      { "label": "Apr 13", "amount": 32.29 },
+      { "label": "Apr 14", "amount": 20.16 },
+      { "label": "Apr 15", "amount": 47.02 },
+      { "label": "Apr 16", "amount": 30.72 }
     ],
     "dailyNote": "Apr 7 spike = 72 Callie spawns. Max 5/day rule enforced."
   },
