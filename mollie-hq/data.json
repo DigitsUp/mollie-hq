@@ -1,45 +1,57 @@
 {
   "meta": {
-    "lastUpdated": "2026-04-12T09:20:00-07:00",
+    "lastUpdated": "2026-04-16T21:15:00-07:00",
     "updatedBy": "Mollie"
   },
   "usage": {
     "monthLabel": "April 2026",
-    "mtd": 260.07,
+    "mtd": 419.19,
     "budget": 1000,
-    "today": 0.10,
-    "todayLabel": "Apr 12",
+    "today": 30.72,
+    "todayLabel": "Apr 16",
     "model": "Sonnet 4.6",
     "dailyCosts": [
-      { "label": "Apr 6",  "amount": 11.72 },
       { "label": "Apr 7",  "amount": 63.66 },
       { "label": "Apr 8",  "amount": 13.15 },
       { "label": "Apr 9",  "amount": 11.24 },
       { "label": "Apr 10", "amount": 8.28 },
       { "label": "Apr 11", "amount": 5.58 },
-      { "label": "Apr 12", "amount": 0.10 }
+      { "label": "Apr 12", "amount": 22.45 },
+      { "label": "Apr 13", "amount": 32.29 },
+      { "label": "Apr 14", "amount": 20.16 },
+      { "label": "Apr 15", "amount": 47.02 },
+      { "label": "Apr 16", "amount": 30.72 }
     ],
-    "dailyNote": "Apr 7 spike = 72 Callie spawns. Max 5/day rule now enforced. Trending down ↓"
+    "dailyNote": "Apr 7 spike = 72 Callie spawns. Max 5/day rule enforced."
   },
   "activity": [
-    { "dot": "blue",  "text": "HQ data.json updated — April MTD $260.07, daily chart Apr 6–12", "time": "Apr 12 · 9:20 AM" },
-    { "dot": "green", "text": "RVCA copy v2 sent to mike@ — Browse, Cart, Checkout docs ready to build", "time": "Apr 12" },
-    { "dot": "blue",  "text": "Email triage complete — 25 unread. Brand Featured reply sent. SFR call confirmed Thu Apr 16 9am.", "time": "Apr 12" },
-    { "dot": "grey",  "text": "1st Phorm — all 6 copy docs sent to Meaghan Apr 10. Awaiting review.", "time": "Apr 10" },
-    { "dot": "grey",  "text": "Darcy McGuire / Attentive — booked Tuesday. Needs Michael's confirmation.", "time": "Apr 9" },
-    { "dot": "amber", "text": "⚠ Apr 7 cost spike — $63.66 (72 Callie spawns). Max 5/day rule enforced going forward.", "time": "Apr 7" }
+    { "dot": "green", "text": "SFR Distillery intro call went well. Updated proposal to review + resend tomorrow.", "time": "Apr 16" },
+    { "dot": "green", "text": "The LAB / Good Life proposal + Klaviyo budget savings estimate sent. Waiting to hear back.", "time": "Apr 16" },
+    { "dot": "blue",  "text": "Riversol Q1 meeting went well. Follow-up: set Mon 2pm with Una + Ali.", "time": "Apr 16" },
+    { "dot": "blue",  "text": "Rho Nutrition + Hiba internal reviews complete. Client meetings tomorrow.", "time": "Apr 16" },
+    { "dot": "green", "text": "SFR Distillery + The LAB / Good Life proposals deployed to GitHub Pages.", "time": "Apr 16" },
+    { "dot": "blue",  "text": "HQ rewired. Tasks now driven by data.json. Usage synced Apr 16.", "time": "Apr 16" }
   ],
   "tasks": [
-    { "id": "a1", "name": "Liverpool Q1 Report — due Mon Apr 14 before 11:30am call", "type": "report", "due": "2026-04-14", "col": "queued", "agent": "callie" },
-    { "id": "a2", "name": "Rho Nutrition copy — ready for design/Marl", "type": "brief", "due": "2026-04-14", "col": "active", "agent": "mollie" },
-    { "id": "a3", "name": "RVCA copy v2 — Browse, Cart, Checkout (with mike@)", "type": "campaign", "due": "2026-04-13", "col": "active", "agent": "mollie" },
-    { "id": "a4", "name": "Attentive / Darcy McGuire — confirm Tuesday call", "type": "client", "due": "2026-04-13", "col": "queued", "agent": "mollie" },
-    { "id": "a5", "name": "1st Phorm copy — awaiting Meaghan review", "type": "brief", "due": "2026-04-14", "col": "review", "agent": "mollie" },
-    { "id": "a6", "name": "Riversol call — Wed Apr 15 (Q1 + SMS + winback)", "type": "client", "due": "2026-04-15", "col": "queued", "agent": "mollie" },
-    { "id": "a7", "name": "SFR Distillery intro call — Thu Apr 16 9am PST", "type": "client", "due": "2026-04-16", "col": "queued", "agent": "mollie" },
-    { "id": "d1", "name": "Rho Nutrition — 6 persona copy docs ✓", "type": "brief", "col": "done", "agent": "callie" },
-    { "id": "d2", "name": "RVCA Client Kickoff ✓", "type": "client", "col": "done", "agent": "mollie" },
-    { "id": "d3", "name": "Hiba March Report deployed ✓", "type": "report", "col": "done", "agent": "callie" },
-    { "id": "d4", "name": "SFR Distillery call scheduled ✓ — Apr 16", "type": "client", "col": "done", "agent": "mollie" }
+    { "id": "t1",  "name": "Brand Featured - contract meeting with Rupesh", "type": "client", "due": "2026-04-17", "col": "active", "agent": "mollie" },
+    { "id": "t2",  "name": "SFR Distillery - review updated proposal, resend to Will Rogers", "type": "client", "due": "2026-04-17", "col": "active", "agent": "mollie" },
+    { "id": "t3",  "name": "RVCA - discuss Add to Cart issue with Clay", "type": "client", "due": "2026-04-17", "col": "active", "agent": "mollie" },
+    { "id": "t4",  "name": "Liverpool - Sunset Flow copy edits (Meaghan Google Doc)", "type": "campaign", "due": "2026-04-17", "col": "active", "agent": "mollie" },
+    { "id": "t5",  "name": "Rho Nutrition - client review meeting (Outersignal)", "type": "client", "due": "2026-04-17", "col": "active", "agent": "mollie" },
+    { "id": "t6",  "name": "Hiba Academy - client review meeting", "type": "client", "due": "2026-04-17", "col": "active", "agent": "mollie" },
+    { "id": "t7",  "name": "1st Phorm - in design (Marl)", "type": "brief", "due": "2026-04-18", "col": "active", "agent": "mollie" },
+    { "id": "t8",  "name": "Axis Health - in design (Marl), due Friday", "type": "brief", "due": "2026-04-17", "col": "active", "agent": "mollie" },
+    { "id": "t9",  "name": "RVCA - welcome series (Attentive popup + Klaviyo sync, unique codes)", "type": "brief", "due": "2026-04-18", "col": "queued", "agent": "mollie" },
+    { "id": "t10", "name": "RVCA - abandoned cart copy rewrite", "type": "brief", "due": "2026-04-18", "col": "queued", "agent": "callie" },
+    { "id": "t11", "name": "Riversol - set Mon Apr 20 2pm with Una + Ali", "type": "client", "due": "2026-04-17", "col": "queued", "agent": "mollie" },
+    { "id": "t12", "name": "The LAB / Good Life - waiting to hear back on proposal", "type": "client", "due": "2026-04-17", "col": "review", "agent": "mollie" },
+    { "id": "t13", "name": "Handetizer - follow up Mon Apr 20 if no reply", "type": "client", "due": "2026-04-20", "col": "queued", "agent": "mollie" },
+    { "id": "t14", "name": "Rho Nutrition - Days 8 + 21 briefs + copy (blocked on Day 3 approval)", "type": "brief", "due": "2026-04-21", "col": "queued", "agent": "callie" },
+    { "id": "t15", "name": "Hiba - long-term nurture journey build", "type": "brief", "due": "2026-04-21", "col": "queued", "agent": "callie" },
+    { "id": "t16", "name": "SFR Distillery proposal deployed", "type": "client", "col": "done", "agent": "mollie" },
+    { "id": "t17", "name": "The LAB / Good Life proposal deployed", "type": "client", "col": "done", "agent": "mollie" },
+    { "id": "t18", "name": "Riversol Q1 Hub live", "type": "report", "col": "done", "agent": "callie" },
+    { "id": "t19", "name": "Liverpool Q1 Report delivered", "type": "report", "col": "done", "agent": "callie" },
+    { "id": "t20", "name": "RVCA client kickoff", "type": "client", "col": "done", "agent": "mollie" }
   ]
 }

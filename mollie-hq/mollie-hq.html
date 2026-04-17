@@ -486,14 +486,6 @@ main{
   font-size:12px;font-weight:500;
   line-height:1.45;color:var(--text);flex:1;
 }
-.task-del{
-  background:none;border:none;
-  color:var(--muted);cursor:pointer;
-  font-size:14px;padding:0 2px;
-  line-height:1;flex-shrink:0;
-  transition:color .15s;
-}
-.task-del:hover{color:var(--red);}
 .task-meta{
   display:flex;align-items:center;
   flex-wrap:wrap;gap:5px;margin-top:7px;
@@ -515,18 +507,6 @@ main{
   font-family:'DM Mono',monospace;font-size:9px;
   color:var(--muted);margin-left:auto;
 }
-.task-advance{
-  margin-top:8px;width:100%;
-  padding:5px;
-  background:rgba(47,145,195,0.06);
-  border:1px solid rgba(47,145,195,0.14);
-  border-radius:6px;
-  font-family:'DM Mono',monospace;font-size:9px;
-  color:var(--m);cursor:pointer;
-  text-align:center;transition:all .2s;
-  -webkit-tap-highlight-color:transparent;
-}
-.task-advance:hover{background:var(--mdim);border-color:var(--mborder);}
 
 /* ── DELEGATION LOG ── */
 .deleg-card{
@@ -570,71 +550,6 @@ main{
   font-family:'DM Mono',monospace;font-size:11px;
   text-align:center;
 }
-
-/* ── ADD TASK BUTTON ── */
-.btn-add{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:7px 14px;
-  background:var(--mdim);border:1px solid var(--mborder);
-  color:var(--m);border-radius:99px;
-  font-family:'DM Mono',monospace;font-size:9px;
-  cursor:pointer;transition:all .2s;
-  -webkit-tap-highlight-color:transparent;
-}
-.btn-add:hover{background:var(--m);color:#fff;}
-
-/* ── MODAL ── */
-.modal-overlay{
-  position:fixed;inset:0;
-  background:rgba(0,0,0,.78);
-  backdrop-filter:blur(4px);
-  z-index:1000;
-  display:none;align-items:center;justify-content:center;
-  padding:16px;
-}
-.modal-overlay.open{display:flex;}
-.modal-box{
-  background:var(--bg2);
-  border:1px solid var(--border2);
-  border-radius:16px;padding:22px;
-  width:100%;max-width:380px;
-}
-.modal-title{
-  font-family:'Syne',sans-serif;font-weight:700;font-size:15px;
-  margin-bottom:18px;
-}
-.form-group{margin-bottom:12px;}
-.form-label{
-  font-family:'DM Mono',monospace;font-size:9px;
-  text-transform:uppercase;letter-spacing:.1em;
-  color:var(--muted);display:block;margin-bottom:5px;
-}
-.form-input,.form-select{
-  width:100%;padding:10px 12px;
-  background:var(--bg3);border:1px solid var(--border);
-  color:var(--text);border-radius:8px;
-  font-family:'DM Sans',sans-serif;font-size:13px;
-  outline:none;transition:border-color .2s;
-}
-.form-input:focus,.form-select:focus{border-color:var(--m);}
-.form-select option{background:var(--bg2);}
-.modal-actions{
-  display:flex;gap:8px;justify-content:flex-end;margin-top:16px;
-}
-.btn-cancel{
-  padding:8px 16px;background:transparent;
-  color:var(--muted);border:1px solid var(--border);
-  border-radius:8px;font-family:'DM Mono',monospace;font-size:10px;
-  cursor:pointer;transition:all .2s;
-}
-.btn-cancel:hover{border-color:var(--border2);color:var(--text);}
-.btn-confirm{
-  padding:8px 16px;background:var(--m);
-  color:#fff;border:none;border-radius:8px;
-  font-family:'DM Mono',monospace;font-size:10px;
-  cursor:pointer;transition:all .2s;
-}
-.btn-confirm:hover{opacity:.88;box-shadow:0 4px 12px var(--mglow);}
 
 /* Spacing */
 .mt-24{margin-top:24px;}
@@ -780,133 +695,54 @@ main{
 
   <div class="usage-grid">
     <div class="usage-card">
-      <div class="usage-label">April MTD</div>
-      <div class="usage-value accent">$260.07</div>
-      <div class="usage-note">of $1,000 monthly limit</div>
+      <div class="usage-label" id="u-month-label">April MTD</div>
+      <div class="usage-value accent" id="u-mtd">—</div>
+      <div class="usage-note" id="u-mtd-note">of $1,000 monthly limit</div>
     </div>
     <div class="usage-card">
-      <div class="usage-label">Today (Apr 12)</div>
-      <div class="usage-value">~$0.10</div>
-      <div class="usage-note">Sonnet 4.6 primary</div>
+      <div class="usage-label" id="u-today-label">Today</div>
+      <div class="usage-value" id="u-today">—</div>
+      <div class="usage-note" id="u-model-note">—</div>
     </div>
     <div class="usage-card">
       <div class="usage-label">Model</div>
-      <div class="usage-value" style="font-size:16px;padding-top:4px;">Sonnet 4.6</div>
+      <div class="usage-value" id="u-model" style="font-size:16px;padding-top:4px;">—</div>
       <div class="usage-note">primary</div>
     </div>
     <div class="usage-card">
       <div class="usage-label">Budget Used</div>
-      <div class="usage-value accent">26%</div>
-      <div class="usage-note">$260.07 of $1,000</div>
+      <div class="usage-value accent" id="u-pct">—</div>
+      <div class="usage-note" id="u-pct-note">—</div>
     </div>
   </div>
 
   <div class="budget-row">
     <div class="budget-label">Budget</div>
-    <div class="budget-track"><div class="budget-fill" style="width:26%"></div></div>
-    <div class="budget-pct">26%</div>
+    <div class="budget-track"><div class="budget-fill" id="u-bar" style="width:0%"></div></div>
+    <div class="budget-pct" id="u-bar-pct">—</div>
   </div>
 
   <!-- Daily Cost Bars -->
   <div style="margin-top:16px;">
-    <div style="font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:10px;">Daily Cost · Apr 6–12</div>
-    <div style="display:flex;align-items:flex-end;gap:6px;height:80px;">
-      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
-        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);">$11.72</div>
-        <div style="width:100%;height:13px;background:rgba(47,145,195,0.5);border-radius:3px 3px 0 0;align-self:flex-end;"></div>
-        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);">Apr 6</div>
-      </div>
-      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
-        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--c);">$63.66</div>
-        <div style="width:100%;height:70px;background:rgba(245,158,11,0.65);border-radius:3px 3px 0 0;align-self:flex-end;"></div>
-        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);">Apr 7</div>
-      </div>
-      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
-        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);">$13.15</div>
-        <div style="width:100%;height:14px;background:rgba(47,145,195,0.5);border-radius:3px 3px 0 0;align-self:flex-end;"></div>
-        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);">Apr 8</div>
-      </div>
-      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
-        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);">$11.24</div>
-        <div style="width:100%;height:12px;background:rgba(47,145,195,0.5);border-radius:3px 3px 0 0;align-self:flex-end;"></div>
-        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);">Apr 9</div>
-      </div>
-      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
-        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);">$8.28</div>
-        <div style="width:100%;height:9px;background:rgba(47,145,195,0.5);border-radius:3px 3px 0 0;align-self:flex-end;"></div>
-        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);">Apr 10</div>
-      </div>
-      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
-        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);">$5.58</div>
-        <div style="width:100%;height:6px;background:rgba(47,145,195,0.5);border-radius:3px 3px 0 0;align-self:flex-end;"></div>
-        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);">Apr 11</div>
-      </div>
-      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
-        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--text);">~$0.10</div>
-        <div style="width:100%;height:1px;background:var(--m);border-radius:3px 3px 0 0;align-self:flex-end;box-shadow:0 0 8px var(--mglow);"></div>
-        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--m);font-weight:600;">Apr 12 ←</div>
-      </div>
+    <div style="font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:10px;" id="u-chart-label">Daily Cost</div>
+    <div style="display:flex;align-items:flex-end;gap:6px;height:80px;" id="u-chart">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);padding:8px 0;">Loading…</div>
     </div>
-    <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);margin-top:6px;">Apr 7 spike = 72 Callie spawns (rule tightened, max 5/day now enforced)</div>
+    <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);margin-top:6px;" id="u-daily-note"></div>
   </div>
 
   <div class="sync-row">
-    <div class="sync-note">Last synced: Apr 12 2026, 9:20 AM PDT</div>
-    <button id="rb" onclick="alert('Usage refreshed.')">⟳ Refresh</button>
+    <div class="sync-note" id="u-synced">Last synced: —</div>
+    <button id="rb" onclick="loadData()">⟳ Refresh</button>
   </div>
 
   <!-- 4. TODAY'S ACTIVITY -->
   <div class="mt-28">
-    <div class="section-label">Recent Activity — Apr 8–12, 2026</div>
-    <div class="feed">
-      <div class="feed-entry">
-        <div class="feed-dot green"></div>
-        <div class="feed-body">
-          <div class="feed-text">RVCA copy v2 — Browse, Cart, Checkout docs sent to mike@ ✓</div>
-        </div>
-        <div class="feed-time">Apr 12</div>
-      </div>
-      <div class="feed-entry">
-        <div class="feed-dot blue"></div>
-        <div class="feed-body">
-          <div class="feed-text">Email triage — 25 unread processed. Brand Featured reply sent. SFR call confirmed Thu Apr 16 9am.</div>
-        </div>
-        <div class="feed-time">Apr 12</div>
-      </div>
-      <div class="feed-entry">
-        <div class="feed-dot blue"></div>
-        <div class="feed-body">
-          <div class="feed-text">HQ usage updated — April MTD $260.07 · daily chart refreshed</div>
-        </div>
-        <div class="feed-time">Apr 12 · 9:20 AM</div>
-      </div>
+    <div class="section-label">Recent Activity</div>
+    <div class="feed" id="activity-feed">
       <div class="feed-entry">
         <div class="feed-dot grey"></div>
-        <div class="feed-body">
-          <div class="feed-text">1st Phorm copy (6 docs) sent to Meaghan Apr 10 — awaiting review</div>
-        </div>
-        <div class="feed-time">Apr 10</div>
-      </div>
-      <div class="feed-entry">
-        <div class="feed-dot grey"></div>
-        <div class="feed-body">
-          <div class="feed-text">Darcy McGuire / Attentive — booked Tuesday, needs Michael's confirmation</div>
-        </div>
-        <div class="feed-time">Apr 9</div>
-      </div>
-      <div class="feed-entry">
-        <div class="feed-dot grey"></div>
-        <div class="feed-body">
-          <div class="feed-text">Rho Nutrition copy — Meaghan confirmed ready for design/Marl (Apr 8)</div>
-        </div>
-        <div class="feed-time">Apr 8</div>
-      </div>
-      <div class="feed-entry">
-        <div class="feed-dot amber"></div>
-        <div class="feed-body">
-          <div class="feed-text">⚠ Apr 7 cost spike — $63.66 (72 Callie spawns). Max 5/day rule enforced going forward.</div>
-        </div>
-        <div class="feed-time">Apr 7</div>
+        <div class="feed-body"><div class="feed-text">Loading…</div></div>
       </div>
     </div>
   </div>
@@ -915,7 +751,6 @@ main{
   <div class="mt-28">
     <div class="kanban-header">
       <div class="section-label" style="margin:0;flex:1;">Task Pipeline</div>
-      <button class="btn-add" onclick="omodal()">+ New Task</button>
     </div>
     <div class="kanban-board" id="kb"></div>
   </div>
@@ -933,52 +768,6 @@ main{
   </div>
 
 </main>
-
-<!-- ── ADD TASK MODAL ── -->
-<div class="modal-overlay" id="modal">
-  <div class="modal-box">
-    <div class="modal-title">Add New Task</div>
-    <div class="form-group">
-      <label class="form-label">Task Name</label>
-      <input class="form-input" id="tn" placeholder="e.g. Liverpool weekly report">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Type</label>
-      <select class="form-select" id="tty">
-        <option value="report">Report</option>
-        <option value="campaign">Campaign</option>
-        <option value="brief">Brief</option>
-        <option value="client">Client</option>
-        <option value="admin">Admin</option>
-        <option value="build">Build</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Due Date</label>
-      <input class="form-input" id="tdu" type="date">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Assigned To</label>
-      <select class="form-select" id="tag">
-        <option value="mollie">Mollie</option>
-        <option value="callie">Callie (Specialist)</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Column</label>
-      <select class="form-select" id="tco">
-        <option value="queued">Queued</option>
-        <option value="active">Active</option>
-        <option value="review">In Review</option>
-        <option value="done">Done</option>
-      </select>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-cancel" onclick="cmodal()">Cancel</button>
-      <button class="btn-confirm" onclick="stask()">Add Task</button>
-    </div>
-  </div>
-</div>
 
 <script>
 // ── CLOCK ──
@@ -1022,6 +811,7 @@ if(sessionStorage.getItem('mhq_auth')==='1'){
 function onUnlocked(){
   document.getElementById('tabbar').style.display='flex';
   document.getElementById('pipeline-frame').src='./pipeline.html';
+  loadData();
 }
 
 function switchTab(tab){
@@ -1042,8 +832,153 @@ function switchTab(tab){
   }
 }
 
+// ── DATA LOAD ──
+function loadData(){
+  fetch('./data.json?v='+Date.now())
+    .then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
+    .then(d=>{
+      renderUsage(d.usage,d.meta);
+      renderActivity(d.activity);
+      renderKanban(d.tasks);
+    })
+    .catch(err=>{
+      console.error('data.json fetch failed:',err);
+      document.getElementById('u-mtd').textContent='Data unavailable';
+      document.getElementById('u-today').textContent='—';
+      document.getElementById('activity-feed').innerHTML=
+        '<div class="feed-entry"><div class="feed-dot grey"></div><div class="feed-body"><div class="feed-text">Data unavailable</div></div></div>';
+      document.getElementById('kb').innerHTML=
+        '<div style="font-family:\'DM Mono\',monospace;font-size:11px;color:var(--muted);padding:16px;">Data unavailable</div>';
+    });
+}
+
+// ── RENDER USAGE ──
+function renderUsage(u,meta){
+  const pct=Math.round(u.mtd/u.budget*100);
+  document.getElementById('u-month-label').textContent=u.monthLabel+' MTD';
+  document.getElementById('u-mtd').textContent='$'+u.mtd.toFixed(2);
+  document.getElementById('u-mtd-note').textContent='of $'+u.budget.toLocaleString()+' monthly limit';
+  document.getElementById('u-today-label').textContent='Today ('+u.todayLabel+')';
+  document.getElementById('u-today').textContent='$'+u.today.toFixed(2);
+  document.getElementById('u-model-note').textContent=u.model+' primary';
+  document.getElementById('u-model').textContent=u.model;
+  document.getElementById('u-pct').textContent=pct+'%';
+  document.getElementById('u-pct-note').textContent='$'+u.mtd.toFixed(2)+' of $'+u.budget.toLocaleString();
+  document.getElementById('u-bar').style.width=pct+'%';
+  document.getElementById('u-bar-pct').textContent=pct+'%';
+
+  // Daily chart
+  const days=u.dailyCosts;
+  const max=Math.max(...days.map(d=>d.amount));
+  const MAX_H=70;
+  const todayLabel=u.todayLabel;
+
+  document.getElementById('u-chart-label').textContent=
+    'Daily Cost · '+days[0].label+' – '+days[days.length-1].label;
+
+  document.getElementById('u-chart').innerHTML=days.map(d=>{
+    const h=Math.max(1,Math.round((d.amount/max)*MAX_H));
+    const isToday=d.label===todayLabel;
+    const isSpike=d.amount===max;
+    const barColor=isSpike
+      ?'rgba(245,158,11,0.65)'
+      :'rgba(47,145,195,0.5)';
+    const amtColor=isSpike?'var(--c)':(isToday?'var(--text)':'var(--muted)');
+    const lblColor=isToday?'var(--m)':'var(--muted)';
+    const lblExtra=isToday?' font-weight:600;':'';
+    return`<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;color:${amtColor};">$${d.amount.toFixed(2)}</div>
+      <div style="width:100%;height:${h}px;background:${barColor};border-radius:3px 3px 0 0;align-self:flex-end;"></div>
+      <div style="font-family:'DM Mono',monospace;font-size:8px;color:${lblColor};${lblExtra}">${d.label}${isToday?' ←':''}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('u-daily-note').textContent=u.dailyNote||'';
+
+  // Last synced
+  if(meta&&meta.lastUpdated){
+    const d=new Date(meta.lastUpdated);
+    const synced=d.toLocaleString([],{month:'short',day:'numeric',year:'numeric',hour:'2-digit',minute:'2-digit',timeZoneName:'short'});
+    document.getElementById('u-synced').textContent='Last synced: '+synced;
+  }
+}
+
+// ── RENDER ACTIVITY ──
+function renderActivity(activity){
+  if(!activity||!activity.length){
+    document.getElementById('activity-feed').innerHTML=
+      '<div class="feed-entry"><div class="feed-dot grey"></div><div class="feed-body"><div class="feed-text">No activity entries.</div></div></div>';
+    return;
+  }
+  document.getElementById('activity-feed').innerHTML=activity.map(e=>
+    `<div class="feed-entry">
+      <div class="feed-dot ${e.dot||'grey'}"></div>
+      <div class="feed-body"><div class="feed-text">${e.text}</div></div>
+      <div class="feed-time">${e.time||''}</div>
+    </div>`
+  ).join('');
+}
+
+// ── KANBAN ──
+const COLS=[
+  {id:'queued', label:'Queued',    color:'#8899AA'},
+  {id:'active', label:'Active',    color:'#2f91c3'},
+  {id:'review', label:'In Review', color:'#F59E0B'},
+  {id:'done',   label:'Done',      color:'#22C55E'},
+];
+
+function renderKanban(tasks){
+  document.getElementById('kb').innerHTML=COLS.map(col=>{
+    const ct=tasks.filter(t=>t.col===col.id);
+    return`<div class="kanban-col">
+      <div class="kanban-col-header">
+        <div class="kanban-col-title" style="color:${col.color}">${col.label}</div>
+        <div class="kanban-col-count">${ct.length}</div>
+      </div>
+      ${ct.map(t=>{
+        const byCallie=t.agent==='callie';
+        const dueStr=t.due?formatDue(t.due):'';
+        return`<div class="task-card">
+          <div class="task-top">
+            <div class="task-name">${t.name}</div>
+          </div>
+          <div class="task-meta">
+            <span class="task-type">${t.type}</span>
+            ${byCallie?`<span class="task-callie-badge">via Callie</span>`:''}
+            ${dueStr?`<span class="task-due">${dueStr}</span>`:''}
+          </div>
+        </div>`;
+      }).join('')}
+    </div>`;
+  }).join('');
+  renderDelegation(tasks);
+}
+
+function formatDue(iso){
+  if(!iso)return'';
+  const d=new Date(iso+'T12:00:00');
+  return d.toLocaleDateString([],{month:'short',day:'numeric'});
+}
+
+function renderDelegation(tasks){
+  const done=tasks.filter(t=>t.agent==='callie'&&t.col==='done');
+  const bd=document.getElementById('dflbd');
+  document.getElementById('dflct').textContent=done.length;
+  if(!done.length){
+    bd.innerHTML='<div class="deleg-empty">No delegated tasks completed yet.</div>';
+    return;
+  }
+  bd.innerHTML=done.slice().reverse().map(t=>
+    `<div class="deleg-row">
+      <span class="deleg-check">✓</span>
+      <span class="deleg-task">${t.name}</span>
+      <span class="deleg-agent">Callie</span>
+      <span class="deleg-date">${t.due?formatDue(t.due):'—'}</span>
+    </div>`
+  ).join('');
+}
+
 // ── PIXEL ART AVATAR (Mollie) ──
-// Z=6: canvas 108x162 (18*6 wide, 27*6 tall)
 const cv=document.getElementById('mc');
 const cx=cv.getContext('2d');
 const Z=6;
@@ -1151,130 +1086,6 @@ function anim(ts){
 }
 setState('idle');
 requestAnimationFrame(anim);
-
-// ── KANBAN ──
-const COLS=[
-  {id:'queued', label:'Queued',    color:'#8899AA'},
-  {id:'active', label:'Active',    color:'#2f91c3'},
-  {id:'review', label:'In Review', color:'#F59E0B'},
-  {id:'done',   label:'Done',      color:'#22C55E'},
-];
-const NXT={queued:'active',active:'review',review:'done'};
-const NLB={queued:'→ Active',active:'→ In Review',review:'→ Done'};
-
-// Cache bust: v6
-if(localStorage.getItem('mhq_tv')!=='v6'){
-  localStorage.removeItem('mhq_t');
-  localStorage.setItem('mhq_tv','v6');
-}
-let tasks=JSON.parse(localStorage.getItem('mhq_t')||'[]');
-if(!tasks.length){
-  tasks=[
-    {id:'1', name:'Rho Nutrition — Days 8 + 21 Briefs & Copy',           type:'brief',  due:'2026-04-04',col:'queued',agent:'callie'},
-    {id:'3', name:'SFR Distillery Intro Call Prep (Apr 7)',               type:'brief',  due:'2026-04-06',col:'queued',agent:'mollie'},
-    {id:'4', name:'Write Callie Client Knowledge Briefing Files',         type:'admin',  due:'2026-04-03',col:'queued',agent:'mollie'},
-    {id:'2', name:'Riversol Campaign Ideas — Sales Strategies + Deploy',  type:'client', due:'2026-04-03',col:'queued',agent:'mollie'},
-    {id:'14',name:'Morning Briefing + EOD Recap Crons',                   type:'admin',  due:'2026-04-02',col:'done',  agent:'mollie'},
-    {id:'13',name:'RVCA Client Kickoff — Clayton Dahl ✓',                 type:'client', due:'2026-04-01',col:'done',  agent:'mollie'},
-    {id:'5', name:'RVCA Internal Kickoff ✓',                             type:'client', due:'2026-04-01',col:'done',  agent:'mollie'},
-    {id:'6', name:'Outersignal Team Kickoff ✓',                          type:'client', due:'2026-04-01',col:'done',  agent:'mollie'},
-    {id:'7', name:'RVCA Kickoff Doc — Section 04 (no pricing)',           type:'client', due:'2026-04-01',col:'done',  agent:'callie'},
-    {id:'8', name:'Liverpool Weekly Report',                              type:'report', due:'2026-03-31',col:'done',  agent:'callie'},
-    {id:'9', name:'Hale Iwa Farm Vision Doc',                             type:'client', due:'2026-03-31',col:'done',  agent:'callie'},
-    {id:'10',name:'Rho Nutrition Day 3 Wireframe Brief',                  type:'brief',  due:'2026-03-31',col:'done',  agent:'callie'},
-    {id:'11',name:'Callie Agent Setup + Registration',                    type:'admin',  due:'2026-04-01',col:'done',  agent:'mollie'},
-    {id:'12',name:'Outersignal Shelbie + Meaghan Briefing Docs',          type:'brief',  due:'2026-03-31',col:'done',  agent:'callie'},
-  ];
-  localStorage.setItem('mhq_t',JSON.stringify(tasks));
-}
-
-function rk(){
-  document.getElementById('kb').innerHTML=COLS.map(col=>{
-    const ct=tasks.filter(t=>t.col===col.id);
-    return`<div class="kanban-col">
-      <div class="kanban-col-header">
-        <div class="kanban-col-title" style="color:${col.color}">${col.label}</div>
-        <div class="kanban-col-count">${ct.length}</div>
-      </div>
-      ${ct.map(t=>{
-        const byCallie=t.agent==='callie';
-        return`<div class="task-card">
-          <div class="task-top">
-            <div class="task-name">${t.name}</div>
-            <button class="task-del" onclick="dt('${t.id}')" title="Remove">×</button>
-          </div>
-          <div class="task-meta">
-            <span class="task-type">${t.type}</span>
-            ${byCallie?`<span class="task-callie-badge">via Callie</span>`:''}
-            <span class="task-due">${t.due||''}</span>
-          </div>
-          ${NXT[col.id]?`<button class="task-advance" onclick="at('${t.id}')">${NLB[col.id]}</button>`:''}
-        </div>`;
-      }).join('')}
-    </div>`;
-  }).join('');
-  rdf();
-}
-
-function rdf(){
-  const done=tasks.filter(t=>t.agent==='callie'&&t.col==='done');
-  const bd=document.getElementById('dflbd');
-  document.getElementById('dflct').textContent=done.length;
-  if(!done.length){
-    bd.innerHTML='<div class="deleg-empty">No delegated tasks completed yet.</div>';
-    return;
-  }
-  const fmt={
-    '2026-04-01':'Apr 1','2026-03-31':'Mar 31',
-    '2026-03-30':'Mar 30','2026-04-02':'Apr 2',
-    '2026-04-03':'Apr 3','2026-04-04':'Apr 4',
-    '2026-04-06':'Apr 6'
-  };
-  bd.innerHTML=done.slice().reverse().map(t=>
-    `<div class="deleg-row">
-      <span class="deleg-check">✓</span>
-      <span class="deleg-task">${t.name}</span>
-      <span class="deleg-agent">Callie</span>
-      <span class="deleg-date">${fmt[t.due]||t.due||'—'}</span>
-    </div>`
-  ).join('');
-}
-
-function at(id){
-  const t=tasks.find(x=>x.id===id);
-  if(t&&NXT[t.col]){
-    t.col=NXT[t.col];
-    localStorage.setItem('mhq_t',JSON.stringify(tasks));
-    rk();
-  }
-}
-function dt(id){
-  tasks=tasks.filter(x=>x.id!==id);
-  localStorage.setItem('mhq_t',JSON.stringify(tasks));
-  rk();
-}
-function omodal(){document.getElementById('modal').classList.add('open');}
-function cmodal(){document.getElementById('modal').classList.remove('open');}
-function stask(){
-  const n=document.getElementById('tn').value.trim();
-  if(!n)return;
-  tasks.push({
-    id:Date.now()+'',
-    name:n,
-    type:document.getElementById('tty').value,
-    due:document.getElementById('tdu').value,
-    agent:document.getElementById('tag').value,
-    col:document.getElementById('tco').value
-  });
-  localStorage.setItem('mhq_t',JSON.stringify(tasks));
-  document.getElementById('tn').value='';
-  cmodal();rk();
-}
-document.getElementById('modal').addEventListener('click',e=>{
-  if(e.target===e.currentTarget)cmodal();
-});
-
-rk();
 </script>
 </body>
 </html>
