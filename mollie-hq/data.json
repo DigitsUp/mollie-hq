@@ -48,6 +48,7 @@
     { "id": "t13", "name": "Handetizer - follow up Mon Apr 20 if no reply", "type": "client", "due": "2026-04-20", "col": "queued", "agent": "mollie" },
     { "id": "t14", "name": "Rho Nutrition - Days 8 + 21 briefs + copy (blocked on Day 3 approval)", "type": "brief", "due": "2026-04-21", "col": "queued", "agent": "callie" },
     { "id": "t15", "name": "Hiba - long-term nurture journey build", "type": "brief", "due": "2026-04-21", "col": "queued", "agent": "callie" },
+    { "id": "t21", "name": "Package top 5 recurring workflows as Skills (Weekly Report, Pre-Call Brief, Standup Digest, Flow Brief, Proposal Deploy)", "type": "admin", "due": "2026-04-17", "col": "queued", "agent": "mollie" },
     { "id": "t16", "name": "SFR Distillery proposal deployed", "type": "client", "col": "done", "agent": "mollie" },
     { "id": "t17", "name": "The LAB / Good Life proposal deployed", "type": "client", "col": "done", "agent": "mollie" },
     { "id": "t18", "name": "Riversol Q1 Hub live", "type": "report", "col": "done", "agent": "callie" },
