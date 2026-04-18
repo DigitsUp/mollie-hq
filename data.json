@@ -1,99 +1,64 @@
 {
   "meta": {
-    "lastUpdated": "2026-04-17T15:05:00-07:00",
-    "updatedBy": "Inbox Monitor"
+    "lastUpdated": "2026-04-18T15:45:00-07:00",
+    "updatedBy": "Mollie"
   },
-  "calendar": [
-    { "time": "8:30 AM", "title": "DigitsUp Daily Sync" },
-    { "time": "10:00 AM", "title": "Liverpool Content Calendar Sync" },
-    { "time": "10:30 AM", "title": "Contract Discussion" },
-    { "time": "11:00 AM", "title": "Hiba Academy Weekly" },
-    { "time": "12:00 PM", "title": "Riversol Alignment" },
-    { "time": "12:30 PM", "title": "Thomas Petitjean and Dov Quint (Rho)" },
-    { "time": "2:00 PM", "title": "Mauro" },
-    { "time": "6:30 PM", "title": "Reservation at Il Terrazzo Ristorante" }
-  ],
-  "inbox": {
-    "summary": "~201 unread. Key: Meaghan approved RVCA abandoned v5 (build-ready). RVCA welcome file not opening for Meaghan. Fathom recap filed.",
-    "lastChecked": "2026-04-17T15:05:00-07:00"
-  },
-  "reminders": [
-    { "text": "Anniversary — 9 years Michael + Ingrid. Tomorrow (Apr 18). Get card TODAY.", "due": "Apr 18" }
-  ],
-  "watching": [
-    { "client": "Liverpool", "item": "Meaghan to approve Sunset Flow v2", "since": "Apr 16" },
-    { "client": "RVCA", "item": "Shelbie + Meaghan feedback on welcome series (file access issue reported)", "since": "Apr 17" },
-    { "client": "RVCA", "item": "Add to Cart ticket with Clay", "since": "Apr 17" },
-    { "client": "SFR Distillery", "item": "Will Rogers to review proposal", "since": "Apr 17" },
-    { "client": "Brand Featured", "item": "Lawrence to send contract", "since": "Apr 17" },
-    { "client": "Rho Nutrition", "item": "Outersignal Figma feedback from Dov", "since": "Apr 17" }
+  "needsYou": [
+    { "text": "Brand Featured — internal kickoff needs scheduling before Apr 27 start", "chip": "Brand Featured" },
+    { "text": "Security audit C2 — Slack groupPolicy change needs your approval", "chip": "System" },
+    { "text": "SFR Distillery — Will Rogers reviewing proposal, follow up if quiet Mon", "chip": "SFR" }
   ],
   "usage": {
     "monthLabel": "April 2026",
-    "mtd": 419.19,
+    "mtd": 284,
     "budget": 1000,
-    "today": 30.72,
-    "todayLabel": "Apr 16",
-    "model": "Sonnet 4.6",
+    "today": 14.43,
+    "todayLabel": "Apr 18",
+    "model": "Claude Sonnet 4.6",
     "dailyCosts": [
-      { "label": "Apr 7", "amount": 63.66 },
-      { "label": "Apr 8", "amount": 13.15 },
-      { "label": "Apr 9", "amount": 11.24 },
-      { "label": "Apr 10", "amount": 8.28 },
-      { "label": "Apr 11", "amount": 5.58 },
-      { "label": "Apr 12", "amount": 22.45 },
-      { "label": "Apr 13", "amount": 32.29 },
-      { "label": "Apr 14", "amount": 20.16 },
-      { "label": "Apr 15", "amount": 47.02 },
-      { "label": "Apr 16", "amount": 30.72 }
+      { "label": "Apr 12", "amount": 32.29 },
+      { "label": "Apr 13", "amount": 8.13 },
+      { "label": "Apr 14", "amount": 4.00 },
+      { "label": "Apr 15", "amount": 12.50 },
+      { "label": "Apr 16", "amount": 18.00 },
+      { "label": "Apr 17", "amount": 30.72 },
+      { "label": "Apr 18", "amount": 14.43 }
     ],
-    "dailyNote": "Apr 7 spike = 72 Callie spawns. Max 5/day rule enforced."
+    "dailyNote": "Apr 17 spike = long cron + HQ debug session. Apr 18 in progress. Budget $1,000."
   },
-  "activity": [
-    { "dot": "green", "text": "Fathom recap filed: Riversol Alignment. Win-back 3-lane strategy + hackathon pitch flagged.", "time": "Apr 17" },
-    { "dot": "yellow", "text": "RVCA: Abandoned v5 approved (build-ready). Welcome Series file not opening for Meaghan — needs fix.", "time": "Apr 17" },
-    { "dot": "green", "text": "Brand Featured contract finalized. $4,500 deal, 50/50 payment. Klaviyo migration pending Roopesh ownership transfer.", "time": "Apr 17" },
-    { "dot": "blue", "text": "4 Fathom recaps filed earlier: Brand Featured, Hiba Academy, Meaghan sync, Iolite Ventures.", "time": "Apr 17" },
-    { "dot": "green", "text": "Hiba Academy: Loved nurture flow. Comments coming next week before next call.", "time": "Apr 17" },
-    { "dot": "blue", "text": "Riversol Q1 meeting went well. Mon 2pm call set with Una + Allie.", "time": "Apr 16" }
-  ],
-  "tasks": [
-    { "id": "t1", "name": "Brand Featured - contract meeting with Rupesh", "type": "client", "due": "2026-04-17", "col": "done", "agent": "mollie" },
-    { "id": "t2", "name": "SFR Distillery - review updated proposal, resend to Will Rogers", "type": "client", "due": "2026-04-17", "col": "active", "agent": "mollie" },
-    { "id": "t3", "name": "RVCA - discuss Add to Cart issue with Clay", "type": "client", "due": "2026-04-17", "col": "active", "agent": "mollie" },
-    { "id": "t4", "name": "Liverpool - Sunset Flow copy edits (Meaghan Google Doc)", "type": "campaign", "due": "2026-04-17", "col": "review", "agent": "mollie" },
-    { "id": "t5", "name": "Rho Nutrition - client review meeting (Outersignal)", "type": "client", "due": "2026-04-17", "col": "done", "agent": "mollie" },
-    { "id": "t6", "name": "Hiba Academy - client review meeting", "type": "client", "due": "2026-04-17", "col": "done", "agent": "mollie" },
-    { "id": "t7", "name": "1st Phorm - in design (Marl)", "type": "brief", "due": "2026-04-21", "col": "active", "agent": "mollie" },
-    { "id": "t8", "name": "Axis Health - in design (Marl)", "type": "brief", "due": "2026-04-17", "col": "active", "agent": "mollie" },
-    { "id": "t9", "name": "RVCA - welcome series (Attentive popup + Klaviyo sync, unique codes)", "type": "brief", "due": "2026-04-18", "col": "queued", "agent": "mollie" },
-    { "id": "t10", "name": "RVCA - abandoned cart copy rewrite", "type": "brief", "due": "2026-04-18", "col": "done", "agent": "callie" },
-    { "id": "t11", "name": "Riversol - set Mon Apr 21 2pm with Una + Allie", "type": "client", "due": "2026-04-17", "col": "active", "agent": "mollie" },
-    { "id": "t12", "name": "The LAB / Good Life - waiting to hear back on proposal", "type": "client", "due": "2026-04-17", "col": "review", "agent": "mollie" },
-    { "id": "t13", "name": "Handetizer - follow up Mon Apr 20 if no reply", "type": "client", "due": "2026-04-20", "col": "queued", "agent": "mollie" },
-    { "id": "t14", "name": "Rho Nutrition - Days 8 + 21 briefs + copy (blocked on Day 3 approval)", "type": "brief", "due": "2026-04-21", "col": "queued", "agent": "callie" },
-    { "id": "t15", "name": "Hiba - long-term nurture journey build", "type": "brief", "due": "2026-04-21", "col": "queued", "agent": "callie" },
-    { "id": "t21", "name": "Package top 5 recurring workflows as Skills", "type": "admin", "due": "2026-04-17", "col": "queued", "agent": "mollie" },
-    { "id": "t16", "name": "SFR Distillery proposal deployed", "type": "client", "col": "done", "agent": "mollie" },
-    { "id": "t17", "name": "The LAB / Good Life proposal deployed", "type": "client", "col": "done", "agent": "mollie" },
-    { "id": "t18", "name": "Riversol Q1 Hub live", "type": "report", "col": "done", "agent": "callie" },
-    { "id": "t19", "name": "Liverpool Q1 Report delivered", "type": "report", "col": "done", "agent": "callie" },
-    { "id": "t20", "name": "RVCA client kickoff", "type": "client", "col": "done", "agent": "mollie" }
+  "watching": [
+    { "dot": "amber", "text": "Liverpool — Sunset Flow Copy v2 with Meaghan (sent Apr 17)" },
+    { "dot": "amber", "text": "RVCA — Abandoned suite v5 + Welcome Series v1 with Shelbie + Meaghan (sent Apr 17)" },
+    { "dot": "amber", "text": "RVCA — Add to Cart flow, Clay support ticket open" },
+    { "dot": "grey", "text": "SFR Distillery — Will Rogers reviewing proposal" },
+    { "dot": "grey", "text": "The LAB / Good Life — waiting to hear back on proposal" },
+    { "dot": "grey", "text": "Handetizer — follow up Mon Apr 21 if no reply" }
   ],
   "clients": [
-    { "client": "Liverpool", "status": "Sunset Flow v2 with Meaghan for review", "dot": "yellow" },
-    { "client": "RVCA", "status": "Abandoned v5 approved. Welcome series file access issue. Add to Cart with Clay.", "dot": "yellow" },
-    { "client": "Riversol", "status": "Alignment done. 3-lane win-back + hackathon. Mon 2pm with Una + Allie.", "dot": "green" },
-    { "client": "Rho Nutrition", "status": "Call done. Figma review with Dov pending.", "dot": "yellow" },
-    { "client": "Hiba Academy", "status": "Weekly done. Loved nurture flow. Comments next week.", "dot": "green" },
-    { "client": "Brand Featured", "status": "NEW. Contract pending. Start Apr 27.", "dot": "yellow" },
-    { "client": "SFR Distillery", "status": "Proposal out. Waiting on Will Rogers.", "dot": "yellow" },
-    { "client": "YDS", "status": "Proposal sent. Call Mon 9am.", "dot": "green" },
-    { "client": "1st Phorm", "status": "In design with Marl. Due Monday.", "dot": "yellow" },
-    { "client": "Axis Health", "status": "In design with Marl.", "dot": "yellow" }
+    { "name": "Liverpool LA", "lastActivity": "Sunset Flow copy sent Apr 17", "status": "active", "dot": "green" },
+    { "name": "Riversol", "lastActivity": "Strategy call Mon Apr 21 2pm", "status": "active", "dot": "green" },
+    { "name": "Rho Nutrition", "lastActivity": "Figma to Dov — Thomas handling", "status": "active", "dot": "green" },
+    { "name": "Hiba Academy", "lastActivity": "Client reviewing nurture flow", "status": "active", "dot": "green" },
+    { "name": "RVCA", "lastActivity": "Abandoned suite v5 in review", "status": "active", "dot": "amber" },
+    { "name": "Axis Health", "lastActivity": "In design with Marl", "status": "active", "dot": "amber" },
+    { "name": "Stand Flagpoles", "lastActivity": "No update this week", "status": "watching", "dot": "grey" },
+    { "name": "YDS", "lastActivity": "Proposal live — call Mon Apr 21 9am", "status": "prospect", "dot": "green" },
+    { "name": "Brand Featured", "lastActivity": "Contract done — kickoff pending", "status": "active", "dot": "amber" },
+    { "name": "SFR Distillery", "lastActivity": "Proposal out — awaiting reply", "status": "prospect", "dot": "grey" },
+    { "name": "The LAB", "lastActivity": "Proposal out — awaiting reply", "status": "prospect", "dot": "grey" },
+    { "name": "Handetizer", "lastActivity": "Intro sent — follow up Mon", "status": "prospect", "dot": "grey" }
   ],
-  "needsYou": [
-    { "text": "RVCA welcome series file not opening for Meaghan — fix sharing/format before EOD", "urgency": "high" },
-    { "text": "Anniversary tomorrow (Apr 18) — 9 years with Ingrid. Card needed today.", "urgency": "high" }
+  "tasks": [
+    { "id": "a1", "name": "Brand Featured — internal kickoff before Apr 27", "type": "brief", "due": "2026-04-25", "col": "active", "agent": "mollie" },
+    { "id": "a2", "name": "Riversol — campaign strategy + winback Mon Apr 21 2pm", "type": "campaign", "due": "2026-04-21", "col": "active", "agent": "mollie" },
+    { "id": "a3", "name": "1st Phorm — to Marl by Monday", "type": "brief", "due": "2026-04-21", "col": "active", "agent": "mollie" },
+    { "id": "a4", "name": "Rho Nutrition — Figma to Dov (Thomas)", "type": "brief", "due": "2026-04-21", "col": "active", "agent": "mollie" },
+    { "id": "a5", "name": "Hiba Academy — adjustments after client review", "type": "brief", "due": "2026-04-22", "col": "active", "agent": "mollie" },
+    { "id": "a6", "name": "Axis Health — in design with Marl", "type": "brief", "due": "2026-04-22", "col": "active", "agent": "mollie" },
+    { "id": "a7", "name": "RVCA Abandoned suite v5 — Shelbie + Meaghan reviewing", "type": "campaign", "due": "2026-04-21", "col": "review", "agent": "mollie" },
+    { "id": "a8", "name": "Liverpool Sunset Flow Copy v2 — Meaghan reviewing", "type": "brief", "due": "2026-04-21", "col": "review", "agent": "callie" },
+    { "id": "d1", "name": "YDS proposal live — digitsup.github.io/shop-yds/ (pw: DARLING)", "type": "report", "col": "done", "agent": "callie" },
+    { "id": "d2", "name": "Brand Featured contract signed — Lawrence has scope", "type": "brief", "col": "done", "agent": "mollie" },
+    { "id": "d3", "name": "System overhaul complete — AGENTS.md rebuilt, workspace reorged", "type": "report", "col": "done", "agent": "mollie" }
   ]
 }
