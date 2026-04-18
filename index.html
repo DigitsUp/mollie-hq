@@ -414,6 +414,7 @@ main{position:relative;z-index:5;max-width:var(--max);margin:0 auto;padding:28px
   <button class="tab-btn active" data-tab="hq" onclick="switchTab('hq',this)">HQ</button>
   <button class="tab-btn" data-tab="workspace" onclick="switchTab('workspace',this)">Workspace</button>
   <button class="tab-btn" data-tab="pipeline" onclick="switchTab('pipeline',this)">Pipeline</button>
+  <button class="tab-btn" data-tab="usage" onclick="switchTab('usage',this)">Usage</button>
 </nav>
 
 <div id="hq-view">
@@ -452,14 +453,6 @@ main{position:relative;z-index:5;max-width:var(--max);margin:0 auto;padding:28px
     </div>
   </div>
 
-  <!-- 4. USAGE & BUDGET -->
-  <div class="mt-24">
-    <div class="section-label">💰 Usage &amp; Budget</div>
-    <div id="usage-section">
-      <div class="loading-msg">Loading…</div>
-    </div>
-  </div>
-
   <!-- 5. WHAT I'M WATCHING -->
   <div class="mt-24">
     <div class="section-label">👁 Watching</div>
@@ -494,6 +487,19 @@ main{position:relative;z-index:5;max-width:var(--max);margin:0 auto;padding:28px
 <div id="workspace-view" style="display:none">
   <canvas id="workspace-canvas"></canvas>
   <div id="workspace-overlay"></div>
+</div>
+
+<div id="usage-view" style="display:none">
+<main>
+  <div class="greeting-card">
+    <div class="greeting-text">Usage &amp; Budget</div>
+    <div class="greeting-date">Updated manually · pull numbers from Anthropic console</div>
+  </div>
+  <div class="section-label">💰 Monthly Spend</div>
+  <div id="usage-section">
+    <div class="loading-msg">Loading…</div>
+  </div>
+</main>
 </div>
 
 <div id="pipeline-view" style="display:none;height:calc(100vh - 110px);">
@@ -726,6 +732,7 @@ function switchTab(id, btn) {
   document.getElementById('hq-view').style.display = id==='hq' ? '' : 'none';
   document.getElementById('workspace-view').style.display = id==='workspace' ? '' : 'none';
   document.getElementById('pipeline-view').style.display = id==='pipeline' ? '' : 'none';
+  document.getElementById('usage-view').style.display = id==='usage' ? '' : 'none';
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   if (id === 'workspace' && !window._wsInit) initWorkspace();
