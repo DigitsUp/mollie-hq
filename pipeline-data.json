@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-15T17:22:00.149Z",
+  "lastUpdated": "2026-04-19T00:24:15.600Z",
   "cards": [
     {
       "id": "sales-001",
@@ -61,7 +61,7 @@
       "title": "RVCA Welcome Series",
       "client": "RVCA",
       "section": "production",
-      "column": "briefs",
+      "column": "copy",
       "owner": "Team",
       "dueDate": "",
       "commsFlag": "none",
