@@ -550,7 +550,7 @@ if(sessionStorage.getItem('mhq_auth')==='1'){
 // ── DATA FETCH ──
 async function loadData(){
   try{
-    const res=await fetch('https://digitsup.github.io/mollie-hq/data.json?v='+Date.now());
+    const res=await fetch('./mollie-hq/data.json?v='+Date.now());
     if(!res.ok) throw new Error('HTTP '+res.status);
     const d=await res.json();
     renderGreeting();

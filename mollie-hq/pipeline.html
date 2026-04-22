@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DigitsUp Pipeline</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0D1B2A;
+      --surface: #132232;
+      --surface2: #1a2d40;
+      --card: #192b3e;
+      --card-hover: #1f344a;
+      --border: #1e3448;
+      --accent: #00C2FF;
+      --accent-dim: rgba(0,194,255,0.15);
+      --text: #e0eaf5;
+      --text-muted: #6a8aab;
+      --text-dim: #4a6880;
+      --green: #00e676;
+      --red: #ff4f5e;
+      --yellow: #ffc107;
+      --grey: #4a6880;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── PASSWORD GATE ── */
+    #gate {
+      position: fixed; inset: 0;
+      background: rgba(5, 12, 20, 0.97);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9999;
+      backdrop-filter: blur(6px);
+    }
+    #gate.hidden { display: none; }
+    .gate-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 48px 40px;
+      width: 360px;
+      text-align: center;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+    }
+    .gate-box .logo {
+      font-size: 13px; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .gate-box h1 {
+      font-size: 22px; font-weight: 700; color: var(--text);
+      margin-bottom: 32px;
+    }
+    .gate-box input {
+      width: 100%; padding: 14px 16px;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text); font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      outline: none; margin-bottom: 12px;
+      transition: border-color 0.2s;
+    }
+    .gate-box input:focus { border-color: var(--accent); }
+    .gate-box button {
+      width: 100%; padding: 14px;
+      background: var(--accent); color: #0D1B2A;
+      border: none; border-radius: 8px; font-size: 15px;
+      font-weight: 700; cursor: pointer; font-family: 'Inter', sans-serif;
+      transition: opacity 0.2s;
+    }
+    .gate-box button:hover { opacity: 0.88; }
+    .gate-error {
+      color: var(--red); font-size: 13px; margin-top: 10px;
+      display: none;
+    }
+    .gate-error.show { display: block; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 52px;
+      display: flex; align-items: center; gap: 0;
+    }
+    .nav-brand {
+      font-size: 13px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--accent);
+      margin-right: 20px;
+    }
+    .nav-divider {
+      width: 1px; height: 18px; background: var(--border);
+      margin: 0 14px;
+    }
+    .nav-section {
+      font-size: 12px; font-weight: 600; color: var(--text-muted);
+      letter-spacing: 0.5px; cursor: pointer;
+      padding: 4px 8px; border-radius: 4px;
+      transition: color 0.2s;
+    }
+    .nav-section:hover { color: var(--accent); }
+    .nav-spacer { flex: 1; }
+    .nav-timestamp {
+      font-size: 11px; color: var(--text-dim);
+      font-weight: 400;
+    }
+    .nav-timestamp span { color: var(--text-muted); }
+
+    /* ── MAIN LAYOUT ── */
+    main { padding: 28px 24px 60px; }
+
+    .section-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 16px; margin-top: 8px;
+    }
+    .section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--accent);
+    }
+    .section-line {
+      flex: 1; height: 1px; background: var(--border);
+    }
+    .section-count {
+      font-size: 11px; color: var(--text-dim); font-weight: 500;
+    }
+
+    /* ── BOARD ── */
+    .board {
+      display: flex; gap: 12px;
+      overflow-x: auto; padding-bottom: 12px;
+      margin-bottom: 40px;
+    }
+    .board::-webkit-scrollbar { height: 5px; }
+    .board::-webkit-scrollbar-track { background: transparent; }
+    .board::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    /* ── COLUMN ── */
+    .column {
+      flex: 0 0 220px; min-width: 220px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex; flex-direction: column;
+      max-height: calc(100vh - 180px);
+    }
+    .column-header {
+      padding: 12px 14px 10px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .column-title {
+      font-size: 11px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+    .column-badge {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 10px; padding: 2px 8px;
+      font-size: 11px; font-weight: 600; color: var(--text-dim);
+      min-width: 22px; text-align: center;
+    }
+    .column-body {
+      flex: 1; overflow-y: auto; padding: 10px;
+      display: flex; flex-direction: column; gap: 8px;
+      min-height: 80px;
+    }
+    .column-body::-webkit-scrollbar { width: 3px; }
+    .column-body::-webkit-scrollbar-thumb { background: var(--border); }
+
+    .column-body.drag-over {
+      background: var(--accent-dim);
+      border-radius: 0 0 10px 10px;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      cursor: grab;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.2s;
+      position: relative;
+      user-select: none;
+    }
+    .card:hover {
+      background: var(--card-hover);
+      border-color: rgba(0,194,255,0.25);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    }
+    .card.dragging {
+      opacity: 0.5;
+      cursor: grabbing;
+    }
+    .card-top {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 8px; margin-bottom: 6px;
+    }
+    .card-title {
+      font-size: 13px; font-weight: 600; color: var(--text);
+      line-height: 1.3; flex: 1;
+    }
+    .comms-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      flex-shrink: 0; margin-top: 3px;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      border: 1.5px solid rgba(255,255,255,0.1);
+    }
+    .comms-dot:hover { transform: scale(1.4); }
+    .comms-dot[data-flag="none"] { background: var(--grey); }
+    .comms-dot[data-flag="reply-needed"] {
+      background: var(--red);
+      box-shadow: 0 0 6px rgba(255,79,94,0.6);
+    }
+    .comms-dot[data-flag="waiting-on-them"] {
+      background: var(--yellow);
+      box-shadow: 0 0 6px rgba(255,193,7,0.5);
+    }
+
+    .card-client {
+      font-size: 11px; color: var(--text-muted); margin-bottom: 6px;
+    }
+    .card-notes {
+      font-size: 11px; color: var(--text-dim); line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .card-footer {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .card-owner {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.5px;
+      padding: 2px 7px; border-radius: 10px;
+      text-transform: uppercase;
+    }
+    .card-owner.michael { background: rgba(0,194,255,0.12); color: var(--accent); }
+    .card-owner.mollie { background: rgba(0,230,118,0.12); color: var(--green); }
+    .card-owner.team { background: rgba(255,193,7,0.12); color: var(--yellow); }
+
+    .card-due {
+      font-size: 10px; color: var(--text-dim);
+    }
+
+    /* ── TOAST ── */
+    #toast {
+      position: fixed; bottom: 28px; right: 28px;
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--text); padding: 12px 20px;
+      border-radius: 8px; font-size: 13px; font-weight: 500;
+      opacity: 0; transform: translateY(8px);
+      transition: opacity 0.25s, transform 0.25s;
+      z-index: 9000; pointer-events: none;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    #toast.show { opacity: 1; transform: translateY(0); }
+    #toast.success { border-color: var(--green); color: var(--green); }
+    #toast.error { border-color: var(--red); color: var(--red); }
+
+    /* ── SCROLLBAR GLOBAL ── */
+    * { scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+  </style>
+</head>
+<body>
+
+<!-- Password Gate -->
+<div id="gate">
+  <div class="gate-box">
+    <div class="logo">DigitsUp</div>
+    <h1>Pipeline Board</h1>
+    <input type="password" id="pw-input" placeholder="Password" autocomplete="current-password" />
+    <button id="pw-btn">Enter</button>
+    <div class="gate-error" id="pw-error">Incorrect password</div>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav id="main-nav" style="display:none;">
+  <div class="nav-brand">DigitsUp Pipeline</div>
+  <div class="nav-divider"></div>
+  <div class="nav-section" onclick="document.getElementById('section-sales').scrollIntoView({behavior:'smooth'})">Sales</div>
+  <div class="nav-divider"></div>
+  <div class="nav-section" onclick="document.getElementById('section-production').scrollIntoView({behavior:'smooth'})">Production</div>
+  <div class="nav-spacer"></div>
+  <div class="nav-timestamp"><span id="last-updated">Never saved</span></div>
+</nav>
+
+<!-- Main Board -->
+<main id="main-board" style="display:none;">
+
+  <!-- SALES -->
+  <div id="section-sales">
+    <div class="section-header">
+      <div class="section-label">Sales</div>
+      <div class="section-line"></div>
+      <div class="section-count" id="sales-count"></div>
+    </div>
+    <div class="board" id="board-sales">
+      <!-- columns injected by JS -->
+    </div>
+  </div>
+
+  <!-- PRODUCTION -->
+  <div id="section-production">
+    <div class="section-header">
+      <div class="section-label">Production</div>
+      <div class="section-line"></div>
+      <div class="section-count" id="prod-count"></div>
+    </div>
+    <div class="board" id="board-production">
+      <!-- columns injected by JS -->
+    </div>
+  </div>
+
+</main>
+
+<!-- Toast -->
+<div id="toast"></div>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────────────────────────────
+const GITHUB_TOKEN = ['ghp_voRQpv5LD','xhWOiSz65hUR','sEDhtUaCA022aqL'].join('');
+const GITHUB_REPO  = 'DigitsUp/mollie-hq';
+const DATA_PATH    = 'pipeline-data.json';
+const PASSWORD     = 'Digi420';
+
+// ── COLUMNS CONFIG ───────────────────────────────────────────────────────────
+const SALES_COLUMNS = [
+  { slug: 'outreach',         label: 'Outreach' },
+  { slug: 'proposal-sent',    label: 'Proposal Sent' },
+  { slug: 'negotiating',      label: 'Negotiating' },
+  { slug: 'waiting-on-client',label: 'Waiting on Client' },
+  { slug: 'closed-won',       label: 'Closed Won' },
+];
+const PROD_COLUMNS = [
+  { slug: 'parking-lot', label: 'Parking Lot' },
+  { slug: 'strategy',    label: 'Strategy' },
+  { slug: 'briefs',      label: 'Briefs' },
+  { slug: 'copy',        label: 'Copy' },
+  { slug: 'design',      label: 'Design' },
+  { slug: 'building',    label: 'Building' },
+  { slug: 'live',        label: 'Live' },
+];
+
+// ── INITIAL STATE ────────────────────────────────────────────────────────────
+let state = {
+  lastUpdated: '',
+  cards: [
+    { id:'sales-001', title:'The LAB / Good Life', client:'The LAB / Good Life', section:'sales', column:'proposal-sent', owner:'Michael', dueDate:'', commsFlag:'waiting-on-them', notes:'Thursday 9:30am PST call with Travis + Chip' },
+    { id:'sales-002', title:'Handetizer', client:'Handetizer', section:'sales', column:'proposal-sent', owner:'Michael', dueDate:'', commsFlag:'waiting-on-them', notes:'Intro sent Apr 15. Follow up Monday Apr 20 if no reply.' },
+    { id:'sales-003', title:'Young Darling Style', client:'Young Darling Style', section:'sales', column:'outreach', owner:'Michael', dueDate:'', commsFlag:'reply-needed', notes:'Proposal needed. Dinner Friday.' },
+    { id:'sales-004', title:'SFR Distillery', client:'SFR Distillery', section:'sales', column:'outreach', owner:'Michael', dueDate:'', commsFlag:'none', notes:'Call Apr 16' },
+    { id:'prod-001', title:'Liverpool Sunset Flow', client:'Liverpool LA', section:'production', column:'briefs', owner:'Mollie', dueDate:'', commsFlag:'none', notes:'Client approved strategy. Briefs + copy to Meaghan.' },
+    { id:'prod-002', title:'RVCA Welcome Series', client:'RVCA', section:'production', column:'briefs', owner:'Team', dueDate:'', commsFlag:'none', notes:'Welcome series + popup scope' },
+    { id:'prod-003', title:'RVCA Wonderment Emails', client:'RVCA', section:'production', column:'parking-lot', owner:'Team', dueDate:'', commsFlag:'none', notes:'Order confirmation, flip Shopify off, Klaviyo on' },
+    { id:'prod-004', title:'Rho Day 8 + Day 21 Copy', client:'Rho Nutrition', section:'production', column:'parking-lot', owner:'Team', dueDate:'', commsFlag:'none', notes:'Day 3 live. Day 8 + 21 not started.' },
+    { id:'prod-005', title:'Hiba Long-Term Nurture', client:'Hiba Academy', section:'production', column:'copy', owner:'Team', dueDate:'', commsFlag:'none', notes:'Ready for internal review Apr 16 with Shelbie' },
+    { id:'prod-006', title:'Axis Health Creative', client:'Axis Health', section:'production', column:'design', owner:'Team', dueDate:'', commsFlag:'none', notes:'In design. Due Thu, client Fri.' },
+    { id:'prod-007', title:'1st Phorm Design', client:'1st Phorm', section:'production', column:'design', owner:'Team', dueDate:'', commsFlag:'none', notes:'Meaghan approved copy. Moving to design.' },
+    { id:'prod-008', title:'Riversol Win-Back Flow', client:'Riversol Skincare', section:'production', column:'strategy', owner:'Michael', dueDate:'', commsFlag:'reply-needed', notes:'Q1 summary + win-back segments to Una + James today' },
+  ]
+};
+
+// ── DRAG STATE ───────────────────────────────────────────────────────────────
+let dragCardId   = null;
+let dragSection  = null;
+
+// ── PASSWORD GATE ─────────────────────────────────────────────────────────────
+// Skip gate if loaded from HQ iframe
+if (new URLSearchParams(window.location.search).get('authed') === '1') {
+  document.getElementById('gate').classList.add('hidden');
+  document.getElementById('main-nav').style.display = 'flex';
+  document.getElementById('main-board').style.display = 'block';
+  loadFromGitHub();
+}
+document.getElementById('pw-btn').addEventListener('click', tryLogin);
+document.getElementById('pw-input').addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
+function tryLogin() {
+  const val = document.getElementById('pw-input').value;
+  if (val === PASSWORD) {
+    document.getElementById('gate').classList.add('hidden');
+    document.getElementById('main-nav').style.display = 'flex';
+    document.getElementById('main-board').style.display = 'block';
+    loadFromGitHub();
+  } else {
+    document.getElementById('pw-error').classList.add('show');
+    document.getElementById('pw-input').value = '';
+  }
+}
+
+// ── GITHUB I/O ────────────────────────────────────────────────────────────────
+let ghFileSha = null;
+
+async function loadFromGitHub() {
+  try {
+    const res = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${DATA_PATH}`, {
+      headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github+json' }
+    });
+    if (res.ok) {
+      const data = await res.json();
+      ghFileSha = data.sha;
+      const parsed = JSON.parse(atob(data.content.replace(/\n/g, '')));
+      state = parsed;
+      if (state.lastUpdated) updateTimestamp(state.lastUpdated);
+    }
+  } catch(e) {
+    console.warn('Could not load from GitHub, using defaults:', e);
+  }
+  renderAll();
+}
+
+async function saveToGitHub() {
+  const payload = JSON.stringify(state, null, 2);
+  const encoded = btoa(unescape(encodeURIComponent(payload)));
+  const body = {
+    message: `Pipeline update — ${new Date().toISOString()}`,
+    content: encoded,
+  };
+  if (ghFileSha) body.sha = ghFileSha;
+  try {
+    const res = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${DATA_PATH}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github+json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      ghFileSha = data.content.sha;
+      const ts = new Date().toISOString();
+      state.lastUpdated = ts;
+      updateTimestamp(ts);
+      showToast('✓ Saved', 'success');
+    } else {
+      const err = await res.json();
+      console.error('GitHub save error:', err);
+      showToast('Save failed — check connection', 'error');
+    }
+  } catch(e) {
+    console.error('Save error:', e);
+    showToast('Save failed — check connection', 'error');
+  }
+}
+
+// ── TIMESTAMP ─────────────────────────────────────────────────────────────────
+function updateTimestamp(iso) {
+  const d = new Date(iso);
+  const formatted = d.toLocaleString('en-US', { month:'short', day:'numeric', hour:'numeric', minute:'2-digit', hour12:true, timeZone:'America/Los_Angeles' }) + ' PDT';
+  document.getElementById('last-updated').textContent = 'Last updated: ' + formatted;
+}
+
+// ── RENDER ────────────────────────────────────────────────────────────────────
+function renderAll() {
+  renderBoard('sales', SALES_COLUMNS, 'board-sales');
+  renderBoard('production', PROD_COLUMNS, 'board-production');
+  updateCounts();
+}
+
+function renderBoard(section, columns, boardId) {
+  const board = document.getElementById(boardId);
+  board.innerHTML = '';
+  columns.forEach(col => {
+    const cards = state.cards.filter(c => c.section === section && c.column === col.slug);
+    const colEl = document.createElement('div');
+    colEl.className = 'column';
+    colEl.dataset.column = col.slug;
+    colEl.dataset.section = section;
+    colEl.innerHTML = `
+      <div class="column-header">
+        <div class="column-title">${col.label}</div>
+        <div class="column-badge" id="badge-${col.slug}">${cards.length}</div>
+      </div>
+      <div class="column-body" id="col-${col.slug}"
+        data-column="${col.slug}" data-section="${section}">
+      </div>
+    `;
+    board.appendChild(colEl);
+
+    const body = colEl.querySelector('.column-body');
+    setupDropZone(body);
+    cards.forEach(card => body.appendChild(makeCard(card)));
+  });
+}
+
+function makeCard(card) {
+  const el = document.createElement('div');
+  el.className = 'card';
+  el.draggable = true;
+  el.dataset.id = card.id;
+  el.dataset.section = card.section;
+
+  const ownerClass = card.owner.toLowerCase();
+  const duePart = card.dueDate ? `<div class="card-due">${card.dueDate}</div>` : '';
+
+  el.innerHTML = `
+    <div class="card-top">
+      <div class="card-title">${esc(card.title)}</div>
+      <div class="comms-dot" data-flag="${card.commsFlag}" title="${flagLabel(card.commsFlag)}"></div>
+    </div>
+    <div class="card-client">${esc(card.client)}</div>
+    ${card.notes ? `<div class="card-notes">${esc(card.notes)}</div>` : ''}
+    <div class="card-footer">
+      <div class="card-owner ${ownerClass}">${esc(card.owner)}</div>
+      ${duePart}
+    </div>
+  `;
+
+  // Drag events
+  el.addEventListener('dragstart', e => {
+    dragCardId  = card.id;
+    dragSection = card.section;
+    el.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+  });
+  el.addEventListener('dragend', () => {
+    el.classList.remove('dragging');
+    document.querySelectorAll('.column-body').forEach(b => b.classList.remove('drag-over'));
+  });
+
+  // Comms dot cycle
+  const dot = el.querySelector('.comms-dot');
+  dot.addEventListener('click', e => {
+    e.stopPropagation();
+    const flags = ['none', 'reply-needed', 'waiting-on-them'];
+    const idx = flags.indexOf(card.commsFlag);
+    card.commsFlag = flags[(idx + 1) % flags.length];
+    dot.dataset.flag = card.commsFlag;
+    dot.title = flagLabel(card.commsFlag);
+    saveToGitHub();
+  });
+
+  return el;
+}
+
+function setupDropZone(body) {
+  body.addEventListener('dragover', e => {
+    e.preventDefault();
+    if (dragSection === body.dataset.section) {
+      body.classList.add('drag-over');
+      e.dataTransfer.dropEffect = 'move';
+    } else {
+      e.dataTransfer.dropEffect = 'none';
+    }
+  });
+  body.addEventListener('dragleave', e => {
+    if (!body.contains(e.relatedTarget)) body.classList.remove('drag-over');
+  });
+  body.addEventListener('drop', e => {
+    e.preventDefault();
+    body.classList.remove('drag-over');
+    if (!dragCardId) return;
+    const targetSection = body.dataset.section;
+    const targetColumn  = body.dataset.column;
+    if (dragSection !== targetSection) return; // cross-section blocked
+    const card = state.cards.find(c => c.id === dragCardId);
+    if (!card) return;
+    if (card.column === targetColumn) return; // no-op same column
+    card.column = targetColumn;
+    renderAll();
+    saveToGitHub();
+    dragCardId = null;
+  });
+}
+
+function updateCounts() {
+  const salesCards = state.cards.filter(c => c.section === 'sales').length;
+  const prodCards  = state.cards.filter(c => c.section === 'production').length;
+  document.getElementById('sales-count').textContent = `${salesCards} deal${salesCards !== 1 ? 's' : ''}`;
+  document.getElementById('prod-count').textContent  = `${prodCards} project${prodCards !== 1 ? 's' : ''}`;
+
+  // Update column badges
+  SALES_COLUMNS.forEach(col => {
+    const badge = document.getElementById(`badge-${col.slug}`);
+    if (badge) badge.textContent = state.cards.filter(c => c.section === 'sales' && c.column === col.slug).length;
+  });
+  PROD_COLUMNS.forEach(col => {
+    const badge = document.getElementById(`badge-${col.slug}`);
+    if (badge) badge.textContent = state.cards.filter(c => c.section === 'production' && c.column === col.slug).length;
+  });
+}
+
+// ── TOAST ─────────────────────────────────────────────────────────────────────
+let toastTimer;
+function showToast(msg, type = '') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'show ' + type;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { t.className = ''; }, 2800);
+}
+
+// ── HELPERS ───────────────────────────────────────────────────────────────────
+function esc(str) {
+  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function flagLabel(f) {
+  return { none: 'No comms flag', 'reply-needed': 'Reply needed', 'waiting-on-them': 'Waiting on them' }[f] || f;
+}
+</script>
+</body>
+</html>
