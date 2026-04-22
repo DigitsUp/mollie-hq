@@ -1,104 +1,93 @@
 {
-  "lastUpdated": "2026-04-19T00:24:21.974Z",
+  "lastUpdated": "2026-04-22T11:26:00-07:00",
   "cards": [
     {
       "id": "sales-001",
-      "title": "The LAB / Good Life",
-      "client": "The LAB / Good Life",
+      "title": "Brand Featured",
+      "client": "Brand Featured",
       "section": "sales",
-      "column": "negotiating",
+      "column": "onboarding",
       "owner": "Michael",
-      "dueDate": "",
-      "commsFlag": "waiting-on-them",
-      "notes": "Thursday 9:30am PST call with Travis + Chip"
+      "dueDate": "2026-04-27",
+      "commsFlag": "action-needed",
+      "notes": "Signed. Start date Apr 27. Internal kickoff still needed before then. Welcome Series Copy Doc v1 sent to Kieran Apr 22."
     },
     {
       "id": "sales-002",
-      "title": "Handetizer",
-      "client": "Handetizer",
+      "title": "SFR Distillery",
+      "client": "SFR Distillery",
       "section": "sales",
       "column": "proposal-sent",
       "owner": "Michael",
       "dueDate": "",
       "commsFlag": "waiting-on-them",
-      "notes": "Intro sent Apr 15. Follow up Monday Apr 20 if no reply."
+      "notes": "Proposal out. Will Rogers reviewing. No reply since Apr 17."
     },
     {
       "id": "sales-003",
-      "title": "Young Darling Style",
-      "client": "Young Darling Style",
+      "title": "The LAB / Good Life",
+      "client": "The LAB / Good Life",
       "section": "sales",
-      "column": "outreach",
+      "column": "proposal-sent",
       "owner": "Michael",
       "dueDate": "",
-      "commsFlag": "reply-needed",
-      "notes": "Proposal needed. Dinner Friday."
-    },
-    {
-      "id": "sales-004",
-      "title": "SFR Distillery",
-      "client": "SFR Distillery",
-      "section": "sales",
-      "column": "outreach",
-      "owner": "Michael",
-      "dueDate": "",
-      "commsFlag": "none",
-      "notes": "Call Apr 16"
+      "commsFlag": "waiting-on-them",
+      "notes": "Proposal sent. Waiting to hear back."
     },
     {
       "id": "prod-001",
       "title": "Liverpool Sunset Flow",
       "client": "Liverpool LA",
       "section": "production",
-      "column": "copy",
-      "owner": "Mollie",
+      "column": "design",
+      "owner": "Kieran",
       "dueDate": "",
-      "commsFlag": "none",
-      "notes": "Client approved strategy. Briefs + copy to Meaghan."
+      "commsFlag": "waiting-on-them",
+      "notes": "Copy v3 done — all 28 of Meaghan's comments actioned. Plain text format, no design review needed. With Kieran now."
     },
     {
       "id": "prod-002",
-      "title": "RVCA Welcome Series",
+      "title": "RVCA Abandoned Suite",
       "client": "RVCA",
       "section": "production",
-      "column": "copy",
-      "owner": "Team",
+      "column": "review",
+      "owner": "Kieran",
       "dueDate": "",
-      "commsFlag": "none",
-      "notes": "Welcome series + popup scope"
+      "commsFlag": "waiting-on-them",
+      "notes": "v7 sent to Kieran Apr 20. Awaiting feedback. Browse + Cart + Checkout abandonment. 3 emails each."
     },
     {
       "id": "prod-003",
-      "title": "RVCA Wonderment Emails",
+      "title": "RVCA Add to Cart",
       "client": "RVCA",
       "section": "production",
       "column": "parking-lot",
       "owner": "Team",
       "dueDate": "",
-      "commsFlag": "none",
-      "notes": "Order confirmation, flip Shopify off, Klaviyo on"
+      "commsFlag": "blocked",
+      "notes": "Clay support ticket open. Blocked until resolved. Clayton sent design inspo (Buck Mason, Faithfull, Imogene+Willie)."
     },
     {
       "id": "prod-004",
-      "title": "Rho Day 8 + Day 21 Copy",
-      "client": "Rho Nutrition",
+      "title": "Riversol Winback Flow",
+      "client": "Riversol",
       "section": "production",
-      "column": "parking-lot",
-      "owner": "Team",
+      "column": "strategy",
+      "owner": "Michael",
       "dueDate": "",
-      "commsFlag": "none",
-      "notes": "Day 3 live. Day 8 + 21 not started."
+      "commsFlag": "action-needed",
+      "notes": "Full action list from Apr 20 meeting still to unpack. Jacob call today Apr 22 11am. Also: plaintext NCO email is a one-off ad hoc send — do this first."
     },
     {
       "id": "prod-005",
-      "title": "Hiba Long-Term Nurture",
+      "title": "Hiba Nurture Flow",
       "client": "Hiba Academy",
       "section": "production",
-      "column": "design",
-      "owner": "Team",
+      "column": "review",
+      "owner": "Client",
       "dueDate": "",
-      "commsFlag": "none",
-      "notes": "Ready for internal review Apr 16 with Shelbie"
+      "commsFlag": "waiting-on-them",
+      "notes": "3-track nurture flow built. Client reviewing and commenting. Adjustments expected next week."
     },
     {
       "id": "prod-006",
@@ -106,32 +95,43 @@
       "client": "Axis Health",
       "section": "production",
       "column": "design",
-      "owner": "Team",
+      "owner": "Marl",
       "dueDate": "",
       "commsFlag": "none",
-      "notes": "In design. Due Thu, client Fri."
+      "notes": "In design with Marl."
     },
     {
       "id": "prod-007",
-      "title": "1st Phorm Design",
-      "client": "1st Phorm",
+      "title": "BrandFeatured Welcome Series",
+      "client": "Brand Featured",
       "section": "production",
-      "column": "design",
-      "owner": "Team",
+      "column": "copy",
+      "owner": "Kieran",
       "dueDate": "",
       "commsFlag": "none",
-      "notes": "Meaghan approved copy. Moving to design."
+      "notes": "Copy Doc v1 built by Callie and sent to Kieran + Mike Apr 22. Popup (3-step) + SMS + 3 emails. Kieran to build."
     },
     {
       "id": "prod-008",
-      "title": "Riversol Win-Back Flow",
-      "client": "Riversol Skincare",
+      "title": "Liverpool Q1 Report",
+      "client": "Liverpool LA",
+      "section": "production",
+      "column": "done",
+      "owner": "Mollie",
+      "dueDate": "",
+      "commsFlag": "none",
+      "notes": "APPROVED and live. digitsup.github.io/liverpool-reports/q1-2026/ — pw: LPSQ1. Do not touch."
+    },
+    {
+      "id": "prod-009",
+      "title": "Riversol Mother's Day",
+      "client": "Riversol",
       "section": "production",
       "column": "strategy",
       "owner": "Michael",
-      "dueDate": "",
-      "commsFlag": "reply-needed",
-      "notes": "Q1 summary + win-back segments to Una + James today"
+      "dueDate": "2026-04-23",
+      "commsFlag": "action-needed",
+      "notes": "Mother's Day sale kicks off Apr 23. Tiered gift structure. Flow banners needed once Una shares assets."
     }
   ]
 }
