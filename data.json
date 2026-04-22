@@ -1,20 +1,20 @@
 {
   "meta": {
-    "lastUpdated": "2026-04-22T10:36:00-07:00",
+    "lastUpdated": "2026-04-22T11:20:00-07:00",
     "updatedBy": "Mollie"
   },
   "calendar": [
     {
       "time": "9:30 AM",
-      "title": "Liverpool x Power Digital call"
+      "title": "Liverpool x Power Digital ✓"
     },
     {
       "time": "10:00 AM",
-      "title": "Brand Featured x Scope Review"
+      "title": "Brand Featured x Scope Review ✓"
     },
     {
       "time": "11:00 AM",
-      "title": "Jacob + Mike Reconnect — Riversol"
+      "title": "Jacob + Mike Reconnect — Riversol ✓"
     }
   ],
   "inbox": {
@@ -160,6 +160,26 @@
   "activity": [
     {
       "dot": "green",
+      "text": "BrandFeatured Welcome Series Copy Doc v1 — built by Callie, sent to Kieran + Mike.",
+      "time": "Apr 22"
+    },
+    {
+      "dot": "green",
+      "text": "Flow Brief Template sent to Kieran (kieran@digitsup.com), Mike CC'd.",
+      "time": "Apr 22"
+    },
+    {
+      "dot": "blue",
+      "text": "REMINDERS.md live — anniversary (Apr 17) logged, wired into HEARTBEAT + session startup.",
+      "time": "Apr 22"
+    },
+    {
+      "dot": "green",
+      "text": "HQ fixed — correct 4-tab version (HQ | Workspace | Pipeline | Usage) locked as sole source of truth.",
+      "time": "Apr 22"
+    },
+    {
+      "dot": "green",
       "text": "Liverpool Q1 Report — APPROVED and live at digitsup.github.io/liverpool-reports/q1-2026/",
       "time": "Apr 21"
     },
@@ -167,26 +187,6 @@
       "dot": "green",
       "text": "MBM (@MYBADMOLLIE) launched on X. Day 1 content posted. API + card generator live.",
       "time": "Apr 21"
-    },
-    {
-      "dot": "blue",
-      "text": "Sunset Flow v3 sent to Meaghan — 28 comments actioned. Now with Kieran (plain text format).",
-      "time": "Apr 21"
-    },
-    {
-      "dot": "yellow",
-      "text": "RVCA Abandoned Suite v7 sent to Kieran for review.",
-      "time": "Apr 20"
-    },
-    {
-      "dot": "blue",
-      "text": "Riversol campaign alignment call filed. Mother's Day Apr 23, winback overhaul in motion.",
-      "time": "Apr 20"
-    },
-    {
-      "dot": "green",
-      "text": "REMINDERS.md created + wired into HEARTBEAT and session startup. Anniversary (Apr 17) logged.",
-      "time": "Apr 22"
     }
   ],
   "tasks": [
@@ -256,27 +256,41 @@
     },
     {
       "id": "t9",
+      "name": "BrandFeatured — Welcome Series Copy Doc v1 sent to Kieran + Mike",
+      "type": "campaign",
+      "col": "done",
+      "agent": "callie"
+    },
+    {
+      "id": "t10",
+      "name": "Flow Brief Template — sent to Kieran",
+      "type": "admin",
+      "col": "done",
+      "agent": "mollie"
+    },
+    {
+      "id": "t11",
       "name": "Liverpool Q1 Report — APPROVED and live",
       "type": "report",
       "col": "done",
       "agent": "callie"
     },
     {
-      "id": "t10",
+      "id": "t12",
       "name": "RVCA Abandoned Suite v7 — sent to Kieran",
       "type": "brief",
       "col": "done",
       "agent": "callie"
     },
     {
-      "id": "t11",
+      "id": "t13",
       "name": "MBM X account launch — Day 1 live",
       "type": "project",
       "col": "done",
       "agent": "mollie"
     },
     {
-      "id": "t12",
+      "id": "t14",
       "name": "Sunset Flow v3 — sent to Kieran",
       "type": "campaign",
       "col": "done",
