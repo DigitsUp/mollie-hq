@@ -1,119 +1,36 @@
 {
   "meta": {
-    "lastUpdated": "2026-04-22T11:26:00-07:00",
+    "lastUpdated": "2026-04-22T11:30:00-07:00",
     "updatedBy": "Mollie"
   },
-  "calendar": [
-    {
-      "time": "9:30 AM",
-      "title": "Liverpool x Power Digital ✓"
-    },
-    {
-      "time": "10:00 AM",
-      "title": "Brand Featured x Scope Review ✓"
-    },
-    {
-      "time": "11:00 AM",
-      "title": "Jacob + Mike Reconnect — Riversol ✓"
-    }
+  "needsYou": [
+    { "text": "Brand Featured internal kickoff — must happen before Apr 27", "chip": "Deadline" },
+    { "text": "Riversol plaintext NCO email — one-off ad hoc send, do this first", "chip": "Action" },
+    { "text": "Riversol winback brief + full action list from Apr 20 meeting", "chip": "Action" }
+  ],
+  "watching": [
+    { "dot": "yellow", "text": "Liverpool — Sunset Flow v3 with Kieran (plain text, no design)" },
+    { "dot": "yellow", "text": "RVCA — Abandoned suite v7 with Kieran, awaiting feedback" },
+    { "dot": "red", "text": "RVCA — Add to Cart blocked on Clay support ticket" },
+    { "dot": "yellow", "text": "Hiba Academy — client reviewing + commenting nurture flow" },
+    { "dot": "yellow", "text": "SFR Distillery — Will Rogers reviewing proposal (no reply since Apr 17)" },
+    { "dot": "green", "text": "Brand Featured — Copy Doc v1 sent to Kieran Apr 22" },
+    { "dot": "yellow", "text": "Riversol — Mother's Day kicks off Apr 23" }
+  ],
+  "clients": [
+    { "name": "Liverpool LA", "lastActivity": "Sunset Flow v3 with Kieran. Weekly report done.", "dot": "yellow" },
+    { "name": "RVCA", "lastActivity": "Abandoned v7 with Kieran. Add to Cart ticket open. Weekly Thu 11am.", "dot": "yellow" },
+    { "name": "Riversol", "lastActivity": "Jacob call done. NCO email + winback brief still to action.", "dot": "green" },
+    { "name": "Brand Featured", "lastActivity": "NEW. Copy Doc v1 sent. Internal kickoff needed before Apr 27.", "dot": "yellow" },
+    { "name": "Hiba Academy", "lastActivity": "Client reviewing nurture flow. Adjustments next week.", "dot": "yellow" },
+    { "name": "Axis Health", "lastActivity": "In design with Marl.", "dot": "yellow" },
+    { "name": "SFR Distillery", "lastActivity": "Proposal out. Waiting on Will Rogers.", "dot": "grey" },
+    { "name": "Stand Flagpoles", "lastActivity": "CLOSED. Mauro meeting was final.", "dot": "grey" }
   ],
   "inbox": {
     "summary": "All clear. Fathom meeting recording requests from David — always ignore.",
     "lastChecked": "2026-04-22T08:30:00-07:00"
   },
-  "reminders": [
-    {
-      "text": "Brand Featured kickoff before Apr 27 — internal kickoff not done yet"
-    },
-    {
-      "text": "Self-diagnosis — deliver Apr 25 unprompted"
-    },
-    {
-      "text": "Google Docs OAuth fix — work through with Michael"
-    },
-    {
-      "text": "Riversol Mother's Day — kicks off Apr 23"
-    }
-  ],
-  "watching": [
-    {
-      "client": "Liverpool",
-      "item": "Sunset Flow v3 with Kieran — plain text, no design",
-      "since": "Apr 21"
-    },
-    {
-      "client": "RVCA",
-      "item": "Abandoned suite v7 with Kieran",
-      "since": "Apr 20"
-    },
-    {
-      "client": "RVCA",
-      "item": "Add to Cart — Clay support ticket open",
-      "since": "Apr 17"
-    },
-    {
-      "client": "Brand Featured",
-      "item": "Internal kickoff needed before Apr 27",
-      "since": "Apr 22"
-    },
-    {
-      "client": "Hiba Academy",
-      "item": "Client reviewing + commenting nurture flow",
-      "since": "Apr 17"
-    },
-    {
-      "client": "SFR Distillery",
-      "item": "Will Rogers reviewing proposal",
-      "since": "Apr 17"
-    },
-    {
-      "client": "Riversol",
-      "item": "Plaintext NCO email + winback brief — action this session",
-      "since": "Apr 22"
-    }
-  ],
-  "pulse": [
-    {
-      "client": "Liverpool",
-      "status": "Sunset Flow v3 with Kieran (plain text). Weekly report done — Michael handled.",
-      "dot": "yellow"
-    },
-    {
-      "client": "RVCA",
-      "status": "Abandoned suite v7 with Kieran for review. Add to Cart Clay ticket open. Weekly Thu 11am.",
-      "dot": "yellow"
-    },
-    {
-      "client": "Riversol",
-      "status": "Jacob call done Apr 22. Plaintext NCO email + winback brief still to action.",
-      "dot": "green"
-    },
-    {
-      "client": "Brand Featured",
-      "status": "NEW CLIENT. Start Apr 27. Copy Doc v1 sent to Kieran. Internal kickoff needed.",
-      "dot": "yellow"
-    },
-    {
-      "client": "Hiba Academy",
-      "status": "Client reviewing nurture flow. Adjustments expected next week.",
-      "dot": "yellow"
-    },
-    {
-      "client": "Axis Health",
-      "status": "In design with Marl.",
-      "dot": "yellow"
-    },
-    {
-      "client": "SFR Distillery",
-      "status": "Proposal out. Waiting on Will Rogers. No reply since Apr 17.",
-      "dot": "yellow"
-    },
-    {
-      "client": "Stand Flagpoles",
-      "status": "CLOSED. Mauro meeting was final.",
-      "dot": "grey"
-    }
-  ],
   "usage": {
     "monthLabel": "April 2026",
     "mtd": 419.19,
@@ -134,140 +51,5 @@
       { "label": "Apr 22", "amount": 0 }
     ],
     "dailyNote": "MTD from last update Apr 16. Update manually from Michael."
-  },
-  "activity": [
-    {
-      "dot": "green",
-      "text": "BrandFeatured Welcome Series Copy Doc v1 — built + sent to Kieran + Mike. Apr 22.",
-      "time": "Apr 22"
-    },
-    {
-      "dot": "green",
-      "text": "HQ fixed — correct 4-tab version locked. pipeline.html restored. data.json path fixed.",
-      "time": "Apr 22"
-    },
-    {
-      "dot": "blue",
-      "text": "REMINDERS.md live — anniversary (Apr 17) logged, wired into HEARTBEAT + session startup.",
-      "time": "Apr 22"
-    },
-    {
-      "dot": "green",
-      "text": "Liverpool Q1 Report — APPROVED and live. digitsup.github.io/liverpool-reports/q1-2026/",
-      "time": "Apr 21"
-    },
-    {
-      "dot": "green",
-      "text": "MBM (@MYBADMOLLIE) launched on X. Day 1 all 4 posts live. API + card generator built.",
-      "time": "Apr 21"
-    },
-    {
-      "dot": "blue",
-      "text": "RVCA Abandoned Suite v7 (browse + cart + checkout) sent to Kieran for review.",
-      "time": "Apr 20"
-    },
-    {
-      "dot": "blue",
-      "text": "Riversol campaign alignment call filed. Mother's Day Apr 23, winback overhaul in motion.",
-      "time": "Apr 20"
-    },
-    {
-      "dot": "green",
-      "text": "Liverpool Sunset Flow v3 — 28 Meaghan comments actioned. Sent to Kieran (plain text).",
-      "time": "Apr 21"
-    }
-  ],
-  "tasks": [
-    {
-      "id": "t1",
-      "name": "Riversol — plaintext NCO email (one-off ad hoc send)",
-      "type": "campaign",
-      "due": "2026-04-22",
-      "col": "active",
-      "agent": "mollie"
-    },
-    {
-      "id": "t2",
-      "name": "Riversol — winback brief + full action list from Apr 20 meeting",
-      "type": "brief",
-      "due": "2026-04-22",
-      "col": "active",
-      "agent": "callie"
-    },
-    {
-      "id": "t3",
-      "name": "Brand Featured — internal kickoff before Apr 27",
-      "type": "client",
-      "due": "2026-04-26",
-      "col": "active",
-      "agent": "mollie"
-    },
-    {
-      "id": "t4",
-      "name": "Google Docs OAuth fix — comment visibility",
-      "type": "admin",
-      "due": "2026-04-22",
-      "col": "queued",
-      "agent": "mollie"
-    },
-    {
-      "id": "t5",
-      "name": "RVCA — Abandoned suite v7 awaiting Kieran feedback",
-      "type": "client",
-      "due": "2026-04-22",
-      "col": "review",
-      "agent": "mollie"
-    },
-    {
-      "id": "t6",
-      "name": "RVCA — Add to Cart (Clay support ticket open)",
-      "type": "client",
-      "due": "2026-04-22",
-      "col": "review",
-      "agent": "mollie"
-    },
-    {
-      "id": "t7",
-      "name": "Self-diagnosis — deliver Apr 25 unprompted",
-      "type": "admin",
-      "due": "2026-04-25",
-      "col": "queued",
-      "agent": "mollie"
-    },
-    {
-      "id": "t8",
-      "name": "BrandFeatured Welcome Series Copy Doc v1 — sent to Kieran + Mike",
-      "type": "campaign",
-      "col": "done",
-      "agent": "callie"
-    },
-    {
-      "id": "t9",
-      "name": "Liverpool Q1 Report — APPROVED and live",
-      "type": "report",
-      "col": "done",
-      "agent": "callie"
-    },
-    {
-      "id": "t10",
-      "name": "RVCA Abandoned Suite v7 — sent to Kieran",
-      "type": "brief",
-      "col": "done",
-      "agent": "callie"
-    },
-    {
-      "id": "t11",
-      "name": "Liverpool Sunset Flow v3 — sent to Kieran",
-      "type": "campaign",
-      "col": "done",
-      "agent": "callie"
-    },
-    {
-      "id": "t12",
-      "name": "MBM X account launch — Day 1 live",
-      "type": "project",
-      "col": "done",
-      "agent": "mollie"
-    }
-  ]
+  }
 }
