@@ -3,6 +3,11 @@
     "lastUpdated": "2026-04-22T11:30:00-07:00",
     "updatedBy": "Mollie"
   },
+  "calendar": [
+    { "time": "9:30 AM", "title": "Liverpool x Power Digital ✓" },
+    { "time": "10:00 AM", "title": "Brand Featured x Scope Review ✓" },
+    { "time": "11:00 AM", "title": "Jacob + Mike Reconnect — Riversol ✓" }
+  ],
   "needsYou": [
     { "text": "Brand Featured internal kickoff — must happen before Apr 27", "chip": "Deadline" },
     { "text": "Riversol plaintext NCO email — one-off ad hoc send, do this first", "chip": "Action" },
@@ -18,14 +23,14 @@
     { "dot": "yellow", "text": "Riversol — Mother's Day kicks off Apr 23" }
   ],
   "clients": [
-    { "name": "Liverpool LA", "lastActivity": "Sunset Flow v3 with Kieran. Weekly report done.", "dot": "yellow" },
-    { "name": "RVCA", "lastActivity": "Abandoned v7 with Kieran. Add to Cart ticket open. Weekly Thu 11am.", "dot": "yellow" },
-    { "name": "Riversol", "lastActivity": "Jacob call done. NCO email + winback brief still to action.", "dot": "green" },
-    { "name": "Brand Featured", "lastActivity": "NEW. Copy Doc v1 sent. Internal kickoff needed before Apr 27.", "dot": "yellow" },
-    { "name": "Hiba Academy", "lastActivity": "Client reviewing nurture flow. Adjustments next week.", "dot": "yellow" },
-    { "name": "Axis Health", "lastActivity": "In design with Marl.", "dot": "yellow" },
-    { "name": "SFR Distillery", "lastActivity": "Proposal out. Waiting on Will Rogers.", "dot": "grey" },
-    { "name": "Stand Flagpoles", "lastActivity": "CLOSED. Mauro meeting was final.", "dot": "grey" }
+    { "name": "Liverpool LA", "lastActivity": "Sunset Flow v3 with Kieran. Weekly report done.", "dot": "amber", "status": "active" },
+    { "name": "RVCA", "lastActivity": "Abandoned v7 with Kieran. Add to Cart ticket open. Weekly Thu 11am.", "dot": "amber", "status": "active" },
+    { "name": "Riversol", "lastActivity": "Jacob call done. NCO email + winback brief still to action.", "dot": "green", "status": "active" },
+    { "name": "Brand Featured", "lastActivity": "NEW. Copy Doc v1 sent. Internal kickoff needed before Apr 27.", "dot": "amber", "status": "prospect" },
+    { "name": "Hiba Academy", "lastActivity": "Client reviewing nurture flow. Adjustments next week.", "dot": "amber", "status": "active" },
+    { "name": "Axis Health", "lastActivity": "In design with Marl.", "dot": "amber", "status": "active" },
+    { "name": "SFR Distillery", "lastActivity": "Proposal out. Waiting on Will Rogers.", "dot": "grey", "status": "prospect" },
+    { "name": "Stand Flagpoles", "lastActivity": "CLOSED. Mauro meeting was final.", "dot": "grey", "status": "watching" }
   ],
   "inbox": {
     "summary": "All clear. Fathom meeting recording requests from David — always ignore.",
