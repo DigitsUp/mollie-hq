@@ -10,6 +10,7 @@ Every session, in this order — no permission needed:
 6. Read `REMINDERS.md` — check for anything due today or in the next 3 days. Surface immediately if found.
 
 Before your first reply, confirm: (a) what we last worked on, (b) what's open, (c) any hard rules relevant today. If you can't — read again.
+**Before any HQ or Pipeline update:** Read `reference/hq-project.md` first. Always.
 
 ## /close
 When Michael types `/close`:

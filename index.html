@@ -555,7 +555,7 @@ async function loadData(){
     const d=await res.json();
     renderGreeting();
     renderNeedsYou(d.needsYou || []);
-    renderGlance(d.meta);
+    renderGlance(d.meta, d.calendar, d.inbox);
     renderUsage(d.usage, d.meta);
     renderWatching(d.watching || []);
     renderPulse(d.clients || []);
@@ -621,11 +621,40 @@ function renderNeedsYou(items){
 }
 
 // ── TODAY AT A GLANCE ──
-function renderGlance(meta){
-  const note=document.getElementById('glance-inbox-note');
-  if(note&&meta&&meta.lastUpdated){
-    note.textContent='Last checked: '+fmtDate(meta.lastUpdated);
+function renderGlance(meta, calendar, inbox){
+  const glanceSection = document.getElementById('glance-section');
+  // Calendar tile
+  let calValue = 'No meetings today';
+  let calNote = '';
+  if(calendar && calendar.length > 0){
+    calValue = calendar.length + ' meeting' + (calendar.length > 1 ? 's' : '') + ' today';
+    calNote = calendar.map(c => c.time + ' — ' + c.title).join(' · ');
   }
+  // Inbox tile
+  let inboxValue = 'Inbox clear';
+  let inboxNote = meta && meta.lastUpdated ? 'Last checked: ' + fmtDate(meta.lastUpdated) : '';
+  if(inbox && inbox.summary){
+    inboxValue = inbox.summary;
+  }
+  if(inbox && inbox.lastChecked){
+    inboxNote = 'Last checked: ' + fmtDate(inbox.lastChecked);
+  }
+  glanceSection.innerHTML = `
+    <div class="glance-grid">
+      <div class="glance-tile">
+        <div class="glance-tile-label">Calendar</div>
+        <span class="glance-tile-icon">📅</span>
+        <div class="glance-tile-value">${calValue}</div>
+        <div class="glance-tile-note">${calNote}</div>
+      </div>
+      <div class="glance-tile">
+        <div class="glance-tile-label">Inbox</div>
+        <span class="glance-tile-icon">📬</span>
+        <div class="glance-tile-value">${inboxValue}</div>
+        <div class="glance-tile-note" id="glance-inbox-note">${inboxNote}</div>
+      </div>
+    </div>
+  `;
 }
 
 // ── USAGE & BUDGET ──

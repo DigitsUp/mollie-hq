@@ -27,13 +27,22 @@ _Client detail → `clients/[name]/context.md`. Daily notes → `memory/YYYY-MM-
 - Agent ID: callie · Workspace: `~/.openclaw/workspace-callie/`
 - Handoff: `workspace/callie-output/` · Spawn: `sessions_spawn agentId="callie"`
 
-## HQ Dashboard
+## HQ Dashboard — Full runbook: `reference/hq-project.md` — READ IT BEFORE ANY HQ WORK.
+## HQ Dashboard — RUNBOOK SUMMARY (follow exactly every time)
 - Live: https://digitsup.github.io/mollie-hq/ · Password: Digi420
 - Repo: DigitsUp/mollie-hq
-- **Correct version: HQ | Workspace | Pipeline | Usage (4 tabs). Git baseline: a2b2440.**
-- **Update HQ = update `workspace/data.json` ONLY → git add data.json → push. Do NOT touch index.html.**
-- `index.html` at repo root is the live HQ. Never overwrite it. Never copy mollie-hq/*.html over it.
-- The mollie-hq/ folder contains old/stale versions — ignore them. Source of truth is root index.html.
+- Correct version: HQ | Workspace | Pipeline | Usage (4 tabs). Git baseline: a2b2440.
+
+### "Update HQ" = these 4 steps, nothing else:
+1. Edit `workspace/mollie-hq/data.json`
+2. Run: `cp workspace/mollie-hq/data.json workspace/data.json`
+3. Run: `git add data.json mollie-hq/data.json && git commit -m "HQ data update" && git push`
+4. Wait 2 min. Run: `curl -s https://digitsup.github.io/mollie-hq/mollie-hq/data.json | python3 -c "import sys,json; d=json.load(sys.stdin); print('OK:', d['meta']['lastUpdated'])"` — confirm timestamp matches. Only then tell Michael it's live.
+
+### NEVER:
+- Touch `index.html` — ever. It is the live HQ. Do not copy, overwrite, or modify it.
+- Touch `mollie-hq/pipeline.html` — leave it alone.
+- Report "done" without running the validation in step 4.
 
 ## Standing Ignores
 - Fathom meeting recording requests from David — always ignore, never action.
