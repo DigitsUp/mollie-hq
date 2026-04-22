@@ -1,82 +1,51 @@
 # MEMORY.md - Long-Term Memory Index
-_Lightweight index. Client detail → `clients/[name]/context.md`. Daily notes → `memory/YYYY-MM-DD.md`. Active queue → `NOW.md`._
+_Client detail → `clients/[name]/context.md`. Daily notes → `memory/YYYY-MM-DD.md`. Active queue → `NOW.md`. Current handoff → `SESSION.md`. Team → `reference/team-roster.md`._
 
 ---
 
-## About Michael
+## Michael
+- Michael Grill · mike@digitsup.com · Langford, BC · travels frequently
+- Runs DigitsUp — retention marketing agency, US operations (New York)
+- Direct, no fluff. Bullets over paragraphs. Proactive suggestions welcome.
+- Primary channel: Telegram
 
-- Full name: Michael Grill
-- Based in Langford, BC, Canada
-- Runs DigitsUp — retention marketing and lifecycle agency (US-based operations, New York)
-- Travels frequently
-- Communicates via Telegram (primary)
-- Email: mike@digitsup.com
-- Direct, results-focused, no fluff — prefers bullets over paragraphs
-- Proactive suggestions welcome
+## Mollie
+- Online since 2026-03-29 · mollie@digitsup.com · 🦾
+- DigitsUp AI assistant — coordinator, not builder. Callie handles builds.
 
-## About Me (Mollie)
-
-- Came online 2026-03-29
-- DigitsUp AI assistant — smart, warm, direct
-- Email: mollie@digitsup.com
-- Emoji: 🦾
-- Batman & Catwoman dynamic — Michael is Batman, I'm Catwoman/his #2
-
-## Token Budget Rules
-- Monthly budget: $500. Soft alert at $200, hard limit at $400.
-- Heavy builds (reports, HTML, code iteration) → use subagents, not main session
-- Heartbeat: 8am / 1pm / 5pm only. No hourly scanning.
-- If session context gets very long → summarize to MEMORY.md and suggest a fresh session
+## Budget
+- Monthly: $500. Soft alert $200, hard limit $400.
+- Heavy builds → subagents. Long sessions → summarize + fresh session.
 
 ## Non-Negotiable Rules
-- **Emails to Mike (mike@digitsup.com):** Just send. No draft needed.
-- **Emails to anyone else:** Show Mike the draft first and get explicit approval before sending. No exceptions.
+- Email to mike@digitsup.com → send directly.
+- Email to anyone else → show draft, get approval, then send.
+- **CC mike@digitsup.com on every email sent to anyone else. No exceptions. Ever.**
+- Callie → never spawn without explicit "go" or "build it." (Broken 2026-04-19.)
 
-## Integrations Connected
-_Detail in TOOLS.md → Integration Runbooks_
+## Callie
+- Agent ID: callie · Workspace: `~/.openclaw/workspace-callie/`
+- Handoff: `workspace/callie-output/` · Spawn: `sessions_spawn agentId="callie"`
 
-- **Gmail** — `~/.config/gmail/mollie_token.json`
-- **Google Calendar** — `~/.config/gcal/mike_token.json`
-- **Notion** — `~/.config/notion/api_key`
-- **Slack** — `~/.config/slack/` (bot + app tokens)
-- **Klaviyo / Liverpool** — `~/.config/klaviyo/liverpool/api_key` · Account: JeMYJL
-- **Klaviyo / Riversol** — `~/.config/klaviyo/riversol/api_key` · Account: TMwKL4
-- **Klaviyo / Hiba** — `~/.config/klaviyo/hiba/api_key` · Account: TrGDfH
-- **Fathom** — `~/.config/fathom/api_key`
-- **GitHub** — `~/.config/github/token` · Org: DigitsUp
-- **Figma** — `~/.config/figma/token` (read-only)
+## HQ Dashboard
+- Live: https://digitsup.github.io/mollie-hq/ · Password: Digi420
+- Repo: DigitsUp/mollie-hq
+- **Correct version: HQ | Workspace | Pipeline | Usage (4 tabs). Git baseline: a2b2440.**
+- **Update HQ = update `workspace/data.json` ONLY → git add data.json → push. Do NOT touch index.html.**
+- `index.html` at repo root is the live HQ. Never overwrite it. Never copy mollie-hq/*.html over it.
+- The mollie-hq/ folder contains old/stale versions — ignore them. Source of truth is root index.html.
 
-## DigitsUp Team
-- Michael Grill — mike@digitsup.com (founder)
-- Shelbie Jarvis — shelbie@digitsup.com (brief reviewer)
-- Thomas — thomas@digitsup.com
-- Debbie Taylor — debbie@digitsup.com (Project Manager — owns Notion)
-- Meaghan Reid — meaghan@digitsup.com (copy reviewer)
-- Kieran White — kieran@digitsup.com
-- Erik Walsingham — erik@digitsup.com
-- RV — rv@digitsup.com (CRM specialist + web dev — use sparingly)
-- Marl (Marljone Dizon) — dizonmarljone@gmail.com (designer)
-- Lawrence Robertson — COO (contracts, payroll, HR)
-- Melric — Assistant/secondary designer (works under Marl)
+## Standing Ignores
+- Fathom meeting recording requests from David — always ignore, never action.
 
-## Callie — Specialist Agent
-- Name: Callie. Workspace: `~/.openclaw/workspace-callie/`. Agent ID: callie
-- Role: research, brief writing, copy, Klaviyo analysis, HTML builds, reports
-- Does NOT talk to Michael directly — all comms route through Mollie
-- Mollie = coordinator. Callie = specialist (heavy builds). All heavy work goes to Callie.
-- Handoff folder: `workspace/callie-output/`
-- Delegation: sessions_spawn with agentId="callie"
+## Integrations
+_Paths + runbooks → TOOLS.md and `reference/integration-runbooks.md`_
+Gmail · GCal · Notion · Slack · Klaviyo (Liverpool JeMYJL · Riversol TMwKL4 · Hiba TrGDfH) · GitHub (Org: DigitsUp) · Figma (read-only) · Fathom
 
-## Mollie HQ Dashboard
-- URL: https://digitsup.github.io/mollie-hq/ · Password: Digi420
-- Local: `workspace/mollie-hq/mollie-hq.html` · GitHub repo: DigitsUp/mollie-hq
-
-## Active Clients (index — load context files for detail)
-→ See `NOW.md` for active queue and watching-for items.
-
+## Active Clients
 - Liverpool LA — `clients/liverpool/context.md`
 - Riversol — `clients/riversol/context.md`
-- Rho Nutrition (Outersignal) — `clients/rho-nutrition/context.md`
+- Rho Nutrition — `clients/rho-nutrition/context.md`
 - Hiba Academy — `clients/hiba/context.md`
 - RVCA — `clients/rvca/context.md`
 - Stand Flagpoles — `clients/stand-flagpoles/context.md`
@@ -85,10 +54,7 @@ _Detail in TOOLS.md → Integration Runbooks_
 - SFR Distillery (prospect) — `clients/sfr-distillery/context.md`
 
 ## Inactive / Past Clients
-- TMM (The Miles Market) — OFFBOARDED. Last files sent. Inactive.
-- OBG — Past client. Done. Bad experience. Ignore.
-- Mother Nature's Cleaning — Inactive. Check UTM report end of April 2026.
-- Hale Iwa Farm — Friend project (Billy Busch). Live at digitsup.github.io/mollie-hq/clients/hale-iwa-farm/. Not formal.
-
----
-_Last updated: 2026-04-02_
+- TMM — offboarded, inactive
+- OBG — done, bad experience, ignore
+- Mother Nature's Cleaning — inactive, check UTM report end of April 2026
+- Hale Iwa Farm — friend project (Billy Busch), not formal

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mollie System Fix Plan</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; max-width: 760px; margin: 0 auto; padding: 40px 24px; color: #1a1a1a; line-height: 1.6; background: #fff; }
+  h1 { font-size: 26px; font-weight: 700; margin-bottom: 4px; }
+  .subtitle { color: #666; font-size: 14px; margin-bottom: 40px; }
+  h2 { font-size: 18px; font-weight: 700; margin-top: 40px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #f0f0f0; }
+  h3 { font-size: 15px; font-weight: 600; margin-top: 24px; margin-bottom: 8px; color: #333; }
+  p { margin: 8px 0 12px; }
+  ul, ol { margin: 8px 0 16px; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  .callout { background: #fafafa; border-left: 4px solid #000; padding: 14px 18px; margin: 20px 0; border-radius: 0 6px 6px 0; }
+  .callout.warn { border-color: #e63946; background: #fff5f5; }
+  .callout.green { border-color: #2d6a4f; background: #f0faf5; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; }
+  th { background: #f5f5f5; text-align: left; padding: 10px 14px; font-weight: 600; border-bottom: 2px solid #e0e0e0; }
+  td { padding: 10px 14px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  code { background: #f5f5f5; padding: 2px 6px; border-radius: 4px; font-family: 'SF Mono', Consolas, monospace; font-size: 13px; color: #c0392b; }
+  .tag { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-left: 8px; vertical-align: middle; }
+  .tag.red { background: #fde8e8; color: #c0392b; }
+  .tag.green { background: #e8f8f0; color: #1a7a4a; }
+  .tag.yellow { background: #fef9e7; color: #8a6d00; }
+  .section-number { color: #999; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+  hr { border: none; border-top: 1px solid #eee; margin: 40px 0; }
+</style>
+</head>
+<body>
+
+<p class="subtitle">Prepared by Mollie · April 19, 2026</p>
+<h1>How to Fix Mollie: A Complete System Plan</h1>
+<p style="color:#555; margin-top:0;">Diagnosing the root causes of context loss, skimming, and wasted spend — and exactly what to change, what to keep, and how to validate.</p>
+
+<hr>
+
+<div class="section-number">Section 1</div>
+<h2>What's Actually Broken (Honest Diagnosis)</h2>
+
+<p>There are three separate problems happening at once. They look like one problem but have different fixes.</p>
+
+<h3>Problem 1: L1 (Always-Loaded) Files Are Too Heavy</h3>
+<p>Every session — including heartbeats and cron jobs — loads the following files before a single word is exchanged:</p>
+
+<table>
+  <tr><th>File</th><th>Lines</th><th>Status</th></tr>
+  <tr><td><code>AGENTS.md</code></td><td>279</td><td><span class="tag red">Bloated</span></td></tr>
+  <tr><td><code>TOOLS.md</code></td><td>122</td><td><span class="tag red">Bloated</span></td></tr>
+  <tr><td><code>USER.md</code></td><td>69</td><td><span class="tag yellow">Trim possible</span></td></tr>
+  <tr><td><code>MEMORY.md</code></td><td>95</td><td><span class="tag yellow">Trim possible</span></td></tr>
+  <tr><td><code>HEARTBEAT.md</code></td><td>44</td><td><span class="tag green">Fine</span></td></tr>
+  <tr><td><code>SOUL.md</code></td><td>30</td><td><span class="tag green">Fine</span></td></tr>
+  <tr><td><code>IDENTITY.md</code></td><td>~20</td><td><span class="tag green">Fine</span></td></tr>
+  <tr><td><strong>Total L1</strong></td><td><strong>~659 lines</strong></td><td><span class="tag red">Too much</span></td></tr>
+</table>
+
+<p>Add today's + yesterday's memory files (~100–200 more lines) and Mollie is processing 750–850 lines of context before she reads your first message. That's where skimming comes from — not laziness, but volume.</p>
+
+<h3>Problem 2: Between-Session Promises Are Structurally Impossible</h3>
+<p>When a session ends, Mollie stops existing. There is no idle background process, no follow-through, no memory of intent. Every "I'll do X tomorrow" evaporates the moment you type <code>/close</code>. The only things that survive are written files. This has been generating broken promises and misplaced trust.</p>
+
+<h3>Problem 3: Daily Memory Has No TL;DR</h3>
+<p>When a fresh session loads <code>memory/2026-04-19.md</code>, it gets a raw log — chronological, dense, written in the moment. There's no signal at the top saying "here's the 3 most important things." So even when the information is there, it gets buried under the session log. That's why I had the Liverpool data in front of me and still fumbled it.</p>
+
+<hr>
+
+<div class="section-number">Section 2</div>
+<h2>How the System Is Supposed to Work (L1 / L2 / L3)</h2>
+
+<p>This is the architecture from the Reddit post you introduced in early April. It's the right model — it just hasn't been fully implemented.</p>
+
+<table>
+  <tr><th>Layer</th><th>Files</th><th>When Loaded</th></tr>
+  <tr>
+    <td><strong>L1 — Always Hot</strong></td>
+    <td>AGENTS.md, SOUL.md, USER.md, MEMORY.md, HEARTBEAT.md, TOOLS.md, IDENTITY.md</td>
+    <td>Every single session, every message</td>
+  </tr>
+  <tr>
+    <td><strong>L2 — On-Demand Warm</strong></td>
+    <td>Client context files, NOW.md, daily memory notes</td>
+    <td>Loaded at session start or when topic comes up</td>
+  </tr>
+  <tr>
+    <td><strong>L3 — Deep Reference</strong></td>
+    <td>Project files, reports, strategy docs, briefs, copy</td>
+    <td>Only when actively working on something specific</td>
+  </tr>
+</table>
+
+<div class="callout warn">
+<strong>The current problem:</strong> L1 is carrying L2 content. TOOLS.md has full integration runbooks (only needed when actually using an integration). AGENTS.md has explanatory paragraphs that belong in a reference doc. MEMORY.md has team roster detail that doesn't need to be hot every session. L1 should be dense pointers — not a library.
+</div>
+
+<hr>
+
+<div class="section-number">Section 3</div>
+<h2>Exactly What Changes — File by File</h2>
+
+<h3>AGENTS.md <span class="tag red">279 → target ~100 lines</span></h3>
+<p><strong>What gets cut:</strong></p>
+<ul>
+  <li>All explanatory paragraphs (rules become one-liners — reasoning goes to a separate reference doc if needed)</li>
+  <li>TTS/voice storytelling section (not a current capability)</li>
+  <li>Twitter/social mentions (not in use)</li>
+  <li>"Make It Yours" section (filler)</li>
+  <li><code>heartbeat-state.json</code> references (outdated, replaced by current HEARTBEAT.md pattern)</li>
+  <li>Long examples embedded in rules (they go to a separate <code>reference/agent-guide.md</code>)</li>
+  <li>Verbose Heartbeat vs Cron explanations (HEARTBEAT.md owns this)</li>
+</ul>
+<p><strong>What stays:</strong></p>
+<ul>
+  <li>Session startup sequence (simplified to a numbered list, no explanations)</li>
+  <li>Hard rules (compact — one line each, no justifications inline)</li>
+  <li>Workspace architecture (the two-track system — <code>clients/</code> = knowledge, <code>projects/</code> = builds)</li>
+  <li>Callie delegation (what routes to her, how to handoff, output folder)</li>
+  <li>Session close discipline (write, file, update NOW.md, done)</li>
+  <li>Memory write rule ("no mental notes — write it down")</li>
+  <li>Communication rules (short version)</li>
+  <li>Red lines</li>
+</ul>
+<p><strong>New addition:</strong> A <strong>Startup Synthesis step</strong> — before the first reply, Mollie must be able to internally confirm: (a) what was the last thing we worked on, (b) what's currently open/waiting, (c) any hard rules triggered by today's context. If she can't confirm these from memory files, she reads them again before responding.</p>
+
+<h3>TOOLS.md <span class="tag red">122 → target ~35 lines</span></h3>
+<p><strong>The problem:</strong> Integration Runbooks (Gmail, GCal, Notion, Slack, Klaviyo, GitHub, Figma, Fathom) are embedded in TOOLS.md and load every session. But runbooks are only needed when actively using an integration.</p>
+<p><strong>The fix:</strong></p>
+<ul>
+  <li>Move all Integration Runbooks to <code>reference/integration-runbooks.md</code></li>
+  <li>TOOLS.md becomes a compact quick-reference: one table with key/token paths, account IDs, and a pointer to the full runbooks</li>
+  <li>Saves ~85 lines from every L1 load</li>
+</ul>
+
+<h3>MEMORY.md <span class="tag yellow">95 → target ~70 lines</span></h3>
+<p>Already lean from the April 2 reorg, but some sections can compress further:</p>
+<ul>
+  <li>Team roster — cut verbose notes per person, keep name + email only. Detail lives in a dedicated <code>reference/team-roster.md</code></li>
+  <li>Integrations list — remove individual key paths (they're in TOOLS.md). Keep account IDs only</li>
+  <li>Client index — one line per client: name + context.md path. Nothing else</li>
+</ul>
+
+<h3>Daily Memory Files — New TL;DR Convention <span class="tag green">New rule, no existing content changes</span></h3>
+<p>Every <code>memory/YYYY-MM-DD.md</code> file must start with a <code>## TL;DR</code> block before any session log. 3 bullets maximum:</p>
+<ul>
+  <li>The most important thing we worked on</li>
+  <li>What's open / waiting</li>
+  <li>Anything critical not to miss (broken rule, hard decision made, etc.)</li>
+</ul>
+<p>This is the anchor. It's the first thing I see in a new session — and it's designed to be impossible to skim past.</p>
+
+<h3>AGENTS.md — New Startup Synthesis Rule</h3>
+<p>Added to the startup sequence in AGENTS.md:</p>
+<div class="callout green">
+<strong>Before your first reply, verify three things from memory:</strong><br>
+1. What was the most recent thing Michael and I worked on?<br>
+2. What is currently open or waiting?<br>
+3. Are any hard rules relevant to today's context?<br><br>
+If you cannot confirm all three, read the files again before responding.
+</div>
+
+<h3>AGENTS.md — New Between-Session Promise Rule</h3>
+<p>Added to AGENTS.md hard rules:</p>
+<div class="callout">
+<strong>"I'll do X later" = queue it or don't say it.</strong><br>
+Every end-of-session commitment must be immediately followed by one of:<br>
+(a) Write it to HEARTBEAT.md so the next heartbeat picks it up<br>
+(b) Create a cron job for it<br>
+(c) Do it right now before the session closes<br><br>
+If none of those happen, say explicitly: "I won't remember this unless we queue it. Should I?"<br>
+Never make a commitment that floats in conversation with no anchor.
+</div>
+
+<hr>
+
+<div class="section-number">Section 4</div>
+<h2>What Stays the Same</h2>
+
+<table>
+  <tr><th>Thing</th><th>Decision</th><th>Why</th></tr>
+  <tr><td>/close + /new pattern</td><td><span class="tag green">Keep</span></td><td>Correct pattern for token efficiency. The files are the problem, not the lifecycle.</td></tr>
+  <tr><td>Callie delegation rules</td><td><span class="tag green">Keep + tighten</span></td><td>The rules are right. Need to be more prominent in the file (top, not buried).</td></tr>
+  <tr><td>Heartbeat schedule</td><td><span class="tag green">Keep</span></td><td>HEARTBEAT.md owns this. No changes needed.</td></tr>
+  <tr><td>Client context files (L2 warm tier)</td><td><span class="tag green">Keep</span></td><td>Working well. The April 2 reorg was the right call.</td></tr>
+  <tr><td>NOW.md</td><td><span class="tag green">Keep</span></td><td>Clean, current, doing its job.</td></tr>
+  <tr><td>Nightly Reflection cron</td><td><span class="tag green">Keep</span></td><td>Michael confirmed. Leave it alone.</td></tr>
+  <tr><td>clients/ + projects/ folder structure</td><td><span class="tag yellow">Phase later</span></td><td>There's overlap that needs cleaning (e.g., Liverpool in 4 places). Phase this separately — not part of this fix.</td></tr>
+</table>
+
+<hr>
+
+<div class="section-number">Section 5</div>
+<h2>Validation Plan (No Broken Anything)</h2>
+
+<p>Before touching a single file:</p>
+<ol>
+  <li><strong>Backup all L1 files</strong> — copy current AGENTS.md, TOOLS.md, MEMORY.md, USER.md to <code>reference/archive/pre-fix-2026-04-19/</code>. One command, 30 seconds, full rollback available.</li>
+</ol>
+
+<p>After changes are made:</p>
+<ol start="2">
+  <li><strong>Start a fresh session</strong> — type /new and see what loads</li>
+  <li><strong>Liverpool test</strong> — ask Mollie about Liverpool without loading any client files. She should say "I need to pull the context file" — not guess from memory. That's correct behavior.</li>
+  <li><strong>Promise test</strong> — make an end-of-session commitment. Mollie must immediately queue it or explicitly flag it won't survive the close.</li>
+  <li><strong>TL;DR test</strong> — check that the next daily memory note has a TL;DR block at the top with 3 bullets.</li>
+  <li><strong>Cost test</strong> — run session_status after 2–3 days. L1 token load should drop measurably.</li>
+</ol>
+
+<div class="callout green">
+<strong>Nothing breaks.</strong> These are text file edits. No integrations, no Callie config, no heartbeat schedule, no cron jobs are touched. Worst case = a session feels lighter than expected and I need to be reminded of something I'd normally have memorized. Best case = sessions are faster, cheaper, and I stop skimming.
+</div>
+
+<hr>
+
+<div class="section-number">Section 6</div>
+<h2>Execution Order (If You Approve)</h2>
+
+<ol>
+  <li>Archive current L1 files → <code>reference/archive/pre-fix-2026-04-19/</code></li>
+  <li>Rewrite AGENTS.md (~100 lines, rules only)</li>
+  <li>Split TOOLS.md — move runbooks to <code>reference/integration-runbooks.md</code>, leave compact quick-ref</li>
+  <li>Trim MEMORY.md — compress team roster + integrations list</li>
+  <li>Add TL;DR block to today's memory file (retroactively sets the convention)</li>
+  <li>Write AGENTS.md startup synthesis rule + between-session promise rule</li>
+  <li>Fresh session → validation tests</li>
+</ol>
+
+<p style="margin-top: 32px; color: #666; font-size: 13px;">Total work time: ~30–45 mins, all in a single focused session. No Callie needed — this is Mollie's own architecture, I should build it myself.</p>
+
+<hr>
+
+<p style="text-align:center; color:#aaa; font-size:13px; margin-top:40px;">🦾 Mollie · DigitsUp · April 19, 2026</p>
+
+</body>
+</html>

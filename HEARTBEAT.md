@@ -7,15 +7,18 @@
 - Quiet hours: Do NOT run between 9pm and 5am unless urgent
 
 ## Morning Download (every day, 5am)
-1. Gmail — urgent or client emails (subject/sender only, no full threads)
-2. Calendar — any calls or meetings today?
+1. Check `REMINDERS.md` — anything due today or tomorrow? Surface it first.
+2. Check `NOW.md` for stale open items — anything open more than 7 days with no update, flag it with "still relevant?" Don't list everything, just the stale ones.
+3. Gmail — urgent or client emails (subject/sender only, no full threads)
+4. Calendar — any calls or meetings today?
    - If yes: flag to Michael + ask if he wants a pre-call brief
    - Do NOT build the brief without approval
-3. Day-of-week tasks:
+5. Day-of-week tasks:
    - MONDAY only: flag that reports are due this week, ask Michael which clients to start with
    - All other days: no reporting work unless Michael asks
 
 ## Midday + EOD Check
+- REMINDERS.md: anything due today or tomorrow not already surfaced?
 - Gmail: anything urgent since morning?
 - Calendar: anything coming up in next 3h?
 - No deep work — just flag and ask

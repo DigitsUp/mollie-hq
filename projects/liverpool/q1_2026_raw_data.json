@@ -1,0 +1,2352 @@
+{
+  "camps_2026": [
+    {
+      "name": "01/01 EMAIL Last Chance",
+      "recipients": 156020.0,
+      "opens": 137985.0,
+      "clicks": 2937.0,
+      "conversions": 105.0,
+      "conversion_value": 15889.45998,
+      "orders": 0,
+      "aov": 151.32819028571427
+    },
+    {
+      "name": "3/6 EMAIL: FLASH SALE BEGINS",
+      "recipients": 295736.0,
+      "opens": 153797.0,
+      "clicks": 3770.0,
+      "conversions": 74.0,
+      "conversion_value": 15729.67004,
+      "orders": 0,
+      "aov": 212.56310864864867
+    },
+    {
+      "name": "1/29 EMAIL: End Of Season Sale Launch",
+      "recipients": 198264.0,
+      "opens": 120385.0,
+      "clicks": 8112.0,
+      "conversions": 100.0,
+      "conversion_value": 12259.11001,
+      "orders": 0,
+      "aov": 122.5911001
+    },
+    {
+      "name": "01/04 EMAIL Wrap Up Last Chance",
+      "recipients": 250935.0,
+      "opens": 167921.0,
+      "clicks": 5129.0,
+      "conversions": 86.0,
+      "conversion_value": 11485.44997,
+      "orders": 0,
+      "aov": 133.5517438372093
+    },
+    {
+      "name": "01/02 EMAIL Back by Popular Demand",
+      "recipients": 159380.0,
+      "opens": 143588.0,
+      "clicks": 2448.0,
+      "conversions": 70.0,
+      "conversion_value": 10827.92,
+      "orders": 0,
+      "aov": 154.68457142857142
+    },
+    {
+      "name": "1/11 EMAIL: KELSEY TROUSER FLASH SALE",
+      "recipients": 200981.0,
+      "opens": 123946.0,
+      "clicks": 2161.0,
+      "conversions": 65.0,
+      "conversion_value": 10514.52998,
+      "orders": 0,
+      "aov": 161.76199969230768
+    },
+    {
+      "name": "3/8 EMAIL: FLASH SALE PM",
+      "recipients": 188280.0,
+      "opens": 143682.0,
+      "clicks": 2318.0,
+      "conversions": 53.0,
+      "conversion_value": 9706.14993,
+      "orders": 0,
+      "aov": 183.13490433962264
+    },
+    {
+      "name": "3/7 EMAIL: FLASH SALE CONTINUES",
+      "recipients": 157937.0,
+      "opens": 102435.0,
+      "clicks": 3463.0,
+      "conversions": 58.0,
+      "conversion_value": 9525.82,
+      "orders": 0,
+      "aov": 164.23827586206897
+    },
+    {
+      "name": "2/01 EMAIL: End Of Season Sale Continued Urgency",
+      "recipients": 191285.0,
+      "opens": 117330.0,
+      "clicks": 6289.0,
+      "conversions": 72.0,
+      "conversion_value": 9336.04996,
+      "orders": 0,
+      "aov": 129.66736055555555
+    },
+    {
+      "name": "1/10 EMAIL: KELSEY TROUSER TEASER",
+      "recipients": 152457.0,
+      "opens": 143289.0,
+      "clicks": 3595.0,
+      "conversions": 55.0,
+      "conversion_value": 8860.35003,
+      "orders": 0,
+      "aov": 161.09727327272728
+    },
+    {
+      "name": "1/17 EMAIL: SWEATER WATERCOLOR",
+      "recipients": 152602.0,
+      "opens": 139847.0,
+      "clicks": 2881.0,
+      "conversions": 55.0,
+      "conversion_value": 8351.85996,
+      "orders": 0,
+      "aov": 151.85199927272726
+    },
+    {
+      "name": "3/12 EMAIL: New Arrivals Freshly Picked: Stripes",
+      "recipients": 255825.0,
+      "opens": 140414.0,
+      "clicks": 2713.0,
+      "conversions": 41.0,
+      "conversion_value": 8210.95997,
+      "orders": 0,
+      "aov": 200.2673163414634
+    },
+    {
+      "name": "1/25: WOVEN ESSENTIAL TOP",
+      "recipients": 162329.0,
+      "opens": 139656.0,
+      "clicks": 9122.0,
+      "conversions": 46.0,
+      "conversion_value": 8173.80005,
+      "orders": 0,
+      "aov": 177.6913054347826
+    },
+    {
+      "name": "1/21 EMAIL: Shopping Spree",
+      "recipients": 198714.0,
+      "opens": 140421.0,
+      "clicks": 3876.0,
+      "conversions": 40.0,
+      "conversion_value": 7970.56997,
+      "orders": 0,
+      "aov": 199.26424924999998
+    },
+    {
+      "name": "3/4 EMAIL: DRESSES",
+      "recipients": 89967.0,
+      "opens": 96121.0,
+      "clicks": 2766.0,
+      "conversions": 34.0,
+      "conversion_value": 7777.38,
+      "orders": 0,
+      "aov": 228.7464705882353
+    },
+    {
+      "name": "1/7 EMAIL: PEN TO PAPER COLLECTION HIGHLIGHT",
+      "recipients": 154474.0,
+      "opens": 138197.0,
+      "clicks": 2896.0,
+      "conversions": 50.0,
+      "conversion_value": 7763.97999,
+      "orders": 0,
+      "aov": 155.2795998
+    },
+    {
+      "name": "3/24 BEST TOPS OF THE SEASON",
+      "recipients": 152411.0,
+      "opens": 98808.0,
+      "clicks": 2642.0,
+      "conversions": 40.0,
+      "conversion_value": 7568.11002,
+      "orders": 0,
+      "aov": 189.2027505
+    },
+    {
+      "name": "3/12 EMAIL: New Arrivals Freshly Picked: Stripes",
+      "recipients": 243066.0,
+      "opens": 133189.0,
+      "clicks": 2633.0,
+      "conversions": 36.0,
+      "conversion_value": 7494.52005,
+      "orders": 0,
+      "aov": 208.1811125
+    },
+    {
+      "name": "2/14 EMAIL: HEARTS A FLUTTER -DOUBLE POINTS AM",
+      "recipients": 250115.0,
+      "opens": 143755.0,
+      "clicks": 2482.0,
+      "conversions": 28.0,
+      "conversion_value": 7336.68,
+      "orders": 0,
+      "aov": 262.0242857142857
+    },
+    {
+      "name": "1/9 EMAIL: SUITING MINI PLAID",
+      "recipients": 154294.0,
+      "opens": 139259.0,
+      "clicks": 2249.0,
+      "conversions": 51.0,
+      "conversion_value": 7185.02,
+      "orders": 0,
+      "aov": 140.88274509803924
+    },
+    {
+      "name": "1/13 EMAIL: SWISS DOTS",
+      "recipients": 152026.0,
+      "opens": 136725.0,
+      "clicks": 1936.0,
+      "conversions": 42.0,
+      "conversion_value": 7124.44996,
+      "orders": 0,
+      "aov": 169.62976095238096
+    },
+    {
+      "name": "3/8 EMAIL: FLASH SALE AM",
+      "recipients": 237651.0,
+      "opens": 130813.0,
+      "clicks": 2921.0,
+      "conversions": 36.0,
+      "conversion_value": 6833.29004,
+      "orders": 0,
+      "aov": 189.81361222222222
+    },
+    {
+      "name": "2/03 EMAIL: End Of Season Sale Last Chance (PM)",
+      "recipients": 198687.0,
+      "opens": 120109.0,
+      "clicks": 3013.0,
+      "conversions": 45.0,
+      "conversion_value": 6752.05005,
+      "orders": 0,
+      "aov": 150.04555666666667
+    },
+    {
+      "name": "3/18 EMAIL: SPRING'S BEST DRESS",
+      "recipients": 254496.0,
+      "opens": 139794.0,
+      "clicks": 3346.0,
+      "conversions": 36.0,
+      "conversion_value": 6656.89001,
+      "orders": 0,
+      "aov": 184.91361138888888
+    },
+    {
+      "name": "2/28 EMAIL: SUNKISSED- COLLECTION HIGHLIGHT",
+      "recipients": 244253.0,
+      "opens": 137430.0,
+      "clicks": 10388.0,
+      "conversions": 25.0,
+      "conversion_value": 6412.36005,
+      "orders": 0,
+      "aov": 256.49440200000004
+    },
+    {
+      "name": "3/16 EMAIL: SOFT FOCUS COLLECTION HIGHLIGHT",
+      "recipients": 242885.0,
+      "opens": 133273.0,
+      "clicks": 2916.0,
+      "conversions": 35.0,
+      "conversion_value": 6404.96,
+      "orders": 0,
+      "aov": 182.99885714285713
+    },
+    {
+      "name": "4/1 ONE PIECE DRESS",
+      "recipients": 231894.0,
+      "opens": 124235.0,
+      "clicks": 3629.0,
+      "conversions": 34.0,
+      "conversion_value": 6161.57,
+      "orders": 0,
+      "aov": 181.22264705882353
+    },
+    {
+      "name": "3/28 GETAWAY LOOKS",
+      "recipients": 193503.0,
+      "opens": 103466.0,
+      "clicks": 2091.0,
+      "conversions": 31.0,
+      "conversion_value": 6072.99002,
+      "orders": 0,
+      "aov": 195.90290387096775
+    },
+    {
+      "name": "3/15 EMAIL: Outfit of the Week Travel Ready Look",
+      "recipients": 83008.0,
+      "opens": 90383.0,
+      "clicks": 1636.0,
+      "conversions": 32.0,
+      "conversion_value": 5846.45006,
+      "orders": 0,
+      "aov": 182.701564375
+    },
+    {
+      "name": "1/19 EMAIL: CLOUD 9",
+      "recipients": 151328.0,
+      "opens": 127791.0,
+      "clicks": 2440.0,
+      "conversions": 42.0,
+      "conversion_value": 5801.72001,
+      "orders": 0,
+      "aov": 138.1361907142857
+    },
+    {
+      "name": "3/26 EMAIL: A SUPERBLOOM OF STYLE - UPDATE",
+      "recipients": 238261.0,
+      "opens": 131253.0,
+      "clicks": 5032.0,
+      "conversions": 31.0,
+      "conversion_value": 5778.38994,
+      "orders": 0,
+      "aov": 186.39967548387096
+    },
+    {
+      "name": "2/5 EMAIL: HEARTS A FLUTTER LOYALTY LAUNCH",
+      "recipients": 27233.0,
+      "opens": 20668.0,
+      "clicks": 886.0,
+      "conversions": 29.0,
+      "conversion_value": 5669.85997,
+      "orders": 0,
+      "aov": 195.5124127586207
+    },
+    {
+      "name": "3/30 NEUTRAL EDIT",
+      "recipients": 151664.0,
+      "opens": 97561.0,
+      "clicks": 2474.0,
+      "conversions": 29.0,
+      "conversion_value": 5468.02006,
+      "orders": 0,
+      "aov": 188.55241586206895
+    },
+    {
+      "name": "1/21 EMAIL: TOP 3 JACKETS",
+      "recipients": 150115.0,
+      "opens": 133723.0,
+      "clicks": 2865.0,
+      "conversions": 37.0,
+      "conversion_value": 5440.72997,
+      "orders": 0,
+      "aov": 147.04675594594596
+    },
+    {
+      "name": "2/25 EMAIL: PREFERENCE CENTRE - RESEND",
+      "recipients": 110703.0,
+      "opens": 63457.0,
+      "clicks": 875.0,
+      "conversions": 23.0,
+      "conversion_value": 5125.27999,
+      "orders": 0,
+      "aov": 222.8382604347826
+    },
+    {
+      "name": "1/27 EMAIL: Collection Motivation ($300 Reminder)",
+      "recipients": 197212.0,
+      "opens": 109300.0,
+      "clicks": 2245.0,
+      "conversions": 32.0,
+      "conversion_value": 5013.54996,
+      "orders": 0,
+      "aov": 156.67343625
+    },
+    {
+      "name": "2/16 EMAIL: COAST TO COAST COLLECTION HIGHLIGHT",
+      "recipients": 100989.0,
+      "opens": 59368.0,
+      "clicks": 1054.0,
+      "conversions": 25.0,
+      "conversion_value": 4812.65004,
+      "orders": 0,
+      "aov": 192.50600160000002
+    },
+    {
+      "name": "1/15 EMAIL: Puff Sleeve Trouser set",
+      "recipients": 151855.0,
+      "opens": 136071.0,
+      "clicks": 1954.0,
+      "conversions": 35.0,
+      "conversion_value": 4744.02998,
+      "orders": 0,
+      "aov": 135.54371371428573
+    },
+    {
+      "name": "3/11 EMAIL: Statement Pants for Spring",
+      "recipients": 149957.0,
+      "opens": 95335.0,
+      "clicks": 2076.0,
+      "conversions": 21.0,
+      "conversion_value": 4705.72998,
+      "orders": 0,
+      "aov": 224.08238
+    },
+    {
+      "name": "3/2 EMAIL: SUNKISSED- JOHNNY COLLAR TOP - PREF CENTRE REMINDER",
+      "recipients": 114096.0,
+      "opens": 66908.0,
+      "clicks": 924.0,
+      "conversions": 21.0,
+      "conversion_value": 4415.99004,
+      "orders": 0,
+      "aov": 210.28524
+    },
+    {
+      "name": "2/21 EMAIL: COAST TO COAST: BOARDER PRINT SET - RESEND",
+      "recipients": 191156.0,
+      "opens": 114492.0,
+      "clicks": 1272.0,
+      "conversions": 25.0,
+      "conversion_value": 4354.79999,
+      "orders": 0,
+      "aov": 174.19199960000003
+    },
+    {
+      "name": "3/10 EMAIL: ECRU SET (PETAL TO THE EDGE)",
+      "recipients": 154281.0,
+      "opens": 100640.0,
+      "clicks": 2160.0,
+      "conversions": 20.0,
+      "conversion_value": 4339.93001,
+      "orders": 0,
+      "aov": 216.9965005
+    },
+    {
+      "name": "20260202_PT_EndofSeasonSale_Inactives",
+      "recipients": 125324.0,
+      "opens": 78655.0,
+      "clicks": 2574.0,
+      "conversions": 39.0,
+      "conversion_value": 4284.82998,
+      "orders": 0,
+      "aov": 109.86743538461539
+    },
+    {
+      "name": "2/18 EMAIL: Coast to Coast Tie with Beach Comber",
+      "recipients": 115485.0,
+      "opens": 96985.0,
+      "clicks": 1348.0,
+      "conversions": 22.0,
+      "conversion_value": 4240.17995,
+      "orders": 0,
+      "aov": 192.73545227272726
+    },
+    {
+      "name": "2/19 EMAIL: Women's Best Sellers (Denim Edition)",
+      "recipients": 238902.0,
+      "opens": 136210.0,
+      "clicks": 4299.0,
+      "conversions": 20.0,
+      "conversion_value": 4214.14999,
+      "orders": 0,
+      "aov": 210.70749949999998
+    },
+    {
+      "name": "1/28 EMAIL: REWARDS REMINDER (Ad-Hoc)",
+      "recipients": 17701.0,
+      "opens": 13481.0,
+      "clicks": 575.0,
+      "conversions": 36.0,
+      "conversion_value": 4210.85999,
+      "orders": 0,
+      "aov": 116.96833305555555
+    },
+    {
+      "name": "2/24 EMAIL: COAST TO COAST: SHORT LIST",
+      "recipients": 132265.0,
+      "opens": 62448.0,
+      "clicks": 1250.0,
+      "conversions": 21.0,
+      "conversion_value": 4209.04004,
+      "orders": 0,
+      "aov": 200.4304780952381
+    },
+    {
+      "name": "2/5 EMAIL: HEARTS A FLUTTER LAUNCH",
+      "recipients": 222900.0,
+      "opens": 142199.0,
+      "clicks": 2391.0,
+      "conversions": 23.0,
+      "conversion_value": 4116.52,
+      "orders": 0,
+      "aov": 178.97913043478263
+    },
+    {
+      "name": "1/23 EMAIL: EXTENDED TAB TROUSER",
+      "recipients": 149666.0,
+      "opens": 135139.0,
+      "clicks": 2960.0,
+      "conversions": 28.0,
+      "conversion_value": 4037.48001,
+      "orders": 0,
+      "aov": 144.19571464285715
+    },
+    {
+      "name": "3/3 EMAIL: Free Shipping Outfitting",
+      "recipients": 131017.0,
+      "opens": 76955.0,
+      "clicks": 1375.0,
+      "conversions": 21.0,
+      "conversion_value": 3945.51997,
+      "orders": 0,
+      "aov": 187.88190333333333
+    },
+    {
+      "name": "2/6 EMAIL: Kelsey Trouser Feature",
+      "recipients": 116560.0,
+      "opens": 97118.0,
+      "clicks": 1384.0,
+      "conversions": 20.0,
+      "conversion_value": 3920.69999,
+      "orders": 0,
+      "aov": 196.0349995
+    },
+    {
+      "name": "2/8 EMAIL: WOMENS SUPER BOWL",
+      "recipients": 169535.0,
+      "opens": 141510.0,
+      "clicks": 4216.0,
+      "conversions": 22.0,
+      "conversion_value": 3862.77001,
+      "orders": 0,
+      "aov": 175.580455
+    },
+    {
+      "name": "2/23 EMAIL: Petite Outfitting Free Shipping",
+      "recipients": 28855.0,
+      "opens": 18334.0,
+      "clicks": 538.0,
+      "conversions": 16.0,
+      "conversion_value": 3729.41003,
+      "orders": 0,
+      "aov": 233.088126875
+    },
+    {
+      "name": "2/14 EMAIL: HEARTS A FLUTTER -DOUBLE POINTS PM",
+      "recipients": 249908.0,
+      "opens": 139431.0,
+      "clicks": 2065.0,
+      "conversions": 19.0,
+      "conversion_value": 3676.63001,
+      "orders": 0,
+      "aov": 193.50684263157893
+    },
+    {
+      "name": "3/1 Ad Hoc - OUTFIT OF THE WEEK",
+      "recipients": 79954.0,
+      "opens": 52414.0,
+      "clicks": 2549.0,
+      "conversions": 21.0,
+      "conversion_value": 3631.59999,
+      "orders": 0,
+      "aov": 172.93333285714286
+    },
+    {
+      "name": "2/23 EMAIL: COAST TO COAST: PAISLEY PRINT",
+      "recipients": 218359.0,
+      "opens": 112482.0,
+      "clicks": 1891.0,
+      "conversions": 20.0,
+      "conversion_value": 3286.11997,
+      "orders": 0,
+      "aov": 164.30599850000002
+    },
+    {
+      "name": "2/9 EMAIL: NEW NEUTRALS- HEARTS A FLUTTER",
+      "recipients": 163820.0,
+      "opens": 140890.0,
+      "clicks": 2670.0,
+      "conversions": 18.0,
+      "conversion_value": 3255.61003,
+      "orders": 0,
+      "aov": 180.86722388888887
+    },
+    {
+      "name": "2/12 EMAIL: Your Favorites, Reimagined",
+      "recipients": 250297.0,
+      "opens": 143878.0,
+      "clicks": 1824.0,
+      "conversions": 16.0,
+      "conversion_value": 3210.04998,
+      "orders": 0,
+      "aov": 200.62812375
+    },
+    {
+      "name": "2/26 EMAIL: COAST TO COAST: SAILER PANT - RESEND",
+      "recipients": 155292.0,
+      "opens": 101528.0,
+      "clicks": 2112.0,
+      "conversions": 17.0,
+      "conversion_value": 3204.27001,
+      "orders": 0,
+      "aov": 188.4864711764706
+    },
+    {
+      "name": "1/30 EMAIL: End Of Season Sale Continued (Women)",
+      "recipients": 144903.0,
+      "opens": 85077.0,
+      "clicks": 8511.0,
+      "conversions": 27.0,
+      "conversion_value": 3042.85001,
+      "orders": 0,
+      "aov": 112.69814851851852
+    },
+    {
+      "name": "2/7 EMAIL: HEARTS A FLUTTER PUFF SLEEVE JACKET",
+      "recipients": 244519.0,
+      "opens": 163463.0,
+      "clicks": 2689.0,
+      "conversions": 18.0,
+      "conversion_value": 2975.97001,
+      "orders": 0,
+      "aov": 165.33166722222222
+    },
+    {
+      "name": "3/5 EMAIL: FLASH SALE teaser",
+      "recipients": 206143.0,
+      "opens": 136591.0,
+      "clicks": 2226.0,
+      "conversions": 21.0,
+      "conversion_value": 2955.02999,
+      "orders": 0,
+      "aov": 140.7157138095238
+    },
+    {
+      "name": "2/22 EMAIL: WHATS IN MY CART - COLLECTION HIGHLIGHT",
+      "recipients": 196877.0,
+      "opens": 115084.0,
+      "clicks": 2689.0,
+      "conversions": 16.0,
+      "conversion_value": 2810.81998,
+      "orders": 0,
+      "aov": 175.67624875
+    },
+    {
+      "name": "3/17 EMAIL: Petite Reviews Highlight + UGC",
+      "recipients": 27770.0,
+      "opens": 18718.0,
+      "clicks": 1129.0,
+      "conversions": 16.0,
+      "conversion_value": 2797.39,
+      "orders": 0,
+      "aov": 174.836875
+    },
+    {
+      "name": "2/27 EMAIL: PERSONALIZED PICKS - GENERAL",
+      "recipients": 109725.0,
+      "opens": 64827.0,
+      "clicks": 1752.0,
+      "conversions": 12.0,
+      "conversion_value": 2754.73004,
+      "orders": 0,
+      "aov": 229.56083666666666
+    },
+    {
+      "name": "20260211_PT_CollectionHighlight",
+      "recipients": 19964.0,
+      "opens": 16405.0,
+      "clicks": 1982.0,
+      "conversions": 15.0,
+      "conversion_value": 2584.74002,
+      "orders": 0,
+      "aov": 172.31600133333333
+    },
+    {
+      "name": "20260327_PT_NCOWelcomeOffer",
+      "recipients": 47847.0,
+      "opens": 29257.0,
+      "clicks": 2196.0,
+      "conversions": 20.0,
+      "conversion_value": 2485.76,
+      "orders": 0,
+      "aov": 124.28800000000001
+    },
+    {
+      "name": "2/27 EMAIL: PERSONALIZED PICKS - EXECUTIVE EDIT",
+      "recipients": 19093.0,
+      "opens": 13243.0,
+      "clicks": 885.0,
+      "conversions": 13.0,
+      "conversion_value": 2448.06998,
+      "orders": 0,
+      "aov": 188.3130753846154
+    },
+    {
+      "name": "2/18 EMAIL: Coast to Coast Tie with Beach Comber (resend)",
+      "recipients": 93856.0,
+      "opens": 50974.0,
+      "clicks": 587.0,
+      "conversions": 13.0,
+      "conversion_value": 2395.22,
+      "orders": 0,
+      "aov": 184.2476923076923
+    },
+    {
+      "name": "1/30 EMAIL: End Of Season Sale Continued (Petite)",
+      "recipients": 23020.0,
+      "opens": 15470.0,
+      "clicks": 2034.0,
+      "conversions": 20.0,
+      "conversion_value": 2343.32001,
+      "orders": 0,
+      "aov": 117.1660005
+    },
+    {
+      "name": "2/10 EMAIL: Petite New Arrivals",
+      "recipients": 28942.0,
+      "opens": 20008.0,
+      "clicks": 1126.0,
+      "conversions": 11.0,
+      "conversion_value": 2209.99998,
+      "orders": 0,
+      "aov": 200.9090890909091
+    },
+    {
+      "name": "3/22 PRINTS & PASTELS",
+      "recipients": 165938.0,
+      "opens": 103171.0,
+      "clicks": 3160.0,
+      "conversions": 16.0,
+      "conversion_value": 2109.03,
+      "orders": 0,
+      "aov": 131.814375
+    },
+    {
+      "name": "2/23 EMAIL: LAST CHANCE - Text-based Abandoned Checkout Site Issue",
+      "recipients": 1481.0,
+      "opens": 1195.0,
+      "clicks": 674.0,
+      "conversions": 11.0,
+      "conversion_value": 2055.97,
+      "orders": 0,
+      "aov": 186.9063636363636
+    },
+    {
+      "name": "2/13 EMAIL: Galentines",
+      "recipients": 164546.0,
+      "opens": 132636.0,
+      "clicks": 1355.0,
+      "conversions": 11.0,
+      "conversion_value": 1968.83001,
+      "orders": 0,
+      "aov": 178.98454636363635
+    },
+    {
+      "name": "3/14 EMAIL: New Men's Sweater Polo",
+      "recipients": 24600.0,
+      "opens": 13634.0,
+      "clicks": 2526.0,
+      "conversions": 8.0,
+      "conversion_value": 1515.07998,
+      "orders": 0,
+      "aov": 189.3849975
+    },
+    {
+      "name": "2/27 EMAIL: PERSONALIZED PICKS - TIMELESS WOMAN EDIT",
+      "recipients": 9180.0,
+      "opens": 7013.0,
+      "clicks": 602.0,
+      "conversions": 6.0,
+      "conversion_value": 1409.51002,
+      "orders": 0,
+      "aov": 234.91833666666665
+    },
+    {
+      "name": "2/21 EMAIL: Text-based Abandoned Checkout Site Issue",
+      "recipients": 1636.0,
+      "opens": 1323.0,
+      "clicks": 787.0,
+      "conversions": 7.0,
+      "conversion_value": 1313.30999,
+      "orders": 0,
+      "aov": 187.61571285714285
+    },
+    {
+      "name": "2/03 EMAIL: End Of Season Sale Last Chance",
+      "recipients": 80483.0,
+      "opens": 47199.0,
+      "clicks": 1157.0,
+      "conversions": 13.0,
+      "conversion_value": 1264.96,
+      "orders": 0,
+      "aov": 97.30461538461539
+    },
+    {
+      "name": "2/11 EMAIL: HEARTS A FLUTTER WATERCOLOR RIBBON",
+      "recipients": 143175.0,
+      "opens": 118874.0,
+      "clicks": 1433.0,
+      "conversions": 8.0,
+      "conversion_value": 1237.24001,
+      "orders": 0,
+      "aov": 154.65500125
+    },
+    {
+      "name": "3/2 EMAIL: SUNKISSED- JOHNNY COLLAR TOP",
+      "recipients": 131380.0,
+      "opens": 68281.0,
+      "clicks": 1025.0,
+      "conversions": 5.0,
+      "conversion_value": 1189.90997,
+      "orders": 0,
+      "aov": 237.981994
+    },
+    {
+      "name": "1/31 EMAIL: End Of Season Sale Continued - NON-OPENERS",
+      "recipients": 92466.0,
+      "opens": 16538.0,
+      "clicks": 1013.0,
+      "conversions": 10.0,
+      "conversion_value": 1025.08999,
+      "orders": 0,
+      "aov": 102.50899899999999
+    },
+    {
+      "name": "3/9 EMAIL: Flash Sale Extended",
+      "recipients": 15538.0,
+      "opens": 8151.0,
+      "clicks": 209.0,
+      "conversions": 6.0,
+      "conversion_value": 1013.37001,
+      "orders": 0,
+      "aov": 168.89500166666667
+    },
+    {
+      "name": "3/31 LIVERPOOL BUCKS LAST CHANCE",
+      "recipients": 428.0,
+      "opens": 319.0,
+      "clicks": 27.0,
+      "conversions": 4.0,
+      "conversion_value": 897.14999,
+      "orders": 0,
+      "aov": 224.2874975
+    },
+    {
+      "name": "2/25 EMAIL: MEN'S FLAP POCKET JACKET",
+      "recipients": 24776.0,
+      "opens": 12637.0,
+      "clicks": 226.0,
+      "conversions": 5.0,
+      "conversion_value": 830.05,
+      "orders": 0,
+      "aov": 166.01
+    },
+    {
+      "name": "1/30 EMAIL: End Of Season Sale Continued (Men)",
+      "recipients": 21509.0,
+      "opens": 11867.0,
+      "clicks": 1366.0,
+      "conversions": 8.0,
+      "conversion_value": 725.72001,
+      "orders": 0,
+      "aov": 90.71500125
+    },
+    {
+      "name": "2/15 EMAIL: MEN'S SPRING- THE JOHNY COLLAR POLO",
+      "recipients": 24601.0,
+      "opens": 14345.0,
+      "clicks": 2453.0,
+      "conversions": 5.0,
+      "conversion_value": 668.04001,
+      "orders": 0,
+      "aov": 133.608002
+    },
+    {
+      "name": "2/6 EMAIL: Men's Super Bowl",
+      "recipients": 23975.0,
+      "opens": 14040.0,
+      "clicks": 924.0,
+      "conversions": 5.0,
+      "conversion_value": 545.69,
+      "orders": 0,
+      "aov": 109.138
+    },
+    {
+      "name": "2/16 EMAIL: COAST TO COAST COLLECTION HIGHLIGHT (NCO)",
+      "recipients": 121443.0,
+      "opens": 60142.0,
+      "clicks": 936.0,
+      "conversions": 4.0,
+      "conversion_value": 532.09,
+      "orders": 0,
+      "aov": 133.0225
+    },
+    {
+      "name": "1/30 EMAIL: End Of Season Sale Continued (Plus)",
+      "recipients": 10019.0,
+      "opens": 6149.0,
+      "clicks": 682.0,
+      "conversions": 5.0,
+      "conversion_value": 526.58,
+      "orders": 0,
+      "aov": 105.316
+    },
+    {
+      "name": "2/27 EMAIL: PERSONALIZED PICKS - MULTITASKER EDIT",
+      "recipients": 3785.0,
+      "opens": 2271.0,
+      "clicks": 18.0,
+      "conversions": 3.0,
+      "conversion_value": 245.81001,
+      "orders": 0,
+      "aov": 81.93667
+    },
+    {
+      "name": "2/27 EMAIL: PERSONALIZED PICKS - ENTREPRENEUR EDIT",
+      "recipients": 7207.0,
+      "opens": 5004.0,
+      "clicks": 121.0,
+      "conversions": 2.0,
+      "conversion_value": 232.87,
+      "orders": 0,
+      "aov": 116.435
+    },
+    {
+      "name": "2/16 EMAIL: COAST TO COAST COLLECTION HIGHLIGHT (Petite)",
+      "recipients": 2309.0,
+      "opens": 1735.0,
+      "clicks": 85.0,
+      "conversions": 2.0,
+      "conversion_value": 231.08,
+      "orders": 0,
+      "aov": 115.54
+    },
+    {
+      "name": "2/03 EMAIL: End Of Season Sale Last Chance (No Sends)",
+      "recipients": 120645.0,
+      "opens": 43247.0,
+      "clicks": 293.0,
+      "conversions": 2.0,
+      "conversion_value": 193.13,
+      "orders": 0,
+      "aov": 96.565
+    },
+    {
+      "name": "03/26 WHOLESALE: LPLA X OMAHA, NE",
+      "recipients": 1676.0,
+      "opens": 794.0,
+      "clicks": 11.0,
+      "conversions": 1.0,
+      "conversion_value": 125.55,
+      "orders": 0,
+      "aov": 125.55
+    },
+    {
+      "name": "2/26 EMAIL: COAST TO COAST: SAILER PANT",
+      "recipients": 403.0,
+      "opens": 532.0,
+      "clicks": 6.0,
+      "conversions": 1.0,
+      "conversion_value": 105.69,
+      "orders": 0,
+      "aov": 105.69
+    },
+    {
+      "name": "2/01 EMAIL: End Of Season Sale Continued - Cold Weather Jackets Segment",
+      "recipients": 7840.0,
+      "opens": 4255.0,
+      "clicks": 126.0,
+      "conversions": 1.0,
+      "conversion_value": 47.2,
+      "orders": 0,
+      "aov": 47.2
+    },
+    {
+      "name": "(TEST) 2/14 EMAIL: HEARTS A FLUTTER -DOUBLE POINTS AM",
+      "recipients": 3.0,
+      "opens": 5.0,
+      "clicks": 2.0,
+      "conversions": 0.0,
+      "conversion_value": 0.0,
+      "orders": 0,
+      "aov": 0
+    },
+    {
+      "name": "(TEST) 2/14 EMAIL: HEARTS A FLUTTER -DOUBLE POINTS PM",
+      "recipients": 3.0,
+      "opens": 4.0,
+      "clicks": 0.0,
+      "conversions": 0.0,
+      "conversion_value": 0.0,
+      "orders": 0,
+      "aov": 0
+    },
+    {
+      "name": "2/13 WHOLESALE: MAGIC TRADESHOW LAS VEGAS",
+      "recipients": 2628.0,
+      "opens": 1465.0,
+      "clicks": 25.0,
+      "conversions": 0.0,
+      "conversion_value": 0.0,
+      "orders": 0,
+      "aov": 0
+    },
+    {
+      "name": "2/15 WHOLESALE: MAGIC TRADESHOW LAS VEGAS (clone)",
+      "recipients": 2838.0,
+      "opens": 1480.0,
+      "clicks": 25.0,
+      "conversions": 0.0,
+      "conversion_value": 0.0,
+      "orders": 0,
+      "aov": 0
+    },
+    {
+      "name": "SJ TEST - 2/21 EMAIL: Text-based Abandoned Checkout Site Issue (clone)",
+      "recipients": 1.0,
+      "opens": 2.0,
+      "clicks": 0.0,
+      "conversions": 0.0,
+      "conversion_value": 0.0,
+      "orders": 0,
+      "aov": 0
+    },
+    {
+      "name": "2/25 EMAIL: Preference Centre - TEST SJ",
+      "recipients": 1.0,
+      "opens": 2.0,
+      "clicks": 1.0,
+      "conversions": 0.0,
+      "conversion_value": 0.0,
+      "orders": 0,
+      "aov": 0
+    }
+  ],
+  "camps_2025": [
+    {
+      "name": "1/3 WRAP UP SALE LAST CHANCE",
+      "recipients": 241657.0,
+      "opens": 171066.0,
+      "clicks": 2901.0,
+      "conversions": 233.0,
+      "conversion_value": 29377.87004,
+      "orders": 0,
+      "aov": 126.0852791416309
+    },
+    {
+      "name": "1/31 EOS SALE LAUNCH REMINDER",
+      "recipients": 226121.0,
+      "opens": 141784.0,
+      "clicks": 2111.0,
+      "conversions": 164.0,
+      "conversion_value": 26017.10003,
+      "orders": 0,
+      "aov": 158.6408538414634
+    },
+    {
+      "name": "1/30 EOS SALE LAUNCH (AM SEND)",
+      "recipients": 327091.0,
+      "opens": 144002.0,
+      "clicks": 2993.0,
+      "conversions": 164.0,
+      "conversion_value": 20987.17991,
+      "orders": 0,
+      "aov": 127.97060920731707
+    },
+    {
+      "name": "2/2 EOS SALE REMINDER",
+      "recipients": 220952.0,
+      "opens": 128412.0,
+      "clicks": 5447.0,
+      "conversions": 166.0,
+      "conversion_value": 19313.22997,
+      "orders": 0,
+      "aov": 116.34475885542169
+    },
+    {
+      "name": "2/4 EOS SALE REMINDER",
+      "recipients": 225986.0,
+      "opens": 136806.0,
+      "clicks": 1856.0,
+      "conversions": 125.0,
+      "conversion_value": 19109.54994,
+      "orders": 0,
+      "aov": 152.87639952
+    },
+    {
+      "name": "01/25/25 ADELAIDE- IKAT PRINT",
+      "recipients": 223032.0,
+      "opens": 136946.0,
+      "clicks": 8361.0,
+      "conversions": 109.0,
+      "conversion_value": 17177.03,
+      "orders": 0,
+      "aov": 157.58743119266055
+    },
+    {
+      "name": "1/1 HAPPY NEW YEAR!",
+      "recipients": 167251.0,
+      "opens": 141852.0,
+      "clicks": 1009.0,
+      "conversions": 136.0,
+      "conversion_value": 16857.88002,
+      "orders": 0,
+      "aov": 123.95500014705883
+    },
+    {
+      "name": "3/21/25 FLASH SALE CONTINUES",
+      "recipients": 240591.0,
+      "opens": 139190.0,
+      "clicks": 3816.0,
+      "conversions": 88.0,
+      "conversion_value": 16535.68,
+      "orders": 0,
+      "aov": 187.90545454545455
+    },
+    {
+      "name": "1/30 EOS SALE LAUNCH (PM SEND)",
+      "recipients": 324098.0,
+      "opens": 132788.0,
+      "clicks": 2536.0,
+      "conversions": 118.0,
+      "conversion_value": 15744.91996,
+      "orders": 0,
+      "aov": 133.43152508474574
+    },
+    {
+      "name": "02/22/25 INTL WOMEN'S DAY (MERCADO GLOBAL)",
+      "recipients": 188607.0,
+      "opens": 135705.0,
+      "clicks": 2245.0,
+      "conversions": 80.0,
+      "conversion_value": 15583.78006,
+      "orders": 0,
+      "aov": 194.79725075
+    },
+    {
+      "name": "3/2/25 NEW ARRIVALS (MONTREAL HIGHLIGHT)",
+      "recipients": 229360.0,
+      "opens": 133211.0,
+      "clicks": 2867.0,
+      "conversions": 97.0,
+      "conversion_value": 15565.27999,
+      "orders": 0,
+      "aov": 160.46680402061855
+    },
+    {
+      "name": "3/30/25 SANTORINI SUMMER STRIPES + COBALT",
+      "recipients": 239693.0,
+      "opens": 139715.0,
+      "clicks": 88634.0,
+      "conversions": 85.0,
+      "conversion_value": 15140.14,
+      "orders": 0,
+      "aov": 178.11929411764706
+    },
+    {
+      "name": "02/09/25 POSITANO COLLECTION HIGHLIGHT",
+      "recipients": 201261.0,
+      "opens": 132674.0,
+      "clicks": 2888.0,
+      "conversions": 86.0,
+      "conversion_value": 14849.97004,
+      "orders": 0,
+      "aov": 172.67407023255814
+    },
+    {
+      "name": "3/20/25 FIRST DAY FLASH SALE",
+      "recipients": 323790.0,
+      "opens": 145740.0,
+      "clicks": 3663.0,
+      "conversions": 88.0,
+      "conversion_value": 14710.37998,
+      "orders": 0,
+      "aov": 167.16340886363636
+    },
+    {
+      "name": "01/12/25 LOIRE VALLEY - L12 ESSENTIALS",
+      "recipients": 199413.0,
+      "opens": 131020.0,
+      "clicks": 1790.0,
+      "conversions": 75.0,
+      "conversion_value": 14165.63008,
+      "orders": 0,
+      "aov": 188.87506773333334
+    },
+    {
+      "name": "01/18/25 ADELAINE - CAPPUCCINO STRIPE",
+      "recipients": 177282.0,
+      "opens": 128298.0,
+      "clicks": 4836.0,
+      "conversions": 94.0,
+      "conversion_value": 13856.48001,
+      "orders": 0,
+      "aov": 147.40936180851062
+    },
+    {
+      "name": "3/23/25 LAST CHANCE FLASH SALE",
+      "recipients": 242799.0,
+      "opens": 141570.0,
+      "clicks": 7539.0,
+      "conversions": 59.0,
+      "conversion_value": 13712.82002,
+      "orders": 0,
+      "aov": 232.42067830508472
+    },
+    {
+      "name": "2/5 EOS SALE REMINDER (PM SEND)",
+      "recipients": 322642.0,
+      "opens": 147955.0,
+      "clicks": 4685.0,
+      "conversions": 88.0,
+      "conversion_value": 13327.92999,
+      "orders": 0,
+      "aov": 151.45374988636365
+    },
+    {
+      "name": "01/16/25 ADELAINE - COLLECTION HIGHLIGHT",
+      "recipients": 178968.0,
+      "opens": 132789.0,
+      "clicks": 2932.0,
+      "conversions": 74.0,
+      "conversion_value": 13206.08999,
+      "orders": 0,
+      "aov": 178.46067554054054
+    },
+    {
+      "name": "01/27/25 STRIPE TEE- V-DAY",
+      "recipients": 191250.0,
+      "opens": 133553.0,
+      "clicks": 1595.0,
+      "conversions": 85.0,
+      "conversion_value": 13066.86996,
+      "orders": 0,
+      "aov": 153.72788188235293
+    },
+    {
+      "name": "3/8/25 INTERNATIONAL WOMEN'S DAY MESSAGE",
+      "recipients": 196361.0,
+      "opens": 138667.0,
+      "clicks": 1649.0,
+      "conversions": 71.0,
+      "conversion_value": 12144.25003,
+      "orders": 0,
+      "aov": 171.04577507042254
+    },
+    {
+      "name": "3/4/25 MONTREAL TWO-PIECE SET",
+      "recipients": 186978.0,
+      "opens": 136529.0,
+      "clicks": 1896.0,
+      "conversions": 58.0,
+      "conversion_value": 11827.47001,
+      "orders": 0,
+      "aov": 203.92189672413792
+    },
+    {
+      "name": "3/6/25 MONTREAL GEO PRINTS AND EMBROIDER",
+      "recipients": 172292.0,
+      "opens": 130142.0,
+      "clicks": 3447.0,
+      "conversions": 51.0,
+      "conversion_value": 11594.52993,
+      "orders": 0,
+      "aov": 227.34372411764707
+    },
+    {
+      "name": "3/9/25 LOYALIST DOUBLE POINTS",
+      "recipients": 58312.0,
+      "opens": 37838.0,
+      "clicks": 1386.0,
+      "conversions": 62.0,
+      "conversion_value": 11531.48999,
+      "orders": 0,
+      "aov": 185.99177403225806
+    },
+    {
+      "name": "02/18/25 New Mens: SUTTON LOOSE",
+      "recipients": 194662.0,
+      "opens": 155253.0,
+      "clicks": 1248.0,
+      "conversions": 63.0,
+      "conversion_value": 11509.01999,
+      "orders": 0,
+      "aov": 182.682856984127
+    },
+    {
+      "name": "01/21/25 ADELAINE - PETITES",
+      "recipients": 25447.0,
+      "opens": 17409.0,
+      "clicks": 1376.0,
+      "conversions": 65.0,
+      "conversion_value": 11206.53,
+      "orders": 0,
+      "aov": 172.40815384615385
+    },
+    {
+      "name": "01/10/25 LOIRE VALLEY - DENIM FITS",
+      "recipients": 197699.0,
+      "opens": 131116.0,
+      "clicks": 2002.0,
+      "conversions": 73.0,
+      "conversion_value": 11187.10998,
+      "orders": 0,
+      "aov": 153.2480819178082
+    },
+    {
+      "name": "2/5 EOS SALE LAST CHANCE AM SEND",
+      "recipients": 324852.0,
+      "opens": 141270.0,
+      "clicks": 1694.0,
+      "conversions": 96.0,
+      "conversion_value": 11122.20996,
+      "orders": 0,
+      "aov": 115.85635375
+    },
+    {
+      "name": "01/23/25 ADELAINE - PINK PAISLEYS",
+      "recipients": 222420.0,
+      "opens": 136703.0,
+      "clicks": 1978.0,
+      "conversions": 65.0,
+      "conversion_value": 10816.6,
+      "orders": 0,
+      "aov": 166.4092307692308
+    },
+    {
+      "name": "3/28/25 SANTORINI NEW FITS",
+      "recipients": 177556.0,
+      "opens": 130229.0,
+      "clicks": 8182.0,
+      "conversions": 49.0,
+      "conversion_value": 10318.05998,
+      "orders": 0,
+      "aov": 210.57265265306123
+    },
+    {
+      "name": "01/20/25 LOIRE VALLEY - PAISLEY PRINTS",
+      "recipients": 176450.0,
+      "opens": 133035.0,
+      "clicks": 1856.0,
+      "conversions": 69.0,
+      "conversion_value": 10240.18,
+      "orders": 0,
+      "aov": 148.40840579710147
+    },
+    {
+      "name": "02/24/25 NEW MENS SUIT SET",
+      "recipients": 193362.0,
+      "opens": 148769.0,
+      "clicks": 1714.0,
+      "conversions": 58.0,
+      "conversion_value": 10049.29998,
+      "orders": 0,
+      "aov": 173.2637927586207
+    },
+    {
+      "name": "02/26/25 New Arrivals: PRINTS",
+      "recipients": 173326.0,
+      "opens": 129384.0,
+      "clicks": 3420.0,
+      "conversions": 60.0,
+      "conversion_value": 10021.46,
+      "orders": 0,
+      "aov": 167.02433333333332
+    },
+    {
+      "name": "G8A 01/08/25 LOIRE VALLEY - BOUCLE PLAID JACKET",
+      "recipients": 182127.0,
+      "opens": 132743.0,
+      "clicks": 2606.0,
+      "conversions": 77.0,
+      "conversion_value": 9730.07998,
+      "orders": 0,
+      "aov": 126.36467506493507
+    },
+    {
+      "name": "02/07/25 DATE NIGHT LOOKS",
+      "recipients": 173916.0,
+      "opens": 136599.0,
+      "clicks": 2249.0,
+      "conversions": 54.0,
+      "conversion_value": 9442.86006,
+      "orders": 0,
+      "aov": 174.8677788888889
+    },
+    {
+      "name": "02/28/25 NEW WOMENS BOLERO",
+      "recipients": 174555.0,
+      "opens": 134911.0,
+      "clicks": 5369.0,
+      "conversions": 55.0,
+      "conversion_value": 9428.62002,
+      "orders": 0,
+      "aov": 171.4294549090909
+    },
+    {
+      "name": "3/15/25 MENS NEW ARRIVALS: OVERSHIRTS",
+      "recipients": 189057.0,
+      "opens": 125727.0,
+      "clicks": 2701.0,
+      "conversions": 67.0,
+      "conversion_value": 9241.64999,
+      "orders": 0,
+      "aov": 137.93507447761195
+    },
+    {
+      "name": "02/16/25 IWD Launch Mercado x LPLA",
+      "recipients": 189992.0,
+      "opens": 142956.0,
+      "clicks": 2130.0,
+      "conversions": 62.0,
+      "conversion_value": 9175.17003,
+      "orders": 0,
+      "aov": 147.98661338709675
+    },
+    {
+      "name": "3/16/25 PETITE NEW ARRIVALS: CROPPED",
+      "recipients": 26903.0,
+      "opens": 15024.0,
+      "clicks": 797.0,
+      "conversions": 40.0,
+      "conversion_value": 9162.23,
+      "orders": 0,
+      "aov": 229.05575
+    },
+    {
+      "name": "01/06/25 LOIRE VALLEY COLLECTION HIGHLIGHT",
+      "recipients": 197971.0,
+      "opens": 130849.0,
+      "clicks": 2946.0,
+      "conversions": 69.0,
+      "conversion_value": 8772.81995,
+      "orders": 0,
+      "aov": 127.14231811594202
+    },
+    {
+      "name": "02/20/25 New Arrivals: MARRAKESH",
+      "recipients": 174134.0,
+      "opens": 140482.0,
+      "clicks": 2882.0,
+      "conversions": 60.0,
+      "conversion_value": 8417.03996,
+      "orders": 0,
+      "aov": 140.28399933333333
+    },
+    {
+      "name": "3/11/25 MONTREAL CONVERTIBLE DRESS",
+      "recipients": 170530.0,
+      "opens": 131879.0,
+      "clicks": 1710.0,
+      "conversions": 50.0,
+      "conversion_value": 7681.61002,
+      "orders": 0,
+      "aov": 153.6322004
+    },
+    {
+      "name": "3/26/25 SANTORINI COLLECTION HIGHLIGHT",
+      "recipients": 166967.0,
+      "opens": 126376.0,
+      "clicks": 3397.0,
+      "conversions": 41.0,
+      "conversion_value": 7162.06,
+      "orders": 0,
+      "aov": 174.68439024390244
+    },
+    {
+      "name": "3/24/25 MENS : NAVY WHITE STRIPES",
+      "recipients": 175233.0,
+      "opens": 126568.0,
+      "clicks": 1553.0,
+      "conversions": 43.0,
+      "conversion_value": 6912.76001,
+      "orders": 0,
+      "aov": 160.76186069767442
+    },
+    {
+      "name": "3/25/25 PETITE : TRANSITIONAL WEATHER",
+      "recipients": 27922.0,
+      "opens": 17366.0,
+      "clicks": 925.0,
+      "conversions": 28.0,
+      "conversion_value": 6120.14999,
+      "orders": 0,
+      "aov": 218.57678535714285
+    },
+    {
+      "name": "02/11/25 POSITANO DRESS",
+      "recipients": 157716.0,
+      "opens": 122658.0,
+      "clicks": 2237.0,
+      "conversions": 38.0,
+      "conversion_value": 5861.60001,
+      "orders": 0,
+      "aov": 154.25263184210527
+    },
+    {
+      "name": "3/13/25 NEW ARRIVALS: SHOES",
+      "recipients": 162140.0,
+      "opens": 112696.0,
+      "clicks": 1397.0,
+      "conversions": 38.0,
+      "conversion_value": 5614.54,
+      "orders": 0,
+      "aov": 147.75105263157894
+    },
+    {
+      "name": "02/13/25 NOW TRENDING ESSENTIAL TOPS",
+      "recipients": 178688.0,
+      "opens": 124823.0,
+      "clicks": 1528.0,
+      "conversions": 36.0,
+      "conversion_value": 4771.74001,
+      "orders": 0,
+      "aov": 132.54833361111113
+    },
+    {
+      "name": "01/14/25 NEW ARRIVALS - PETITES",
+      "recipients": 24304.0,
+      "opens": 16357.0,
+      "clicks": 1067.0,
+      "conversions": 29.0,
+      "conversion_value": 3675.22999,
+      "orders": 0,
+      "aov": 126.73206862068965
+    },
+    {
+      "name": "02/12/25 PETITES NEW ARRIVALS",
+      "recipients": 25127.0,
+      "opens": 15865.0,
+      "clicks": 808.0,
+      "conversions": 24.0,
+      "conversion_value": 3275.04,
+      "orders": 0,
+      "aov": 136.46
+    },
+    {
+      "name": "02/14/25 YOUR BOYFRIEND AWAITS",
+      "recipients": 12333.0,
+      "opens": 9210.0,
+      "clicks": 490.0,
+      "conversions": 17.0,
+      "conversion_value": 2233.61,
+      "orders": 0,
+      "aov": 131.38882352941178
+    },
+    {
+      "name": "3/15/25 PLUS NEW ARRIVALS",
+      "recipients": 11821.0,
+      "opens": 6343.0,
+      "clicks": 315.0,
+      "conversions": 9.0,
+      "conversion_value": 1412.96,
+      "orders": 0,
+      "aov": 156.99555555555557
+    },
+    {
+      "name": "02/25/25 PLUS SUITING",
+      "recipients": 12270.0,
+      "opens": 7396.0,
+      "clicks": 337.0,
+      "conversions": 10.0,
+      "conversion_value": 1099.57999,
+      "orders": 0,
+      "aov": 109.957999
+    },
+    {
+      "name": "3/26/25 PLUS : BLAZERS",
+      "recipients": 12223.0,
+      "opens": 7069.0,
+      "clicks": 243.0,
+      "conversions": 9.0,
+      "conversion_value": 1006.44,
+      "orders": 0,
+      "aov": 111.82666666666667
+    },
+    {
+      "name": "3/7 WHOLESALE: LPLA X JEANS AND CUTE TOP SHOP",
+      "recipients": 10458.0,
+      "opens": 6528.0,
+      "clicks": 101.0,
+      "conversions": 6.0,
+      "conversion_value": 828.0,
+      "orders": 0,
+      "aov": 138.0
+    },
+    {
+      "name": "02/03 EOS SALE - SEGMENTED MENS",
+      "recipients": 6087.0,
+      "opens": 4020.0,
+      "clicks": 165.0,
+      "conversions": 6.0,
+      "conversion_value": 823.94999,
+      "orders": 0,
+      "aov": 137.32499833333333
+    },
+    {
+      "name": "3/7 WHOLESALE: LPLA X MAIN STREET DESIGNS",
+      "recipients": 9093.0,
+      "opens": 5849.0,
+      "clicks": 129.0,
+      "conversions": 3.0,
+      "conversion_value": 482.30001,
+      "orders": 0,
+      "aov": 160.76667
+    },
+    {
+      "name": "3/13 WHOLESALE: LPLA X MAIN STREET DESIGNS",
+      "recipients": 9031.0,
+      "opens": 5737.0,
+      "clicks": 144.0,
+      "conversions": 1.0,
+      "conversion_value": 439.64999,
+      "orders": 0,
+      "aov": 439.64999
+    },
+    {
+      "name": "3/27 WHOLESALE: LPLA X AM LUXE",
+      "recipients": 9454.0,
+      "opens": 5840.0,
+      "clicks": 96.0,
+      "conversions": 4.0,
+      "conversion_value": 432.75,
+      "orders": 0,
+      "aov": 108.1875
+    },
+    {
+      "name": "3/11 WHOLESALE: BLOOMINGDALE'S WILLOW GROVE",
+      "recipients": 5410.0,
+      "opens": 3343.0,
+      "clicks": 12.0,
+      "conversions": 1.0,
+      "conversion_value": 351.5,
+      "orders": 0,
+      "aov": 351.5
+    },
+    {
+      "name": "3/11 WHOLESALE: BLOOMINGDALE'S WILLOWBROOK",
+      "recipients": 9935.0,
+      "opens": 6222.0,
+      "clicks": 34.0,
+      "conversions": 2.0,
+      "conversion_value": 315.60001,
+      "orders": 0,
+      "aov": 157.800005
+    },
+    {
+      "name": "3/6 WHOLESALE: LPLA X CASCADES BOUTIQUE SHOP REMINDER",
+      "recipients": 2721.0,
+      "opens": 1587.0,
+      "clicks": 4.0,
+      "conversions": 2.0,
+      "conversion_value": 296.5,
+      "orders": 0,
+      "aov": 148.25
+    },
+    {
+      "name": "3/13 WHOLESALE: LPLA X JEANS AND CUTE TOP SHOP (clone)",
+      "recipients": 10381.0,
+      "opens": 6254.0,
+      "clicks": 73.0,
+      "conversions": 1.0,
+      "conversion_value": 238.0,
+      "orders": 0,
+      "aov": 238.0
+    },
+    {
+      "name": "3/13 WHOLESALE: BLOOMINGDALE'S KING OF PRUSSIA",
+      "recipients": 5433.0,
+      "opens": 3254.0,
+      "clicks": 1.0,
+      "conversions": 2.0,
+      "conversion_value": 214.0,
+      "orders": 0,
+      "aov": 107.0
+    },
+    {
+      "name": "3/18 WHOLESALE: BLOOMINGDALE'S BRIDGEWATER",
+      "recipients": 4092.0,
+      "opens": 2459.0,
+      "clicks": 10.0,
+      "conversions": 1.0,
+      "conversion_value": 89.0,
+      "orders": 0,
+      "aov": 89.0
+    },
+    {
+      "name": "1/1 WHOLESALE: HAPPY NEW YEAR!",
+      "recipients": 1954.0,
+      "opens": 1329.0,
+      "clicks": 14.0,
+      "conversions": 0.0,
+      "conversion_value": 0.0,
+      "orders": 0,
+      "aov": 0
+    },
+    {
+      "name": "1/21 WS: LOYALIST PROGRAM + MARKETING KIT",
+      "recipients": 1914.0,
+      "opens": 1464.0,
+      "clicks": 137.0,
+      "conversions": 0.0,
+      "conversion_value": 0.0,
+      "orders": 0,
+      "aov": 0
+    },
+    {
+      "name": "2/27 WHOLESALE: LPLA X 308 BOUTIQUE SHOP",
+      "recipients": 306.0,
+      "opens": 137.0,
+      "clicks": 1.0,
+      "conversions": 0.0,
+      "conversion_value": 0.0,
+      "orders": 0,
+      "aov": 0
+    },
+    {
+      "name": "3/6 WHOLESALE: LPLA X 308 BOUTIQUE SHOP REMINDER",
+      "recipients": 306.0,
+      "opens": 148.0,
+      "clicks": 1.0,
+      "conversions": 0.0,
+      "conversion_value": 0.0,
+      "orders": 0,
+      "aov": 0
+    },
+    {
+      "name": "2/27 WHOLESALE: LPLA X CASCADES BOUTIQUE SHOP",
+      "recipients": 2746.0,
+      "opens": 1651.0,
+      "clicks": 11.0,
+      "conversions": 0.0,
+      "conversion_value": 0.0,
+      "orders": 0,
+      "aov": 0
+    },
+    {
+      "name": "3/25 WHOLESALE: BLOOMINGDALE'S STANFORD",
+      "recipients": 6533.0,
+      "opens": 4064.0,
+      "clicks": 46.0,
+      "conversions": 0.0,
+      "conversion_value": 0.0,
+      "orders": 0,
+      "aov": 0
+    },
+    {
+      "name": "3/27 WHOLESALE: LPLA X MARKET BOUTIQUE",
+      "recipients": 2891.0,
+      "opens": 1910.0,
+      "clicks": 58.0,
+      "conversions": 1.0,
+      "conversion_value": 0.0,
+      "orders": 0,
+      "aov": 0.0
+    },
+    {
+      "name": "3/13 WHOLESALE: BLOOMINGDALE'S HUNTINGTON STATION",
+      "recipients": 5240.0,
+      "opens": 3455.0,
+      "clicks": 0.0,
+      "conversions": 0.0,
+      "conversion_value": 0.0,
+      "orders": 0,
+      "aov": 0
+    }
+  ],
+  "flows_2026": [
+    {
+      "name": "Welcome Series - Email 2026",
+      "recipients": 44383.0,
+      "opens": 35306.0,
+      "clicks": 2903.0,
+      "conversions": 634.0,
+      "conversion_value": 97591.64009999999,
+      "aov": 153.93003170347
+    },
+    {
+      "name": "Added2Cart 2025",
+      "recipients": 28943.0,
+      "opens": 26410.0,
+      "clicks": 2621.0,
+      "conversions": 376.0,
+      "conversion_value": 66240.44012,
+      "aov": 176.17138329787232
+    },
+    {
+      "name": "Abandoned Checkout 2025",
+      "recipients": 11414.0,
+      "opens": 10383.0,
+      "clicks": 1440.0,
+      "conversions": 357.0,
+      "conversion_value": 59133.199919999985,
+      "aov": 165.63921546218484
+    },
+    {
+      "name": "Post-Purchase Optimization",
+      "recipients": 56750.0,
+      "opens": 52461.0,
+      "clicks": 3992.0,
+      "conversions": 226.0,
+      "conversion_value": 27434.09007,
+      "aov": 121.38977907079645
+    },
+    {
+      "name": "Browse Abandonment",
+      "recipients": 52733.0,
+      "opens": 47481.0,
+      "clicks": 4634.0,
+      "conversions": 154.0,
+      "conversion_value": 21852.48997,
+      "aov": 141.89928551948051
+    },
+    {
+      "name": "Rewards Monthly Update - Ordered",
+      "recipients": 58145.0,
+      "opens": 45098.0,
+      "clicks": 1969.0,
+      "conversions": 135.0,
+      "conversion_value": 21727.44002,
+      "aov": 160.94400014814815
+    },
+    {
+      "name": "04 | Wonderment | New Editor | Delivered",
+      "recipients": 14868.0,
+      "opens": 18883.0,
+      "clicks": 4058.0,
+      "conversions": 251.0,
+      "conversion_value": 21228.34007,
+      "aov": 84.57506003984064
+    },
+    {
+      "name": "Back In Stock Flow - VIP vs. Non-VIP",
+      "recipients": 4786.0,
+      "opens": 4955.0,
+      "clicks": 901.0,
+      "conversions": 108.0,
+      "conversion_value": 18662.7501,
+      "aov": 172.80324166666668
+    },
+    {
+      "name": "Liverpool Bucks - LOVECASH25 - Feb26",
+      "recipients": 11434.0,
+      "opens": 10849.0,
+      "clicks": 1081.0,
+      "conversions": 122.0,
+      "conversion_value": 15074.55005,
+      "aov": 123.5618856557377
+    },
+    {
+      "name": "Rewards Point Reminder",
+      "recipients": 13630.0,
+      "opens": 12967.0,
+      "clicks": 1258.0,
+      "conversions": 90.0,
+      "conversion_value": 12147.269940000002,
+      "aov": 134.96966600000002
+    },
+    {
+      "name": "Toki - Tier Earned - Points Reward",
+      "recipients": 7213.0,
+      "opens": 7631.0,
+      "clicks": 512.0,
+      "conversions": 65.0,
+      "conversion_value": 11445.48998,
+      "aov": 176.08446123076922
+    },
+    {
+      "name": "Price Drop Notification",
+      "recipients": 25601.0,
+      "opens": 22418.0,
+      "clicks": 2466.0,
+      "conversions": 114.0,
+      "conversion_value": 11130.339969999999,
+      "aov": 97.63456114035087
+    },
+    {
+      "name": "Review request (email + SMS) - Klaviyo Reviews",
+      "recipients": 20673.0,
+      "opens": 18003.0,
+      "clicks": 1097.0,
+      "conversions": 67.0,
+      "conversion_value": 8737.80002,
+      "aov": 130.4149256716418
+    },
+    {
+      "name": "Order Confirmation - Standard",
+      "recipients": 15436.0,
+      "opens": 27887.0,
+      "clicks": 5366.0,
+      "conversions": 65.0,
+      "conversion_value": 8218.97002,
+      "aov": 126.44569261538463
+    },
+    {
+      "name": "Win-back 2026",
+      "recipients": 15273.0,
+      "opens": 11775.0,
+      "clicks": 900.0,
+      "conversions": 46.0,
+      "conversion_value": 7712.59,
+      "aov": 167.665
+    },
+    {
+      "name": "03 | Wonderment | New Editor | Out for Delivery",
+      "recipients": 13471.0,
+      "opens": 16316.0,
+      "clicks": 2206.0,
+      "conversions": 93.0,
+      "conversion_value": 7300.52003,
+      "aov": 78.50021537634409
+    },
+    {
+      "name": "02 Wonderment | New Editor | Carrier Picked Up",
+      "recipients": 14566.0,
+      "opens": 21743.0,
+      "clicks": 3582.0,
+      "conversions": 56.0,
+      "conversion_value": 6785.85,
+      "aov": 121.17589285714287
+    },
+    {
+      "name": "Welcome Series - New 2025",
+      "recipients": 5314.0,
+      "opens": 3867.0,
+      "clicks": 331.0,
+      "conversions": 43.0,
+      "conversion_value": 6026.07001,
+      "aov": 140.1411630232558
+    },
+    {
+      "name": "01 | Wonderment | New Editor | Shipment Created (clone)",
+      "recipients": 14572.0,
+      "opens": 19218.0,
+      "clicks": 2246.0,
+      "conversions": 37.0,
+      "conversion_value": 4258.81998,
+      "aov": 115.10324270270272
+    },
+    {
+      "name": "Abandoned Site - Concierge",
+      "recipients": 9132.0,
+      "opens": 6761.0,
+      "clicks": 382.0,
+      "conversions": 18.0,
+      "conversion_value": 2571.45997,
+      "aov": 142.85888722222222
+    },
+    {
+      "name": "SMS Post Purchase",
+      "recipients": 7250.0,
+      "opens": 6818.0,
+      "clicks": 570.0,
+      "conversions": 20.0,
+      "conversion_value": 2507.96001,
+      "aov": 125.3980005
+    },
+    {
+      "name": "Winback 2025 Flow - Segment",
+      "recipients": 7634.0,
+      "opens": 6038.0,
+      "clicks": 308.0,
+      "conversions": 14.0,
+      "conversion_value": 2299.19001,
+      "aov": 164.22785785714285
+    },
+    {
+      "name": "Wish List Toki",
+      "recipients": 2333.0,
+      "opens": 1984.0,
+      "clicks": 113.0,
+      "conversions": 11.0,
+      "conversion_value": 1599.13,
+      "aov": 145.37545454545455
+    },
+    {
+      "name": "Birthday Series 2025 - Toki",
+      "recipients": 1463.0,
+      "opens": 1587.0,
+      "clicks": 228.0,
+      "conversions": 9.0,
+      "conversion_value": 819.7199899999999,
+      "aov": 91.07999888888888
+    },
+    {
+      "name": "Welcome Series - Liverpool Ecommerce Customers",
+      "recipients": 186.0,
+      "opens": 167.0,
+      "clicks": 9.0,
+      "conversions": 5.0,
+      "conversion_value": 800.58998,
+      "aov": 160.117996
+    },
+    {
+      "name": "Toki - Referral Share",
+      "recipients": 40.0,
+      "opens": 60.0,
+      "clicks": 8.0,
+      "conversions": 1.0,
+      "conversion_value": 90.73,
+      "aov": 90.73
+    },
+    {
+      "name": "05 | Wonderment | Shipping | Stalled Shipment",
+      "recipients": 292.0,
+      "opens": 537.0,
+      "clicks": 249.0,
+      "conversions": 1.0,
+      "conversion_value": 57.76,
+      "aov": 57.76
+    },
+    {
+      "name": "Review follow-up - Klaviyo Reviews",
+      "recipients": 274.0,
+      "opens": 333.0,
+      "clicks": 35.0,
+      "conversions": 0.0,
+      "conversion_value": 0.0,
+      "aov": 0
+    },
+    {
+      "name": "VIP $500+ Series",
+      "recipients": 157.0,
+      "opens": 151.0,
+      "clicks": 4.0,
+      "conversions": 0.0,
+      "conversion_value": 0.0,
+      "aov": 0
+    },
+    {
+      "name": "Referral Series",
+      "recipients": 51.0,
+      "opens": 75.0,
+      "clicks": 4.0,
+      "conversions": 0.0,
+      "conversion_value": 0.0,
+      "aov": 0
+    },
+    {
+      "name": "Toki - Referral Completed - Points Reward - UPDATE",
+      "recipients": 1.0,
+      "opens": 0.0,
+      "clicks": 0.0,
+      "conversions": 0.0,
+      "conversion_value": 0.0,
+      "aov": 0
+    }
+  ],
+  "flows_2025": [
+    {
+      "name": "Welcome Series - New 2024",
+      "recipients": 53672.0,
+      "opens": 40459.0,
+      "clicks": 3341.0,
+      "conversions": 843.0,
+      "conversion_value": 120753.96944,
+      "aov": 143.24314287069987
+    },
+    {
+      "name": "Abandoned Checkout 2025",
+      "recipients": 13565.0,
+      "opens": 11936.0,
+      "clicks": 2048.0,
+      "conversions": 560.0,
+      "conversion_value": 78174.93986000001,
+      "aov": 139.59810689285717
+    },
+    {
+      "name": "Added2Cart 2025",
+      "recipients": 20852.0,
+      "opens": 18693.0,
+      "clicks": 2008.0,
+      "conversions": 362.0,
+      "conversion_value": 61791.71991000001,
+      "aov": 170.69535886740334
+    },
+    {
+      "name": "Added2Cart 2024",
+      "recipients": 16980.0,
+      "opens": 15049.0,
+      "clicks": 1806.0,
+      "conversions": 365.0,
+      "conversion_value": 53859.810020000004,
+      "aov": 147.56112334246578
+    },
+    {
+      "name": "04 | Wonderment | New Editor | Delivered",
+      "recipients": 22160.0,
+      "opens": 27686.0,
+      "clicks": 5917.0,
+      "conversions": 450.0,
+      "conversion_value": 47992.9701,
+      "aov": 106.65104466666666
+    },
+    {
+      "name": "Yotpo L&R - Tier Earned - Points Reward",
+      "recipients": 4694.0,
+      "opens": 5643.0,
+      "clicks": 670.0,
+      "conversions": 226.0,
+      "conversion_value": 30650.36008,
+      "aov": 135.62106230088494
+    },
+    {
+      "name": "Post Purchase",
+      "recipients": 77641.0,
+      "opens": 62370.0,
+      "clicks": 3047.0,
+      "conversions": 274.0,
+      "conversion_value": 30248.190020000002,
+      "aov": 110.39485408759124
+    },
+    {
+      "name": "Rewards Monthly Update - Ordered",
+      "recipients": 49816.0,
+      "opens": 41278.0,
+      "clicks": 1761.0,
+      "conversions": 207.0,
+      "conversion_value": 30224.990029999997,
+      "aov": 146.01444458937198
+    },
+    {
+      "name": "Order Confirmation - Standard",
+      "recipients": 20547.0,
+      "opens": 36798.0,
+      "clicks": 7711.0,
+      "conversions": 175.0,
+      "conversion_value": 21730.17997,
+      "aov": 124.17245697142857
+    },
+    {
+      "name": "03 | Wonderment | New Editor | Out for Delivery",
+      "recipients": 21018.0,
+      "opens": 22198.0,
+      "clicks": 3271.0,
+      "conversions": 171.0,
+      "conversion_value": 17943.44999,
+      "aov": 104.93245608187135
+    },
+    {
+      "name": "Back In Stock Flow - VIP vs. Non-VIP",
+      "recipients": 2533.0,
+      "opens": 2606.0,
+      "clicks": 736.0,
+      "conversions": 124.0,
+      "conversion_value": 16348.530050000001,
+      "aov": 131.84298427419355
+    },
+    {
+      "name": "Winback 2025 Flow - Segment",
+      "recipients": 57793.0,
+      "opens": 49270.0,
+      "clicks": 2494.0,
+      "conversions": 95.0,
+      "conversion_value": 15278.82997,
+      "aov": 160.82978915789474
+    },
+    {
+      "name": "02 Wonderment | New Editor | Carrier Picked Up",
+      "recipients": 21849.0,
+      "opens": 36696.0,
+      "clicks": 6816.0,
+      "conversions": 134.0,
+      "conversion_value": 14400.89005,
+      "aov": 107.46932873134328
+    },
+    {
+      "name": "Browse Abandonment",
+      "recipients": 23701.0,
+      "opens": 21196.0,
+      "clicks": 1775.0,
+      "conversions": 117.0,
+      "conversion_value": 13745.77995,
+      "aov": 117.48529871794872
+    },
+    {
+      "name": "01 | Wonderment | New Editor | Shipment Created (clone)",
+      "recipients": 22134.0,
+      "opens": 30404.0,
+      "clicks": 3682.0,
+      "conversions": 70.0,
+      "conversion_value": 8538.45996,
+      "aov": 121.97799942857144
+    },
+    {
+      "name": "Yotpo L&R - Redemption Reminder (Phase 2)",
+      "recipients": 13836.0,
+      "opens": 11809.0,
+      "clicks": 825.0,
+      "conversions": 32.0,
+      "conversion_value": 5103.41001,
+      "aov": 159.4815628125
+    },
+    {
+      "name": "Welcome Series - Liverpool Ecommerce Customers",
+      "recipients": 377.0,
+      "opens": 396.0,
+      "clicks": 28.0,
+      "conversions": 17.0,
+      "conversion_value": 4800.3,
+      "aov": 282.3705882352941
+    },
+    {
+      "name": "Rewards Expiry",
+      "recipients": 12266.0,
+      "opens": 8856.0,
+      "clicks": 460.0,
+      "conversions": 37.0,
+      "conversion_value": 4799.14,
+      "aov": 129.70648648648648
+    },
+    {
+      "name": "Price Drop Notification",
+      "recipients": 3458.0,
+      "opens": 3154.0,
+      "clicks": 406.0,
+      "conversions": 45.0,
+      "conversion_value": 4631.95001,
+      "aov": 102.93222244444443
+    },
+    {
+      "name": "Rewards Point Reminder",
+      "recipients": 3221.0,
+      "opens": 3420.0,
+      "clicks": 315.0,
+      "conversions": 27.0,
+      "conversion_value": 3486.57001,
+      "aov": 129.1322225925926
+    },
+    {
+      "name": "Review request (email + SMS) - Klaviyo Reviews",
+      "recipients": 6874.0,
+      "opens": 5976.0,
+      "clicks": 275.0,
+      "conversions": 23.0,
+      "conversion_value": 3137.9399900000003,
+      "aov": 136.4321734782609
+    },
+    {
+      "name": "Wish List",
+      "recipients": 651.0,
+      "opens": 571.0,
+      "clicks": 38.0,
+      "conversions": 13.0,
+      "conversion_value": 2125.3900000000003,
+      "aov": 163.49153846153848
+    },
+    {
+      "name": "Birthday Series 2024",
+      "recipients": 1703.0,
+      "opens": 1930.0,
+      "clicks": 240.0,
+      "conversions": 17.0,
+      "conversion_value": 1788.55,
+      "aov": 105.20882352941176
+    },
+    {
+      "name": "VIP $500+ Series",
+      "recipients": 455.0,
+      "opens": 461.0,
+      "clicks": 25.0,
+      "conversions": 8.0,
+      "conversion_value": 971.75002,
+      "aov": 121.4687525
+    },
+    {
+      "name": "Referral Series",
+      "recipients": 533.0,
+      "opens": 611.0,
+      "clicks": 34.0,
+      "conversions": 5.0,
+      "conversion_value": 915.93,
+      "aov": 183.18599999999998
+    },
+    {
+      "name": "SMS Post Purchase",
+      "recipients": 5570.0,
+      "opens": 5747.0,
+      "clicks": 492.0,
+      "conversions": 11.0,
+      "conversion_value": 844.2,
+      "aov": 76.74545454545455
+    },
+    {
+      "name": "Review follow-up - Klaviyo Reviews",
+      "recipients": 205.0,
+      "opens": 230.0,
+      "clicks": 13.0,
+      "conversions": 3.0,
+      "conversion_value": 178.0,
+      "aov": 59.333333333333336
+    },
+    {
+      "name": "05 | Wonderment | Shipping | Stalled Shipment",
+      "recipients": 437.0,
+      "opens": 684.0,
+      "clicks": 232.0,
+      "conversions": 1.0,
+      "conversion_value": 93.3,
+      "aov": 93.3
+    },
+    {
+      "name": "Yotpo L&R - Referral Share",
+      "recipients": 13.0,
+      "opens": 22.0,
+      "clicks": 1.0,
+      "conversions": 0.0,
+      "conversion_value": 0.0,
+      "aov": 0
+    },
+    {
+      "name": "Yotpo L&R - Referral Completed - Points Reward",
+      "recipients": 1.0,
+      "opens": 1.0,
+      "clicks": 0.0,
+      "conversions": 0.0,
+      "conversion_value": 0.0,
+      "aov": 0
+    },
+    {
+      "name": "Yotpo L&R - Referral Share Reminder",
+      "recipients": 12.0,
+      "opens": 13.0,
+      "clicks": 0.0,
+      "conversions": 0.0,
+      "conversion_value": 0.0,
+      "aov": 0
+    }
+  ],
+  "totals": {
+    "camps_2026": {
+      "recipients": 12427337.0,
+      "opens": 8153904.0,
+      "clicks": 217710.0,
+      "conversions": 2575.0,
+      "conversion_value": 434751.67001,
+      "aov": 168.83560000388348
+    },
+    "camps_2025": {
+      "recipients": 9541475.0,
+      "opens": 6190568.0,
+      "clicks": 225276.0,
+      "conversions": 3940.0,
+      "conversion_value": 616583.0598499998,
+      "aov": 156.49316239847712
+    },
+    "flows_2026": {
+      "recipients": 458018.0,
+      "opens": 438162.0,
+      "clicks": 45473.0,
+      "conversions": 3118.0,
+      "conversion_value": 443455.2003300001,
+      "aov": 142.2242464175754
+    },
+    "flows_2025": {
+      "recipients": 478567.0,
+      "opens": 466163.0,
+      "clicks": 50467.0,
+      "conversions": 4412.0,
+      "conversion_value": 594559.4994400003,
+      "aov": 134.75963269265645
+    }
+  }
+}
