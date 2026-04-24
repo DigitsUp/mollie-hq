@@ -1,40 +1,40 @@
 {
   "meta": {
-    "lastUpdated": "2026-04-22T11:30:00-07:00",
+    "lastUpdated": "2026-04-23T21:53:00-07:00",
     "updatedBy": "Mollie"
   },
   "calendar": [
-    { "time": "9:30 AM", "title": "Liverpool x Power Digital ✓" },
-    { "time": "10:00 AM", "title": "Brand Featured x Scope Review ✓" },
-    { "time": "11:00 AM", "title": "Jacob + Mike Reconnect — Riversol ✓" }
+    { "time": "5:45 AM", "title": "Ferry — Apr 24" },
+    { "time": "All day", "title": "Apr 27 — Brand Featured start date" }
   ],
   "needsYou": [
-    { "text": "Brand Featured internal kickoff — must happen before Apr 27", "chip": "Deadline" },
-    { "text": "Riversol plaintext NCO email — one-off ad hoc send, do this first", "chip": "Action" },
-    { "text": "Riversol winback brief + full action list from Apr 20 meeting", "chip": "Action" }
+    { "text": "Riversol NCO — confirm copy direction + split send scope with Shelbie (send Sat Apr 26)", "chip": "Deadline" },
+    { "text": "System optimization plan — 9 improvements ready, awaiting your go", "chip": "Decision" },
+    { "text": "Brand Featured — starts Apr 27, confirm all clear", "chip": "Deadline" }
   ],
   "watching": [
     { "dot": "yellow", "text": "Liverpool — Sunset Flow v3 with Kieran (plain text, no design)" },
-    { "dot": "yellow", "text": "RVCA — Abandoned suite v7 with Kieran, awaiting feedback" },
-    { "dot": "red", "text": "RVCA — Add to Cart blocked on Clay support ticket" },
-    { "dot": "yellow", "text": "Hiba Academy — client reviewing + commenting nurture flow" },
-    { "dot": "yellow", "text": "SFR Distillery — Will Rogers reviewing proposal (no reply since Apr 17)" },
-    { "dot": "green", "text": "Brand Featured — Copy Doc v1 sent to Kieran Apr 22" },
-    { "dot": "yellow", "text": "Riversol — Mother's Day kicks off Apr 23" }
+    { "dot": "green", "text": "RVCA — Abandoned Suite v7 DONE ✓ All 3 flows approved Apr 23" },
+    { "dot": "red", "text": "RVCA — Add to Cart still blocked on Clay support ticket" },
+    { "dot": "yellow", "text": "RVCA — Welcome Series with Kieran" },
+    { "dot": "yellow", "text": "Hiba Academy — client reviewing nurture flow, adjustments next week" },
+    { "dot": "yellow", "text": "SFR Distillery — Will Rogers reviewing proposal" },
+    { "dot": "amber", "text": "Riversol — NCO building with Shelbie, send Sat Apr 26" },
+    { "dot": "green", "text": "Brand Featured — internal kickoff done, starts Apr 27" }
   ],
   "clients": [
-    { "name": "Liverpool LA", "lastActivity": "Sunset Flow v3 with Kieran. Weekly report done.", "dot": "amber", "status": "active" },
-    { "name": "RVCA", "lastActivity": "Abandoned v7 with Kieran. Add to Cart ticket open. Weekly Thu 11am.", "dot": "amber", "status": "active" },
-    { "name": "Riversol", "lastActivity": "Jacob call done. NCO email + winback brief still to action.", "dot": "green", "status": "active" },
-    { "name": "Brand Featured", "lastActivity": "NEW. Copy Doc v1 sent. Internal kickoff needed before Apr 27.", "dot": "amber", "status": "prospect" },
+    { "name": "Liverpool LA", "lastActivity": "Sunset Flow v3 with Kieran. No active asks.", "dot": "amber", "status": "active" },
+    { "name": "RVCA", "lastActivity": "Abandoned v7 DONE ✓. Add to Cart ticket open. Welcome Series with Kieran.", "dot": "green", "status": "active" },
+    { "name": "Riversol", "lastActivity": "NCO building for Sat Apr 26. Win-back strategy queued. Standing call: Wednesdays.", "dot": "amber", "status": "active" },
+    { "name": "Brand Featured", "lastActivity": "Internal kickoff done. Starts Apr 27.", "dot": "green", "status": "prospect" },
     { "name": "Hiba Academy", "lastActivity": "Client reviewing nurture flow. Adjustments next week.", "dot": "amber", "status": "active" },
     { "name": "Axis Health", "lastActivity": "In design with Marl.", "dot": "amber", "status": "active" },
     { "name": "SFR Distillery", "lastActivity": "Proposal out. Waiting on Will Rogers.", "dot": "grey", "status": "prospect" },
-    { "name": "Stand Flagpoles", "lastActivity": "CLOSED. Mauro meeting was final.", "dot": "grey", "status": "watching" }
+    { "name": "Stand Flagpoles", "lastActivity": "CLOSED.", "dot": "grey", "status": "watching" }
   ],
   "inbox": {
-    "summary": "All clear. Fathom meeting recording requests from David — always ignore.",
-    "lastChecked": "2026-04-22T08:30:00-07:00"
+    "summary": "All clear. Fathom recording requests from David — always ignore.",
+    "lastChecked": "2026-04-23T21:53:00-07:00"
   },
   "usage": {
     "monthLabel": "April 2026",
