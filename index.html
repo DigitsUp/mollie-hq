@@ -1294,63 +1294,73 @@ function initWorkspace() {
       vMon3Lines.push(vl); scene.add(vl);
     }
 
-    // ── WHITEBOARD ON WHEELS (standing, between desks and camera) ──
-    const wbX = 0, wbZ = -1.80;
+    // ── WHITEBOARD ON WHEELS (left of Mollie, rotated to face right wall) ──
+    const wbX = -2.60, wbZ = -0.40;
     const wbPoleMat = mat(0x8899AA);
     const wbPoleL = new THREE.Mesh(new THREE.BoxGeometry(0.04, 1.10, 0.04), wbPoleMat);
-    wbPoleL.position.set(wbX - 0.52, 0.61, wbZ); scene.add(wbPoleL);
+    wbPoleL.position.set(wbX, 0.61, wbZ - 0.46); scene.add(wbPoleL);
     const wbPoleR = new THREE.Mesh(new THREE.BoxGeometry(0.04, 1.10, 0.04), wbPoleMat);
-    wbPoleR.position.set(wbX + 0.52, 0.61, wbZ); scene.add(wbPoleR);
-    const wbTopBar = new THREE.Mesh(new THREE.BoxGeometry(1.08, 0.04, 0.04), wbPoleMat);
+    wbPoleR.position.set(wbX, 0.61, wbZ + 0.46); scene.add(wbPoleR);
+    const wbTopBar = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.04, 0.96), wbPoleMat);
     wbTopBar.position.set(wbX, 1.14, wbZ); scene.add(wbTopBar);
-    const wbBotBar = new THREE.Mesh(new THREE.BoxGeometry(1.08, 0.04, 0.04), wbPoleMat);
+    const wbBotBar = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.04, 0.96), wbPoleMat);
     wbBotBar.position.set(wbX, 0.22, wbZ); scene.add(wbBotBar);
     const wbWheelMat = new THREE.MeshLambertMaterial({ color: 0x222222, flatShading: true });
-    [[-0.52, -0.06], [-0.52, 0.06], [0.52, -0.06], [0.52, 0.06]].forEach(([wx, wz]) => {
+    [[-0.06, -0.46], [0.06, -0.46], [-0.06, 0.46], [0.06, 0.46]].forEach(([wx, wz]) => {
       const wheel = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.055, 0.04, 8), wbWheelMat);
-      wheel.rotation.x = Math.PI / 2;
       wheel.position.set(wbX + wx, 0.055, wbZ + wz); scene.add(wheel);
     });
-    const wbBoard = new THREE.Mesh(new THREE.BoxGeometry(0.98, 0.65, 0.025), mat(0x7A8899));
-    wbBoard.position.set(wbX, 0.78, wbZ + 0.01); scene.add(wbBoard);
-    const wbSurface = new THREE.Mesh(new THREE.BoxGeometry(0.90, 0.57, 0.010),
+    const wbBoard = new THREE.Mesh(new THREE.BoxGeometry(0.025, 0.65, 0.88), mat(0x7A8899));
+    wbBoard.position.set(wbX + 0.01, 0.78, wbZ); scene.add(wbBoard);
+    const wbSurface = new THREE.Mesh(new THREE.BoxGeometry(0.010, 0.57, 0.80),
       new THREE.MeshLambertMaterial({ color: 0xEEF2F7 }));
-    wbSurface.position.set(wbX, 0.78, wbZ + 0.025); scene.add(wbSurface);
+    wbSurface.position.set(wbX + 0.018, 0.78, wbZ); scene.add(wbSurface);
     const wbLines = [
-      { col: 0xFF3CAC, w: 0.36, dx: -0.18, dy: 0.18 },
-      { col: 0xFF3CAC, w: 0.28, dx: -0.22, dy: 0.12 },
-      { col: 0x334466, w: 0.30, dx: -0.20, dy: 0.04 },
-      { col: 0x334466, w: 0.24, dx: -0.23, dy: -0.02 },
-      { col: 0x2f91c3, w: 0.18, dx: -0.25, dy: -0.08 },
-      { col: 0x334466, w: 0.26, dx: -0.21, dy: -0.14 },
-      { col: 0x334466, w: 0.20, dx: -0.24, dy: -0.20 },
-      { col: 0x2f91c3, w: 0.14, dx: -0.27, dy: -0.26 },
+      { col: 0xFF3CAC, w: 0.34, dz: -0.18, dy: 0.18 },
+      { col: 0xFF3CAC, w: 0.26, dz: -0.22, dy: 0.12 },
+      { col: 0x334466, w: 0.28, dz: -0.20, dy: 0.04 },
+      { col: 0x334466, w: 0.22, dz: -0.23, dy: -0.02 },
+      { col: 0x2f91c3, w: 0.16, dz: -0.25, dy: -0.08 },
+      { col: 0x334466, w: 0.24, dz: -0.21, dy: -0.14 },
+      { col: 0x334466, w: 0.18, dz: -0.24, dy: -0.20 },
+      { col: 0x2f91c3, w: 0.13, dz: -0.27, dy: -0.26 },
     ];
     wbLines.forEach(wl => {
-      const line = new THREE.Mesh(new THREE.BoxGeometry(wl.w, 0.014, 0.007),
+      const line = new THREE.Mesh(new THREE.BoxGeometry(0.007, 0.014, wl.w),
         new THREE.MeshLambertMaterial({ color: wl.col }));
-      line.position.set(wbX + wl.dx + wl.w / 2, 0.78 + wl.dy, wbZ + 0.032);
+      line.position.set(wbX + 0.025, 0.78 + wl.dy, wbZ + wl.dz + wl.w / 2);
       scene.add(line);
     });
     const wbCircle = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.007, 10),
       new THREE.MeshLambertMaterial({ color: 0x2f91c3 }));
-    wbCircle.rotation.x = Math.PI / 2;
-    wbCircle.position.set(wbX + 0.30, 0.80, wbZ + 0.033); scene.add(wbCircle);
-    const wbArrow = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.011, 0.006),
+    wbCircle.rotation.z = Math.PI / 2;
+    wbCircle.position.set(wbX + 0.026, 0.80, wbZ + 0.28); scene.add(wbCircle);
+    const wbArrow = new THREE.Mesh(new THREE.BoxGeometry(0.006, 0.011, 0.15),
       new THREE.MeshLambertMaterial({ color: 0x9333EA }));
-    wbArrow.position.set(wbX + 0.12, 0.80, wbZ + 0.034); scene.add(wbArrow);
+    wbArrow.position.set(wbX + 0.026, 0.80, wbZ + 0.10); scene.add(wbArrow);
 
     // ── KOI POND (floor, behind characters) ──
-    const pondRim = new THREE.Mesh(new THREE.CylinderGeometry(1.28, 1.28, 0.10, 18), mat(0x5C3D1E));
-    pondRim.position.set(0, 0.05, 1.80); scene.add(pondRim);
-    const pondBasin = new THREE.Mesh(new THREE.CylinderGeometry(1.14, 1.14, 0.12, 18), mat(0x2A1B0A));
-    pondBasin.position.set(0, 0.06, 1.80); scene.add(pondBasin);
+    // kidney bean pond — 3 overlapping ellipses for rim, basin, water
+    const pondRimMat = mat(0x5C3D1E);
+    const pondBasinMat = mat(0x2A1B0A);
     const pondWaterMat = new THREE.MeshLambertMaterial({ color: 0x0C3D5C, emissive: 0x082840, emissiveIntensity: 0.7 });
-    const pondWater = new THREE.Mesh(new THREE.CylinderGeometry(1.12, 1.12, 0.030, 18), pondWaterMat);
-    pondWater.position.set(0, 0.115, 1.80); scene.add(pondWater);
+    const pondPY = 1.80;
+    const kidneyLobes = [
+      { x: -0.50, z: pondPY,       rx: 0.72, rz: 0.58 },
+      { x:  0.50, z: pondPY,       rx: 0.72, rz: 0.58 },
+      { x:  0.00, z: pondPY + 0.30, rx: 0.52, rz: 0.44 },
+    ];
+    kidneyLobes.forEach(l => {
+      const rim = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, 0.10, 18), pondRimMat);
+      rim.scale.set(l.rx, 1, l.rz); rim.position.set(l.x, 0.05, l.z); scene.add(rim);
+      const basin = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, 0.12, 18), pondBasinMat);
+      basin.scale.set(l.rx * 0.90, 1, l.rz * 0.90); basin.position.set(l.x, 0.06, l.z); scene.add(basin);
+      const water = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, 0.030, 18), pondWaterMat);
+      water.scale.set(l.rx * 0.88, 1, l.rz * 0.88); water.position.set(l.x, 0.115, l.z); scene.add(water);
+    });
     const pondLight = new THREE.PointLight(0x1a6090, 1.4, 4.0);
-    pondLight.position.set(0, 0.5, 1.80); scene.add(pondLight);
-    const lilyPositions = [[-0.55, 2.25], [0.60, 1.65], [-0.35, 1.50], [0.55, 2.10]];
+    pondLight.position.set(0, 0.5, pondPY); scene.add(pondLight);
+    const lilyPositions = [[-0.55, 2.15], [0.60, 1.55], [-0.30, 1.50], [0.45, 2.05]];
     lilyPositions.forEach(([lx, lz]) => {
       const lily = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, 0.016, 8),
         new THREE.MeshLambertMaterial({ color: 0x1E6B2A }));
@@ -1491,7 +1501,7 @@ function initWorkspace() {
         const a = koi.userData.angle;
         const r = koi.userData.radius;
         koi.position.x = Math.cos(a) * r;
-        koi.position.z = 1.80 + Math.sin(a) * r;
+        koi.position.z = pondPY + Math.sin(a) * r;
         koi.rotation.y = -(a - Math.PI / 2);
         koi.children[1].rotation.y = 0.28 + Math.sin(t * 5 + i * 1.2) * 0.22;
       });
