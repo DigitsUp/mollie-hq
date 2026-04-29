@@ -28,7 +28,7 @@
       "title": "The LAB / Good Life",
       "client": "The LAB / Good Life",
       "section": "sales",
-      "column": "proposal-sent",
+      "column": "negotiating",
       "owner": "Michael",
       "dueDate": "",
       "commsFlag": "waiting-on-them",
@@ -43,7 +43,7 @@
       "owner": "Kieran",
       "dueDate": "",
       "commsFlag": "waiting-on-them",
-      "notes": "Copy v3 done — all 28 of Meaghan's comments actioned. Plain text format, no design review needed. With Kieran now."
+      "notes": "Copy v3 done â all 28 of Meaghan's comments actioned. Plain text format, no design review needed. With Kieran now."
     },
     {
       "id": "prod-002",
@@ -76,7 +76,7 @@
       "owner": "Michael",
       "dueDate": "",
       "commsFlag": "action-needed",
-      "notes": "Full action list from Apr 20 meeting still to unpack. Jacob call today Apr 22 11am. Also: plaintext NCO email is a one-off ad hoc send — do this first."
+      "notes": "Full action list from Apr 20 meeting still to unpack. Jacob call today Apr 22 11am. Also: plaintext NCO email is a one-off ad hoc send â do this first."
     },
     {
       "id": "prod-005",
@@ -120,7 +120,7 @@
       "owner": "Mollie",
       "dueDate": "",
       "commsFlag": "none",
-      "notes": "APPROVED and live. digitsup.github.io/liverpool-reports/q1-2026/ — pw: LPSQ1. Do not touch."
+      "notes": "APPROVED and live. digitsup.github.io/liverpool-reports/q1-2026/ â pw: LPSQ1. Do not touch."
     },
     {
       "id": "prod-009",
