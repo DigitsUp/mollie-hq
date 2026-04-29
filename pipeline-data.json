@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-22T11:26:00-07:00",
+  "lastUpdated": "2026-04-29T16:58:26.000Z",
   "cards": [
     {
       "id": "sales-001",
@@ -17,7 +17,7 @@
       "title": "SFR Distillery",
       "client": "SFR Distillery",
       "section": "sales",
-      "column": "proposal-sent",
+      "column": "outreach",
       "owner": "Michael",
       "dueDate": "",
       "commsFlag": "waiting-on-them",
