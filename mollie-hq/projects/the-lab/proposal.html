@@ -4,21 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light">
-<title>The LAB × DigitsUp — Klaviyo Strategy</title>
+<title>LiveGood × DigitsUp — Email & SMS Retention Strategy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy:      #0D1B4B;
-    --navy-dk:   #0A1538;
-    --cyan:      #33B5E8;
-    --cyan-dark: #1A8FBF;
-    --white:     #FFFFFF;
-    --light:     #F2F6FA;
-    --border:    #D8E4F0;
-    --text-dark: #0D1B4B;
-    --text-mid:  #4A5F82;
-    --text-light:#FFFFFF;
+    --forest:      #1A3A2A;
+    --forest-dk:   #122A1E;
+    --gold:        #D4A017;
+    --gold-light:  #E8B82A;
+    --cream:       #F5F0E8;
+    --white:       #FFFFFF;
+    --text-dark:   #1A3A2A;
+    --text-mid:    #4A6B52;
+    --text-light:  #FFFFFF;
+    --border:      #C8D9C4;
+    --orange:      #E8671A;
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,7 +27,7 @@
 
   body {
     background-color: #FFFFFF;
-    color: #0D1B4B;
+    color: var(--text-dark);
     font-family: 'Nunito Sans', sans-serif;
     font-size: 16px;
     line-height: 1.65;
@@ -38,64 +39,113 @@
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 16px 52px;
-    background-color: rgba(255,255,255,0.96);
+    padding: 0 52px;
+    height: 64px;
+    background-color: rgba(26,58,42,0.97);
     backdrop-filter: blur(14px);
-    border-bottom: 1px solid #D8E4F0;
+    border-bottom: 1px solid rgba(200,217,196,0.2);
   }
-  .nav-brand { display: flex; align-items: center; gap: 14px; }
-  .nav-lab {
+  .nav-brand { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+  .nav-livegood {
     font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900; font-size: 22px; letter-spacing: 0.05em;
-    color: #0D1B4B;
+    font-weight: 900; font-size: 20px; letter-spacing: 0.05em;
+    color: #FFFFFF; text-transform: uppercase;
   }
-  .nav-sep { width: 1px; height: 20px; background: #D8E4F0; }
+  .nav-livegood .oo { color: var(--orange); }
+  .nav-sep { width: 1px; height: 20px; background: rgba(200,217,196,0.3); }
   .nav-digits {
     font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700; font-size: 14px; letter-spacing: 0.12em;
-    color: #4A5F82; text-transform: uppercase;
-  }
-  .nav-links { display: flex; gap: 28px; list-style: none; }
-  .nav-links a {
-    font-size: 12px; font-weight: 700; letter-spacing: 0.06em;
-    color: #4A5F82; text-decoration: none; text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: #0D1B4B; }
-  .nav-badge {
-    font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
-    color: #FFFFFF; background-color: #33B5E8;
-    padding: 7px 16px; border-radius: 30px; text-transform: uppercase;
+    font-weight: 700; font-size: 13px; letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.45); text-transform: uppercase;
   }
 
-  /* ── HERO — dark bg, light text ── */
+  .nav-tabs { display: flex; gap: 0; list-style: none; }
+  .nav-tab-btn {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.5); text-decoration: none; text-transform: uppercase;
+    padding: 0 22px; height: 64px;
+    display: flex; align-items: center;
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    cursor: pointer; background: none; border-top: none; border-left: none; border-right: none;
+  }
+  .nav-tab-btn:hover { color: rgba(255,255,255,0.8); }
+  .nav-tab-btn.active { color: #FFFFFF; border-bottom-color: var(--gold); }
+
+  .nav-badge {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+    color: var(--forest); background-color: var(--gold);
+    padding: 7px 14px; border-radius: 30px; text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  /* ── TAB SECTIONS ── */
+  .tab-section { display: none; }
+  .tab-section.active { display: block; }
+
+  /* ── HERO — dark bg ── */
   .hero {
     min-height: 100vh;
     display: flex; flex-direction: column; justify-content: flex-end;
     padding: 140px 52px 88px;
     position: relative; overflow: hidden;
-    background-color: #0A1538;
+    background-color: var(--forest-dk);
   }
   .hero-dots {
     position: absolute; inset: 0;
-    background-image: radial-gradient(rgba(51,181,232,0.15) 1.5px, transparent 1.5px);
+    background-image: radial-gradient(rgba(212,160,23,0.12) 1.5px, transparent 1.5px);
     background-size: 28px 28px;
   }
   .hero-glow {
     position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 55% 50% at 80% 25%, rgba(51,181,232,0.2) 0%, transparent 65%),
-      radial-gradient(ellipse 35% 45% at 15% 75%, rgba(51,181,232,0.1) 0%, transparent 60%),
-      linear-gradient(to bottom, transparent 45%, rgba(10,21,56,0.7) 100%);
+      radial-gradient(ellipse 55% 50% at 80% 25%, rgba(212,160,23,0.15) 0%, transparent 65%),
+      radial-gradient(ellipse 35% 45% at 15% 75%, rgba(26,58,42,0.8) 0%, transparent 60%),
+      linear-gradient(to bottom, transparent 45%, rgba(18,42,30,0.8) 100%);
   }
+  .hero-ambient {
+    position: absolute; inset: 0;
+    pointer-events: none; z-index: 1; overflow: hidden;
+  }
+  .amb {
+    position: absolute; border-radius: 50%;
+    filter: blur(55px); opacity: 0;
+    animation: ambDrift ease-in-out infinite;
+  }
+  .amb-1 {
+    width: 580px; height: 580px;
+    background: radial-gradient(circle, rgba(212,160,23,0.18) 0%, transparent 65%);
+    top: -10%; left: 15%; animation-duration: 18s; animation-delay: 0s;
+  }
+  .amb-2 {
+    width: 460px; height: 460px;
+    background: radial-gradient(circle, rgba(212,160,23,0.10) 0%, transparent 65%);
+    top: 25%; left: 60%; animation-duration: 22s; animation-delay: -8s;
+  }
+  .amb-3 {
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(26,58,42,0.6) 0%, transparent 65%);
+    top: 60%; left: -5%; animation-duration: 20s; animation-delay: -13s;
+  }
+  @keyframes ambDrift {
+    0%   { opacity: 0; transform: translate(0px, 0px); }
+    6%   { opacity: 1; }
+    30%  { transform: translate(50px, -40px); }
+    55%  { transform: translate(-25px, 55px); }
+    75%  { transform: translate(35px, 15px); }
+    94%  { opacity: 1; }
+    100% { opacity: 0; transform: translate(0px, 0px); }
+  }
+
   .hero-eyebrow {
     font-size: 11px; font-weight: 700; letter-spacing: 0.22em;
-    color: #33B5E8; text-transform: uppercase;
+    color: var(--gold); text-transform: uppercase;
     margin-bottom: 22px;
     display: flex; align-items: center; gap: 10px;
     position: relative; z-index: 2;
   }
-  .hero-eyebrow::before { content: ''; display: block; width: 24px; height: 2px; background-color: #33B5E8; border-radius: 2px; }
+  .hero-eyebrow::before { content: ''; display: block; width: 24px; height: 2px; background-color: var(--gold); border-radius: 2px; }
   .hero-title {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: clamp(64px, 11vw, 148px);
@@ -104,20 +154,20 @@
     position: relative; z-index: 2;
     opacity: 0; animation: fadeUp 0.85s ease forwards 0.1s;
   }
-  .hero-title span { color: #33B5E8; }
+  .hero-title em { color: var(--gold); font-style: normal; }
   .hero-sub {
     font-size: clamp(13px, 1.5vw, 16px); font-weight: 600; letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.5); text-transform: uppercase;
+    color: rgba(255,255,255,0.4); text-transform: uppercase;
     margin-top: 20px; position: relative; z-index: 2;
     opacity: 0; animation: fadeUp 0.85s ease forwards 0.35s;
   }
   .hero-intro {
-    margin-top: 48px; max-width: 580px;
-    font-size: 17px; line-height: 1.7; color: rgba(255,255,255,0.6);
+    margin-top: 48px; max-width: 600px;
+    font-size: 17px; line-height: 1.7; color: rgba(255,255,255,0.55);
     position: relative; z-index: 2;
     opacity: 0; animation: fadeUp 0.85s ease forwards 0.5s;
   }
-  .hero-intro strong { color: #33B5E8; font-weight: 700; }
+  .hero-intro strong { color: var(--gold); font-weight: 700; }
   .hero-pills {
     margin-top: 40px; display: flex; flex-wrap: wrap; gap: 10px;
     position: relative; z-index: 2;
@@ -125,286 +175,365 @@
   }
   .hero-pill {
     font-size: 12px; font-weight: 700; letter-spacing: 0.07em;
-    color: #0D1B4B; background-color: #33B5E8;
+    color: var(--forest); background-color: var(--gold);
     padding: 8px 18px; border-radius: 30px; text-transform: uppercase;
   }
   .hero-pill.outline {
-    background-color: transparent; color: rgba(255,255,255,0.5);
-    border: 1px solid rgba(255,255,255,0.15);
+    background-color: transparent; color: rgba(255,255,255,0.45);
+    border: 1px solid rgba(255,255,255,0.18);
   }
-
-  /* ── SECTION SHARED ── */
-  section { padding: 96px 52px; border-bottom: 1px solid #D8E4F0; }
-
-  /* Eyebrow on LIGHT backgrounds */
-  .eyebrow-light {
-    font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
-    color: #1A8FBF; text-transform: uppercase;
-    margin-bottom: 12px;
-    display: flex; align-items: center; gap: 10px;
+  .hero-stats {
+    margin-top: 56px;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative; z-index: 2;
+    opacity: 0; animation: fadeUp 0.85s ease forwards 0.8s;
+    border-top: 1px solid rgba(200,217,196,0.15);
+    padding-top: 40px;
   }
-  .eyebrow-light::before { content: ''; display: block; width: 20px; height: 2px; background-color: #1A8FBF; border-radius: 2px; }
+  .hero-stat { padding: 0 24px 0 0; }
+  .hero-stat:first-child { padding-left: 0; }
+  .hero-stat + .hero-stat { border-left: 1px solid rgba(200,217,196,0.15); padding-left: 24px; }
+  .hero-stat-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 36px; font-weight: 900; color: var(--gold); line-height: 1;
+  }
+  .hero-stat-label { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.07em; margin-top: 4px; }
 
-  /* Eyebrow on DARK backgrounds */
+  /* ── SHARED SECTION ── */
+  section { padding: 96px 52px; }
+
   .eyebrow-dark {
     font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
-    color: #33B5E8; text-transform: uppercase;
+    color: var(--gold); text-transform: uppercase;
     margin-bottom: 12px;
     display: flex; align-items: center; gap: 10px;
   }
-  .eyebrow-dark::before { content: ''; display: block; width: 20px; height: 2px; background-color: #33B5E8; border-radius: 2px; }
+  .eyebrow-dark::before { content: ''; display: block; width: 20px; height: 2px; background-color: var(--gold); border-radius: 2px; }
 
-  .title-dark {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(36px, 4.8vw, 62px);
-    font-weight: 900; line-height: 0.95; letter-spacing: -0.01em;
-    text-transform: uppercase; color: #0D1B4B; margin-bottom: 28px;
+  .eyebrow-light {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
+    color: var(--text-mid); text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
   }
-  .title-dark em { color: #1A8FBF; font-style: normal; }
+  .eyebrow-light::before { content: ''; display: block; width: 20px; height: 2px; background-color: var(--gold); border-radius: 2px; }
 
-  .title-light {
+  .title-on-dark {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: clamp(36px, 4.8vw, 62px);
     font-weight: 900; line-height: 0.95; letter-spacing: -0.01em;
     text-transform: uppercase; color: #FFFFFF; margin-bottom: 28px;
   }
-  .title-light em { color: #33B5E8; font-style: normal; }
+  .title-on-dark em { color: var(--gold); font-style: normal; }
 
-  .body-lg-dark  { font-size: 17px; line-height: 1.72; color: #4A5F82; max-width: 640px; }
-  .body-lg-light { font-size: 17px; line-height: 1.72; color: rgba(255,255,255,0.5); max-width: 640px; }
-
-  /* ── FUNNEL — dark section ── */
-  .funnel-section { background-color: #0A1538; }
-
-  .funnel-track {
-    margin-top: 56px;
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 0; position: relative;
-  }
-  .funnel-track::before {
-    content: ''; position: absolute;
-    top: 35px; left: calc(12.5% + 8px); right: calc(12.5% + 8px); height: 2px;
-    background: linear-gradient(90deg, #33B5E8, rgba(51,181,232,0.2));
-    z-index: 0;
-  }
-  .funnel-step { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 0 12px; position: relative; z-index: 1; }
-  .funnel-icon {
-    width: 70px; height: 70px; border-radius: 50%;
-    background-color: rgba(51,181,232,0.1); border: 2px solid rgba(51,181,232,0.2);
-    display: flex; align-items: center; justify-content: center; font-size: 26px;
-  }
-  .funnel-step.active .funnel-icon { border-color: #33B5E8; background-color: rgba(51,181,232,0.15); }
-  .funnel-label { font-size: 13px; font-weight: 700; color: #FFFFFF; text-align: center; line-height: 1.3; }
-  .funnel-sub { font-size: 12px; color: rgba(255,255,255,0.4); text-align: center; line-height: 1.4; }
-  .funnel-opp {
-    margin-top: 52px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
-  }
-  .funnel-opp-card {
-    background-color: rgba(51,181,232,0.07); border: 1px solid rgba(51,181,232,0.18);
-    border-radius: 12px; padding: 28px;
-  }
-  .funnel-opp-title { font-size: 15px; font-weight: 800; color: #33B5E8; margin-bottom: 8px; }
-  .funnel-opp-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; }
-
-  /* ── FLOWS — light section ── */
-  .flows-section { background-color: #FFFFFF; }
-
-  .flows-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 56px; }
-  .flow-card {
-    background-color: #F2F6FA; border: 1px solid #D8E4F0;
-    border-radius: 14px; padding: 32px 36px;
-    display: flex; flex-direction: column; gap: 14px;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-  .flow-card:hover { border-color: #33B5E8; box-shadow: 0 0 0 3px rgba(51,181,232,0.08); }
-  .flow-pill {
-    font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
-    color: #FFFFFF; background-color: #33B5E8;
-    padding: 4px 12px; border-radius: 30px; text-transform: uppercase;
-    display: inline-block; width: fit-content;
-  }
-  .flow-title {
+  .title-on-light {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 26px; font-weight: 900; text-transform: uppercase;
-    color: #0D1B4B; line-height: 1.05;
+    font-size: clamp(36px, 4.8vw, 62px);
+    font-weight: 900; line-height: 0.95; letter-spacing: -0.01em;
+    text-transform: uppercase; color: var(--text-dark); margin-bottom: 28px;
   }
-  .flow-trigger { font-size: 12px; font-weight: 700; color: #1A8FBF; display: flex; align-items: center; gap: 6px; }
-  .flow-trigger::before { content: '→'; font-size: 14px; }
-  .flow-desc { font-size: 14px; color: #4A5F82; line-height: 1.6; }
-  .flow-steps { display: flex; flex-direction: column; gap: 8px; }
-  .flow-step { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: #4A5F82; }
-  .flow-step-n {
-    font-size: 11px; font-weight: 800; color: #FFFFFF;
-    background-color: #33B5E8; min-width: 20px; height: 20px;
-    display: flex; align-items: center; justify-content: center;
-    border-radius: 50%; flex-shrink: 0; margin-top: 2px;
-  }
-  .flow-channels { display: flex; gap: 6px; margin-bottom: 2px; }
-  .ch { font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 3px 9px; border-radius: 30px; }
-  .ch-email { background-color: #0D1B4B; color: #33B5E8; }
-  .ch-sms   { background-color: #C2E4D4; color: #1A5C40; }
-  .flow-footer { margin-top: 4px; padding-top: 14px; border-top: 1px solid #D8E4F0; display: flex; justify-content: space-between; align-items: center; }
-  .flow-footer-label { font-size: 11px; font-weight: 700; letter-spacing: 0.07em; color: #4A5F82; text-transform: uppercase; }
-  .flow-footer-val { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 900; color: #1A8FBF; }
+  .title-on-light em { color: var(--gold); font-style: normal; }
 
-  /* Featured flow — dark card */
-  .flow-card.featured {
-    background-color: #0A1538; border-color: transparent; grid-column: span 2;
-  }
-  .flow-card.featured:hover { border-color: #33B5E8; }
-  .flow-card.featured .flow-pill { background-color: #33B5E8; color: #0D1B4B; }
-  .flow-card.featured .flow-title { color: #FFFFFF; font-size: 30px; }
-  .flow-card.featured .flow-trigger { color: #6DCDF0; }
-  .flow-card.featured .flow-desc { color: rgba(255,255,255,0.5); }
-  .flow-card.featured .flow-step { color: rgba(255,255,255,0.45); }
-  .flow-card.featured .flow-footer { border-top-color: rgba(255,255,255,0.1); }
-  .flow-card.featured .flow-footer-label { color: rgba(255,255,255,0.4); }
-  .flow-card.featured .flow-footer-val { color: #33B5E8; }
-  .flow-card.featured .ch-email { background-color: #33B5E8; color: #0D1B4B; }
-  .flow-card.featured .ch-sms   { background-color: #C2E4D4; color: #1A5C40; }
+  .body-lg-dark  { font-size: 17px; line-height: 1.72; color: rgba(255,255,255,0.5); max-width: 640px; }
+  .body-lg-light { font-size: 17px; line-height: 1.72; color: var(--text-mid); max-width: 640px; }
 
-  /* ── LOYALTY — dark section ── */
-  .loyalty-section { background-color: #0D1B4B; }
-
-  .loyalty-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 56px; }
-  .loyalty-card {
-    background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  /* ── OPPORTUNITY SECTION (dark) ── */
+  .opportunity-section { background-color: var(--forest-dk); border-bottom: 1px solid rgba(200,217,196,0.12); }
+  .opp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 56px; }
+  .opp-card {
+    background-color: rgba(255,255,255,0.05); border: 1px solid rgba(200,217,196,0.15);
     border-radius: 14px; padding: 32px;
-    display: flex; flex-direction: column; gap: 12px;
-    transition: border-color 0.2s;
+    display: flex; flex-direction: column; gap: 14px;
+    transition: border-color 0.2s, background-color 0.2s;
   }
-  .loyalty-card:hover { border-color: rgba(51,181,232,0.4); }
-  .loyalty-card.mint { border-color: rgba(194,228,212,0.2); background-color: rgba(194,228,212,0.05); }
-  .loyalty-icon { font-size: 32px; }
-  .loyalty-title { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 900; text-transform: uppercase; color: #FFFFFF; }
-  .loyalty-desc { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.6; }
-  .loyalty-example {
-    margin-top: 4px; padding: 12px 16px;
-    background-color: rgba(51,181,232,0.1); border-radius: 8px;
-    font-size: 13px; color: #6DCDF0; line-height: 1.55; font-style: italic;
-  }
-  .loyalty-card.mint .loyalty-example { background-color: rgba(194,228,212,0.1); color: #9FD4BB; }
+  .opp-card:hover { border-color: rgba(212,160,23,0.35); background-color: rgba(212,160,23,0.04); }
+  .opp-title { font-size: 15px; font-weight: 800; color: var(--gold); line-height: 1.3; }
+  .opp-desc { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.65; }
 
-  /* ── CAMPAIGNS — light section ── */
-  .campaigns-section { background-color: #F2F6FA; }
-
-  .campaign-table { margin-top: 56px; }
-  .campaign-row {
-    display: grid; grid-template-columns: 110px 1fr; gap: 28px;
-    align-items: start; padding: 28px 0;
-    border-bottom: 1px solid #D8E4F0;
-    background-color: transparent;
-  }
-  .campaign-row:first-child { border-top: 1px solid #D8E4F0; }
-  .c-month {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 28px; font-weight: 900;
-    color: #0D1B4B; text-transform: uppercase; line-height: 1;
-  }
-  .c-season {
-    font-size: 11px; font-weight: 700; color: #4A5F82;
-    text-transform: uppercase; letter-spacing: 0.07em; margin-top: 4px;
-  }
-  .c-title { font-size: 15px; font-weight: 800; color: #0D1B4B; margin-bottom: 6px; }
-  .c-desc { font-size: 13px; color: #4A5F82; line-height: 1.55; }
-  .c-tags { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
-  .tag {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.07em;
-    text-transform: uppercase; padding: 4px 10px; border-radius: 30px;
-  }
-  .tag-e { background-color: #0D1B4B; color: #33B5E8; }
-  .tag-s { background-color: #D8E4F0; color: #4A5F82; }
-  .tag-m { background-color: #C2E4D4; color: #1A5C40; }
-
-  /* ── WHY DIGITSUP — light section ── */
-  .bring-section { background-color: #FFFFFF; }
-
-  .bring-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 56px; }
-  .bring-card {
-    background-color: #F2F6FA; border: 1px solid #D8E4F0;
+  /* ── WHY DIGITSUP (light/cream) ── */
+  .why-section { background-color: var(--cream); border-bottom: 1px solid var(--border); }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 56px; }
+  .why-card {
+    background-color: #FFFFFF; border: 1px solid var(--border);
     border-radius: 14px; padding: 32px 36px;
     display: flex; flex-direction: column; gap: 10px;
   }
-  .bring-num { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: #1A8FBF; text-transform: uppercase; }
-  .bring-title { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 900; text-transform: uppercase; color: #0D1B4B; }
-  .bring-desc { font-size: 14px; color: #4A5F82; line-height: 1.65; }
+  .why-num { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: var(--text-mid); text-transform: uppercase; }
+  .why-title { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 900; text-transform: uppercase; color: var(--text-dark); }
+  .why-desc { font-size: 14px; color: var(--text-mid); line-height: 1.65; }
 
   .platinum-wrap {
-    margin-top: 48px; background-color: #0A1538; border-radius: 16px;
+    margin-top: 48px; background-color: var(--forest-dk); border-radius: 16px;
     padding: 44px 52px; display: flex; align-items: center; gap: 40px;
   }
   .platinum-icon { font-size: 52px; flex-shrink: 0; }
-  .platinum-label { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(51,181,232,0.5); margin-bottom: 6px; }
-  .platinum-title { font-family: 'Barlow Condensed', sans-serif; font-size: 30px; font-weight: 900; text-transform: uppercase; color: #33B5E8; margin-bottom: 10px; }
-  .platinum-desc { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.65; max-width: 540px; }
+  .platinum-label { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(212,160,23,0.5); margin-bottom: 6px; }
+  .platinum-title { font-family: 'Barlow Condensed', sans-serif; font-size: 30px; font-weight: 900; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .platinum-desc { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.65; max-width: 560px; }
 
-  /* ── CLOSING — dark section ── */
-  .closing-section { background-color: #0A1538; }
+  /* ── EMAIL DESIGN EXAMPLES (cream) ── */
+  .design-section { background-color: var(--cream); border-bottom: 1px solid var(--border); }
+  .design-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 56px; }
+  .design-card {
+    background-color: #FFFFFF; border: 1px solid var(--border);
+    border-radius: 14px; overflow: hidden;
+  }
+  .design-card-header {
+    background-color: var(--forest); padding: 20px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .design-card-badge {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--forest);
+    background-color: var(--gold); padding: 4px 12px; border-radius: 30px;
+  }
+  .design-card-dots { display: flex; gap: 5px; }
+  .design-card-dots span { width: 8px; height: 8px; border-radius: 50%; background-color: rgba(255,255,255,0.2); }
+  .design-card-body { padding: 24px; }
+  .design-card-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px; font-weight: 900; text-transform: uppercase;
+    color: var(--text-dark); margin-bottom: 12px; line-height: 1.1;
+  }
+  .design-card-thumb {
+    border-radius: 8px; height: 120px;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(26,58,42,0.04),
+      rgba(26,58,42,0.04) 10px,
+      rgba(26,58,42,0.02) 10px,
+      rgba(26,58,42,0.02) 20px
+    );
+    border: 1px dashed var(--border);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 14px;
+  }
+  .design-card-thumb-icon { font-size: 32px; opacity: 0.35; }
+  .design-card-coming {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    color: var(--gold); text-transform: uppercase;
+  }
+  .design-card-note { font-size: 12px; color: var(--text-mid); margin-top: 4px; line-height: 1.5; }
 
-  .convo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 56px; }
-  .convo-card {
-    background-color: rgba(51,181,232,0.07); border: 1px solid rgba(51,181,232,0.15);
+  /* ── PRICING (dark) ── */
+  .pricing-section { background-color: var(--forest-dk); border-bottom: 1px solid rgba(200,217,196,0.12); }
+  .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 56px; }
+  .pricing-card {
+    background-color: rgba(255,255,255,0.05); border: 1px solid rgba(200,217,196,0.15);
+    border-radius: 14px; padding: 40px;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .pricing-card.recommended {
+    background-color: rgba(212,160,23,0.07); border-color: rgba(212,160,23,0.4);
+    position: relative;
+  }
+  .pricing-recommended-badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    background-color: var(--gold); color: var(--forest);
+    padding: 5px 18px; border-radius: 30px;
+  }
+  .pricing-tier { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+  .pricing-name { font-family: 'Barlow Condensed', sans-serif; font-size: 30px; font-weight: 900; text-transform: uppercase; color: #FFFFFF; line-height: 1; }
+  .pricing-amount { font-family: 'Barlow Condensed', sans-serif; font-size: 48px; font-weight: 900; color: var(--gold); line-height: 1; }
+  .pricing-amount span { font-size: 18px; color: rgba(255,255,255,0.35); font-weight: 400; font-family: 'Nunito Sans', sans-serif; }
+  .pricing-divider { border: none; border-top: 1px solid rgba(200,217,196,0.12); }
+  .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .pricing-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+  .pricing-features li::before { content: '✓'; color: var(--gold); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+
+  /* ── CLOSING (dark) ── */
+  .closing-section { background-color: var(--forest-dk); }
+  .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 56px; }
+  .step-card {
+    background-color: rgba(212,160,23,0.07); border: 1px solid rgba(212,160,23,0.15);
     border-radius: 14px; padding: 32px;
     display: flex; flex-direction: column; gap: 12px;
   }
-  .convo-n { font-family: 'Barlow Condensed', sans-serif; font-size: 40px; font-weight: 900; color: rgba(51,181,232,0.25); line-height: 1; }
-  .convo-title { font-size: 15px; font-weight: 700; color: #FFFFFF; line-height: 1.3; }
-  .convo-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+  .step-n { font-family: 'Barlow Condensed', sans-serif; font-size: 40px; font-weight: 900; color: rgba(212,160,23,0.25); line-height: 1; }
+  .step-title { font-size: 15px; font-weight: 700; color: #FFFFFF; line-height: 1.3; }
+  .step-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+
+  /* ── LIFECYCLES TAB ── */
+  .lifecycles-header { background-color: var(--forest-dk); padding: 96px 52px 72px; }
+  .lifecycles-body { background-color: var(--cream); padding: 72px 52px; }
+
+  .stage-block { margin-bottom: 60px; }
+  .stage-header {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 24px; padding-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+  }
+  .stage-badge {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--forest); background-color: var(--gold);
+    padding: 5px 14px; border-radius: 30px;
+  }
+  .stage-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 28px; font-weight: 900; text-transform: uppercase;
+    color: var(--text-dark); line-height: 1;
+  }
+  .stage-sub { font-size: 13px; color: var(--text-mid); font-weight: 600; }
+
+  .flows-grid-lc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .flows-grid-lc.two-col { grid-template-columns: 1fr 1fr; }
+  .flows-grid-lc.four-col { grid-template-columns: repeat(4, 1fr); }
+
+  .lc-flow-card {
+    background-color: #FFFFFF; border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px 28px;
+    display: flex; flex-direction: column; gap: 12px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .lc-flow-card:hover { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212,160,23,0.08); }
+  .lc-flow-card.featured {
+    background-color: var(--forest); border-color: transparent; grid-column: span 2;
+  }
+  .lc-flow-card.featured:hover { border-color: var(--gold); }
+
+  .lc-flow-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px; font-weight: 900; text-transform: uppercase;
+    color: var(--text-dark); line-height: 1.05;
+  }
+  .lc-flow-card.featured .lc-flow-name { color: #FFFFFF; font-size: 24px; }
+
+  .lc-flow-trigger {
+    font-size: 12px; font-weight: 700; color: var(--text-mid);
+    display: flex; align-items: center; gap: 6px; line-height: 1.4;
+  }
+  .lc-flow-trigger::before { content: '→'; color: var(--gold); font-size: 14px; flex-shrink: 0; }
+  .lc-flow-card.featured .lc-flow-trigger { color: rgba(255,255,255,0.5); }
+
+  .lc-flow-meta { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .lc-badge {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 30px;
+  }
+  .lc-badge-p1 { background-color: var(--gold); color: var(--forest); }
+  .lc-badge-p2 { background-color: rgba(74,107,82,0.15); color: var(--text-mid); border: 1px solid rgba(74,107,82,0.3); }
+  .lc-badge-sms { background-color: rgba(26,58,42,0.1); color: var(--forest); border: 1px solid rgba(26,58,42,0.2); }
+  .lc-flow-card.featured .lc-badge-sms { background-color: rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); border-color: rgba(255,255,255,0.15); }
+  .lc-badge-count { background-color: rgba(26,58,42,0.07); color: var(--text-dark); border: 1px solid var(--border); }
+  .lc-flow-card.featured .lc-badge-count { background-color: rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); border-color: rgba(255,255,255,0.15); }
+
+  .lc-flow-theme {
+    font-size: 13px; color: var(--text-mid); line-height: 1.55;
+    font-style: italic; padding: 10px 14px;
+    background-color: rgba(212,160,23,0.07); border-radius: 8px;
+    border-left: 3px solid var(--gold);
+  }
+  .lc-flow-card.featured .lc-flow-theme { background-color: rgba(212,160,23,0.1); color: rgba(255,255,255,0.55); }
+
+  .lc-steps { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+  .lc-step { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-mid); line-height: 1.5; }
+  .lc-flow-card.featured .lc-step { color: rgba(255,255,255,0.45); }
+  .lc-step-n {
+    font-size: 10px; font-weight: 800; color: var(--forest);
+    background-color: var(--gold); min-width: 18px; height: 18px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; flex-shrink: 0; margin-top: 2px;
+  }
+
+  .stage-connector {
+    display: flex; align-items: center; justify-content: center;
+    gap: 12px; padding: 20px 0; color: rgba(26,58,42,0.2);
+    font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+  }
+  .stage-connector::before,
+  .stage-connector::after {
+    content: ''; flex: 1; height: 1px; background-color: var(--border);
+  }
+
+  /* ── CAMPAIGNS TAB ── */
+  .campaigns-header { background-color: var(--forest-dk); padding: 96px 52px 72px; }
+  .campaigns-body { background-color: var(--cream); padding: 72px 52px; }
+
+  .segments-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 60px; }
+  .seg-card {
+    background-color: #FFFFFF; border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .seg-icon { font-size: 24px; }
+  .seg-name { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 900; text-transform: uppercase; color: var(--text-dark); }
+  .seg-desc { font-size: 13px; color: var(--text-mid); line-height: 1.55; }
+
+  .week-block { margin-bottom: 48px; }
+  .week-header {
+    display: flex; align-items: baseline; gap: 16px; margin-bottom: 20px;
+    padding-bottom: 14px; border-bottom: 2px solid var(--border);
+  }
+  .week-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 32px; font-weight: 900; text-transform: uppercase;
+    color: var(--text-dark); line-height: 1;
+  }
+  .week-dates { font-size: 13px; font-weight: 600; color: var(--text-mid); }
+  .week-theme { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); }
+
+  .sends-list { display: flex; flex-direction: column; gap: 8px; }
+  .send-row {
+    display: grid; grid-template-columns: 52px 100px 1fr auto;
+    gap: 12px; align-items: center;
+    background-color: #FFFFFF; border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 20px;
+    transition: border-color 0.2s;
+  }
+  .send-row:hover { border-color: var(--gold); }
+  .send-row.winback {
+    background-color: rgba(26,58,42,0.04);
+    border-color: rgba(26,58,42,0.15);
+    border-left: 3px solid var(--text-mid);
+  }
+  .send-row.winback:hover { border-color: var(--gold); border-left-color: var(--gold); }
+
+  .send-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px; font-weight: 900; color: var(--gold); line-height: 1;
+    text-align: center;
+  }
+  .send-row.winback .send-num { color: var(--text-mid); font-size: 14px; font-weight: 700; font-family: 'Nunito Sans', sans-serif; letter-spacing: 0.06em; }
+  .send-date { font-size: 12px; font-weight: 700; color: var(--text-mid); }
+  .send-name { font-size: 14px; font-weight: 700; color: var(--text-dark); line-height: 1.3; }
+  .send-angle { font-size: 12px; color: var(--text-mid); margin-top: 2px; line-height: 1.4; }
+  .send-segs { display: flex; gap: 5px; flex-wrap: wrap; justify-content: flex-end; }
+
+  .seg-pill {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 3px 9px; border-radius: 30px;
+  }
+  .seg-members { background-color: var(--gold); color: var(--forest); }
+  .seg-nonmember { background-color: rgba(26,58,42,0.12); color: var(--forest); border: 1px solid rgba(26,58,42,0.2); }
+  .seg-engaged { background-color: var(--cream); color: var(--text-dark); border: 1px solid var(--border); }
+  .seg-lapsed { background-color: rgba(74,107,82,0.1); color: var(--text-mid); border: 1px solid rgba(74,107,82,0.25); }
+  .seg-all { background-color: var(--forest); color: #FFFFFF; }
+
+  .sends-total {
+    margin-top: 40px; padding: 24px 32px;
+    background-color: var(--forest); border-radius: 12px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .sends-total-text { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+  .sends-total-text strong { color: var(--gold); }
+  .sends-total-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 48px; font-weight: 900; color: var(--gold); line-height: 1;
+  }
+  .sends-total-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); text-align: right; }
 
   /* ── FOOTER ── */
   footer {
     padding: 48px 52px; display: flex; justify-content: space-between; align-items: center;
-    background-color: #0D1B4B; border-top: 1px solid rgba(255,255,255,0.08);
+    background-color: var(--forest-dk); border-top: 1px solid rgba(200,217,196,0.12);
   }
-  .footer-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 900; letter-spacing: 0.16em; color: rgba(255,255,255,0.35); text-transform: uppercase; }
-  .footer-logo span { color: #33B5E8; }
-  .footer-note { font-size: 12px; color: rgba(255,255,255,0.25); }
+  .footer-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 900; letter-spacing: 0.16em; color: rgba(255,255,255,0.3); text-transform: uppercase; }
+  .footer-logo span { color: var(--gold); }
+  .footer-note { font-size: 12px; color: rgba(255,255,255,0.2); }
   .footer-contact { font-size: 13px; color: rgba(255,255,255,0.4); text-align: right; }
-  .footer-contact a { color: #33B5E8; text-decoration: none; }
-
-  /* ── HERO AMBIENT LIGHT ── */
-  .hero-ambient {
-    position: absolute; inset: 0;
-    pointer-events: none; z-index: 1;
-    overflow: hidden;
-  }
-  .amb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(55px);
-    opacity: 0;
-    animation: ambDrift ease-in-out infinite;
-  }
-  .amb-1 {
-    width: 580px; height: 580px;
-    background: radial-gradient(circle, rgba(51,181,232,0.22) 0%, transparent 65%);
-    top: -10%; left: 15%;
-    animation-duration: 18s;
-    animation-delay: 0s;
-  }
-  .amb-2 {
-    width: 460px; height: 460px;
-    background: radial-gradient(circle, rgba(51,181,232,0.16) 0%, transparent 65%);
-    top: 25%; left: 55%;
-    animation-duration: 22s;
-    animation-delay: -8s;
-  }
-  .amb-3 {
-    width: 380px; height: 380px;
-    background: radial-gradient(circle, rgba(51,181,232,0.13) 0%, transparent 65%);
-    top: 50%; left: -5%;
-    animation-duration: 20s;
-    animation-delay: -13s;
-  }
-  @keyframes ambDrift {
-    0%   { opacity: 0;    transform: translate(0px, 0px); }
-    6%   { opacity: 1; }
-    30%  { transform: translate(50px, -40px); }
-    55%  { transform: translate(-25px, 55px); }
-    75%  { transform: translate(35px, 15px); }
-    94%  { opacity: 1; }
-    100% { opacity: 0;    transform: translate(0px, 0px); }
-  }
+  .footer-contact a { color: var(--gold); text-decoration: none; }
 
   /* ── ANIMATIONS ── */
   @keyframes fadeUp {
@@ -416,20 +545,34 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
-    nav { padding: 14px 20px; }
-    .nav-links { display: none; }
+    nav { padding: 0 20px; }
+    .nav-badge { display: none; }
+    .nav-tab-btn { padding: 0 14px; font-size: 11px; }
     section { padding: 60px 20px; }
     .hero { padding: 120px 20px 60px; }
-    .flows-grid, .loyalty-grid, .bring-grid { grid-template-columns: 1fr; }
-    .flow-card.featured { grid-column: span 1; }
-    .funnel-track { grid-template-columns: 1fr 1fr; gap: 24px; }
-    .funnel-track::before { display: none; }
-    .funnel-opp { grid-template-columns: 1fr; }
-    .convo-grid { grid-template-columns: 1fr; }
-    .campaign-row { grid-template-columns: 80px 1fr; gap: 16px; }
+    .hero-stats { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .hero-stat + .hero-stat { border-left: none; padding-left: 0; }
+    .hero-stat:nth-child(3) { border-top: 1px solid rgba(200,217,196,0.15); padding-top: 16px; }
+    .hero-stat:nth-child(4) { border-top: 1px solid rgba(200,217,196,0.15); padding-top: 16px; }
+    .opp-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .design-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .flows-grid-lc { grid-template-columns: 1fr; }
+    .flows-grid-lc.two-col { grid-template-columns: 1fr; }
+    .flows-grid-lc.four-col { grid-template-columns: 1fr; }
+    .lc-flow-card.featured { grid-column: span 1; }
+    .segments-grid { grid-template-columns: 1fr 1fr; }
+    .send-row { grid-template-columns: 40px 80px 1fr; gap: 8px; padding: 12px 14px; }
+    .send-segs { display: none; }
     .platinum-wrap { flex-direction: column; gap: 20px; padding: 32px; }
+    .sends-total { flex-direction: column; gap: 16px; text-align: center; }
+    .sends-total-label { text-align: center; }
     footer { flex-direction: column; gap: 16px; text-align: center; }
     .footer-contact { text-align: center; }
+    .lifecycles-header, .campaigns-header { padding: 96px 20px 56px; }
+    .lifecycles-body, .campaigns-body { padding: 48px 20px; }
   }
 </style>
 </head>
@@ -438,22 +581,22 @@
 <!-- PASSWORD GATE -->
 <div id="password-gate" style="
   position:fixed; inset:0; z-index:9999;
-  background-color:#0A1538;
+  background-color:#122A1E;
   display:flex; flex-direction:column;
   align-items:center; justify-content:center; gap:32px;
   padding:40px;
 ">
-  <div style="background-image:radial-gradient(rgba(51,181,232,0.12) 1.5px,transparent 1.5px);background-size:28px 28px;position:absolute;inset:0;pointer-events:none;"></div>
-  <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 50% at 50% 40%,rgba(51,181,232,0.12) 0%,transparent 70%);"></div>
+  <div style="background-image:radial-gradient(rgba(212,160,23,0.1) 1.5px,transparent 1.5px);background-size:28px 28px;position:absolute;inset:0;pointer-events:none;"></div>
+  <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 50% at 50% 40%,rgba(212,160,23,0.1) 0%,transparent 70%);"></div>
   <div style="position:relative;z-index:2;text-align:center;">
-    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:56px;letter-spacing:-0.01em;color:#FFFFFF;text-transform:uppercase;line-height:1;margin-bottom:8px;">The <span style="color:#33B5E8;">LAB</span></div>
-    <div style="font-size:11px;font-weight:700;letter-spacing:0.22em;color:rgba(51,181,232,0.6);text-transform:uppercase;">Klaviyo Strategy · DigitsUp</div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:56px;letter-spacing:-0.01em;color:#FFFFFF;text-transform:uppercase;line-height:1;margin-bottom:8px;">LIVE<span style="color:#E8671A">G</span><span style="color:#E8671A">oo</span>D</div>
+    <div style="font-size:11px;font-weight:700;letter-spacing:0.22em;color:rgba(212,160,23,0.6);text-transform:uppercase;margin-top:8px;">Email & SMS Retention · DigitsUp</div>
   </div>
   <div style="position:relative;z-index:2;width:100%;max-width:340px;display:flex;flex-direction:column;gap:12px;">
     <input id="pw-input" type="password" placeholder="Enter password" autocomplete="off"
       onkeydown="if(event.key==='Enter')checkPassword()"
       style="width:100%;padding:16px 20px;background-color:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);border-radius:10px;outline:none;font-family:'Nunito Sans',sans-serif;font-size:16px;font-weight:600;color:#FFFFFF;letter-spacing:0.12em;text-align:center;"/>
-    <button onclick="checkPassword()" style="width:100%;padding:16px;background-color:#33B5E8;border:none;border-radius:10px;font-family:'Nunito Sans',sans-serif;font-size:14px;font-weight:800;letter-spacing:0.1em;color:#0D1B4B;text-transform:uppercase;cursor:pointer;">View Proposal</button>
+    <button onclick="checkPassword()" style="width:100%;padding:16px;background-color:#D4A017;border:none;border-radius:10px;font-family:'Nunito Sans',sans-serif;font-size:14px;font-weight:800;letter-spacing:0.1em;color:#1A3A2A;text-transform:uppercase;cursor:pointer;">View Proposal</button>
     <div id="pw-error" style="font-size:13px;font-weight:600;color:#FF6B6B;text-align:center;opacity:0;transition:opacity 0.3s;min-height:20px;">Incorrect password — try again.</div>
   </div>
 </div>
@@ -464,414 +607,741 @@
 <!-- NAV -->
 <nav>
   <div class="nav-brand">
-    <span class="nav-lab">LAB</span>
+    <span class="nav-livegood">LIVE<span class="oo">G<span style="color:#E8671A">oo</span></span>D</span>
     <div class="nav-sep"></div>
     <span class="nav-digits">DigitsUp</span>
   </div>
-  <ul class="nav-links">
-    <li><a href="#funnel">Funnel</a></li>
-    <li><a href="#flows">Automations</a></li>
-    <li><a href="#loyalty">Loyalty</a></li>
-    <li><a href="#campaigns">Campaigns</a></li>
-    <li><a href="#bring">Why Us</a></li>
+  <ul class="nav-tabs">
+    <li><button class="nav-tab-btn active" onclick="switchTab('proposal', this)">Proposal</button></li>
+    <li><button class="nav-tab-btn" onclick="switchTab('lifecycles', this)">Lifecycles</button></li>
+    <li><button class="nav-tab-btn" onclick="switchTab('campaigns', this)">Campaigns</button></li>
   </ul>
   <span class="nav-badge">Klaviyo Platinum Partner</span>
 </nav>
+
+<!-- ════════════════════════════════════════════════
+     TAB 1: PROPOSAL
+════════════════════════════════════════════════ -->
+<div id="tab-proposal" class="tab-section active">
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-dots"></div>
   <div class="hero-glow"></div>
-  <div class="hero-ambient"><div class="amb amb-1"></div><div class="amb amb-2"></div><div class="amb amb-3"></div></div>
-  <div class="hero-eyebrow">Klaviyo Strategy · April 2025</div>
-  <h1 class="hero-title">The<br><span>LAB</span><br>Life.</h1>
-  <p class="hero-sub">Stronger Kids. Closer Families. Every Day.</p>
+  <div class="hero-ambient">
+    <div class="amb amb-1"></div>
+    <div class="amb amb-2"></div>
+    <div class="amb amb-3"></div>
+  </div>
+  <div class="hero-eyebrow">Email &amp; SMS Retention · May 2026</div>
+  <h1 class="hero-title">More<br>Revenue<br>From the<br><em>List You</em><br>Already<br>Have.</h1>
+  <p class="hero-sub">Prepared for LiveGood · DigitsUp LLC · 2026</p>
   <p class="hero-intro">
-    The LAB has built something genuinely special — a methodology, a community, and a membership model that earns deep family loyalty. <strong>Here's how we think about amplifying that with Klaviyo.</strong>
+    LiveGood has 1M+ subscribers and $3M in monthly revenue — and less than 10% of it is coming from email. That's not a gap. That's an opportunity. <strong>A 90-day retention build with DigitsUp activates the full value of what you've already earned.</strong>
   </p>
   <div class="hero-pills">
     <span class="hero-pill">Lifecycle Automations</span>
     <span class="hero-pill">Campaign Strategy</span>
-    <span class="hero-pill">Loyalty Programs</span>
-    <span class="hero-pill outline">Mindbody Integration</span>
+    <span class="hero-pill">SMS Activation</span>
     <span class="hero-pill outline">Email + SMS</span>
+    <span class="hero-pill outline">Full Service</span>
   </div>
-</section>
-
-<!-- FUNNEL -->
-<section id="funnel" class="funnel-section">
-  <div class="eyebrow-dark">The Member Journey</div>
-  <h2 class="title-light">From free trial<br>to <em>lifelong family.</em></h2>
-  <p class="body-lg-light reveal">The free trial booking is a powerful top-of-funnel moment — a family raises their hand and gives permission to communicate. Every step from there is an opportunity to deepen the relationship, accelerate commitment, and turn one enrolled kid into an entire family.</p>
-
-  <div class="funnel-track reveal" style="transition-delay:0.1s">
-    <div class="funnel-step active">
-      <div class="funnel-icon">📋</div>
-      <div class="funnel-label">Free Trial<br>Booked</div>
-      <div class="funnel-sub">Email captured. Journey begins.</div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-val">90 Day</div>
+      <div class="hero-stat-label">Engagement Build</div>
     </div>
-    <div class="funnel-step active">
-      <div class="funnel-icon">🏃</div>
-      <div class="funnel-label">First Visit<br>Experience</div>
-      <div class="funnel-sub">The moment that matters most.</div>
+    <div class="hero-stat">
+      <div class="hero-stat-val">9</div>
+      <div class="hero-stat-label">Flows Built</div>
     </div>
-    <div class="funnel-step active">
-      <div class="funnel-icon">📝</div>
-      <div class="funnel-label">Membership<br>Decision</div>
-      <div class="funnel-sub">Window to convert is 72 hrs.</div>
+    <div class="hero-stat">
+      <div class="hero-stat-val">4×</div>
+      <div class="hero-stat-label">Campaigns/Week</div>
     </div>
-    <div class="funnel-step">
-      <div class="funnel-icon">👨‍👩‍👧</div>
-      <div class="funnel-label">Long-Term<br>Family Member</div>
-      <div class="funnel-sub">Siblings. Referrals. Loyalty.</div>
-    </div>
-  </div>
-
-  <div class="funnel-opp reveal" style="transition-delay:0.2s">
-    <div class="funnel-opp-card">
-      <div class="funnel-opp-title">Pre-Visit Momentum</div>
-      <div class="funnel-opp-desc">From booking to first class, there's a window to build excitement and reduce friction. What to wear, what to expect, how the methodology works — arriving informed means arriving ready to fall in love with it.</div>
-    </div>
-    <div class="funnel-opp-card">
-      <div class="funnel-opp-title">Post-Visit Conversion Window</div>
-      <div class="funnel-opp-desc">The 72 hours after a first class are when families are most likely to commit. A personal, well-timed follow-up sequence meets them at peak enthusiasm and walks them naturally toward a membership decision.</div>
-    </div>
-    <div class="funnel-opp-card">
-      <div class="funnel-opp-title">Long-Term Family Expansion</div>
-      <div class="funnel-opp-desc">One enrolled child is the beginning. The LAB's family-first model creates a natural path to siblings, parent training, and eventually referring other families. Every lifecycle moment is a branch point toward deeper commitment.</div>
+    <div class="hero-stat">
+      <div class="hero-stat-val">11+</div>
+      <div class="hero-stat-label">Years Experience</div>
     </div>
   </div>
 </section>
 
-<!-- FLOWS -->
-<section id="flows" class="flows-section">
-  <div class="eyebrow-light">Automation Strategy</div>
-  <h2 class="title-dark">Flows that run<br><em>while you coach.</em></h2>
-  <p class="body-lg-dark reveal">Lifecycle automations are where Klaviyo earns its keep. These are behavior-triggered, personalized sequences — not newsletters. Each one responds to something a real family does in Mindbody and delivers exactly the right message at exactly the right moment.</p>
-
-  <div class="flows-grid reveal" style="transition-delay:0.1s">
-
-    <div class="flow-card featured">
-      <div class="flow-pill">Flow 01 · Highest Impact</div>
-      <div class="flow-channels"><span class="ch ch-email">Email</span><span class="ch ch-sms">SMS</span></div>
-      <div class="flow-title">Free Trial → Membership Conversion Sequence</div>
-      <div class="flow-trigger">Trigger: Free trial class booked</div>
-      <div class="flow-desc">The highest-leverage automation in the program. A family books a trial — the relationship starts the moment they confirm. This sequence guides them from curiosity to commitment across 7 days, with each touch calibrated to where they are emotionally. Industry benchmark: 30–50% trial-to-member conversion with a proper nurture sequence.</div>
-      <div class="flow-steps">
-        <div class="flow-step"><div class="flow-step-n">1</div>Booking confirmation + pre-visit guide — what to wear, what to expect, how the LAB methodology works</div>
-        <div class="flow-step"><div class="flow-step-n">2</div>2 hours post-class: warm personal check-in — "How did it go for [child's name]?"</div>
-        <div class="flow-step"><div class="flow-step-n">3</div>Day 2: Social proof — parent stories, skill progression examples, what the first 8 weeks look like</div>
-        <div class="flow-step"><div class="flow-step-n">4</div>Day 4: Membership offer — clear value, easy next step, time-sensitive framing</div>
-        <div class="flow-step"><div class="flow-step-n">5</div>Day 7: SMS follow-up for families who haven't converted — one tap to claim their spot</div>
-      </div>
-      <div class="flow-footer">
-        <div class="flow-footer-label">Target conversion</div>
-        <div class="flow-footer-val">25–35% trial-to-member</div>
-      </div>
+<!-- THE OPPORTUNITY -->
+<section class="opportunity-section">
+  <div class="eyebrow-dark">The Opportunity</div>
+  <h2 class="title-on-dark">LiveGood Has the Audience.<br><em>Now Let's Monetize It.</em></h2>
+  <div class="opp-grid reveal">
+    <div class="opp-card">
+      <div class="opp-title">Email Is Doing Less Than 10% of the Work</div>
+      <div class="opp-desc">Industry average for a healthy DTC email program is 20–30% of revenue. At $3M/month, that's $600K–$900K in reachable email revenue. Right now, LiveGood is leaving $400K+ on the table every single month.</div>
     </div>
-
-    <div class="flow-card">
-      <div class="flow-pill">Flow 02</div>
-      <div class="flow-channels"><span class="ch ch-email">Email</span><span class="ch ch-sms">SMS</span></div>
-      <div class="flow-title">Attendance Drop Re-Engagement</div>
-      <div class="flow-trigger">Trigger: No visit in 10 / 21 / 30 days</div>
-      <div class="flow-desc">Mindbody attendance data is one of the most powerful retention signals available. When visit frequency drops, we respond before a member ever thinks about cancelling — with warmth, not a sales pitch.</div>
-      <div class="flow-steps">
-        <div class="flow-step"><div class="flow-step-n">1</div>Day 10: "We miss [child's name]!" — casual, warm, zero pressure</div>
-        <div class="flow-step"><div class="flow-step-n">2</div>Day 21: Progress reminder — here's how far they've come, here's what's ahead</div>
-        <div class="flow-step"><div class="flow-step-n">3</div>Day 30: A meaningful offer — bring a friend free, or a complimentary check-in class</div>
-        <div class="flow-step"><div class="flow-step-n">4</div>Day 30 SMS: Short, direct nudge — "We saved a spot for [child]. Come back this week."</div>
-      </div>
-      <div class="flow-footer">
-        <div class="flow-footer-label">Target impact</div>
-        <div class="flow-footer-val">Reduce churn 2–3%/mo</div>
-      </div>
+    <div class="opp-card">
+      <div class="opp-title">Ads Are Paused. Email Is the Only Channel.</div>
+      <div class="opp-desc">With the website redesign underway and paid media on hold, email is the only revenue engine running. The next 30 days are critical — and we're ready to build while the window is open.</div>
     </div>
-
-    <div class="flow-card">
-      <div class="flow-pill">Flow 03</div>
-      <div class="flow-channels"><span class="ch ch-email">Email</span><span class="ch ch-sms">SMS</span></div>
-      <div class="flow-title">Birthday Party → Trial Conversion</div>
-      <div class="flow-trigger">Trigger: Birthday party booking confirmed</div>
-      <div class="flow-desc">Every birthday party fills the gym with families experiencing The LAB at its most fun. The waiver captures parent emails — and that's the start of a new relationship, not a one-time visit.</div>
-      <div class="flow-steps">
-        <div class="flow-step"><div class="flow-step-n">1</div>Party waiver email capture triggers the flow automatically</div>
-        <div class="flow-step"><div class="flow-step-n">2</div>Next day: "Your kids had a blast — here's a free trial class"</div>
-        <div class="flow-step"><div class="flow-step-n">3</div>Day 5: Trial booking reminder with class schedule</div>
-        <div class="flow-step"><div class="flow-step-n">4</div>Day 14: SMS nudge for families who haven't booked yet</div>
-      </div>
-      <div class="flow-footer">
-        <div class="flow-footer-label">New leads per party</div>
-        <div class="flow-footer-val">15–25 families</div>
-      </div>
+    <div class="opp-card">
+      <div class="opp-title">The Membership Conversion Gap</div>
+      <div class="opp-desc">Non-member buyers are paying more and churning faster. A structured post-purchase flow that pitches membership at exactly the right moment — when the math is personal — turns one-time buyers into high-LTV members.</div>
     </div>
-
-    <div class="flow-card">
-      <div class="flow-pill">Flow 04</div>
-      <div class="flow-channels"><span class="ch ch-email">Email</span><span class="ch ch-sms">SMS</span></div>
-      <div class="flow-title">Program Level-Up Celebration</div>
-      <div class="flow-trigger">Trigger: 8-week completion or level advancement</div>
-      <div class="flow-desc">The LAB's structured progression is a massive retention advantage. When a child levels up, that moment deserves to feel like a real achievement — and it's the perfect moment to drive referrals and re-enrollment.</div>
-      <div class="flow-steps">
-        <div class="flow-step"><div class="flow-step-n">1</div>Achievement email with shareable milestone graphic — built to be screenshot and posted</div>
-        <div class="flow-step"><div class="flow-step-n">2</div>Next level preview — what skills are coming, what the journey looks like ahead</div>
-        <div class="flow-step"><div class="flow-step-n">3</div>Referral prompt — "Know a family who'd love this? Share your win"</div>
-        <div class="flow-step"><div class="flow-step-n">4</div>SMS: Quick congrats with a shareable link — easy for parents to forward to friends</div>
-      </div>
-      <div class="flow-footer">
-        <div class="flow-footer-label">Primary goal</div>
-        <div class="flow-footer-val">Re-enrollment + referrals</div>
-      </div>
-    </div>
-
-    <div class="flow-card">
-      <div class="flow-pill">Flow 05</div>
-      <div class="flow-channels"><span class="ch ch-email">Email</span><span class="ch ch-sms">SMS</span></div>
-      <div class="flow-title">Sibling & Family Expansion</div>
-      <div class="flow-trigger">Trigger: Single child enrolled, no sibling in system</div>
-      <div class="flow-desc">One child enrolled means a family already sold on The LAB. Siblings are the most natural second conversion — and the multi-age programming makes the pitch feel helpful rather than salesy.</div>
-      <div class="flow-steps">
-        <div class="flow-step"><div class="flow-step-n">1</div>Month 1: Age-matched program spotlight — Mini Heroes, Teen classes, or adult training</div>
-        <div class="flow-step"><div class="flow-step-n">2</div>Month 2: Free trial offer for the sibling</div>
-        <div class="flow-step"><div class="flow-step-n">3</div>Month 3: Family membership value comparison — more kids, better rate</div>
-        <div class="flow-step"><div class="flow-step-n">4</div>SMS: "Bring the whole crew — book a free trial for [sibling's age group] this week"</div>
-      </div>
-      <div class="flow-footer">
-        <div class="flow-footer-label">LTV impact</div>
-        <div class="flow-footer-val">2–3× per sibling enrolled</div>
-      </div>
-    </div>
-
-    <div class="flow-card">
-      <div class="flow-pill">Flow 06</div>
-      <div class="flow-channels"><span class="ch ch-email">Email</span><span class="ch ch-sms">SMS</span></div>
-      <div class="flow-title">Camp Alumni Re-Enrollment</div>
-      <div class="flow-trigger">Trigger: Camp session completed, no membership active</div>
-      <div class="flow-desc">Camp families are warm leads who've experienced The LAB firsthand. The week after camp ends is when momentum is highest and the transition to ongoing membership is most natural.</div>
-      <div class="flow-steps">
-        <div class="flow-step"><div class="flow-step-n">1</div>Camp wrap-up email — highlights from the week, celebration of the experience</div>
-        <div class="flow-step"><div class="flow-step-n">2</div>Day 3: "Keep the momentum going" — bridge camp energy into ongoing training</div>
-        <div class="flow-step"><div class="flow-step-n">3</div>Day 7: Limited-time membership offer with camp alumni framing</div>
-        <div class="flow-step"><div class="flow-step-n">4</div>Day 7 SMS: "Camp was just the beginning — grab your membership spot before the week's out"</div>
-      </div>
-      <div class="flow-footer">
-        <div class="flow-footer-label">Opportunity</div>
-        <div class="flow-footer-val">Every camp session</div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- LOYALTY -->
-<section id="loyalty" class="loyalty-section">
-  <div class="eyebrow-dark">Member Loyalty</div>
-  <h2 class="title-light">Turn great members<br>into <em>advocates.</em></h2>
-  <p class="body-lg-light reveal">The LAB's community is one of its strongest assets. A structured loyalty program — built inside Klaviyo and tied to Mindbody behavior — rewards the actions that matter most: showing up consistently, referring families, and growing with the gym over time.</p>
-
-  <div class="loyalty-grid reveal" style="transition-delay:0.1s">
-    <div class="loyalty-card">
-      <div class="loyalty-icon">🏅</div>
-      <div class="loyalty-title">Attendance Milestone Rewards</div>
-      <div class="loyalty-desc">Track cumulative class visits in Mindbody and reward families at meaningful milestones — 10 classes, 50 classes, 1 year of membership. Makes consistency feel recognized and celebrated, not invisible.</div>
-      <div class="loyalty-example">"[Child's name] just hit 50 classes at The LAB. That's real progress — here's something to mark the moment."</div>
-    </div>
-    <div class="loyalty-card mint">
-      <div class="loyalty-icon">🤝</div>
-      <div class="loyalty-title">Referral Program</div>
-      <div class="loyalty-desc">Word of mouth is already a top acquisition channel — a structured referral program gives it a trackable, rewardable spine. Refer a family, earn a free month. Simple, high-conversion, easy to run through Klaviyo.</div>
-      <div class="loyalty-example">"Refer a family to The LAB — when they book their first class, you both get a free month. Share your link below."</div>
-    </div>
-    <div class="loyalty-card">
-      <div class="loyalty-icon">🎂</div>
-      <div class="loyalty-title">Birthday & Anniversary Moments</div>
-      <div class="loyalty-desc">A child's birthday and a member's LAB anniversary are two of the most personal touchpoints in the year. Automated recognition builds the kind of emotional connection that long-term retention is built on.</div>
-      <div class="loyalty-example">"Happy birthday to [child's name] — here's a little something from the LAB family to celebrate."</div>
-    </div>
-    <div class="loyalty-card">
-      <div class="loyalty-icon">⭐</div>
-      <div class="loyalty-title">VIP Member Tier</div>
-      <div class="loyalty-desc">Identify your most engaged, longest-tenured families and give them a name. Early camp enrollment access, priority birthday party booking, exclusive events. Makes your best members feel like insiders.</div>
-      <div class="loyalty-example">"As a LAB VIP family, you get first access to summer camp enrollment — 48 hours before it opens to the public."</div>
-    </div>
-  </div>
-</section>
-
-<!-- CAMPAIGNS -->
-<section id="campaigns" class="campaigns-section">
-  <div class="eyebrow-light">Campaign Calendar</div>
-  <h2 class="title-dark">The right message<br><em>at the right moment.</em></h2>
-  <p class="body-lg-dark reveal">Beyond always-on automations, a seasonal campaign calendar drives enrollment spikes around the moments families are already thinking about their kids' activities. Planned, purposeful, and tied to real revenue moments in The LAB's calendar.</p>
-
-  <div class="campaign-table reveal" style="transition-delay:0.1s">
-
-    <div class="campaign-row">
-      <div><div class="c-month">Jan</div><div class="c-season">New Year</div></div>
-      <div>
-        <div class="c-title">"New Year, New Ninja" — January Enrollment Push</div>
-        <div class="c-desc">Parents are in resolution mode and actively looking for structured activities. The LAB's science-backed progression is the perfect answer. Lead with the free trial and the methodology story — not just a class schedule.</div>
-        <div class="c-tags"><span class="tag tag-e">Email · 3-touch</span><span class="tag tag-s">SMS · 1 blast</span></div>
-      </div>
-    </div>
-
-    <div class="campaign-row">
-      <div><div class="c-month">Mar</div><div class="c-season">Spring Break</div></div>
-      <div>
-        <div class="c-title">Spring Break Camp — Enrollment Campaign</div>
-        <div class="c-desc">Time-limited, high-margin camp with real scarcity. Email opens 6 weeks early for current members. SMS urgency fires in the final 72 hours when spots are nearly gone. Sibling bundle offer drives higher cart value.</div>
-        <div class="c-tags"><span class="tag tag-e">Email · 4-touch</span><span class="tag tag-s">SMS · 2 urgency</span><span class="tag tag-m">High margin</span></div>
-      </div>
-    </div>
-
-    <div class="campaign-row">
-      <div><div class="c-month">Apr</div><div class="c-season">Spartan</div></div>
-      <div>
-        <div class="c-title">Spartan Strong — OCR Training Sign-Up Campaign</div>
-        <div class="c-desc">Target teen and adult members with the Spartan Race prep class. The LAB's family training model makes this a natural family challenge — parents and kids training toward the same goal together.</div>
-        <div class="c-tags"><span class="tag tag-e">Email · 2-touch</span><span class="tag tag-s">SMS reminder</span></div>
-      </div>
-    </div>
-
-    <div class="campaign-row">
-      <div><div class="c-month">May</div><div class="c-season">Summer</div></div>
-      <div>
-        <div class="c-title">"Reserve Your Summer" — Camp Enrollment Opens</div>
-        <div class="c-desc">The biggest revenue campaign of the year. VIP member early access 48 hrs before public enrollment. Week-by-week scarcity drives urgency — sold-out weeks become social proof for the next. SMS updates as spots fill.</div>
-        <div class="c-tags"><span class="tag tag-e">Email · 5-touch</span><span class="tag tag-s">SMS · Weekly</span><span class="tag tag-m">Peak revenue</span></div>
-      </div>
-    </div>
-
-    <div class="campaign-row">
-      <div><div class="c-month">Aug</div><div class="c-season">Back to School</div></div>
-      <div>
-        <div class="c-title">"Back to It" — Fall Enrollment Drive</div>
-        <div class="c-desc">Families are scheduling fall activities alongside school supplies. Position LAB membership as the structured after-school program that builds fitness and character. Re-engage any summer lapsed members with a return offer.</div>
-        <div class="c-tags"><span class="tag tag-e">Email · 4-touch</span><span class="tag tag-s">SMS blast</span><span class="tag tag-m">Major window</span></div>
-      </div>
-    </div>
-
-    <div class="campaign-row">
-      <div><div class="c-month">Oct</div><div class="c-season">Fall</div></div>
-      <div>
-        <div class="c-title">"Ninja vs. Ninja" — Member Referral Challenge</div>
-        <div class="c-desc">Competitive energy and fall momentum create a natural referral moment. Members bring a friend to a challenge event and earn a reward. Trackable referral links through Klaviyo, conversions tied to Mindbody enrollment.</div>
-        <div class="c-tags"><span class="tag tag-e">Email · 2-touch</span><span class="tag tag-s">SMS · Event</span></div>
-      </div>
-    </div>
-
-    <div class="campaign-row">
-      <div><div class="c-month">Nov</div><div class="c-season">Holiday</div></div>
-      <div>
-        <div class="c-title">"Give the Gift of Training" — Holiday Gift Card Push</div>
-        <div class="c-desc">LAB memberships and class packs as holiday gifts for grandparents and extended family. Gift card purchase triggers a recipient welcome email linking to a free trial booking. Acquisition wrapped in gifting.</div>
-        <div class="c-tags"><span class="tag tag-e">Email · 3-touch</span><span class="tag tag-s">SMS · BF window</span></div>
-      </div>
-    </div>
-
-    <div class="campaign-row">
-      <div><div class="c-month">Dec</div><div class="c-season">Winter Break</div></div>
-      <div>
-        <div class="c-title">Winter Break Camp + January Bundle</div>
-        <div class="c-desc">Short enrollment window, high parent demand. Bundle winter camp with January membership at a discount — lock in the new year before the holiday noise fades. SMS urgency drives it; email does the storytelling.</div>
-        <div class="c-tags"><span class="tag tag-e">Email · 3-touch</span><span class="tag tag-s">SMS · High urgency</span><span class="tag tag-m">High margin</span></div>
-      </div>
-    </div>
-
   </div>
 </section>
 
 <!-- WHY DIGITSUP -->
-<section id="bring" class="bring-section">
+<section class="why-section">
   <div class="eyebrow-light">Why DigitsUp</div>
-  <h2 class="title-dark">What we bring<br><em>to the table.</em></h2>
-  <p class="body-lg-dark reveal">We're a Klaviyo Platinum Partner — the highest tier — and we work exclusively in lifecycle and retention marketing. No ads, no SEO, no generalist approach. Just Klaviyo, done at the level that makes the Platinum tier defensible every quarter.</p>
-
-  <div class="bring-grid reveal" style="transition-delay:0.1s">
-    <div class="bring-card">
-      <div class="bring-num">Expertise</div>
-      <div class="bring-title">Klaviyo × Mindbody</div>
-      <div class="bring-desc">We've built inside the Klaviyo for Wellness ecosystem. The Mindbody data model — booking events, attendance triggers, membership status — we know how to map all of it into Klaviyo flows without wasting a single data point.</div>
+  <h2 class="title-on-light">Built for<br><em>Brands Like This.</em></h2>
+  <p class="body-lg-light reveal">Full service. End to end. You see results, not work.</p>
+  <div class="why-grid reveal" style="transition-delay:0.1s">
+    <div class="why-card">
+      <div class="why-num">Approach</div>
+      <div class="why-title">Full Service, End to End</div>
+      <div class="why-desc">Strategy, design, copywriting, Klaviyo build, QA, send, and reporting. You don't touch it. You review it and approve it. That's the whole model.</div>
     </div>
-    <div class="bring-card">
-      <div class="bring-num">Philosophy</div>
-      <div class="bring-title">Retention Over Acquisition</div>
-      <div class="bring-desc">Every agency talks acquisition. We talk retention — because keeping a member costs a fraction of acquiring one, and even small improvements compound dramatically over time. We build for the long game.</div>
+    <div class="why-card">
+      <div class="why-num">Platform</div>
+      <div class="why-title">Built for Klaviyo</div>
+      <div class="why-desc">Klaviyo Platinum Partner with 11+ years and 45+ brands scaled. We know the platform at every level — flows, segments, A/B tests, deliverability, reporting.</div>
     </div>
-    <div class="bring-card">
-      <div class="bring-num">Approach</div>
-      <div class="bring-title">Systems, Not Just Sends</div>
-      <div class="bring-desc">We don't send newsletters. We build lifecycle infrastructure — flows that respond to behavior, campaigns tied to your business calendar, segmentation that speaks to each family's exact relationship with The LAB.</div>
+    <div class="why-card">
+      <div class="why-num">Creative</div>
+      <div class="why-title">Design That Matches the Brand</div>
+      <div class="why-desc">Every email built on LiveGood's visual identity — forest green, gold, premium product photography, benefit-led copy. Not a template. A brand-built content system.</div>
     </div>
-    <div class="bring-card">
-      <div class="bring-num">Reporting</div>
-      <div class="bring-title">Revenue You Can See</div>
-      <div class="bring-desc">Every flow and campaign is tagged and measured. Monthly reporting shows exactly what Klaviyo drove in revenue — tracked through Mindbody conversions. No vanity metrics. Dollars attributed, every month.</div>
+    <div class="why-card">
+      <div class="why-num">Execution</div>
+      <div class="why-title">Campaign Calendar Ownership</div>
+      <div class="why-desc">Monthly calendar approved by the 25th. Every send planned, segmented, built, and reported. You see results, not work.</div>
     </div>
   </div>
-
   <div class="platinum-wrap reveal" style="transition-delay:0.2s">
     <div class="platinum-icon">🏆</div>
     <div>
       <div class="platinum-label">DigitsUp Agency</div>
       <div class="platinum-title">Klaviyo Platinum Partner</div>
-      <div class="platinum-desc">Platinum is Klaviyo's highest partner tier — awarded to agencies that demonstrate sustained performance, technical depth, and measurable client results. We hold it because our clients see returns that make it defensible every quarter. For The LAB, that means working with a team that has genuinely done this before.</div>
+      <div class="platinum-desc">Klaviyo Platinum Partner — awarded to agencies in the top tier of Klaviyo expertise globally. Less than 1% of agencies hold Platinum status. We hold it because our clients see returns that make it defensible every quarter.</div>
     </div>
+  </div>
+</section>
+
+<!-- EMAIL DESIGN EXAMPLES -->
+<section class="design-section">
+  <div class="eyebrow-light">Email Creative</div>
+  <h2 class="title-on-light">Design Built<br><em>for LiveGood.</em></h2>
+  <p class="body-lg-light reveal">These are examples of the email template system we design for LiveGood — custom creative built around your product catalog, visual identity, and benefit-led copy. Four category variants, one modular system. Marl's final designs arrive Sunday.</p>
+  <div class="design-grid reveal" style="transition-delay:0.1s">
+
+    <div class="design-card">
+      <div class="design-card-header">
+        <span class="design-card-badge">Focus &amp; Mental Clarity</span>
+        <div class="design-card-dots"><span></span><span></span><span></span></div>
+      </div>
+      <div class="design-card-body">
+        <div class="design-card-title">Welcome Email Variation — Focus &amp; Mental Clarity</div>
+        <div class="design-card-thumb"><div class="design-card-thumb-icon">🧠</div></div>
+        <div class="design-card-coming">Design Preview Coming Sunday</div>
+        <div class="design-card-note">Goal-personalized welcome — product stack curated for focus &amp; cognitive performance.</div>
+      </div>
+    </div>
+
+    <div class="design-card">
+      <div class="design-card-header">
+        <span class="design-card-badge">Sleep &amp; Recovery</span>
+        <div class="design-card-dots"><span></span><span></span><span></span></div>
+      </div>
+      <div class="design-card-body">
+        <div class="design-card-title">Welcome Email Variation — Sleep &amp; Recovery</div>
+        <div class="design-card-thumb"><div class="design-card-thumb-icon">🌙</div></div>
+        <div class="design-card-coming">Design Preview Coming Sunday</div>
+        <div class="design-card-note">Calm, restorative tone — products matched to sleep and overnight recovery goals.</div>
+      </div>
+    </div>
+
+    <div class="design-card">
+      <div class="design-card-header">
+        <span class="design-card-badge">Energy &amp; Daily Wellness</span>
+        <div class="design-card-dots"><span></span><span></span><span></span></div>
+      </div>
+      <div class="design-card-body">
+        <div class="design-card-title">Welcome Email Variation — Energy &amp; Daily Wellness</div>
+        <div class="design-card-thumb"><div class="design-card-thumb-icon">⚡</div></div>
+        <div class="design-card-coming">Design Preview Coming Sunday</div>
+        <div class="design-card-note">High energy, vibrant — daily essentials and foundational wellness stack.</div>
+      </div>
+    </div>
+
+    <div class="design-card">
+      <div class="design-card-header">
+        <span class="design-card-badge">Performance &amp; Body</span>
+        <div class="design-card-dots"><span></span><span></span><span></span></div>
+      </div>
+      <div class="design-card-body">
+        <div class="design-card-title">Welcome Email Variation — Performance &amp; Body</div>
+        <div class="design-card-thumb"><div class="design-card-thumb-icon">💪</div></div>
+        <div class="design-card-coming">Design Preview Coming Sunday</div>
+        <div class="design-card-note">Bold, results-driven — muscle, performance, and body composition products front and center.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section">
+  <div class="eyebrow-dark">Investment</div>
+  <h2 class="title-on-dark"><em>The Investment.</em></h2>
+  <p class="body-lg-dark reveal">Two tiers. Both full service. The difference is volume, velocity, and depth of segmentation.</p>
+  <div class="pricing-grid reveal" style="transition-delay:0.1s">
+
+    <div class="pricing-card">
+      <div class="pricing-tier">Tier 1</div>
+      <div class="pricing-name">Foundation</div>
+      <div class="pricing-amount">$X,XXX <span>/ month</span></div>
+      <hr class="pricing-divider">
+      <ul class="pricing-features">
+        <li>1–2 Campaigns / Week (4–8/month)</li>
+        <li>Full lifecycle automation suite — Phase 1, 5 flows</li>
+        <li>Campaign strategy, copy, design, build, send</li>
+        <li>Monthly performance report</li>
+        <li>Klaviyo account management</li>
+      </ul>
+    </div>
+
+    <div class="pricing-card recommended">
+      <div class="pricing-recommended-badge">Recommended</div>
+      <div class="pricing-tier">Tier 2</div>
+      <div class="pricing-name">Growth</div>
+      <div class="pricing-amount">$X,XXX <span>/ month</span></div>
+      <hr class="pricing-divider">
+      <ul class="pricing-features">
+        <li>3–5 Campaigns / Week (12–20/month)</li>
+        <li>Full lifecycle automation suite — all 9 flows, Phase 1 + 2</li>
+        <li>Advanced segmentation: member vs. non-member, goal cluster, purchase history</li>
+        <li>SMS campaign cadence alongside email</li>
+        <li>A/B testing on subject lines, CTAs, send times</li>
+        <li>Monthly performance report + strategy session</li>
+      </ul>
+    </div>
+
   </div>
 </section>
 
 <!-- CLOSING -->
-<section id="next-steps" class="closing-section">
-  <div class="eyebrow-dark">Today's Conversation</div>
-  <h2 class="title-light">Let's start<br><em>with a listen.</em></h2>
-
-  <div class="convo-grid reveal" style="transition-delay:0.1s">
-    <div class="convo-card">
-      <div class="convo-n">01</div>
-      <div class="convo-title">Where is your Klaviyo program today?</div>
-      <div class="convo-desc">We want to understand what's already built, what's working, and where the biggest opportunities feel like they live from your perspective — not ours.</div>
+<section class="closing-section">
+  <div class="eyebrow-dark">Next Steps</div>
+  <h2 class="title-on-dark"><em>Let's Build This.</em></h2>
+  <div class="steps-grid reveal" style="transition-delay:0.1s">
+    <div class="step-card">
+      <div class="step-n">01</div>
+      <div class="step-title">Scope Call</div>
+      <div class="step-desc">30 minutes. We align on priorities, confirm Klaviyo access, and set the build order for Phase 1.</div>
     </div>
-    <div class="convo-card">
-      <div class="convo-n">02</div>
-      <div class="convo-title">What does your trial-to-member funnel look like right now?</div>
-      <div class="convo-desc">The free trial booking is a powerful signal. Walk us through what happens between that first booking and a membership decision today — and where you think families fall off.</div>
+    <div class="step-card">
+      <div class="step-n">02</div>
+      <div class="step-title">Phase 1 Build</div>
+      <div class="step-desc">Welcome series, abandonment suite, and post-purchase flows live within 3 weeks. Campaign calendar starts Week 1.</div>
     </div>
-    <div class="convo-card">
-      <div class="convo-n">03</div>
-      <div class="convo-title">What's the average time between a member's first and second visit?</div>
-      <div class="convo-desc">This tells us where to place the most critical follow-up touches in the post-trial sequence — and how quickly we need to move to keep momentum alive.</div>
+    <div class="step-card">
+      <div class="step-n">03</div>
+      <div class="step-title">Results Review</div>
+      <div class="step-desc">30-day check-in. Revenue attributed, open rates, conversion rates, what's working, what we're optimizing.</div>
     </div>
-    <div class="convo-card">
-      <div class="convo-n">04</div>
-      <div class="convo-title">What's your current churn rate — and what typically triggers a cancellation?</div>
-      <div class="convo-desc">Understanding why members leave, and when, is the foundation of any win-back or retention flow. Even a rough sense of this shapes the entire strategy.</div>
-    </div>
-    <div class="convo-card">
-      <div class="convo-n">05</div>
-      <div class="convo-title">How are birthday party leads followed up with today?</div>
-      <div class="convo-desc">Every party fills the gym with warm, high-intent families. We want to understand what the current post-party touchpoint looks like — or if that's a wide-open opportunity.</div>
-    </div>
-    <div class="convo-card">
-      <div class="convo-n">06</div>
-      <div class="convo-title">What does success look like in 12 months?</div>
-      <div class="convo-desc">Retention rate, membership growth, camp enrollment, loyalty program launch — we want to build toward the outcomes that matter most to you, not just what's easiest to measure.</div>
-    </div>
+  </div>
+  <div style="margin-top:48px;text-align:center;position:relative;z-index:1;">
+    <a href="mailto:mike@digitsup.com" style="display:inline-block;padding:18px 48px;background-color:#D4A017;border-radius:10px;font-family:'Nunito Sans',sans-serif;font-size:14px;font-weight:800;letter-spacing:0.1em;color:#1A3A2A;text-transform:uppercase;text-decoration:none;">Start the Conversation</a>
+    <div style="margin-top:16px;font-size:13px;color:rgba(255,255,255,0.3);">mike@digitsup.com</div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">Digits<span>Up</span> — Klaviyo Platinum Partner</div>
-  <div class="footer-note">Prepared for The LAB Life · April 2025</div>
+  <div class="footer-note">Prepared for LiveGood · May 2026</div>
   <div class="footer-contact"><a href="mailto:mike@digitsup.com">mike@digitsup.com</a></div>
 </footer>
+
+</div><!-- /tab-proposal -->
+
+
+<!-- ════════════════════════════════════════════════
+     TAB 2: LIFECYCLES
+════════════════════════════════════════════════ -->
+<div id="tab-lifecycles" class="tab-section">
+
+<div class="lifecycles-header">
+  <div class="eyebrow-dark">Automation Architecture</div>
+  <h2 class="title-on-dark">9 Flows. Every Stage<br><em>of the Customer Journey.</em></h2>
+  <p class="body-lg-dark" style="margin-top:0;">This is the full retention engine — from the moment someone subscribes to the moment they become a long-term member. Every flow is built for LiveGood's catalog, membership model, and health-driven audience.</p>
+</div>
+
+<div class="lifecycles-body">
+
+  <!-- STAGE 1: ACQUIRE -->
+  <div class="stage-block reveal">
+    <div class="stage-header">
+      <span class="stage-badge">Stage 1</span>
+      <div>
+        <div class="stage-name">Acquire</div>
+        <div class="stage-sub">New Subscribers</div>
+      </div>
+    </div>
+    <div class="flows-grid-lc">
+      <div class="lc-flow-card" style="grid-column: span 3;">
+        <div class="lc-flow-meta">
+          <span class="lc-badge lc-badge-p1">Phase 1</span>
+          <span class="lc-badge lc-badge-sms">SMS ✓</span>
+          <span class="lc-badge lc-badge-count">4 emails per variant</span>
+        </div>
+        <div class="lc-flow-name">Welcome Series</div>
+        <div class="lc-flow-trigger">Popup subscribe — goal selection captured from form</div>
+        <div class="lc-flow-theme">"Get the first purchase. Don't pitch membership yet — that comes after they buy."</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:8px;">
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-mid);margin-bottom:10px;">4 Goal-Based Variants</div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-mid);"><span style="font-size:16px;">🧠</span> Focus &amp; Mental Clarity</div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-mid);"><span style="font-size:16px;">🌙</span> Sleep &amp; Recovery</div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-mid);"><span style="font-size:16px;">⚡</span> Energy &amp; Daily Wellness</div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-mid);"><span style="font-size:16px;">💪</span> Performance &amp; Body</div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-mid);margin-bottom:10px;">Email Breakdown</div>
+            <div class="lc-steps">
+              <div class="lc-step"><div class="lc-step-n">1</div>Goal-personalized product stack + 10% off claim</div>
+              <div class="lc-step"><div class="lc-step-n">2</div>Brand story — "highest quality, wholesale price, here's why"</div>
+              <div class="lc-step"><div class="lc-step-n">3</div>Best sellers in your goal category + social proof</div>
+              <div class="lc-step"><div class="lc-step-n">4</div>Last chance 10% off + urgency · SMS fires if no purchase</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage-connector reveal">Stage 2</div>
+
+  <!-- STAGE 2: RECOVER -->
+  <div class="stage-block reveal">
+    <div class="stage-header">
+      <span class="stage-badge">Stage 2</span>
+      <div>
+        <div class="stage-name">Recover</div>
+        <div class="stage-sub">Abandonment Recovery</div>
+      </div>
+    </div>
+    <div class="flows-grid-lc">
+
+      <div class="lc-flow-card">
+        <div class="lc-flow-meta">
+          <span class="lc-badge lc-badge-p1">Phase 1</span>
+          <span class="lc-badge lc-badge-count">2 emails</span>
+        </div>
+        <div class="lc-flow-name">Browse Abandonment</div>
+        <div class="lc-flow-trigger">Product page view · no add to cart</div>
+        <div class="lc-flow-theme">"Re-engage before intent cools. Lead with the product they looked at."</div>
+        <div class="lc-steps">
+          <div class="lc-step"><div class="lc-step-n">1</div><strong>4hr:</strong> Specific product viewed — benefit-led, category-matched copy</div>
+          <div class="lc-step"><div class="lc-step-n">2</div><strong>24hr:</strong> Related products in the same goal cluster</div>
+        </div>
+      </div>
+
+      <div class="lc-flow-card">
+        <div class="lc-flow-meta">
+          <span class="lc-badge lc-badge-p1">Phase 1</span>
+          <span class="lc-badge lc-badge-count">3 emails</span>
+        </div>
+        <div class="lc-flow-name">Cart Abandonment</div>
+        <div class="lc-flow-trigger">Add to cart · no checkout initiated</div>
+        <div class="lc-flow-theme">"The workhorse recovery flow. 3 touches, increasing value at each step."</div>
+        <div class="lc-steps">
+          <div class="lc-step"><div class="lc-step-n">1</div><strong>1hr:</strong> Product reminder + quick benefit recap</div>
+          <div class="lc-step"><div class="lc-step-n">2</div><strong>24hr:</strong> Ingredient deep-dive — why this product</div>
+          <div class="lc-step"><div class="lc-step-n">3</div><strong>48hr:</strong> Member pricing math — "members pay X less"</div>
+        </div>
+      </div>
+
+      <div class="lc-flow-card">
+        <div class="lc-flow-meta">
+          <span class="lc-badge lc-badge-p1">Phase 1</span>
+          <span class="lc-badge lc-badge-sms">SMS ✓</span>
+          <span class="lc-badge lc-badge-count">2 emails</span>
+        </div>
+        <div class="lc-flow-name">Checkout Abandonment</div>
+        <div class="lc-flow-trigger">Checkout started · no purchase</div>
+        <div class="lc-flow-theme">"Highest-intent buyers. Urgency-forward. Reinforce the value proposition."</div>
+        <div class="lc-steps">
+          <div class="lc-step"><div class="lc-step-n">1</div><strong>1hr:</strong> "You were so close" — product + member price side by side</div>
+          <div class="lc-step"><div class="lc-step-n">2</div><strong>24hr:</strong> Trust signals — tested, guaranteed, ingredient transparency · SMS alongside</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="stage-connector reveal">Stage 3</div>
+
+  <!-- STAGE 3: EXPAND -->
+  <div class="stage-block reveal">
+    <div class="stage-header">
+      <span class="stage-badge">Stage 3</span>
+      <div>
+        <div class="stage-name">Expand</div>
+        <div class="stage-sub">Post-Purchase Growth</div>
+      </div>
+    </div>
+    <div class="flows-grid-lc two-col">
+
+      <div class="lc-flow-card featured">
+        <div class="lc-flow-meta">
+          <span class="lc-badge lc-badge-p1">Phase 1</span>
+          <span class="lc-badge lc-badge-sms">SMS ✓</span>
+          <span class="lc-badge lc-badge-count">4 emails</span>
+        </div>
+        <div class="lc-flow-name">Post-Purchase — Non-Member</div>
+        <div class="lc-flow-trigger">First-ever order · no active membership</div>
+        <div class="lc-flow-theme">"Membership pitch AFTER purchase, when the savings math is personal. This is the highest-leverage non-member conversion moment."</div>
+        <div class="lc-steps">
+          <div class="lc-step"><div class="lc-step-n">1</div><strong>Immediate:</strong> Order confirmed, what to expect, build excitement</div>
+          <div class="lc-step"><div class="lc-step-n">2</div><strong>Day 3:</strong> Usage guide — build the habit, get the result · SMS reinforcement</div>
+          <div class="lc-step"><div class="lc-step-n">3</div><strong>Day 7:</strong> Membership pitch — "Here's what you saved. Here's what you left on the table. $9.95/month pays for itself on your next order."</div>
+          <div class="lc-step"><div class="lc-step-n">4</div><strong>Day 14:</strong> Cross-sell based on goal cluster (captured at signup)</div>
+        </div>
+      </div>
+
+      <div class="lc-flow-card" style="display:flex;flex-direction:column;gap:12px;">
+        <div style="display:flex;flex-direction:column;gap:12px;flex:1;">
+          <div class="lc-flow-meta">
+            <span class="lc-badge lc-badge-p1">Phase 1</span>
+            <span class="lc-badge lc-badge-count">3 emails</span>
+          </div>
+          <div class="lc-flow-name">Post-Purchase — Member</div>
+          <div class="lc-flow-trigger">Purchase by active member (any order)</div>
+          <div class="lc-flow-theme">"VIP treatment. Expand the basket. Drive toward bundles and higher AOV."</div>
+          <div class="lc-steps">
+            <div class="lc-step"><div class="lc-step-n">1</div>Order confirmed + VIP member recognition</div>
+            <div class="lc-step"><div class="lc-step-n">2</div><strong>Day 5:</strong> Pack/bundle math — "You're buying these separately. Here's what a pack saves you."</div>
+            <div class="lc-step"><div class="lc-step-n">3</div><strong>Day 14:</strong> Replenishment nudge based on product purchase timing</div>
+          </div>
+        </div>
+        <hr style="border:none;border-top:1px solid var(--border);">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div class="lc-flow-meta">
+            <span class="lc-badge lc-badge-p2">Phase 2</span>
+            <span class="lc-badge lc-badge-count">2 emails</span>
+          </div>
+          <div class="lc-flow-name" style="font-size:17px;">Post-Purchase — Repeat Buyer</div>
+          <div class="lc-flow-trigger">3rd purchase onward</div>
+          <div class="lc-flow-theme">"Deep relationship. Introduce the catalog breadth. Build the habit stack."</div>
+          <div class="lc-steps">
+            <div class="lc-step"><div class="lc-step-n">1</div>Loyalty recognition — "You keep coming back. Here's why we love that."</div>
+            <div class="lc-step"><div class="lc-step-n">2</div>Product education — introduce an adjacent category they haven't tried</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="stage-connector reveal">Stage 4</div>
+
+  <!-- STAGE 4: RETAIN -->
+  <div class="stage-block reveal">
+    <div class="stage-header">
+      <span class="stage-badge">Stage 4</span>
+      <div>
+        <div class="stage-name">Retain</div>
+        <div class="stage-sub">Reactivation &amp; List Health</div>
+      </div>
+    </div>
+    <div class="flows-grid-lc">
+
+      <div class="lc-flow-card">
+        <div class="lc-flow-meta">
+          <span class="lc-badge lc-badge-p1">Phase 1</span>
+          <span class="lc-badge lc-badge-sms">SMS ✓</span>
+          <span class="lc-badge lc-badge-count">3 emails</span>
+        </div>
+        <div class="lc-flow-name">Winback</div>
+        <div class="lc-flow-trigger">No purchase in 90 days</div>
+        <div class="lc-flow-theme">"Re-engage with value first, offer second. SMS on final touch for last-chance urgency."</div>
+        <div class="lc-steps">
+          <div class="lc-step"><div class="lc-step-n">1</div>"Here's what's new" — re-intro, product refreshes, new arrivals</div>
+          <div class="lc-step"><div class="lc-step-n">2</div>Best sellers + social proof — "what members are loving right now"</div>
+          <div class="lc-step"><div class="lc-step-n">3</div>Timed offer + membership reminder · SMS alongside</div>
+        </div>
+      </div>
+
+      <div class="lc-flow-card">
+        <div class="lc-flow-meta">
+          <span class="lc-badge lc-badge-p2">Phase 2</span>
+          <span class="lc-badge lc-badge-sms">SMS ✓</span>
+          <span class="lc-badge lc-badge-count">2 emails</span>
+        </div>
+        <div class="lc-flow-name">Member Renewal Reminder</div>
+        <div class="lc-flow-trigger">Annual membership expiring in 14 days</div>
+        <div class="lc-flow-theme">"Protect the membership base. Show them the math on what they've saved."</div>
+        <div class="lc-steps">
+          <div class="lc-step"><div class="lc-step-n">1</div><strong>14 days out:</strong> "Your membership is up for renewal — here's what you've saved this year"</div>
+          <div class="lc-step"><div class="lc-step-n">2</div><strong>3 days out:</strong> Urgency + easy renew link · SMS alongside</div>
+        </div>
+      </div>
+
+      <div class="lc-flow-card">
+        <div class="lc-flow-meta">
+          <span class="lc-badge lc-badge-p1">Phase 1</span>
+          <span class="lc-badge lc-badge-count">1 email</span>
+        </div>
+        <div class="lc-flow-name">Sunset</div>
+        <div class="lc-flow-trigger">No engagement in 180 days</div>
+        <div class="lc-flow-theme">"Clean the list. Protect deliverability. A smaller engaged list beats a bloated cold one."</div>
+        <div class="lc-steps">
+          <div class="lc-step"><div class="lc-step-n">1</div>Honest last-chance — "We'll keep you on the list if you want to stay. One click." Suppress non-responders.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Summary bar -->
+  <div style="background-color:var(--forest);border-radius:14px;padding:32px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;margin-top:16px;" class="reveal">
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(212,160,23,0.6);margin-bottom:6px;">Full System</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;text-transform:uppercase;color:#FFFFFF;line-height:1;">9 Flows · 4 Stages · Full Retention Engine</div>
+    </div>
+    <div style="display:flex;gap:32px;flex-wrap:wrap;">
+      <div style="text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;color:var(--gold);line-height:1;">7</div><div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:4px;">Phase 1 Flows</div></div>
+      <div style="text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;color:rgba(212,160,23,0.5);line-height:1;">2</div><div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:4px;">Phase 2 Flows</div></div>
+      <div style="text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;color:var(--gold);line-height:1;">5</div><div style="font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:4px;">SMS-Enabled</div></div>
+    </div>
+  </div>
+
+</div><!-- /lifecycles-body -->
+
+<footer>
+  <div class="footer-logo">Digits<span>Up</span> — Klaviyo Platinum Partner</div>
+  <div class="footer-note">Prepared for LiveGood · May 2026</div>
+  <div class="footer-contact"><a href="mailto:mike@digitsup.com">mike@digitsup.com</a></div>
+</footer>
+
+</div><!-- /tab-lifecycles -->
+
+
+<!-- ════════════════════════════════════════════════
+     TAB 3: CAMPAIGNS
+════════════════════════════════════════════════ -->
+<div id="tab-campaigns" class="tab-section">
+
+<div class="campaigns-header">
+  <div class="eyebrow-dark">May 2026 · Campaign Calendar</div>
+  <h2 class="title-on-dark">4 Sends/Week.<br><em>Every One Intentional.</em></h2>
+  <p class="body-lg-dark">3 regular campaigns + 1 winback per week = 17 sends in May. Every campaign is pre-segmented, pre-planned, and built around the moments LiveGood's audience is paying attention.</p>
+</div>
+
+<div class="campaigns-body">
+
+  <!-- SEGMENT DEFINITIONS -->
+  <div style="margin-bottom:16px;">
+    <div class="eyebrow-light">Segments</div>
+    <h3 class="title-on-light" style="font-size:clamp(26px,3vw,40px);margin-bottom:24px;">4 Segments.<br><em>Every Send Targeted.</em></h3>
+  </div>
+  <div class="segments-grid reveal">
+    <div class="seg-card">
+      <div class="seg-icon">🏆</div>
+      <div class="seg-name">Members</div>
+      <div class="seg-desc">Active paying members ($9.95/mo or $99.95/yr). Highest LTV. VIP treatment. Expand catalog, drive bundle upgrades, reward loyalty.</div>
+    </div>
+    <div class="seg-card">
+      <div class="seg-icon">💰</div>
+      <div class="seg-name">Non-Member Buyers</div>
+      <div class="seg-desc">Purchased but no membership. Biggest revenue unlock. Every campaign has a soft membership angle. The math closes itself.</div>
+    </div>
+    <div class="seg-card">
+      <div class="seg-icon">👋</div>
+      <div class="seg-name">Engaged Non-Buyers</div>
+      <div class="seg-desc">Subscribed, opening/clicking, haven't purchased. Welcome series running. Campaigns reinforce brand and drive first purchase.</div>
+    </div>
+    <div class="seg-card">
+      <div class="seg-icon">🔄</div>
+      <div class="seg-name">Lapsed Buyers</div>
+      <div class="seg-desc">No purchase in 60–90 days. Winback pool. Separate track — 1 dedicated send per week. Don't mix with regular sends.</div>
+    </div>
+  </div>
+
+  <!-- WEEK 1 -->
+  <div class="week-block reveal">
+    <div class="week-header">
+      <div class="week-label">Week 1</div>
+      <div class="week-dates">May 1–7</div>
+      <div class="week-theme">Foundation Week</div>
+    </div>
+    <div class="sends-list">
+      <div class="send-row">
+        <div class="send-num">1</div>
+        <div class="send-date">May 1</div>
+        <div><div class="send-name">SMS Consent Drive</div><div class="send-angle">"We're coming to SMS. Opt in for member-only offers and early access."</div></div>
+        <div class="send-segs"><span class="seg-pill seg-all">All Engaged</span></div>
+      </div>
+      <div class="send-row">
+        <div class="send-num">2</div>
+        <div class="send-date">May 5</div>
+        <div><div class="send-name">May Kickoff: Start Strong</div><div class="send-angle">Foundational Five / Daily Essentials — new month, build your stack</div></div>
+        <div class="send-segs"><span class="seg-pill seg-members">Members</span><span class="seg-pill seg-engaged">Engaged Non-Buyers</span></div>
+      </div>
+      <div class="send-row">
+        <div class="send-num">3</div>
+        <div class="send-date">May 7</div>
+        <div><div class="send-name">The Membership Math</div><div class="send-angle">"You saved $X on your last order. Members would've saved $Y. Here's the math."</div></div>
+        <div class="send-segs"><span class="seg-pill seg-nonmember">Non-Member Buyers</span></div>
+      </div>
+      <div class="send-row winback">
+        <div class="send-num">W</div>
+        <div class="send-date">May 7</div>
+        <div><div class="send-name">Winback: Re-Intro</div><div class="send-angle">"A lot has changed. Worth a look." — soft re-intro, no hard sell</div></div>
+        <div class="send-segs"><span class="seg-pill seg-lapsed">Lapsed 60–90d</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 2 -->
+  <div class="week-block reveal">
+    <div class="week-header">
+      <div class="week-label">Week 2</div>
+      <div class="week-dates">May 8–14</div>
+      <div class="week-theme">Mother's Day</div>
+    </div>
+    <div class="sends-list">
+      <div class="send-row">
+        <div class="send-num">4</div>
+        <div class="send-date">May 8</div>
+        <div><div class="send-name">Mother's Day Gift Guide</div><div class="send-angle">Skincare Pack + wellness stacks — gift positioning</div></div>
+        <div class="send-segs"><span class="seg-pill seg-all">All Segments</span></div>
+      </div>
+      <div class="send-row">
+        <div class="send-num">5</div>
+        <div class="send-date">May 9</div>
+        <div><div class="send-name">Last Chance — Order by Today</div><div class="send-angle">Delivery cutoff urgency</div></div>
+        <div class="send-segs"><span class="seg-pill seg-all">All Segments</span></div>
+      </div>
+      <div class="send-row">
+        <div class="send-num">6</div>
+        <div class="send-date">May 12</div>
+        <div><div class="send-name">Post-Mother's Day Pivot</div><div class="send-angle">Energy + Performance push — summer is coming</div></div>
+        <div class="send-segs"><span class="seg-pill seg-members">Members</span><span class="seg-pill seg-engaged">Engaged Non-Buyers</span></div>
+      </div>
+      <div class="send-row winback">
+        <div class="send-num">W</div>
+        <div class="send-date">May 14</div>
+        <div><div class="send-name">Winback: Make an Offer</div><div class="send-angle">Incentive-forward — come back with a reason</div></div>
+        <div class="send-segs"><span class="seg-pill seg-lapsed">Lapsed 60–90d</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 3 -->
+  <div class="week-block reveal">
+    <div class="week-header">
+      <div class="week-label">Week 3</div>
+      <div class="week-dates">May 15–21</div>
+      <div class="week-theme">Education &amp; Authority</div>
+    </div>
+    <div class="sends-list">
+      <div class="send-row">
+        <div class="send-num">7</div>
+        <div class="send-date">May 15</div>
+        <div><div class="send-name">Ingredient Story: Super Greens</div><div class="send-angle">Deep-dive on what's actually in it — ingredient authority</div></div>
+        <div class="send-segs"><span class="seg-pill seg-all">All Engaged</span></div>
+      </div>
+      <div class="send-row">
+        <div class="send-num">8</div>
+        <div class="send-date">May 19</div>
+        <div><div class="send-name">92% of Americans Are Deficient</div><div class="send-angle">LiveGood's own stat — awareness play drives first purchase</div></div>
+        <div class="send-segs"><span class="seg-pill seg-engaged">Engaged Non-Buyers</span><span class="seg-pill seg-lapsed">Lapsed</span></div>
+      </div>
+      <div class="send-row">
+        <div class="send-num">9</div>
+        <div class="send-date">May 21</div>
+        <div><div class="send-name">Pack Math: Stop Buying Separately</div><div class="send-angle">Bundle value — you're paying more buying individually</div></div>
+        <div class="send-segs"><span class="seg-pill seg-members">Members</span><span class="seg-pill seg-nonmember">Non-Member Buyers</span></div>
+      </div>
+      <div class="send-row winback">
+        <div class="send-num">W</div>
+        <div class="send-date">May 21</div>
+        <div><div class="send-name">Winback: Last Chance</div><div class="send-angle">Final send before suppression</div></div>
+        <div class="send-segs"><span class="seg-pill seg-lapsed">Lapsed 90+d</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 4 -->
+  <div class="week-block reveal">
+    <div class="week-header">
+      <div class="week-label">Week 4</div>
+      <div class="week-dates">May 22–31</div>
+      <div class="week-theme">Memorial Day + Summer</div>
+    </div>
+    <div class="sends-list">
+      <div class="send-row">
+        <div class="send-num">10</div>
+        <div class="send-date">May 22</div>
+        <div><div class="send-name">Memorial Day — Perform Like It</div><div class="send-angle">Fitness/performance/summer body — Muscle + Energy packs</div></div>
+        <div class="send-segs"><span class="seg-pill seg-members">Members</span><span class="seg-pill seg-nonmember">Non-Member Buyers</span></div>
+      </div>
+      <div class="send-row">
+        <div class="send-num">11</div>
+        <div class="send-date">May 26</div>
+        <div><div class="send-name">Memorial Day Send</div><div class="send-angle">Last day push — summer is here</div></div>
+        <div class="send-segs"><span class="seg-pill seg-all">All Engaged</span></div>
+      </div>
+      <div class="send-row">
+        <div class="send-num">12</div>
+        <div class="send-date">May 28</div>
+        <div><div class="send-name">Summer Prep Stack</div><div class="send-angle">Weight management + hydration + energy — summer goal framing</div></div>
+        <div class="send-segs"><span class="seg-pill seg-engaged">Engaged Non-Buyers</span><span class="seg-pill seg-nonmember">Non-Member Buyers</span></div>
+      </div>
+      <div class="send-row">
+        <div class="send-num">13</div>
+        <div class="send-date">May 30</div>
+        <div><div class="send-name">May Wrap + June Preview</div><div class="send-angle">Keep momentum — tease what's coming in June</div></div>
+        <div class="send-segs"><span class="seg-pill seg-members">Members</span></div>
+      </div>
+      <div class="send-row winback">
+        <div class="send-num">W</div>
+        <div class="send-date">May 28</div>
+        <div><div class="send-name">SMS Winback Final</div><div class="send-angle">Final SMS touchpoint before suppression</div></div>
+        <div class="send-segs"><span class="seg-pill seg-lapsed">Lapsed SMS</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOTAL BAR -->
+  <div class="sends-total reveal">
+    <div class="sends-total-text">
+      <strong>13 regular sends</strong> · 4 winback sends · 1 SMS consent blast<br>
+      Every send pre-segmented, pre-planned, and built around real audience moments.
+    </div>
+    <div style="text-align:right;">
+      <div class="sends-total-num">17</div>
+      <div class="sends-total-label">Sends in May</div>
+    </div>
+  </div>
+
+</div><!-- /campaigns-body -->
+
+<footer>
+  <div class="footer-logo">Digits<span>Up</span> — Klaviyo Platinum Partner</div>
+  <div class="footer-note">Prepared for LiveGood · May 2026</div>
+  <div class="footer-contact"><a href="mailto:mike@digitsup.com">mike@digitsup.com</a></div>
+</footer>
+
+</div><!-- /tab-campaigns -->
 
 </div><!-- /main-content -->
 
 <script>
+  /* ── PASSWORD GATE ── */
   function checkPassword() {
     const val = document.getElementById('pw-input').value.trim().toUpperCase();
     const err = document.getElementById('pw-error');
-    if (val === 'LABLIFE') {
+    if (val === 'LG2026') {
       const gate = document.getElementById('password-gate');
       gate.style.transition = 'opacity 0.6s ease';
       gate.style.opacity = '0';
@@ -879,8 +1349,7 @@
         gate.style.display = 'none';
         const main = document.getElementById('main-content');
         main.style.display = 'block';
-        // kick off scroll observer after reveal
-        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+        initReveal();
       }, 600);
     } else {
       err.style.opacity = '1';
@@ -892,11 +1361,33 @@
     }
   }
 
+  /* ── TAB SWITCHING ── */
+  function switchTab(name, btn) {
+    // hide all tabs
+    document.querySelectorAll('.tab-section').forEach(t => t.classList.remove('active'));
+    // deactivate all nav buttons
+    document.querySelectorAll('.nav-tab-btn').forEach(b => b.classList.remove('active'));
+    // show selected
+    document.getElementById('tab-' + name).classList.add('active');
+    btn.classList.add('active');
+    // re-run reveal for newly visible tab
+    document.querySelectorAll('#tab-' + name + ' .reveal:not(.visible)').forEach(el => obs.observe(el));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  /* ── SCROLL REVEAL ── */
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
     });
   }, { threshold: 0.07, rootMargin: '0px 0px -32px 0px' });
+
+  function initReveal() {
+    document.querySelectorAll('#tab-proposal .reveal').forEach(el => obs.observe(el));
+  }
 </script>
 </body>
 </html>
