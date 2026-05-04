@@ -1,128 +1,152 @@
 {
   "meta": {
-    "lastUpdated": "2026-04-26T17:00:00-07:00",
+    "lastUpdated": "2026-05-03T17:00:00-07:00",
     "updatedBy": "Sunday Wind-Down"
   },
   "calendar": [
     {
-      "time": "Tomorrow",
-      "title": "Brand Featured \u2014 officially starts Apr 27 \u2713"
+      "time": "Mon 9am",
+      "title": "Creative Pipeline Session"
     },
     {
-      "time": "Mon 10:30am",
-      "title": "Mike<>Shelbie Connect"
+      "time": "Mon 12:30pm",
+      "title": "Video Services"
     },
     {
       "time": "Mon 1pm",
-      "title": "Liverpool Connect"
+      "title": "Weekly Sync \u2014 Joccers Only"
     },
     {
       "time": "Tue 11:30am",
       "title": "LPLA x DigitsUp Weekly"
     },
     {
-      "time": "Tue 1:30pm",
-      "title": "Klaviyo | Liverpool Monthly Status Call"
+      "time": "Tue 1pm",
+      "title": "Mike + Jacob Riversol Reconnect"
     },
     {
-      "time": "Wed 12pm",
-      "title": "Mike + Jacob \u2014 Riversol Working Session"
+      "time": "Wed 9am",
+      "title": "Creative Pipeline Session"
     },
     {
-      "time": "Thu Apr 30",
-      "title": "Riversol NCO \u2014 last chance expires"
+      "time": "Wed 2pm",
+      "title": "Riversol x DigitsUp Weekly"
+    },
+    {
+      "time": "Thu 9:30am",
+      "title": "Hiba Academy Weekly"
+    },
+    {
+      "time": "Thu 1pm",
+      "title": "DigitsUp Leadership Sync"
+    },
+    {
+      "time": "Fri 10am",
+      "title": "Liverpool Content Calendar Sync"
     }
   ],
   "needsYou": [
     {
-      "text": "\ud83d\udc90 ORDER FLOWERS TODAY \u2014 mom + sister, Mother's Day May 10. Do not miss this one.",
+      "text": "\ud83d\udc90 Confirm flowers arriving on time \u2014 May 8 deadline, Mother's Day May 10",
+      "chip": "Deadline"
+    },
+    {
+      "text": "WesleyNY debrief \u2014 client folder + call notes still need to be set up",
+      "chip": "Open"
+    },
+    {
+      "text": "LiveGood proposal \u2014 pricing fields (Tier 1 + Tier 2) need filling before client share",
+      "chip": "Open"
+    },
+    {
+      "text": "Hiba Academy \u2014 nurture flow was due to client May 1. Confirm it was actually sent.",
       "chip": "Urgent"
     },
     {
-      "text": "Liverpool April Signal headline \u2014 fix before Tuesday LPLA meeting",
+      "text": "Liverpool \u2014 decision on offboarding path needed. Contract ends after May.",
+      "chip": "Major"
+    },
+    {
+      "text": "RVCA Welcome Series \u2014 design needed before Wednesday client meeting May 6",
       "chip": "Deadline"
-    },
-    {
-      "text": "Riversol NCO \u2014 confirm client sent before Apr 30 last chance",
-      "chip": "Deadline"
-    },
-    {
-      "text": "SFR Distillery \u2014 Will Rogers has had proposal for days. Follow up?",
-      "chip": "Waiting"
-    },
-    {
-      "text": "File system cleanup \u2014 overdue since Apr 24. Want to do it together.",
-      "chip": "Queued"
     }
   ],
   "watching": [
     {
       "dot": "red",
-      "text": "FLOWERS \u2014 order Apr 27, Mother's Day May 10. Don't blow it again."
-    },
-    {
-      "dot": "green",
-      "text": "Brand Featured \u2014 starts today Apr 27. Copy + brief sent to Kieran \u2713"
+      "text": "Liverpool ending contract after May \u2014 offboarding path TBD"
     },
     {
       "dot": "yellow",
-      "text": "Liverpool \u2014 April Signal headline fix needed before Tue meeting"
+      "text": "Riversol \u2014 NCO expired Apr 30, reconnect Tue May 5. Winback brief needed before Mon mtg."
     },
     {
       "dot": "yellow",
-      "text": "Liverpool \u2014 Sunset Flow v3 with Kieran (plain text, no design)"
-    },
-    {
-      "dot": "red",
-      "text": "RVCA \u2014 Add to Cart still blocked on Clay support ticket"
+      "text": "RVCA \u2014 Welcome Series design needed before Wed May 6 client meeting"
     },
     {
       "dot": "yellow",
-      "text": "RVCA \u2014 Welcome Series with Kieran (in design)"
+      "text": "RVCA \u2014 Add to Cart blocked on Clay support ticket"
     },
     {
       "dot": "amber",
-      "text": "Riversol NCO \u2014 sent to client Apr 25, last chance expires Apr 30"
+      "text": "LiveGood Proposal \u2014 pricing empty, Marl designs arriving. Review needed."
     },
     {
-      "dot": "yellow",
-      "text": "Hiba Academy \u2014 client reviewing nurture flow"
+      "dot": "amber",
+      "text": "Hiba Academy \u2014 nurture flow completion \u2014 confirm share happened"
     },
     {
       "dot": "grey",
-      "text": "SFR Distillery \u2014 Will Rogers reviewing proposal (stale)"
+      "text": "SFR Distillery \u2014 Will Rogers still has proposal. Very stale now."
+    },
+    {
+      "dot": "green",
+      "text": "Liverpool Q1 Report \u2014 live and delivered. Content calendar sync Fri."
     }
   ],
   "clients": [
     {
       "name": "Liverpool LA",
-      "lastActivity": "Q1 Report live. April Signal headline fix needed before Tue. Heavy meeting day Tue.",
-      "dot": "amber",
+      "lastActivity": "Contract ending after May. Q1 Report delivered. Offboarding path TBD. Wed call + Fri content sync.",
+      "dot": "red",
       "status": "active"
     },
     {
       "name": "Riversol",
-      "lastActivity": "NCO ready, client ball-in-court. Last chance Apr 30. Wed working session.",
+      "lastActivity": "NCO expired Apr 30. Winback brief needed before Mon. Tue reconnect with Jacob.",
       "dot": "amber",
       "status": "active"
     },
     {
       "name": "RVCA",
-      "lastActivity": "Abandoned v7 done. Add to Cart blocked (Clay ticket). Welcome Series in design.",
+      "lastActivity": "Welcome Series design urgently needed before Wed May 6 client meeting. Clay ticket still open.",
       "dot": "yellow",
       "status": "active"
     },
     {
       "name": "Hiba Academy",
-      "lastActivity": "Client reviewing nurture flow. Weekly call Fri.",
+      "lastActivity": "Nurture flow due May 1 \u2014 confirm sent. Weekly Thu.",
       "dot": "amber",
       "status": "active"
     },
     {
-      "name": "Brand Featured",
-      "lastActivity": "Starts Apr 27. Copy + brief sent to Kieran.",
-      "dot": "green",
+      "name": "LiveGood",
+      "lastActivity": "Proposal live but incomplete \u2014 pricing missing, Marl designs arriving. Review before share.",
+      "dot": "amber",
       "status": "prospect"
+    },
+    {
+      "name": "WesleyNY",
+      "lastActivity": "Call went well Apr 30. Client folder + notes not set up yet.",
+      "dot": "yellow",
+      "status": "prospect"
+    },
+    {
+      "name": "Brand Featured",
+      "lastActivity": "Started Apr 27. Copy + brief to Kieran.",
+      "dot": "green",
+      "status": "active"
     },
     {
       "name": "Axis Health",
@@ -132,20 +156,14 @@
     },
     {
       "name": "SFR Distillery",
-      "lastActivity": "Proposal out. Will Rogers \u2014 no update. Getting stale.",
+      "lastActivity": "Proposal stale \u2014 Will Rogers no update for 7+ days.",
       "dot": "grey",
       "status": "prospect"
-    },
-    {
-      "name": "Stand Flagpoles",
-      "lastActivity": "No recent activity.",
-      "dot": "grey",
-      "status": "watching"
     }
   ],
   "inbox": {
-    "summary": "Quiet \u2014 mostly Fathom. One item: Google Drive folder 'Mollie & Me' shared by Michael. Fathom David Varnai recording requests ignored per standing rule.",
-    "lastChecked": "2026-04-26T17:00:00-07:00"
+    "summary": "Quiet \u2014 2 items. Fathom: David Varnai wants to record upcoming meeting (action: confirm/deny). Clayton Dahl forwarded a summer campaign from imogene+willie \u2014 possible swipe file.",
+    "lastChecked": "2026-05-03T17:00:00-07:00"
   },
   "usage": {
     "monthLabel": "April 2026",
@@ -200,28 +218,28 @@
   },
   "activity": [
     {
-      "ts": "2026-04-26T17:00:00-07:00",
+      "ts": "2026-05-03T17:00:00-07:00",
       "text": "Sunday Wind-Down sweep complete"
     },
     {
-      "ts": "2026-04-26T17:00:00-07:00",
-      "text": "Flowers reminder flagged \u2014 order Apr 27 for May 10"
+      "ts": "2026-05-03T17:00:00-07:00",
+      "text": "Liverpool contract end flagged \u2014 offboarding path TBD"
     },
     {
-      "ts": "2026-04-26T17:00:00-07:00",
-      "text": "Liverpool April Signal headline flagged \u2014 fix before Tue"
+      "ts": "2026-05-03T17:00:00-07:00",
+      "text": "Hiba nurture flow \u2014 confirm sent (was due May 1)"
     },
     {
-      "ts": "2026-04-26T17:00:00-07:00",
-      "text": "Brand Featured start confirmed \u2014 Apr 27"
+      "ts": "2026-05-03T17:00:00-07:00",
+      "text": "RVCA Welcome Series \u2014 design deadline Wed May 6"
     },
     {
-      "ts": "2026-04-26T17:00:00-07:00",
-      "text": "Riversol NCO last chance flagged \u2014 Apr 30"
+      "ts": "2026-05-03T17:00:00-07:00",
+      "text": "WesleyNY \u2014 client folder + notes still need setup"
     },
     {
-      "ts": "2026-04-26T17:00:00-07:00",
-      "text": "SFR Distillery surfaced as stale"
+      "ts": "2026-05-03T17:00:00-07:00",
+      "text": "Flowers confirm reminder set \u2014 May 8"
     }
   ]
 }
