@@ -1221,10 +1221,10 @@ html, body { width:100%; height:100%; overflow:hidden; background:#070d18; }
         <div class="splash-tile-desc">Phased build timeline from account access through full program optimisation.</div>
         <div class="splash-tile-arrow">&rarr;</div>
       </a>
-      <a class="splash-tile" href="#" onclick="goTo('kickoff');return false;">
+      <a class="splash-tile" href="#" onclick="goTo('campaigns');return false;">
         <div class="splash-tile-num">04</div>
-        <div class="splash-tile-title">Kickoff &amp;<br/>Onboarding</div>
-        <div class="splash-tile-desc">Onboarding checklist, Month 1 priorities, and what to expect in the first 30 days.</div>
+        <div class="splash-tile-title">Campaign<br/>Analysis</div>
+        <div class="splash-tile-desc">2025 performance breakdown by theme + May&ndash;July 2026 draft send calendar.</div>
         <div class="splash-tile-arrow">&rarr;</div>
       </a>
     </div>
@@ -1238,7 +1238,7 @@ html, body { width:100%; height:100%; overflow:hidden; background:#070d18; }
     <button class="prop-nav-btn active" data-sec="audit"    onclick="showSection('audit',this)">01 / Audit</button>
     <button class="prop-nav-btn"        data-sec="strategy" onclick="showSection('strategy',this)">02 / Flow Strategy</button>
     <button class="prop-nav-btn"        data-sec="roadmap"  onclick="showSection('roadmap',this)">03 / Roadmap</button>
-    <button class="prop-nav-btn"        data-sec="kickoff"  onclick="showSection('kickoff',this)">04 / Kickoff</button>
+    <button class="prop-nav-btn"        data-sec="campaigns"  onclick="showSection('campaigns',this)">04 / Campaign Analysis</button>
   </nav>
   <div class="prop-section active" id="sec-audit">
 <div class="section active" id="section-audit">
@@ -3153,131 +3153,250 @@ html, body { width:100%; height:100%; overflow:hidden; background:#070d18; }
   </div>
 </div>
   </div>
-  <div class="prop-section" id="sec-kickoff">
-<div class="section active" id="section-kickoff">
+  <div class="prop-section" id="sec-campaigns">
+<div class="section active" id="section-campaigns">
   <div class="section-hero">
     <div style="max-width:860px;margin:0 auto;padding:0 48px;">
       <div class="section-index">Section 04</div>
-      <div class="section-title">Kickoff &amp;<br/>Onboarding</div>
+      <div class="section-title">Campaign<br/>Analysis</div>
       <div class="section-intro">
-        Everything we need to hit the ground running. Below is our onboarding checklist, Month 1 priorities, and what the first 30 days look like.
+        What 194 campaigns in 2025 taught us — and how we&rsquo;re building the next quarter around it.
       </div>
     </div>
   </div>
   <div class="page" style="padding-top:56px;">
 
-    <div class="h2">Onboarding Checklist</div>
-    <div class="tier-list">
-      <div class="tier-item">
-        <div class="tier-num">01</div>
-        <div class="tier-body"><strong>Grant Klaviyo access.</strong> Full admin access for mike@digitsup.com. Required Day 1 — the cart split error fix goes in Week 1.</div>
-      </div>
-      <div class="tier-item">
-        <div class="tier-num">02</div>
-        <div class="tier-body"><strong>Confirm brand voice + asset access.</strong> Share brand guidelines, tone doc, and any existing copy references. We'll match your voice from Day 1.</div>
-      </div>
-      <div class="tier-item">
-        <div class="tier-num">03</div>
-        <div class="tier-body"><strong>Confirm email template assets.</strong> Access to any existing templates, Figma files, or design assets we can build from.</div>
-      </div>
-      <div class="tier-item">
-        <div class="tier-num">04</div>
-        <div class="tier-body"><strong>Set up approval workflow.</strong> Who approves emails? Who reviews copy? 48-hour turnaround is built into the schedule — we'll align on the right contacts.</div>
-      </div>
-      <div class="tier-item">
-        <div class="tier-num">05</div>
-        <div class="tier-body"><strong>Define promotional calendar.</strong> Key dates, sale windows, product launches, and blackout periods for the next 90 days. Shapes the campaign calendar immediately.</div>
-      </div>
-      <div class="tier-item">
-        <div class="tier-num">06</div>
-        <div class="tier-body"><strong>Confirm communication cadence.</strong> Weekly async update + bi-weekly strategy call to start. Adjust as needed once the program is in motion.</div>
-      </div>
+    <div class="h2">2025 Campaign Performance</div>
+    <p style="font-size:14px;font-weight:300;color:var(--mid);margin:0 0 28px;">194 campaigns sent in 2025. Here&rsquo;s what the data says about what works.</p>
+
+    <div style="overflow-x:auto;margin-bottom:40px;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="border-bottom:2px solid var(--black);">
+            <th style="text-align:left;padding:10px 12px 10px 0;font-weight:600;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);">Theme</th>
+            <th style="text-align:center;padding:10px 12px;font-weight:600;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);">Sends</th>
+            <th style="text-align:center;padding:10px 12px;font-weight:600;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);">Avg CTR</th>
+            <th style="text-align:center;padding:10px 0 10px 12px;font-weight:600;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);">Peak CTR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid rgba(0,0,0,0.08);background:rgba(18,122,102,0.06);">
+            <td style="padding:11px 12px 11px 0;font-weight:500;color:var(--black);">Loyalty / Retention</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--mid);">3</td>
+            <td style="padding:11px 12px;text-align:center;font-weight:600;color:#127a66;">3.08%</td>
+            <td style="padding:11px 0 11px 12px;text-align:center;color:var(--mid);">4.61%</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(0,0,0,0.08);background:rgba(18,122,102,0.04);">
+            <td style="padding:11px 12px 11px 0;font-weight:500;color:var(--black);">Mystery Offer / Gamified</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--mid);">12</td>
+            <td style="padding:11px 12px;text-align:center;font-weight:600;color:#127a66;">1.71%</td>
+            <td style="padding:11px 0 11px 12px;text-align:center;color:var(--mid);">5.48%</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(0,0,0,0.08);">
+            <td style="padding:11px 12px 11px 0;font-weight:500;color:var(--black);">Promo / Sale</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--mid);">17</td>
+            <td style="padding:11px 12px;text-align:center;font-weight:600;color:var(--black);">1.51%</td>
+            <td style="padding:11px 0 11px 12px;text-align:center;color:var(--mid);">3.84%</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(0,0,0,0.08);">
+            <td style="padding:11px 12px 11px 0;color:var(--black);">New Arrivals / Launch</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--mid);">16</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--black);">1.01%</td>
+            <td style="padding:11px 0 11px 12px;text-align:center;color:var(--mid);">2.50%</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(0,0,0,0.08);background:rgba(18,38,180,0.04);">
+            <td style="padding:11px 12px 11px 0;color:var(--black);">Women&rsquo;s Focus</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--mid);">2</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--black);">0.83%</td>
+            <td style="padding:11px 0 11px 12px;text-align:center;color:var(--mid);">1.02%</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(0,0,0,0.08);">
+            <td style="padding:11px 12px 11px 0;color:var(--black);">Swim / Boardshorts</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--mid);">15</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--black);">0.76%</td>
+            <td style="padding:11px 0 11px 12px;text-align:center;color:var(--mid);">4.32%</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(0,0,0,0.08);">
+            <td style="padding:11px 12px 11px 0;color:var(--black);">Outerwear / Layers / Fleece</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--mid);">15</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--black);">0.76%</td>
+            <td style="padding:11px 0 11px 12px;text-align:center;color:var(--mid);">3.70%</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(0,0,0,0.08);">
+            <td style="padding:11px 12px 11px 0;color:var(--black);">Curated / Lifestyle</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--mid);">8</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--black);">0.69%</td>
+            <td style="padding:11px 0 11px 12px;text-align:center;color:var(--mid);">1.59%</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(0,0,0,0.08);">
+            <td style="padding:11px 12px 11px 0;color:var(--black);">Tees / Graphic Tees</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--mid);">16</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--black);">0.66%</td>
+            <td style="padding:11px 0 11px 12px;text-align:center;color:var(--mid);">1.47%</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(0,0,0,0.08);">
+            <td style="padding:11px 12px 11px 0;color:var(--black);">Sport / Active</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--mid);">18</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--black);">0.65%</td>
+            <td style="padding:11px 0 11px 12px;text-align:center;color:var(--mid);">1.49%</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(0,0,0,0.08);">
+            <td style="padding:11px 12px 11px 0;color:var(--black);">Athlete / Collab</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--mid);">9</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--black);">0.65%</td>
+            <td style="padding:11px 0 11px 12px;text-align:center;color:var(--mid);">1.69%</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(0,0,0,0.08);">
+            <td style="padding:11px 12px 11px 0;color:var(--black);">Bottoms / Yogger / Pants</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--mid);">14</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--black);">0.48%</td>
+            <td style="padding:11px 0 11px 12px;text-align:center;color:var(--mid);">1.68%</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(0,0,0,0.08);">
+            <td style="padding:11px 12px 11px 0;color:var(--black);">BALANCE Series</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--mid);">2</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--black);">0.44%</td>
+            <td style="padding:11px 0 11px 12px;text-align:center;color:var(--mid);">0.60%</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(0,0,0,0.08);">
+            <td style="padding:11px 12px 11px 0;color:var(--black);">Holiday / Gift Guide</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--mid);">6</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--mid);">0.32%</td>
+            <td style="padding:11px 0 11px 12px;text-align:center;color:var(--mid);">0.37%</td>
+          </tr>
+          <tr>
+            <td style="padding:11px 12px 11px 0;color:var(--black);">Cultural Moments</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--mid);">2</td>
+            <td style="padding:11px 12px;text-align:center;color:var(--mid);">0.30%</td>
+            <td style="padding:11px 0 11px 12px;text-align:center;color:var(--mid);">0.32%</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <div class="h2">Phase 1 Priorities — First 30 Days</div>
-    <div class="tier-list">
-      <div class="tier-item">
-        <div class="tier-num">W1</div>
-        <div class="tier-body"><strong>Fix the cart split error.</strong> Currently excluding 70% of high-value abandoners from the cart flow. This is Day 1 work — it's costing revenue every hour it runs broken.</div>
-      </div>
-      <div class="tier-item">
-        <div class="tier-num">W1</div>
-        <div class="tier-body"><strong>Activate checkout abandonment.</strong> Klaviyo's dedicated checkout flow is currently not live. Immediate recovery opportunity before the automation build begins.</div>
-      </div>
-      <div class="tier-item">
-        <div class="tier-num">W2</div>
-        <div class="tier-body"><strong>Rebuild the welcome series.</strong> 4 world-preference lanes (Surf / Snow / MX / Skate). This is your highest-volume flow and the first experience every new subscriber has with the brand.</div>
-      </div>
-      <div class="tier-item">
-        <div class="tier-num">W2</div>
-        <div class="tier-body"><strong>Rebuild the popup.</strong> Add first-name capture, teaser element, and fix close behavior so subscribers aren't permanently lost on accidental dismiss.</div>
-      </div>
-      <div class="tier-item">
-        <div class="tier-num">W3–4</div>
-        <div class="tier-body"><strong>Post-purchase architecture.</strong> 4-branch category split (Surf / Snow / MX / Skate) with 3-phase journey: activation, retention, replenishment. Loyalist track built into Phase 2.</div>
-      </div>
-      <div class="tier-item">
-        <div class="tier-num">W4</div>
-        <div class="tier-body"><strong>Month 1 report.</strong> Revenue attribution from fixed flows, list health baseline, campaign performance summary. Delivered by the 5th of Month 2.</div>
-      </div>
-    </div>
-
-    <div class="h2">What to Expect</div>
-    <table>
-      <thead><tr><th>Area</th><th>How We Work</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Reporting</strong></td><td>Monthly performance report delivered by the 5th — revenue attribution, flow performance, list health, campaign metrics.</td></tr>
-        <tr><td><strong>Approvals</strong></td><td>Campaign briefs submitted 5 business days before send. 48-hour approval window. Delays shift the calendar, not the billing.</td></tr>
-        <tr><td><strong>Communication</strong></td><td>Weekly async update every Monday. Strategy call bi-weekly to start, monthly once the program is in a rhythm.</td></tr>
-        <tr><td><strong>Klaviyo Access</strong></td><td>We work directly in your account. All builds are documented and handed over. You own everything we build.</td></tr>
-        <tr><td><strong>Month 6</strong></td><td>Full program audit + renewal proposal based on real data. No guesswork — we'll show you exactly what moved the needle.</td></tr>
-      </tbody>
-    </table>
-
-    <div class="callout">
-      <div class="callout-label">The Opportunity</div>
-      <p>Klaviyo is currently generating 8% of total store revenue. The 90-day target is 25%. With 400K+ active profiles, 163K one-hit wonders, and a broken cart flow excluding 70% of high-value buyers — the recoverable revenue in Month 1 alone is significant. We're not starting from scratch, we're fixing what's already there and building what's missing.</p>
-    </div>
-
-    <div class="h2">Questions for the Call</div>
-
-    <div class="tier-list">
-      <div class="tier-item">
-        <div class="tier-num">01</div>
-        <div class="tier-body"><strong>Access.</strong> Can we get Shopify + Klaviyo access for the full DigitsUp team? And Attentive access for everyone as well?</div>
-      </div>
-      <div class="tier-item">
-        <div class="tier-num">02</div>
-        <div class="tier-body"><strong>Analytics &amp; Attribution.</strong> What's the current state of analytics and email attribution? Are you running GA4? Any other tools in the stack?</div>
-      </div>
-      <div class="tier-item">
-        <div class="tier-num">03</div>
-        <div class="tier-body"><strong>Production Pipeline.</strong>
-          <ul style="margin-top:8px;padding-left:20px;line-height:1.9;">
-            <li>Are we working with your designer for everything, or handling production in-house?</li>
-            <li>Do you have a design briefing process you'd like us to adopt?</li>
-            <li>Any brand or copy guidelines we should know about — dos and don'ts?</li>
-            <li>What's your QA and approval process, and who's the POC on the team?</li>
-            <li>Can we use Figma for all designs?</li>
-            <li>Are you happy with current templates, or can we redesign?</li>
-            <li>Any special considerations for build (coding, rendering, ESP constraints)?</li>
-            <li>Any segmentation considerations we should know upfront?</li>
-            <li>What files or shared folders can we access for assets?</li>
-          </ul>
+    <div class="callout" style="margin-bottom:40px;">
+      <div class="callout-label">Top 5 Campaigns — All of 2025</div>
+      <div style="display:grid;gap:10px;margin-top:4px;">
+        <div style="display:flex;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.08);">
+          <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--mid);min-width:18px;">01</span>
+          <span style="font-size:14px;font-weight:500;color:var(--black);flex:1;">Mystery Offer Halloween</span>
+          <span style="font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:#127a66;">5.48%</span>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.08);">
+          <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--mid);min-width:18px;">02</span>
+          <span style="font-size:14px;font-weight:500;color:var(--black);flex:1;">Loyalty Program Ending</span>
+          <span style="font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:#127a66;">4.61%</span>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.08);">
+          <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--mid);min-width:18px;">03</span>
+          <span style="font-size:14px;font-weight:500;color:var(--black);flex:1;">Men&rsquo;s Swim Trunks</span>
+          <span style="font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:#127a66;">4.32%</span>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.08);">
+          <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--mid);min-width:18px;">04</span>
+          <span style="font-size:14px;font-weight:500;color:var(--black);flex:1;">Spring Cleaning Sale (70% off sitewide)</span>
+          <span style="font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:#127a66;">3.84%</span>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:12px;padding:10px 0;">
+          <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--mid);min-width:18px;">05</span>
+          <span style="font-size:14px;font-weight:500;color:var(--black);flex:1;">Lounge Matching Sets</span>
+          <span style="font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:#127a66;">3.70%</span>
         </div>
       </div>
+    </div>
+
+    <div class="h2">Key Insights</div>
+    <div class="tier-list" style="margin-bottom:48px;">
       <div class="tier-item">
-        <div class="tier-num">04</div>
-        <div class="tier-body"><strong>Campaigns.</strong> Where do we find the campaign calendar? Are we clear to take it over from here? Who approves campaign topics and sends?</div>
+        <div class="tier-num" style="color:#127a66;">&#9679;</div>
+        <div class="tier-body"><strong>Mystery offers drive the highest sustained CTR</strong> &mdash; schedule at least 1 per month. Gamification consistently outperforms straight product sends.</div>
       </div>
       <div class="tier-item">
-        <div class="tier-num">05</div>
-        <div class="tier-body"><strong>Products &amp; Margin.</strong> What products are currently shipping and where? What discounts are approved? Any active cart discounts we should be aware of?</div>
+        <div class="tier-num" style="color:#127a66;">&#9679;</div>
+        <div class="tier-body"><strong>Women&rsquo;s content: only 2 sends in all of 2025, both outperformed average</strong> &mdash; major gap to close in 2026. The audience is there; the sends weren&rsquo;t.</div>
       </div>
       <div class="tier-item">
-        <div class="tier-num">06</div>
-        <div class="tier-body"><strong>Comms.</strong> Is a weekly cadence good for updates? And confirming: weekly reporting + quarterly reporting as outlined?</div>
+        <div class="tier-num" style="color:var(--mid);">&#9679;</div>
+        <div class="tier-body"><strong>Gift guides consistently underperform</strong> &mdash; keep thin, don&rsquo;t over-invest. 0.32% avg CTR is the second-lowest category in the data.</div>
       </div>
+      <div class="tier-item">
+        <div class="tier-num" style="color:var(--mid);">&#9679;</div>
+        <div class="tier-body"><strong>Cultural moments (e.g. Skate Day) = lowest CTR category</strong> &mdash; lowest priority for calendar slots. Audience doesn&rsquo;t click; save the sends for higher-ROI themes.</div>
+      </div>
+    </div>
+
+    <div class="h2">May&ndash;July 2026 Draft Calendar</div>
+    <p style="font-size:14px;font-weight:300;color:var(--mid);margin:0 0 28px;">1&ndash;2 sends per week. US-centric. Built around what the data says works.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-bottom:16px;">
+
+      <div style="background:#f9f9f9;border-radius:4px;padding:24px;border-top:3px solid var(--black);">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:0.12em;text-transform:uppercase;color:var(--black);margin-bottom:20px;">May (remaining)</div>
+        <div class="tier-list" style="margin:0;">
+          <div class="tier-item">
+            <div class="tier-num">Wk 3</div>
+            <div class="tier-body"><strong>Memorial Day sequence</strong><br/>Launch &rarr; Click-only &rarr; Open-only &rarr; Last Call</div>
+          </div>
+          <div class="tier-item" style="border-bottom:none;">
+            <div class="tier-num">Wk 4</div>
+            <div class="tier-body"><strong>Mystery Offer drop #1</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#f9f9f9;border-radius:4px;padding:24px;border-top:3px solid var(--black);">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:0.12em;text-transform:uppercase;color:var(--black);margin-bottom:20px;">June</div>
+        <div class="tier-list" style="margin:0;">
+          <div class="tier-item">
+            <div class="tier-num">Wk 1</div>
+            <div class="tier-body"><strong>Women&rsquo;s send #1</strong></div>
+          </div>
+          <div class="tier-item">
+            <div class="tier-num">Wk 2</div>
+            <div class="tier-body"><strong>New Arrivals / Summer Launch</strong></div>
+          </div>
+          <div class="tier-item">
+            <div class="tier-num">Wk 3</div>
+            <div class="tier-body"><strong>Mystery Offer drop #2</strong></div>
+          </div>
+          <div class="tier-item" style="border-bottom:none;">
+            <div class="tier-num">Wk 4</div>
+            <div class="tier-body"><strong>Bestsellers</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#f9f9f9;border-radius:4px;padding:24px;border-top:3px solid var(--black);">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:0.12em;text-transform:uppercase;color:var(--black);margin-bottom:20px;">July</div>
+        <div class="tier-list" style="margin:0;">
+          <div class="tier-item">
+            <div class="tier-num">Wk 1</div>
+            <div class="tier-body"><strong>Women&rsquo;s send #2</strong></div>
+          </div>
+          <div class="tier-item">
+            <div class="tier-num">Wk 2</div>
+            <div class="tier-body"><strong>Swim / Boardshorts</strong></div>
+          </div>
+          <div class="tier-item">
+            <div class="tier-num">Wk 3</div>
+            <div class="tier-body"><strong>Mystery Offer drop #3</strong></div>
+          </div>
+          <div class="tier-item" style="border-bottom:none;">
+            <div class="tier-num">Wk 4</div>
+            <div class="tier-body"><strong>Loyalty / Retention send</strong></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="border-top:1px solid rgba(0,0,0,0.1);padding-top:16px;margin-bottom:48px;">
+      <ul style="margin:0;padding:0 0 0 16px;list-style:disc;">
+        <li style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.8;">US-centric: 95% of traffic is US. Victoria Day removed.</li>
+        <li style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.8;">Gift guides kept thin &mdash; data shows consistent underperformance.</li>
+        <li style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.8;">3 mystery offer drops across the quarter &mdash; highest sustained CTR category.</li>
+        <li style="font-size:12px;font-weight:300;color:var(--mid);line-height:1.8;">2+ women&rsquo;s sends to start closing the 2025 gap.</li>
+      </ul>
     </div>
 
   </div>
