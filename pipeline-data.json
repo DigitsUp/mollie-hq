@@ -1,19 +1,30 @@
 {
-  "lastUpdated": "2026-05-07T17:31:18.474Z",
+  "lastUpdated": "2026-05-08T17:10:00-07:00",
   "cards": [
     {
-      "id": "sales-001",
-      "title": "Brand Featured",
-      "client": "Brand Featured",
+      "id": "sales-frnk",
+      "title": "FRNK Boutique",
+      "client": "FRNK Boutique",
+      "section": "sales",
+      "column": "proposal-sent",
+      "owner": "Michael",
+      "dueDate": "2026-05-10",
+      "commsFlag": "action-needed",
+      "notes": "Michael's sister-in-law. Website redesign + email automation + campaign strategy. Proposal building Saturday May 9."
+    },
+    {
+      "id": "sales-livegood",
+      "title": "LiveGood",
+      "client": "LiveGood",
       "section": "sales",
       "column": "onboarding",
       "owner": "Michael",
-      "dueDate": "2026-04-27",
+      "dueDate": "2026-05-11",
       "commsFlag": "action-needed",
-      "notes": "Signed. Start date Apr 27. Internal kickoff still needed before then. Welcome Series Copy Doc v1 sent to Kieran Apr 22."
+      "notes": "SIGNED May 5. Internal kickoff Mon May 11. Debbie cancelling old recurring syncs. Thomas renaming kickoff event. Lawrence for contracts next."
     },
     {
-      "id": "sales-002",
+      "id": "sales-sfr",
       "title": "SFR Distillery",
       "client": "SFR Distillery",
       "section": "sales",
@@ -21,43 +32,54 @@
       "owner": "Michael",
       "dueDate": "",
       "commsFlag": "waiting-on-them",
-      "notes": "Proposal out. Will Rogers reviewing. No reply since Apr 17."
+      "notes": "Proposal out with Will Rogers. No reply in 2+ weeks. Michael following up."
     },
     {
-      "id": "sales-003",
-      "title": "The LAB / Good Life",
-      "client": "The LAB / Good Life",
+      "id": "sales-wesleyNY",
+      "title": "WesleyNY",
+      "client": "WesleyNY",
       "section": "sales",
-      "column": "negotiating",
+      "column": "outreach",
       "owner": "Michael",
       "dueDate": "",
-      "commsFlag": "waiting-on-them",
-      "notes": "Proposal sent. Waiting to hear back."
+      "commsFlag": "none",
+      "notes": "Call went well Apr 30. Low priority. Contact/scoping unknown. Client folder not set up."
     },
     {
-      "id": "prod-001",
-      "title": "Liverpool Sunset Flow",
-      "client": "Liverpool LA",
-      "section": "production",
-      "column": "building",
-      "owner": "Kieran",
-      "dueDate": "",
-      "commsFlag": "waiting-on-them",
-      "notes": "Copy v3 done Ã¢ÂÂ all 28 of Meaghan's comments actioned. Plain text format, no design review needed. With Kieran now."
-    },
-    {
-      "id": "prod-002",
-      "title": "RVCA Abandoned Suite",
+      "id": "prod-rvca-new-arrivals",
+      "title": "RVCA New Arrivals Campaign",
       "client": "RVCA",
       "section": "production",
-      "column": "review",
-      "owner": "Kieran",
-      "dueDate": "",
-      "commsFlag": "waiting-on-them",
-      "notes": "v7 sent to Kieran Apr 20. Awaiting feedback. Browse + Cart + Checkout abandonment. 3 emails each."
+      "column": "copy",
+      "owner": "Michael",
+      "dueDate": "2026-05-11",
+      "commsFlag": "action-needed",
+      "notes": "Men's + women's new arrivals. Build Saturday May 9, send by Monday May 11."
     },
     {
-      "id": "prod-003",
+      "id": "prod-rvca-memorial-day",
+      "title": "RVCA Memorial Day Sequence",
+      "client": "RVCA",
+      "section": "production",
+      "column": "strategy",
+      "owner": "Michael",
+      "dueDate": "2026-05-22",
+      "commsFlag": "none",
+      "notes": "4-email sequence: Launch → Click-only → Open-only → Last call. May 22–25. Domain warmup still in progress."
+    },
+    {
+      "id": "prod-rvca-welcome",
+      "title": "RVCA Welcome Series",
+      "client": "RVCA",
+      "section": "production",
+      "column": "design",
+      "owner": "Kieran",
+      "dueDate": "",
+      "commsFlag": "action-needed",
+      "notes": "12 emails. Kieran building now. Send Clay Figma link for review. Add sign-up form to Figma. Pop-up button change still pending: 'continue' → 'unlock discount'."
+    },
+    {
+      "id": "prod-rvca-atc",
       "title": "RVCA Add to Cart",
       "client": "RVCA",
       "section": "production",
@@ -65,54 +87,76 @@
       "owner": "Team",
       "dueDate": "",
       "commsFlag": "blocked",
-      "notes": "Clay support ticket open. Blocked until resolved. Clayton sent design inspo (Buck Mason, Faithfull, Imogene+Willie)."
+      "notes": "Clay support ticket open. Blocked until resolved."
     },
     {
-      "id": "prod-004",
-      "title": "Riversol Winback Flow",
+      "id": "prod-riversol-winback",
+      "title": "Riversol Win-Back Flow",
       "client": "Riversol",
+      "section": "production",
+      "column": "review",
+      "owner": "Michael",
+      "dueDate": "",
+      "commsFlag": "action-needed",
+      "notes": "3-lane: Group A (Samplers), Group B (One-Hit Wonders), Group C (Return Customers). Copy done — Michael reviewing. After redlines → Meaghan builds next week."
+    },
+    {
+      "id": "prod-liverpool-fathersday",
+      "title": "Liverpool Father's Day",
+      "client": "Liverpool LA",
       "section": "production",
       "column": "strategy",
       "owner": "Michael",
       "dueDate": "",
-      "commsFlag": "action-needed",
-      "notes": "Full action list from Apr 20 meeting still to unpack. Jacob call today Apr 22 11am. Also: plaintext NCO email is a one-off ad hoc send Ã¢ÂÂ do this first."
+      "commsFlag": "none",
+      "notes": "Approved — 25% off select styles. Sonia developing creative. Morgan sending calendar/assets by Monday."
     },
     {
-      "id": "prod-005",
-      "title": "Hiba Nurture Flow",
+      "id": "prod-liverpool-memorial",
+      "title": "Liverpool Memorial Day",
+      "client": "Liverpool LA",
+      "section": "production",
+      "column": "strategy",
+      "owner": "Michael",
+      "dueDate": "2026-05-22",
+      "commsFlag": "none",
+      "notes": "Sonia developing creative. Lower priority pending offboarding decision."
+    },
+    {
+      "id": "prod-hiba-form",
+      "title": "Hiba Sign-Up Form Fix",
       "client": "Hiba Academy",
       "section": "production",
-      "column": "review",
+      "column": "parking-lot",
       "owner": "Client",
       "dueDate": "",
-      "commsFlag": "waiting-on-them",
-      "notes": "3-track nurture flow built. Client reviewing and commenting. Adjustments expected next week."
+      "commsFlag": "blocked",
+      "notes": "Form broken. Dev team unresponsive after 2 follow-ups from Veronica."
     },
     {
-      "id": "prod-006",
-      "title": "Axis Health Creative",
-      "client": "Axis Health",
-      "section": "production",
-      "column": "design",
-      "owner": "Marl",
-      "dueDate": "",
-      "commsFlag": "none",
-      "notes": "In design with Marl."
-    },
-    {
-      "id": "prod-007",
-      "title": "BrandFeatured Welcome Series",
+      "id": "prod-brand-featured-welcome",
+      "title": "Brand Featured Welcome Series",
       "client": "Brand Featured",
       "section": "production",
       "column": "copy",
       "owner": "Kieran",
       "dueDate": "",
       "commsFlag": "none",
-      "notes": "Copy Doc v1 built by Callie and sent to Kieran + Mike Apr 22. Popup (3-step) + SMS + 3 emails. Kieran to build."
+      "notes": "Copy Doc v1 sent to Kieran + Mike Apr 22. Pop-up (3-step) + SMS + 3 emails. Kieran building."
     },
     {
-      "id": "prod-008",
+      "id": "prod-axis-creative",
+      "title": "Axis Health Creative",
+      "client": "Axis Health",
+      "section": "production",
+      "column": "parking-lot",
+      "owner": "Marl",
+      "dueDate": "",
+      "commsFlag": "none",
+      "notes": "On hold. Michael checking back with Myles end of next week."
+    },
+    {
+      "id": "prod-liverpool-q1",
       "title": "Liverpool Q1 Report",
       "client": "Liverpool LA",
       "section": "production",
@@ -120,18 +164,7 @@
       "owner": "Mollie",
       "dueDate": "",
       "commsFlag": "none",
-      "notes": "APPROVED and live. digitsup.github.io/liverpool-reports/q1-2026/ Ã¢ÂÂ pw: LPSQ1. Do not touch."
-    },
-    {
-      "id": "prod-009",
-      "title": "Riversol Mother's Day",
-      "client": "Riversol",
-      "section": "production",
-      "column": "strategy",
-      "owner": "Michael",
-      "dueDate": "2026-04-23",
-      "commsFlag": "action-needed",
-      "notes": "Mother's Day sale kicks off Apr 23. Tiered gift structure. Flow banners needed once Una shares assets."
+      "notes": "APPROVED and live. digitsup.github.io/liverpool-reports/q1-2026/ — pw: LPSQ1. Do not touch."
     }
   ]
 }
