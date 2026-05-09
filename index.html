@@ -1397,6 +1397,104 @@ function initWorkspace() {
       return { x: (v.x * 0.5 + 0.5) * cW, y: (-v.y * 0.5 + 0.5) * cH };
     }
 
+    // ── Reward additions ───────────────────────────────────────────────────
+
+    // 1. 🌵 Succulent on Mollie's desk
+    (function() {
+      const sucGroup = new THREE.Group();
+      // Terracotta pot (short cylinder)
+      const potGeo = new THREE.CylinderGeometry(0.055, 0.045, 0.07, 10);
+      const potMat = new THREE.MeshLambertMaterial({ color: 0xC2714F });
+      const pot = new THREE.Mesh(potGeo, potMat);
+      pot.position.set(0, 0.035, 0);
+      sucGroup.add(pot);
+      // Soil (thin dark disc on top of pot)
+      const soilGeo = new THREE.CylinderGeometry(0.053, 0.053, 0.008, 10);
+      const soilMat = new THREE.MeshLambertMaterial({ color: 0x5C3D1E });
+      const soil = new THREE.Mesh(soilGeo, soilMat);
+      soil.position.set(0, 0.074, 0);
+      sucGroup.add(soil);
+      // Succulent spikes (small flattened cone segments)
+      const spikeMat = new THREE.MeshLambertMaterial({ color: 0x2D8A4E });
+      const spikeData = [
+        { rx: 0, rz: 0,    y: 0.095, h: 0.07, ox: 0,     oz: 0 },
+        { rx: 0.5, rz: 0,  y: 0.088, h: 0.055, ox: 0.028, oz: 0 },
+        { rx: -0.5, rz: 0, y: 0.088, h: 0.055, ox: -0.028, oz: 0 },
+        { rx: 0, rz: 0.5,  y: 0.088, h: 0.055, ox: 0,     oz: 0.028 },
+        { rx: 0, rz: -0.5, y: 0.088, h: 0.055, ox: 0,     oz: -0.028 },
+      ];
+      spikeData.forEach(d => {
+        const sg = new THREE.ConeGeometry(0.018, d.h, 5);
+        const sm = new THREE.Mesh(sg, spikeMat);
+        sm.position.set(d.ox, d.y, d.oz);
+        sm.rotation.x = d.rx; sm.rotation.z = d.rz;
+        sucGroup.add(sm);
+      });
+      sucGroup.position.set(MX - 0.30, 0.78, DZ + 0.15);
+      scene.add(sucGroup);
+    })();
+
+    // 2. 🍕 Pizza box near Callie's desk
+    (function() {
+      const pizzaGroup = new THREE.Group();
+      // Base (cardboard)
+      const baseGeo = new THREE.BoxGeometry(0.42, 0.04, 0.42);
+      const baseMat = new THREE.MeshLambertMaterial({ color: 0xF5E6C8 });
+      const base = new THREE.Mesh(baseGeo, baseMat);
+      base.position.set(0, 0, 0);
+      pizzaGroup.add(base);
+      // Lid (slightly darker, offset up)
+      const lidGeo = new THREE.BoxGeometry(0.43, 0.025, 0.43);
+      const lidMat = new THREE.MeshLambertMaterial({ color: 0xEDD9A3 });
+      const lid = new THREE.Mesh(lidGeo, lidMat);
+      lid.position.set(0, 0.032, 0);
+      pizzaGroup.add(lid);
+      pizzaGroup.position.set(CX - 0.5, 0.04, DZ + 0.55);
+      pizzaGroup.rotation.z = 0.05;
+      scene.add(pizzaGroup);
+    })();
+
+    // 3. 🪟 Window on back wall with city glow
+    (function() {
+      const winGroup = new THREE.Group();
+      const winW = 1.0, winH = 0.75, winD = 0.06;
+      // Outer frame
+      const frameMat = new THREE.MeshLambertMaterial({ color: 0x1a2030 });
+      const frameGeo = new THREE.BoxGeometry(winW, winH, winD);
+      const frame = new THREE.Mesh(frameGeo, frameMat);
+      winGroup.add(frame);
+      // Window pane (inset)
+      const paneMat = new THREE.MeshLambertMaterial({
+        color: 0x0a1628,
+        emissive: new THREE.Color(0x1a3a6b),
+        emissiveIntensity: 0.8
+      });
+      const paneGeo = new THREE.BoxGeometry(winW - 0.1, winH - 0.1, 0.01);
+      const pane = new THREE.Mesh(paneGeo, paneMat);
+      pane.position.set(0, 0, winD * 0.5 + 0.005);
+      winGroup.add(pane);
+      // Cross divider — horizontal strip
+      const divMat = new THREE.MeshLambertMaterial({ color: 0x1a2030 });
+      const hDivGeo = new THREE.BoxGeometry(winW - 0.08, 0.025, 0.025);
+      const hDiv = new THREE.Mesh(hDivGeo, divMat);
+      hDiv.position.set(0, 0, winD * 0.5 + 0.01);
+      winGroup.add(hDiv);
+      // Cross divider — vertical strip
+      const vDivGeo = new THREE.BoxGeometry(0.025, winH - 0.08, 0.025);
+      const vDiv = new THREE.Mesh(vDivGeo, divMat);
+      vDiv.position.set(0, 0, winD * 0.5 + 0.01);
+      winGroup.add(vDiv);
+      // Position: bottom at y=1.2, centre at y=1.2+winH/2
+      winGroup.position.set(-1.8, 1.2 + winH / 2, -4.45);
+      scene.add(winGroup);
+      // City glow point light
+      const cityLight = new THREE.PointLight(0x2244AA, 0.8, 3);
+      cityLight.position.set(-1.8, 1.2 + winH / 2, -4.0);
+      scene.add(cityLight);
+    })();
+
+    // ── End reward additions ───────────────────────────────────────────────
+
     function animate() {
       requestAnimationFrame(animate);
       const t = Date.now() * 0.001;
