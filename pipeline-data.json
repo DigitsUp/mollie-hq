@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-08T17:10:00-07:00",
+  "lastUpdated": "2026-05-11T13:10:00-07:00",
   "cards": [
     {
       "id": "sales-frnk",
@@ -8,9 +8,9 @@
       "section": "sales",
       "column": "proposal-sent",
       "owner": "Michael",
-      "dueDate": "2026-05-10",
+      "dueDate": "",
       "commsFlag": "action-needed",
-      "notes": "Michael's sister-in-law. Website redesign + email automation + campaign strategy. Proposal building Saturday May 9."
+      "notes": "Michael's sister-in-law. Proposal live: digitsup.github.io/frnk/ — pw: FRNK. Options A ($1,200/mo) or B ($3K + email). Michael scheduling review call with Stephanie."
     },
     {
       "id": "sales-livegood",
@@ -19,9 +19,9 @@
       "section": "sales",
       "column": "onboarding",
       "owner": "Michael",
-      "dueDate": "2026-05-11",
-      "commsFlag": "action-needed",
-      "notes": "SIGNED May 5. Internal kickoff Mon May 11. Debbie cancelling old recurring syncs. Thomas renaming kickoff event. Lawrence for contracts next."
+      "dueDate": "",
+      "commsFlag": "none",
+      "notes": "SIGNED May 5. Internal kickoff today 2pm. Build priority: Abandon Suite → Welcome Pop-Up → Post-Purchase → WinBack. Lawrence for contracts."
     },
     {
       "id": "sales-sfr",
@@ -46,15 +46,26 @@
       "notes": "Call went well Apr 30. Low priority. Contact/scoping unknown. Client folder not set up."
     },
     {
+      "id": "prod-liverpool-weekly",
+      "title": "Liverpool Weekly Report",
+      "client": "Liverpool LA",
+      "section": "production",
+      "column": "copy",
+      "owner": "Mollie",
+      "dueDate": "2026-05-12",
+      "commsFlag": "action-needed",
+      "notes": "Due before Tue 11:30am LPLA x DigitsUp call. Build today."
+    },
+    {
       "id": "prod-rvca-new-arrivals",
       "title": "RVCA New Arrivals Campaign",
       "client": "RVCA",
       "section": "production",
-      "column": "copy",
+      "column": "review",
       "owner": "Michael",
       "dueDate": "2026-05-11",
       "commsFlag": "action-needed",
-      "notes": "Men's + women's new arrivals. Build Saturday May 9, send by Monday May 11."
+      "notes": "Men's + women's + combined. In production — sending to Clay for approval today."
     },
     {
       "id": "prod-rvca-memorial-day",
