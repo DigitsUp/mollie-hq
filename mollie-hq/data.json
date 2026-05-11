@@ -1,9 +1,21 @@
 {
   "meta": {
-    "lastUpdated": "2026-05-08T17:10:00-07:00",
-    "updatedBy": "Mollie"
+    "lastUpdated": "2026-05-10T17:00:00-07:00",
+    "updatedBy": "Sunday Wind-Down"
   },
   "calendar": [
+    {
+      "time": "Mon 5:45am",
+      "title": "Morning Kick-Off"
+    },
+    {
+      "time": "Mon 8:00am",
+      "title": "DigitOps Daily Check-in"
+    },
+    {
+      "time": "Mon 8:30am",
+      "title": "DigitsUp Daily Stand Up"
+    },
     {
       "time": "Mon 9:00am",
       "title": "Creative Pipeline Session"
@@ -14,11 +26,11 @@
     },
     {
       "time": "Mon 1:00pm",
-      "title": "Weekly Sync — Joccers Only"
+      "title": "Weekly Sync \u2014 Joccers Only"
     },
     {
       "time": "Mon 2:00pm",
-      "title": "🚀 LiveGood Internal Kick-Off"
+      "title": "\ud83d\ude80 LiveGood Internal Kick-Off"
     },
     {
       "time": "Tue 11:30am",
@@ -38,7 +50,7 @@
     },
     {
       "time": "Wed 9:30am",
-      "title": "Liverpool x Power Digital Weekly"
+      "title": "Liverpool x Power Digital"
     },
     {
       "time": "Wed 1:00pm",
@@ -50,59 +62,59 @@
     },
     {
       "time": "Fri",
-      "title": "⚠️ Shelbie's last day before mat leave"
+      "title": "\u26a0\ufe0f Shelbie's last day before mat leave \ud83d\udc76\ud83c\udffd"
     }
   ],
   "needsYou": [
     {
-      "text": "FRNK Boutique proposal — overdue, building Saturday",
+      "text": "FRNK Boutique proposal \u2014 overdue, building Saturday",
       "chip": "Deadline"
     },
     {
-      "text": "RVCA new arrivals campaign (men's + women's) — build Saturday, send by Monday",
+      "text": "RVCA new arrivals campaign (men's + women's) \u2014 build Saturday, send by Monday",
       "chip": "Deadline"
     },
     {
-      "text": "Riversol winback copy — your review needed before Meaghan builds next week",
+      "text": "Riversol winback copy \u2014 your review needed before Meaghan builds next week",
       "chip": "Action"
     },
     {
-      "text": "RVCA Attentive — Clay fixed script, validate + confirm with Attentive team",
+      "text": "RVCA Attentive \u2014 Clay fixed script, validate + confirm with Attentive team",
       "chip": "Action"
     },
     {
-      "text": "Liverpool — offboarding decision still needed. Contract ends after May.",
+      "text": "Liverpool \u2014 offboarding decision still needed. Contract ends after May.",
       "chip": "Decision"
     },
     {
-      "text": "Hiba sign-up form — still broken, no dev response. Escalate?",
+      "text": "Hiba sign-up form \u2014 still broken, no dev response. Escalate?",
       "chip": "Action"
     }
   ],
   "watching": [
     {
       "dot": "red",
-      "text": "Liverpool ending contract after May — offboarding path TBD"
+      "text": "Liverpool ending after May \u2014 offboarding TBD. Father's Day + Memorial Day campaigns still to build."
     },
     {
       "dot": "yellow",
-      "text": "RVCA new arrivals — build Saturday, send Monday. Memorial Day (May 22–25) also in queue."
+      "text": "RVCA \u2014 new arrivals due Monday. Memorial Day sequence May 22\u201325. Attentive add-to-cart ticket open."
     },
     {
       "dot": "yellow",
-      "text": "Riversol winback (3-lane) — copy with Michael for review. Meaghan builds next week."
+      "text": "Riversol winback copy \u2014 Michael review needed before Meaghan builds this week."
     },
     {
       "dot": "green",
-      "text": "LiveGood — signed May 5 ✅ Kickoff Monday May 11"
+      "text": "LiveGood \u2014 signed \u2705 Kickoff Monday 2pm. Postscript SMS partnership opportunity open."
     },
     {
       "dot": "amber",
-      "text": "Hiba — sign-up form broken. Dev unresponsive."
+      "text": "Hiba \u2014 sign-up form broken, dev unresponsive. April report live."
     },
     {
-      "dot": "grey",
-      "text": "SFR Distillery — proposal stale. Michael following up with Will Rogers."
+      "dot": "amber",
+      "text": "Shelbie mat leave starts Fri May 15 \u2014 coverage/handoff needed."
     }
   ],
   "clients": [
@@ -114,7 +126,7 @@
     },
     {
       "name": "RVCA",
-      "lastActivity": "New arrivals campaign due Monday. Attentive script fixed — validate needed. Memorial Day sequence May 22–25. Welcome series with Kieran.",
+      "lastActivity": "New arrivals campaign due Monday. Attentive script fixed \u2014 validate needed. Memorial Day sequence May 22\u201325. Welcome series with Kieran.",
       "dot": "yellow",
       "status": "active"
     },
@@ -126,13 +138,13 @@
     },
     {
       "name": "LiveGood",
-      "lastActivity": "SIGNED May 5. Internal kickoff Monday May 11. Agreement questions pending — Michael following up.",
+      "lastActivity": "SIGNED May 5. Internal kickoff Monday May 11. Agreement questions pending \u2014 Michael following up.",
       "dot": "green",
       "status": "active"
     },
     {
       "name": "Hiba Academy",
-      "lastActivity": "April report live. Sign-up form broken — dev unresponsive. Pop-up issue also open (Trisha/Tracy email needed).",
+      "lastActivity": "April report live. Sign-up form broken \u2014 dev unresponsive. Pop-up issue also open (Trisha/Tracy email needed).",
       "dot": "amber",
       "status": "active"
     },
@@ -150,7 +162,7 @@
     },
     {
       "name": "FRNK Boutique",
-      "lastActivity": "Michael's sister-in-law. Proposal building Saturday — website redesign + email automation + campaigns.",
+      "lastActivity": "Michael's sister-in-law. Proposal building Saturday \u2014 website redesign + email automation + campaigns.",
       "dot": "yellow",
       "status": "prospect"
     },
@@ -168,8 +180,8 @@
     }
   ],
   "inbox": {
-    "summary": "Not checked this session — gog install pending Saturday. Last meaningful scan May 8 morning.",
-    "lastChecked": "2026-05-08T09:00:00-07:00"
+    "summary": "Scanned May 10. Key: Postscript partnership (10% rev share, LiveGood SMS opp), LiveGood daily sync logistics, Liverpool Mother's Day contingency.",
+    "lastChecked": "2026-05-10T17:00:00-07:00"
   },
   "usage": {
     "monthLabel": "April 2026",
@@ -224,20 +236,28 @@
   },
   "activity": [
     {
-      "ts": "2026-05-08T17:10:00-07:00",
-      "text": "HQ updated — clients, calendar, needsYou, watching refreshed"
+      "ts": "2026-05-10T17:00:00-07:00",
+      "text": "Sunday wind-down sweep complete \u2014 calendar, inbox, clients scanned"
+    },
+    {
+      "ts": "2026-05-10T17:00:00-07:00",
+      "text": "Postscript partnership recap processed \u2014 Slack channel + LiveGood SMS opportunity"
+    },
+    {
+      "ts": "2026-05-10T17:00:00-07:00",
+      "text": "LiveGood kickoff confirmed Monday 2pm \u2014 Debbie/Thomas actions pending"
+    },
+    {
+      "ts": "2026-05-10T17:00:00-07:00",
+      "text": "Liverpool Mother's Day contingency plan noted \u2014 Morgan assets expected Monday"
+    },
+    {
+      "ts": "2026-05-10T17:00:00-07:00",
+      "text": "Shelbie mat leave starts Friday May 15 \u2014 flagged"
     },
     {
       "ts": "2026-05-08T17:10:00-07:00",
-      "text": "LiveGood moved to active — signed May 5, kickoff Mon May 11"
-    },
-    {
-      "ts": "2026-05-08T17:10:00-07:00",
-      "text": "FRNK Boutique added as prospect — proposal building Saturday"
-    },
-    {
-      "ts": "2026-05-08T17:10:00-07:00",
-      "text": "Calendar refreshed from live Google Calendar"
+      "text": "HQ updated May 8 \u2014 LiveGood signed, clients refreshed"
     }
   ]
 }
