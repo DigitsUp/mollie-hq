@@ -798,8 +798,8 @@ function renderClients(data) {
 
   const dotColor = { green: '#22c55e', amber: '#f59e0b', red: '#ef4444', grey: '#6b7280', yellow: '#eab308' };
 
-  const typeOrder = { active: 0, prospect: 1, watching: 2 };
-  const sorted = [...clients].sort((a,b) => (typeOrder[a.type]||9) - (typeOrder[b.type]||9));
+  const typeOrder = { active: 0, prospect: 1, watching: 2, radar: 99 };
+  const sorted = [...clients].sort((a,b) => (typeOrder[a.type] !== undefined ? typeOrder[a.type] : 9) - (typeOrder[b.type] !== undefined ? typeOrder[b.type] : 9));
 
   const cards = sorted.map(c => {
     const dot = dotColor[c.dot] || '#6b7280';
@@ -819,9 +819,9 @@ function renderClients(data) {
       `<div style="font-size:10px;color:#f59e0b;padding:2px 0;">${f}</div>`
     ).join('');
 
-    const typeChip = { active: 'Active', prospect: 'Prospect', watching: 'Watching' }[c.type] || c.type;
-    const chipBg = { active: 'rgba(34,197,94,0.12)', prospect: 'rgba(99,102,241,0.15)', watching: 'rgba(239,68,68,0.12)' }[c.type] || 'var(--bg2)';
-    const chipColor = { active: '#22c55e', prospect: '#818cf8', watching: '#ef4444' }[c.type] || 'var(--muted)';
+    const typeChip = { active: 'Active', prospect: 'Prospect', watching: 'Watching', radar: 'On Radar' }[c.type] || c.type;
+    const chipBg = { active: 'rgba(34,197,94,0.12)', prospect: 'rgba(99,102,241,0.15)', watching: 'rgba(239,68,68,0.12)', radar: 'rgba(107,114,128,0.15)' }[c.type] || 'var(--bg2)';
+    const chipColor = { active: '#22c55e', prospect: '#818cf8', watching: '#ef4444', radar: '#9ca3af' }[c.type] || 'var(--muted)';
 
     return `
     <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:16px 18px;display:flex;flex-direction:column;gap:10px;">
@@ -1743,4 +1743,5 @@ function updateWorkspaceData(tasks) {
 </script>
 </body>
 </html>
+
 
