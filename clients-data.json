@@ -1,43 +1,16 @@
 {
   "meta": {
-    "lastUpdated": "2026-05-17T15:30:00-07:00",
+    "lastUpdated": "2026-05-17T15:45:00-07:00",
     "updatedBy": "Mollie"
   },
   "clients": [
-    {
-      "id": "livegood",
-      "name": "LiveGood",
-      "type": "active",
-      "dot": "amber",
-      "tagline": "Signed May 5 — 90-day agreement",
-      "health": "Needs attention",
-      "lastContact": "2026-05-15",
-      "openActions": [
-        { "text": "Survey email — Meaghan copy due, share with Ben Tuesday", "priority": "high" },
-        { "text": "Abandon suite — copy needs to be buttoned up across all 3 emails", "priority": "high" },
-        { "text": "Warm-up plan — waiting on Ben approval to launch", "priority": "high" },
-        { "text": "Code-free 10% link — Chris sending, wire into welcome + abandon flows", "priority": "medium" },
-        { "text": "SMS setup — Michael needs to connect with Clay/Postscript", "priority": "medium" },
-        { "text": "Sunset flow — ~197k canceled members, build before suppressing", "priority": "low" }
-      ],
-      "waitingOn": [
-        { "party": "Ben (client)", "item": "Survey email tone feedback + approval" },
-        { "party": "Chris (dev)", "item": "Code-free 10% discount link + product event backfill" },
-        { "party": "Travis", "item": "Insight on Ben tone feedback before responding" }
-      ],
-      "nextMilestone": "Share updated best sellers email with Ben — Tuesday May 20",
-      "flags": [
-        "⚠️ Client sentiment not great — 5 days in, no brand guidelines yet",
-        "⚠️ Don't send anything to Ben until Travis call + team sync"
-      ]
-    },
     {
       "id": "rvca",
       "name": "RVCA",
       "type": "active",
       "dot": "amber",
-      "tagline": "Contract ending — handover underway",
-      "health": "Transitioning",
+      "tagline": "Active — Memorial Day campaign in progress",
+      "health": "On track",
       "lastContact": "2026-05-14",
       "openActions": [
         { "text": "Update Clay in Slack — price drop Monday, products dropping", "priority": "high" },
@@ -78,6 +51,53 @@
       "flags": []
     },
     {
+      "id": "liverpool",
+      "name": "Liverpool LA",
+      "type": "watching",
+      "dot": "red",
+      "tagline": "Ending contract after May",
+      "health": "Offboarding",
+      "lastContact": "2026-05-15",
+      "openActions": [
+        { "text": "Offboarding decision — confirm final scope and wind-down plan", "priority": "high" },
+        { "text": "Memorial Day footer + winback update — if still doing it", "priority": "low" }
+      ],
+      "waitingOn": [
+        { "party": "Michael", "item": "Offboarding decision — what does the wind-down look like?" }
+      ],
+      "nextMilestone": "End of May — contract expiry",
+      "flags": [
+        "⚠️ Contract ends after May — all Liverpool work lower priority pending offboarding"
+      ]
+    },
+    {
+      "id": "livegood",
+      "name": "LiveGood",
+      "type": "active",
+      "dot": "amber",
+      "tagline": "Signed May 5 — 90-day agreement",
+      "health": "Needs attention",
+      "lastContact": "2026-05-15",
+      "openActions": [
+        { "text": "Survey email — Meaghan copy due, share with Ben Tuesday", "priority": "high" },
+        { "text": "Abandon suite — copy needs to be buttoned up across all 3 emails", "priority": "high" },
+        { "text": "Warm-up plan — waiting on Ben approval to launch", "priority": "high" },
+        { "text": "Code-free 10% link — Chris sending, wire into welcome + abandon flows", "priority": "medium" },
+        { "text": "SMS setup — Michael needs to connect with Clay/Postscript", "priority": "medium" },
+        { "text": "Sunset flow — ~197k canceled members, build before suppressing", "priority": "low" }
+      ],
+      "waitingOn": [
+        { "party": "Ben (client)", "item": "Survey email tone feedback + approval" },
+        { "party": "Chris (dev)", "item": "Code-free 10% discount link + product event backfill" },
+        { "party": "Travis", "item": "Insight on Ben tone feedback before responding" }
+      ],
+      "nextMilestone": "Share updated best sellers email with Ben — Tuesday May 20",
+      "flags": [
+        "⚠️ Client sentiment not great — 5 days in, no brand guidelines yet",
+        "⚠️ Don't send anything to Ben until Travis call + team sync"
+      ]
+    },
+    {
       "id": "hiba",
       "name": "Hiba Academy",
       "type": "active",
@@ -101,6 +121,44 @@
       ]
     },
     {
+      "id": "epicure",
+      "name": "Epicure",
+      "type": "prospect",
+      "dot": "amber",
+      "tagline": "Returning client — SOW sent Sun May 17",
+      "health": "Waiting",
+      "lastContact": "2026-05-17",
+      "openActions": [
+        { "text": "Wait for Geoff to confirm SOW — respond and lock in scope", "priority": "high" }
+      ],
+      "waitingOn": [
+        { "party": "Geoff (client)", "item": "SOW reply — sent Sun May 17" }
+      ],
+      "nextMilestone": "Geoff confirms — then scope audit, wave into agreement",
+      "flags": []
+    },
+    {
+      "id": "salehe",
+      "name": "Salehe Bembury",
+      "type": "prospect",
+      "dot": "amber",
+      "tagline": "Proposal in progress — Fardad pitches Tuesday",
+      "health": "In progress",
+      "lastContact": "2026-05-17",
+      "openActions": [
+        { "text": "Finalize proposal HTML — Claude building, Michael reviewing", "priority": "high" },
+        { "text": "Send proposal to Fardad for Monday review", "priority": "high" },
+        { "text": "Fardad pitches Salehe — Tuesday", "priority": "high" }
+      ],
+      "waitingOn": [
+        { "party": "Fardad", "item": "Product drop dates (Vellum 2, Mug, Sponge, Tyrese Haliburton 2)" }
+      ],
+      "nextMilestone": "Proposal live and sent to Fardad — today",
+      "flags": [
+        "⚠️ NOT closed — Fardad pitches without Michael in room"
+      ]
+    },
+    {
       "id": "frnk",
       "name": "FRNK Boutique",
       "type": "prospect",
@@ -111,7 +169,7 @@
       "openActions": [
         { "text": "Schedule internal kickoff — Tuesday May 20 or Wednesday May 21", "priority": "high" },
         { "text": "Client kickoff call — Thursday May 22 @ 10am PST with Stephanie + team", "priority": "high" },
-        { "text": "Decide BALI path with Stephanie — A (full restock), B (hybrid), C (pivot)", "priority": "high" }
+        { "text": "BALI path decision with Stephanie — A (full restock), B (hybrid), C (pivot)", "priority": "high" }
       ],
       "waitingOn": [
         { "party": "Stephanie (client)", "item": "BALI restock decision" }
@@ -120,81 +178,49 @@
       "flags": []
     },
     {
-      "id": "salehe",
-      "name": "Salehe / SPUNGE",
-      "type": "prospect",
-      "dot": "amber",
-      "tagline": "Proposal in progress — pitch Tuesday",
-      "health": "In progress",
-      "lastContact": "2026-05-17",
+      "id": "iolite",
+      "name": "Iolite Ventures",
+      "type": "active",
+      "dot": "green",
+      "tagline": "Michael's Creative Director role — Mon/Wed/Fri",
+      "health": "On track",
+      "lastContact": "2026-05-15",
       "openActions": [
-        { "text": "Finalize proposal HTML — Claude building, Michael reviewing", "priority": "high" },
-        { "text": "Fardad reviews proposal — Monday", "priority": "high" },
-        { "text": "Fardad pitches Salehe — Tuesday", "priority": "high" }
+        { "text": "Venturity video — AI B-roll concept, Chris producing test video", "priority": "high" },
+        { "text": "CIS email templates — finalize 4 styles for Identity brand", "priority": "medium" },
+        { "text": "Fractional CFO ad boards — Google + LinkedIn for Venturity, share with Kelly", "priority": "medium" },
+        { "text": "Venturity LinkedIn carousel — Kelly finalizing, Mark posts", "priority": "medium" },
+        { "text": "Subdomain issue — email Hone/Trisha/Tracy, CC David", "priority": "medium" }
       ],
       "waitingOn": [
-        { "party": "Fardad", "item": "Product drop dates (Vellum 2, Mug, Sponge, Tyrese Haliburton 2)" }
+        { "party": "Chris", "item": "Venturity AI B-roll test video" },
+        { "party": "Kelly", "item": "LinkedIn carousel finalization" }
       ],
-      "nextMilestone": "Proposal live and sent to Fardad — today/tonight",
-      "flags": [
-        "⚠️ NOT closed — proposal must be sharp, Fardad pitches without Michael in room"
-      ]
-    },
-    {
-      "id": "epicure",
-      "name": "Epicure",
-      "type": "prospect",
-      "dot": "amber",
-      "tagline": "Returning client — SOW sent",
-      "health": "Waiting",
-      "lastContact": "2026-05-17",
-      "openActions": [
-        { "text": "Wait for Geoff to confirm SOW — respond and lock in scope", "priority": "high" }
-      ],
-      "waitingOn": [
-        { "party": "Geoff (client)", "item": "SOW reply — sent Sun May 17" }
-      ],
-      "nextMilestone": "Geoff confirms — then scope audit + wave into agreement",
+      "nextMilestone": "Venturity video concept review — Friday",
       "flags": []
     },
     {
-      "id": "axis",
-      "name": "Axis Health",
-      "type": "active",
-      "dot": "grey",
-      "tagline": "In design — low recent activity",
-      "health": "Needs update",
-      "lastContact": "unknown",
-      "openActions": [
-        { "text": "Follow up with Myles — check design status with Marl", "priority": "medium" }
-      ],
-      "waitingOn": [
-        { "party": "Marl + Myles", "item": "Design status unknown — Michael following up" }
-      ],
-      "nextMilestone": "Unknown — needs status check",
-      "flags": [
-        "⚠️ No recent activity logged — needs a check-in"
-      ]
-    },
-    {
-      "id": "liverpool",
-      "name": "Liverpool LA",
+      "id": "on-radar",
+      "name": "On Radar",
       "type": "watching",
-      "dot": "red",
-      "tagline": "Ending contract after May",
-      "health": "Offboarding",
-      "lastContact": "2026-05-15",
+      "dot": "grey",
+      "tagline": "Prospects + warm leads — not yet active",
+      "health": "Monitoring",
+      "lastContact": "2026-05-17",
       "openActions": [
-        { "text": "Offboarding decision — confirm final scope and wind-down plan", "priority": "high" },
-        { "text": "Memorial Day footer + winback update — if still doing it", "priority": "low" }
+        { "text": "Scott Porter (Miami) — follow up Monday, don't be pushy", "priority": "medium" },
+        { "text": "SFR Distillery — scope has grown, set up reconnect meeting", "priority": "medium" },
+        { "text": "Brand Featured — check on status", "priority": "medium" },
+        { "text": "YDS / Meaghan Ross — no response, follow up later this week with creative angle", "priority": "low" },
+        { "text": "OuterSignal (Dov) — $750 email build confirmed, waiting on brand assets + go-ahead", "priority": "medium" },
+        { "text": "WesleyNY — no movement, Michael revisiting", "priority": "low" }
       ],
       "waitingOn": [
-        { "party": "Michael", "item": "Offboarding decision — what does the wind-down look like?" }
+        { "party": "Dov (OuterSignal)", "item": "Go-ahead + brand assets for women's fashion email build" },
+        { "party": "Scott Porter", "item": "Response to follow-up" }
       ],
-      "nextMilestone": "End of May — contract expiry",
-      "flags": [
-        "⚠️ Lower priority — all Liverpool work deprioritized pending offboarding"
-      ]
+      "nextMilestone": "Scott Porter follow-up — Monday",
+      "flags": []
     }
   ]
 }
