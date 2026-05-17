@@ -415,6 +415,7 @@ main{position:relative;z-index:5;max-width:var(--max);margin:0 auto;padding:28px
   <button class="tab-btn" data-tab="workspace" onclick="switchTab('workspace',this)">Workspace</button>
   <button class="tab-btn" data-tab="pipeline" onclick="switchTab('pipeline',this)">Pipeline</button>
   <button class="tab-btn" data-tab="usage" onclick="switchTab('usage',this)">Usage</button>
+  <button class="tab-btn" data-tab="clients" onclick="switchTab('clients',this)">Clients</button>
 </nav>
 
 <div id="hq-view">
@@ -504,6 +505,12 @@ main{position:relative;z-index:5;max-width:var(--max);margin:0 auto;padding:28px
 
 <div id="pipeline-view" style="display:none;height:calc(100vh - 110px);">
   <iframe id="pipeline-iframe" src="" style="width:100%;height:100%;border:none;"></iframe>
+</div>
+
+<div id="clients-view" style="display:none;height:calc(100vh - 110px);overflow-y:auto;padding:20px;">
+  <div id="clients-section">
+    <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;">Loading clients...</div>
+  </div>
 </div>
 
 <script>
@@ -762,6 +769,7 @@ function switchTab(id, btn) {
   document.getElementById('workspace-view').style.display = id==='workspace' ? '' : 'none';
   document.getElementById('pipeline-view').style.display = id==='pipeline' ? '' : 'none';
   document.getElementById('usage-view').style.display = id==='usage' ? '' : 'none';
+  document.getElementById('clients-view').style.display = id==='clients' ? '' : 'none';
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   if (id === 'workspace' && !window._wsInit) initWorkspace();
@@ -769,6 +777,89 @@ function switchTab(id, btn) {
     const f = document.getElementById('pipeline-iframe');
     if (!f.src || f.src === window.location.href) f.src = './mollie-hq/pipeline.html?authed=1';
   }
+  if (id === 'clients' && !window._clientsInit) {
+    window._clientsInit = true;
+    loadClientsTab();
+  }
+}
+
+function loadClientsTab() {
+  fetch('./clients-data.json?v=' + Date.now())
+    .then(r => r.json())
+    .then(data => renderClients(data))
+    .catch(() => {
+      document.getElementById('clients-section').innerHTML = '<div style="color:var(--muted);font-family:DM Mono,monospace;font-size:11px;">Could not load clients data.</div>';
+    });
+}
+
+function renderClients(data) {
+  const clients = data.clients || [];
+  const updated = data.meta ? new Date(data.meta.lastUpdated).toLocaleDateString('en-US', {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'}) : '';
+
+  const dotColor = { green: '#22c55e', amber: '#f59e0b', red: '#ef4444', grey: '#6b7280', yellow: '#eab308' };
+
+  const typeOrder = { active: 0, prospect: 1, watching: 2 };
+  const sorted = [...clients].sort((a,b) => (typeOrder[a.type]||9) - (typeOrder[b.type]||9));
+
+  const cards = sorted.map(c => {
+    const dot = dotColor[c.dot] || '#6b7280';
+    const actions = (c.openActions || []).map(a => {
+      const pColor = a.priority === 'high' ? 'var(--m)' : a.priority === 'medium' ? 'var(--muted)' : '#444';
+      return `<div style="display:flex;align-items:flex-start;gap:6px;padding:5px 0;border-bottom:1px solid var(--border);">
+        <span style="width:6px;height:6px;border-radius:50%;background:${pColor};margin-top:5px;flex-shrink:0;"></span>
+        <span style="font-size:11px;color:var(--text);line-height:1.4;">${a.text}</span>
+      </div>`;
+    }).join('');
+
+    const waiting = (c.waitingOn || []).map(w =>
+      `<div style="font-size:10px;color:var(--muted);padding:3px 0;">\u23F3 <strong style="color:var(--text)">${w.party}</strong> \u2014 ${w.item}</div>`
+    ).join('');
+
+    const flags = (c.flags || []).map(f =>
+      `<div style="font-size:10px;color:#f59e0b;padding:2px 0;">${f}</div>`
+    ).join('');
+
+    const typeChip = { active: 'Active', prospect: 'Prospect', watching: 'Watching' }[c.type] || c.type;
+    const chipBg = { active: 'rgba(34,197,94,0.12)', prospect: 'rgba(99,102,241,0.15)', watching: 'rgba(239,68,68,0.12)' }[c.type] || 'var(--bg2)';
+    const chipColor = { active: '#22c55e', prospect: '#818cf8', watching: '#ef4444' }[c.type] || 'var(--muted)';
+
+    return `
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:16px 18px;display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="width:9px;height:9px;border-radius:50%;background:${dot};flex-shrink:0;"></span>
+          <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:var(--text);">${c.name}</span>
+        </div>
+        <span style="font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.08em;padding:3px 8px;border-radius:99px;background:${chipBg};color:${chipColor};">${typeChip}</span>
+      </div>
+      <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);">${c.tagline || ''}</div>
+      ${flags ? `<div>${flags}</div>` : ''}
+      ${c.openActions && c.openActions.length ? `
+        <div>
+          <div style="font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px;">Open Actions (${c.openActions.length})</div>
+          ${actions}
+        </div>` : ''}
+      ${c.waitingOn && c.waitingOn.length ? `
+        <div>
+          <div style="font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:4px;">Waiting On</div>
+          ${waiting}
+        </div>` : ''}
+      ${c.nextMilestone ? `
+        <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:8px 10px;">
+          <span style="font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);">Next \u2014 </span>
+          <span style="font-size:11px;color:var(--m);">${c.nextMilestone}</span>
+        </div>` : ''}
+    </div>`;
+  }).join('');
+
+  document.getElementById('clients-section').innerHTML = `
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+      <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:var(--text);">Client Pulse</div>
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">Updated ${updated}</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;">
+      ${cards}
+    </div>`;
 }
 
 function initWorkspace() {
@@ -1652,3 +1743,4 @@ function updateWorkspaceData(tasks) {
 </script>
 </body>
 </html>
+
