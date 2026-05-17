@@ -52,9 +52,7 @@
         { "party": "Clay (client)", "item": "Pop-up approval before going live" }
       ],
       "nextMilestone": "Memorial Day email briefs — this week",
-      "flags": [
-        "⚠️ Contract ends — handover to new agency. Don't start new long-term work."
-      ]
+      "flags": []
     },
     {
       "id": "riversol",
