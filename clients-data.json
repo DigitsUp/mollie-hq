@@ -1,402 +1,403 @@
 {
   "meta": {
-    "lastUpdated": "2026-05-17T15:45:00-07:00",
-    "updatedBy": "Mollie"
+    "lastUpdated": "2026-05-23T14:30:00-07:00",
+    "updatedBy": "Mollie — intel sweep May 23"
   },
   "clients": [
     {
       "id": "rvca",
       "name": "RVCA",
       "type": "active",
-      "dot": "amber",
-      "tagline": "Active \u2014 Memorial Day campaign in progress",
+      "dot": "yellow",
+      "tagline": "Active — MDW complete, Wednesday campaign next",
       "health": "On track",
-      "lastContact": "2026-05-14",
+      "lastContact": "2026-05-23",
       "openActions": [
         {
-          "text": "Update Clay in Slack \u2014 price drop Monday, products dropping",
+          "text": "Call Clay — OuterSignal Enterprise upgrade + backsearch scope decision. Hunter waiting.",
           "priority": "high"
         },
         {
-          "text": "SMS flip \u2014 Clay approved Attentive, ready to go live",
+          "text": "Welcome series copy — Meaghan flagged as generic. Full rewrite before it goes to Clay.",
           "priority": "high"
         },
         {
-          "text": "Memorial Day emails \u2014 plan set, briefs needed this week",
+          "text": "Wednesday campaign — confirm send + brief before Wed",
           "priority": "high"
         },
         {
-          "text": "Welcome series \u2014 build now, don't wait for feedback",
+          "text": "RVCA welcome series BLOCKED — interest group not set on sign-up form. Fix before next meeting.",
           "priority": "medium"
         },
         {
-          "text": "New arrivals \u2014 waiting on Clay's notes",
-          "priority": "medium"
-        },
-        {
-          "text": "Victoria \u2014 onboard onto RVCA campaign calendar",
-          "priority": "medium"
+          "text": "CSS text enlargement accessibility fix — close loop with Clay",
+          "priority": "low"
         }
       ],
       "waitingOn": [
         {
           "party": "Clay (client)",
-          "item": "New arrivals notes + welcome series sign-up form approval"
+          "item": "OuterSignal Enterprise + backsearch decision"
         },
         {
           "party": "Clay (client)",
-          "item": "Pop-up approval before going live"
+          "item": "Campaign approvals — MDW follow-up done, next send TBD"
         }
       ],
-      "nextMilestone": "Memorial Day email briefs \u2014 this week",
-      "flags": []
+      "nextMilestone": "Wednesday campaign send — brief needed",
+      "flags": [
+        "⚠️ RVCA-External Slack: READ ONLY. Never post.",
+        "⚠️ 'fresh' = off-brand — Clay flagged. Do not use.",
+        "⚠️ OuterSignal integration blocked — Clay's call needed now"
+      ]
+    },
+    {
+      "id": "liverpool",
+      "name": "Liverpool LA",
+      "type": "active",
+      "dot": "amber",
+      "tagline": "MDW complete — campaign ownership proposal overdue",
+      "health": "Needs attention",
+      "lastContact": "2026-05-23",
+      "openActions": [
+        {
+          "text": "Campaign ownership proposal — must send before Friday May 29 call. Been pending too long.",
+          "priority": "high"
+        },
+        {
+          "text": "Community Discount audience import — June 16 send is close",
+          "priority": "high"
+        },
+        {
+          "text": "Toki rewards clean architecture — build post-migration flow",
+          "priority": "medium"
+        },
+        {
+          "text": "KNO Pro upgrade decision — $300/mo vs $119/mo. Need client buy-in.",
+          "priority": "medium"
+        },
+        {
+          "text": "Phone number removal from Concierge flow",
+          "priority": "low"
+        }
+      ],
+      "waitingOn": [
+        {
+          "party": "Liverpool team",
+          "item": "KNO Pro plan approval"
+        },
+        {
+          "party": "Bhavik",
+          "item": "KNO abandoned cart survey page build"
+        }
+      ],
+      "nextMilestone": "Campaign ownership proposal — before Fri May 29 call",
+      "flags": [
+        "⚠️ MDW segment error (Potential Loyalists missed) — fix confirmed sent"
+      ]
+    },
+    {
+      "id": "salehe",
+      "name": "Salehe / SPUNGE",
+      "type": "active",
+      "dot": "red",
+      "tagline": "🔴 June 4 hard deadline — flows not started",
+      "health": "At risk",
+      "lastContact": "2026-05-22",
+      "openActions": [
+        {
+          "text": "Build Welcome Series, Browse Abandon, Cart + Checkout Abandon, Post-Purchase — all by June 2",
+          "priority": "high"
+        },
+        {
+          "text": "Finalize Marathon (Sammy) white-label pricing — build backstop for June 4",
+          "priority": "high"
+        },
+        {
+          "text": "Chase Fardad for assets by Tuesday May 26 — logos, Dropbox images, newsletters",
+          "priority": "high"
+        },
+        {
+          "text": "Confirm Klaviyo 90-day auto-suppression disabled",
+          "priority": "medium"
+        },
+        {
+          "text": "Set up Wednesday 3pm recurring sync (first: May 27)",
+          "priority": "medium"
+        },
+        {
+          "text": "Paradise brand — Shopify access + Klaviyo account (low priority vs June 4)",
+          "priority": "low"
+        }
+      ],
+      "waitingOn": [
+        {
+          "party": "Fardad",
+          "item": "Brand assets — logos, Dropbox images, old newsletters. Due May 26."
+        },
+        {
+          "party": "Sammy (Marathon)",
+          "item": "Project-based pricing doc for build support"
+        }
+      ],
+      "nextMilestone": "All flows live by June 2 — Puma Vellum drop June 4",
+      "flags": [
+        "⚠️ Contract not formally signed yet",
+        "⚠️ June 4 is a PUBLIC product drop — failure to deliver = reputational risk",
+        "⚠️ Salehe contract: NOT signed. Agreement sent to Lawrence only."
+      ]
     },
     {
       "id": "riversol",
       "name": "Riversol",
       "type": "active",
-      "dot": "green",
-      "tagline": "Long-term partner \u2014 annual deal in progress",
-      "health": "On track",
-      "lastContact": "2026-05-15",
+      "dot": "yellow",
+      "tagline": "6-flow roadmap locked — builds not started",
+      "health": "Needs momentum",
+      "lastContact": "2026-05-20",
       "openActions": [
         {
-          "text": "Win-back flip \u2014 turn OFF old, turn ON new 3-lane split. Confirm segments with Una first.",
+          "text": "Start Replenishment flow build — priority #1 from both strategy calls",
           "priority": "high"
         },
         {
-          "text": "30-day performance report \u2014 pull and share with Arno + James",
+          "text": "Clarify builder ownership — is James doing this or DigitsUp team?",
           "priority": "high"
         },
         {
-          "text": "Klaviyo annual deal \u2014 work with Una on database baseline, map cost savings",
+          "text": "Follow up with Arnaud — 4 questions re SPF 50 campaign pending",
           "priority": "medium"
         },
         {
-          "text": "Replenishment flow \u2014 rebuild properly",
+          "text": "Confirm tier thresholds (CAD vs USD) with Ali",
           "priority": "medium"
         },
         {
-          "text": "Referral program \u2014 revive smile.io, product purchases only",
+          "text": "Deploy campaign-ideas.html with Sales Strategies section to GitHub",
           "priority": "medium"
         },
         {
-          "text": "Skin quiz analyzer flow \u2014 new + return customer variants",
-          "priority": "low"
+          "text": "Skin Analyzer flow — build priority #2",
+          "priority": "medium"
         }
       ],
       "waitingOn": [
         {
           "party": "Una (client)",
-          "item": "Confirm win-back segments before flip"
+          "item": "Win-back segment confirmation before flip"
         },
         {
-          "party": "Jacob (Klaviyo)",
-          "item": "Annual deal pricing + tool trial timeline"
+          "party": "Arnaud",
+          "item": "Reply to 4 SPF 50 questions"
+        },
+        {
+          "party": "Ali",
+          "item": "Tier threshold confirmation (CAD vs USD)"
         }
       ],
-      "nextMilestone": "Win-back flip \u2014 Monday or Tuesday with Una",
+      "nextMilestone": "Replenishment flow build — this week",
       "flags": []
     },
     {
-      "id": "liverpool",
-      "name": "Liverpool LA",
-      "type": "watching",
-      "dot": "red",
-      "tagline": "Ending contract after May",
-      "health": "Offboarding",
-      "lastContact": "2026-05-15",
-      "openActions": [
-        {
-          "text": "Offboarding decision \u2014 confirm final scope and wind-down plan",
-          "priority": "high"
-        },
-        {
-          "text": "Memorial Day footer + winback update \u2014 if still doing it",
-          "priority": "low"
-        }
-      ],
-      "waitingOn": [
-        {
-          "party": "Michael",
-          "item": "Offboarding decision \u2014 what does the wind-down look like?"
-        }
-      ],
-      "nextMilestone": "End of May \u2014 contract expiry",
-      "flags": [
-        "\u26a0\ufe0f Contract ends after May \u2014 all Liverpool work lower priority pending offboarding"
-      ]
-    },
-    {
-      "id": "livegood",
-      "name": "LiveGood",
+      "id": "frnk",
+      "name": "FRNK Boutique",
       "type": "active",
-      "dot": "amber",
-      "tagline": "Signed May 5 \u2014 90-day agreement",
-      "health": "Needs attention",
-      "lastContact": "2026-05-15",
+      "dot": "yellow",
+      "tagline": "Kicked off May 22 — blocked on brand assets",
+      "health": "Waiting on client",
+      "lastContact": "2026-05-22",
       "openActions": [
         {
-          "text": "Survey email \u2014 Meaghan copy due, share with Ben Tuesday",
+          "text": "Chase Steph for brand assets — everything blocked until received",
           "priority": "high"
         },
         {
-          "text": "Abandon suite \u2014 copy needs to be buttoned up across all 3 emails",
+          "text": "Brief Meaghan on FRNK — she was absent from kickoff",
           "priority": "high"
         },
         {
-          "text": "Warm-up plan \u2014 waiting on Ben approval to launch",
-          "priority": "high"
-        },
-        {
-          "text": "Code-free 10% link \u2014 Chris sending, wire into welcome + abandon flows",
+          "text": "Victoria to get oriented on FRNK Klaviyo account once access granted",
           "priority": "medium"
         },
         {
-          "text": "SMS setup \u2014 Michael needs to connect with Clay/Postscript",
+          "text": "Debbie — create FRNK Notion project + scheduling",
           "priority": "medium"
-        },
-        {
-          "text": "Sunset flow \u2014 ~197k canceled members, build before suppressing",
-          "priority": "low"
         }
       ],
       "waitingOn": [
         {
-          "party": "Ben (client)",
-          "item": "Survey email tone feedback + approval"
-        },
-        {
-          "party": "Chris (dev)",
-          "item": "Code-free 10% discount link + product event backfill"
-        },
-        {
-          "party": "Travis",
-          "item": "Insight on Ben tone feedback before responding"
+          "party": "Stephanie (client)",
+          "item": "Brand assets — logos, images, brand guidelines"
         }
       ],
-      "nextMilestone": "Share updated best sellers email with Ben \u2014 Tuesday May 20",
-      "flags": [
-        "\u26a0\ufe0f Client sentiment not great \u2014 5 days in, no brand guidelines yet",
-        "\u26a0\ufe0f Don't send anything to Ben until Travis call + team sync"
-      ]
+      "nextMilestone": "Brand assets received — then flows can begin",
+      "flags": []
     },
     {
       "id": "hiba",
       "name": "Hiba Academy",
       "type": "active",
       "dot": "amber",
-      "tagline": "Lead gen issue under investigation",
-      "health": "Needs attention",
-      "lastContact": "2026-05-14",
+      "tagline": "Victoria now primary AM — pop-up issue unresolved",
+      "health": "Maintenance",
+      "lastContact": "2026-05-22",
       "openActions": [
         {
-          "text": "Investigate pop-up + integration \u2014 no new leads since May 1",
+          "text": "Send Hiba pop-up fix update — Michael to draft and send",
           "priority": "high"
         },
         {
-          "text": "Lock in ITC meeting \u2014 regardless of dev answer",
+          "text": "Test Calendly + all entry points — confirm what's working",
           "priority": "high"
         },
         {
-          "text": "Welcome series split test \u2014 needs to be set up",
+          "text": "Set up banner link → Book Appointment → contact page (minimum viable fix)",
           "priority": "medium"
         },
         {
-          "text": "Email 2 mystery \u2014 different email sent March vs April, investigate what changed",
-          "priority": "medium"
-        },
-        {
-          "text": "Victoria \u2014 onboard into Hiba campaigns",
+          "text": "Victoria onboarding — make sure she has everything to handle Hiba independently",
           "priority": "medium"
         }
       ],
       "waitingOn": [
         {
           "party": "ITC devs",
-          "item": "Pop-up fix \u2014 they say nothing they can do. Michael investigating."
+          "item": "Website-level pop-up fix — unresponsive"
         }
       ],
-      "nextMilestone": "June 5 report \u2014 flag anything in next 2 weeks",
+      "nextMilestone": "August Application Launch — north star for the account",
       "flags": [
-        "\u26a0\ufe0f No new leads since May 1 \u2014 client flagged this"
+        "⚠️ Calendly not loading — likely website-level issue, ITC unresponsive"
       ]
     },
     {
       "id": "epicure",
       "name": "Epicure",
       "type": "prospect",
-      "dot": "amber",
-      "tagline": "Returning client \u2014 SOW sent Sun May 17",
+      "dot": "yellow",
+      "tagline": "Geoff getting back Monday — SOW ready",
       "health": "Waiting",
-      "lastContact": "2026-05-17",
+      "lastContact": "2026-05-22",
       "openActions": [
         {
-          "text": "Wait for Geoff to confirm SOW \u2014 respond and lock in scope",
+          "text": "Wait for Geoff reply Monday — then lock scope and onboard",
           "priority": "high"
+        },
+        {
+          "text": "If converts: find a builder to support Kieran — capacity needed",
+          "priority": "medium"
         }
       ],
       "waitingOn": [
         {
           "party": "Geoff (client)",
-          "item": "SOW reply \u2014 sent Sun May 17"
+          "item": "SOW reply — Geoff said getting back Monday May 26"
         }
       ],
-      "nextMilestone": "Geoff confirms \u2014 then scope audit, wave into agreement",
-      "flags": []
-    },
-    {
-      "id": "salehe",
-      "name": "Salehe Bembury",
-      "type": "prospect",
-      "dot": "amber",
-      "tagline": "Proposal in progress \u2014 Fardad pitches Tuesday",
-      "health": "In progress",
-      "lastContact": "2026-05-17",
-      "openActions": [
-        {
-          "text": "Finalize proposal HTML \u2014 Claude building, Michael reviewing",
-          "priority": "high"
-        },
-        {
-          "text": "Send proposal to Fardad for Monday review",
-          "priority": "high"
-        },
-        {
-          "text": "Fardad pitches Salehe \u2014 Tuesday",
-          "priority": "high"
-        }
-      ],
-      "waitingOn": [
-        {
-          "party": "Fardad",
-          "item": "Product drop dates (Vellum 2, Mug, Sponge, Tyrese Haliburton 2)"
-        }
-      ],
-      "nextMilestone": "Proposal live and sent to Fardad \u2014 today",
+      "nextMilestone": "Geoff reply Monday May 26",
       "flags": [
-        "\u26a0\ufe0f NOT closed \u2014 Fardad pitches without Michael in room"
+        "⚠️ Hard bounce rate +221% — urgent once they greenlight"
       ]
     },
     {
-      "id": "frnk",
-      "name": "FRNK Boutique",
+      "id": "sfr",
+      "name": "SFR Distillery",
       "type": "prospect",
-      "dot": "green",
-      "tagline": "In-person went well \u2014 moving forward",
-      "health": "On track",
-      "lastContact": "2026-05-16",
+      "dot": "yellow",
+      "tagline": "Discovery done — needs SOW before boss approves",
+      "health": "In progress",
+      "lastContact": "2026-05-22",
       "openActions": [
         {
-          "text": "Schedule internal kickoff \u2014 Tuesday May 20 or Wednesday May 21",
+          "text": "Klaviyo audit — run before building SOW",
           "priority": "high"
         },
         {
-          "text": "Client kickoff call \u2014 Thursday May 22 @ 10am PST with Stephanie + team",
-          "priority": "high"
-        },
-        {
-          "text": "BALI path decision with Stephanie \u2014 A (full restock), B (hybrid), C (pivot)",
+          "text": "Write formal SOW — Will's boss needs this to approve",
           "priority": "high"
         }
       ],
       "waitingOn": [
         {
-          "party": "Stephanie (client)",
-          "item": "BALI restock decision"
+          "party": "Michael",
+          "item": "Klaviyo access review + SOW write-up"
         }
       ],
-      "nextMilestone": "Internal kickoff \u2014 Tue/Wed this week",
-      "flags": []
+      "nextMilestone": "Klaviyo audit → SOW → boss approval",
+      "flags": [
+        "⚠️ ~$4k CAD budget — low. Audit first, put best foot forward."
+      ]
     },
     {
-      "id": "iolite",
-      "name": "Iolite Ventures",
+      "id": "the-lab",
+      "name": "The Lab",
       "type": "active",
-      "dot": "green",
-      "tagline": "Michael's Creative Director role \u2014 Mon/Wed/Fri",
-      "health": "On track",
-      "lastContact": "2026-05-15",
+      "dot": "amber",
+      "tagline": "GHL audit this weekend — Ben trust issue flagged",
+      "health": "Needs attention",
+      "lastContact": "2026-05-21",
       "openActions": [
         {
-          "text": "Venturity video \u2014 AI B-roll concept, Chris producing test video",
+          "text": "GHL + Spark audit this weekend with RV",
           "priority": "high"
         },
         {
-          "text": "CIS email templates \u2014 finalize 4 styles for Identity brand",
+          "text": "Follow up with Ally May 26–27 — next steps post-audit",
           "priority": "medium"
         },
         {
-          "text": "Fractional CFO ad boards \u2014 Google + LinkedIn for Venturity, share with Kelly",
-          "priority": "medium"
-        },
-        {
-          "text": "Venturity LinkedIn carousel \u2014 Kelly finalizing, Mark posts",
-          "priority": "medium"
-        },
-        {
-          "text": "Subdomain issue \u2014 email Hone/Trisha/Tracy, CC David",
-          "priority": "medium"
+          "text": "Keep it simple — don't over-engineer",
+          "priority": "low"
         }
       ],
       "waitingOn": [
         {
-          "party": "Chris",
-          "item": "Venturity AI B-roll test video"
+          "party": "RV",
+          "item": "GHL audit collaboration"
         },
         {
-          "party": "Kelly",
-          "item": "LinkedIn carousel finalization"
+          "party": "Ally",
+          "item": "Follow-up after audit (May 26–27)"
         }
       ],
-      "nextMilestone": "Venturity video concept review \u2014 Friday",
-      "flags": []
+      "nextMilestone": "GHL audit complete — this weekend",
+      "flags": [
+        "⚠️ Ben Glinsky trust issue — survey email caused friction. Handle carefully."
+      ]
     },
     {
       "id": "on-radar",
       "name": "On Radar",
       "type": "radar",
       "dot": "grey",
-      "tagline": "Prospects + warm leads \u2014 not yet active",
+      "tagline": "OuterSignal, Axis Health, WesleyNY",
       "health": "Monitoring",
-      "lastContact": "2026-05-17",
+      "lastContact": "2026-05-22",
       "openActions": [
         {
-          "text": "Scott Porter (Miami) \u2014 follow up Monday, don't be pushy",
+          "text": "OuterSignal (Dov) — RVCA integration blocked on Clay's call. $750/6 variants scoped separately.",
           "priority": "medium"
         },
         {
-          "text": "SFR Distillery \u2014 scope has grown, set up reconnect meeting",
-          "priority": "medium"
-        },
-        {
-          "text": "Brand Featured \u2014 check on status",
-          "priority": "medium"
-        },
-        {
-          "text": "YDS / Meaghan Ross \u2014 no response, follow up later this week with creative angle",
+          "text": "Axis Health — Marl in design. Michael following up with Myles.",
           "priority": "low"
         },
         {
-          "text": "OuterSignal (Dov) \u2014 $750 email build confirmed, waiting on brand assets + go-ahead",
-          "priority": "medium"
-        },
-        {
-          "text": "WesleyNY \u2014 no movement, Michael revisiting",
+          "text": "WesleyNY — no movement. Low priority.",
           "priority": "low"
         }
       ],
       "waitingOn": [
         {
           "party": "Dov (OuterSignal)",
-          "item": "Go-ahead + brand assets for women's fashion email build"
+          "item": "Go-ahead + brand assets"
         },
         {
-          "party": "Scott Porter",
-          "item": "Response to follow-up"
+          "party": "Myles (Axis Health)",
+          "item": "Status update"
         }
       ],
-      "nextMilestone": "Scott Porter follow-up \u2014 Monday",
+      "nextMilestone": "OuterSignal — unblocks after Clay calls Hunter",
       "flags": []
     }
   ]
