@@ -1,38 +1,27 @@
 {
-  "lastUpdated": "2026-05-11T13:10:00-07:00",
+  "lastUpdated": "2026-05-23T14:20:00-07:00",
   "cards": [
-    {
-      "id": "sales-frnk",
-      "title": "FRNK Boutique",
-      "client": "FRNK Boutique",
-      "section": "sales",
-      "column": "proposal-sent",
-      "owner": "Michael",
-      "dueDate": "",
-      "commsFlag": "action-needed",
-      "notes": "Michael's sister-in-law. Proposal live: digitsup.github.io/frnk/ — pw: FRNK. Options A ($1,200/mo) or B ($3K + email). Michael scheduling review call with Stephanie."
-    },
-    {
-      "id": "sales-livegood",
-      "title": "LiveGood",
-      "client": "LiveGood",
-      "section": "sales",
-      "column": "onboarding",
-      "owner": "Michael",
-      "dueDate": "",
-      "commsFlag": "none",
-      "notes": "SIGNED May 5. Internal kickoff today 2pm. Build priority: Abandon Suite → Welcome Pop-Up → Post-Purchase → WinBack. Lawrence for contracts."
-    },
     {
       "id": "sales-sfr",
       "title": "SFR Distillery",
       "client": "SFR Distillery",
       "section": "sales",
-      "column": "outreach",
+      "column": "negotiating",
+      "owner": "Michael",
+      "dueDate": "",
+      "commsFlag": "action-needed",
+      "notes": "Discovery call May 22. Will Rogers open to starting. Budget ~$4k CAD. Needs formal SOW from DigitsUp before boss approves. Klaviyo audit first."
+    },
+    {
+      "id": "sales-epicure",
+      "title": "Epicure",
+      "client": "Epicure",
+      "section": "sales",
+      "column": "proposal-sent",
       "owner": "Michael",
       "dueDate": "",
       "commsFlag": "waiting-on-them",
-      "notes": "Proposal out with Will Rogers. No reply in 2+ weeks. Michael following up."
+      "notes": "SOW sent May 17. Geoff spoke with Michael May 22, getting back Monday May 26. Hard bounce +221% is urgent. Upsell opportunity if he converts."
     },
     {
       "id": "sales-wesleyNY",
@@ -43,55 +32,77 @@
       "owner": "Michael",
       "dueDate": "",
       "commsFlag": "none",
-      "notes": "Call went well Apr 30. Low priority. Contact/scoping unknown. Client folder not set up."
+      "notes": "Call went well Apr 30. Low priority. No recent movement."
     },
     {
-      "id": "prod-liverpool-weekly",
-      "title": "Liverpool Weekly Report",
-      "client": "Liverpool LA",
-      "section": "production",
-      "column": "copy",
-      "owner": "Mollie",
-      "dueDate": "2026-05-12",
-      "commsFlag": "action-needed",
-      "notes": "Due before Tue 11:30am LPLA x DigitsUp call. Build today."
-    },
-    {
-      "id": "prod-rvca-new-arrivals",
-      "title": "RVCA New Arrivals Campaign",
-      "client": "RVCA",
-      "section": "production",
-      "column": "review",
-      "owner": "Michael",
-      "dueDate": "2026-05-11",
-      "commsFlag": "action-needed",
-      "notes": "Men's + women's + combined. In production — sending to Clay for approval today."
-    },
-    {
-      "id": "prod-rvca-memorial-day",
-      "title": "RVCA Memorial Day Sequence",
-      "client": "RVCA",
+      "id": "prod-salehe-flows",
+      "title": "Salehe — Core Flows (June 4 Deadline)",
+      "client": "Salehe / SPUNGE",
       "section": "production",
       "column": "strategy",
       "owner": "Michael",
-      "dueDate": "2026-05-22",
-      "commsFlag": "none",
-      "notes": "4-email sequence: Launch → Click-only → Open-only → Last call. May 22–25. Domain warmup still in progress."
+      "dueDate": "2026-06-02",
+      "commsFlag": "action-needed",
+      "notes": "All flows must be live by June 2 for June 4 Puma Vellum drop. Welcome Series, Browse Abandon, Cart + Checkout Abandon, Post-Purchase. Marathon (Sammy) as build support — pricing TBD. List cleaning underway (750k via Kickbox)."
+    },
+    {
+      "id": "prod-salehe-campaign",
+      "title": "Salehe — Puma Vellum Campaign (June 4)",
+      "client": "Salehe / SPUNGE",
+      "section": "production",
+      "column": "strategy",
+      "owner": "Michael",
+      "dueDate": "2026-06-02",
+      "commsFlag": "action-needed",
+      "notes": "First campaign: Puma World Cup Vellum drop June 4. Assets from Fardad due June 2. Creative direction: image-heavy flyer style. Simple, clean, high-design."
+    },
+    {
+      "id": "prod-frnk-onboarding",
+      "title": "FRNK Boutique — Onboarding + Flows",
+      "client": "FRNK Boutique",
+      "section": "production",
+      "column": "onboarding",
+      "owner": "Victoria",
+      "dueDate": "",
+      "commsFlag": "waiting-on-them",
+      "notes": "Kicked off May 22. 9 flows + signup form to build. Everything blocked until Steph delivers brand assets. Victoria to coordinate. Meaghan needs separate FRNK briefing (was absent from kickoff)."
     },
     {
       "id": "prod-rvca-welcome",
       "title": "RVCA Welcome Series",
       "client": "RVCA",
       "section": "production",
-      "column": "design",
-      "owner": "Kieran",
+      "column": "copy",
+      "owner": "Meaghan",
       "dueDate": "",
       "commsFlag": "action-needed",
-      "notes": "12 emails. Kieran building now. Send Clay Figma link for review. Add sign-up form to Figma. Pop-up button change still pending: 'continue' → 'unlock discount'."
+      "notes": "Copy flagged as generic by Meaghan — needs full rewrite before going to Clay. Marl + RV on design. BLOCKED: interest group not set on sign-up form → split won't work until fixed."
+    },
+    {
+      "id": "prod-rvca-outersignal",
+      "title": "RVCA × OuterSignal Integration",
+      "client": "RVCA",
+      "section": "production",
+      "column": "parking-lot",
+      "owner": "Michael",
+      "dueDate": "",
+      "commsFlag": "blocked",
+      "notes": "Needs Enterprise upgrade ($399/mo) + backsearch ($1.3–15k depending on scope). Michael must call Clay re: decision. Hunter waiting. Connect Klaviyo now, push data AFTER backsearch."
+    },
+    {
+      "id": "prod-rvca-campaigns",
+      "title": "RVCA Post-MDW Campaigns",
+      "client": "RVCA",
+      "section": "production",
+      "column": "strategy",
+      "owner": "Michael",
+      "dueDate": "2026-05-28",
+      "commsFlag": "action-needed",
+      "notes": "MDW complete. Next: Wednesday send TBD + ongoing 2x/week cadence. New Arrivals (Men's, Women's, Gender-Neutral) variants in flight. Clay approval required before send."
     },
     {
       "id": "prod-rvca-atc",
-      "title": "RVCA Add to Cart",
+      "title": "RVCA Add to Cart Flow",
       "client": "RVCA",
       "section": "production",
       "column": "parking-lot",
@@ -101,6 +112,17 @@
       "notes": "Clay support ticket open. Blocked until resolved."
     },
     {
+      "id": "prod-riversol-flows",
+      "title": "Riversol — 6-Flow Build Queue",
+      "client": "Riversol",
+      "section": "production",
+      "column": "strategy",
+      "owner": "Michael",
+      "dueDate": "",
+      "commsFlag": "action-needed",
+      "notes": "Roadmap confirmed across 2 calls. Priority: Replenishment (#1), Skin Analyzer (#2), Sample 5-Star Review, Referral, Welcome Series upgrade, 1st-to-2nd Purchase. Builder TBD — clarify ownership with client (James has been doing heavy lifting)."
+    },
+    {
       "id": "prod-riversol-winback",
       "title": "Riversol Win-Back Flow",
       "client": "Riversol",
@@ -108,41 +130,41 @@
       "column": "review",
       "owner": "Michael",
       "dueDate": "",
+      "commsFlag": "waiting-on-them",
+      "notes": "3-lane: Samplers, One-Hit Wonders, Return Customers. Built and in client review queue. Una to confirm segments before flipping live."
+    },
+    {
+      "id": "prod-liverpool-ownership",
+      "title": "Liverpool — Campaign Ownership Proposal",
+      "client": "Liverpool LA",
+      "section": "production",
+      "column": "copy",
+      "owner": "Michael",
+      "dueDate": "2026-05-29",
       "commsFlag": "action-needed",
-      "notes": "3-lane: Group A (Samplers), Group B (One-Hit Wonders), Group C (Return Customers). Copy done — Michael reviewing. After redlines → Meaghan builds next week."
+      "notes": "Upgrade proposal has been 'in progress' too long. Must send before Friday May 29 call. Contract ending after May — this is the retention pitch."
     },
     {
-      "id": "prod-liverpool-fathersday",
-      "title": "Liverpool Father's Day",
+      "id": "prod-liverpool-toki",
+      "title": "Liverpool Toki Rewards Migration",
       "client": "Liverpool LA",
       "section": "production",
-      "column": "strategy",
-      "owner": "Michael",
+      "column": "design",
+      "owner": "Team",
       "dueDate": "",
-      "commsFlag": "none",
-      "notes": "Approved — 25% off select styles. Sonia developing creative. Morgan sending calendar/assets by Monday."
-    },
-    {
-      "id": "prod-liverpool-memorial",
-      "title": "Liverpool Memorial Day",
-      "client": "Liverpool LA",
-      "section": "production",
-      "column": "strategy",
-      "owner": "Michael",
-      "dueDate": "2026-05-22",
-      "commsFlag": "none",
-      "notes": "Sonia developing creative. Lower priority pending offboarding decision."
+      "commsFlag": "action-needed",
+      "notes": "Loyalty platform migration in progress. Redemption window reverted to 24hrs (CS issue). Needs clean post-migration Toki flow architecture."
     },
     {
       "id": "prod-hiba-form",
-      "title": "Hiba Sign-Up Form Fix",
+      "title": "Hiba Sign-Up Form + Pop-Up Fix",
       "client": "Hiba Academy",
       "section": "production",
       "column": "parking-lot",
       "owner": "Client",
       "dueDate": "",
       "commsFlag": "blocked",
-      "notes": "Form broken. Dev team unresponsive after 2 follow-ups from Veronica."
+      "notes": "Calendly not loading — likely website-level issue. ITC/dev unresponsive. Victoria now primary AM. Michael to send Hiba update + pop-up fix report."
     },
     {
       "id": "prod-brand-featured-welcome",
@@ -153,7 +175,7 @@
       "owner": "Kieran",
       "dueDate": "",
       "commsFlag": "none",
-      "notes": "Copy Doc v1 sent to Kieran + Mike Apr 22. Pop-up (3-step) + SMS + 3 emails. Kieran building."
+      "notes": "Copy Doc v1 sent Apr 22. Pop-up (3-step) + SMS + 3 emails. Kieran building."
     },
     {
       "id": "prod-axis-creative",
@@ -164,7 +186,7 @@
       "owner": "Marl",
       "dueDate": "",
       "commsFlag": "none",
-      "notes": "On hold. Michael checking back with Myles end of next week."
+      "notes": "On hold. Michael following up with Myles."
     },
     {
       "id": "prod-liverpool-q1",
@@ -176,6 +198,17 @@
       "dueDate": "",
       "commsFlag": "none",
       "notes": "APPROVED and live. digitsup.github.io/liverpool-reports/q1-2026/ — pw: LPSQ1. Do not touch."
+    },
+    {
+      "id": "prod-rvca-mdw",
+      "title": "RVCA Memorial Day Campaign",
+      "client": "RVCA",
+      "section": "production",
+      "column": "done",
+      "owner": "Michael",
+      "dueDate": "",
+      "commsFlag": "none",
+      "notes": "✅ All sends complete — Launch, Follow-up, Last Call (Mon May 25). SMS x2. Clean execution."
     }
   ]
 }
