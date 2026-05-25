@@ -1,40 +1,68 @@
 {
   "meta": {
-    "lastUpdated": "2026-05-23T14:15:00-07:00",
-    "updatedBy": "Mollie — intel sweep May 23"
+    "lastUpdated": "2026-05-25T00:00:00Z",
+    "updatedBy": "Sunday Wind-Down"
   },
   "calendar": [
+    {
+      "time": "Mon 8:00am",
+      "title": "DigitOps Daily Check-in"
+    },
     {
       "time": "Mon 8:30am",
       "title": "DigitsUp Daily Stand Up"
     },
     {
+      "time": "Mon 9:00am",
+      "title": "Creative Pipeline Session"
+    },
+    {
+      "time": "Mon 12:00pm",
+      "title": "🔴 Salehe Internal Kick-off Call"
+    },
+    {
+      "time": "Tue 9:30am",
+      "title": "Michael Grill & Dov Quint (OuterSignal)"
+    },
+    {
+      "time": "Tue 11:30am",
+      "title": "LPLA × DigitsUp Weekly"
+    },
+    {
+      "time": "Tue 1:30pm",
+      "title": "Klaviyo | Liverpool Monthly Status"
+    },
+    {
       "time": "Wed 11:00am",
-      "title": "Klaviyo × DigitsUp"
+      "title": "SFR × DigitsUp"
+    },
+    {
+      "time": "Wed 12:30pm",
+      "title": "RVCA × Attentive: Connect"
     },
     {
       "time": "Wed 1:00pm",
-      "title": "RVCA × DigitsUp"
+      "title": "RVCA × DigitsUp Weekly"
     },
     {
       "time": "Wed 2:00pm",
       "title": "Riversol × DigitsUp Weekly"
     },
     {
-      "time": "Wed 3:00pm",
-      "title": "🆕 Salehe Bembury Kickoff Sync (first weekly)"
+      "time": "Wed 3:30pm",
+      "title": "Salehe Bembury × DigitsUp Weekly"
+    },
+    {
+      "time": "Thu 10:00am",
+      "title": "FRNK Boutique × DigitsUp Bi-weekly"
     },
     {
       "time": "Thu 11:00am",
       "title": "Hiba Academy Weekly"
     },
     {
-      "time": "Thu 1:00pm",
-      "title": "DigitsUp Leadership Sync"
-    },
-    {
-      "time": "Fri 11:30am",
-      "title": "LPLA × DigitsUp Weekly"
+      "time": "Fri 10:00am",
+      "title": "Liverpool Content Calendar Sync"
     }
   ],
   "needsYou": [
@@ -216,28 +244,28 @@
   },
   "activity": [
     {
+      "ts": "2026-05-25T00:00:00Z",
+      "text": "Sunday wind-down sweep — calendar, inbox, client pulse all checked. Monday is heavy: 4 meetings before noon."
+    },
+    {
+      "ts": "2026-05-25T00:00:00Z",
+      "text": "Salehe internal gameplan still not built as of Sun May 24. June 4 hard deadline — needs green light Monday morning."
+    },
+    {
+      "ts": "2026-05-25T00:00:00Z",
+      "text": "RVCA welcome series still blocked — sign-up form live, interest group not set. Troubleshoot before Wed RVCA meeting."
+    },
+    {
+      "ts": "2026-05-25T00:00:00Z",
+      "text": "Epicure / Geoff — getting back Monday. SOW ready. Watch closely."
+    },
+    {
       "ts": "2026-05-23T14:15:00-07:00",
       "text": "HQ refreshed from full intel sweep — Salehe June 4 deadline added, RVCA MDW in flight, Liverpool segment error flagged, LiveGood removed"
     },
     {
       "ts": "2026-05-23T00:00:00-07:00",
       "text": "Per-client agent system scoped — build order: RVCA → Liverpool → Salehe → FRNK. Parked for Sunday/Monday."
-    },
-    {
-      "ts": "2026-05-22T23:00:00-07:00",
-      "text": "RVCA MDW follow-up email — caught 'fresh' in subject (off-brand per Clay). New direction locked: product-led, long weekend energy."
-    },
-    {
-      "ts": "2026-05-22T19:30:00-07:00",
-      "text": "Full client intel sweep complete (Callie) — 10 briefs + master brief filed to callie-output/intel/"
-    },
-    {
-      "ts": "2026-05-22T15:30:00-07:00",
-      "text": "SFR Distillery discovery call — budget ~$4k CAD, Klaviyo audit first, formal SOW needed"
-    },
-    {
-      "ts": "2026-05-22T15:00:00-07:00",
-      "text": "Salehe Bembury kickoff — list cleaning underway (750k), Klaviyo account live, June 4 hard deadline confirmed"
     }
   ]
 }
