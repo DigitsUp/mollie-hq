@@ -1,28 +1,12 @@
 {
   "meta": {
-    "lastUpdated": "2026-05-25T00:00:00Z",
-    "updatedBy": "Sunday Wind-Down"
+    "lastUpdated": "2026-05-25T23:25:00-07:00",
+    "updatedBy": "Mollie"
   },
   "calendar": [
     {
-      "time": "Mon 8:00am",
-      "title": "DigitOps Daily Check-in"
-    },
-    {
-      "time": "Mon 8:30am",
-      "title": "DigitsUp Daily Stand Up"
-    },
-    {
-      "time": "Mon 9:00am",
-      "title": "Creative Pipeline Session"
-    },
-    {
-      "time": "Mon 12:00pm",
-      "title": "🔴 Salehe Internal Kick-off Call"
-    },
-    {
       "time": "Tue 9:30am",
-      "title": "Michael Grill & Dov Quint (OuterSignal)"
+      "title": "Michael & Dov Quint (OuterSignal)"
     },
     {
       "time": "Tue 11:30am",
@@ -31,6 +15,10 @@
     {
       "time": "Tue 1:30pm",
       "title": "Klaviyo | Liverpool Monthly Status"
+    },
+    {
+      "time": "Wed 7:30am",
+      "title": "Epicure Builder Interview (Re: DigitsUp role)"
     },
     {
       "time": "Wed 11:00am",
@@ -67,129 +55,127 @@
   ],
   "needsYou": [
     {
-      "text": "RVCA follow-up email — pick final subject + preview text (Men's + Women's) before Saturday MDW send",
+      "text": "Salehe — June 4 hard deadline. Flows must be live by June 2. Gameplan starts tomorrow.",
       "chip": "Deadline"
     },
     {
-      "text": "Salehe June 4 deadline — 12 days out. All flows must be live by June 2. Marathon pricing locked?",
+      "text": "RVCA post-purchase brief v2 — review in AM, then get team started on design",
+      "chip": "Action"
+    },
+    {
+      "text": "RVCA welcome series — discuss issue with client at Wed 1pm meeting",
+      "chip": "Action"
+    },
+    {
+      "text": "Riversol — flows need to move. Gameplan + copy/design this week.",
+      "chip": "Action"
+    },
+    {
+      "text": "Hiba — send email to team tomorrow: forms tested, all working, pop-up offline until fix",
       "chip": "Deadline"
     },
     {
-      "text": "Liverpool MDW — confirm Potential Loyalists last call fix went out. Segment error = revenue miss.",
+      "text": "FRNK — schedule meeting with Steph: Stamped reviews broken on Shopify + brand assets",
       "chip": "Action"
     },
     {
-      "text": "RVCA — call Clay re OuterSignal Enterprise upgrade + backsearch scope. Hunter is waiting.",
-      "chip": "Action"
-    },
-    {
-      "text": "Slack bot access — invite to #frnk-boutique, #salehe-bembury, #epicure before intel re-run",
-      "chip": "Action"
-    },
-    {
-      "text": "Salehe assets — chase Fardad for logos + images by Tuesday May 26",
+      "text": "Epicure — builder hire is critical. Interview Wed 7:30am. Move fast after.",
       "chip": "Deadline"
     }
   ],
   "watching": [
     {
       "dot": "red",
-      "text": "Salehe — June 4 Puma Vellum drop. All flows not started. 12 days. Marathon build support must be locked now."
+      "text": "Salehe — June 4 Puma Vellum drop. 10 days. Flows not started. Gameplan kicking off tomorrow."
     },
     {
       "dot": "red",
-      "text": "RVCA MDW — in flight through Monday. Follow-up email subject/preview still needs Michael's sign-off today."
+      "text": "Riversol — Flows roadmap confirmed. Nothing built yet. Michael flagged: need to get this across the line NOW."
     },
     {
       "dot": "yellow",
-      "text": "Liverpool — MDW segment error (Potential Loyalists missed). Fix sent? Confirm. Full campaign ownership proposal still unsent."
+      "text": "RVCA — Post-purchase brief v2 in Michael's hands. Design starts after AM review. Welcome series issue to raise with client Wed."
     },
     {
       "dot": "yellow",
-      "text": "Riversol — 6-flow roadmap confirmed across 2 calls. Builds haven't started. Who's building? Clarify."
+      "text": "Epicure — June 1 contract confirmed (6 months). Builder hire is critical. Interview Wednesday 7:30am."
     },
     {
       "dot": "yellow",
-      "text": "FRNK — Kicked off May 22. Everything blocked until Steph delivers brand assets. Chase next week."
+      "text": "FRNK — Shopify page reassigned. Victoria chasing Steph for assets + giveaway alignment. Stamped reviews broken — Steph meeting needed."
     },
     {
       "dot": "amber",
-      "text": "Hiba — Calendly broken, pop-up issue unresolved. Victoria owns going forward — make sure she has everything."
+      "text": "Hiba — All sign-up forms tested and working. Pop-up offline until solution found. Michael emailing team Tuesday."
     },
     {
       "dot": "green",
-      "text": "Epicure — Geoff getting back Monday. SOW ready. Upsell opportunity is real if he converts."
+      "text": "SFR Distillery — Meeting done. Klaviyo audit + SOW needed. Budget ~$4k."
     },
     {
-      "dot": "green",
-      "text": "SFR Distillery — Discovery done. Klaviyo audit needed. Budget ~$4k. First impression matters."
+      "dot": "grey",
+      "text": "Liverpool — Churning end of May. Offboarding in progress."
     }
   ],
   "clients": [
     {
       "name": "Liverpool LA",
-      "lastActivity": "MDW live. Segment error on early access — Potential Loyalists missed. Fix in motion. Campaign ownership proposal still unsent.",
-      "dot": "amber",
-      "status": "active"
+      "lastActivity": "⚠️ Churning end of May 2026. Offboarding in progress. ~2 years in.",
+      "dot": "grey",
+      "status": "watching"
     },
     {
       "name": "RVCA",
-      "lastActivity": "MDW campaign in flight through Mon. Follow-up send today needs subject line approval. OuterSignal blocked on Clay's call.",
-      "dot": "yellow",
+      "lastActivity": "Post-purchase brief v2 with Michael — reviewing AM Tue, team starts design after. Welcome series issue to discuss with client Wed. Reports being built.",
+      "dot": "green",
       "status": "active"
     },
     {
       "name": "Salehe / SPUNGE",
-      "lastActivity": "Kicked off May 22. List cleaning underway (750k). June 4 Puma drop = hard deadline. All flows not yet started.",
+      "lastActivity": "Contract signed. Billing activation pending (Fardad). June 4 hard deadline — flows must be live by June 2. Gameplan starting tomorrow.",
       "dot": "red",
       "status": "active"
     },
     {
       "name": "Riversol",
-      "lastActivity": "6-flow roadmap confirmed. Win-back in client review. Builds not yet started on most flows. Builder TBD.",
-      "dot": "yellow",
+      "lastActivity": "6-flow roadmap confirmed. Nothing built yet. Gameplan + copy/design starting this week. Michael: get this across the line.",
+      "dot": "red",
       "status": "active"
     },
     {
       "name": "Hiba Academy",
-      "lastActivity": "Victoria now primary AM. Calendly/pop-up issue unresolved (website-level). August Application Launch = north star.",
+      "lastActivity": "All sign-up forms tested + working. Pop-up offline until fix found. Michael emailing team Tuesday. Victoria primary AM.",
       "dot": "amber",
       "status": "active"
     },
     {
       "name": "FRNK Boutique",
-      "lastActivity": "Kickoff done May 22. Everything blocked on brand assets from Steph. Internal motion needed next week.",
+      "lastActivity": "Shopify page reassigned. Victoria reached out to Steph re: assets + giveaway. Stamped reviews broken on Shopify — Steph meeting needed.",
       "dot": "yellow",
       "status": "active"
     },
     {
       "name": "Epicure",
-      "lastActivity": "Audit delivered. Geoff getting back Monday. Hard bounce +221% is urgent. Upsell opportunity if he converts.",
-      "dot": "yellow",
-      "status": "prospect"
+      "lastActivity": "June 1 contract confirmed — 6-month commitment. Builder hire critical to support Kieran. Interview Wednesday 7:30am.",
+      "dot": "green",
+      "status": "active"
     },
     {
       "name": "SFR Distillery",
-      "lastActivity": "Discovery call May 22. Budget ~$4k CAD. Klaviyo audit first. Needs formal SOW before boss will approve.",
+      "lastActivity": "Discovery done. Klaviyo audit + SOW needed. Budget ~$4k CAD. Meeting Wed 11am.",
       "dot": "yellow",
       "status": "prospect"
     },
     {
       "name": "The Lab",
-      "lastActivity": "Automation stack strategy call filed. GHL audit this weekend with RV. Ben Glinsky trust issue flagged.",
+      "lastActivity": "Met with RV May 25. Auditing now — may stay on GoHighLevel 90 days before moving to Klaviyo. RV to report back.",
       "dot": "amber",
       "status": "active"
-    },
-    {
-      "name": "OuterSignal",
-      "lastActivity": "RVCA integration blocked on Enterprise upgrade. $750/6 variants scoped. Waiting on Clay's call + go-ahead.",
-      "dot": "yellow",
-      "status": "watching"
     }
   ],
   "inbox": {
-    "summary": "Intel sweep complete May 23. Fathom recaps filed: Liverpool (3), Riversol (2), Salehe (2). RVCA intel Slack-only — no Fathom recaps found.",
-    "lastChecked": "2026-05-23T06:00:00-07:00"
+    "summary": "Not checked tonight. Full inbox scan at morning standup.",
+    "lastChecked": "2026-05-25T23:25:00-07:00"
   },
   "usage": {
     "monthLabel": "April 2026",
