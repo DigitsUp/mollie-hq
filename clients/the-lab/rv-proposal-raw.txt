@@ -1,0 +1,965 @@
+export default function TheLabLifecycleExperience() {
+  const flows = [
+    {
+      id: 'lead-nurture',
+      stage: 'FLOW 01',
+      title: 'Lead Capture / Inquiry Nurture',
+      color: 'from-cyan-400 to-blue-500',
+      glow: 'shadow-cyan-500/20',
+      objective: 'Convert cold parent inquiries into booked trial classes.',
+      emotional: 'Build trust, excitement, and confidence while reducing
+hesitation and response delay.',
+      enrollment: ['Website inquiry form submitted', 'Facebook lead form
+submitted', 'Summer camp inquiry submitted', 'Waiver completed without
+booking', 'No active membership or trial booking'],
+      exit: ['Trial booked', 'Membership purchased', 'Manual suppression
+added', 'Contact replies STOP'],
+      tags: ['New Inquiry', 'Trial Interest', 'Warm Lead', 'Engaged
+Parent', 'Trial Booked'],
+      pipeline: ['New Inquiry', 'Contacted', 'Trial Pending', 'Trial
+Booked'],
+      timeline: [
+        { day: 'Immediate', type: 'SMS', title: 'Fast Reassurance', theme:
+'Speed-to-lead confidence', cta: 'Book your free trial class' },
+        { day: '+2 Hours', type: 'Email', title: 'Welcome To The LAB',
+theme: 'Emotional trust building', cta: 'Book a free trial' },
+        { day: 'Day 1', type: 'SMS', title: 'Parent Social Proof', theme:
+'Community reassurance', cta: 'Reply with questions or book now' },
+        { day: 'Day 2', type: 'Email', title: 'Transformation Stories',
+theme: 'Identity & progress', cta: 'Reserve your class spot' },
+        { day: 'Day 4', type: 'Email', title: 'Programs & Experience',
+theme: 'Program education', cta: 'Book class' },
+        { day: 'Day 6', type: 'SMS', title: 'Simple Direct CTA', theme:
+'Low friction conversion', cta: 'Reserve a class spot this week' },
+        { day: 'Day 8', type: 'Email', title: 'Scarcity & Momentum', theme:
+'FOMO & urgency', cta: 'Schedule first class' },
+      ],
+      tasks: ['Call all new leads within 15 minutes', 'Update child age &
+interests', 'Apply urgency tags', 'Add manual sales notes into CRM'],
+    },
+    {
+      id: 'trial-booked',
+      stage: 'FLOW 02',
+      title: 'Trial Booked Experience',
+      color: 'from-blue-400 to-indigo-500',
+      glow: 'shadow-blue-500/20',
+      objective: 'Increase trial attendance and emotional investment before
+the visit.',
+      emotional: 'Build excitement and remove uncertainty.',
+      enrollment: ['Trial class booked', 'Pipeline moved to Trial Booked',
+'Tag applied: Trial Pending'],
+      exit: ['Trial attended', 'No-show marked', 'Membership purchased',
+'Trial cancelled'],
+      tags: ['Trial Booked', 'Trial Pending', 'VIP Prospect', 'Trial
+Attended'],
+      pipeline: ['Trial Booked', 'Trial Attended', 'Membership Follow-Up'],
+      timeline: [
+        { day: 'Immediately', type: 'Email', title: 'Trial Confirmation',
+theme: 'Excitement & preparation', cta: 'Prepare for your visit' },
+        { day: 'Immediately', type: 'SMS', title: 'Excited To Meet You',
+theme: 'Immediate reassurance', cta: 'See you soon' },
+        { day: '2 Days Before', type: 'Email', title: 'What To Expect',
+theme: 'Reduce uncertainty', cta: 'Prepare for first class' },
+        { day: '1 Day Before', type: 'SMS', title: 'Attendance Reminder',
+theme: 'Attendance reinforcement', cta: 'We are excited to meet you' },
+        { day: '1 Day Before', type: 'Email', title: 'Meet The Coaches',
+theme: 'Human connection', cta: 'Build confidence before arrival' },
+        { day: '3 Hours Before', type: 'SMS', title: 'Final Reminder',
+theme: 'Last-minute attendance push', cta: 'See you tonight' },
+        { day: '1 Hour After', type: 'Email', title: 'Thank You &
+Momentum', theme: 'Enrollment momentum', cta: 'Discuss membership options'
+},
+        { day: 'Evening', type: 'SMS', title: 'Simple Follow-Up', theme:
+'Low pressure membership CTA', cta: 'Any questions about membership?' },
+      ],
+      tasks: ['Confirm waiver completion', 'Prepare instructor notes', 'Add
+student interests into CRM', 'Apply VIP Prospect tags'],
+    },
+    {
+      id: 'no-show',
+      stage: 'FLOW 03',
+      title: 'No Show Recovery',
+      color: 'from-amber-400 to-orange-500',
+      glow: 'shadow-amber-500/20',
+      objective: 'Recover missed trials and reduce lead loss.',
+      emotional: 'Remove guilt and friction.',
+      enrollment: ['Pipeline moved to No Show', 'Tag applied: No Show'],
+      exit: ['Trial rebooked', 'Contact inactive', 'Manual suppression'],
+      tags: ['No Show', 'Still Interested', 'Cold Lead'],
+      pipeline: ['No Show', 'Rebooking', 'Trial Pending'],
+      timeline: [
+        { day: '2 Hours After', type: 'SMS', title: 'Empathy Follow-Up',
+theme: 'Warm recovery', cta: 'Happy to reschedule' },
+        { day: 'Next Morning', type: 'Email', title: 'We’d Still Love To
+Meet You', theme: 'Warmth & reassurance', cta: 'Book another class' },
+        { day: 'Day 2', type: 'SMS', title: 'Easy Rebooking', theme: 'Low
+friction reactivation', cta: 'Reply with preferred day' },
+        { day: 'Day 4', type: 'Email', title: 'Student Success Stories',
+theme: 'Reignite excitement', cta: 'Schedule another visit' },
+      ],
+      tasks: ['Call parent within 24 hours', 'Log no-show reason', 'Apply
+Still Interested or Cold Lead tags'],
+    },
+    {
+      id: 'membership',
+      stage: 'FLOW 04',
+      title: 'Membership Conversion',
+      color: 'from-emerald-400 to-cyan-400',
+      glow: 'shadow-emerald-500/20',
+      objective: 'Convert trial attendees into long-term members.',
+      emotional: 'Sell transformation and belonging.',
+      enrollment: ['Trial marked attended', 'Pipeline moved to Trial
+Attended'],
+      exit: ['Membership purchased', 'Closed lost', 'Parent declines
+enrollment'],
+      tags: ['High Intent Parent', 'Ready To Enroll', 'Active Member'],
+      pipeline: ['Trial Attended', 'Sales Follow-Up', 'Closed Won'],
+      timeline: [
+        { day: 'Day 0', type: 'SMS', title: 'Your Child Did Amazing',
+theme: 'Confidence reinforcement', cta: 'Membership conversation' },
+        { day: 'Day 1', type: 'Email', title: 'Student Confidence Recap',
+theme: 'Transformation positioning', cta: 'Continue the momentum' },
+        { day: 'Day 2', type: 'Email', title: 'Why Consistency Matters',
+theme: 'Long-term growth', cta: 'Enroll today' },
+        { day: 'Day 3', type: 'Email', title: 'Parent Testimonials', theme:
+'Trust & social proof', cta: 'See the long-term impact' },
+        { day: 'Day 5', type: 'Email', title: 'Program Roadmap', theme:
+'Progression & future vision', cta: 'Choose the right membership' },
+        { day: 'Day 6', type: 'SMS', title: 'Enrollment Reminder', theme:
+'Gentle urgency', cta: 'Reserve your spot' },
+        { day: 'Day 7', type: 'Email', title: 'Limited Spot Momentum',
+theme: 'Urgency & momentum', cta: 'Secure membership' },
+        { day: 'Day 9', type: 'Email', title: 'Final Invitation', theme:
+'Final emotional close', cta: 'Join The LAB family' },
+      ],
+      tasks: ['Schedule follow-up call', 'Handle pricing objections',
+'Apply sales intent tags', 'Move opportunities through pipeline'],
+    },
+    {
+      id: 'onboarding',
+      stage: 'FLOW 05',
+      title: 'New Member Onboarding',
+      color: 'from-emerald-400 to-lime-400',
+      glow: 'shadow-emerald-500/20',
+      objective: 'Increase retention during the first 90 days.',
+      emotional: 'Create belonging and routine.',
+      enrollment: ['Membership purchased', 'Pipeline moved to Closed Won'],
+      exit: ['Onboarding completed', 'Membership cancelled'],
+      tags: ['Active Member', 'New Member', 'Thriving Student'],
+      pipeline: ['Closed Won', 'Active Member'],
+      timeline: [
+        { day: 'Day 0', type: 'Email', title: 'Welcome To The LAB Family',
+theme: 'Belonging', cta: 'Start your journey' },
+        { day: 'Day 2', type: 'SMS', title: 'Attendance Encouragement',
+theme: 'Routine building', cta: 'See you in class' },
+        { day: 'Week 1', type: 'Email', title: 'What Success Looks Like',
+theme: 'Expectation setting', cta: 'Track milestones' },
+        { day: 'Week 2', type: 'Email', title: 'Parent Expectations',
+theme: 'Alignment', cta: 'Support growth at home' },
+        { day: 'Week 3', type: 'Email', title: 'Community Involvement',
+theme: 'Family integration', cta: 'Join upcoming events' },
+        { day: 'Month 1', type: 'SMS', title: 'Milestone Celebration',
+theme: 'Positive reinforcement', cta: 'Celebrate progress' },
+      ],
+      tasks: ['Welcome student personally', 'Monitor attendance
+consistency', 'Apply At Risk or Thriving Student tags'],
+    },
+    {
+      id: 'retention',
+      stage: 'FLOW 06',
+      title: 'Engagement & Retention',
+      color: 'from-yellow-400 to-cyan-400',
+      glow: 'shadow-yellow-500/20',
+      objective: 'Maintain engagement and reduce churn risk.',
+      emotional: 'Strengthen family connection.',
+      enrollment: ['Member active for 30+ days'],
+      exit: ['Retention risk resolved', 'Membership cancelled'],
+      tags: ['Consistent Attendee', 'Retention Risk', 'VIP Family'],
+      pipeline: ['Active Member', 'Retention Risk'],
+      timeline: [
+        { day: 'Monthly', type: 'Email', title: 'Student Achievements',
+theme: 'Recognition', cta: 'Celebrate progress' },
+        { day: 'Monthly', type: 'Email', title: 'Community Spotlights',
+theme: 'Connection', cta: 'Join the community' },
+        { day: 'Bi-Weekly', type: 'SMS', title: 'Attendance Nudge', theme:
+'Consistency reinforcement', cta: 'Book next class' },
+        { day: 'Monthly', type: 'Email', title: 'Referral Opportunity',
+theme: 'Growth & advocacy', cta: 'Invite a friend' },
+      ],
+      tasks: ['Reach out after 14+ missed days', 'Celebrate milestones',
+'Encourage event participation'],
+    },
+    {
+      id: 'winback',
+      stage: 'FLOW 07',
+      title: 'Winback / Reactivation',
+      color: 'from-violet-400 to-fuchsia-500',
+      glow: 'shadow-violet-500/20',
+      objective: 'Recover inactive families.',
+      emotional: 'Reconnect emotionally without pressure.',
+      enrollment: ['Membership inactive', 'No attendance for 30–60 days'],
+      exit: ['Re-enrollment', 'No engagement after flow completion'],
+      tags: ['Inactive', 'Former Member', 'Interested In Returning'],
+      pipeline: ['Winback Opportunity', 'Reactivation'],
+      timeline: [
+        { day: 'Day 0', type: 'Email', title: 'We Miss Seeing Your Family',
+theme: 'Emotional reconnection', cta: 'Reconnect with us' },
+        { day: 'Day 2', type: 'SMS', title: 'Friendly Check-In', theme:
+'Warm reactivation', cta: 'Thinking about coming back?' },
+        { day: 'Day 4', type: 'Email', title: 'Student Progress Reminder',
+theme: 'Momentum reminder', cta: 'Restart your journey' },
+        { day: 'Day 7', type: 'Email', title: 'Easy Restart Offer', theme:
+'Low friction restart', cta: 'Claim restart incentive' },
+        { day: 'Day 10', type: 'Email', title: 'Limited-Time Incentive',
+theme: 'Urgency', cta: 'Return this month' },
+      ],
+      tasks: ['Personal retention check-in call', 'Ask why family left',
+'Apply Financial Concern or Schedule Conflict tags'],
+    },
+    {
+      id: 'birthday-party',
+      stage: 'SPECIAL FLOW',
+      title: 'Birthday Party → Membership Funnel',
+      color: 'from-pink-400 to-rose-500',
+      glow: 'shadow-pink-500/20',
+      objective: 'Convert birthday party attendees into new trial leads.',
+      emotional: 'Capture excitement immediately after the event.',
+      enrollment: ['Waiver signed', 'Party attended'],
+      exit: ['Trial booked', 'No engagement'],
+      tags: ['Birthday Party Lead', 'Warm Lead'],
+      pipeline: ['Event Lead', 'Trial Pending'],
+      timeline: [
+        { day: 'Day 0', type: 'Email', title: 'Thank You Recap', theme:
+'Event memory reinforcement', cta: 'Book a trial class' },
+        { day: 'Day 1', type: 'SMS', title: 'Trial Invitation', theme:
+'Momentum conversion', cta: 'Would your child love classes too?' },
+        { day: 'Day 3', type: 'Email', title: 'Parent Testimonials', theme:
+'Trust building', cta: 'Reserve your spot' },
+      ],
+      tasks: ['Collect parent data', 'Ensure waiver accuracy', 'Invite
+families before leaving event'],
+    },
+    {
+      id: 'summer-camp',
+      stage: 'SPECIAL FLOW',
+      title: 'Summer Camp Conversion Flow',
+      color: 'from-orange-400 to-yellow-400',
+      glow: 'shadow-orange-500/20',
+      objective: 'Convert camp participants into recurring memberships.',
+      emotional: 'Maintain excitement and momentum after camp completion.',
+      enrollment: ['Summer camp completed', 'Camp participant tagged'],
+      exit: ['Membership purchased', 'Flow completed'],
+      tags: ['Summer Camp', 'Camp Conversion Lead'],
+      pipeline: ['Camp Participant', 'Membership Follow-Up'],
+      timeline: [
+        { day: 'Day 0', type: 'Email', title: 'Camp Highlights', theme:
+'Positive emotional recap', cta: 'Continue the journey' },
+        { day: 'Day 2', type: 'Email', title: 'Student Transformation',
+theme: 'Growth reinforcement', cta: 'Explore membership options' },
+        { day: 'Day 4', type: 'SMS', title: 'Keep The Momentum Going',
+theme: 'Consistency encouragement', cta: 'Join regular classes' },
+        { day: 'Day 6', type: 'Email', title: 'Membership Invitation',
+theme: 'Conversion momentum', cta: 'Become a member' },
+      ],
+      tasks: ['Tag all camp attendees', 'Segment high-engagement families',
+'Trigger post-camp follow-up calls'],
+    },
+  ];
+
+  const navigation = [
+    { id: 'hero', label: 'Overview' },
+    { id: 'current-state', label: 'Current State' },
+    { id: 'journey-system', label: 'Journey System' },
+    { id: 'campaign-engine', label: 'Campaigns' },
+    { id: 'final-vision', label: 'Final Vision' },
+  ];
+
+  const campaigns = [
+    {
+      title: 'Parent Education Campaigns',
+      desc: 'Position The LAB as a trusted youth development authority.',
+      color: 'from-cyan-500/20 to-blue-500/20',
+    },
+    {
+      title: 'Seasonal Promotions',
+      desc: 'Summer camps, back-to-school, holiday events, and enrollment
+pushes.',
+      color: 'from-violet-500/20 to-fuchsia-500/20',
+    },
+    {
+      title: 'Community & Events',
+      desc: 'Strengthen emotional connection and retention.',
+      color: 'from-emerald-500/20 to-cyan-500/20',
+    },
+    {
+      title: 'Referral Campaigns',
+      desc: 'Build scalable organic lead generation loops.',
+      color: 'from-amber-500/20 to-orange-500/20',
+    },
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#050816] text-white overflow-hidden">
+      <div className="fixed left-6 top-1/2 z-50 hidden -translate-y-1/2
+xl:block">
+        <div className="rounded-[32px] border border-white/10
+bg-[#08101B]/80 p-4 backdrop-blur-2xl shadow-2xl shadow-cyan-500/10">
+          <div className="mb-4 px-3 text-xs uppercase tracking-[0.3em]
+text-cyan-300">
+            Document
+          </div>
+
+          <div className="space-y-2">
+            {navigation.map((item, i) => (
+              <a
+                key={i}
+                href={`#${item.id}`}
+                className="group flex items-center gap-3 rounded-2xl border
+border-transparent px-4 py-3 transition-all duration-300
+hover:border-cyan-400/20 hover:bg-cyan-400/10"
+              >
+                <div className="h-2 w-2 rounded-full bg-cyan-300
+transition-all duration-300 group-hover:scale-150" />
+
+                <div className="text-sm font-semibold text-slate-300
+transition-all duration-300 group-hover:text-white">
+                  {item.label}
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="fixed inset-0 opacity-20 pointer-events-none
+bg-[radial-gradient(circle_at_top_right,#22d3ee33,transparent_30%),radial-gradient(circle_at_bottom_left,#7c3aed33,transparent_30%)]"
+/>
+
+      <section id="hero" className="relative min-h-screen flex items-center
+px-8 lg:px-20 py-20 border-b border-white/10">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-[1.1fr_0.9fr]
+gap-16 items-center w-full">
+          <div>
+            <div className="inline-flex items-center gap-3 rounded-full
+border border-cyan-400/30 bg-cyan-400/10 px-5 py-2 text-sm uppercase
+tracking-[0.25em] text-cyan-300">
+              DigitsUp × The LAB
+            </div>
+
+            <h1 className="mt-8 text-6xl md:text-8xl font-black
+leading-[0.9] tracking-tight">
+              Lifecycle
+              <span className="block bg-gradient-to-r from-cyan-300
+via-blue-400 to-violet-400 bg-clip-text text-transparent">
+                Growth Engine
+              </span>
+            </h1>
+
+            <p className="mt-8 max-w-3xl text-xl leading-9 text-slate-300">
+              A premium parent journey ecosystem designed to transform
+inquiries,
+              trial classes, onboarding, retention, and campaigns into a
+fully connected automation infrastructure.
+            </p>
+
+            <div className="mt-12 flex flex-wrap gap-4">
+              {['7 Lifecycle Flows', '40+ Touchpoints', 'CRM Intelligence',
+'Retention Infrastructure'].map((item, i) => (
+                <div
+                  key={i}
+                  className="rounded-2xl border border-white/10 bg-white/5
+px-5 py-4 backdrop-blur-xl"
+                >
+                  <div className="text-sm uppercase tracking-[0.2em]
+text-cyan-300">
+                    System
+                  </div>
+                  <div className="mt-2 text-lg font-bold
+text-white">{item}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="relative">
+            <div className="absolute -inset-10 rounded-full bg-cyan-500/20
+blur-3xl" />
+
+            <div className="relative rounded-[40px] border border-white/10
+bg-gradient-to-br from-[#0C1427] to-[#0A1020] p-8 backdrop-blur-2xl
+shadow-2xl shadow-cyan-500/10">
+              <div className="grid grid-cols-2 gap-5">
+                {[
+                  ['Lead Capture', 'Active'],
+                  ['Trial Experience', 'Connected'],
+                  ['Retention Engine', 'Optimized'],
+                  ['Winback Logic', 'Automated'],
+                ].map((item, i) => (
+                  <div
+                    key={i}
+                    className="rounded-3xl border border-white/10
+bg-white/5 p-6"
+                  >
+                    <div className="text-sm uppercase tracking-[0.2em]
+text-slate-400">
+                      {item[0]}
+                    </div>
+                    <div className="mt-4 text-2xl font-black text-white">
+                      {item[1]}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 rounded-3xl border border-cyan-400/20
+bg-cyan-400/10 p-6">
+                <div className="text-sm uppercase tracking-[0.2em]
+text-cyan-300">
+                  Final Outcome
+                </div>
+                <div className="mt-4 text-3xl font-black leading-tight
+text-white">
+                  A Fully Automated Parent Relationship Ecosystem
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="current-state" className="px-8 lg:px-20 py-24 border-b
+border-white/10">
+        <div className="max-w-7xl mx-auto">
+          <div className="rounded-[48px] border border-white/10
+bg-gradient-to-br from-[#07111F] to-[#091528] p-8 md:p-12 overflow-hidden
+relative">
+            <div className="absolute inset-0 opacity-20
+bg-[radial-gradient(circle_at_top_left,#f59e0b33,transparent_30%),radial-gradient(circle_at_bottom_right,#22d3ee22,transparent_30%)]"
+/>
+
+            <div className="relative z-10">
+              <div className="inline-flex rounded-full border
+border-yellow-400/30 bg-yellow-400/10 px-5 py-2 text-sm uppercase
+tracking-[0.25em] text-yellow-300">
+                Where The LAB Is Today
+              </div>
+
+              <h2 className="mt-8 text-5xl md:text-7xl font-black
+leading-[0.95] tracking-tight text-white">
+                Strong Brand.
+                <span className="block text-slate-400">
+                  Underdeveloped Automation Infrastructure.
+                </span>
+              </h2>
+
+              <div className="mt-16 grid xl:grid-cols-2 gap-8">
+                <div className="rounded-[36px] border border-red-400/20
+bg-gradient-to-br from-red-500/10 to-transparent p-8 backdrop-blur-xl">
+                  <div className="text-sm uppercase tracking-[0.25em]
+text-red-300">
+                    Current Problems
+                  </div>
+
+                  <div className="mt-10 space-y-6">
+                    {[
+                      'Only 3 automations currently contain emails',
+                      'Most workflows rely primarily on SMS',
+                      'No lifecycle nurturing structure',
+                      'No onboarding experience for new members',
+                      'No retention or reactivation systems',
+                      'Minimal campaign infrastructure',
+                      'Communication is transactional, not emotional',
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-start gap-4">
+                        <div className="flex h-10 w-10 items-center
+justify-center rounded-full bg-red-500/20 text-red-300 text-xl font-black">
+                          ×
+                        </div>
+                        <div className="text-lg text-slate-200
+leading-relaxed">
+                          {item}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="rounded-[36px] border border-cyan-400/20
+bg-gradient-to-br from-cyan-500/10 to-transparent p-8 backdrop-blur-xl">
+                  <div className="text-sm uppercase tracking-[0.25em]
+text-cyan-300">
+                    Existing Infrastructure
+                  </div>
+
+                  <div className="mt-10 space-y-5">
+                    {[
+                      ['Trial Booked', '1 Email · 1 SMS'],
+                      ['No Show Recovery', '2 Emails · 1 SMS'],
+                      ['VIP Pass Booking', '1 Email · 2 SMS'],
+                      ['Summer Camp', '1 SMS Only'],
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center
+justify-between rounded-3xl border border-white/10 bg-white/5 p-6">
+                        <div className="text-2xl font-bold text-white">
+                          {item[0]}
+                        </div>
+
+                        <div className="rounded-full border
+border-cyan-400/20 bg-cyan-400/10 px-5 py-3 text-sm font-bold
+text-cyan-300">
+                          {item[1]}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 rounded-[36px] border border-white/10
+bg-gradient-to-r from-[#0A1830] to-[#09111E] p-8">
+                <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-8
+items-center">
+                  <div>
+                    <div className="text-sm uppercase tracking-[0.25em]
+text-cyan-300">
+                      Email Performance Snapshot
+                    </div>
+
+                    <div className="mt-6 text-5xl md:text-6xl font-black
+leading-[0.95] text-white">
+                      Good engagement.
+                      <span className="block text-slate-400">
+                        Very low system depth.
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-4">
+                    {[
+                      ['667', 'Emails Delivered'],
+                      ['46%', 'Open Rate'],
+                      ['4%', 'Click Rate'],
+                    ].map((item, i) => (
+                      <div key={i} className="rounded-3xl border
+border-white/10 bg-white/5 p-6 text-center backdrop-blur-xl">
+                        <div className="text-4xl font-black text-white">
+                          {item[0]}
+                        </div>
+                        <div className="mt-3 text-xs uppercase
+tracking-[0.25em] text-slate-400">
+                          {item[1]}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="journey-system" className="max-w-4xl mt-24">
+            <div className="inline-flex rounded-full border
+border-cyan-400/30 bg-cyan-400/10 px-5 py-2 text-sm uppercase
+tracking-[0.25em] text-cyan-300">
+              Lifecycle Architecture
+            </div>
+
+            <h2 className="mt-8 text-5xl md:text-7xl font-black
+leading-[0.95] tracking-tight">
+              The Full Parent
+              <span className="block text-slate-400">Journey System</span>
+            </h2>
+          </div>
+
+          <div className="mt-20 space-y-12">
+            {flows.map((flow, index) => (
+              <div
+                key={index}
+                className={`relative overflow-hidden rounded-[40px] border
+border-white/10 bg-gradient-to-br from-[#0B1324] to-[#070D18] p-8 md:p-12
+shadow-2xl ${flow.glow}`}
+              >
+                <div className={`absolute top-0 right-0 h-80 w-80
+bg-gradient-to-br ${flow.color} opacity-10 blur-3xl`} />
+
+                <div className="relative z-10 grid
+xl:grid-cols-[0.9fr_1.1fr] gap-12">
+                  <div>
+                    <div className={`inline-flex rounded-full
+bg-gradient-to-r ${flow.color} px-5 py-2 text-sm font-bold uppercase
+tracking-[0.2em] text-white`}>
+                      {flow.stage}
+                    </div>
+
+                    <h3 className="mt-6 text-4xl md:text-5xl font-black
+leading-tight text-white">
+                      {flow.title}
+                    </h3>
+
+                    <p className="mt-6 text-lg leading-8 text-slate-300">
+                      {flow.objective}
+                    </p>
+
+                    <div className="mt-8 rounded-3xl border border-white/10
+bg-white/5 p-6">
+                      <div className="text-sm uppercase tracking-[0.2em]
+text-cyan-300">
+                        Emotional Objective
+                      </div>
+                      <div className="mt-4 text-2xl font-bold text-white
+leading-relaxed">
+                        {flow.emotional}
+                      </div>
+                    </div>
+
+                    <div className="mt-8 grid gap-4">
+                      <div className="rounded-3xl border
+border-emerald-400/20 bg-emerald-400/10 p-6">
+                        <div className="text-sm uppercase tracking-[0.2em]
+text-emerald-300">
+                          Enrollment Criteria
+                        </div>
+
+                        <div className="mt-5 space-y-3">
+                          {flow.enrollment.map((item, i) => (
+                            <div key={i} className="flex items-start gap-3
+text-slate-200">
+                              <div className="mt-1 h-2 w-2 rounded-full
+bg-emerald-300" />
+                              <div>{item}</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="rounded-3xl border border-red-400/20
+bg-red-400/10 p-6">
+                        <div className="text-sm uppercase tracking-[0.2em]
+text-red-300">
+                          Exit Criteria
+                        </div>
+
+                        <div className="mt-5 space-y-3">
+                          {flow.exit.map((item, i) => (
+                            <div key={i} className="flex items-start gap-3
+text-slate-200">
+                              <div className="mt-1 h-2 w-2 rounded-full
+bg-red-300" />
+                              <div>{item}</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="rounded-3xl border border-white/10
+bg-white/5 p-6">
+                        <div className="text-sm uppercase tracking-[0.2em]
+text-slate-400">
+                          Pipeline Movement
+                        </div>
+
+                        <div className="mt-5 flex flex-wrap items-center
+gap-3">
+                          {flow.pipeline.map((step, i) => (
+                            <>
+                              <div
+                                key={i}
+                                className="rounded-2xl border
+border-cyan-400/20 bg-cyan-400/10 px-4 py-3 text-sm font-semibold
+text-cyan-200"
+                              >
+                                {step}
+                              </div>
+
+                              {i !== flow.pipeline.length - 1 && (
+                                <div className="text-cyan-300">→</div>
+                              )}
+                            </>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="rounded-3xl border border-white/10
+bg-white/5 p-6">
+                        <div className="text-sm uppercase tracking-[0.2em]
+text-slate-400">
+                          Tag Architecture
+                        </div>
+
+                        <div className="mt-5 flex flex-wrap gap-3">
+                          {flow.tags.map((tag, i) => (
+                            <div
+                              key={i}
+                              className="rounded-full border
+border-white/10 bg-white/5 px-4 py-2 text-sm text-white"
+                            >
+                              {tag}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="rounded-[32px] border border-white/10
+bg-[#09101C]/80 p-6 backdrop-blur-2xl">
+                      <div className="flex items-center justify-between
+gap-5">
+                        <div>
+                          <div className="text-sm uppercase
+tracking-[0.2em] text-cyan-300">
+                            Timeline Architecture
+                          </div>
+                          <div className="mt-2 text-3xl font-black
+text-white">
+                            Automated Journey
+                          </div>
+                        </div>
+
+                        <div className="rounded-2xl border
+border-cyan-400/20 bg-cyan-400/10 px-5 py-4 text-center">
+                          <div className="text-sm uppercase
+tracking-[0.2em] text-cyan-300">
+                            Active
+                          </div>
+                          <div className="mt-1 text-xl font-black
+text-white">
+                            Multi-Channel
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="mt-10 space-y-6">
+                        {flow.timeline.map((item, i) => (
+                          <div key={i} className="flex gap-5">
+                            <div className="flex flex-col items-center">
+                              <div className={`flex h-14 w-14 items-center
+justify-center rounded-2xl bg-gradient-to-br ${flow.color} text-sm
+font-black uppercase text-white`}>
+                                {item.type}
+                              </div>
+
+                              {i !== flow.timeline.length - 1 && (
+                                <div className="mt-3 h-full w-[2px]
+bg-gradient-to-b from-cyan-400/50 to-transparent" />
+                              )}
+                            </div>
+
+                            <div className="flex-1 rounded-3xl border
+border-white/10 bg-white/5 p-6">
+                              <div className="flex flex-wrap items-center
+justify-between gap-4">
+                                <div>
+                                  <div className="text-sm uppercase
+tracking-[0.2em] text-slate-400">
+                                    {item.day}
+                                  </div>
+                                  <div className="mt-2 text-2xl font-bold
+text-white">
+                                    {item.title}
+                                  </div>
+                                </div>
+
+                                <div className="rounded-full border
+border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-semibold
+text-cyan-300">
+                                  {item.theme}
+                                </div>
+                              </div>
+
+                              <div className="mt-5 rounded-2xl border
+border-white/10 bg-[#050A12] p-5">
+                                <div className="text-sm uppercase
+tracking-[0.2em] text-slate-400">
+                                  Primary CTA
+                                </div>
+                                <div className="mt-3 text-lg font-semibold
+text-white">
+                                  {item.cta}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="mt-8 rounded-[32px] border
+border-white/10 bg-gradient-to-br from-[#0C1424] to-[#08101B] p-6">
+                      <div className="text-sm uppercase tracking-[0.2em]
+text-cyan-300">
+                        Internal Team Operations
+                      </div>
+
+                      <div className="mt-8 grid gap-4">
+                        {flow.tasks.map((task, i) => (
+                          <div
+                            key={i}
+                            className="flex items-start gap-4 rounded-2xl
+border border-white/10 bg-white/5 p-5"
+                          >
+                            <div className="flex h-10 w-10 shrink-0
+items-center justify-center rounded-2xl bg-cyan-400/10 font-black
+text-cyan-300">
+                              {i + 1}
+                            </div>
+
+                            <div>
+                              <div className="text-lg font-semibold
+text-white">
+                                {task}
+                              </div>
+                              <div className="mt-2 text-slate-400">
+                                Internal operational SOP connected directly
+into the CRM automation layer.
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="campaign-engine" className="px-8 lg:px-20 py-24 border-b
+border-white/10">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-4xl">
+            <div className="inline-flex rounded-full border
+border-violet-400/30 bg-violet-400/10 px-5 py-2 text-sm uppercase
+tracking-[0.25em] text-violet-300">
+              Campaign Infrastructure
+            </div>
+
+            <h2 className="mt-8 text-5xl md:text-7xl font-black
+leading-[0.95] tracking-tight text-white">
+              The LAB Campaign
+              <span className="block bg-gradient-to-r from-cyan-300
+to-violet-400 bg-clip-text text-transparent">
+                Growth Engine
+              </span>
+            </h2>
+          </div>
+
+          <div className="mt-20 grid gap-8 xl:grid-cols-2">
+            {campaigns.map((campaign, i) => (
+              <div
+                key={i}
+                className={`group relative overflow-hidden rounded-[36px]
+border border-white/10 bg-gradient-to-br ${campaign.color} p-[1px]
+transition-all duration-500 hover:-translate-y-2`}
+              >
+                <div className="h-full rounded-[36px] bg-[#09101C]/95 p-8
+backdrop-blur-2xl">
+                  <div className="flex items-start justify-between gap-6">
+                    <div>
+                      <div className="text-sm uppercase tracking-[0.2em]
+text-cyan-300">
+                        Campaign System
+                      </div>
+
+                      <h3 className="mt-5 text-3xl font-black leading-tight
+text-white">
+                        {campaign.title}
+                      </h3>
+                    </div>
+
+                    <div className="rounded-2xl border border-white/10
+bg-white/5 px-4 py-3 text-sm font-semibold text-white">
+                      Active
+                    </div>
+                  </div>
+
+                  <p className="mt-6 text-lg leading-8 text-slate-300">
+                    {campaign.desc}
+                  </p>
+
+                  <div className="mt-8 grid grid-cols-2 gap-4">
+                    {['Email Campaigns', 'SMS Support', 'Retention Impact',
+'Referral Growth'].map((item, idx) => (
+                      <div
+                        key={idx}
+                        className="rounded-2xl border border-white/10
+bg-white/5 p-4"
+                      >
+                        <div className="text-sm uppercase tracking-[0.2em]
+text-slate-400">
+                          Infrastructure
+                        </div>
+                        <div className="mt-2 text-lg font-bold text-white">
+                          {item}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="final-vision" className="px-8 lg:px-20 py-32">
+        <div className="max-w-6xl mx-auto relative overflow-hidden
+rounded-[48px] border border-cyan-400/20 bg-gradient-to-br from-[#081220]
+via-[#0A1830] to-[#111A36] p-12 md:p-20">
+          <div className="absolute inset-0 opacity-30
+bg-[radial-gradient(circle_at_top_right,#22d3ee33,transparent_30%),radial-gradient(circle_at_bottom_left,#7c3aed33,transparent_30%)]"
+/>
+
+          <div className="relative z-10 text-center">
+            <div className="inline-flex rounded-full border
+border-cyan-400/30 bg-cyan-400/10 px-5 py-2 text-sm uppercase
+tracking-[0.25em] text-cyan-300">
+              Final Vision
+            </div>
+
+            <h2 className="mx-auto mt-10 max-w-5xl text-6xl md:text-8xl
+font-black leading-[0.9] tracking-tight text-white">
+              From Simple Reminders
+              <span className="block bg-gradient-to-r from-cyan-300
+via-blue-400 to-violet-400 bg-clip-text text-transparent">
+                To A Fully Automated
+              </span>
+              Parent Relationship Ecosystem
+            </h2>
+
+            <p className="mx-auto mt-10 max-w-4xl text-xl leading-9
+text-slate-300">
+              The LAB already delivers an incredible in-person experience.
+              This infrastructure ensures every digital touchpoint matches
+the same level of energy, trust, retention, and growth.
+            </p>
+
+            <div className="mt-16 grid gap-5 md:grid-cols-4">
+              {[
+                ['7', 'Lifecycle Flows'],
+                ['40+', 'Automated Touchpoints'],
+                ['360°', 'Parent Journey'],
+                ['∞', 'Scalable Growth'],
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="rounded-3xl border border-white/10 bg-white/5
+p-6 backdrop-blur-xl"
+                >
+                  <div className="text-5xl font-black text-white">
+                    {item[0]}
+                  </div>
+                  <div className="mt-3 text-sm uppercase tracking-[0.2em]
+text-slate-400">
+                    {item[1]}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}

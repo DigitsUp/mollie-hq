@@ -1,64 +1,63 @@
 # SESSION.md — Current Handoff
-_Rewritten every /close. This is the single source of truth for what's happening right now._
+_Rewritten: Thu May 28, 2026 — 9:18pm PDT_
 
 ---
 
 ## Last Worked On
-My Bad, Mollie — X account launch + Day 1 content. Riversol/Liverpool/Stand notes added EOD.
+The LAB Life proposal — full rebuild from original Mindbody version to GHL-first strategy. Callie built v1, reviewed with Michael, revision v2 spawning now with accordion flows, no "Why DigitsUp" section, Spark caveat, and softer stats.
 
-## What Was Done
+---
 
-**MBM X Account — LIVE**
-- Twitter API connected for @MYBADMOLLIE — credentials at `~/.config/twitter/mybadmollie.json`
-- Built branded tweet card generator (Pillow) — `projects/mybadmollie/generate_card.py`
-- Built scheduled posting script — `projects/mybadmollie/post_scheduled.py`
-- Day 1 posted/scheduled:
-  - ✅ The Fail (Marcus) — live
-  - ✅ The Win (Jenny) — posted 4pm
-  - ✅ The Weird One (Mollie intro) — posted 6pm ← **Michael needs to PIN this manually**
-  - ⏳ The Use Case (Tom / podcast) — queued for 9pm, fires automatically
-- Full project runbook: `projects/mybadmollie/context.md` ← READ THIS FIRST
+## FIRST THING NEXT SESSION
+1. **The LAB Life pricing** — check proposal v2 is live first, then price out month 1 (GHL build) and month 2 (Klaviyo/CC migration) with Michael. He wants to do this together.
+2. **Fathom action items** — summaries not writing to files, needs debug. Then build task extraction so transcripts become actionable intel.
+3. **Big alignment session** — still hasn't happened. Michael wants full system audit + triage.
 
-**Hard Rules (MBM Twitter):**
-- No links in tweets. Ever.
-- Always end with engagement question.
-- No hashtags.
-- Images mandatory — always generate a card first.
+---
 
-## Morning Priority (Michael's morning)
-- **Google Docs OAuth** — fix comment visibility for Meaghan's docs. Was working in week 1-2, broke somewhere. OAuth route. Work through it together.
+## Open Items
 
-## Open / Waiting
+### 🔴 Immediate
+- **The LAB Life pricing** — next session, first item
+- **Salehe — Fardad billing** — must be active before first send. June 4 Vellum drop.
+- **Riversol winback doc** — LiveGood content still in it. Fix before flows go live.
+- **RVCA welcome series copy** — Victoria or Meaghan? Decide before it goes to Clay.
 
-**MBM — Next Session:**
-- Pin The Weird One (Michael to do manually from X app → ··· → Pin to profile)
-- Write Day 2 tweet batch
-- Build cron for automated posting
+### 🟡 This Week
+- FRNK — June campaign starts May 29 (Summer Bestsellers). New Shopify theme before June 5.
+- Hiba — Michael to send validation email to team.
+- The Lab — Proposal v2 live, pricing next.
+- Londre / Shelby — reply offering free audit (still pending).
+- Liverpool Klaviyo ticket (Epicure CSM) — not submitted yet.
 
-**Liverpool** — weekly report due Wednesday morning. Michael handling it, no action needed unless asked.
+### 🟡 Ongoing
+- Epicure — June 1 start.
+- OuterSignal — call with Dov confirmed next week.
+- Per-client agent system — critical, not started.
+- Big alignment session — still open.
 
-**Riversol — next session priority:**
-1. Plaintext email for new customers — one-off ad hoc send (do this first)
-2. Full action item list from Monday's meeting — winback brief + rest
+## Client Status Snapshot
+- **Liverpool** — ⚠️ Final week. Archive only.
+- **RVCA** — 32-email post-purchase approved. Welcome series blocked.
+- **Salehe** — Billing sent. June 4 deadline. Michael building flows himself.
+- **Riversol** — Replenishment flow launching plain text next week. Winback doc needs fix.
+- **Epicure** — June 1 start confirmed.
+- **FRNK** — June calendar set. Shopify theme + giveaway in motion.
+- **Hiba** — Forms working. Pop-up offline. Validation email pending.
+- **SFR** — Proposal v3 live. Email drafted for Will. Waiting on green light + agreement.
+- **The Lab** — Proposal v2 live (https://digitsup.github.io/proposals/the-lab-life/ · LABLIFE). Pricing next session.
+- **OuterSignal** — Call next week confirmed.
 
-**Stand Flagpoles** — CLOSED. Mauro meeting was the last touchpoint. Nothing to file or action.
-
-**Liverpool Sunset Flow v3** — with Kieran now. Plain text style email, no design review needed. Do not re-send.
-
-**Everything else (holding):**
-- RVCA v7 — with Kieran for review
-- RVCA weekly moved to **Thursday 11am PST** this week
-- RVCA Welcome Series v1 — Meaghan can't open file
-- RVCA Add to Cart — Clay support ticket open
-- callie-output — files still staged. Ask Michael where to file anything I'm unsure about — don't let it sit.
-- Brand Featured kickoff — internal kickoff needed before Apr 27
-- Liverpool Q1 report — APPROVED and live, do not touch
+## System
+- Fathom transcripts: filing correctly ✅ — summaries/action items: NOT writing ❌ — fix queued
+- proposals repo: digitsup.github.io/proposals/ — use for all future client proposals
+- Voice notes: local Whisper ONLY — `python3 -c "import whisper; m = whisper.load_model('base'); result = m.transcribe('/path/to/file.ogg'); print(result['text'])"` — rule in SYSTEM.md
+- DO NOT revert Fathom to email-based filing.
 
 ## Critical Flags
-- Liverpool Q1 report: APPROVED — do not touch without Michael's explicit direction
-- Sunset Flow v3 sent — do not re-send without Meaghan feedback
-- MBM Twitter budget: ~$24.92 remaining of $25
-- READ `projects/mybadmollie/context.md` before any MBM Twitter work
-
-## Last Updated
-2026-04-21 19:10 PDT
+- ⚠️ RVCA-External Slack: READ ONLY. Never post.
+- ⚠️ Git push: always ask before pushing.
+- ⚠️ Liverpool: ARCHIVE ONLY.
+- ⚠️ Salehe billing must be live before first send.
+- ⚠️ Fathom: API method only.
+- ⚠️ The LAB: Do NOT mention Mindbody (wrong platform). Do NOT mention Finan Chill until LAB is signed. Do NOT cite client stats in proposal.
