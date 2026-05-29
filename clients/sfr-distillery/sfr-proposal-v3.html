@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DigitsUp × SFR Distillery — Retention Proposal v3</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --amber:      #C4820A;
+    --amber-light:#E8A822;
+    --amber-pale: #F5CB6A;
+    --ink:        #0A0705;
+    --surface:    #161009;
+    --card:       #1C1409;
+    --card2:      #221808;
+    --border:     rgba(196,130,10,.2);
+    --border-hi:  rgba(196,130,10,.45);
+    --muted:      rgba(255,255,255,.45);
+    --white:      #FFFFFF;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--ink); color: var(--white); font-family: 'Outfit', sans-serif; font-weight: 300; line-height: 1.65; overflow-x: hidden; }
+  body::before { content:''; position:fixed; inset:0; z-index:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events:none; opacity:.55; }
+
+  /* GATE */
+  #gate { position:fixed; inset:0; z-index:999; background:var(--ink); display:flex; align-items:center; justify-content:center; padding:24px; transition:opacity .6s, visibility .6s; }
+  #gate.hidden { opacity:0; visibility:hidden; }
+  .gate-box { width:100%; max-width:420px; background:var(--card); border:1px solid var(--border); border-radius:16px; padding:52px 44px; text-align:center; animation:fadeUp .7s ease both; position:relative; overflow:hidden; }
+  .gate-box::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--amber),var(--amber-light),var(--amber),transparent); }
+  .gate-logo { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:5px; text-transform:uppercase; color:var(--amber); margin-bottom:8px; }
+  .gate-brand { font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:600; margin-bottom:6px; }
+  .gate-sub { font-size:13px; color:var(--muted); margin-bottom:38px; }
+  .gate-input { width:100%; background:rgba(255,255,255,.05); border:1px solid var(--border); border-radius:8px; padding:14px 18px; color:var(--white); font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:4px; text-align:center; outline:none; transition:border-color .2s; margin-bottom:14px; }
+  .gate-input:focus { border-color:var(--amber); }
+  .gate-btn { width:100%; background:var(--amber); color:var(--ink); border:none; border-radius:8px; padding:15px; font-family:'Outfit',sans-serif; font-size:13px; font-weight:600; letter-spacing:2px; text-transform:uppercase; cursor:pointer; transition:background .2s, transform .1s; }
+  .gate-btn:hover { background:var(--amber-light); }
+  .gate-btn:active { transform:scale(.98); }
+  .gate-error { margin-top:12px; font-size:12px; color:#f77; min-height:16px; }
+
+  #main { display:none; }
+  #main.visible { display:block; }
+
+  /* NAV */
+  nav { position:sticky; top:0; z-index:100; background:rgba(10,7,5,.94); backdrop-filter:blur(18px); border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; padding:0 44px; height:60px; }
+  .nav-logo { font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:600; color:var(--amber); letter-spacing:1px; }
+  .nav-links { display:flex; gap:24px; list-style:none; }
+  .nav-links a { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .2s; }
+  .nav-links a:hover { color:var(--amber); }
+  .nav-toki { display:flex; align-items:center; gap:7px; background:rgba(196,130,10,.1); border:1px solid rgba(196,130,10,.25); border-radius:100px; padding:5px 13px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--amber); }
+  .nav-toki-dot { width:5px; height:5px; background:var(--amber); border-radius:50%; animation:pulse 2s infinite; }
+  @media(max-width:800px){ .nav-links { display:none; } }
+  @media(max-width:500px){ .nav-toki { display:none; } }
+
+  /* HERO */
+  .hero { position:relative; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:110px 24px 90px; overflow:hidden; }
+  .hero-bg { position:absolute; inset:0; background:radial-gradient(ellipse 70% 50% at 50% 100%, rgba(196,130,10,.28) 0%, transparent 65%), radial-gradient(ellipse 50% 40% at 15% 15%, rgba(168,30,24,.1) 0%, transparent 55%); }
+  .hero-lines { position:absolute; inset:0; background-image:linear-gradient(rgba(196,130,10,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(196,130,10,.05) 1px,transparent 1px); background-size:64px 64px; mask-image:radial-gradient(ellipse 90% 90% at 50% 50%, black 20%, transparent 75%); }
+  .hero-pills { position:relative; display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-bottom:32px; }
+  .hero-pill { display:inline-flex; align-items:center; gap:8px; background:rgba(196,130,10,.1); border:1px solid rgba(196,130,10,.3); border-radius:100px; padding:7px 16px; font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--amber); }
+  .pill-dot { width:6px; height:6px; background:var(--amber); border-radius:50%; animation:pulse 2.5s infinite; }
+  .hero h1 { position:relative; font-family:'Cormorant Garamond',serif; font-size:clamp(46px,7.5vw,92px); font-weight:600; line-height:1.02; letter-spacing:-.5px; margin-bottom:16px; }
+  .hero h1 em { font-style:italic; color:var(--amber); font-weight:300; }
+  .hero-by { position:relative; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:4px; color:var(--muted); text-transform:uppercase; margin-bottom:36px; }
+  .hero-desc { position:relative; max-width:560px; font-size:17px; color:rgba(255,255,255,.7); margin-bottom:52px; line-height:1.72; }
+  .hero-stats { position:relative; display:flex; gap:1px; border:1px solid var(--border); border-radius:14px; overflow:hidden; background:var(--border); max-width:720px; width:100%; }
+  .hero-stat { flex:1; background:var(--card); padding:22px 16px; text-align:center; }
+  .hero-stat .val { font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:600; color:var(--amber); display:block; line-height:1; margin-bottom:5px; }
+  .hero-stat .lbl { font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); }
+
+  /* SECTIONS */
+  section { position:relative; max-width:980px; margin:0 auto; padding:100px 44px; }
+  @media(max-width:640px){ section { padding:72px 24px; } }
+  .section-label { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--amber); margin-bottom:16px; display:flex; align-items:center; gap:12px; }
+  .section-label::after { content:''; flex:1; max-width:44px; height:1px; background:var(--amber); opacity:.4; }
+  .section-h { font-family:'Cormorant Garamond',serif; font-size:clamp(32px,4.5vw,52px); font-weight:600; line-height:1.08; margin-bottom:20px; }
+  .section-h em { font-style:italic; color:var(--amber); font-weight:300; }
+  .section-intro { font-size:16px; color:rgba(255,255,255,.65); max-width:640px; line-height:1.78; margin-bottom:56px; }
+  .divider { height:1px; background:linear-gradient(90deg,transparent,var(--border),transparent); margin:0 44px; }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px);} to{opacity:1;transform:translateY(0);} }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:.5;transform:scale(.8);} }
+  .reveal { opacity:0; transform:translateY(22px); transition:opacity .65s ease, transform .65s ease; }
+  .reveal.in { opacity:1; transform:translateY(0); }
+
+  /* OPPORTUNITY */
+  .opp-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media(max-width:640px){ .opp-grid { grid-template-columns:1fr; } }
+  .opp-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:32px; position:relative; overflow:hidden; transition:border-color .3s, transform .3s; }
+  .opp-card.featured-opp { background:linear-gradient(135deg,rgba(196,130,10,.13) 0%,rgba(196,130,10,.03) 100%); border-color:rgba(196,130,10,.42); grid-column:1/-1; }
+  .opp-card:hover { border-color:var(--border-hi); transform:translateY(-2px); }
+  .opp-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--amber),var(--amber-light)); opacity:0; transition:opacity .3s; }
+  .opp-card:hover::before,.opp-card.featured-opp::before { opacity:1; }
+  .opp-tag { display:inline-block; margin-bottom:12px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; background:rgba(196,130,10,.15); border:1px solid rgba(196,130,10,.3); border-radius:100px; padding:4px 12px; color:var(--amber); }
+  .opp-card h3 { font-family:'Cormorant Garamond',serif; font-size:21px; font-weight:600; margin-bottom:10px; }
+  .opp-card p { font-size:13.5px; color:var(--muted); line-height:1.68; }
+
+  /* ROI comparison */
+  .roi-compare { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:28px; }
+  @media(max-width:580px){ .roi-compare { grid-template-columns:1fr; } }
+  .roi-col { background:rgba(10,7,5,.55); border:1px solid var(--border); border-radius:10px; padding:20px; text-align:center; }
+  .roi-col.highlight-col { border-color:rgba(196,130,10,.45); background:rgba(196,130,10,.08); }
+  .roi-label { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
+  .roi-col.highlight-col .roi-label { color:var(--amber-light); }
+  .roi-val { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:600; color:var(--white); margin-bottom:4px; }
+  .roi-col.highlight-col .roi-val { color:var(--amber-light); }
+  .roi-pct { font-size:12px; color:var(--muted); }
+
+  /* FLOWS */
+  .flows-group-label { display:flex; align-items:center; gap:12px; margin-bottom:16px; margin-top:44px; }
+  .flows-group-label:first-of-type { margin-top:0; }
+  .flows-group-badge { display:inline-flex; align-items:center; gap:6px; padding:5px 14px; border-radius:100px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; }
+  .badge-foundation { background:rgba(196,130,10,.15); color:var(--amber); border:1px solid rgba(196,130,10,.3); }
+  .badge-sfr { background:rgba(232,168,34,.1); color:var(--amber-light); border:1px solid rgba(232,168,34,.25); }
+  .flows-group-line { flex:1; height:1px; background:var(--border); }
+
+  .flows-list { display:flex; flex-direction:column; gap:3px; }
+  .lflow { display:grid; grid-template-columns:36px 1fr auto; align-items:start; gap:20px; background:var(--card); border:1px solid var(--border); border-radius:14px; padding:24px 26px; transition:background .25s, border-color .25s; }
+  .lflow:hover { background:rgba(196,130,10,.07); border-color:var(--border-hi); }
+  @media(max-width:640px){ .lflow { grid-template-columns:1fr; } }
+  .lflow-icon { font-size:20px; padding-top:2px; }
+  .lflow-num { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1px; color:rgba(196,130,10,.5); margin-bottom:4px; }
+  .lflow-name { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:600; margin-bottom:4px; }
+  .lflow-trigger { font-size:11px; color:var(--amber); letter-spacing:.2px; margin-bottom:8px; font-family:'Outfit',sans-serif; }
+  .lflow-desc { font-size:13px; color:var(--muted); line-height:1.65; }
+  .lflow-badge { padding:5px 13px; border-radius:100px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1px; white-space:nowrap; align-self:flex-start; }
+  .badge-l1 { background:rgba(196,130,10,.15); color:var(--amber); border:1px solid rgba(196,130,10,.3); }
+  .badge-l2 { background:rgba(232,168,34,.1); color:var(--amber-light); border:1px solid rgba(232,168,34,.25); }
+
+  /* GROWTH LEVERS */
+  .levers-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media(max-width:740px){ .levers-grid { grid-template-columns:1fr 1fr; } }
+  @media(max-width:480px){ .levers-grid { grid-template-columns:1fr; } }
+  .lever-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:28px; transition:border-color .3s, transform .3s; }
+  .lever-card:hover { border-color:var(--border-hi); transform:translateY(-2px); }
+  .lever-card h4 { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:600; margin-bottom:8px; }
+  .lever-card p { font-size:13px; color:var(--muted); line-height:1.65; }
+  .lever-card.featured-lever { background:linear-gradient(135deg,rgba(196,130,10,.1) 0%,rgba(196,130,10,.02) 100%); border-color:rgba(196,130,10,.35); }
+
+  /* PRICING */
+  .pricing-wrap { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:36px; }
+  @media(max-width:680px){ .pricing-wrap { grid-template-columns:1fr; } }
+  .price-usd-note { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:28px; }
+  .price-save-badge { display:inline-block; margin-bottom:10px; background:rgba(196,130,10,.15); border:1px solid rgba(196,130,10,.35); border-radius:100px; padding:5px 14px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--amber-light); }
+  .price-then { font-size:12px; color:var(--muted); margin:6px 0 0; font-family:'Outfit',sans-serif; }
+  .price-total-note { font-size:11px; color:rgba(196,130,10,.6); margin-top:4px; font-family:'JetBrains Mono',monospace; letter-spacing:1px; }
+  .price-card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:36px 30px; position:relative; overflow:hidden; }
+  .price-card.featured { background:linear-gradient(150deg,rgba(196,130,10,.14) 0%,rgba(196,130,10,.04) 100%); border-color:rgba(196,130,10,.48); }
+  .price-card.featured::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--amber),var(--amber-pale),var(--amber)); }
+  .price-badge { display:inline-block; margin-bottom:8px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; background:rgba(196,130,10,.15); border:1px solid rgba(196,130,10,.3); border-radius:100px; padding:4px 10px; color:var(--amber); }
+  .price-name { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+  .featured .price-name { color:var(--amber); }
+  .price-tier { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:600; margin-bottom:16px; }
+  .price-val { font-family:'Cormorant Garamond',serif; font-size:46px; font-weight:600; color:var(--amber); line-height:1; margin-bottom:6px; }
+  .price-val sup { font-size:20px; vertical-align:top; margin-top:10px; display:inline-block; }
+  .price-val sub { font-size:14px; font-family:'Outfit',sans-serif; color:var(--muted); }
+  .price-note { font-size:11px; color:var(--muted); margin-bottom:24px; }
+  .price-items { list-style:none; }
+  .price-items li { font-size:12.5px; color:rgba(255,255,255,.72); padding:8px 0; border-top:1px solid rgba(255,255,255,.06); display:flex; gap:9px; align-items:flex-start; }
+  .price-items li::before { content:'◆'; color:var(--amber); font-size:7px; flex-shrink:0; margin-top:4px; }
+  .guarantee { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:32px; display:flex; gap:22px; align-items:flex-start; }
+  .g-icon { font-size:28px; flex-shrink:0; }
+  .guarantee h3 { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:600; margin-bottom:10px; }
+  .guarantee p { font-size:13.5px; color:var(--muted); line-height:1.7; }
+
+  /* ROADMAP */
+  .roadmap { display:flex; flex-direction:column; gap:3px; }
+  .phase { display:grid; grid-template-columns:80px 1fr; gap:32px; background:var(--card); border:1px solid var(--border); border-radius:14px; padding:32px; transition:border-color .3s; }
+  @media(max-width:640px){ .phase { grid-template-columns:1fr; gap:16px; } }
+  .phase:hover { border-color:var(--border-hi); }
+  .phase-num { font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:300; font-style:italic; color:rgba(196,130,10,.22); line-height:1; padding-top:4px; }
+  .phase-tag { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--amber); margin-bottom:10px; }
+  .phase-content h3 { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:600; margin-bottom:20px; }
+  .phase-items { display:flex; flex-direction:column; gap:8px; }
+  .phase-item { font-size:13px; color:rgba(255,255,255,.68); display:flex; align-items:flex-start; gap:10px; }
+  .phase-item::before { content:'◆'; color:var(--amber); font-size:8px; flex-shrink:0; margin-top:4px; }
+
+  /* CTA */
+  .cta-section { position:relative; text-align:center; padding:120px 44px; overflow:hidden; }
+  .cta-bg { position:absolute; inset:0; background:radial-gradient(ellipse 70% 60% at 50% 50%, rgba(196,130,10,.14) 0%, transparent 65%); pointer-events:none; }
+  .cta-section h2 { position:relative; font-family:'Cormorant Garamond',serif; font-size:clamp(38px,5.5vw,72px); font-weight:600; line-height:1.06; margin-bottom:20px; }
+  .cta-section h2 em { font-style:italic; color:var(--amber); }
+  .cta-section p { position:relative; font-size:16px; color:var(--muted); max-width:500px; margin:0 auto 44px; line-height:1.72; }
+  .cta-buttons { position:relative; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .btn-primary { background:var(--amber); color:var(--ink); padding:16px 36px; border-radius:8px; font-size:13px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; transition:background .2s, transform .1s; display:inline-block; }
+  .btn-primary:hover { background:var(--amber-light); transform:translateY(-1px); }
+  .btn-ghost { background:transparent; color:var(--white); padding:16px 36px; border-radius:8px; border:1px solid rgba(255,255,255,.2); font-size:13px; letter-spacing:1px; text-transform:uppercase; text-decoration:none; transition:border-color .2s, color .2s; display:inline-block; }
+  .btn-ghost:hover { border-color:var(--amber); color:var(--amber); }
+
+  footer { border-top:1px solid var(--border); padding:28px 44px; display:flex; justify-content:space-between; align-items:center; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; color:var(--muted); flex-wrap:wrap; gap:10px; }
+  footer a { color:var(--amber); text-decoration:none; }
+  footer a:hover { color:var(--amber-light); }
+</style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="gate">
+  <div class="gate-box">
+    <div class="gate-logo">DigitsUp × SFR Distillery</div>
+    <div class="gate-brand">Confidential Proposal</div>
+    <div class="gate-sub">Enter your access code to continue</div>
+    <input id="gate-input" class="gate-input" type="password" placeholder="• • • • • • •" autocomplete="off" />
+    <button class="gate-btn" onclick="checkPass()">View Proposal</button>
+    <div class="gate-error" id="gate-err"></div>
+  </div>
+</div>
+
+<div id="main">
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">DigitsUp × SFR Distillery</div>
+    <ul class="nav-links">
+      <li><a href="#opportunity">Opportunity</a></li>
+      <li><a href="#flows">Flows</a></li>
+      <li><a href="#investment">Investment</a></li>
+      <li><a href="#roadmap">Roadmap</a></li>
+    </ul>
+    <div class="nav-toki"><div class="nav-toki-dot"></div>Klaviyo Platinum Partner</div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-lines"></div>
+    <div class="hero-pills">
+      <div class="hero-pill"><div class="pill-dot"></div>Klaviyo Platinum Partner</div>
+      <div class="hero-pill"><div class="pill-dot"></div>Official Toki Partner</div>
+    </div>
+    <h1>From Basics to <em>Legendary.</em></h1>
+    <div class="hero-by">Prepared for SFR Distillery &nbsp;·&nbsp; DigitsUp LLC &nbsp;·&nbsp; 2026</div>
+    <p class="hero-desc">A 60-day engagement to wire the foundations, recover lost revenue, and build the loyalty layer that keeps customers coming back. Month one: abandoned suite, welcome series, and sign-up form. Month two: post-purchase, winback, and loyalty flows. Finished with a 30-day check-in and a 60-day retrospective — so Will and Jack always know exactly what's working.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="val">60</span><span class="lbl">Day Build</span></div>
+      <div class="hero-stat"><span class="val">10</span><span class="lbl">Flows Built</span></div>
+      <div class="hero-stat"><span class="val">11+</span><span class="lbl">Years Experience</span></div>
+      <div class="hero-stat"><span class="val">Klaviyo</span><span class="lbl">Platinum Partner</span></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- OPPORTUNITY -->
+  <section id="opportunity">
+    <div class="section-label reveal">The Opportunity</div>
+    <h2 class="section-h reveal">The Gap Between Where You Are<br>and <em>Where You Should Be.</em></h2>
+    <p class="section-intro reveal">SFR has real Klaviyo revenue — $10,500 last year, 22% of total. But 71% of that is manual campaigns. Every dollar from flows is automated money that works without you. Right now there are no abandoned cart flows, no post-purchase series, no winback. The infrastructure just isn't there yet. That's what this build fixes.</p>
+
+    <div class="opp-grid">
+
+      <div class="opp-card reveal">
+        <div class="opp-tag">Missing Flow</div>
+        <h3>No Abandoned Cart Recovery</h3>
+        <p>Shoppers are adding bottles and leaving. Without a recovery sequence, that revenue is gone. Abandoned cart is typically the highest-ROI flow in any Klaviyo account.</p>
+      </div>
+
+      <div class="opp-card reveal">
+        <div class="opp-tag">Revenue Gap</div>
+        <h3>Flows vs. Campaigns Imbalance</h3>
+        <p>71% campaign-driven, 29% flows. Campaigns require manual effort every time. Flows run automatically. The goal is to flip that ratio over the next 90 days.</p>
+      </div>
+
+      <div class="opp-card reveal">
+        <div class="opp-tag">Missing Flow</div>
+        <h3>No Post-Purchase Series</h3>
+        <p>Someone just bought a bottle — they're the warmest customer you have. No follow-up means no second purchase, no Legendary Club invite, no tasting room upsell.</p>
+      </div>
+
+      <div class="opp-card reveal">
+        <div class="opp-tag">Below Benchmark</div>
+        <h3>Email Attribution at 22%</h3>
+        <p>Industry benchmark for a brand like SFR is 35–50% email attribution. You're at 22%. Getting to 40% on your current revenue base means an additional $8,500+ per year from email alone — before any list growth.</p>
+      </div>
+
+      <!-- New Card A -->
+      <div class="opp-card reveal">
+        <div class="opp-tag">Quick Win</div>
+        <h3>Legendary Club Email 2 Never Sends</h3>
+        <p>Your second welcome email has smart sending checked with a 16-hour skip window and a 20-minute delay. It has never reached a single subscriber. One checkbox fixed in Week 1 — everyone who joins starts getting it immediately.</p>
+      </div>
+
+      <!-- New Card B -->
+      <div class="opp-card reveal">
+        <div class="opp-tag">Missing</div>
+        <h3>No UTM Tracking On Any Emails</h3>
+        <p>Every email in the account is sending without UTM parameters. That means zero visibility in Google Analytics on what email is actually driving traffic and revenue. Fixed at setup — every flow and campaign properly tagged from day one.</p>
+      </div>
+
+      <!-- Featured ROI Card -->
+      <div class="opp-card featured-opp reveal">
+        <div class="opp-tag">The Math</div>
+        <h3>What 40% Email Attribution Looks Like</h3>
+        <p>Last 12 months: $47,542 total revenue. Klaviyo today: $10,500 (22%). At 40% attribution: $19,017/year from email. That's $8,517 more per year than you're making now — without growing your list, without SMS, without a single new customer. Just the infrastructure working the way it should.</p>
+        <div class="roi-compare">
+          <div class="roi-col">
+            <div class="roi-label">Today</div>
+            <div class="roi-val">$10,500</div>
+            <div class="roi-pct">22% of revenue</div>
+          </div>
+          <div class="roi-col highlight-col">
+            <div class="roi-label">Target</div>
+            <div class="roi-val">$19,000</div>
+            <div class="roi-pct">40% of revenue</div>
+          </div>
+          <div class="roi-col">
+            <div class="roi-label">Difference</div>
+            <div class="roi-val">+$8,500</div>
+            <div class="roi-pct">per year</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FLOWS -->
+  <section id="flows">
+    <div class="section-label reveal">What We're Building</div>
+    <h2 class="section-h reveal">Foundation First. <em>Then Legendary.</em></h2>
+    <p class="section-intro reveal">Every brand needs the basics before the advanced stuff. We build the six foundation flows first — the ones that recover lost revenue and extend customer lifetime value. Then we layer in the four SFR-specific flows that no generic agency would think to build.</p>
+
+    <!-- Foundation Flows -->
+    <div class="flows-group-label reveal">
+      <div class="flows-group-badge badge-foundation">Foundation</div>
+      <div class="flows-group-line"></div>
+    </div>
+
+    <div class="flows-list">
+
+      <div class="lflow reveal">
+        <div class="lflow-icon">🥃</div>
+        <div>
+          <div class="lflow-num">Flow 01</div>
+          <div class="lflow-name">Welcome Series</div>
+          <div class="lflow-trigger">Trigger — New subscriber or new Legendary Club member</div>
+          <div class="lflow-desc">3–4 emails over 10 days. Introduces SFR's story, the distillery, the Legendary Club, and what Staves are. Drives the first bottle purchase before interest fades. The entry point for everything.</div>
+        </div>
+        <div class="lflow-badge badge-l1">Foundation</div>
+      </div>
+
+      <div class="lflow reveal">
+        <div class="lflow-icon">🛒</div>
+        <div>
+          <div class="lflow-num">Flow 02</div>
+          <div class="lflow-name">Added to Cart</div>
+          <div class="lflow-trigger">Trigger — Product added to cart, session ends without purchase</div>
+          <div class="lflow-desc">2 emails. First fires 1 hour after abandonment — product reminder, no pressure. Second fires 24 hours later with a soft nudge. No discounts needed (prohibited anyway) — the product and the story do the work.</div>
+        </div>
+        <div class="lflow-badge badge-l1">Foundation</div>
+      </div>
+
+      <div class="lflow reveal">
+        <div class="lflow-icon">💳</div>
+        <div>
+          <div class="lflow-num">Flow 03</div>
+          <div class="lflow-name">Checkout Abandonment</div>
+          <div class="lflow-trigger">Trigger — Checkout started, not completed</div>
+          <div class="lflow-desc">Higher purchase intent than added-to-cart. 3 emails over 48 hours. Urgency increases across the sequence. For limited releases, add scarcity language — "only X bottles left."</div>
+        </div>
+        <div class="lflow-badge badge-l1">Foundation</div>
+      </div>
+
+      <div class="lflow reveal">
+        <div class="lflow-icon">👁</div>
+        <div>
+          <div class="lflow-num">Flow 04</div>
+          <div class="lflow-name">Browse Abandonment</div>
+          <div class="lflow-trigger">Trigger — Viewed a product page, no add-to-cart</div>
+          <div class="lflow-desc">1–2 emails. Lighter touch. "You were looking at our 3-Year Whisky" — product photo, key callout (award-winning, small-batch, etc.), single CTA. Keeps SFR top of mind between visits.</div>
+        </div>
+        <div class="lflow-badge badge-l1">Foundation</div>
+      </div>
+
+      <div class="lflow reveal">
+        <div class="lflow-icon">📦</div>
+        <div>
+          <div class="lflow-num">Flow 05</div>
+          <div class="lflow-name">Post-Purchase Series</div>
+          <div class="lflow-trigger">Trigger — First purchase confirmed</div>
+          <div class="lflow-desc">4 emails over 21 days. Day 2: order confirmation + what to expect. Day 7: tasting notes + serving suggestions. Day 14: invite to the Legendary Club + Stave bonus for joining. Day 21: book a private tasting or tour. Turns a one-time buyer into a repeat customer and club member.</div>
+        </div>
+        <div class="lflow-badge badge-l1">Foundation</div>
+      </div>
+
+      <div class="lflow reveal">
+        <div class="lflow-icon">🔄</div>
+        <div>
+          <div class="lflow-num">Flow 06</div>
+          <div class="lflow-name">Winback</div>
+          <div class="lflow-trigger">Trigger — No purchase in 90 days</div>
+          <div class="lflow-desc">3 emails over 14 days. Chapter-aware if they're a Legendary Club member — "You're a Rule Breaker. The next drop is coming." For non-members: what's new since they bought, recent releases, tasting room events. Last email is a quiet goodbye with a clear re-entry path.</div>
+        </div>
+        <div class="lflow-badge badge-l1">Foundation</div>
+      </div>
+
+    </div>
+
+    <!-- SFR-Specific Flows -->
+    <div class="flows-group-label reveal" style="margin-top:44px;">
+      <div class="flows-group-badge badge-sfr">SFR Layer</div>
+      <div class="flows-group-line"></div>
+    </div>
+
+    <div class="flows-list">
+
+      <div class="lflow reveal">
+        <div class="lflow-icon">🤝</div>
+        <div>
+          <div class="lflow-num">Flow 07</div>
+          <div class="lflow-name">Referral Series (Toki)</div>
+          <div class="lflow-trigger">Trigger — Member shares referral link / referred friend converts</div>
+          <div class="lflow-desc">Two branches. Branch 1 — referrer: fires when someone sends their link, confirms what they earn when the friend converts (Staves). Branch 2 — referred friend: warmer welcome, acknowledges the connection, fast-tracks to first earn action. Referral compounds — higher-chapter members are your best recruiters.</div>
+        </div>
+        <div class="lflow-badge badge-l2">SFR Layer</div>
+      </div>
+
+      <div class="lflow reveal">
+        <div class="lflow-icon">⚗️</div>
+        <div>
+          <div class="lflow-num">Flow 08</div>
+          <div class="lflow-name">Points / Stave Reminder</div>
+          <div class="lflow-trigger">Trigger — Member has unspent Staves, no activity in 30 days</div>
+          <div class="lflow-desc">1 email. Shows exact Stave balance, what they can redeem right now, what they're X Staves away from next. Single CTA. The goal is to pull passive earners back into the loop before they forget they're in it.</div>
+        </div>
+        <div class="lflow-badge badge-l2">SFR Layer</div>
+      </div>
+
+      <div class="lflow reveal">
+        <div class="lflow-icon">🏔</div>
+        <div>
+          <div class="lflow-num">Flow 09</div>
+          <div class="lflow-name">Event &amp; Experience Upsell</div>
+          <div class="lflow-trigger">Trigger — Post-purchase (fires Day 14) + standalone segment (members who've never booked)</div>
+          <div class="lflow-desc">"You bought the bottle — now see where it was made." Private tastings, distillery tours, group bookings. For Legendary Club members: frame as a chapter-exclusive experience. This is the physical-to-digital bridge — an email that drives people to the tasting room, which in turn drives future purchases.</div>
+        </div>
+        <div class="lflow-badge badge-l2">SFR Layer</div>
+      </div>
+
+      <div class="lflow reveal">
+        <div class="lflow-icon">🔥</div>
+        <div>
+          <div class="lflow-num">Flow 10</div>
+          <div class="lflow-name">Limited Release Drop Sequence</div>
+          <div class="lflow-trigger">Trigger — Manual send timed to new release (triggered by tag in Klaviyo)</div>
+          <div class="lflow-desc">3-part sequence. 1 week before: "Something's coming. Legendary Club members get first access." 24 hours before: details revealed, countdown, direct CTA to reserve. Drop day: "It's here — X bottles available, Legendary Club only until [date]." SMS on drop day for Legendary members. This is what makes the club feel real.</div>
+        </div>
+        <div class="lflow-badge badge-l2">SFR Layer</div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- BRAND VOICE -->
+  <section id="brand-voice">
+    <div class="section-label reveal">Brand Voice</div>
+    <h2 class="section-h reveal">Every Email Sounds Like <em>SFR.</em></h2>
+    <p class="section-intro reveal">Copy that doesn't sound like your brand doesn't convert. Before a single email goes live, the copywriter goes through a full intake — tone, words to use, words to never use, the personas you speak to. By the end of Month 1, every email sounds like it was written by Will, Jack, or Adam.</p>
+
+    <div class="opp-grid">
+
+      <div class="opp-card reveal">
+        <div class="opp-tag">Personas</div>
+        <h3>The Rebel &amp; The Explorer</h3>
+        <p>Every piece of copy speaks to one of two personas — the rule-breaker who does things their own way, and the explorer always chasing the next experience. SFR's voice lives in the intersection.</p>
+      </div>
+
+      <div class="opp-card reveal">
+        <div class="opp-tag">Tone</div>
+        <h3>Personal. Always.</h3>
+        <p>Every email comes from a real person — Will, Jack, or Adam by name. Never a brand blast. "Whiskey has never been just about what's in the glass" — that's the energy. Warm, direct, like a message from a friend who happens to make great whiskey.</p>
+      </div>
+
+      <div class="opp-card reveal">
+        <div class="opp-tag">Process</div>
+        <h3>Copy Intake on Kickoff</h3>
+        <p>Week 1 includes a full copy intake: words you love, words you never want to see, competitors to reference, voice samples. Nothing goes live without Will's sign-off. By Day 30 the tone is locked and every future email sounds consistent.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- GROWTH LEVERS -->
+  <section id="growth">
+    <div class="section-label reveal">Growth Levers</div>
+    <h2 class="section-h reveal">Beyond the Flows. <em>How We Grow the List.</em></h2>
+    <p class="section-intro reveal">Flows work on the list you have. These are the levers that grow it.</p>
+
+    <div class="levers-grid">
+      <div class="lever-card featured-lever reveal">
+        <h4>Referral Program</h4>
+        <p>Toki-powered. Existing members earn Staves for bringing friends in. Compounds over time — your best customers recruit for you.</p>
+      </div>
+      <div class="lever-card reveal">
+        <h4>Social → List Growth</h4>
+        <p>Lead gen ads that drive signups directly to the Legendary Club. Paid traffic becomes owned audience.</p>
+      </div>
+      <div class="lever-card reveal">
+        <h4>Giveaways</h4>
+        <p>Bottle drop giveaways that require email signup. Fast list growth tied to real product interest, not generic incentives.</p>
+      </div>
+      <div class="lever-card reveal">
+        <h4>Post-Tasting Room Trigger</h4>
+        <p>Wallet Pass scan at the tasting room → follow-up email sequence. Turns in-person visits into digital relationships.</p>
+      </div>
+      <div class="lever-card reveal">
+        <h4>SMS for Drop Day</h4>
+        <p>Nothing converts a limited release like a text. Legendary Club members get an SMS on drop day — before the email, before anyone else.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- INVESTMENT -->
+  <section id="investment">
+    <div class="section-label reveal">Investment</div>
+    <h2 class="section-h reveal">Two Months. <em>One System Built.</em></h2>
+    <p class="section-intro reveal">Everything agreed — no options, no decisions left to make. $5,000 CAD split across two months, tied to clear deliverables and two reporting milestones that give Jack the data he needs to see the value.</p>
+
+    <div class="pricing-wrap">
+
+      <!-- Month 1 -->
+      <div class="price-card featured reveal">
+        <div class="price-badge">Month 1</div>
+        <div class="price-name">Days 1–30 · Foundation</div>
+        <div class="price-tier">Foundation</div>
+        <div class="price-val"><sup>$</sup>2,500 <sub>CAD</sub></div>
+        <ul class="price-items">
+          <li>Sign-up form setup</li>
+          <li>Welcome series (rebuilt from existing)</li>
+          <li>Abandoned cart flow (built in Klaviyo, Shopify version disabled)</li>
+          <li>Checkout abandonment flow</li>
+          <li>Browse abandonment flow</li>
+          <li>Domain/branded sending setup + UTM tracking on all emails</li>
+          <li>Legendary Club welcome flow — email 2 bug fixed</li>
+        </ul>
+      </div>
+
+      <!-- Month 2 -->
+      <div class="price-card reveal">
+        <div class="price-badge">Month 2</div>
+        <div class="price-name">Days 31–60 · Depth</div>
+        <div class="price-tier">Depth</div>
+        <div class="price-val"><sup>$</sup>2,500 <sub>CAD</sub></div>
+        <ul class="price-items">
+          <li>Post-purchase series</li>
+          <li>Winback flow</li>
+          <li>Toki referral series</li>
+          <li>Stave points reminder flow</li>
+          <li>Event &amp; experience upsell flow</li>
+          <li>Newsletter template (Will fills it in, we build the template)</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Timeline Strip -->
+    <div class="roi-compare reveal" style="margin-bottom:36px;">
+      <div class="roi-col">
+        <div class="roi-label">Day 30</div>
+        <div class="roi-val" style="font-size:18px;line-height:1.2;">All Foundation<br>Flows Live</div>
+        <div class="roi-pct">Month 1 complete</div>
+      </div>
+      <div class="roi-col highlight-col">
+        <div class="roi-label">30-Day Check-In</div>
+        <div class="roi-val" style="font-size:18px;line-height:1.2;">Performance<br>Report</div>
+        <div class="roi-pct">Will reviews with Jack</div>
+      </div>
+      <div class="roi-col">
+        <div class="roi-label">Day 60</div>
+        <div class="roi-val" style="font-size:18px;line-height:1.2;">All Flows Live</div>
+        <div class="roi-pct">60-day retrospective delivered</div>
+      </div>
+    </div>
+
+    <!-- Guarantee -->
+    <div class="guarantee reveal">
+      <div class="g-icon">🥃</div>
+      <div>
+        <h3>Our Commitment to Results</h3>
+        <p>All deliverables listed above are built and live within their respective month. If Month 1 deliverables aren't live by Day 30 (from confirmed kickoff and access), we complete the full Month 1 scope at no charge. Same guarantee applies to Month 2.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ROADMAP -->
+  <section id="roadmap">
+    <div class="section-label reveal">Delivery Roadmap</div>
+    <h2 class="section-h reveal">Sixty Days. <em>Start to Finish.</em></h2>
+    <p class="section-intro reveal">Every phase has a clear output. Every milestone has a deliverable Will and Jack can point to. No surprises — just the system getting built, one layer at a time.</p>
+
+    <div class="roadmap">
+
+      <div class="phase reveal">
+        <div class="phase-num">1</div>
+        <div class="phase-content">
+          <div class="phase-tag">Days 1–7 · Setup</div>
+          <h3>Foundation in Place</h3>
+          <div class="phase-items">
+            <div class="phase-item">Domain/branded sending setup confirmed — emails start landing properly</div>
+            <div class="phase-item">UTM tracking added to all existing flows and emails</div>
+            <div class="phase-item">Legendary Club email 2 bug fixed — immediately live</div>
+            <div class="phase-item">Klaviyo ↔ Toki integration confirmed</div>
+            <div class="phase-item">Sign-up form built and connected</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase reveal">
+        <div class="phase-num">2</div>
+        <div class="phase-content">
+          <div class="phase-tag">Days 8–30 · Month 1 Build</div>
+          <h3>Abandoned Suite + Welcome Live</h3>
+          <div class="phase-items">
+            <div class="phase-item">Welcome series rebuilt and live</div>
+            <div class="phase-item">Abandoned cart flow live (Shopify version disabled)</div>
+            <div class="phase-item">Checkout abandonment live</div>
+            <div class="phase-item">Browse abandonment live</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase reveal">
+        <div class="phase-num">3</div>
+        <div class="phase-content">
+          <div class="phase-tag">Day 30 · Check-In</div>
+          <h3>30-Day Report — Built for Jack</h3>
+          <div class="phase-items">
+            <div class="phase-item">Recovery rates across abandoned suite</div>
+            <div class="phase-item">Welcome series engagement benchmarks</div>
+            <div class="phase-item">Email attribution movement (22% → target 30%+)</div>
+            <div class="phase-item">Clear view of Month 2 build starting</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase reveal">
+        <div class="phase-num">4</div>
+        <div class="phase-content">
+          <div class="phase-tag">Days 31–60 · Month 2 Build</div>
+          <h3>Depth Layer Live</h3>
+          <div class="phase-items">
+            <div class="phase-item">Post-purchase series live</div>
+            <div class="phase-item">Winback flow live</div>
+            <div class="phase-item">Toki referral series live</div>
+            <div class="phase-item">Stave points reminder live</div>
+            <div class="phase-item">Event &amp; experience upsell live</div>
+            <div class="phase-item">Newsletter template delivered</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase reveal">
+        <div class="phase-num">5</div>
+        <div class="phase-content">
+          <div class="phase-tag">Day 60 · Retrospective</div>
+          <h3>60-Day Results. Path Forward.</h3>
+          <div class="phase-items">
+            <div class="phase-item">Full performance summary across all 10 flows</div>
+            <div class="phase-item">Email attribution report — where we started, where we are</div>
+            <div class="phase-item">Q4/holiday season recommendations</div>
+            <div class="phase-item">Michael and Will review together before presenting to Jack</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-bg"></div>
+    <h2>Ready to Go <em>Legendary?</em></h2>
+    <p>Let's confirm scope, get aligned on the right option, and get the infrastructure built. The opportunity is there — now let's make it work.</p>
+    <div class="cta-buttons">
+      <a href="mailto:mike@digitsup.com" class="btn-primary">Get Started</a>
+      <a href="mailto:mike@digitsup.com" class="btn-ghost">Ask a Question</a>
+    </div>
+  </div>
+
+  <footer>
+    <span>DigitsUp LLC &nbsp;·&nbsp; <a href="https://digitsup.com">digitsup.com</a></span>
+    <span>Prepared for SFR Distillery &nbsp;·&nbsp; Confidential</span>
+  </footer>
+
+</div><!-- /#main -->
+
+<script>
+  function checkPass() {
+    const val = document.getElementById('gate-input').value.trim().toUpperCase();
+    const err = document.getElementById('gate-err');
+    if (val === 'SFR2026') {
+      document.getElementById('gate').classList.add('hidden');
+      const main = document.getElementById('main');
+      main.classList.add('visible');
+      setTimeout(initReveal, 100);
+    } else {
+      err.textContent = 'Incorrect access code. Try again.';
+      document.getElementById('gate-input').style.borderColor = '#f77';
+      setTimeout(() => {
+        err.textContent = '';
+        document.getElementById('gate-input').style.borderColor = '';
+      }, 2000);
+    }
+  }
+
+  document.getElementById('gate-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPass();
+  });
+
+  function initReveal() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  }
+</script>
+
+</body>
+</html>
