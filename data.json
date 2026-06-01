@@ -1,147 +1,167 @@
 {
   "meta": {
-    "lastUpdated": "2026-05-28T10:59:00-07:00",
-    "updatedBy": "Mollie"
+    "lastUpdated": "2026-06-01T00:00:00-07:00",
+    "updatedBy": "Sunday Wind-Down"
   },
   "calendar": [
     {
-      "time": "Thu 12:00pm",
-      "title": "SFR × DigitsUp — proposal review"
+      "time": "Mon 10am",
+      "title": "Christy Dawn / OuterSignal Email Kickoff"
     },
     {
-      "time": "Thu 2:00pm",
-      "title": "Riversol — Fri follow-up call (if confirmed)"
+      "time": "Mon 12pm",
+      "title": "Epicure Internal \u2014 contract day 1"
     },
     {
-      "time": "Next week",
-      "title": "OuterSignal — call with Dov Quint (confirmed)"
+      "time": "Mon 1pm",
+      "title": "Riversol \u00d7 DigitsUp (winback copy must be ready)"
+    },
+    {
+      "time": "Wed 7am",
+      "title": "Lab Life \u00d7 DigitsUp: Kickoff"
+    },
+    {
+      "time": "Wed 1pm",
+      "title": "RVCA \u00d7 DigitsUp"
+    },
+    {
+      "time": "Thu 3:30pm",
+      "title": "Salehe Bembury \u00d7 DigitsUp Weekly"
     }
   ],
   "needsYou": [
     {
-      "text": "Salehe — Fardad billing must activate before first send. June 4 Vellum drop is 7 days away.",
+      "text": "Riversol winback copy rebuild \u2014 full rewrite due BEFORE Monday 1pm call.",
       "chip": "Deadline"
     },
     {
-      "text": "RVCA welcome series — copy rewrite needed (Victoria or Meaghan?). Decide before it goes to Clay.",
+      "text": "Salehe \u2014 Shopify sync + Fardad billing both blocked. June 4 is Thursday.",
+      "chip": "Deadline"
+    },
+    {
+      "text": "The Lab Life \u2014 Day 1 plan/brief not built yet. Kickoff is Wednesday 7am.",
+      "chip": "Action"
+    },
+    {
+      "text": "Hiba validation email \u2014 still sitting with you. 5-min send.",
+      "chip": "Action"
+    },
+    {
+      "text": "RVCA welcome series \u2014 confirm Victoria/Meaghan owns the build.",
       "chip": "Decision"
     },
     {
-      "text": "Riversol winback doc — LiveGood product names still in it. Fix before flows go live.",
+      "text": "Liverpool Klaviyo support ticket (Epicure CSM) \u2014 not submitted yet.",
       "chip": "Action"
-    },
-    {
-      "text": "Hiba — validation email to team still pending from you.",
-      "chip": "Action"
-    },
-    {
-      "text": "The Lab — rebuild proposal from RV's doc. Still waiting.",
-      "chip": "Action"
-    },
-    {
-      "text": "SFR — proposal is live and ready. Meeting today at noon.",
-      "chip": "Deadline"
     }
   ],
   "watching": [
     {
       "dot": "red",
-      "text": "Salehe — June 4 Vellum drop. 7 days. Billing (Fardad) is the only blocker. Wave 1 ready: 79k customers + 20k leads."
+      "text": "Riversol \u2014 winback full rebuild due before Monday 1pm. Skin analyzer webhook on hold. Ali + Una call imminent."
+    },
+    {
+      "dot": "red",
+      "text": "Salehe \u2014 June 4 Vellum drop. Shopify sync blocked (technical + billing). Fardad must activate. Wave 1: 79k customers + 20k leads."
     },
     {
       "dot": "amber",
-      "text": "RVCA — 32-email post-purchase flow approved, launching next week. Welcome series blocked on Clayton's signup feedback + copy rewrite."
+      "text": "The Lab Life \u2014 SIGNED May 29. June 3 kickoff. No Day 1 plan yet. GHL month 1, Klaviyo month 2."
     },
     {
       "dot": "amber",
-      "text": "Riversol — replenishment flow (5 emails) launching plain text next week. Smile.io referral updated. Winback doc has wrong product names — fix needed."
+      "text": "RVCA \u2014 post-purchase brief v3 sent, team reviewing. Welcome series build in question \u2014 ownership unclear."
     },
     {
       "dot": "amber",
-      "text": "FRNK — June campaign calendar approved. New Shopify theme going live before June 5. Giveaway replaces discount offer."
+      "text": "Hiba \u2014 forms all working, pop-up offline. Michael validation email still pending."
+    },
+    {
+      "dot": "green",
+      "text": "Epicure \u2014 June 1 start. Kieran handling flow builds. Builder gap accepted."
+    },
+    {
+      "dot": "green",
+      "text": "FRNK \u2014 Shopify theme live. June campaign calendar running. Giveaway live."
     },
     {
       "dot": "yellow",
-      "text": "Epicure — June 1 start confirmed. No new hire (cost). Kieran handling with Michael."
+      "text": "SFR Distillery \u2014 proposal sent May 28. Awaiting client response."
     },
     {
       "dot": "yellow",
-      "text": "Hiba — forms working. Pop-up offline. Validation email pending from Michael."
-    },
-    {
-      "dot": "yellow",
-      "text": "SFR — proposal live. Meeting today noon. Ready to close."
+      "text": "OuterSignal \u2014 kickoff call Monday 10am. Dov Quint. Lawrence + Thomas setting up agreement."
     },
     {
       "dot": "grey",
-      "text": "Liverpool — final week. Handoff to Group 8-8 complete. Klaviyo Epicure CSM ticket still not submitted."
+      "text": "Liverpool \u2014 final week. Offboarding complete. Archive only."
     }
   ],
   "clients": [
     {
-      "name": "RVCA",
-      "lastActivity": "32-email post-purchase flow approved — launching next week. SMS relaunch strong (1% opt-out). Welcome series on hold pending Clayton + copy rewrite.",
-      "dot": "amber",
-      "status": "active"
-    },
-    {
-      "name": "Salehe / SPUNGE",
-      "lastActivity": "Contract signed. Billing sent to Fardad — must activate before first send. June 4 Vellum drop. Wave 1 = 79k customers + 20k leads. All analysis done.",
+      "name": "Riversol",
+      "lastActivity": "Winback full rebuild due before Mon 1pm call. Replenishment flow (5 emails) launching. Skin analyzer webhook on hold.",
       "dot": "red",
       "status": "active"
     },
     {
-      "name": "Riversol",
-      "lastActivity": "Replenishment flow (5 emails, plain text) launching next week. Smile.io referral live. 5-star review flow in QA. Winback doc needs product name fix.",
+      "name": "Salehe / SPUNGE",
+      "lastActivity": "Shopify sync blocked + billing pending (Fardad). June 4 Vellum drop. Wave 1: 79k customers + 20k leads sorted.",
+      "dot": "red",
+      "status": "active"
+    },
+    {
+      "name": "The Lab Life",
+      "lastActivity": "SIGNED May 29. Kickoff Wed June 3 7am. No Day 1 brief built yet. GHL month 1, Klaviyo month 2.",
       "dot": "amber",
       "status": "active"
     },
     {
-      "name": "FRNK Boutique",
-      "lastActivity": "Meeting Thu May 28. June campaign calendar set — starts May 29 with Summer Bestsellers. New Shopify theme live before June 5. Giveaway replaces discount offer.",
-      "dot": "green",
-      "status": "active"
-    },
-    {
-      "name": "Epicure",
-      "lastActivity": "June 1 start confirmed. No new hire — Lawrence + Michael reviewed finances. Kieran handling flow builds.",
-      "dot": "green",
+      "name": "RVCA",
+      "lastActivity": "Post-purchase brief v3 emailed, team reviewing. Welcome series \u2014 sign-up form approved, build ownership unclear.",
+      "dot": "amber",
       "status": "active"
     },
     {
       "name": "Hiba Academy",
-      "lastActivity": "Forms all working. Pop-up offline. Michael to send validation email to team. Victoria is primary AM.",
+      "lastActivity": "All forms working. Pop-up offline. Michael validation email still pending to team.",
       "dot": "amber",
+      "status": "active"
+    },
+    {
+      "name": "Epicure",
+      "lastActivity": "June 1 start. No new hire. Kieran handling builds. Michael onboarding call Thu 11am.",
+      "dot": "green",
+      "status": "active"
+    },
+    {
+      "name": "FRNK Boutique",
+      "lastActivity": "Shopify theme live. June campaign calendar running. Giveaway replacing discount offer. Steph meeting done.",
+      "dot": "green",
       "status": "active"
     },
     {
       "name": "SFR Distillery",
-      "lastActivity": "Proposal live and ready. Meeting today Thu May 28 noon. Audit phase — strong fit.",
+      "lastActivity": "Proposal sent May 28 (CAD, 60-day). Awaiting Will's response.",
       "dot": "yellow",
       "status": "prospect"
     },
     {
-      "name": "The Lab",
-      "lastActivity": "May 21 call with Ally + Travis. GHL audit in progress. Klaviyo pending. Michael to rebuild proposal from RV's doc.",
-      "dot": "amber",
-      "status": "active"
-    },
-    {
       "name": "OuterSignal",
-      "lastActivity": "Call with Dov Quint confirmed for next week. Charlie Sun meeting May 26.",
+      "lastActivity": "Kickoff Mon June 1 10am. Dov Quint. Agreement setup pending (Lawrence + Thomas).",
       "dot": "yellow",
       "status": "prospect"
     },
     {
       "name": "Liverpool LA",
-      "lastActivity": "Final week. Handoff to Group 8-8 complete. Archive only — do not action.",
+      "lastActivity": "Final week. Handoff to Group 8-8 complete. Archive only.",
       "dot": "grey",
       "status": "watching"
     }
   ],
   "inbox": {
-    "summary": "Fathom transcripts now auto-filing via API. 24 meetings backfilled this morning.",
-    "lastChecked": "2026-05-28T10:59:00-07:00"
+    "summary": "Inbox clear \u2014 Fathom recaps through Friday. Salehe Shopify sync issue flagged. SFR + Lab Life proposals sent last week.",
+    "lastChecked": "2026-06-01T00:00:00-07:00"
   },
   "usage": {
     "monthLabel": "April 2026",
@@ -151,43 +171,73 @@
     "todayLabel": "Apr 22",
     "model": "Sonnet 4.6",
     "dailyCosts": [
-      { "label": "Apr 13", "amount": 32.29 },
-      { "label": "Apr 14", "amount": 20.16 },
-      { "label": "Apr 15", "amount": 47.02 },
-      { "label": "Apr 16", "amount": 30.72 },
-      { "label": "Apr 17", "amount": 0 },
-      { "label": "Apr 18", "amount": 0 },
-      { "label": "Apr 19", "amount": 0 },
-      { "label": "Apr 20", "amount": 0 },
-      { "label": "Apr 21", "amount": 0 },
-      { "label": "Apr 22", "amount": 0 }
+      {
+        "label": "Apr 13",
+        "amount": 32.29
+      },
+      {
+        "label": "Apr 14",
+        "amount": 20.16
+      },
+      {
+        "label": "Apr 15",
+        "amount": 47.02
+      },
+      {
+        "label": "Apr 16",
+        "amount": 30.72
+      },
+      {
+        "label": "Apr 17",
+        "amount": 0
+      },
+      {
+        "label": "Apr 18",
+        "amount": 0
+      },
+      {
+        "label": "Apr 19",
+        "amount": 0
+      },
+      {
+        "label": "Apr 20",
+        "amount": 0
+      },
+      {
+        "label": "Apr 21",
+        "amount": 0
+      },
+      {
+        "label": "Apr 22",
+        "amount": 0
+      }
     ],
-    "dailyNote": "Usage not updated — waiting on May numbers from Michael."
+    "dailyNote": "Usage not updated \u2014 waiting on May numbers from Michael."
   },
   "activity": [
     {
-      "ts": "2026-05-28T10:59:00-07:00",
-      "text": "Fathom API integration live — full transcripts now auto-filing 3x/day. 24 meetings backfilled from past week."
+      "ts": "2026-06-01T00:00:00-07:00",
+      "text": "Sunday wind-down sweep \u2014 calendar, inbox, client pulse checked. Big week ahead: OuterSignal kickoff, Epicure start, Riversol call, Lab Life kickoff."
     },
     {
-      "ts": "2026-05-28T10:59:00-07:00",
-      "text": "HQ client board updated — all clients refreshed from this week's transcripts. FRNK meeting filed (Thu), RVCA post-purchase approved, Salehe billing sent."
+      "ts": "2026-05-31T00:00:00-07:00",
+      "text": "Riversol winback copy rebuild flagged as highest priority \u2014 due before Monday 1pm call with Ali + Una."
     },
     {
-      "ts": "2026-05-27T00:00:00-07:00",
-      "text": "Heavy day — RVCA, Riversol, Salehe all met. Post-purchase 32-flow approved. Replenishment strategy done. Salehe wave 1 locked."
+      "ts": "2026-05-31T00:00:00-07:00",
+      "text": "Salehe June 4 deadline at risk \u2014 Shopify sync blocked (technical + billing). Fardad activation still pending."
     },
     {
-      "ts": "2026-05-26T00:00:00-07:00",
-      "text": "Liverpool handoff to Group 8-8 complete. OuterSignal (Dov Quint) call done — next meeting confirmed."
+      "ts": "2026-05-31T00:00:00-07:00",
+      "text": "The Lab Life kickoff Wednesday 7am \u2014 no Day 1 plan built yet. Needs brief before Wednesday."
     },
     {
-      "ts": "2026-05-25T00:00:00Z",
-      "text": "Sunday wind-down sweep — calendar, inbox, client pulse all checked."
+      "ts": "2026-05-31T00:00:00-07:00",
+      "text": "RVCA welcome series build due \u2014 confirm Victoria/Meaghan ownership. Clay approved sign-up form."
     },
     {
-      "ts": "2026-05-23T14:15:00-07:00",
-      "text": "HQ refreshed from full intel sweep — Salehe June 4 deadline added, RVCA MDW in flight, Liverpool offboarding confirmed."
+      "ts": "2026-05-29T00:00:00-07:00",
+      "text": "The Lab Life SIGNED. Salehe contract signed + customer list sorted 79k. FRNK Steph meeting done. Riversol intel brief built for Notion."
     }
   ]
 }
