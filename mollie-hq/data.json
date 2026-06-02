@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdated": "2026-06-01T18:34:52.862984-07:00",
+    "lastUpdated": "2026-06-01T18:43:28.837562-07:00",
     "updatedBy": "HQ Update Cron (5:30pm)"
   },
   "calendar": [
@@ -94,8 +94,8 @@
     },
     {
       "name": "Salehe Bembury",
-      "lastActivity": "SIGNED ✅ Contract live. Launch Wed Jun 4 @ 6am PST. Files built, warmup plan locked. Shopify sync + domain setup in progress with Fardad/Kevin.",
-      "dot": "amber",
+      "lastActivity": "Blockers: Klaviyo setup is stalled by two access issues: 1) Fardad needs admin rights on Shopify to install the Klaviyo app, and 2) the Wix ",
+      "dot": "red",
       "status": "active"
     },
     {
@@ -149,7 +149,7 @@
   ],
   "inbox": {
     "summary": "Inbox clear — Fathom recaps through Friday. Salehe Shopify sync issue flagged. SFR + Lab Life proposals sent last week.",
-    "lastChecked": "2026-06-01T18:34:52.862984-07:00"
+    "lastChecked": "2026-06-01T18:43:28.837562-07:00"
   },
   "usage": {
     "monthLabel": "April 2026",

@@ -1,16 +1,16 @@
 {
   "meta": {
-    "lastUpdated": "2026-06-01T18:40:00-07:00",
-    "updatedBy": "Mollie — full refresh from June 1 meetings"
+    "lastUpdated": "2026-06-01T18:43:28.837648-07:00",
+    "updatedBy": "HQ Update Cron (5:30pm)"
   },
   "clients": [
     {
       "id": "salehe",
       "name": "Salehe / SPUNGE",
       "type": "active",
-      "dot": "amber",
-      "tagline": "SIGNED ✅ — Launch Wednesday June 4 @ 6am PST",
-      "health": "On track",
+      "dot": "red",
+      "tagline": "Blockers: Klaviyo setup is stalled by two access issues: 1) Fardad needs admin rights on Shopify to ",
+      "health": "At risk",
       "lastContact": "2026-06-01",
       "openActions": [
         {
@@ -63,34 +63,26 @@
       "id": "riversol",
       "name": "Riversol",
       "type": "active",
-      "dot": "amber",
-      "tagline": "Winback decisions locked June 1 — builds next",
+      "dot": "green",
+      "tagline": "Consolidate Win-Backs: Merge the \"One Hit Wonder\" (1 order) and \"Return Customer\" (2+ orders) segmen",
       "health": "On track",
       "lastContact": "2026-06-01",
       "openActions": [
         {
-          "text": "Update all winback emails with discount codes (15% + 30%) — waiting on Una to send codes",
+          "text": "Update all emails with the new discount codes.",
           "priority": "high"
         },
         {
-          "text": "Update free shipping threshold to $69 across all emails",
+          "text": "Change the free shipping threshold to $69.",
           "priority": "high"
         },
         {
-          "text": "Swap in new product images once Una sends PNGs",
+          "text": "Swap in new product images.",
           "priority": "high"
         },
         {
-          "text": "Update flow triggers: sample winback → 'sample not converted' event; return customer → orders >= 1",
-          "priority": "high"
-        },
-        {
-          "text": "Final QA before launch",
-          "priority": "medium"
-        },
-        {
-          "text": "Turn off gift card flow",
-          "priority": "medium"
+          "text": "Update flow triggers with the new segments.",
+          "priority": "low"
         }
       ],
       "waitingOn": [
@@ -172,7 +164,7 @@
       "name": "Epicure",
       "type": "active",
       "dot": "green",
-      "tagline": "Contract started June 1 ✅ — strong May numbers",
+      "tagline": "Strong Performance: May revenue beat target by 3% ($45k grocery order vs. $20k forecast), driven by ",
       "health": "On track",
       "lastContact": "2026-06-01",
       "openActions": [
@@ -321,17 +313,17 @@
       "name": "OuterSignal / Christy Dawn",
       "type": "active",
       "dot": "green",
-      "tagline": "Kickoff done June 1 — 6 persona emails in post-purchase",
+      "tagline": "Primary Goal: Drive post-purchase customers to the Christy Dawn app, which has a 20k-user base and h",
       "health": "On track",
       "lastContact": "2026-06-01",
       "openActions": [
         {
-          "text": "Develop post-purchase strategy + creative concepts in Figma",
+          "text": "Develop the post-purchase strategy and creative concepts in Figma.",
           "priority": "high"
         },
         {
-          "text": "Build flows in Klaviyo once creative approved",
-          "priority": "medium"
+          "text": "Build the new flows in Klaviyo upon approval.",
+          "priority": "low"
         }
       ],
       "waitingOn": [
