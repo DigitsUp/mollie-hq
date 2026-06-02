@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdated": "2026-06-01T18:05:24.359036-07:00",
+    "lastUpdated": "2026-06-01T18:34:52.862984-07:00",
     "updatedBy": "HQ Update Cron (5:30pm)"
   },
   "calendar": [
@@ -57,65 +57,45 @@
   ],
   "watching": [
     {
-      "dot": "amber",
-      "text": "Riversol — Consolidate Win-Backs:: //fathom.video/share/Ky32KT7tMz7xyy7yhy347L6NRNDCZmAk?tab=summary&timestamp=748.0)"
-    },
-    {
-      "dot": "amber",
-      "text": "Salehe Bembury — Blockers:: 1) Fardad needs admin rights on Shopify to install the Klaviyo app, and 2) the Wix domain password is lost, preventing manual DNS setup.]"
-    },
-    {
-      "dot": "red",
-      "text": "Epicure — Strong Performance:: //fathom.video/share/XsCRLcsWdsLMejhtfAYwsfTAtx3gysyw?tab=summary&timestamp=19.0)"
-    },
-    {
       "dot": "green",
-      "text": "OuterSignal / Christy Dawn — Primary Goal:: //fathom.video/share/_wMpUJAb2UqQJu6BUtXFm6mUAGL7iCwj?tab=summary&timestamp=115.0)"
+      "text": "Riversol — Consolidate Win-Backs: Merge the \"One Hit Wonder\" (1 order) and \"Return Customer\" (2+ orders) segments into a single, unified flow. This simplifies management a"
     },
     {
       "dot": "red",
-      "text": "Salehe — June 4 Vellum drop. Shopify sync blocked (technical + billing). Fardad must activate. Wave 1: 79k customers + 20k leads."
-    },
-    {
-      "dot": "amber",
-      "text": "The Lab Life — SIGNED May 29. June 3 kickoff. No Day 1 plan yet. GHL month 1, Klaviyo month 2."
+      "text": "Salehe Bembury — Blockers: Klaviyo setup is stalled by two access issues: 1) Fardad needs admin rights on Shopify to install the Klaviyo app, and 2) the Wix domain password is l"
     },
     {
       "dot": "amber",
       "text": "RVCA — post-purchase brief v3 sent, team reviewing. Welcome series build in question — ownership unclear."
     },
     {
+      "dot": "green",
+      "text": "Epicure — Strong Performance: May revenue beat target by 3% ($45k grocery order vs. $20k forecast), driven by a 7% conversion rate on a win-back campaign. Affiliate payou"
+    },
+    {
       "dot": "amber",
-      "text": "Hiba — forms all working, pop-up offline. Michael validation email still pending."
+      "text": "The Lab Life — SIGNED May 29. June 3 kickoff. No Day 1 plan yet. GHL month 1, Klaviyo month 2."
     },
     {
       "dot": "green",
-      "text": "FRNK — Shopify theme live. June campaign calendar running. Giveaway live."
+      "text": "OuterSignal / Christy Dawn — Primary Goal: Drive post-purchase customers to the Christy Dawn app, which has a 20k-user base and higher conversion rates than the website."
     },
     {
       "dot": "yellow",
       "text": "SFR Distillery — proposal sent May 28. Awaiting client response."
-    },
-    {
-      "dot": "yellow",
-      "text": "OuterSignal — kickoff call Monday 10am. Dov Quint. Lawrence + Thomas setting up agreement."
-    },
-    {
-      "dot": "grey",
-      "text": "Liverpool — final week. Offboarding complete. Archive only."
     }
   ],
   "clients": [
     {
       "name": "Riversol",
-      "lastActivity": "Consolidate Win-Backs:: //fathom.video/share/Ky32KT7tMz7xyy7yhy347L6NRNDCZmAk?tab=summary&timestamp=748.0)",
-      "dot": "amber",
+      "lastActivity": "Consolidate Win-Backs: Merge the \"One Hit Wonder\" (1 order) and \"Return Customer\" (2+ orders) segments into a single, unified flow. This sim",
+      "dot": "green",
       "status": "active"
     },
     {
       "name": "Salehe Bembury",
-      "lastActivity": "Blockers:: 1) Fardad needs admin rights on Shopify to install the Klaviyo app, and 2) the Wix domain password is lost, preventing manual DNS",
-      "dot": "amber",
+      "lastActivity": "Blockers: Klaviyo setup is stalled by two access issues: 1) Fardad needs admin rights on Shopify to install the Klaviyo app, and 2) the Wix ",
+      "dot": "red",
       "status": "active"
     },
     {
@@ -138,8 +118,8 @@
     },
     {
       "name": "Epicure",
-      "lastActivity": "Strong Performance:: //fathom.video/share/XsCRLcsWdsLMejhtfAYwsfTAtx3gysyw?tab=summary&timestamp=19.0)",
-      "dot": "red",
+      "lastActivity": "Strong Performance: May revenue beat target by 3% ($45k grocery order vs. $20k forecast), driven by a 7% conversion rate on a win-back campa",
+      "dot": "green",
       "status": "active"
     },
     {
@@ -150,14 +130,14 @@
     },
     {
       "name": "OuterSignal / Christy Dawn",
-      "lastActivity": "Primary Goal:: //fathom.video/share/_wMpUJAb2UqQJu6BUtXFm6mUAGL7iCwj?tab=summary&timestamp=115.0)",
+      "lastActivity": "Primary Goal: Drive post-purchase customers to the Christy Dawn app, which has a 20k-user base and higher conversion rates than the website.",
       "dot": "green",
       "status": "active"
     },
     {
       "name": "SFR Distillery",
       "lastActivity": "Proposal v3 sent. Waiting on Will (client). No update today.",
-      "dot": "green",
+      "dot": "amber",
       "status": "prospect"
     },
     {
@@ -169,7 +149,7 @@
   ],
   "inbox": {
     "summary": "Inbox clear — Fathom recaps through Friday. Salehe Shopify sync issue flagged. SFR + Lab Life proposals sent last week.",
-    "lastChecked": "2026-06-01T18:05:24.359036-07:00"
+    "lastChecked": "2026-06-01T18:34:52.862984-07:00"
   },
   "usage": {
     "monthLabel": "April 2026",
