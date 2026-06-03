@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdated": "2026-06-01T18:43:28.837562-07:00",
+    "lastUpdated": "2026-06-02T17:30:05.201046-07:00",
     "updatedBy": "HQ Update Cron (5:30pm)"
   },
   "calendar": [
@@ -47,11 +47,19 @@
       "chip": "Action"
     },
     {
-      "text": "OuterSignal / Christy Dawn — Develop the post-purchase strategy and creative concepts in Figma.",
+      "text": "Salehe Bembury — Rewrite abandonment flow copy to be professional and concise.",
       "chip": "Action"
     },
     {
-      "text": "OuterSignal / Christy Dawn — Build the new flows in Klaviyo upon approval.",
+      "text": "Salehe Bembury — Update all email templates with a 2% CTA border-radius.",
+      "chip": "Action"
+    },
+    {
+      "text": "Salehe Bembury — Remove all mentions of \"free shipping\" from email copy.",
+      "chip": "Action"
+    },
+    {
+      "text": "Salehe Bembury — Send test emails for final review tonight.",
       "chip": "Action"
     }
   ],
@@ -61,8 +69,8 @@
       "text": "Riversol — Consolidate Win-Backs: Merge the \"One Hit Wonder\" (1 order) and \"Return Customer\" (2+ orders) segments into a single, unified flow. This simplifies management a"
     },
     {
-      "dot": "red",
-      "text": "Salehe Bembury — Blockers: Klaviyo setup is stalled by two access issues: 1) Fardad needs admin rights on Shopify to install the Klaviyo app, and 2) the Wix domain password is l"
+      "dot": "green",
+      "text": "Salehe Bembury — Email Copy Overhaul: Abandonment flow copy will be rewritten from a personal to a professional, concise tone (2–4 word titles, \\<10 word snippets) to align with"
     },
     {
       "dot": "amber",
@@ -94,8 +102,8 @@
     },
     {
       "name": "Salehe Bembury",
-      "lastActivity": "Blockers: Klaviyo setup is stalled by two access issues: 1) Fardad needs admin rights on Shopify to install the Klaviyo app, and 2) the Wix ",
-      "dot": "red",
+      "lastActivity": "Email Copy Overhaul: Abandonment flow copy will be rewritten from a personal to a professional, concise tone (2–4 word titles, \\<10 word sni",
+      "dot": "green",
       "status": "active"
     },
     {
@@ -149,7 +157,7 @@
   ],
   "inbox": {
     "summary": "Inbox clear — Fathom recaps through Friday. Salehe Shopify sync issue flagged. SFR + Lab Life proposals sent last week.",
-    "lastChecked": "2026-06-01T18:43:28.837562-07:00"
+    "lastChecked": "2026-06-02T17:30:05.201046-07:00"
   },
   "usage": {
     "monthLabel": "April 2026",

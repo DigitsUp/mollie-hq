@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdated": "2026-06-01T18:43:28.837648-07:00",
+    "lastUpdated": "2026-06-02T17:30:05.201343-07:00",
     "updatedBy": "HQ Update Cron (5:30pm)"
   },
   "clients": [
@@ -8,33 +8,25 @@
       "id": "salehe",
       "name": "Salehe / SPUNGE",
       "type": "active",
-      "dot": "red",
-      "tagline": "Blockers: Klaviyo setup is stalled by two access issues: 1) Fardad needs admin rights on Shopify to ",
-      "health": "At risk",
-      "lastContact": "2026-06-01",
+      "dot": "green",
+      "tagline": "Email Copy Overhaul: Abandonment flow copy will be rewritten from a personal to a professional, conc",
+      "health": "On track",
+      "lastContact": "2026-06-02",
       "openActions": [
         {
-          "text": "Send email drafts (PDF) + Figma access to Fardad tonight — needs Salehi color scheme feedback",
+          "text": "Rewrite abandonment flow copy to be professional and concise.",
+          "priority": "low"
+        },
+        {
+          "text": "Update all email templates with a 2% CTA border-radius.",
           "priority": "high"
         },
         {
-          "text": "Build abandoned suite tonight (cart, browse, checkout) — blocked on Shopify sync from Kevin",
+          "text": "Remove all mentions of \"free shipping\" from email copy.",
           "priority": "high"
         },
         {
-          "text": "Import File 1 (55K customers, WarmUp_Group A–N) into Klaviyo tomorrow",
-          "priority": "high"
-        },
-        {
-          "text": "Klaviyo morning call — discuss Shopify auto-sync impact on warmup plan",
-          "priority": "high"
-        },
-        {
-          "text": "Final email review with Fardad tomorrow before launch",
-          "priority": "high"
-        },
-        {
-          "text": "Plain-text backup email brief (in case of sellout)",
+          "text": "Send test emails for final review tonight.",
           "priority": "medium"
         }
       ],
@@ -66,7 +58,7 @@
       "dot": "green",
       "tagline": "Consolidate Win-Backs: Merge the \"One Hit Wonder\" (1 order) and \"Return Customer\" (2+ orders) segmen",
       "health": "On track",
-      "lastContact": "2026-06-01",
+      "lastContact": "2026-06-02",
       "openActions": [
         {
           "text": "Update all emails with the new discount codes.",
@@ -166,7 +158,7 @@
       "dot": "green",
       "tagline": "Strong Performance: May revenue beat target by 3% ($45k grocery order vs. $20k forecast), driven by ",
       "health": "On track",
-      "lastContact": "2026-06-01",
+      "lastContact": "2026-06-02",
       "openActions": [
         {
           "text": "Fix Klaviyo locale bug — 46k US users with ENCA locale getting CA emails (1 import fix)",
@@ -315,7 +307,7 @@
       "dot": "green",
       "tagline": "Primary Goal: Drive post-purchase customers to the Christy Dawn app, which has a 20k-user base and h",
       "health": "On track",
-      "lastContact": "2026-06-01",
+      "lastContact": "2026-06-02",
       "openActions": [
         {
           "text": "Develop the post-purchase strategy and creative concepts in Figma.",
