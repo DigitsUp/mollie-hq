@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdated": "2026-06-02T17:30:05.201343-07:00",
+    "lastUpdated": "2026-06-03T17:30:05.278820-07:00",
     "updatedBy": "HQ Update Cron (5:30pm)"
   },
   "clients": [
@@ -11,7 +11,7 @@
       "dot": "green",
       "tagline": "Email Copy Overhaul: Abandonment flow copy will be rewritten from a personal to a professional, conc",
       "health": "On track",
-      "lastContact": "2026-06-02",
+      "lastContact": "2026-06-03",
       "openActions": [
         {
           "text": "Rewrite abandonment flow copy to be professional and concise.",

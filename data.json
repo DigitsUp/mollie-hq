@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdated": "2026-06-02T17:30:05.201046-07:00",
+    "lastUpdated": "2026-06-03T17:30:05.278726-07:00",
     "updatedBy": "HQ Update Cron (5:30pm)"
   },
   "calendar": [
@@ -30,22 +30,6 @@
     }
   ],
   "needsYou": [
-    {
-      "text": "Riversol — Update all emails with the new discount codes.",
-      "chip": "Action"
-    },
-    {
-      "text": "Riversol — Change the free shipping threshold to $69.",
-      "chip": "Action"
-    },
-    {
-      "text": "Riversol — Swap in new product images.",
-      "chip": "Action"
-    },
-    {
-      "text": "Riversol — Update flow triggers with the new segments.",
-      "chip": "Action"
-    },
     {
       "text": "Salehe Bembury — Rewrite abandonment flow copy to be professional and concise.",
       "chip": "Action"
@@ -96,7 +80,7 @@
   "clients": [
     {
       "name": "Riversol",
-      "lastActivity": "Consolidate Win-Backs: Merge the \"One Hit Wonder\" (1 order) and \"Return Customer\" (2+ orders) segments into a single, unified flow. This sim",
+      "lastActivity": "Winback call done June 1 ✅. Decisions locked:",
       "dot": "green",
       "status": "active"
     },
@@ -126,7 +110,7 @@
     },
     {
       "name": "Epicure",
-      "lastActivity": "Strong Performance: May revenue beat target by 3% ($45k grocery order vs. $20k forecast), driven by a 7% conversion rate on a win-back campa",
+      "lastActivity": "Contract started June 1 ✅. First onboarding meeting done.",
       "dot": "green",
       "status": "active"
     },
@@ -138,7 +122,7 @@
     },
     {
       "name": "OuterSignal / Christy Dawn",
-      "lastActivity": "Primary Goal: Drive post-purchase customers to the Christy Dawn app, which has a 20k-user base and higher conversion rates than the website.",
+      "lastActivity": "Kickoff done June 1 ✅. Scope: 6 persona-specific app download emails in post-purchase flow",
       "dot": "green",
       "status": "active"
     },
@@ -157,7 +141,7 @@
   ],
   "inbox": {
     "summary": "Inbox clear — Fathom recaps through Friday. Salehe Shopify sync issue flagged. SFR + Lab Life proposals sent last week.",
-    "lastChecked": "2026-06-02T17:30:05.201046-07:00"
+    "lastChecked": "2026-06-03T17:30:05.278726-07:00"
   },
   "usage": {
     "monthLabel": "April 2026",
