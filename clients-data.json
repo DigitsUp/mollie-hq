@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdated": "2026-06-03T17:30:05.278820-07:00",
+    "lastUpdated": "2026-06-04T17:30:05.318657-07:00",
     "updatedBy": "HQ Update Cron (5:30pm)"
   },
   "clients": [
@@ -9,25 +9,25 @@
       "name": "Salehe / SPUNGE",
       "type": "active",
       "dot": "green",
-      "tagline": "Email Copy Overhaul: Abandonment flow copy will be rewritten from a personal to a professional, conc",
+      "tagline": "Launch Email Finalized: The launch email is approved, pending minor text edits and a decision on the",
       "health": "On track",
-      "lastContact": "2026-06-03",
+      "lastContact": "2026-06-04",
       "openActions": [
         {
-          "text": "Rewrite abandonment flow copy to be professional and concise.",
-          "priority": "low"
-        },
-        {
-          "text": "Update all email templates with a 2% CTA border-radius.",
+          "text": "Implement all launch email edits (text, CTA, alignment, image size).",
           "priority": "high"
         },
         {
-          "text": "Remove all mentions of \"free shipping\" from email copy.",
+          "text": "Make final decision on the `™` symbol in the subject line.",
           "priority": "high"
         },
         {
-          "text": "Send test emails for final review tonight.",
+          "text": "Build and send the placeholder welcome email for review.",
           "priority": "medium"
+        },
+        {
+          "text": "Publish the signup pop-up with the new configuration.",
+          "priority": "high"
         }
       ],
       "waitingOn": [
@@ -103,34 +103,26 @@
       "id": "rvca",
       "name": "RVCA",
       "type": "active",
-      "dot": "amber",
-      "tagline": "Post-purchase design in progress — client call Wednesday",
+      "dot": "green",
+      "tagline": "Authentic Membership Exclusions: Fixed product feed exclusions for the Authentic Membership by addin",
       "health": "On track",
-      "lastContact": "2026-06-01",
+      "lastContact": "2026-06-04",
       "openActions": [
         {
-          "text": "Bryce Baker email sends tomorrow — confirm audience segment is set (not just cloned)",
+          "text": "Roll out the `AC_exclude` fix to the Add to Cart and Browse flows.",
+          "priority": "low"
+        },
+        {
+          "text": "Get Outer Signal pricing from Dove.",
           "priority": "high"
         },
         {
-          "text": "Post-purchase flow design due EOD tomorrow — Marl building, internal review before Wed call",
+          "text": "Ask Wunderman about building the partial fulfillment email.",
           "priority": "high"
         },
         {
-          "text": "Victoria to brief RVCA winback flow (3 emails: 2 HTML + 1 plain text, 10% off $100+)",
+          "text": "Schedule the SI Swimsuit runway email for June 9.",
           "priority": "high"
-        },
-        {
-          "text": "Victoria to align go-to-market calendar for Wednesday call",
-          "priority": "high"
-        },
-        {
-          "text": "Kieran to rebrand all transactional emails (font, headers, footers)",
-          "priority": "medium"
-        },
-        {
-          "text": "Add Bryce Baker SMS (1 SMS/week rule)",
-          "priority": "medium"
         }
       ],
       "waitingOn": [
@@ -156,29 +148,25 @@
       "name": "Epicure",
       "type": "active",
       "dot": "green",
-      "tagline": "Strong Performance: May revenue beat target by 3% ($45k grocery order vs. $20k forecast), driven by ",
+      "tagline": "Klaviyo Database Fixed: Resolved critical bugs, including a 46k-contact locale error and a broken Sh",
       "health": "On track",
-      "lastContact": "2026-06-02",
+      "lastContact": "2026-06-04",
       "openActions": [
         {
-          "text": "Fix Klaviyo locale bug — 46k US users with ENCA locale getting CA emails (1 import fix)",
+          "text": "Re-upload the 46k-contact list to fix the locale bug.",
           "priority": "high"
         },
         {
-          "text": "Scope regional product catalog split with Will (developer)",
+          "text": "Prepare and present the abandoned cart split-test plan on Monday.",
           "priority": "high"
         },
         {
-          "text": "Flow audit + refresh — abandoned suite, product feeds, UTM settings",
-          "priority": "medium"
+          "text": "Analyze the LTV of \"First Meal Free\" participants to prove incrementality.",
+          "priority": "high"
         },
         {
-          "text": "Build affiliate flow in Klaviyo — waiting on brief from Geoff",
-          "priority": "medium"
-        },
-        {
-          "text": "Test SMS at checkout",
-          "priority": "medium"
+          "text": "Adapt the affiliate strategy document for Epicure and send it to Amelia before the Friday call.",
+          "priority": "high"
         }
       ],
       "waitingOn": [
@@ -274,16 +262,24 @@
       "name": "The Lab Life",
       "type": "active",
       "dot": "amber",
-      "tagline": "SIGNED ✅ — Kickoff Wednesday June 3",
-      "health": "On track",
-      "lastContact": "2026-05-29",
+      "tagline": "System Architecture: Establish a clear data boundary: GoHighLevel (GHL) for pre-member marketing, Sp",
+      "health": "In progress",
+      "lastContact": "2026-06-04",
       "openActions": [
         {
-          "text": "Lock Day 1 plan before Wednesday kickoff — confirm sequence with Michael",
+          "text": "Send Miro board invite.",
           "priority": "high"
         },
         {
-          "text": "GHL Month 1 build — 9 flows (RV + Kieran)",
+          "text": "Send Friday 7 AM PST meeting invite.",
+          "priority": "high"
+        },
+        {
+          "text": "Map the Trial Pass, Summer Camp, and Legacy Lead flows in Miro for Friday's review.",
+          "priority": "low"
+        },
+        {
+          "text": "Attend Friday 7 AM PST meeting.",
           "priority": "high"
         }
       ],
@@ -305,17 +301,25 @@
       "name": "OuterSignal / Christy Dawn",
       "type": "active",
       "dot": "green",
-      "tagline": "Primary Goal: Drive post-purchase customers to the Christy Dawn app, which has a 20k-user base and h",
+      "tagline": "Project: Create 7 post-purchase emails for Chrissy Dawn: 1 general and 6 persona-specific versions p",
       "health": "On track",
-      "lastContact": "2026-06-02",
+      "lastContact": "2026-06-04",
       "openActions": [
         {
-          "text": "Develop the post-purchase strategy and creative concepts in Figma.",
+          "text": "Forward Chrissy Dawn persona report to Debbie and Victoria.",
           "priority": "high"
         },
         {
-          "text": "Build the new flows in Klaviyo upon approval.",
+          "text": "Add Victoria and Kieran to the \"OuterSignal\" internal chat.",
+          "priority": "high"
+        },
+        {
+          "text": "Provide Klaviyo access to the team later this week.",
           "priority": "low"
+        },
+        {
+          "text": "Research Chrissy Dawn's site and app to inform the brief.",
+          "priority": "high"
         }
       ],
       "waitingOn": [
