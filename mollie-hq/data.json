@@ -1,108 +1,124 @@
 {
   "meta": {
-    "lastUpdated": "2026-06-04T17:30:05.318354-07:00",
-    "updatedBy": "HQ Update Cron (5:30pm)"
+    "lastUpdated": "2026-06-08T17:00:00-07:00",
+    "updatedBy": "Sunday Wind-Down"
   },
   "calendar": [
     {
-      "time": "Mon 10am",
-      "title": "Christy Dawn / OuterSignal Email Kickoff"
+      "time": "Mon 8am",
+      "title": "The Lab Life x DigitsUp"
     },
     {
-      "time": "Mon 12pm",
-      "title": "Epicure Internal — contract day 1"
+      "time": "Mon 11am",
+      "title": "Rodrigo x Mike"
     },
     {
       "time": "Mon 1pm",
-      "title": "Riversol × DigitsUp (winback copy must be ready)"
+      "title": "Marketing Team Connect"
     },
     {
-      "time": "Wed 7am",
-      "title": "Lab Life × DigitsUp: Kickoff"
+      "time": "Mon 2pm",
+      "title": "Riversol x DigitsUp Weekly"
+    },
+    {
+      "time": "Tue 11:30am",
+      "title": "LPLA x DigitsUp Weekly"
     },
     {
       "time": "Wed 1pm",
-      "title": "RVCA × DigitsUp"
+      "title": "RVCA x DigitsUp"
     },
     {
-      "time": "Thu 3:30pm",
-      "title": "Salehe Bembury × DigitsUp Weekly"
+      "time": "Wed 2pm",
+      "title": "Riversol x DigitsUp Weekly"
+    },
+    {
+      "time": "Wed 3:30pm",
+      "title": "Salehe Bembury x DigitsUp Weekly"
+    },
+    {
+      "time": "Thu 10am",
+      "title": "FRNK Boutique Bi-weekly"
+    },
+    {
+      "time": "Thu 11am",
+      "title": "Hiba Academy Weekly"
     }
   ],
   "needsYou": [
     {
-      "text": "Salehe Bembury — Implement all launch email edits (text, CTA, alignment, image size).",
+      "text": "Salehe Bembury \u2014 Implement all launch email edits (text, CTA, alignment, image size).",
       "chip": "Action"
     },
     {
-      "text": "Salehe Bembury — Make final decision on the `™` symbol in the subject line.",
+      "text": "Salehe Bembury \u2014 Make final decision on the `\u2122` symbol in the subject line.",
       "chip": "Decision"
     },
     {
-      "text": "Salehe Bembury — Build and send the placeholder welcome email for review.",
+      "text": "Salehe Bembury \u2014 Build and send the placeholder welcome email for review.",
       "chip": "Action"
     },
     {
-      "text": "Salehe Bembury — Publish the signup pop-up with the new configuration.",
+      "text": "Salehe Bembury \u2014 Publish the signup pop-up with the new configuration.",
       "chip": "Action"
     },
     {
-      "text": "RVCA — Roll out the `AC_exclude` fix to the Add to Cart and Browse flows.",
+      "text": "RVCA \u2014 Roll out the `AC_exclude` fix to the Add to Cart and Browse flows.",
       "chip": "Action"
     },
     {
-      "text": "RVCA — Get Outer Signal pricing from Dove.",
+      "text": "RVCA \u2014 Get Outer Signal pricing from Dove.",
       "chip": "Action"
     },
     {
-      "text": "RVCA — Ask Wunderman about building the partial fulfillment email.",
+      "text": "RVCA \u2014 Ask Wunderman about building the partial fulfillment email.",
       "chip": "Action"
     },
     {
-      "text": "RVCA — Schedule the SI Swimsuit runway email for June 9.",
+      "text": "RVCA \u2014 Schedule the SI Swimsuit runway email for June 9.",
       "chip": "Action"
     }
   ],
   "watching": [
     {
       "dot": "green",
-      "text": "Riversol — Consolidate Win-Backs: Merge the \"One Hit Wonder\" (1 order) and \"Return Customer\" (2+ orders) segments into a single, unified flow. This simplifies management a"
+      "text": "Riversol \u2014 Consolidate Win-Backs: Merge the \"One Hit Wonder\" (1 order) and \"Return Customer\" (2+ orders) segments into a single, unified flow. This simplifies management a"
     },
     {
       "dot": "green",
-      "text": "Salehe Bembury — Launch Email Finalized: The launch email is approved, pending minor text edits and a decision on the `™` symbol (risk: deliverability). A CTA will be added abov"
+      "text": "Salehe Bembury \u2014 Launch Email Finalized: The launch email is approved, pending minor text edits and a decision on the `\u2122` symbol (risk: deliverability). A CTA will be added abov"
     },
     {
       "dot": "green",
-      "text": "RVCA — Authentic Membership Exclusions: Fixed product feed exclusions for the Authentic Membership by adding the `AC_exclude` tag in Shopify. This prevents the members"
+      "text": "RVCA \u2014 Authentic Membership Exclusions: Fixed product feed exclusions for the Authentic Membership by adding the `AC_exclude` tag in Shopify. This prevents the members"
     },
     {
       "dot": "green",
-      "text": "Epicure — Klaviyo Database Fixed: Resolved critical bugs, including a 46k-contact locale error and a broken Shopify sync that was preventing new customer data from enteri"
+      "text": "Epicure \u2014 Klaviyo Database Fixed: Resolved critical bugs, including a 46k-contact locale error and a broken Shopify sync that was preventing new customer data from enteri"
     },
     {
       "dot": "amber",
-      "text": "The Lab Life — System Architecture: Establish a clear data boundary: GoHighLevel (GHL) for pre-member marketing, Spark for post-member operations. The only automated sync is S"
+      "text": "The Lab Life \u2014 System Architecture: Establish a clear data boundary: GoHighLevel (GHL) for pre-member marketing, Spark for post-member operations. The only automated sync is S"
     },
     {
       "dot": "green",
-      "text": "OuterSignal / Christy Dawn — Project: Create 7 post-purchase emails for Chrissy Dawn: 1 general and 6 persona-specific versions promoting their app."
+      "text": "OuterSignal / Christy Dawn \u2014 Project: Create 7 post-purchase emails for Chrissy Dawn: 1 general and 6 persona-specific versions promoting their app."
     },
     {
       "dot": "yellow",
-      "text": "SFR Distillery — proposal sent May 28. Awaiting client response."
+      "text": "SFR Distillery \u2014 proposal sent May 28. Awaiting client response."
     }
   ],
   "clients": [
     {
       "name": "Riversol",
-      "lastActivity": "🔴",
+      "lastActivity": "\ud83d\udd34",
       "dot": "green",
       "status": "active"
     },
     {
       "name": "Salehe Bembury",
-      "lastActivity": "Launch Email Finalized: The launch email is approved, pending minor text edits and a decision on the `™` symbol (risk: deliverability). A CT",
+      "lastActivity": "Launch Email Finalized: The launch email is approved, pending minor text edits and a decision on the `\u2122` symbol (risk: deliverability). A CT",
       "dot": "green",
       "status": "active"
     },
@@ -114,7 +130,7 @@
     },
     {
       "name": "Hiba Academy",
-      "lastActivity": "May report live ✅",
+      "lastActivity": "May report live \u2705",
       "dot": "green",
       "status": "active"
     },
@@ -156,8 +172,8 @@
     }
   ],
   "inbox": {
-    "summary": "Inbox clear — Fathom recaps through Friday. Salehe Shopify sync issue flagged. SFR + Lab Life proposals sent last week.",
-    "lastChecked": "2026-06-04T17:30:05.318354-07:00"
+    "summary": "Inbox: Fathom recaps through Fri. Actionable: campus tour follow-up (Jun 5), \"Still interested?\" flagged HIGH (Jun 3 \u2014 status unclear). OuterSignal/Sam still no assets (7 days).",
+    "lastChecked": "2026-06-08T17:00:00-07:00"
   },
   "usage": {
     "monthLabel": "April 2026",
@@ -208,32 +224,32 @@
         "amount": 0
       }
     ],
-    "dailyNote": "Usage not updated — waiting on May numbers from Michael."
+    "dailyNote": "Usage not updated \u2014 waiting on May numbers from Michael."
   },
   "activity": [
     {
-      "ts": "2026-06-01T00:00:00-07:00",
-      "text": "Sunday wind-down sweep — calendar, inbox, client pulse checked. Big week ahead: OuterSignal kickoff, Epicure start, Riversol call, Lab Life kickoff."
+      "ts": "2026-06-08T17:00:00-07:00",
+      "text": "Sunday wind-down complete \u2014 calendar, inbox, client pulse swept. Monday packed: Lab 8am, Rodrigo 11am, Marketing 1pm, Riversol 2pm."
     },
     {
-      "ts": "2026-05-31T00:00:00-07:00",
-      "text": "Riversol winback copy rebuild flagged as highest priority — due before Monday 1pm call with Ali + Una."
+      "ts": "2026-06-08T17:00:00-07:00",
+      "text": "Waiting on Sam (OuterSignal assets, 7 days), Dov (persona report, 7 days), Una (Riversol event name + PNGs, 5 days), SFR/Will (10 days)."
     },
     {
-      "ts": "2026-05-31T00:00:00-07:00",
-      "text": "Salehe June 4 deadline at risk — Shopify sync blocked (technical + billing). Fardad activation still pending."
+      "ts": "2026-06-08T17:00:00-07:00",
+      "text": "Epicure Vitorn packaging images \u2014 June 8 launch day. Status unknown. Flagged urgent."
     },
     {
-      "ts": "2026-05-31T00:00:00-07:00",
-      "text": "The Lab Life kickoff Wednesday 7am — no Day 1 plan built yet. Needs brief before Wednesday."
+      "ts": "2026-06-05T00:00:00-07:00",
+      "text": "Fathom recap: Riversol replenishment flow strategy aligned. RVCA QA and welcome series in progress."
     },
     {
-      "ts": "2026-05-31T00:00:00-07:00",
-      "text": "RVCA welcome series build due — confirm Victoria/Meaghan ownership. Clay approved sign-up form."
+      "ts": "2026-06-05T00:00:00-07:00",
+      "text": "The Lab Life GHL scope call done. System boundary defined: GHL pre-member, Spark post-member."
     },
     {
-      "ts": "2026-05-29T00:00:00-07:00",
-      "text": "The Lab Life SIGNED. Salehe contract signed + customer list sorted 79k. FRNK Steph meeting done. Riversol intel brief built for Notion."
+      "ts": "2026-06-04T00:00:00-07:00",
+      "text": "Epicure second onboarding done. Klaviyo Shopify sync fixed, 46k locale bug identified."
     }
   ]
 }
