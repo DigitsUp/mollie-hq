@@ -1,7 +1,8 @@
 {
   "meta": {
     "lastUpdated": "2026-06-17T21:27:00.000000-07:00",
-    "updatedBy": "Mollie (manual — post-meeting sweep Jun 17)"
+    "updatedBy": "Mollie (manual \u2014 post-meeting sweep Jun 17)",
+    "cacheBust": "2026-06-17T21:43:00-07:00"
   },
   "clients": [
     {
@@ -14,7 +15,7 @@
       "lastTouched": "2026-06-17",
       "tasks": [
         {
-          "text": "Post-purchase flow go-live Friday Jun 20 — emails 1 & 3 built, manual mode, OuterSignal backfill done",
+          "text": "Post-purchase flow go-live Friday Jun 20 \u2014 emails 1 & 3 built, manual mode, OuterSignal backfill done",
           "complexity": "medium",
           "owner": "Michael",
           "urgent": true,
@@ -28,21 +29,21 @@
           "source": "manual"
         },
         {
-          "text": "Welcome series coupon code swap: replace FIRSTWAVE15 with unique code — update SMS, sign-up form, all welcome emails",
+          "text": "Welcome series coupon code swap: replace FIRSTWAVE15 with unique code \u2014 update SMS, sign-up form, all welcome emails",
           "complexity": "medium",
           "owner": "Kieran/Victoria",
           "urgent": true,
           "source": "manual"
         },
         {
-          "text": "Klaviyo Reviews — old Shopify URL issue: delete import, fix product IDs, re-import. Decide who owns the product ID mapping (Clay or Kieran)",
+          "text": "Klaviyo Reviews \u2014 old Shopify URL issue: delete import, fix product IDs, re-import. Decide who owns the product ID mapping (Clay or Kieran)",
           "complexity": "medium",
           "owner": "Michael",
           "urgent": true,
           "source": "manual"
         },
         {
-          "text": "Attentive — mobile signup unit not firing. Create Canada-region unit so team can test without VPN",
+          "text": "Attentive \u2014 mobile signup unit not firing. Create Canada-region unit so team can test without VPN",
           "complexity": "quick",
           "owner": "Michael",
           "urgent": false,
@@ -56,14 +57,14 @@
           "source": "manual"
         },
         {
-          "text": "Announce new account structure next week — pod meetings start week after",
+          "text": "Announce new account structure next week \u2014 pod meetings start week after",
           "complexity": "quick",
           "owner": "Michael",
           "urgent": false,
           "source": "manual"
         },
         {
-          "text": "Wunderman partial fulfillment email — ask Wunderman if it exists in their build",
+          "text": "Wunderman partial fulfillment email \u2014 ask Wunderman if it exists in their build",
           "complexity": "quick",
           "owner": "Michael",
           "urgent": false,
@@ -99,11 +100,11 @@
       ],
       "nextMilestone": "Post-purchase go live Friday Jun 20; July persona-specific email test",
       "flags": [
-        "✅ OuterSignal backfill: DONE",
-        "✅ Post-purchase built — emails 1 & 3, launching Friday Jun 20",
-        "⚠️ FIRSTWAVE15 swap still needed — Kieran/Victoria to action",
-        "⚠️ Klaviyo Reviews: imported reviews pointing to old store URL — re-import required",
-        "⚠️ Attentive mobile signup unit not firing — fix before next Attentive meeting"
+        "\u2705 OuterSignal backfill: DONE",
+        "\u2705 Post-purchase built \u2014 emails 1 & 3, launching Friday Jun 20",
+        "\u26a0\ufe0f FIRSTWAVE15 swap still needed \u2014 Kieran/Victoria to action",
+        "\u26a0\ufe0f Klaviyo Reviews: imported reviews pointing to old store URL \u2014 re-import required",
+        "\u26a0\ufe0f Attentive mobile signup unit not firing \u2014 fix before next Attentive meeting"
       ],
       "autoUpdatedAt": "2026-06-17T21:27:00.000000-07:00"
     },
@@ -113,7 +114,7 @@
       "color": "#1098AD",
       "dot": "amber",
       "health": "Active",
-      "tagline": "Replenishment flow fully finalized today — 5 SKUs, 5-email sequence, 30–90 day trigger. Sampler winback bumped to 30% off. Build starts now.",
+      "tagline": "Replenishment flow fully finalized today \u2014 5 SKUs, 5-email sequence, 30\u201390 day trigger. Sampler winback bumped to 30% off. Build starts now.",
       "lastTouched": "2026-06-17",
       "tasks": [
         {
@@ -124,28 +125,28 @@
           "source": "manual"
         },
         {
-          "text": "Build replenishment flows for 5 core SKUs (DMC, Anti-Aging Trio, Redness Trio, Serum, Concentrate) + general bucket — disable old post-purchase flow on launch",
+          "text": "Build replenishment flows for 5 core SKUs (DMC, Anti-Aging Trio, Redness Trio, Serum, Concentrate) + general bucket \u2014 disable old post-purchase flow on launch",
           "complexity": "heavy",
           "owner": "Michael",
           "urgent": true,
           "source": "manual"
         },
         {
-          "text": "Set replenishment delays 30–90 days post-delivery; A/B test trigger start (30-day vs 50-day)",
+          "text": "Set replenishment delays 30\u201390 days post-delivery; A/B test trigger start (30-day vs 50-day)",
           "complexity": "medium",
           "owner": "Michael",
           "urgent": false,
           "source": "manual"
         },
         {
-          "text": "Update sampler Winback: set 30% off offer; add Amazon fallback after 1–2 wks (non-member, non-offer only); exclude Riversol Plus members",
+          "text": "Update sampler Winback: set 30% off offer; add Amazon fallback after 1\u20132 wks (non-member, non-offer only); exclude Riversol Plus members",
           "complexity": "medium",
           "owner": "Michael",
           "urgent": true,
           "source": "manual"
         },
         {
-          "text": "Implement 'inflow' list logic — add on entry, remove on exit, exclude from all campaign sends",
+          "text": "Implement 'inflow' list logic \u2014 add on entry, remove on exit, exclude from all campaign sends",
           "complexity": "medium",
           "owner": "Michael",
           "urgent": false,
@@ -159,7 +160,7 @@
           "source": "manual"
         },
         {
-          "text": "Expand review flow to include 4-star reviews; plan 1–3 star branch for customer support",
+          "text": "Expand review flow to include 4-star reviews; plan 1\u20133 star branch for customer support",
           "complexity": "medium",
           "owner": "Michael",
           "urgent": false,
@@ -214,13 +215,13 @@
           "madeOn": "2026-06-17"
         }
       ],
-      "nextMilestone": "Tue Jun 23 2pm working session → replenishment build + launch",
+      "nextMilestone": "Tue Jun 23 2pm working session \u2192 replenishment build + launch",
       "flags": [
-        "✅ General Winback: $1.50 RPU (vs $0.02 before) — performing well",
-        "✅ Review flow: live (too early for data)",
-        "✅ 15-day sample flow: 7% click rate — strong early signal",
-        "⚠️ Sampler Winback: 20% off underperforming — update to 30% off immediately",
-        "⚠️ Replenishment build is the #1 priority — all SKU flows + inflow list logic"
+        "\u2705 General Winback: $1.50 RPU (vs $0.02 before) \u2014 performing well",
+        "\u2705 Review flow: live (too early for data)",
+        "\u2705 15-day sample flow: 7% click rate \u2014 strong early signal",
+        "\u26a0\ufe0f Sampler Winback: 20% off underperforming \u2014 update to 30% off immediately",
+        "\u26a0\ufe0f Replenishment build is the #1 priority \u2014 all SKU flows + inflow list logic"
       ],
       "autoUpdatedAt": "2026-06-17T21:27:00.000000-07:00"
     },
@@ -262,14 +263,14 @@
           "source": "manual"
         },
         {
-          "text": "Draft non-selling campaign strategy for Jul–Aug (content gap while list is suppressed); send to Fardad",
+          "text": "Draft non-selling campaign strategy for Jul\u2013Aug (content gap while list is suppressed); send to Fardad",
           "complexity": "medium",
           "owner": "Michael",
           "urgent": false,
           "source": "manual"
         },
         {
-          "text": "Email Chris re: Sponge Klaviyo access — offer cleaned list as value-add to get analyst access",
+          "text": "Email Chris re: Sponge Klaviyo access \u2014 offer cleaned list as value-add to get analyst access",
           "complexity": "quick",
           "owner": "Michael",
           "urgent": false,
@@ -305,12 +306,12 @@
       ],
       "nextMilestone": "Books + Sponge Intro designs due Jun 19; Alex Proba drop moved to July",
       "flags": [
-        "🔴 Klaviyo list: 520k leads suppressed until mid-Sep under CASL — cannot email them",
-        "⚠️ Klaviyo will only unsuppress if annual contract signed — not feasible given drop-based revenue",
-        "✅ Warmup report complete",
-        "✅ Sponge newsletter canceled — will appear in welcome series only (net new sign-ups)",
-        "📅 Alex Proba drop: MOVED TO JULY — do not action Jun 18",
-        "📅 August archive sale: confirmed for 3rd Thursday of August — SMS-gated entry"
+        "\ud83d\udd34 Klaviyo list: 520k leads suppressed until mid-Sep under CASL \u2014 cannot email them",
+        "\u26a0\ufe0f Klaviyo will only unsuppress if annual contract signed \u2014 not feasible given drop-based revenue",
+        "\u2705 Warmup report complete",
+        "\u2705 Sponge newsletter canceled \u2014 will appear in welcome series only (net new sign-ups)",
+        "\ud83d\udcc5 Alex Proba drop: MOVED TO JULY \u2014 do not action Jun 18",
+        "\ud83d\udcc5 August archive sale: confirmed for 3rd Thursday of August \u2014 SMS-gated entry"
       ],
       "autoUpdatedAt": "2026-06-17T21:27:00.000000-07:00"
     },
@@ -338,28 +339,28 @@
           "source": "manual"
         },
         {
-          "text": "Scope GHL → Klaviyo integration (replacing manual Constant Contact export) — Month 2",
+          "text": "Scope GHL \u2192 Klaviyo integration (replacing manual Constant Contact export) \u2014 Month 2",
           "complexity": "medium",
           "owner": "Michael",
           "urgent": false,
           "source": "manual"
         },
         {
-          "text": "Scope RingCentral number port to GHL — feasibility + timeline",
+          "text": "Scope RingCentral number port to GHL \u2014 feasibility + timeline",
           "complexity": "medium",
           "owner": "Michael",
           "urgent": false,
           "source": "manual"
         },
         {
-          "text": "Plan Spark → GHL one-way sync (tag as Sold on membership purchase)",
+          "text": "Plan Spark \u2192 GHL one-way sync (tag as Sold on membership purchase)",
           "complexity": "heavy",
           "owner": "RV",
           "urgent": false,
           "source": "manual"
         },
         {
-          "text": "GHL data cleanup — dedupe current member tags (654 tags vs ~300 actual accounts)",
+          "text": "GHL data cleanup \u2014 dedupe current member tags (654 tags vs ~300 actual accounts)",
           "complexity": "heavy",
           "owner": "RV",
           "urgent": false,
@@ -376,9 +377,9 @@
       ],
       "nextMilestone": "Month 1 completion Jun 19; Month 2 Klaviyo kickoff TBD",
       "flags": [
-        "✅ Summer camp campaign: designed and sent",
-        "✅ Month 1 GHL build on track — completion Jun 19",
-        "📅 Month 2: Klaviyo + Constant Contact migration"
+        "\u2705 Summer camp campaign: designed and sent",
+        "\u2705 Month 1 GHL build on track \u2014 completion Jun 19",
+        "\ud83d\udcc5 Month 2: Klaviyo + Constant Contact migration"
       ],
       "autoUpdatedAt": "2026-06-17T21:27:00.000000-07:00"
     },
@@ -413,7 +414,7 @@
           "source": "manual"
         },
         {
-          "text": "Scope GoAffPro → Klaviyo integration",
+          "text": "Scope GoAffPro \u2192 Klaviyo integration",
           "complexity": "medium",
           "owner": "Michael",
           "urgent": false,
@@ -457,9 +458,9 @@
       "promises": [],
       "nextMilestone": "PP Email 2 brief + order confirmation footer",
       "flags": [
-        "✅ PP Email 3 (affiliate invite) complete",
-        "⚠️ PP Email 2 brief overdue",
-        "⚠️ Order confirmation footer brief overdue"
+        "\u2705 PP Email 3 (affiliate invite) complete",
+        "\u26a0\ufe0f PP Email 2 brief overdue",
+        "\u26a0\ufe0f Order confirmation footer brief overdue"
       ],
       "autoUpdatedAt": "2026-06-17T21:27:00.000000-07:00"
     },
@@ -469,18 +470,18 @@
       "color": "#E64980",
       "dot": "amber",
       "health": "On Track",
-      "tagline": "Renewal proposal needed — contract ends June. Jun 30 send: 'Founding vision to reality' — draft due to Victoria by Jun 18.",
+      "tagline": "Renewal proposal needed \u2014 contract ends June. Jun 30 send: 'Founding vision to reality' \u2014 draft due to Victoria by Jun 18.",
       "lastTouched": "2026-06-17",
       "tasks": [
         {
-          "text": "Draft renewal proposal for Hiba Academy (contract ends June) — Veronica asked Jun 11",
+          "text": "Draft renewal proposal for Hiba Academy (contract ends June) \u2014 Veronica asked Jun 11",
           "complexity": "medium",
           "owner": "Michael",
           "urgent": true,
           "source": "manual"
         },
         {
-          "text": "Draft 'Founding vision to reality' content piece — due to Victoria by Jun 18 for Hiba delivery Jun 30",
+          "text": "Draft 'Founding vision to reality' content piece \u2014 due to Victoria by Jun 18 for Hiba delivery Jun 30",
           "complexity": "medium",
           "owner": "Michael",
           "urgent": true,
@@ -502,10 +503,10 @@
           "madeOn": "2026-06-11"
         }
       ],
-      "nextMilestone": "Jun 18 — draft to Victoria; Jun 30 — delivered to Hiba",
+      "nextMilestone": "Jun 18 \u2014 draft to Victoria; Jun 30 \u2014 delivered to Hiba",
       "flags": [
-        "⚠️ Renewal proposal: requested Jun 11, not yet drafted",
-        "⚠️ Jun 18 content deadline tomorrow — Michael → Victoria → Hiba chain"
+        "\u26a0\ufe0f Renewal proposal: requested Jun 11, not yet drafted",
+        "\u26a0\ufe0f Jun 18 content deadline tomorrow \u2014 Michael \u2192 Victoria \u2192 Hiba chain"
       ],
       "autoUpdatedAt": "2026-06-17T21:27:00.000000-07:00"
     },
@@ -519,7 +520,7 @@
       "lastTouched": "2026-06-17",
       "tasks": [
         {
-          "text": "Build Post-Purchase 2026 flow draft — due EOW Jun 20 (once assets arrive)",
+          "text": "Build Post-Purchase 2026 flow draft \u2014 due EOW Jun 20 (once assets arrive)",
           "complexity": "heavy",
           "owner": "Michael",
           "urgent": true,
@@ -567,11 +568,11 @@
           "madeOn": "2026-06-17"
         }
       ],
-      "nextMilestone": "EOW draft — Post-Purchase 2026 flow for OuterSignal x OhSnap",
+      "nextMilestone": "EOW draft \u2014 Post-Purchase 2026 flow for OuterSignal x OhSnap",
       "flags": [
-        "✅ OhSnap kickoff completed Jun 16 with JD",
-        "✅ Strategy decided Jun 15 (Christy Dawn call)",
-        "⚠️ Blocked on assets + access from OhSnap and OuterSignal — follow up immediately"
+        "\u2705 OhSnap kickoff completed Jun 16 with JD",
+        "\u2705 Strategy decided Jun 15 (Christy Dawn call)",
+        "\u26a0\ufe0f Blocked on assets + access from OhSnap and OuterSignal \u2014 follow up immediately"
       ],
       "autoUpdatedAt": "2026-06-17T21:27:00.000000-07:00"
     },
@@ -581,7 +582,7 @@
       "color": "#E8845C",
       "dot": "red",
       "health": "Blocked",
-      "tagline": "Website live. Launch email blocked until mid-September — CASL suppression on 520k leads. Welcome series + abandoned cart in build.",
+      "tagline": "Website live. Launch email blocked until mid-September \u2014 CASL suppression on 520k leads. Welcome series + abandoned cart in build.",
       "lastTouched": "2026-06-17",
       "tasks": [
         {
@@ -615,10 +616,10 @@
         }
       ],
       "promises": [],
-      "nextMilestone": "Mid-September 2026 — CASL suppression lifts, launch email can send",
+      "nextMilestone": "Mid-September 2026 \u2014 CASL suppression lifts, launch email can send",
       "flags": [
-        "⚠️ Website live (Jun 15) but launch email blocked",
-        "⚠️ 520k non-customer leads suppressed until mid-September under CASL"
+        "\u26a0\ufe0f Website live (Jun 15) but launch email blocked",
+        "\u26a0\ufe0f 520k non-customer leads suppressed until mid-September under CASL"
       ],
       "autoUpdatedAt": "2026-06-17T21:27:00.000000-07:00"
     },
@@ -632,7 +633,7 @@
       "lastTouched": "2026-06-17",
       "tasks": [
         {
-          "text": "Prep onboarding doc + kickoff agenda for Will — Jun 22",
+          "text": "Prep onboarding doc + kickoff agenda for Will \u2014 Jun 22",
           "complexity": "medium",
           "owner": "Michael",
           "urgent": true,
@@ -648,10 +649,10 @@
         }
       ],
       "promises": [],
-      "nextMilestone": "Jun 22 — onboarding + kickoff with Will",
+      "nextMilestone": "Jun 22 \u2014 onboarding + kickoff with Will",
       "flags": [
-        "✅ Internal meeting complete Jun 16",
-        "📅 Kickoff with Will: Jun 22"
+        "\u2705 Internal meeting complete Jun 16",
+        "\ud83d\udcc5 Kickoff with Will: Jun 22"
       ],
       "autoUpdatedAt": "2026-06-17T21:27:00.000000-07:00"
     }
@@ -669,7 +670,7 @@
       "date": "2026-06-19",
       "client": "The Lab Life",
       "clientId": "the-lab",
-      "item": "Month 1 complete — confirm with Travis + Ally",
+      "item": "Month 1 complete \u2014 confirm with Travis + Ally",
       "owner": "Michael",
       "urgent": true
     },
@@ -708,7 +709,7 @@
       "date": "2026-06-23",
       "client": "Riversol",
       "clientId": "riversol",
-      "item": "Tue 2pm working session — finalize replenishment before Wed call",
+      "item": "Tue 2pm working session \u2014 finalize replenishment before Wed call",
       "owner": "Michael",
       "urgent": true
     },
@@ -722,34 +723,34 @@
   ],
   "doThisNow": [
     {
-      "icon": "🔴",
+      "icon": "\ud83d\udd34",
       "clientId": "hiba",
       "clientName": "Hiba Academy",
-      "text": "Draft 'Founding vision to reality' — due to Victoria TOMORROW (Jun 18)",
+      "text": "Draft 'Founding vision to reality' \u2014 due to Victoria TOMORROW (Jun 18)",
       "complexity": "medium",
       "deadline": "Tomorrow",
       "urgent": true
     },
     {
-      "icon": "🔴",
+      "icon": "\ud83d\udd34",
       "clientId": "rvca",
       "clientName": "RVCA",
-      "text": "FIRSTWAVE15 code swap — Kieran/Victoria to update SMS, sign-up form, all welcome emails",
+      "text": "FIRSTWAVE15 code swap \u2014 Kieran/Victoria to update SMS, sign-up form, all welcome emails",
       "complexity": "medium",
       "deadline": "This week",
       "urgent": true
     },
     {
-      "icon": "🔴",
+      "icon": "\ud83d\udd34",
       "clientId": "rvca",
       "clientName": "RVCA",
-      "text": "Klaviyo Reviews fix — delete import, get correct product IDs from Clay, re-import",
+      "text": "Klaviyo Reviews fix \u2014 delete import, get correct product IDs from Clay, re-import",
       "complexity": "medium",
       "deadline": "This week",
       "urgent": true
     },
     {
-      "icon": "🟡",
+      "icon": "\ud83d\udfe1",
       "clientId": "salehe",
       "clientName": "Salehe Bembury",
       "text": "Books + Sponge Intro email designs to Fardad by Jun 19",
@@ -758,16 +759,16 @@
       "urgent": true
     },
     {
-      "icon": "🟡",
+      "icon": "\ud83d\udfe1",
       "clientId": "riversol",
       "clientName": "Riversol",
-      "text": "Update sampler Winback to 30% off — send Tue 2pm working session invite to Riversol team",
+      "text": "Update sampler Winback to 30% off \u2014 send Tue 2pm working session invite to Riversol team",
       "complexity": "medium",
       "deadline": "This week",
       "urgent": true
     },
     {
-      "icon": "🟡",
+      "icon": "\ud83d\udfe1",
       "clientId": "rvca",
       "clientName": "RVCA",
       "text": "Send 4 Q3 campaign briefs to RVCA for approval",
@@ -776,7 +777,7 @@
       "urgent": false
     },
     {
-      "icon": "🟡",
+      "icon": "\ud83d\udfe1",
       "clientId": "epicure",
       "clientName": "Epicure",
       "text": "PP Email 2 brief (recipe refresh) + order confirmation footer brief",
@@ -785,7 +786,7 @@
       "urgent": false
     },
     {
-      "icon": "🟡",
+      "icon": "\ud83d\udfe1",
       "clientId": "sfr",
       "clientName": "SFR Distillery",
       "text": "Prep onboarding doc + kickoff agenda for Jun 22 with Will",
@@ -797,23 +798,23 @@
   "activity": [
     {
       "ts": "2026-06-17T21:27:00.000000-07:00",
-      "text": "Full board rebuild — post-meeting sweep: RVCA weekly + Q3 planning, Riversol, Salehe, all 3 calls Jun 17."
+      "text": "Full board rebuild \u2014 post-meeting sweep: RVCA weekly + Q3 planning, Riversol, Salehe, all 3 calls Jun 17."
     },
     {
       "ts": "2026-06-17T21:27:00.000000-07:00",
-      "text": "RVCA — OuterSignal backfill done. Post-purchase built, launching Friday. Q3 persona test planned."
+      "text": "RVCA \u2014 OuterSignal backfill done. Post-purchase built, launching Friday. Q3 persona test planned."
     },
     {
       "ts": "2026-06-17T21:27:00.000000-07:00",
-      "text": "Riversol — Replenishment flow fully finalized. 5 SKUs, 5-email sequence, 30-90 day trigger. Sampler winback → 30% off."
+      "text": "Riversol \u2014 Replenishment flow fully finalized. 5 SKUs, 5-email sequence, 30-90 day trigger. Sampler winback \u2192 30% off."
     },
     {
       "ts": "2026-06-17T21:27:00.000000-07:00",
-      "text": "Salehe — Major pivot. Klaviyo list blocked (CASL, mid-Sep). Sponge newsletter canceled. Alex Proba moved to July."
+      "text": "Salehe \u2014 Major pivot. Klaviyo list blocked (CASL, mid-Sep). Sponge newsletter canceled. Alex Proba moved to July."
     },
     {
       "ts": "2026-06-17T21:27:00.000000-07:00",
-      "text": "The Lab Life — Summer camp campaign sent. Month 1 on track for Jun 19."
+      "text": "The Lab Life \u2014 Summer camp campaign sent. Month 1 on track for Jun 19."
     }
   ]
 }
