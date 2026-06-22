@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DigitsUp × eyebobs — Proposal · June 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal: #005F61;
+      --sky: #A2D8DF;
+      --chartreuse: #D4DE25;
+      --near-black: #3D4246;
+      --white: #FFFFFF;
+      --light-bg: #F6F6F8;
+      --muted: #7A8085;
+    }
+
+    html { font-size: 16px; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--near-black);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── TOP BAR ─── */
+    .top-bar {
+      background: var(--teal);
+      color: var(--white);
+      text-align: center;
+      padding: 10px 24px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: var(--white);
+      padding: 100px 80px 90px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .hero-eyeline {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .hero-headline {
+      font-size: 52px;
+      font-weight: 700;
+      color: var(--teal);
+      line-height: 1.12;
+      max-width: 860px;
+      margin-bottom: 28px;
+    }
+
+    .hero-sub {
+      font-size: 19px;
+      font-weight: 300;
+      color: var(--near-black);
+      line-height: 1.65;
+      max-width: 720px;
+      margin-bottom: 44px;
+    }
+
+    .hero-identity {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .hero-brand-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--teal);
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--teal);
+      color: var(--white);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 3px;
+    }
+
+    /* ─── SECTIONS ─── */
+    .section-wrap {
+      width: 100%;
+    }
+
+    .section-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 80px 80px;
+    }
+
+    .section-bg-light { background: var(--light-bg); }
+    .section-bg-white { background: var(--white); }
+
+    .section-heading {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 16px;
+    }
+
+    .section-intro {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--near-black);
+      max-width: 760px;
+      margin: 0 auto 56px;
+      line-height: 1.6;
+    }
+
+    /* ─── INSIGHT CARDS ─── */
+    .insight-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .insight-grid .insight-card:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+    }
+
+    .insight-card {
+      background: var(--white);
+      border-left: 4px solid var(--teal);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      padding: 32px 28px;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .insight-card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+
+    .insight-card-body {
+      font-size: 14.5px;
+      font-weight: 300;
+      color: var(--near-black);
+      line-height: 1.7;
+    }
+
+    /* ─── DIGITSUP SECTION ─── */
+    .about-body {
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--near-black);
+      max-width: 860px;
+    }
+
+    .about-body p + p {
+      margin-top: 20px;
+    }
+
+    /* ─── SERVICE TILES ─── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .service-tile {
+      background: var(--white);
+      border-radius: 6px;
+      padding: 24px 22px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .service-dot {
+      width: 10px;
+      height: 10px;
+      min-width: 10px;
+      border-radius: 50%;
+      background: var(--teal);
+      margin-top: 4px;
+    }
+
+    .service-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--near-black);
+      line-height: 1.4;
+    }
+
+    /* ─── INVESTMENT SECTION ─── */
+    .pricing-subline {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--muted);
+      margin-top: 10px;
+      margin-bottom: 52px;
+    }
+
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .pricing-card {
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.09);
+      overflow: visible;
+      position: relative;
+    }
+
+    .pricing-card-header {
+      background: var(--teal);
+      color: var(--white);
+      padding: 24px 28px;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .pricing-tier-name {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-bottom: 6px;
+    }
+
+    .pricing-price {
+      font-size: 30px;
+      font-weight: 700;
+    }
+
+    .pricing-body {
+      padding: 28px;
+    }
+
+    .pricing-body ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .pricing-body ul li {
+      font-size: 13.5px;
+      font-weight: 400;
+      color: var(--near-black);
+      padding: 8px 0;
+      border-bottom: 1px solid #EBEBED;
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .pricing-body ul li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-weight: 600;
+      font-size: 12px;
+    }
+
+    .pricing-body ul li:last-child {
+      border-bottom: none;
+    }
+
+    .recommended-badge {
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: var(--chartreuse);
+      color: var(--near-black);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 5px 11px;
+      border-radius: 3px;
+    }
+
+    .pricing-footnote {
+      text-align: center;
+      font-size: 13px;
+      font-style: italic;
+      color: var(--muted);
+      margin-top: 40px;
+    }
+
+    /* ─── LOCKED PANELS ─── */
+    .locked-panel {
+      width: 100%;
+      background: #EAEAEC;
+      position: relative;
+      padding: 80px 80px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .locked-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        rgba(255,255,255,0.04) 0px,
+        rgba(255,255,255,0.04) 1px,
+        transparent 1px,
+        transparent 12px
+      );
+      pointer-events: none;
+    }
+
+    .locked-inner {
+      position: relative;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .lock-icon {
+      margin: 0 auto 28px;
+      display: block;
+      opacity: 0.45;
+    }
+
+    .locked-phase-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .locked-header {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--near-black);
+      margin-bottom: 20px;
+      opacity: 0.7;
+    }
+
+    .locked-tease {
+      font-size: 15.5px;
+      font-weight: 300;
+      color: var(--near-black);
+      line-height: 1.7;
+      opacity: 0.6;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .locked-label {
+      font-size: 12px;
+      font-style: italic;
+      color: var(--muted);
+      opacity: 0.7;
+    }
+
+    .locked-divider {
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(to right, transparent, #C8C8CC, transparent);
+      margin: 0;
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: var(--near-black);
+      color: var(--white);
+      text-align: center;
+      padding: 40px 24px;
+    }
+
+    .footer-main {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .footer-sub {
+      font-size: 12px;
+      font-weight: 300;
+      opacity: 0.6;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .hero { padding: 60px 32px; }
+      .hero-headline { font-size: 36px; }
+      .section-inner { padding: 60px 32px; }
+      .insight-grid { grid-template-columns: 1fr; }
+      .insight-grid .insight-card:last-child:nth-child(odd) { grid-column: auto; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .pricing-cards { grid-template-columns: 1fr; }
+      .locked-panel { padding: 60px 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">Prepared for eyebobs &nbsp;·&nbsp; June 2026</div>
+
+  <!-- HERO -->
+  <section class="section-bg-white">
+    <div class="hero">
+      <p class="hero-eyeline">DigitsUp × eyebobs</p>
+      <h1 class="hero-headline">Your customers want to come back. Your email program just hasn't told them to.</h1>
+      <p class="hero-sub">Retention marketing isn't about sending more emails. It's about knowing exactly what to say, to whom, and when — so every customer relationship compounds instead of stalls.</p>
+      <div class="hero-identity">
+        <span class="hero-brand-name">DigitsUp</span>
+        <span class="badge">Klaviyo Platinum Partner</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPPORTUNITY IN EYEWEAR -->
+  <div class="section-wrap section-bg-light">
+    <div class="section-inner">
+      <p class="section-intro">Most eyewear brands treat email like a campaign calendar. The ones growing fastest treat it like a lifecycle engine.</p>
+
+      <div class="insight-grid">
+
+        <div class="insight-card">
+          <p class="insight-card-title">The multi-pair unlock</p>
+          <p class="insight-card-body">Readers customers don't need one pair. They need one for every room, every bag, every occasion. The intent is already there — it just needs the right trigger at the right moment.</p>
+        </div>
+
+        <div class="insight-card">
+          <p class="insight-card-title">Replenishment isn't optional</p>
+          <p class="insight-card-body">Lenses scratch. Trends shift. Styles change. eyebobs customers will come back — but only if you're present when that window opens. Most brands aren't.</p>
+        </div>
+
+        <div class="insight-card">
+          <p class="insight-card-title">Gifting is a lifecycle, not a campaign</p>
+          <p class="insight-card-body">"Teacher Appreciation," Mother's Day, birthdays — stylish readers are one of the easiest gifted accessories in the market. Brands that build gifting flows (not just blasts) own that moment every year.</p>
+        </div>
+
+        <div class="insight-card">
+          <p class="insight-card-title">Loyalty programs are only as powerful as the engine behind them</p>
+          <p class="insight-card-body">Frame Fanatics is an asset. Points systems without behavior-triggered communication just collect dust. The brands winning with loyalty connect every earn, every tier, every redemption to a personalized email or SMS.</p>
+        </div>
+
+        <div class="insight-card">
+          <p class="insight-card-title">Post-purchase is where LTV is decided</p>
+          <p class="insight-card-body">The customer who understands why their frames are worth it — the Italian acetate, the spring hinges, the craftsmanship — buys again. The one who doesn't, doesn't. Education is revenue.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- DIGITSUP -->
+  <div class="section-wrap section-bg-white">
+    <div class="section-inner">
+      <h2 class="section-heading">11 years. One focus.</h2>
+      <div class="about-body">
+        <p>DigitsUp is a retention marketing agency. We don't do paid media, brand strategy, or web design. We do one thing — we build the email and SMS systems that turn your existing customers into your most reliable revenue channel.</p>
+        <p>Michael Grill founded DigitsUp after more than a decade inside the industry — including time at EssilorLuxottica, the world's largest eyewear company, where email was a primary revenue lever at scale. We also led Klaviyo lifecycle programs for Vicci Eyewear for nine months. We know this category.</p>
+        <p>We're a Klaviyo Platinum Partner — their highest certification tier. That's not a badge. It's a signal that we've built, tested, and optimized enough accounts to have seen what works and what doesn't across virtually every flow type, audience size, and vertical.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT WE BUILD -->
+  <div class="section-wrap section-bg-light">
+    <div class="section-inner">
+      <h2 class="section-heading">The full lifecycle, built right.</h2>
+
+      <div class="services-grid">
+        <div class="service-tile">
+          <div class="service-dot"></div>
+          <span class="service-label">Welcome &amp; Subscriber Onboarding</span>
+        </div>
+        <div class="service-tile">
+          <div class="service-dot"></div>
+          <span class="service-label">Abandoned Cart &amp; Checkout Recovery</span>
+        </div>
+        <div class="service-tile">
+          <div class="service-dot"></div>
+          <span class="service-label">Browse &amp; Product Abandonment</span>
+        </div>
+        <div class="service-tile">
+          <div class="service-dot"></div>
+          <span class="service-label">Post-Purchase &amp; Onboarding Sequences</span>
+        </div>
+        <div class="service-tile">
+          <div class="service-dot"></div>
+          <span class="service-label">Replenishment &amp; Re-order Triggers</span>
+        </div>
+        <div class="service-tile">
+          <div class="service-dot"></div>
+          <span class="service-label">Winback &amp; Re-engagement</span>
+        </div>
+        <div class="service-tile">
+          <div class="service-dot"></div>
+          <span class="service-label">Multi-Pair &amp; Cross-Sell Journeys</span>
+        </div>
+        <div class="service-tile">
+          <div class="service-dot"></div>
+          <span class="service-label">Gifting Lifecycle Flows</span>
+        </div>
+        <div class="service-tile">
+          <div class="service-dot"></div>
+          <span class="service-label">VIP &amp; Loyalty Program Integration</span>
+        </div>
+        <div class="service-tile">
+          <div class="service-dot"></div>
+          <span class="service-label">SMS Strategy &amp; Execution</span>
+        </div>
+        <div class="service-tile">
+          <div class="service-dot"></div>
+          <span class="service-label">Campaign Calendar &amp; Execution</span>
+        </div>
+        <div class="service-tile">
+          <div class="service-dot"></div>
+          <span class="service-label">Segmentation, List Health &amp; Analytics</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INVESTMENT -->
+  <div class="section-wrap section-bg-white">
+    <div class="section-inner">
+      <h2 class="section-heading">Three starting points. Every engagement is scoped to your actual numbers.</h2>
+      <p class="pricing-subline">These tiers reflect common starting scopes. After the audit, we'll show you exactly what your program needs — nothing more, nothing less.</p>
+
+      <div class="pricing-cards">
+
+        <!-- Foundation -->
+        <div class="pricing-card">
+          <div class="pricing-card-header">
+            <p class="pricing-tier-name">Foundation</p>
+            <p class="pricing-price">$3,000<span style="font-size:16px;font-weight:400;opacity:0.8">/mo</span></p>
+          </div>
+          <div class="pricing-body">
+            <ul>
+              <li>3 core flows (Welcome, Abandon, Post-Purchase)</li>
+              <li>4 campaigns/month</li>
+              <li>Email strategy + SMS consultation</li>
+              <li>Basic segmentation</li>
+              <li>Monthly reporting + strategy call</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Growth (Recommended) -->
+        <div class="pricing-card" style="position:relative;">
+          <div class="recommended-badge">Recommended</div>
+          <div class="pricing-card-header">
+            <p class="pricing-tier-name">Growth</p>
+            <p class="pricing-price">$5,000<span style="font-size:16px;font-weight:400;opacity:0.8">/mo</span></p>
+          </div>
+          <div class="pricing-body">
+            <ul>
+              <li>Up to 6 flows (adds Browse, Winback, Gifting or Multi-Pair)</li>
+              <li>6 campaigns/month</li>
+              <li>Unified email + SMS execution</li>
+              <li>RFM + engagement segmentation</li>
+              <li>Bi-weekly reporting + calls</li>
+              <li>Loyalty program integration</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Partner -->
+        <div class="pricing-card">
+          <div class="pricing-card-header">
+            <p class="pricing-tier-name">Partner</p>
+            <p class="pricing-price">$7,000+<span style="font-size:16px;font-weight:400;opacity:0.8">/mo</span></p>
+          </div>
+          <div class="pricing-body">
+            <ul>
+              <li>Full flow library + custom sequences</li>
+              <li>Unlimited campaigns + seasonal builds</li>
+              <li>Full SMS program</li>
+              <li>Advanced segmentation + predictive triggers</li>
+              <li>Weekly reporting + QBRs</li>
+              <li>AI search &amp; acquisition channel support</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="pricing-footnote">Scopes are built after the audit. These are starting points — not ceilings.</p>
+
+    </div>
+  </div>
+
+  <!-- PHASE 2 LOCKED -->
+  <div class="locked-divider"></div>
+  <div class="locked-panel">
+    <div class="locked-inner">
+
+      <svg class="lock-icon" width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="28" width="44" height="30" rx="5" fill="#3D4246"/>
+        <path d="M20 28V20C20 13.373 25.373 8 32 8C38.627 8 44 13.373 44 20V28" stroke="#3D4246" stroke-width="5" stroke-linecap="round" fill="none"/>
+        <circle cx="32" cy="43" r="4" fill="#F6F6F8"/>
+        <rect x="30.5" y="45" width="3" height="6" rx="1.5" fill="#F6F6F8"/>
+      </svg>
+
+      <p class="locked-phase-label">Phase 2</p>
+      <h2 class="locked-header">The Audit</h2>
+      <p class="locked-tease">We go inside your Klaviyo account. We map every flow, every segment, every campaign. We find what's performing, what's broken, and what's missing. You get a clear picture of where the revenue is — and what it takes to unlock it.</p>
+      <p class="locked-label">Unlocked after your discovery call.</p>
+
+    </div>
+  </div>
+  <div class="locked-divider"></div>
+
+  <!-- PHASE 3 LOCKED -->
+  <div class="locked-panel">
+    <div class="locked-inner">
+
+      <svg class="lock-icon" width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="28" width="44" height="30" rx="5" fill="#3D4246"/>
+        <path d="M20 28V20C20 13.373 25.373 8 32 8C38.627 8 44 13.373 44 20V28" stroke="#3D4246" stroke-width="5" stroke-linecap="round" fill="none"/>
+        <circle cx="32" cy="43" r="4" fill="#F6F6F8"/>
+        <rect x="30.5" y="45" width="3" height="6" rx="1.5" fill="#F6F6F8"/>
+      </svg>
+
+      <p class="locked-phase-label">Phase 3</p>
+      <h2 class="locked-header">Your Program</h2>
+      <p class="locked-tease">A custom scope built around what the audit finds. Your list size. Your flow gaps. Your team bandwidth. We don't pitch packages before we know your numbers.</p>
+      <p class="locked-label">Built after the audit is complete.</p>
+
+    </div>
+  </div>
+  <div class="locked-divider"></div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p class="footer-main">DigitsUp &nbsp;·&nbsp; digitsup.com &nbsp;·&nbsp; mike@digitsup.com</p>
+    <p class="footer-sub">Prepared for eyebobs &nbsp;·&nbsp; Hannah Arneson &nbsp;·&nbsp; June 22, 2026</p>
+  </footer>
+
+</body>
+</html>
