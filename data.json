@@ -1,39 +1,51 @@
 {
   "meta": {
-    "lastUpdated": "2026-06-14T17:00:00-07:00",
+    "lastUpdated": "2026-06-21T17:00:00-07:00",
     "updatedBy": "Sunday Wind-Down"
   },
   "calendar": [
+    {
+      "time": "Mon 7:30am",
+      "title": "Hannah Arneson (eyebobs) — discovery call"
+    },
     {
       "time": "Mon 8:30am",
       "title": "DigitsUp Daily Stand Up"
     },
     {
-      "time": "Mon 10:30am",
-      "title": "OhSnap x OuterSignal Email Kickoff"
+      "time": "Mon 9:30am",
+      "title": "OhSnap: Briefing Session"
     },
     {
-      "time": "Mon 1:30pm",
-      "title": "Catch Up: Christy Dawn (OuterSignal) x DigitsUp"
-    },
-    {
-      "time": "Mon 2pm",
+      "time": "Mon 11:00am",
       "title": "Epicure | Klaviyo pricing sync"
     },
     {
-      "time": "Mon 3pm",
-      "title": "Marketing Team Connect"
+      "time": "Mon 11:00am",
+      "title": "DigitsUp x Klaviyo Reconnect | Riversol"
     },
     {
-      "time": "Tue 2:30pm",
-      "title": "Weekly Email Marketing Check-in (Internal)"
+      "time": "Mon 2:00pm",
+      "title": "Interview — John Vazquez"
     },
     {
-      "time": "Wed 1pm",
+      "time": "Mon 3:00pm",
+      "title": "Marketing team connect"
+    },
+    {
+      "time": "Tue 11:00am",
+      "title": "Interview — Harrison Faidley"
+    },
+    {
+      "time": "Tue 2:00pm",
+      "title": "Kyle Palazzolo and Michael Grill"
+    },
+    {
+      "time": "Wed 1:00pm",
       "title": "RVCA x DigitsUp"
     },
     {
-      "time": "Wed 2pm",
+      "time": "Wed 2:00pm",
       "title": "Riversol x DigitsUp Weekly"
     },
     {
@@ -41,139 +53,129 @@
       "title": "Salehe Bembury x DigitsUp Weekly"
     },
     {
-      "time": "Thu 11am",
+      "time": "Thu 10:00am",
+      "title": "FRNK Boutique x DigitsUp Bi-weekly"
+    },
+    {
+      "time": "Thu 11:00am",
       "title": "Hiba Academy Weekly"
     },
     {
-      "time": "Thu 1pm",
-      "title": "DigitsUp Leadership Sync"
+      "time": "Thu 1:00pm",
+      "title": "TheLabLife x DigitsUp (GHL review deadline)"
     }
   ],
   "needsYou": [
     {
-      "text": "Salehe Bembury \u2014 Implement all launch email edits (text, CTA, alignment, image size).",
+      "text": "Hannah Arneson (eyebobs) — brief needed TONIGHT before 7:30am Monday call.",
+      "chip": "Urgent"
+    },
+    {
+      "text": "Riversol working session invite — send tonight. Monday 11am.",
+      "chip": "Urgent"
+    },
+    {
+      "text": "Senior AM job posting — post Monday (committed Jun 20).",
       "chip": "Action"
     },
     {
-      "text": "Salehe Bembury \u2014 Make final decision on the `\u2122` symbol in the subject line.",
-      "chip": "Decision"
-    },
-    {
-      "text": "Salehe Bembury \u2014 Build and send the placeholder welcome email for review.",
+      "text": "Hiba — 90-day gameplan + scope for David + team. This week.",
       "chip": "Action"
     },
     {
-      "text": "Salehe Bembury \u2014 Publish the signup pop-up with the new configuration.",
+      "text": "FRNK — launch email not sent. Website is live. Action this week.",
       "chip": "Action"
     },
     {
-      "text": "RVCA \u2014 Roll out the `AC_exclude` fix to the Add to Cart and Browse flows.",
-      "chip": "Action"
-    },
-    {
-      "text": "RVCA \u2014 Get Outer Signal pricing from Dove.",
-      "chip": "Action"
-    },
-    {
-      "text": "RVCA \u2014 Ask Wunderman about building the partial fulfillment email.",
-      "chip": "Action"
-    },
-    {
-      "text": "RVCA \u2014 Schedule the SI Swimsuit runway email for June 9.",
-      "chip": "Action"
+      "text": "Hiba June 30 send — 'Founding vision to reality.' Draft OVERDUE.",
+      "chip": "Deadline"
     }
   ],
   "watching": [
     {
       "dot": "red",
-      "text": "Hiba \u2014 Renewal proposal not drafted. Veronica asked Jun 11. Contract ends June. This week."
+      "text": "eyebobs — 7:30am Monday discovery call. Brief NOT built. Do it tonight."
+    },
+    {
+      "dot": "red",
+      "text": "FRNK — website live, launch email NOT sent. Stale."
+    },
+    {
+      "dot": "red",
+      "text": "Hiba June 30 send — draft overdue. 9 days out."
     },
     {
       "dot": "amber",
-      "text": "Salehe \u2014 Alex Proba campaign drop Jun 18. Build ticket must happen Mon or Tue."
+      "text": "SFR Distillery — kickoff with Will starts Monday Jun 22. First live client week."
     },
     {
       "dot": "amber",
-      "text": "Epicure \u2014 Affiliate briefs needed from Michael before team can execute."
+      "text": "Riversol — working session Monday 11am. Replenishment flow finalization. Send invite tonight."
     },
     {
       "dot": "amber",
-      "text": "OuterSignal/Dov \u2014 Persona report 13 days stale (since Jun 1). Nudge before Mon kickoff."
-    },
-    {
-      "dot": "green",
-      "text": "SFR Distillery \u2014 APPROVED Jun 12. Onboarding + kickoff to schedule."
-    },
-    {
-      "dot": "green",
-      "text": "RVCA \u2014 Father's Day live. Jun 16 Bestsellers send, campaign calendar Mon with Victoria."
+      "text": "The Lab Life — GHL email review call Jun 25. 6 emails in build."
     }
   ],
   "clients": [
     {
       "name": "Riversol",
-      "lastActivity": "Winback LIVE. 5-star review flow waiting on codes (Ali) + lifestyle images (Arno/Oona). V2 in design, no Arnaud reply.",
+      "lastActivity": "Replenishment V2 awaiting Arnaud approval. Working session Mon 11am. Codes + images still pending from Ali + Arno/Oona.",
       "dot": "amber",
       "status": "active"
     },
     {
       "name": "Salehe Bembury",
-      "lastActivity": "Alex Proba campaign design ready \u2014 build ticket this week. Drop Jun 18. Welcome series in flight.",
+      "lastActivity": "Non-selling campaign strategy Jul–Aug. VIP SMS list build in progress. Weekly call Wed 3:30pm.",
       "dot": "amber",
       "status": "active"
     },
     {
       "name": "RVCA",
-      "lastActivity": "Father's Day sent Sat Jun 14. Jun 16 Bestsellers send (Victoria). Campaign calendar sync Mon.",
+      "lastActivity": "Post-purchase went live Jun 20. Monitor this week. Q3 campaign briefs to Clay pending. Weekly call Wed 1pm.",
       "dot": "green",
       "status": "active"
     },
     {
       "name": "Hiba Academy",
-      "lastActivity": "Renewal proposal not yet drafted \u2014 Veronica asked Jun 11, contract ends June. URGENT.",
+      "lastActivity": "90-day gameplan + scope for David + team this week. Jun 30 send draft overdue. Weekly Thu 11am.",
       "dot": "red",
       "status": "active"
     },
     {
       "name": "FRNK Boutique",
-      "lastActivity": "Launch email sent Fri Jun 13. Welcome series Kieran building.",
-      "dot": "green",
+      "lastActivity": "Website live. Launch email NOT sent. Bi-weekly Thu 10am.",
+      "dot": "red",
       "status": "active"
     },
     {
       "name": "Epicure",
-      "lastActivity": "Affiliate project scoped Jun 11. Briefs needed from Michael. Klaviyo pricing sync Mon 2pm.",
+      "lastActivity": "Klaviyo pricing sync Mon 11am. PP Email 2 brief still needed. Meaghan doing affiliate onboarding copy.",
       "dot": "amber",
       "status": "active"
     },
     {
       "name": "The Lab Life",
-      "lastActivity": "Summer camp campaign brief ASAP. Month 1 complete Jun 19.",
+      "lastActivity": "6 GHL emails in build. Review call Jun 25 1pm — hard deadline. Rebooking link pending from Ally.",
       "dot": "amber",
       "status": "active"
     },
     {
-      "name": "OuterSignal / Christy Dawn",
-      "lastActivity": "Assets with Marl. Kickoff Mon 10:30am. Dov persona report 13 days stale.",
-      "dot": "amber",
-      "status": "active"
-    },
-    {
-      "name": "SFR Distillery",
-      "lastActivity": "APPROVED Jun 12 \u2014 Will: 'Reviewed. Accepted. Let's go!' Onboarding next.",
+      "name": "OhSnap / OuterSignal",
+      "lastActivity": "Copy in Figma, to design stage. Briefing session Mon 9:30am. Debbie coordinating.",
       "dot": "green",
       "status": "active"
     },
     {
-      "name": "Liverpool LA",
-      "lastActivity": "Final week. Handoff to Group 8-8 complete. Archive only.",
-      "dot": "grey",
-      "status": "watching"
+      "name": "SFR Distillery",
+      "lastActivity": "Kickoff with Will starts Jun 22. First live client week. Onboarding in motion.",
+      "dot": "green",
+      "status": "active"
     }
   ],
   "inbox": {
-    "summary": "Inbox clear of urgent items. SFR approved (Will, Jun 12). Fathom recaps for Klaviyo, Marl, Hiba, Epicure, Salehe all filed. Michael's 'Replenishment Flow - Revamp' email (Jun 10) worth reviewing before Thu Riversol call.",
-    "lastChecked": "2026-06-14T17:00:00-07:00"
+    "summary": "Notion activity: Michael commented on Epicure affiliate onboarding flow + OhSnap post-purchase brief (Sun Jun 21). Debbie status updates for all clients Thu Jun 18 — unread in inbox. Two forwarded inbound leads from Michael (Sat Jun 20) worth reviewing — new customer message + DigitsUp services inquiry.",
+    "lastChecked": "2026-06-21T17:00:00-07:00"
   },
   "usage": {
     "monthLabel": "April 2026",
@@ -183,73 +185,43 @@
     "todayLabel": "Apr 22",
     "model": "Sonnet 4.6",
     "dailyCosts": [
-      {
-        "label": "Apr 13",
-        "amount": 32.29
-      },
-      {
-        "label": "Apr 14",
-        "amount": 20.16
-      },
-      {
-        "label": "Apr 15",
-        "amount": 47.02
-      },
-      {
-        "label": "Apr 16",
-        "amount": 30.72
-      },
-      {
-        "label": "Apr 17",
-        "amount": 0
-      },
-      {
-        "label": "Apr 18",
-        "amount": 0
-      },
-      {
-        "label": "Apr 19",
-        "amount": 0
-      },
-      {
-        "label": "Apr 20",
-        "amount": 0
-      },
-      {
-        "label": "Apr 21",
-        "amount": 0
-      },
-      {
-        "label": "Apr 22",
-        "amount": 0
-      }
+      { "label": "Apr 13", "amount": 32.29 },
+      { "label": "Apr 14", "amount": 20.16 },
+      { "label": "Apr 15", "amount": 47.02 },
+      { "label": "Apr 16", "amount": 30.72 },
+      { "label": "Apr 17", "amount": 0 },
+      { "label": "Apr 18", "amount": 0 },
+      { "label": "Apr 19", "amount": 0 },
+      { "label": "Apr 20", "amount": 0 },
+      { "label": "Apr 21", "amount": 0 },
+      { "label": "Apr 22", "amount": 0 }
     ],
-    "dailyNote": "Usage not updated \u2014 waiting on May numbers from Michael."
+    "dailyNote": "Usage not updated — waiting on June numbers from Michael."
   },
   "activity": [
     {
-      "ts": "2026-06-14T17:00:00-07:00",
-      "text": "Sunday wind-down complete \u2014 calendar, inbox, client pulse swept. Monday: 4 meetings including OuterSignal kickoff + Epicure pricing sync."
+      "ts": "2026-06-21T17:00:00-07:00",
+      "text": "Sunday wind-down complete — calendar, inbox, client pulse swept. Monday: 5 meetings starting 7:30am with eyebobs discovery call."
     },
     {
-      "ts": "2026-06-14T17:00:00-07:00",
-      "text": "\ud83d\udd34 Hiba renewal proposal still undrafted. Veronica asked Jun 11. Contract ends June. Flagged urgent."
+      "ts": "2026-06-21T17:00:00-07:00",
+      "text": "🔴 eyebobs brief NOT built — needed before 7:30am Mon call. Riversol working session invite NOT sent — needed for Mon 11am."
     },
     {
-      "ts": "2026-06-14T17:00:00-07:00",
-      "text": "Salehe Alex Proba campaign drop Jun 18 \u2014 build ticket needed Mon/Tue. Design ready."
+      "ts": "2026-06-21T17:00:00-07:00",
+      "text": "SFR Distillery goes live Mon Jun 22 — first week with Will. Senior AM posting committed for Monday."
     },
     {
-      "ts": "2026-06-14T17:00:00-07:00",
-      "text": "SFR Distillery approved Jun 12 \u2014 Will Rogers 'Reviewed. Accepted. Let's go!' Onboarding next."
+      "ts": "2026-06-21T17:00:00-07:00",
+      "text": "FRNK launch email still unsent — website live. Flagged for action this week."
     },
     {
-      "ts": "2026-06-14T17:00:00-07:00",
-      "text": "OuterSignal assets with Marl. Kickoff Mon 10:30am. Dov persona report 13 days stale."
+      "ts": "2026-06-21T17:00:00-07:00",
+      "text": "Hiba Jun 30 send draft overdue. 90-day gameplan + scope for David needed this week."
     },
     {
-      "ts": "2026-06-14T17:00:00-07:00",
-      "text": "FRNK launch email sent Fri. RVCA Father's Day sent Sat. Good week of sends."
+      "ts": "2026-06-21T17:00:00-07:00",
+      "text": "Inbox: Two inbound leads forwarded by Michael (Sat Jun 20) — new customer message + services inquiry. Worth a look Monday."
     }
   ]
 }
