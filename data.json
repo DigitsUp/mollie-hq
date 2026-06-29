@@ -1,181 +1,175 @@
 {
   "meta": {
-    "lastUpdated": "2026-06-21T17:00:00-07:00",
+    "lastUpdated": "2026-06-28T17:00:00-07:00",
     "updatedBy": "Sunday Wind-Down"
   },
   "calendar": [
     {
-      "time": "Mon 7:30am",
-      "title": "Hannah Arneson (eyebobs) — discovery call"
+      "time": "Mon 8:00am",
+      "title": "EyeBob x DigitsUp — ⚠️ Review strategy doc tonight"
     },
     {
       "time": "Mon 8:30am",
+      "title": "The Lab Life x Digitsup"
+    },
+    {
+      "time": "Mon 9:00am",
       "title": "DigitsUp Daily Stand Up"
     },
     {
-      "time": "Mon 9:30am",
-      "title": "OhSnap: Briefing Session"
-    },
-    {
       "time": "Mon 11:00am",
-      "title": "Epicure | Klaviyo pricing sync"
+      "title": "Dr. Appointment"
     },
     {
-      "time": "Mon 11:00am",
-      "title": "DigitsUp x Klaviyo Reconnect | Riversol"
+      "time": "Mon 11:30am",
+      "title": "Winchester stack"
     },
     {
-      "time": "Mon 2:00pm",
-      "title": "Interview — John Vazquez"
+      "time": "Mon 1:00pm",
+      "title": "Weekly Sync - Joccers Only"
     },
     {
-      "time": "Mon 3:00pm",
-      "title": "Marketing team connect"
+      "time": "Tue 7:30am",
+      "title": "Dentist Appointment"
     },
     {
-      "time": "Tue 11:00am",
-      "title": "Interview — Harrison Faidley"
+      "time": "Tue 8:00am",
+      "title": "DigitOps Daily Check-in"
     },
     {
-      "time": "Tue 2:00pm",
-      "title": "Kyle Palazzolo and Michael Grill"
-    },
-    {
-      "time": "Wed 1:00pm",
-      "title": "RVCA x DigitsUp"
-    },
-    {
-      "time": "Wed 2:00pm",
-      "title": "Riversol x DigitsUp Weekly"
-    },
-    {
-      "time": "Wed 3:30pm",
-      "title": "Salehe Bembury x DigitsUp Weekly"
-    },
-    {
-      "time": "Thu 10:00am",
-      "title": "FRNK Boutique x DigitsUp Bi-weekly"
-    },
-    {
-      "time": "Thu 11:00am",
-      "title": "Hiba Academy Weekly"
-    },
-    {
-      "time": "Thu 1:00pm",
-      "title": "TheLabLife x DigitsUp (GHL review deadline)"
+      "time": "Tue 8:30am",
+      "title": "DigitsUp Daily Stand Up"
     }
   ],
   "needsYou": [
     {
-      "text": "Hannah Arneson (eyebobs) — brief needed TONIGHT before 7:30am Monday call.",
+      "text": "Review eyebobs strategy doc TONIGHT — 8:00am call Monday.",
       "chip": "Urgent"
     },
     {
-      "text": "Riversol working session invite — send tonight. Monday 11am.",
-      "chip": "Urgent"
-    },
-    {
-      "text": "Senior AM job posting — post Monday (committed Jun 20).",
-      "chip": "Action"
-    },
-    {
-      "text": "Hiba — 90-day gameplan + scope for David + team. This week.",
-      "chip": "Action"
-    },
-    {
-      "text": "FRNK — launch email not sent. Website is live. Action this week.",
-      "chip": "Action"
-    },
-    {
-      "text": "Hiba June 30 send — 'Founding vision to reality.' Draft OVERDUE.",
+      "text": "Hiba June 30 send — 'Founding vision to reality.' Draft needed today.",
       "chip": "Deadline"
+    },
+    {
+      "text": "Loosid audit — send screenshots + research doc so Mollie can run it.",
+      "chip": "Action"
+    },
+    {
+      "text": "Christy Dawn — 7 Klaviyo changes first, then Mollie drafts Sam recap.",
+      "chip": "Action"
+    },
+    {
+      "text": "The Lab Life brief — insert booking form URL + phone number.",
+      "chip": "Action"
+    },
+    {
+      "text": "SFR Distillery — send intake form + schedule bi-weekly Mondays 2pm ET from Jul 6.",
+      "chip": "Action"
     }
   ],
   "watching": [
     {
       "dot": "red",
-      "text": "eyebobs — 7:30am Monday discovery call. Brief NOT built. Do it tonight."
+      "text": "EyeBobs — 8am Monday call. Strategy doc sent, review tonight."
     },
     {
       "dot": "red",
-      "text": "FRNK — website live, launch email NOT sent. Stale."
+      "text": "Hiba — June 30 send draft overdue. Hard deadline Tuesday."
     },
     {
       "dot": "red",
-      "text": "Hiba June 30 send — draft overdue. 9 days out."
+      "text": "Loosid — audit not started. Waiting on screenshots from Michael."
     },
     {
       "dot": "amber",
-      "text": "SFR Distillery — kickoff with Will starts Monday Jun 22. First live client week."
+      "text": "The History List — Lee said yes. Adobe Sign being sent. June 30 start."
     },
     {
       "dot": "amber",
-      "text": "Riversol — working session Monday 11am. Replenishment flow finalization. Send invite tonight."
+      "text": "Christy Dawn — Sam recap still overdue. Michael's 7 Klaviyo changes first."
     },
     {
       "dot": "amber",
-      "text": "The Lab Life — GHL email review call Jun 25. 6 emails in build."
+      "text": "RVCA — winback + review automations scope unclear post-call."
     }
   ],
   "clients": [
     {
-      "name": "Riversol",
-      "lastActivity": "Replenishment V2 awaiting Arnaud approval. Working session Mon 11am. Codes + images still pending from Ali + Arno/Oona.",
-      "dot": "amber",
+      "name": "EyeBobs",
+      "lastActivity": "Full audit done Jun 28. Strategy doc emailed to mike@digitsup.com. 8am call Monday — review doc tonight.",
+      "dot": "red",
       "status": "active"
     },
     {
-      "name": "Salehe Bembury",
-      "lastActivity": "Non-selling campaign strategy Jul–Aug. VIP SMS list build in progress. Weekly call Wed 3:30pm.",
-      "dot": "amber",
-      "status": "active"
-    },
-    {
-      "name": "RVCA",
-      "lastActivity": "Post-purchase went live Jun 20. Monitor this week. Q3 campaign briefs to Clay pending. Weekly call Wed 1pm.",
+      "name": "The History List",
+      "lastActivity": "Lee verbally agreed to $2,500/mo starting Jun 30. Adobe Sign being sent by Lawrence. Effectively new client.",
       "dot": "green",
       "status": "active"
     },
     {
       "name": "Hiba Academy",
-      "lastActivity": "90-day gameplan + scope for David + team this week. Jun 30 send draft overdue. Weekly Thu 11am.",
+      "lastActivity": "June 30 send ('Founding vision to reality') draft overdue. Hard deadline Tuesday.",
       "dot": "red",
       "status": "active"
     },
     {
-      "name": "FRNK Boutique",
-      "lastActivity": "Website live. Launch email NOT sent. Bi-weekly Thu 10am.",
+      "name": "Loosid",
+      "lastActivity": "Audit not started — waiting on screenshots + research doc from Michael. API key confirmed.",
       "dot": "red",
       "status": "active"
     },
     {
-      "name": "Epicure",
-      "lastActivity": "Klaviyo pricing sync Mon 11am. PP Email 2 brief still needed. Meaghan doing affiliate onboarding copy.",
+      "name": "Christy Dawn",
+      "lastActivity": "Sam recap email overdue 3+ days. Blocked on Michael's 7 Klaviyo changes first.",
+      "dot": "red",
+      "status": "active"
+    },
+    {
+      "name": "Riversol",
+      "lastActivity": "Flows still not started. Highest-priority flow build this week.",
       "dot": "amber",
       "status": "active"
     },
     {
-      "name": "The Lab Life",
-      "lastActivity": "6 GHL emails in build. Review call Jun 25 1pm — hard deadline. Rebooking link pending from Ally.",
+      "name": "RVCA",
+      "lastActivity": "Post-purchase live. Winback + review automations scope unclear post-Jun 25 call. Attentive AI Grow upsell in inbox.",
       "dot": "amber",
       "status": "active"
     },
     {
-      "name": "OhSnap / OuterSignal",
-      "lastActivity": "Copy in Figma, to design stage. Briefing session Mon 9:30am. Debbie coordinating.",
+      "name": "Salehe Bembury",
+      "lastActivity": "Update sign-up form for SMS, add UTMs to Sponge link. Active.",
       "dot": "green",
       "status": "active"
     },
     {
       "name": "SFR Distillery",
-      "lastActivity": "Kickoff with Will starts Jun 22. First live client week. Onboarding in motion.",
-      "dot": "green",
+      "lastActivity": "Intake form + bi-weekly schedule not yet sent. New client week 2.",
+      "dot": "amber",
+      "status": "active"
+    },
+    {
+      "name": "The Lab Life",
+      "lastActivity": "Brief ready. 8:30am Monday call. Michael needs to add booking form URL + phone before call.",
+      "dot": "amber",
+      "status": "active"
+    },
+    {
+      "name": "FRNK Boutique",
+      "lastActivity": "Welcome 20 link to Kieran + CTA decision with Steph still open.",
+      "dot": "amber",
+      "status": "active"
+    },
+    {
+      "name": "Epicure",
+      "lastActivity": "Affiliate email + banner priority per Gemini standup.",
+      "dot": "amber",
       "status": "active"
     }
   ],
   "inbox": {
-    "summary": "Notion activity: Michael commented on Epicure affiliate onboarding flow + OhSnap post-purchase brief (Sun Jun 21). Debbie status updates for all clients Thu Jun 18 — unread in inbox. Two forwarded inbound leads from Michael (Sat Jun 20) worth reviewing — new customer message + DigitsUp services inquiry.",
-    "lastChecked": "2026-06-21T17:00:00-07:00"
+    "summary": "The History List: Lee confirmed $2,500/mo starting June 30 — Adobe Sign coming. Attentive/RVCA AI Grow upsell (context only). Christy Dawn/OuterSignal Sam Pick flagged post-purchase consolidation question. Meeting update: EyeBob call moved to 8am Monday.",
+    "lastChecked": "2026-06-28T17:00:00-07:00"
   },
   "usage": {
     "monthLabel": "April 2026",
@@ -200,28 +194,28 @@
   },
   "activity": [
     {
-      "ts": "2026-06-21T17:00:00-07:00",
-      "text": "Sunday wind-down complete — calendar, inbox, client pulse swept. Monday: 5 meetings starting 7:30am with eyebobs discovery call."
+      "ts": "2026-06-28T17:00:00-07:00",
+      "text": "Sunday wind-down complete — calendar, inbox, client pulse swept."
     },
     {
-      "ts": "2026-06-21T17:00:00-07:00",
-      "text": "🔴 eyebobs brief NOT built — needed before 7:30am Mon call. Riversol working session invite NOT sent — needed for Mon 11am."
+      "ts": "2026-06-28T17:00:00-07:00",
+      "text": "🔴 EyeBob strategy doc sent. Monday 8am call. Michael must review tonight."
     },
     {
-      "ts": "2026-06-21T17:00:00-07:00",
-      "text": "SFR Distillery goes live Mon Jun 22 — first week with Will. Senior AM posting committed for Monday."
+      "ts": "2026-06-28T17:00:00-07:00",
+      "text": "The History List: Lee said yes to $2,500/mo — starts June 30. Lawrence sending Adobe Sign."
     },
     {
-      "ts": "2026-06-21T17:00:00-07:00",
-      "text": "FRNK launch email still unsent — website live. Flagged for action this week."
+      "ts": "2026-06-28T17:00:00-07:00",
+      "text": "Monday packed: EyeBob 8am, The Lab 8:30am, Standup 9am, Dr. 11am, Winchester 11:30am, Joccers 1pm."
     },
     {
-      "ts": "2026-06-21T17:00:00-07:00",
-      "text": "Hiba Jun 30 send draft overdue. 90-day gameplan + scope for David needed this week."
+      "ts": "2026-06-28T17:00:00-07:00",
+      "text": "Hiba June 30 send still unwritten — hard deadline Tuesday. Loosid audit waiting on screenshots."
     },
     {
-      "ts": "2026-06-21T17:00:00-07:00",
-      "text": "Inbox: Two inbound leads forwarded by Michael (Sat Jun 20) — new customer message + services inquiry. Worth a look Monday."
+      "ts": "2026-06-28T17:00:00-07:00",
+      "text": "eyebobs full Klaviyo audit built today — 6hr session. All findings documented in clients/eyebobs/audit-2026/."
     }
   ]
 }
