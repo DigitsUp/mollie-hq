@@ -1,36 +1,40 @@
 {
   "meta": {
-    "lastUpdated": "2026-06-28T17:00:00-07:00",
+    "lastUpdated": "2026-07-05T17:00:00-07:00",
     "updatedBy": "Sunday Wind-Down"
   },
   "calendar": [
     {
       "time": "Mon 8:00am",
-      "title": "EyeBob x DigitsUp — ⚠️ Review strategy doc tonight"
+      "title": "DigitOps Daily Check-in"
     },
     {
       "time": "Mon 8:30am",
-      "title": "The Lab Life x Digitsup"
-    },
-    {
-      "time": "Mon 9:00am",
       "title": "DigitsUp Daily Stand Up"
     },
     {
-      "time": "Mon 11:00am",
-      "title": "Dr. Appointment"
+      "time": "Mon 10:00am",
+      "title": "SFR x DigitsUp"
     },
     {
-      "time": "Mon 11:30am",
-      "title": "Winchester stack"
+      "time": "Mon 11:00am",
+      "title": "Epicure/Klaviyo Reconnect \u26a0\ufe0f warmth pass needed first"
     },
     {
       "time": "Mon 1:00pm",
       "title": "Weekly Sync - Joccers Only"
     },
     {
-      "time": "Tue 7:30am",
-      "title": "Dentist Appointment"
+      "time": "Mon 1:30pm",
+      "title": "Victoria x Mike"
+    },
+    {
+      "time": "Mon 2:00pm",
+      "title": "Salehe Bembury x DigitsUp Weekly"
+    },
+    {
+      "time": "Mon 3:00pm",
+      "title": "Marketing team connect (Hiba)"
     },
     {
       "time": "Tue 8:00am",
@@ -39,137 +43,153 @@
     {
       "time": "Tue 8:30am",
       "title": "DigitsUp Daily Stand Up"
+    },
+    {
+      "time": "Tue 2:00pm",
+      "title": "RVCA x DigitsUp"
+    },
+    {
+      "time": "Tue 2:30pm",
+      "title": "Riversol x DigitsUp Weekly"
+    },
+    {
+      "time": "Thu 10:00am",
+      "title": "FRNK Boutique x DigitsUp Bi-weekly"
+    },
+    {
+      "time": "Thu 11:00am",
+      "title": "Hiba Academy Weekly (Email Marketing)"
+    },
+    {
+      "time": "Fri",
+      "title": "Christy Dawn flow reporting check (reminder)"
     }
   ],
   "needsYou": [
     {
-      "text": "Review eyebobs strategy doc TONIGHT — 8:00am call Monday.",
+      "text": "Epicure invite email \u2014 warmth pass before 11am Monday call. Amelia flagged it robotic.",
       "chip": "Urgent"
     },
     {
-      "text": "Hiba June 30 send — 'Founding vision to reality.' Draft needed today.",
+      "text": "Hiba June report \u2014 send to Homa. URL live, password HIBA2026. Still unsent.",
       "chip": "Deadline"
     },
     {
-      "text": "Loosid audit — send screenshots + research doc so Mollie can run it.",
+      "text": "History List \u2014 send Klaviyo API key tomorrow so Harrison can start M1 build.",
       "chip": "Action"
     },
     {
-      "text": "Christy Dawn — 7 Klaviyo changes first, then Mollie drafts Sam recap.",
+      "text": "FRNK \u2014 nudge Steph on Facebook login credentials. Giveaway week of Jul 6.",
       "chip": "Action"
     },
     {
-      "text": "The Lab Life brief — insert booking form URL + phone number.",
-      "chip": "Action"
-    },
-    {
-      "text": "SFR Distillery — send intake form + schedule bi-weekly Mondays 2pm ET from Jul 6.",
+      "text": "RVCA \u2014 confirm Jul 4 markdown email went out before Tuesday call.",
       "chip": "Action"
     }
   ],
   "watching": [
     {
       "dot": "red",
-      "text": "EyeBobs — 8am Monday call. Strategy doc sent, review tonight."
+      "text": "Epicure \u2014 warmth pass on invite email needed before 11am Monday."
     },
     {
       "dot": "red",
-      "text": "Hiba — June 30 send draft overdue. Hard deadline Tuesday."
+      "text": "Hiba \u2014 June report live but unsent to Homa. Overdue."
     },
     {
       "dot": "red",
-      "text": "Loosid — audit not started. Waiting on screenshots from Michael."
+      "text": "Riversol \u2014 flows still not started. Tue 2:30pm call \u2014 make it count."
     },
     {
       "dot": "amber",
-      "text": "The History List — Lee said yes. Adobe Sign being sent. June 30 start."
+      "text": "FRNK \u2014 Instagram giveaway week of Jul 6. Blocked on Steph Facebook login."
     },
     {
       "dot": "amber",
-      "text": "Christy Dawn — Sam recap still overdue. Michael's 7 Klaviyo changes first."
+      "text": "History List \u2014 Harrison week 1. Klaviyo key + Kieran newsletter draft both due Mon."
     },
     {
       "dot": "amber",
-      "text": "RVCA — winback + review automations scope unclear post-call."
+      "text": "RVCA \u2014 confirm Jul 4 email went out. Call Tuesday 2pm."
     }
   ],
   "clients": [
     {
-      "name": "EyeBobs",
-      "lastActivity": "Full audit done Jun 28. Strategy doc emailed to mike@digitsup.com. 8am call Monday — review doc tonight.",
+      "name": "Epicure",
+      "lastActivity": "Affiliate flow in progress. Invite email copy flagged robotic \u2014 warmth pass needed before Mon 11am call.",
       "dot": "red",
-      "status": "active"
-    },
-    {
-      "name": "The History List",
-      "lastActivity": "Lee verbally agreed to $2,500/mo starting Jun 30. Adobe Sign being sent by Lawrence. Effectively new client.",
-      "dot": "green",
       "status": "active"
     },
     {
       "name": "Hiba Academy",
-      "lastActivity": "June 30 send ('Founding vision to reality') draft overdue. Hard deadline Tuesday.",
-      "dot": "red",
-      "status": "active"
-    },
-    {
-      "name": "Loosid",
-      "lastActivity": "Audit not started — waiting on screenshots + research doc from Michael. API key confirmed.",
-      "dot": "red",
-      "status": "active"
-    },
-    {
-      "name": "Christy Dawn",
-      "lastActivity": "Sam recap email overdue 3+ days. Blocked on Michael's 7 Klaviyo changes first.",
+      "lastActivity": "June report live but NOT sent to Homa. Overdue. Send before Monday.",
       "dot": "red",
       "status": "active"
     },
     {
       "name": "Riversol",
-      "lastActivity": "Flows still not started. Highest-priority flow build this week.",
+      "lastActivity": "Flows not started \u2014 still priority 1. Tue 2:30pm call this week.",
+      "dot": "red",
+      "status": "active"
+    },
+    {
+      "name": "FRNK Boutique",
+      "lastActivity": "Instagram giveaway launching week of Jul 6. Blocked on Steph Facebook login credentials.",
+      "dot": "amber",
+      "status": "active"
+    },
+    {
+      "name": "The History List",
+      "lastActivity": "Week 1 (Harrison AM). Klaviyo key pending, Kieran newsletter draft due Mon Jul 6.",
       "dot": "amber",
       "status": "active"
     },
     {
       "name": "RVCA",
-      "lastActivity": "Post-purchase live. Winback + review automations scope unclear post-Jun 25 call. Attentive AI Grow upsell in inbox.",
+      "lastActivity": "Confirm Jul 4 markdown email sent. Tue 2pm call. Abandoned suite audit underway.",
       "dot": "amber",
       "status": "active"
     },
     {
       "name": "Salehe Bembury",
-      "lastActivity": "Update sign-up form for SMS, add UTMs to Sponge link. Active.",
+      "lastActivity": "Summer Archive Sale Aug 13. Mugs Jul 30. Active. Mon 2pm weekly call.",
       "dot": "green",
       "status": "active"
     },
     {
       "name": "SFR Distillery",
-      "lastActivity": "Intake form + bi-weekly schedule not yet sent. New client week 2.",
+      "lastActivity": "Mon 10am call. Phase 1 abandoned suite. Blocked on lifestyle images from Will.",
       "dot": "amber",
       "status": "active"
     },
     {
       "name": "The Lab Life",
-      "lastActivity": "Brief ready. 8:30am Monday call. Michael needs to add booking form URL + phone before call.",
+      "lastActivity": "Jul 5 promo wrapped. Month 2 = Klaviyo migration not started.",
       "dot": "amber",
       "status": "active"
     },
     {
-      "name": "FRNK Boutique",
-      "lastActivity": "Welcome 20 link to Kieran + CTA decision with Steph still open.",
+      "name": "Eyebobs",
+      "lastActivity": "Active \u2014 Klaviyo key confirmed. No calls this week.",
+      "dot": "green",
+      "status": "active"
+    },
+    {
+      "name": "Loosid",
+      "lastActivity": "Audit not started \u2014 waiting on screenshots from Michael.",
       "dot": "amber",
       "status": "active"
     },
     {
-      "name": "Epicure",
-      "lastActivity": "Affiliate email + banner priority per Gemini standup.",
+      "name": "OuterSignal / OhSnap",
+      "lastActivity": "Post-purchase scope locked. Waiting on JD for Klaviyo access + creative assets. OhSnap update email today from Michael.",
       "dot": "amber",
       "status": "active"
     }
   ],
   "inbox": {
-    "summary": "The History List: Lee confirmed $2,500/mo starting June 30 — Adobe Sign coming. Attentive/RVCA AI Grow upsell (context only). Christy Dawn/OuterSignal Sam Pick flagged post-purchase consolidation question. Meeting update: EyeBob call moved to 8am Monday.",
-    "lastChecked": "2026-06-28T17:00:00-07:00"
+    "summary": "Inbox quiet. One unread: OhSnap/OuterSignal update from Michael (Jul 5 noon). Rest are Fathom recaps. No client fires.",
+    "lastChecked": "2026-07-05T17:00:00-07:00"
   },
   "usage": {
     "monthLabel": "April 2026",
@@ -179,43 +199,73 @@
     "todayLabel": "Apr 22",
     "model": "Sonnet 4.6",
     "dailyCosts": [
-      { "label": "Apr 13", "amount": 32.29 },
-      { "label": "Apr 14", "amount": 20.16 },
-      { "label": "Apr 15", "amount": 47.02 },
-      { "label": "Apr 16", "amount": 30.72 },
-      { "label": "Apr 17", "amount": 0 },
-      { "label": "Apr 18", "amount": 0 },
-      { "label": "Apr 19", "amount": 0 },
-      { "label": "Apr 20", "amount": 0 },
-      { "label": "Apr 21", "amount": 0 },
-      { "label": "Apr 22", "amount": 0 }
+      {
+        "label": "Apr 13",
+        "amount": 32.29
+      },
+      {
+        "label": "Apr 14",
+        "amount": 20.16
+      },
+      {
+        "label": "Apr 15",
+        "amount": 47.02
+      },
+      {
+        "label": "Apr 16",
+        "amount": 30.72
+      },
+      {
+        "label": "Apr 17",
+        "amount": 0
+      },
+      {
+        "label": "Apr 18",
+        "amount": 0
+      },
+      {
+        "label": "Apr 19",
+        "amount": 0
+      },
+      {
+        "label": "Apr 20",
+        "amount": 0
+      },
+      {
+        "label": "Apr 21",
+        "amount": 0
+      },
+      {
+        "label": "Apr 22",
+        "amount": 0
+      }
     ],
-    "dailyNote": "Usage not updated — waiting on June numbers from Michael."
+    "dailyNote": "Usage not updated \u2014 waiting on June numbers from Michael."
   },
   "activity": [
     {
-      "ts": "2026-06-28T17:00:00-07:00",
-      "text": "Sunday wind-down complete — calendar, inbox, client pulse swept."
+      "ts": "2026-07-05T17:00:00-07:00",
+      "text": "Sunday wind-down complete \u2014 calendar, inbox, client pulse swept for week of Jul 6."
     },
     {
-      "ts": "2026-06-28T17:00:00-07:00",
-      "text": "🔴 EyeBob strategy doc sent. Monday 8am call. Michael must review tonight."
+      "ts": "2026-07-05T17:00:00-07:00",
+      "text": "\ud83d\udd34 Monday packed: 8 calls. Epicure warmth pass + Hiba send needed before calls start."
     },
     {
-      "ts": "2026-06-28T17:00:00-07:00",
-      "text": "The History List: Lee said yes to $2,500/mo — starts June 30. Lawrence sending Adobe Sign."
+      "ts": "2026-07-05T17:00:00-07:00",
+      "text": "Riversol flows still not started \u2014 Tue 2:30pm call is the unlock moment."
     },
     {
-      "ts": "2026-06-28T17:00:00-07:00",
-      "text": "Monday packed: EyeBob 8am, The Lab 8:30am, Standup 9am, Dr. 11am, Winchester 11:30am, Joccers 1pm."
+      "ts": "2026-07-05T17:00:00-07:00",
+      "text": "History List week 1: Harrison AM. Klaviyo key due Mon, Kieran newsletter due Mon."
     },
     {
-      "ts": "2026-06-28T17:00:00-07:00",
-      "text": "Hiba June 30 send still unwritten — hard deadline Tuesday. Loosid audit waiting on screenshots."
+      "ts": "2026-07-05T17:00:00-07:00",
+      "text": "FRNK Instagram giveaway week of Jul 6 \u2014 blocked on Steph Facebook login."
     },
     {
-      "ts": "2026-06-28T17:00:00-07:00",
-      "text": "eyebobs full Klaviyo audit built today — 6hr session. All findings documented in clients/eyebobs/audit-2026/."
+      "ts": "2026-07-05T17:00:00-07:00",
+      "text": "Reminder: Jul 10 Christy Dawn flow reporting check (cron set)."
     }
   ]
 }
